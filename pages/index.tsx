@@ -60,13 +60,13 @@ export default function Home() {
           </div> */}
 
         <div className={styles.center}>
-          <span className={styles.brandname}>Hello</span>
+          <span className={styles.brandName}>Hello</span>
 
-          <AnimatedText className={styles.brandme} theme="space">
+          <AnimatedText className={styles.brandNameMePart} theme="space">
             Me
           </AnimatedText>
 
-          <span className={styles.brandname}>.ai</span>
+          <span className={styles.brandName}>.ai</span>
         </div>
 
         {/* <div>

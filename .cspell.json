@@ -1,0 +1,27 @@
+{
+  "language": "en",
+  "dictionaries": [
+    "companies",
+    "css",
+    "en_US",
+    "filetypes",
+    "fonts",
+    "html",
+    "misc",
+    "node",
+    "npm",
+    "softwareTerms",
+    "typescript"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "*.pages",
+    "*.docx",
+    "*.doc",
+    "package.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "*.tsbuildinfo"
+  ],
+  "words": ["Haettenschweiler", "clsx", "nextjs", "hellome", "hellomebooks"]
+}

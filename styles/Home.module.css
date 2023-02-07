@@ -153,16 +153,16 @@
 }
 
 /* Main brand text */
-.brandname,
-.brandme {
+.brandName,
+.brandNameMePart {
   font-size: 15rem;
 }
 
-.brandname {
+.brandName {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.brandme {
+.brandNameMePart {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -264,8 +264,8 @@
     z-index: 1;
   }
 
-  .brandname,
-  .brandme {
+  .brandName,
+  .brandNameMePart {
     font-size: 6rem;
   }
 }
@@ -276,8 +276,8 @@
     grid-template-columns: repeat(2, 50%);
   }
 
-  .brandname,
-  .brandme {
+  .brandName,
+  .brandNameMePart {
     font-size: 9rem;
   }
 }
