@@ -1,3 +1,6 @@
+import '@/assets/main.css'
+import '@/assets/chrome-bug.css'
+
 import '@/styles/globals.css'
 
 import type { AppProps } from 'next/app'

@@ -23,5 +23,14 @@
     "yarn.lock",
     "*.tsbuildinfo"
   ],
-  "words": ["Haettenschweiler", "clsx", "nextjs", "hellome", "hellomebooks"]
+  "words": [
+    "Haettenschweiler",
+    "clsx",
+    "nextjs",
+    "hellome",
+    "hellomebooks",
+    "tailwindcss",
+    "flowbite",
+    "flexbugs"
+  ]
 }

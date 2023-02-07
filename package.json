@@ -20,12 +20,18 @@
     "@stdlib/datasets-female-first-names-en": "^0.0.9",
     "@stdlib/datasets-male-first-names-en": "^0.0.9",
     "@vercel/analytics": "^0.1.8",
+    "autoprefixer": "^10.4.13",
     "clsx": "^1.2.1",
+    "flowbite": "^1.6.3",
+    "flowbite-react": "^0.3.8",
     "lodash": "^4.17.21",
     "next": "13.1.6",
     "nextjs-google-analytics": "^2.3.0",
+    "postcss": "^8.4.21",
+    "postcss-nesting": "^11.1.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tailwindcss": "^3.2.4"
   },
   "dependencies.todo": {
     "flowbite": "^1.6.3",
@@ -43,6 +49,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-json": "^3.1.0",
     "lint-staged": "^13.0.3",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^8.0.1",
     "prettier": "^2.5.1",
     "typescript": "4.9.5"
   },
