@@ -20,12 +20,20 @@
     "next": "13.1.6",
     "nextjs-google-analytics": "^2.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "@stdlib/datasets-female-first-names-en": "^0.0.9",
+    "@stdlib/datasets-male-first-names-en": "^0.0.9",
+    "lodash": "^4.17.21"
+  },
+  "dependencies.todo": {
+    "flowbite": "^1.6.3",
+    "flowbite-react": "^0.3.8"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.1.6",
     "@types/node": "18.13.0",
     "@types/react": "18.0.27",
+    "@types/lodash": "^4.14.190",
     "@types/react-dom": "18.0.10",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",

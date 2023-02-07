@@ -93,6 +93,20 @@ export default function Home() {
           </a>
 
           {/* <a
+            href="https://store.hellome.ai"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              Learn More
+            </h2>
+            <p className={inter.className}>
+              Find out how we work with artists to put the <b>AI</b> in <b>Authenticity</b>
+            </p>
+          </a> */}
+
+          {/* <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
