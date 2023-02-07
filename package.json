@@ -10,7 +10,7 @@
     "check-types": "tsc --noemit",
     "spellcheck": "cspell . --no-progress",
     "lint": "npm run check-types && next lint && npm run spellcheck",
-    "fix": "pnpm run prettier-fix && pnpm run lint",
+    "ci": "pnpm run prettier-fix && pnpm run lint",
     "prettier-fix": "prettier --write .",
     "find:unused": "npx next-unused"
   },
