@@ -32,14 +32,14 @@
 */
 
 .root {
-  font-family: Impact;
+  /* font-family: Impact; */
   /* background-image: url('https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif'); */
   /* background-size: 100% 50px; */
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   /* -webkit-animation: stripes 2s linear infinite;
   animation: stripes 2s linear infinite; */
-  font-size: 200px;
+  /* font-size: 200px; */
 }
 
 .space {

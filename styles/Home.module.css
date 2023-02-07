@@ -78,6 +78,7 @@
   align-items: center;
   position: relative;
   padding: 4rem 0;
+  container-type: inline-size;
 }
 
 .center::before {
@@ -149,6 +150,20 @@
     rgba(var(--tile-end-rgb), 1)
   );
   background-clip: content-box;
+}
+
+/* Main brand text */
+.brandname,
+.brandme {
+  font-size: 15rem;
+}
+
+.brandname {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.brandme {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 /* Enable hover only on non-touch devices */
@@ -248,12 +263,22 @@
     );
     z-index: 1;
   }
+
+  .brandname,
+  .brandme {
+    font-size: 6rem;
+  }
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
+  }
+
+  .brandname,
+  .brandme {
+    font-size: 9rem;
   }
 }
 

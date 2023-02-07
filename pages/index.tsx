@@ -60,24 +60,13 @@ export default function Home() {
           </div> */}
 
         <div className={styles.center}>
-          <span
-            style={{ fontSize: '200px', fontFamily: 'arial', paddingRight: 24 }}
-          >
-            Hello
-          </span>
+          <span className={styles.brandname}>Hello</span>
 
-          <AnimatedText theme="space">Me</AnimatedText>
+          <AnimatedText className={styles.brandme} theme="space">
+            Me
+          </AnimatedText>
 
-          <span
-            style={{
-              fontSize: '200px',
-              fontFamily: 'arial',
-              fontStyle: 'bold',
-              paddingRight: 24,
-            }}
-          >
-            .ai
-          </span>
+          <span className={styles.brandname}>.ai</span>
         </div>
 
         {/* <div>
@@ -87,6 +76,22 @@ export default function Home() {
         </div> */}
 
         <div className={styles.grid}>
+          <a
+            href="https://store.hellome.ai"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              {/* Store <span>-&gt;</span> */}
+              {/* Visit our Store */}
+              Visit our Store
+            </h2>
+            <p className={inter.className}>
+              Check out our AI personalized children's books.
+            </p>
+          </a>
+
           {/* <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
