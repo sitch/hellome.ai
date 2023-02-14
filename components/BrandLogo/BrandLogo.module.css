@@ -7,6 +7,8 @@
 
 .brandNameMePart {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* text-stroke: 0.07rem rgba(0, 0, 0, 0.711);
+  -webkit-text-stroke: 0.07rem rgba(0, 0, 0, 0.711); */
 }
 
 .brandNameAiPart {
@@ -41,3 +43,10 @@
     /* font-size: 9rem; */
   }
 }
+
+/* @media (prefers-color-scheme: dark) {
+  .brandNameMePart {
+    text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
+    -webkit-text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
+  }
+} */

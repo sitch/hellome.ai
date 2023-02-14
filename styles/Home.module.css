@@ -5,6 +5,7 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 }
 
 .description {
@@ -259,6 +260,23 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  .main {
+    /* background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); */
+
+    /* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    background-image: linear-gradient(
+      to top,
+      #3b41c5 0%,
+      #a981bb 49%,
+      #ffc8a9 100%
+    );
+
+    /* background-image: linear-gradient(to top, #b224ef 0%, #7579ff 100%); */
+
+    /* background-image: radial-gradient( circle 610px at 5.2% 51.6%,  rgba(5,8,114,1) 0%, rgba(7,3,53,1) 97.5% ); */
+    /* background-image: linear-gradient( 110.1deg,  rgba(30,2,83,1) 44.2%, rgba(198,55,160,1) 138.2% ); */
+  }
+
   .vercelLogo {
     filter: invert(1);
   }

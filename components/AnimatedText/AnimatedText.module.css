@@ -2,18 +2,8 @@
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   @apply bg-clip-text;
-
-  text-stroke: 0.07rem rgba(0, 0, 0, 0.711);
-  -webkit-text-stroke: 0.07rem rgba(0, 0, 0, 0.711);
 }
 
 .space {
-  background-image: url('https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif');
-}
-
-@media (prefers-color-scheme: dark) {
-  .root {
-    text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
-    -webkit-text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
-  }
+  background-image: url('/images/space.gif');
 }
