@@ -35,3 +35,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cspell
+.cspellcache
+
+# prettier
+.prettiercache
+
+# eslint
+.eslintcache

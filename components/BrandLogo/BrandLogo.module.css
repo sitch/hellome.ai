@@ -1,0 +1,43 @@
+@import url('https://fonts.cdnfonts.com/css/humanist-522');
+
+.brandNameHelloPart {
+  font-family: 'Humanist 522', Arial, Helvetica, sans-serif;
+  @apply tracking-tight pr-3;
+}
+
+.brandNameMePart {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.brandNameAiPart {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.brandNameHelloPart,
+.brandNameAiPart,
+.brandNameMePart {
+  /* font-size: 15rem; */
+  /* @apply text-9xl; */
+  font-size: 13rem;
+  line-height: 1;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .brandNameHelloPart,
+  .brandNameAiPart,
+  .brandNameMePart {
+    @apply text-8xl;
+    /* font-size: 5.7rem; */
+  }
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+  .brandNameHelloPart,
+  .brandNameAiPart,
+  .brandNameMePart {
+    @apply text-9xl;
+    /* font-size: 9rem; */
+  }
+}

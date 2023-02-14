@@ -152,20 +152,6 @@
   background-clip: content-box;
 }
 
-/* Main brand text */
-.brandName,
-.brandNameMePart {
-  font-size: 15rem;
-}
-
-.brandName {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.brandNameMePart {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -263,22 +249,12 @@
     );
     z-index: 1;
   }
-
-  .brandName,
-  .brandNameMePart {
-    font-size: 6rem;
-  }
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
-  }
-
-  .brandName,
-  .brandNameMePart {
-    font-size: 9rem;
   }
 }
 

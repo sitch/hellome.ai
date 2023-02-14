@@ -1,53 +1,19 @@
-/*
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      .animated-text {
-        font-family: Impact;
-        // background-image: url("https://bureau.ru/var/files/img1532613761");
-        background-image: url("https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif");
-        // background-size: 100% 50px;
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-       // -webkit-animation: stripes 2s linear infinite;
-       // animation: stripes 2s linear infinite;
-        font-size: 200px;
-      }
-    //  @-webkit-keyframes stripes {
-   //     100% {
-  //        background-position: 0 -50px;
-  //      }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="animated-text">
-      Me
-    </div>
-  </body>
-</html>
-
-*/
-
 .root {
-  /* font-family: Impact; */
-  /* background-image: url('https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif'); */
-  /* background-size: 100% 50px; */
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  /* -webkit-animation: stripes 2s linear infinite;
-  animation: stripes 2s linear infinite; */
-  /* font-size: 200px; */
+  text-fill-color: transparent;
+  @apply bg-clip-text;
+
+  text-stroke: 0.07rem rgba(0, 0, 0, 0.711);
+  -webkit-text-stroke: 0.07rem rgba(0, 0, 0, 0.711);
 }
 
 .space {
   background-image: url('https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif');
 }
 
-/* @-webkit-keyframes stripes {
-  100% {
-    background-position: 0 -50px;
+@media (prefers-color-scheme: dark) {
+  .root {
+    text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
+    -webkit-text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
   }
-} */
+}

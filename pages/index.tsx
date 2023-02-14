@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import AnimatedText from '@/components/AnimatedText/AnimatedText'
+import BrandLogo from '@/components/BrandLogo/BrandLogo'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -60,14 +61,16 @@ export default function Home() {
           </div> */}
 
         <div className={styles.center}>
-          <span className={styles.brandName}>Hello</span>
+          <BrandLogo />
+        </div>
 
+        {/* <div className={styles.center}>
+          <span className={styles.brandNameHelloPart}>Hello</span>
           <AnimatedText className={styles.brandNameMePart} theme="space">
             Me
           </AnimatedText>
-
-          <span className={styles.brandName}>.ai</span>
-        </div>
+          <span className={styles.brandNameAiPart}>.ai</span>
+        </div> */}
 
         {/* <div>
           <span style={{ fontSize: '64px', fontFamily: 'arial', padding: 24 }}>
