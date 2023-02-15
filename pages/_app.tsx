@@ -1,12 +1,11 @@
 import '@/assets/main.css'
 import '@/assets/chrome-bug.css'
-
 import '@/styles/globals.css'
 
-import type { AppProps } from 'next/app'
+import { useEffect } from 'react'
+import type { AppProps, NextWebVitalsMetric } from 'next/app'
 import { Analytics } from '@vercel/analytics/react'
 import { GoogleAnalytics, event } from 'nextjs-google-analytics'
-import type { NextWebVitalsMetric } from 'next/app'
 
 export function reportWebVitals({
   id,
@@ -22,7 +21,11 @@ export function reportWebVitals({
   })
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    document.body.classList?.remove('loading')
+  }, [])
+
   return (
     <>
       <GoogleAnalytics trackPageViews />

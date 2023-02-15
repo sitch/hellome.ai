@@ -1,0 +1,3 @@
+.button {
+  @apply animate-button bg-gradient-to-r from-emerald-400 via-indigo-400 to-rose-400;
+}

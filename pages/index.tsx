@@ -2,8 +2,14 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import AnimatedText from '@/components/AnimatedText/AnimatedText'
 import BrandLogo from '@/components/BrandLogo/BrandLogo'
+import dynamic from 'next/dynamic'
+// import InviteModal from '@/components/InviteModal/InviteModal'
+
+const InviteModal = dynamic(
+  () => import('@/components/InviteModal/InviteModal'),
+  { ssr: false }
+)
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -79,21 +85,47 @@ export default function Home() {
         </div> */}
 
         <div className={styles.grid}>
-          <a
+          <InviteModal className={styles.card}>
+            <h2 className={inter.className}>
+              Request an Invite
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 ml-1 mb-1 inline"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </h2>
+            <p className={inter.className}>
+              Try our AI personalized children's book studio.
+            </p>
+          </InviteModal>
+
+          {/* ############################################################## */}
+
+          {/* <a
             href="https://store.hellome.ai"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-              {/* Store <span>-&gt;</span> */}
-              {/* Visit our Store */}
+              //  Store <span>-&gt;</span> 
               Visit our Store
             </h2>
             <p className={inter.className}>
               Check out our AI personalized children's books.
             </p>
-          </a>
+          </a> */}
+
+          {/* ############################################################## */}
 
           {/* <a
             href="https://store.hellome.ai"
