@@ -44,15 +44,15 @@ export default function EmailForm(_props: EmailFormProps) {
     const data = { email: target.email.value }
     console.log('data', data)
 
-    const response = await fetch('/api/mailer/request-access/email', {
+    const resp = await fetch('/api/mailer/request-access/email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-    const result = await response.json()
-    console.log('response', { result })
+    const result = await resp.json()
+    console.log('resp', { result })
   }
 
   const icon = (

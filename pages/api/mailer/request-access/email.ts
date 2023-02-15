@@ -15,7 +15,7 @@ interface EmailSuccessResponse {
 }
 
 interface EmailErrorResponse {
-  status: 'transport_error'
+  status: 'transport_error' | 'send_error'
   error: any
 }
 
@@ -61,10 +61,12 @@ export default async function handler(
 
   await new Promise((resolve, reject) => {
     // send mail
-    transport.sendMail(mailData, (err, info) => {
-      if (err) {
-        console.error(err)
-        reject(err)
+    transport.sendMail(mailData, (error, info) => {
+      if (error) {
+        console.error(error)
+
+        res.status(500).json({ status: 'send_error', error })
+        reject(error)
       } else {
         console.log(info)
         resolve(info)
