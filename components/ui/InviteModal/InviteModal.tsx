@@ -1,8 +1,8 @@
 import { Modal } from 'flowbite-react'
 import React, { useState, MouseEvent, ReactNode } from 'react'
 import styles from './InviteModal.module.css'
-import EmailForm from '../forms/EmailForm'
-import AccessTokenForm from '../forms/AccessTokenForm'
+import EmailForm from '@/components/forms/EmailForm'
+import AccessTokenForm from '@/components/forms/AccessTokenForm'
 import Link from 'next/link'
 
 export interface InviteModalProps {

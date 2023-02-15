@@ -2,12 +2,12 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import BrandLogo from '@/components/BrandLogo/BrandLogo'
+import BrandLogo from '@/components/ui/BrandLogo/BrandLogo'
 import dynamic from 'next/dynamic'
-// import InviteModal from '@/components/InviteModal/InviteModal'
 
+// Avoids "document not found" issue
 const InviteModal = dynamic(
-  () => import('@/components/InviteModal/InviteModal'),
+  () => import('@/components/ui/InviteModal/InviteModal'),
   { ssr: false }
 )
 

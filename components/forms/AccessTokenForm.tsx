@@ -8,7 +8,7 @@ import {
 } from 'flowbite-react'
 import styles from './forms.module.css'
 import React, { useState, MouseEvent } from 'react'
-import AnimatedButton from '@/components/AnimatedButton/AnimatedButton'
+import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
 
 // See: https://flowbite.com/docs/forms/input-field/
 

@@ -8,7 +8,7 @@ import {
 } from 'flowbite-react'
 import styles from './forms.module.css'
 import React, { useState, MouseEvent } from 'react'
-import AnimatedButton from '@/components/AnimatedButton/AnimatedButton'
+import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
 
 // See: https://flowbite.com/docs/forms/input-field/
 
@@ -23,16 +23,36 @@ import AnimatedButton from '@/components/AnimatedButton/AnimatedButton'
 //   },
 // }
 
+export interface EmailFormData {
+  email: string
+}
+
 export interface EmailFormProps {
   // onSubmit: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
-export default function EmailForm({}: // onSubmit
-EmailFormProps) {
-  const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    e.nativeEvent.stopImmediatePropagation()
-    console.log('submit')
+export default function EmailForm(_props: EmailFormProps) {
+  // React.MouseEventHandler<HTMLButtonElement> | undefined
+  // DOMAttributes<HTMLFormElement>.onSubmit?: React.FormEventHandler<HTMLFormElement> | undefined
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    const target = e.target as typeof e.target & {
+      email: { value: string }
+    }
+
+    console.log('submit', target)
+    const data = { email: target.email.value }
+    console.log('data', data)
+
+    const response = await fetch('/api/mailer/request-access/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    const result = await response.json()
+    console.log('response', { result })
   }
 
   const icon = (
@@ -51,8 +71,9 @@ EmailFormProps) {
   return (
     <form
       className={styles.formRoot}
-      action="/"
-      method="post"
+      // action="/api/mailer/request-access/email"
+      // method="post"
+      onSubmit={onSubmit}
       autoComplete="on"
     >
       <Label className={styles.formLabel} htmlFor="email" value="Email" />
@@ -62,10 +83,11 @@ EmailFormProps) {
           {icon}
         </div>
 
-        <TextInput
+        <input
           className={styles.formInput}
           // theme={theme}
           id="email"
+          name="email"
           type="email"
           placeholder="name@company.com"
           autoComplete="email"
@@ -78,7 +100,7 @@ EmailFormProps) {
         color="light"
         className={styles.formSubmit}
         type="submit"
-        onClick={onSubmit}
+        // onClick={onSubmit}
       >
         Submit
       </Button>

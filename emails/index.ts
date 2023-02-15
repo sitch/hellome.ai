@@ -1,20 +1,42 @@
+import dotenv from 'dotenv'
 import nodemailer from 'nodemailer'
 import { buildSendMail } from 'mailing-core'
 
-const transport = nodemailer.createTransport({
-  pool: true,
-  host: 'smtp.example.com',
-  port: 465,
-  secure: true, // use TLS
+// Import env
+dotenv.config({ path: '.env.local', override: true })
+
+export const transport = nodemailer.createTransport({
+  service: 'gmail',
+  // host: process.env.MAILER_HOST!,
+  // port: process.env.MAILER_PORT!,
   auth: {
-    user: 'username',
-    pass: 'password',
+    user: process.env.MAILER_USERNAME!,
+    pass: process.env.MAILER_PASSWORD!,
   },
+  debug: process.env.NODE_ENV === 'production',
+  logger: process.env.NODE_ENV === 'production',
+  secure: true,
+  // pool: true, // TODO: Not sure if this breaks vercel serverless functions
 })
+
+export const verifyTransport = async () => {
+  return await new Promise((resolve, reject) => {
+    // verify connection configuration
+    transport.verify(function (error, success) {
+      if (error) {
+        console.log(error)
+        reject(error)
+      } else {
+        console.log('Server is ready to take our messages')
+        resolve(success)
+      }
+    })
+  })
+}
 
 const sendMail = buildSendMail({
   transport,
-  defaultFrom: 'replace@me.with.your.com',
+  defaultFrom: process.env.MAILER_DEFAULT_FROM,
   configPath: './mailing.config.json',
 })
 

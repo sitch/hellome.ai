@@ -1,5 +1,5 @@
 import cn from 'clsx'
-import AnimatedText from '@/components/AnimatedText/AnimatedText'
+import AnimatedText from '@/components/common/AnimatedText/AnimatedText'
 import styles from '@/styles/Home.module.css'
 import s from './BrandLogo.module.css'
 

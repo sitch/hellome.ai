@@ -2,7 +2,7 @@
 
 // import commerce from '@lib/api/commerce'
 // import { Layout } from '@components/common'
-import AnimatedText from '@/components/AnimatedText/AnimatedText'
+import AnimatedText from '@/components/common/AnimatedText/AnimatedText'
 // import { LandingView } from '@components/marketing'
 // import Image from 'next/image'
 // import { ProductCard } from '@components/product'
