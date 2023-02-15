@@ -14,12 +14,12 @@ export default function Privacy() {
       </Head>
       <main className={styles.main}>
         <section className={styles.section}>
-          <p className={styles.heading}>
+          <div className={styles.heading}>
             <h1 className={styles.primaryHeading}>Privacy Policy</h1>
-            <p className={styles.lastUpdated}>
+            <div className={styles.lastUpdated}>
               Last updated: February 15, 2023
-            </p>
-          </p>
+            </div>
+          </div>
 
           <p>
             This Privacy Policy describes Our policies and procedures on the
