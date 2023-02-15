@@ -292,7 +292,7 @@ export default function LearnMore() {
                 </svg>
               </div>
               <h3 className="mb-2 text-xl font-bold dark:text-white">
-                LearnMore
+                Learn More
               </h3>
               <p className="text-gray-500 dark:text-gray-400">
                 Plan it, create it, launch it. Collaborate seamlessly with all
