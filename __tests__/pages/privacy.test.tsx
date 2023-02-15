@@ -10,4 +10,14 @@ describe('Privacy', () => {
       expect(screen.getByText('Privacy Policy')).toBeInTheDocument()
     })
   })
+
+  it('renders last updated', async () => {
+    render(<Privacy />)
+
+    await act(async () => {
+      expect(
+        screen.getByText('Last updated: February 15, 2023')
+      ).toBeInTheDocument()
+    })
+  })
 })

@@ -1,22 +1,24 @@
 import cn from 'clsx'
-import s from './AnimatedText.module.css'
+import styles from './AnimatedText.module.css'
+
+export type AnimatedTextTheme = 'space'
 
 interface AnimatedTextProps {
-  className?: string
+  theme: AnimatedTextTheme
   children: string
-  theme: 'space'
+  className?: string
   hide?: boolean
 }
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
-  className,
-  children,
   theme,
+  children,
+  className,
   hide,
 }) => {
   const rootClassName = cn(
-    s.root,
-    s[theme],
+    styles.root,
+    styles[theme],
     {
       transform: true,
       'translate-y-0 opacity-100': !hide,

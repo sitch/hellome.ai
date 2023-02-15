@@ -1,0 +1,43 @@
+.main {
+  @apply bg-cover bg-no-repeat;
+  background-image: url('/images/beams-basic.png');
+}
+.section {
+  @apply p-8 m-auto;
+  max-width: 1280px;
+
+  font-family: Inter var, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+
+  h1 {
+    @apply text-center font-semibold text-3xl mt-8 mb-8;
+  }
+  h2 {
+    @apply text-center font-semibold text-2xl mt-6 mb-6;
+  }
+  h3 {
+    @apply text-center font-semibold text-xl mt-4 mb-4;
+  }
+
+  /* p {
+    @apply mx-auto max-w-[40rem];
+  } */
+  p,
+  li {
+    @apply text-gray-600 dark:text-white;
+  }
+}
+.heading {
+  @apply relative mx-auto max-w-[37.5rem] pt-20 text-center pb-24;
+}
+
+.primaryHeading {
+  @apply text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl;
+}
+
+.lastUpdated {
+  @apply text-center mt-4 text-base leading-7 text-slate-600;
+  /* @apply text-center text-xl mt-8 mb-8 text-gray-700 dark:text-white; */
+}

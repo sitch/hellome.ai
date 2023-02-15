@@ -87,7 +87,7 @@ export default function Home() {
         <div className={styles.grid}>
           <InviteModal className={styles.card}>
             <h2 className={inter.className}>
-              Request an Invite
+              Request Access
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

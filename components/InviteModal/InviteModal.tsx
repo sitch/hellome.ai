@@ -1,10 +1,11 @@
 import { Modal } from 'flowbite-react'
 import React, { useState, MouseEvent, ReactNode } from 'react'
-import RequestAccessForm from '@/components/RequestAccessForm/RequestAccessForm'
 import styles from './InviteModal.module.css'
+import EmailForm from '../forms/EmailForm'
+import AccessTokenForm from '../forms/AccessTokenForm'
+import Link from 'next/link'
 
 export interface InviteModalProps {
-  name?: string
   className?: string
   children: ReactNode
 }
@@ -34,9 +35,13 @@ export default function InviteModal({ className, children }: InviteModalProps) {
 
       {/* Modal */}
       <Modal show={show} size="md" popup={true} onClose={onClose}>
-        <Modal.Header></Modal.Header>
+        <Modal.Header>
+          {/* <h3 className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-xl font-black">
+            Request Access
+          </h3> */}
+        </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body className={styles.modalBody}>
           <div
           // className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8"
           >
@@ -48,21 +53,32 @@ export default function InviteModal({ className, children }: InviteModalProps) {
               Request Access
             </h3>
 
-            <p>We're so excited to get to know you!</p>
+            <p
+              className="mt-2 text-sm"
+              // className="mt-2 text-sm text-gray-500 dark:text-gray-400"
+            >
+              We're so excited to get to know you!
+            </p>
 
-            <RequestAccessForm onSubmit={onSubmit} />
+            <EmailForm />
+
+            {/* <AccessTokenForm onSubmit={onSubmit} />
+
+            <p className="text-black">
+              You can <a href="/earn">earn</a>
+            </p> */}
 
             <p
               id="helper-text-explanation"
               className="mt-2 text-sm text-gray-500 dark:text-gray-400"
             >
               We’ll never share your details. Read our{' '}
-              <a
+              <Link
                 href="/privacy"
                 className="font-medium text-blue-600 hover:underline dark:text-blue-500"
               >
                 Privacy Policy
-              </a>
+              </Link>
               .
             </p>
           </div>

@@ -1,23 +1,17 @@
 import cn from 'clsx'
+import AnimatedText from '@/components/AnimatedText/AnimatedText'
 import styles from '@/styles/Home.module.css'
 import s from './BrandLogo.module.css'
-import AnimatedText from '@/components/AnimatedText/AnimatedText'
 
 interface BrandLogoProps {
+  size?: string
   // className?: string
   // children: string
   // theme: 'space'
   // hide?: boolean
 }
 
-const BrandLogo: React.FC<BrandLogoProps> = (
-  {
-    // className,
-    // children,
-    // theme,
-    // hide,
-  }
-) => {
+export default function BrandLogo({ size }: BrandLogoProps) {
   // const rootClassName = cn(
   //   s.root,
   //   s[theme],
@@ -48,5 +42,3 @@ const BrandLogo: React.FC<BrandLogoProps> = (
     </>
   )
 }
-
-export default BrandLogo
