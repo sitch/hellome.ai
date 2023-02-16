@@ -16,4 +16,10 @@
   @apply bg-cover bg-center bg-no-repeat;
   /* background-image: url('/images/gradientblob.png'); */
   /* background-image: url('/images/gradientblob.svg'); */
+  background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809');
+}
+
+.modalContainer {
+  background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809');
+  @apply bg-auto bg-cover;
 }

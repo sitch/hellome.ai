@@ -50,8 +50,22 @@ export default function InviteModal({ className, children }: InviteModalProps) {
       </a>
 
       {/* Modal */}
-      <Modal show={show} size="md" popup={true} onClose={onClose}>
-        <Modal.Header>
+      <Modal
+        show={show}
+        size="md"
+        popup={true}
+        onClose={onClose}
+
+        // See: https://github.com/shorwood/tailwindcss-unsplash
+        // style={{
+        //   backgroundImage: "url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809')",
+        // }}
+
+        // className={styles.modalContainer}
+      >
+        <Modal.Header
+        // className={styles.modalContainer}
+        >
           {/* <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
                     Connect wallet
@@ -88,8 +102,22 @@ export default function InviteModal({ className, children }: InviteModalProps) {
 
             <EmailForm />
 
+            <div className="my-3 flex items-center px-3">
+              <hr className="w-full border-slate-600" />
+              <span className="mx-3 text-slate-500">or</span>
+              <hr className="w-full border-slate-600" />
+            </div>
+
             {/* <AccessTokenForm onSubmit={onSubmit} />
-            <p className="text-black">
+
+      <div className="my-3 flex items-center px-3">
+        <hr className="w-full border-slate-600" />
+        <span className="mx-3 text-slate-500">or</span>
+        <hr className="w-full border-slate-600" />
+      </div>
+
+
+<p className="text-black">
               You can <a href="/earn">earn</a>
             </p> */}
 
