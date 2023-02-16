@@ -1,0 +1,17 @@
+{
+  "watch": [
+    ".env",
+    ".env.local",
+    ".env.development",
+    ".env.development.local",
+    "babel.config.js",
+    "next.config.js",
+    "tsconfig.json",
+    "yarn.lock"
+  ],
+  "ext": "none",
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "env": {},
+  "restartable": "rs",
+  "verbose": true
+}

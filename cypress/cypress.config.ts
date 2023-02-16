@@ -24,9 +24,6 @@ export default defineConfig({
     'cypress-react-selector': {
       root: '#__cy_root',
     },
-    // Needed for node>=14
-    NODE_OPTIONS: '--openssl-legacy-provider',
-
     // cypress-plugin-visual-regression-diff
     pluginVisualRegressionUpdateImages: true,
     pluginVisualRegressionDiffConfig: { threshold: 0.01 },
