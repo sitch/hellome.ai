@@ -14,10 +14,17 @@ module.exports = {
     extend: {
       // ***********************************************************
       animation: {
+        bg: 'bg 1.0s ease infinite',
         text: 'text 2.2s ease infinite',
-        button: 'text 2.2s ease infinite',
+        button: 'button 2.2s ease infinite',
       },
       keyframes: {
+        bg: {
+            '0%':   { 'background-position': '0 0' },
+            '100%': { 'background-position': '366px 0'}
+
+
+        },
         text: {
           '0%, 100%': {
             'background-size': '200% 200%',

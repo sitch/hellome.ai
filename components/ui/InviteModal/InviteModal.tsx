@@ -1,9 +1,25 @@
 import { Modal } from 'flowbite-react'
 import React, { useState, MouseEvent, ReactNode } from 'react'
 import styles from './InviteModal.module.css'
-import EmailForm from '@/components/forms/EmailForm'
-import AccessTokenForm from '@/components/forms/AccessTokenForm'
+import EmailForm from '@/components/ui/InviteModal/EmailForm'
+import AccessTokenForm from '@/components/ui/InviteModal/AccessTokenForm'
 import Link from 'next/link'
+
+const privacyPolicy = (
+  <p
+    id="helper-text-explanation"
+    className="mt-2 text-sm text-gray-500 dark:text-gray-400"
+  >
+    We’ll never share your details. Read our{' '}
+    <Link
+      href="/privacy"
+      className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+    >
+      Privacy Policy
+    </Link>
+    .
+  </p>
+)
 
 export interface InviteModalProps {
   className?: string
@@ -42,11 +58,15 @@ export default function InviteModal({ className, children }: InviteModalProps) {
                 </h3>
             </div> */}
 
-          <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
+          <div className="rounded-t border-b px-4 py-2 text-gray-400 dark:border-gray-600">
+            Request Access
+          </div>
+
+          {/* <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
             <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">
               Request Access
             </span>
-          </div>
+          </div> */}
         </Modal.Header>
 
         <Modal.Body className={styles.modalBody}>
@@ -61,34 +81,19 @@ export default function InviteModal({ className, children }: InviteModalProps) {
               Request Access
             </h3> */}
 
-            <p
-              className="mt-2 text-sm"
-              // className="mt-2 text-sm text-gray-500 dark:text-gray-400"
-            >
+            {/* <p className="mt-2 text-sm text-gray-500 dark:text-gray-400"> */}
+            {/* <p className="mt-2 text-sm"></p>
               We're so excited to get to know you!
-            </p>
+            </p> */}
 
-            {show && <EmailForm />}
+            <EmailForm />
 
-            {/* {show && <AccessTokenForm onSubmit={onSubmit} />}
-
+            {/* <AccessTokenForm onSubmit={onSubmit} />
             <p className="text-black">
               You can <a href="/earn">earn</a>
             </p> */}
 
-            <p
-              id="helper-text-explanation"
-              className="mt-2 text-sm text-gray-500 dark:text-gray-400"
-            >
-              We’ll never share your details. Read our{' '}
-              <Link
-                href="/privacy"
-                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p>
+            {privacyPolicy}
           </div>
         </Modal.Body>
       </Modal>

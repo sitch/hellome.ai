@@ -6,7 +6,7 @@ import {
   TextInput,
   TextInputProps,
 } from 'flowbite-react'
-import styles from './forms.module.css'
+import styles from '@/components/forms/forms.module.css'
 import React, { useState, MouseEvent, StrictMode } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
 import Reaptcha from 'reaptcha'
@@ -87,7 +87,7 @@ export default function EmailForm(_props: EmailFormProps) {
       onSubmit={onSubmit}
       autoComplete="on"
     >
-      <Label className={styles.formLabel} htmlFor="email" value="Email" />
+      {/* <Label className={styles.formLabel} htmlFor="email" value="Email" /> */}
 
       <div className="relative mb-4">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -96,6 +96,8 @@ export default function EmailForm(_props: EmailFormProps) {
 
         <input
           className={styles.formInput}
+          // className="animate-bg rounded-lg bg-gradient-to-tr from-blue-400 via-green-500 to-red-500"
+          // className={`${styles.formInput} animate-bg bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 font-black text-black opacity-5`}
           // theme={theme}
           id="email"
           name="email"
@@ -106,11 +108,11 @@ export default function EmailForm(_props: EmailFormProps) {
         />
       </div>
 
-      <Reaptcha
+      {/* <Reaptcha
         className={styles.formCaptcha}
         sitekey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V2_SITE_KEY!}
         onVerify={onVerify}
-      />
+      /> */}
 
       <div className="mt-3 transition-transform">
         <AnimatedButton
@@ -122,7 +124,12 @@ export default function EmailForm(_props: EmailFormProps) {
           // onClick={onSubmit}
           disabled={!verified}
         >
-          Submit
+          {/* Submit */}
+          <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
+            <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">
+              Submit
+            </span>
+          </div>
         </AnimatedButton>
       </div>
     </form>

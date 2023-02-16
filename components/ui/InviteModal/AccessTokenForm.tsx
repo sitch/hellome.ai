@@ -6,7 +6,7 @@ import {
   TextInput,
   TextInputProps,
 } from 'flowbite-react'
-import styles from './forms.module.css'
+import styles from '@/components/forms/forms.module.css'
 import React, { useState, MouseEvent } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
 
