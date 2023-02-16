@@ -4,7 +4,7 @@
   height: 100vh;
 }
 .section {
-  @apply p-8 m-auto;
+  @apply m-auto p-8;
   max-width: 1280px;
 
   font-family: Inter var, ui-sans-serif, system-ui, -apple-system,
@@ -13,13 +13,13 @@
     Noto Color Emoji;
 
   h1 {
-    @apply text-center font-semibold text-3xl mt-8 mb-8;
+    @apply mt-8 mb-8 text-center text-3xl font-semibold;
   }
   h2 {
-    @apply text-center font-semibold text-2xl mt-6 mb-6;
+    @apply mt-6 mb-6 text-center text-2xl font-semibold;
   }
   h3 {
-    @apply text-center font-semibold text-xl mt-4 mb-4;
+    @apply mt-4 mb-4 text-center text-xl font-semibold;
   }
 
   /* p {

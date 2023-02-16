@@ -2,7 +2,7 @@
 
 .brandNameHelloPart {
   font-family: 'Humanist 522', Arial, Helvetica, sans-serif;
-  @apply tracking-tight pr-3;
+  @apply pr-3 tracking-tight;
 }
 
 .brandNameMePart {

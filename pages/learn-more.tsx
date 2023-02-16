@@ -52,9 +52,9 @@ export default function LearnMore() {
       {/* Hero */}
 
       <div className="bg-white dark:bg-gray-900">
-        <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div className="mx-auto grid max-w-screen-xl px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:py-16 xl:gap-0">
           <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
               <AnimatedText theme="space">Hello </AnimatedText>
               <AnimatedText theme="space">Me</AnimatedText>
               <AnimatedText theme="space">.ai</AnimatedText>
@@ -65,18 +65,18 @@ export default function LearnMore() {
               Payments tool for software companies
             </h1> */}
 
-            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
               {/* From checkout to global sales tax compliance, companies around the
               world use Flowbite to simplify their payment stack. */}
               AI with Authenticity
             </p>
             <a
               href="#"
-              className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+              className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 mr-3 inline-flex items-center justify-center rounded-lg px-5 py-3 text-center text-base font-medium text-white focus:ring-4"
             >
               Get started
               <svg
-                className="w-5 h-5 ml-2 -mr-1"
+                className="ml-2 -mr-1 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -90,13 +90,13 @@ export default function LearnMore() {
             </a>
             <a
               href="#"
-              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             >
               {/* Speak to Sales */}
               Shop our Store
             </a>
           </div>
-          <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <div className="hidden lg:col-span-5 lg:mt-0 lg:flex">
             <img
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
               alt="mockup"
@@ -109,12 +109,12 @@ export default function LearnMore() {
 
       <section className="h-72 bg-gradient-to-b from-purple-600 to-blue-600">
         {/* <section className="bg-white dark:bg-gray-900"> */}
-        <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+        <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
           <div className="max-w-screen-md">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Let's find more that brings us together.
             </h2>
-            <p className="mb-8 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+            <p className="mb-8 font-light text-gray-500 dark:text-gray-400 sm:text-xl">
               Flowbite helps you connect with friends, family and communities of
               people who share your interests. Connecting with your friends and
               family as well as discovering new ones is easy with features like
@@ -123,16 +123,16 @@ export default function LearnMore() {
             <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
               <a
                 href="#"
-                className="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-center text-base font-medium text-white focus:ring-4"
               >
                 Get started
               </a>
               <a
                 href="#"
-                className="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               >
                 <svg
-                  className="mr-2 -ml-1 w-5 h-5"
+                  className="mr-2 -ml-1 h-5 w-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -149,33 +149,33 @@ export default function LearnMore() {
       {/* cta */}
 
       <section className="bg-white dark:bg-gray-900">
-        <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+        <div className="mx-auto max-w-screen-xl items-center gap-8 py-8 px-4 sm:py-16 md:grid md:grid-cols-2 lg:px-6 xl:gap-16">
           <img
             className="w-full dark:hidden"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup.svg"
             alt="dashboard image"
           />
           <img
-            className="w-full hidden dark:block"
+            className="hidden w-full dark:block"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup-dark.svg"
             alt="dashboard image"
           />
           <div className="mt-4 md:mt-0">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Let's create more tools and ideas that brings us together.
             </h2>
-            <p className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+            <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
               Flowbite helps you connect with friends and communities of people
               who share your interests. Connecting with your friends and family
               as well as discovering new ones is easy with features like Groups.
             </p>
             <a
               href="#"
-              className="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900"
+              className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 inline-flex items-center rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4"
             >
               Get started
               <svg
-                className="ml-2 -mr-1 w-5 h-5"
+                className="ml-2 -mr-1 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -194,9 +194,9 @@ export default function LearnMore() {
       {/* cta */}
 
       <section className="bg-white dark:bg-gray-900">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+        <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-sm text-center">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold leading-tight text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
               Start your free trial today
             </h2>
             <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
@@ -204,7 +204,7 @@ export default function LearnMore() {
             </p>
             <a
               href="#"
-              className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+              className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mr-2 mb-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4"
             >
               Free trial for 30 days
             </a>
@@ -214,44 +214,44 @@ export default function LearnMore() {
 
       {/* hyper-color */}
 
-      <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
         <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
           sup
         </div>
       </div>
       {/* gradient */}
 
-      <div className="m-4 p-1 rounded-full max-w-sm bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+      <div className="m-4 max-w-sm rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 p-1">
         <label htmlFor="name" className="sr-only">
           Name
         </label>
         <input
-          className="p-3 w-full rounded-full focus:outline-none"
+          className="w-full rounded-full p-3 focus:outline-none"
           type="text"
           id="name"
           placeholder="Enter Your Name"
         />
       </div>
 
-      <div className="m-4 p-1 rounded-full max-w-sm hover:bg-gradient-to-r focus-within:bg-gradient-to-r focus from-rose-400 via-fuchsia-500 to-indigo-500">
+      <div className="focus m-4 max-w-sm rounded-full from-rose-400 via-fuchsia-500 to-indigo-500 p-1 focus-within:bg-gradient-to-r hover:bg-gradient-to-r">
         <label htmlFor="name" className="sr-only">
           Name
         </label>
         <input
-          className="p-3 w-full rounded-full border border-fuchsia-500 focus:outline-none focus:border-transparent hover:border-transparent"
+          className="w-full rounded-full border border-fuchsia-500 p-3 hover:border-transparent focus:border-transparent focus:outline-none"
           type="text"
           id="name"
           placeholder="Enter Your Name"
         />
       </div>
 
-      <article className="p-1.5 mx-auto my-4 max-w-sm rounded-xl bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
-        <div className="bg-white p-5 rounded-lg">
+      <article className="mx-auto my-4 max-w-sm rounded-xl bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 p-1.5">
+        <div className="rounded-lg bg-white p-5">
           <h4 className="text-2xl font-bold">
             Take your Web Dev skills to the next level!
           </h4>
           <a
-            className="hover:underline text-gray-600"
+            className="text-gray-600 hover:underline"
             href="https://coding-space.vercel.app"
             target="_blank"
             rel="noreferrer"
@@ -265,21 +265,21 @@ export default function LearnMore() {
       {/* feature */}
 
       <section className="bg-white dark:bg-gray-900">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-          <div className="max-w-screen-md mb-8 lg:mb-16">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+        <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
+          <div className="mb-8 max-w-screen-md lg:mb-16">
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Designed for business teams like yours
             </h2>
-            <p className="text-gray-500 sm:text-xl dark:text-gray-400">
+            <p className="text-gray-500 dark:text-gray-400 sm:text-xl">
               Here at Flowbite we focus on markets where technology, innovation,
               and capital can unlock long-term value and drive economic growth.
             </p>
           </div>
-          <div className="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
+          <div className="space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
             <div>
-              <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+              <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -301,9 +301,9 @@ export default function LearnMore() {
               </p>
             </div>
             <div>
-              <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+              <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -318,9 +318,9 @@ export default function LearnMore() {
               </p>
             </div>
             <div>
-              <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+              <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -342,9 +342,9 @@ export default function LearnMore() {
               </p>
             </div>
             <div>
-              <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+              <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -366,9 +366,9 @@ export default function LearnMore() {
               </p>
             </div>
             <div>
-              <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+              <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -385,9 +385,9 @@ export default function LearnMore() {
               </p>
             </div>
             <div>
-              <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+              <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12">
                 <svg
-                  className="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                  className="text-primary-600 dark:text-primary-300 h-5 w-5 lg:h-6 lg:w-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"

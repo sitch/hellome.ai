@@ -1,17 +1,21 @@
 .formRoot {
   /* @apply mb-4 border pt-4 pb-4 pl-2 pr-2; */
-  @apply mb-4 mt-4 border;
+  @apply mb-4 mt-4;
 }
 
 .formLabel {
   /* @apply mb-2 block; */
-  @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+  @apply mb-2 block text-sm text-gray-900 dark:text-white;
 }
 
 .formInput {
-  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+  @apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500;
 }
 
+/* .formCaptcha {
+  @apply shadow-xl content-center;
+} */
+
 .formSubmit {
-  /* @apply; */
+  @apply w-full;
 }

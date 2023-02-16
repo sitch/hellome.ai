@@ -7,8 +7,14 @@ import {
   TextInputProps,
 } from 'flowbite-react'
 import styles from './forms.module.css'
-import React, { useState, MouseEvent } from 'react'
+import React, { useState, MouseEvent, StrictMode } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
+import Reaptcha from 'reaptcha'
+
+// *****************************************************************************
+// ReCaptcha
+// See: https://www.google.com/recaptcha/admin/site/612766558
+// *****************************************************************************
 
 // See: https://flowbite.com/docs/forms/input-field/
 
@@ -31,34 +37,38 @@ export interface EmailFormProps {
   // onSubmit: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
+export async function createRequestAccessByEmail(data: EmailFormData) {
+  const resp = await fetch('/api/mailer/request-access/email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  const result = await resp.json()
+  console.log('resp', { result })
+  return result
+}
+
 export default function EmailForm(_props: EmailFormProps) {
-  // React.MouseEventHandler<HTMLButtonElement> | undefined
-  // DOMAttributes<HTMLFormElement>.onSubmit?: React.FormEventHandler<HTMLFormElement> | undefined
+  const [verified, setVerified] = useState<boolean>(false)
+
+  const onVerify = (_recaptchaResponse: string) => {
+    setVerified(true)
+  }
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     const target = e.target as typeof e.target & {
       email: { value: string }
     }
-
-    console.log('submit', target)
     const data = { email: target.email.value }
-    console.log('data', data)
-
-    const resp = await fetch('/api/mailer/request-access/email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-    const result = await resp.json()
-    console.log('resp', { result })
+    await createRequestAccessByEmail(data)
   }
 
   const icon = (
     <svg
       aria-hidden="true"
-      className="w-5 h-5 text-gray-500 dark:text-gray-400"
+      className="h-5 w-5 text-gray-500 dark:text-gray-400"
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
@@ -72,14 +82,15 @@ export default function EmailForm(_props: EmailFormProps) {
     <form
       className={styles.formRoot}
       // action="/api/mailer/request-access/email"
-      // method="post"
+      method="post"
+      action="#"
       onSubmit={onSubmit}
       autoComplete="on"
     >
       <Label className={styles.formLabel} htmlFor="email" value="Email" />
 
-      <div className="relative mb-6">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+      <div className="relative mb-4">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           {icon}
         </div>
 
@@ -95,16 +106,25 @@ export default function EmailForm(_props: EmailFormProps) {
         />
       </div>
 
-      {/* <div className="w-full inline"> */}
-      <Button
-        color="light"
-        className={styles.formSubmit}
-        type="submit"
-        // onClick={onSubmit}
-      >
-        Submit
-      </Button>
-      {/* </div> */}
+      <Reaptcha
+        className={styles.formCaptcha}
+        sitekey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V2_SITE_KEY!}
+        onVerify={onVerify}
+      />
+
+      <div className="mt-3 transition-transform">
+        <AnimatedButton
+          // color="light"
+          // className={styles.formSubmit}
+          // className="w-full"
+          wide={true}
+          type="submit"
+          // onClick={onSubmit}
+          disabled={!verified}
+        >
+          Submit
+        </AnimatedButton>
+      </div>
     </form>
   )
 }

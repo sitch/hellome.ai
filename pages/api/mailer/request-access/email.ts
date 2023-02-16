@@ -29,14 +29,15 @@ function castMailData({
 }: EmailPayload): ComponentMail {
   return {
     from: {
-      name: `${firstName} ${lastName}`,
-      address: 'myEmail@gmail.com',
+      name: `Sitch`,
+      address: 'sitch@hellome.ai',
     },
     // replyTo: email,
-    to: email,
+    // to: email,
     // to: 'recipient@gmail.com',
+    to: 'sitch@hellome.ai',
     subject: `Request Access`,
-    text: message,
+    text: `${message} ${email}`,
     html: `${message}`,
   }
 }

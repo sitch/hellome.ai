@@ -50,7 +50,7 @@ export default function AccessTokenForm({ onSubmit }: AccessTokenFormProps) {
           required={true}
         />
       </div>
-      <div className="w-full inline">
+      <div className="inline w-full">
         <Button
           color="light"
           // className={styles.formSubmit}

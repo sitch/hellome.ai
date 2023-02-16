@@ -36,9 +36,17 @@ export default function InviteModal({ className, children }: InviteModalProps) {
       {/* Modal */}
       <Modal show={show} size="md" popup={true} onClose={onClose}>
         <Modal.Header>
-          {/* <h3 className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-xl font-black">
-            Request Access
-          </h3> */}
+          {/* <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+                    Connect wallet
+                </h3>
+            </div> */}
+
+          <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
+            <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">
+              Request Access
+            </span>
+          </div>
         </Modal.Header>
 
         <Modal.Body className={styles.modalBody}>
@@ -49,9 +57,9 @@ export default function InviteModal({ className, children }: InviteModalProps) {
           Request Access
         </h3> */}
 
-            <h3 className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-xl font-black">
+            {/* <h3 className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-xl font-black">
               Request Access
-            </h3>
+            </h3> */}
 
             <p
               className="mt-2 text-sm"
@@ -60,9 +68,9 @@ export default function InviteModal({ className, children }: InviteModalProps) {
               We're so excited to get to know you!
             </p>
 
-            <EmailForm />
+            {show && <EmailForm />}
 
-            {/* <AccessTokenForm onSubmit={onSubmit} />
+            {/* {show && <AccessTokenForm onSubmit={onSubmit} />}
 
             <p className="text-black">
               You can <a href="/earn">earn</a>

@@ -94,7 +94,7 @@ export default function Home() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6 ml-1 mb-1 inline"
+                className="ml-1 mb-1 inline h-6 w-6"
               >
                 <path
                   strokeLinecap="round"
