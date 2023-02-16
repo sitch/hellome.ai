@@ -7,7 +7,13 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
-  plugins: [require('@tailwindcss/forms'), require('flowbite/plugin')],
+  plugins: [
+    require('@downwindcss/easings'),
+    require('@tailwindcss/forms'), 
+    require('@tailwindcss/typography'),
+    // require('tailwind-scrollbar-hide'),
+    require('flowbite/plugin')
+  ],
 
   safelist: ['outline-none'],
   theme: {
@@ -20,10 +26,8 @@ module.exports = {
       },
       keyframes: {
         bg: {
-            '0%':   { 'background-position': '0 0' },
-            '100%': { 'background-position': '366px 0'}
-
-
+          '0%': { 'background-position': '0 0' },
+          '100%': { 'background-position': '366px 0' },
         },
         text: {
           '0%, 100%': {
