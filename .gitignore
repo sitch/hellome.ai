@@ -45,4 +45,11 @@ next-env.d.ts
 # eslint
 .eslintcache
 
+# mailing
 .mailing
+
+# cypress
+cypress/downloads/*
+cypress/screenshots/*
+cypress/videos/*
+__image_snapshots__/

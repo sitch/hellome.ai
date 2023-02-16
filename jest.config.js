@@ -26,6 +26,9 @@ const customJestConfig = {
   testPathIgnorePatterns: [
     // Setup
     '<rootDir>/__tests__/setupEnv.js',
+
+    // Cypress
+    '<rootDir>/cypress/',
   ],
 }
 

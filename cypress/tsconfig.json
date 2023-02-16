@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "isolatedModules": false,
+    "types": [
+      "cypress",
+      "@testing-library/cypress",
+      "cypress-react-selector",
+      "node"
+    ]
+  },
+  "include": ["**/*.ts", ".eslintrc.js"],
+  "exclude": []
+}
