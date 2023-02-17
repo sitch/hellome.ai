@@ -102,9 +102,9 @@ jobs:
       # 📓 Report Results
       #-------------------------------------------------------------------------
 
-      # - name: 💌 Discord Notification
-      #   uses: Ilshidur/action-discord@master
-      #   with:
-      #     args: '🚀 The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: 💌 Discord Notification
+        uses: Ilshidur/action-discord@master
+        with:
+          args: '🚀 The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_RELEASES_WEBHOOK }}
