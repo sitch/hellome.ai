@@ -1,0 +1,114 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: staging
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      #-------------------------------------------------------------------------
+      # 🚫 Cancel Previous Runs
+      #-------------------------------------------------------------------------
+
+      - name: 🚫 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ github.token }}
+
+      #-------------------------------------------------------------------------
+      # 🛎️ Checkout
+      #-------------------------------------------------------------------------
+
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v2
+
+      #-------------------------------------------------------------------------
+      # 💾 Cache
+      #-------------------------------------------------------------------------
+
+      - name: 📇 Set (yarn cache dir)
+        id: yarn-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: 💾 Cache (yarn)
+        id: yarn-cache
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            ${{ github.workspace }}/.next/cache
+            ${{ steps.yarn-cache-dir.outputs.dir }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: 💾 Cache (next)
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ github.workspace }}/.next/cache
+          restore-keys: ${{ runner.os }}-nextjs-
+
+      - name: 💾 Cache (cypress)
+        id: cypress-cache
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.cache/Cypress
+          restore-keys: ${{ runner.os }}-cypress-
+
+      #-------------------------------------------------------------------------
+      # 🎁 Install
+      #-------------------------------------------------------------------------
+
+      - name: 🎁 Install Dependencies
+        run: yarn install --frozen-lockfile --silent
+
+      #-------------------------------------------------------------------------
+      # 🧹 Lint
+      #-------------------------------------------------------------------------
+
+      - name: 🧹 Lint
+        run: yarn lint
+
+      #-------------------------------------------------------------------------
+      # 🧪 Test
+      #-------------------------------------------------------------------------
+
+      - name: 🧪 Test
+        run: yarn test
+
+      #-------------------------------------------------------------------------
+      # 🌲 Cypress
+      #-------------------------------------------------------------------------
+
+      # - name: 🌲 Integration Tests (Cypress)
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     config-file: cypress/cypress.config.json
+      #     build: yarn build.ci
+      #     start: yarn start.ci
+      #     record: ${{ !!secrets.CYPRESS_RECORD_KEY }}
+      #     wait-on: '${{ env.NEXT_PUBLIC_HELLOME_UI_HTTP_URL }}'
+      #     browser: chrome
+      #   env:
+      #     NEXT_PUBLIC_HELLOME_ENV: 'ci'
+      #     NEXT_PUBLIC_HELLOME_UI_HTTP_URL: 'http://localhost:3000'
+      #     NEXT_PUBLIC_HELLOME_API_HTTP_URL: 'http://localhost:4000'
+      #     NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+      #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      #     GITHUB_TOKEN: ${{ github.token }}
+
+      #-------------------------------------------------------------------------
+      # 📓 Report Results
+      #-------------------------------------------------------------------------
+
+      # - name: 💌 Discord Notification
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '🚀 The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
