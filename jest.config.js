@@ -21,6 +21,7 @@ const customJestConfig = {
   // For example:
   moduleNameMapper: {
     '@/(.*)$': '<rootDir>/$1',
+    '#/(.*)$': '<rootDir>/cypress/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
   testPathIgnorePatterns: [

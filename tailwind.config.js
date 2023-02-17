@@ -2,6 +2,9 @@
  * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
  */
 module.exports = {
+  // darkMode: 'media',
+  // darkMode: 'class',
+  // darkMode: ['class', '[data-mode="dark"]'],
   content: [
     './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -14,7 +17,6 @@ module.exports = {
     // require('tailwind-scrollbar-hide'),
     require('flowbite/plugin'),
   ],
-
   safelist: ['outline-none'],
   theme: {
     extend: {

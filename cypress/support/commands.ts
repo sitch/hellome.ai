@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import '@frsource/cypress-plugin-visual-regression-diff/dist/support'
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -36,47 +39,4 @@
 //   }
 // }
 
-import '@frsource/cypress-plugin-visual-regression-diff/dist/support'
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      /**
-       * Enables dark mode via a matchMedia mock.
-       * @example cy.darkMode(win)
-       */
-      darkMode(win: Cypress.AUTWindow): Chainable<void>
-    }
-  }
-}
-
-Cypress.Commands.add('darkMode', (win) => {
-  cy.stub(win, 'matchMedia')
-    .withArgs('(prefers-color-scheme: dark)')
-    .as('dark-media-query')
-    .returns({
-      matches: true,
-      addEventListener: () => {},
-    })
-})
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      /**
-       * Enables light mode via a matchMedia mock.
-       * @example cy.lightMode(win)
-       */
-      lightMode(win: Cypress.AUTWindow): Chainable<void>
-    }
-  }
-}
-Cypress.Commands.add('lightMode', (win) => {
-  cy.stub(win, 'matchMedia')
-    .withArgs('(prefers-color-scheme: dark)')
-    .as('dark-media-query')
-    .returns({
-      matches: false,
-      addEventListener: () => {},
-    })
-})
+import '@/cypress/commands/matchAllViewportImages'

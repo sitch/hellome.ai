@@ -25,13 +25,17 @@ export default function BrandLogo({ size }: BrandLogoProps) {
   return (
     <>
       <div className={styles.center}>
-        <span className={s.brandNameHelloPart}>Hello</span>
+        <span className={s.brandNameHelloPart} data-cy="brand-logo-hello">
+          Hello
+        </span>
 
         <AnimatedText className={s.brandNameMePart} theme="space">
           Me
         </AnimatedText>
 
-        <span className={s.brandNameAiPart}>.ai</span>
+        <span className={s.brandNameAiPart} data-cy="brand-logo-ai">
+          .ai
+        </span>
       </div>
 
       {/* <div>

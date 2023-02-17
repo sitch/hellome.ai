@@ -22,6 +22,12 @@ export function reportWebVitals({
 }
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  // const { activeTheme, inactiveTheme } = useThemeDetector()
+  // useEffect(() => {
+  //   document.documentElement.classList?.add(activeTheme)
+  //   document.documentElement.classList?.remove(inactiveTheme)
+  // }, [activeTheme, inactiveTheme])
+
   useEffect(() => {
     document.body.classList?.remove('loading')
   }, [])
