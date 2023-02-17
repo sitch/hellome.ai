@@ -36,7 +36,7 @@ jobs:
 
       - name: 💾 Cache (yarn)
         id: yarn-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           path: |
@@ -45,7 +45,7 @@ jobs:
           restore-keys: ${{ runner.os }}-yarn-
 
       - name: 💾 Cache (next)
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
           path: ${{ github.workspace }}/.next/cache
@@ -53,7 +53,7 @@ jobs:
 
       - name: 💾 Cache (cypress)
         id: cypress-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/yarn.lock') }}
           path: ~/.cache/Cypress
