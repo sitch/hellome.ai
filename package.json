@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "nodemon --config nodemon.json --exec next dev",
+    "dev": "nodemon --config next.nodemon.json --exec next dev",
     "build": "next build",
     "start": "next start",
     "analyze": "BUNDLE_ANALYZE=both next build",

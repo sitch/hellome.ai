@@ -102,11 +102,11 @@ export default function InviteModal({ className, children }: InviteModalProps) {
 
             <EmailForm />
 
-            <div className="my-3 flex items-center px-3">
+            {/* <div className="my-3 flex items-center px-3">
               <hr className="w-full border-slate-600" />
               <span className="mx-3 text-slate-500">or</span>
               <hr className="w-full border-slate-600" />
-            </div>
+            </div> */}
 
             {/* <AccessTokenForm onSubmit={onSubmit} />
 
