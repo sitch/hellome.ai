@@ -80,23 +80,23 @@ jobs:
       # 🌲 Cypress
       #-------------------------------------------------------------------------
 
-      # - name: 🌲 Integration Tests (Cypress)
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     config-file: cypress/cypress.config.json
-      #     build: yarn build.ci
-      #     start: yarn start.ci
-      #     record: ${{ !!secrets.CYPRESS_RECORD_KEY }}
-      #     wait-on: '${{ env.NEXT_PUBLIC_HELLOME_UI_HTTP_URL }}'
-      #     browser: chrome
-      #   env:
-      #     NEXT_PUBLIC_HELLOME_ENV: 'ci'
-      #     NEXT_PUBLIC_HELLOME_UI_HTTP_URL: 'http://localhost:3000'
-      #     NEXT_PUBLIC_HELLOME_API_HTTP_URL: 'http://localhost:4000'
-      #     NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
-      #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      #     GITHUB_TOKEN: ${{ github.token }}
+      - name: 🌲 Integration Tests (Cypress)
+        uses: cypress-io/github-action@v5
+        with:
+          config-file: cypress/cypress.config.json
+          build: yarn build
+          start: yarn start
+          record: ${{ !!secrets.CYPRESS_RECORD_KEY }}
+          wait-on: '${{ env.NEXT_PUBLIC_HELLOME_UI_HTTP_URL }}'
+          browser: chrome
+        env:
+          # NEXT_PUBLIC_HELLOME_ENV: 'ci'
+          NEXT_PUBLIC_HELLOME_UI_HTTP_URL: 'http://localhost:3000'
+          # NEXT_PUBLIC_HELLOME_API_HTTP_URL: 'http://localhost:4000'
+          # NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+          # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          # CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       #-------------------------------------------------------------------------
       # 📓 Report Results
