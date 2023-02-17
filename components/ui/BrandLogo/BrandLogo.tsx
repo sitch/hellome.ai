@@ -1,6 +1,6 @@
 import cn from 'clsx'
 import AnimatedText from '@/components/common/AnimatedText/AnimatedText'
-import styles from '@/styles/Home.module.css'
+// import styles from '@/styles/Home.module.css'
 import s from './BrandLogo.module.css'
 
 interface BrandLogoProps {
@@ -24,19 +24,17 @@ export default function BrandLogo({ size }: BrandLogoProps) {
   // )
   return (
     <>
-      <div className={styles.center}>
-        <span className={s.brandNameHelloPart} data-cy="brand-logo-hello">
-          Hello
-        </span>
+      <span className={s.brandNameHelloPart} data-cy="brand-logo-hello">
+        Hello
+      </span>
 
-        <AnimatedText className={s.brandNameMePart} theme="space">
-          Me
-        </AnimatedText>
+      <AnimatedText className={s.brandNameMePart} theme="space">
+        Me
+      </AnimatedText>
 
-        <span className={s.brandNameAiPart} data-cy="brand-logo-ai">
-          .ai
-        </span>
-      </div>
+      <span className={s.brandNameAiPart} data-cy="brand-logo-ai">
+        .ai
+      </span>
 
       {/* <div>
           <span style={{ fontSize: '64px', fontFamily: 'arial', padding: 24 }}>

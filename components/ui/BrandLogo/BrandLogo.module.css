@@ -29,7 +29,7 @@
   .brandNameHelloPart,
   .brandNameAiPart,
   .brandNameMePart {
-    @apply text-8xl;
+    @apply text-6xl;
     /* font-size: 5.7rem; */
   }
 }

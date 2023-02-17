@@ -10,6 +10,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
 import Reaptcha from 'reaptcha'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import EmailSuccess from './EmailSuccess'
 
 // *****************************************************************************
 // ReCaptcha
@@ -115,6 +116,7 @@ export default function EmailForm(_props: EmailFormProps) {
   const [isReady, setIsReady] = useState<boolean>(false)
   const [isRendered, setIsRendered] = useState<boolean>(false)
   const [isVerified, setIsVerified] = useState<boolean>(false)
+  const [submission, setSubmission] = useState<EmailFormData>()
 
   const onLoad = () => setIsReady(true)
   const onVerify = (_resp: string) => setIsVerified(true)
@@ -136,6 +138,7 @@ export default function EmailForm(_props: EmailFormProps) {
 
   const onSubmit: SubmitHandler<EmailFormData> = async (data) => {
     console.log(data)
+    setSubmission(data)
     await createRequestAccessByEmail(data)
   }
 
@@ -153,6 +156,10 @@ export default function EmailForm(_props: EmailFormProps) {
     touchedFields,
     errors,
   })
+
+  if (isSubmitSuccessful) {
+    return <EmailSuccess data={submission!} />
+  }
 
   return (
     <form
@@ -218,17 +225,14 @@ export default function EmailForm(_props: EmailFormProps) {
               submitCount < MAX_SUBMIT_COUNT,
             ].some(Boolean)
           }
+          loading={isSubmitting}
           wide={true}
           type="submit"
           // color="light"
           // className={styles.formSubmit}
           // className="w-full"
         >
-          <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
-            <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">
-              Submit
-            </span>
-          </div>
+          Submit
         </AnimatedButton>
       </div>
     </form>
