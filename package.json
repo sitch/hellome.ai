@@ -40,7 +40,7 @@
     "@next/font": "13.1.6",
     "@stdlib/datasets-female-first-names-en": "^0.0.9",
     "@stdlib/datasets-male-first-names-en": "^0.0.9",
-    "@vercel/analytics": "^0.1.8",
+    "@vercel/analytics": "^0.1.10",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
