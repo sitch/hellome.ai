@@ -9,10 +9,10 @@ module.exports = {
   ],
   plugins: [
     require('@downwindcss/easings'),
-    require('@tailwindcss/forms'), 
+    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     // require('tailwind-scrollbar-hide'),
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
   ],
 
   safelist: ['outline-none'],
