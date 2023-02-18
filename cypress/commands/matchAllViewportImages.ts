@@ -28,12 +28,26 @@ const presets: [Cypress.ViewportPreset, number, number][] = [
 
 export const MATCH_IMAGE_TEST_CASE = ({ label, viewport }: ViewportCase) => {
   context(label, () => {
+    beforeEach(() => {
+      // disable animations
+      cy.get('body').invoke(
+        'append',
+        Cypress.$(`
+          <style id="__cypress-animation-disabler">
+            *, *:before, *:after {
+              transition-property: none !important;
+              animation: none !important;
+            }
+          </style>
+        `)
+      )
+    })
+
     it('matchImage', viewport, () => {
       cy.document().matchImage(viewportOptions)
     })
   })
 }
-
 
 // cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-3 480x320 matchImage #0.png
 // cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-4 480x320 matchImage #0.png
@@ -59,6 +73,23 @@ export const MATCH_IMAGE_TEST_CASE = ({ label, viewport }: ViewportCase) => {
 // cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait macbook-15 1440x900 matchImage #0.png
 // cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait macbook-16 1536x960 matchImage #0.png
 
+function getDocumentHeight($document: Document) {
+  return Math.max(
+    Math.max(
+      $document.body.scrollHeight,
+      $document.documentElement.scrollHeight
+    ),
+    Math.max(
+      $document.body.offsetHeight,
+      $document.documentElement.offsetHeight
+    ),
+    Math.max(
+      $document.body.clientHeight,
+      $document.documentElement.clientHeight
+    )
+  )
+}
+
 export const SCROLLBAR_TEST_CASE = ({ label, viewport }: ViewportCase) => {
   context(label, () => {
     it('has no scrollbar', viewport, () => {
@@ -79,8 +110,13 @@ export const SCROLLBAR_TEST_CASE = ({ label, viewport }: ViewportCase) => {
           })
         })
       // cy.scrollTo('bottom').window().its('scrollY').should('equal', 0)
+
+      cy.document().then(($document) => {
+        expect(getDocumentHeight($document)).to.equal(viewport.viewportHeight)
+      })
     })
   })
+  // })
 }
 
 export type ViewportCase = {
@@ -97,17 +133,27 @@ export type ViewportCase = {
 
 export function viewportPortraitPresets(): ViewportCase[] {
   return presets.map(([preset, width, height]) => {
-    const label = `${preset} ${width}x${height}`
-    const viewport = { viewportHeight: height, viewportWidth: width }
-    return { label, preset, height, width, orientation: 'portrait', viewport }
+    return {
+      label: `${preset} ${width}x${height}`,
+      preset,
+      height,
+      width,
+      orientation: 'portrait',
+      viewport: { viewportHeight: height, viewportWidth: width },
+    }
   })
 }
 
 export function viewportLandscapePresets(): ViewportCase[] {
   return presets.map(([preset, height, width]) => {
-    const label = `${preset} ${width}x${height}`
-    const viewport = { viewportHeight: height, viewportWidth: width }
-    return { label, preset, height, width, orientation: 'landscape', viewport }
+    return {
+      label: `${preset} ${width}x${height}`,
+      preset,
+      height,
+      width,
+      orientation: 'landscape',
+      viewport: { viewportHeight: height, viewportWidth: width },
+    }
   })
 }
 

@@ -26,12 +26,12 @@ context('<Index /> (light)', () => {
   })
 
   context('portrait', () => {
-    viewportPortraitPresets().forEach(MATCH_IMAGE_TEST_CASE)
     viewportPortraitPresets().forEach(SCROLLBAR_TEST_CASE)
+    viewportPortraitPresets().forEach(MATCH_IMAGE_TEST_CASE)
   })
 
   context('landscape', () => {
-    viewportLandscapePresets().forEach(MATCH_IMAGE_TEST_CASE)
     viewportLandscapePresets().forEach(SCROLLBAR_TEST_CASE)
+    viewportLandscapePresets().forEach(MATCH_IMAGE_TEST_CASE)
   })
 })
