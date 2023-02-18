@@ -7,3 +7,10 @@
 .space {
   background-image: url('/images/space.gif');
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .space {
+    background-image: none;
+    background-color: black;
+  }
+}

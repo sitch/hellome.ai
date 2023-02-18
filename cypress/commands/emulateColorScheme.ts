@@ -12,6 +12,10 @@ export function emulateDarkMode() {
           name: 'prefers-color-scheme',
           value: 'dark',
         },
+        {
+          name: 'prefers-reduced-motion',
+          value: 'reduce',
+        },
       ],
     },
   })
@@ -30,6 +34,29 @@ export function emulateLightMode() {
         {
           name: 'prefers-color-scheme',
           value: 'light',
+        },
+        {
+          name: 'prefers-reduced-motion',
+          value: 'reduce',
+        },
+      ],
+    },
+  })
+}
+
+/**
+ * Enables reduced animation via emulation.
+ * @example emulateReducedMotion()
+ */
+export function emulateReducedMotion() {
+  Cypress.automation('remote:debugger:protocol', {
+    command: 'Emulation.setEmulatedMedia',
+    params: {
+      media: 'page',
+      features: [
+        {
+          name: 'prefers-reduced-motion',
+          value: 'reduce',
         },
       ],
     },
