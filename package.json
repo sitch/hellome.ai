@@ -27,7 +27,7 @@
     "test.ci": "jest --ci",
     "test.fix": "jest --updateSnapshot",
     "test.watch": "jest --watch",
-    "e2e": "start-server-and-test dev http://localhost:3000 cy.run",
+    "e2e": "yarn build && start-server-and-test 'yarn start' http://127.0.0.1:3000 'yarn cy.run'",
     "cy.run": "env NODE_OPTIONS=--openssl-legacy-provider yarn cypress run --config-file cypress/cypress.config.ts",
     "cy.open": "env NODE_OPTIONS=--openssl-legacy-provider yarn cypress open --config-file cypress/cypress.config.ts",
     "ci": "run-s --silent typecheck lint test.ci",

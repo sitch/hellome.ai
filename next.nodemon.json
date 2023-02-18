@@ -10,7 +10,7 @@
   ],
   "ext": "none",
   "ignore": [".git", "node_modules/**/node_modules"],
-  "env": {},
   "restartable": "rs",
-  "verbose": true
+  "verbose": false,
+  "env": {}
 }
