@@ -88,6 +88,7 @@
     "cspell": "^6.25.0",
     "cypress": "^12.6.0",
     "cypress-react-selector": "^3.0.0",
+    "cypress-wait-until": "^1.7.2",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "eslint-config-prettier": "^8.6.0",

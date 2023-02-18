@@ -52,4 +52,4 @@ next-env.d.ts
 cypress/downloads/*
 cypress/screenshots/*
 cypress/videos/*
-__image_snapshots__/
+# __image_snapshots__/

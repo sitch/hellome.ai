@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-import '@frsource/cypress-plugin-visual-regression-diff/dist/support'
-
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -38,5 +36,16 @@ import '@frsource/cypress-plugin-visual-regression-diff/dist/support'
 //     }
 //   }
 // }
+
+// ***********************************************
+// Plugins
+// ***********************************************
+
+import '@frsource/cypress-plugin-visual-regression-diff/dist/support'
+import 'cypress-wait-until'
+
+// ***********************************************
+// User Commands
+// ***********************************************
 
 import '@/cypress/commands/matchAllViewportImages'

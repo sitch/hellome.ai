@@ -11,6 +11,7 @@
       "cypress",
       "@testing-library/cypress",
       "cypress-react-selector",
+      "cypress-wait-until",
       "node"
     ]
   },

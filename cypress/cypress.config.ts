@@ -27,7 +27,7 @@ export default defineConfig({
     // cypress-plugin-visual-regression-diff
     pluginVisualRegressionUpdateImages: true,
     pluginVisualRegressionDiffConfig: { threshold: 0.01 },
-    pluginVisualRegressionCleanupUnusedImages: true,
+    // pluginVisualRegressionCleanupUnusedImages: true,
 
     // forces scale factor to be set as value "1"
     // helps with screenshots being scaled 2x on high-density screens like Mac Retina
