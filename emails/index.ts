@@ -23,12 +23,12 @@ export const verifyTransport = async () => {
   return await new Promise((resolve, reject) => {
     // verify connection configuration
     transport.verify(function (error, success) {
-      if (error) {
-        console.log(error)
-        reject(error)
-      } else {
+      if (success && !error) {
         console.log('Server is ready to take our messages')
         resolve(success)
+      } else {
+        console.log(error)
+        reject(error)
       }
     })
   })

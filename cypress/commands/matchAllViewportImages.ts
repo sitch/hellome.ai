@@ -34,6 +34,31 @@ export const MATCH_IMAGE_TEST_CASE = ({ label, viewport }: ViewportCase) => {
   })
 }
 
+
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-3 480x320 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-4 480x320 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-5 568x320 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-6 667x375 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-6+ 736x414 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-7 667x375 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-8 667x375 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-se2 667x375 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-x 812x375 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape iphone-xr 896x414 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape samsung-note9 846x414 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) landscape samsung-s10 760x360 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait iphone-3 320x480 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait iphone-4 320x480 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait iphone-5 320x568 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait iphone-6 375x667 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait iphone-7 375x667 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait iphone-8 375x667 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait iphone-se2 375x667 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait macbook-11 1366x768 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait macbook-13 1280x800 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait macbook-15 1440x900 matchImage #0.png
+// cypress/e2e/pages/__image_snapshots__/Index  (dark) portrait macbook-16 1536x960 matchImage #0.png
+
 export const SCROLLBAR_TEST_CASE = ({ label, viewport }: ViewportCase) => {
   context(label, () => {
     it('has no scrollbar', viewport, () => {
