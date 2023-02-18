@@ -1,79 +1,70 @@
-import nodemailer from 'nodemailer'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sendMail, { transport, verifyTransport } from '@/emails'
-import { ComponentMail } from 'mailing-core'
+import Status from 'http-status-codes'
+import { castMailData, EmailPayload } from '@/lib/mailer'
+import { within } from '@/lib/api/within'
+import { BaseApiResponse, EmailResponse } from '@/lib/api'
 
-interface EmailPayload {
-  firstName?: string
-  lastName?: string
-  email: string
-  message?: string
-}
+import vercel from '@/vercel.json'
 
-interface EmailSuccessResponse {
-  status: 'OK'
-}
-
-interface EmailErrorResponse {
-  status: 'transport_error' | 'send_error'
-  error: any
-}
-
-type EmailResponse = EmailSuccessResponse | EmailErrorResponse
-
-function castMailData({
-  firstName,
-  lastName,
-  email,
-  message,
-}: EmailPayload): ComponentMail {
-  return {
-    from: {
-      name: `Sitch`,
-      address: 'sitch@hellome.ai',
-    },
-    // replyTo: email,
-    // to: email,
-    // to: 'recipient@gmail.com',
-    to: 'sitch@hellome.ai',
-    subject: `Request Access`,
-    text: `${message} ${email}`,
-    html: `${message}`,
-  }
-}
+const MAX_DURATION_MS =
+  vercel.functions['pages/api/mailer/request-access/email.ts'].maxDuration *
+  1000
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<EmailResponse>
+  res: NextApiResponse<EmailResponse | BaseApiResponse>
 ) {
-  // console.log('request-access/email', req.body)
-  // const payload: EmailPayload = JSON.parse(req.body)
-  const payload: EmailPayload = req.body
+  // return res.status(Status.CREATED).json({ status: 'OK' })
 
-  console.log('request-access/email', payload)
+  if (req.method !== 'POST') {
+    return res
+      .status(Status.BAD_REQUEST)
+      .json({ status: 'request_error', error: 'bad method' })
+  }
 
-  const mailData = castMailData(payload)
+  const handleSubmission = async () => {
+    // console.log('request-access/email', req.body)
+    // const payload: EmailPayload = JSON.parse(req.body)
+    const payload: EmailPayload = req.body
 
-  await verifyTransport().catch((error) => {
-    res.status(500).json({ status: 'transport_error', error })
-  })
+    console.log('request-access/email', payload)
 
-  // await sendMail(mailData)
+    const { ok, data, error } = castMailData(payload)
 
-  await new Promise((resolve, reject) => {
-    // send mail
-    transport.sendMail(mailData, (error, info) => {
-      if (error) {
-        console.error(error)
+    if (!ok) {
+      res
+        .status(Status.UNPROCESSABLE_ENTITY)
+        .json({ status: 'validation_error', error })
 
-        res.status(500).json({ status: 'send_error', error })
-        reject(error)
-      } else {
-        console.log(info)
-        resolve(info)
-      }
+      return
+    }
+
+    await verifyTransport().catch((error) => {
+      res.status(Status.BAD_REQUEST).json({ status: 'transport_error', error })
     })
-  })
 
-  res.status(200).json({ status: 'OK' })
+    // await sendMail(data)
+
+    await new Promise((resolve, reject) => {
+      // send mail
+      transport.sendMail(data, (error, info) => {
+        if (error) {
+          console.error(error)
+
+          res
+            .status(Status.INTERNAL_SERVER_ERROR)
+            .json({ status: 'send_error', error })
+          reject(error)
+        } else {
+          console.log(info)
+          resolve(info)
+        }
+      })
+    })
+
+    res.status(Status.CREATED).json({ status: 'OK' })
+  }
+
+  await within<void, EmailResponse>(handleSubmission, res, MAX_DURATION_MS)
 }
