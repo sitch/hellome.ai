@@ -6,6 +6,11 @@
   padding: 6rem;
   min-height: 100vh;
   background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+
+  height: 100vh;
+  width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
 }
 
 .description {
