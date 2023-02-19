@@ -48,4 +48,4 @@ import 'cypress-wait-until'
 // User Commands
 // ***********************************************
 
-import '@/cypress/commands/matchAllViewportImages'
+// import '@/cypress/commands/screenshots'

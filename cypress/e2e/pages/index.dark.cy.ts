@@ -1,18 +1,20 @@
 /// <reference types="cypress" />
 
-import { emulateDarkMode } from '@/cypress/commands/emulateColorScheme'
+import { emulate } from '@/cypress/commands/emulation'
 import {
   MATCH_IMAGE_TEST_CASE,
   SCROLLBAR_TEST_CASE,
+} from '@/cypress/commands/screenshots'
+import {
   viewportLandscapePresets,
   viewportPortraitPresets,
-} from '@/cypress/commands/matchAllViewportImages'
+} from '@/cypress/commands/viewports'
 
 context('<Index /> (dark)', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000', {
       onBeforeLoad(win) {
-        emulateDarkMode()
+        emulate('dark-mode', 'reduced-animation')
       },
     })
     cy.waitUntil(() => cy.get('body').should('not.have.class', 'loading'))

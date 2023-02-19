@@ -1,18 +1,20 @@
 /// <reference types="cypress" />
 
-import { emulateLightMode } from '@/cypress/commands/emulateColorScheme'
+import { emulate } from '@/cypress/commands/emulation'
 import {
   MATCH_IMAGE_TEST_CASE,
   SCROLLBAR_TEST_CASE,
+} from '@/cypress/commands/screenshots'
+import {
   viewportLandscapePresets,
   viewportPortraitPresets,
-} from '@/cypress/commands/matchAllViewportImages'
+} from '@/cypress/commands/viewports'
 
 context('<Index /> (light)', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000', {
       onBeforeLoad(win) {
-        emulateLightMode()
+        emulate('light-mode', 'reduced-animation')
       },
     })
   })
@@ -25,12 +27,12 @@ context('<Index /> (light)', () => {
     )
   })
 
-  context('portrait', () => {
+  context('viewport[portrait]', () => {
     viewportPortraitPresets().forEach(SCROLLBAR_TEST_CASE)
     viewportPortraitPresets().forEach(MATCH_IMAGE_TEST_CASE)
   })
 
-  context('landscape', () => {
+  context('viewport[landscape]', () => {
     viewportLandscapePresets().forEach(SCROLLBAR_TEST_CASE)
     viewportLandscapePresets().forEach(MATCH_IMAGE_TEST_CASE)
   })
