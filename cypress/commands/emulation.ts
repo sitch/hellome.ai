@@ -32,3 +32,17 @@ export function emulate(...options: Option[]) {
     },
   })
 }
+
+export function disableAnimationStyles() {
+  cy.get('body').invoke(
+    'append',
+    Cypress.$(`
+      <style id="__cypress-animation-disabler">
+        *, *:before, *:after {
+          transition-property: none !important;
+          animation: none !important;
+        }
+      </style>
+    `)
+  )
+}

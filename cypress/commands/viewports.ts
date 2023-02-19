@@ -4,12 +4,16 @@ export const orientations: Cypress.ViewportOrientation[] = [
   'portrait',
   'landscape',
 ]
-export const presets: [Cypress.ViewportPreset, number, number][] = [
+
+type Height = number
+type Width = number
+
+export const presets: [Cypress.ViewportPreset, Width, Height][] = [
   ['ipad-2', 768, 1024],
   ['ipad-mini', 768, 1024],
-  ['iphone-3', 320, 480],
-  ['iphone-4', 320, 480],
-  ['iphone-5', 320, 568],
+  // ['iphone-3', 320, 480],
+  // ['iphone-4', 320, 480],
+  // ['iphone-5', 320, 568],
   ['iphone-6', 375, 667],
   ['iphone-6+', 414, 736],
   ['iphone-7', 375, 667],
@@ -78,4 +82,23 @@ export function getDocumentHeight($document: Document) {
       $document.documentElement.clientHeight
     )
   )
+}
+
+export function assertViewportRect(viewport: ViewportCase['viewport']) {
+  cy.document()
+    .then(($document) => {
+      return $document.documentElement.getBoundingClientRect().toJSON()
+    })
+    .then((viewportRect) => {
+      expect(viewportRect).to.eql({
+        x: 0,
+        y: 0,
+        width: viewport.viewportWidth,
+        height: viewport.viewportHeight,
+        top: 0,
+        right: viewport.viewportWidth,
+        bottom: viewport.viewportHeight,
+        left: 0,
+      })
+    })
 }

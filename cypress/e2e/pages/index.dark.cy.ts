@@ -10,7 +10,7 @@ import {
   viewportPortraitPresets,
 } from '@/cypress/commands/viewports'
 
-context('<Index /> (dark)', () => {
+context('<Index /> (dark-mode)', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000', {
       onBeforeLoad(win) {
