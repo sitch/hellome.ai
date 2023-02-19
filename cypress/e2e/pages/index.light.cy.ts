@@ -6,6 +6,7 @@ import {
   SCROLLBAR_TEST_CASE,
 } from '@/cypress/commands/screenshots'
 import {
+  filterByBreakPoint,
   viewportLandscapePresets,
   viewportPortraitPresets,
 } from '@/cypress/commands/viewports'
@@ -28,12 +29,12 @@ context('<Index /> (light-mode)', () => {
   })
 
   context('viewport[portrait]', () => {
-    viewportPortraitPresets().forEach(SCROLLBAR_TEST_CASE)
     viewportPortraitPresets().forEach(MATCH_IMAGE_TEST_CASE)
+    viewportPortraitPresets().forEach(SCROLLBAR_TEST_CASE)
   })
 
   context('viewport[landscape]', () => {
-    viewportLandscapePresets().forEach(SCROLLBAR_TEST_CASE)
     viewportLandscapePresets().forEach(MATCH_IMAGE_TEST_CASE)
+    viewportLandscapePresets().forEach(SCROLLBAR_TEST_CASE)
   })
 })

@@ -2,7 +2,7 @@
 
 import { disableAnimationStyles } from './emulation'
 import {
-  assertViewportRect,
+  assertViewportBoundingRect,
   getDocumentHeight,
   ViewportCase,
 } from './viewports'
@@ -26,7 +26,7 @@ export const MATCH_IMAGE_TEST_CASE = ({ label, viewport }: ViewportCase) => {
 export const SCROLLBAR_TEST_CASE = ({ label, viewport }: ViewportCase) => {
   context(label, () => {
     it('has no scrollbar', viewport, () => {
-      assertViewportRect(viewport)
+      assertViewportBoundingRect(viewport)
       // cy.scrollTo('bottom').window().its('scrollY').should('equal', 0)
 
       cy.document().then(($document) => {

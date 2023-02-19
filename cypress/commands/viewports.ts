@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { isNumber } from 'lodash'
+
 export const orientations: Cypress.ViewportOrientation[] = [
   'portrait',
   'landscape',
@@ -11,9 +13,9 @@ type Width = number
 export const presets: [Cypress.ViewportPreset, Width, Height][] = [
   ['ipad-2', 768, 1024],
   ['ipad-mini', 768, 1024],
-  // ['iphone-3', 320, 480],
-  // ['iphone-4', 320, 480],
-  // ['iphone-5', 320, 568],
+  ['iphone-3', 320, 480],
+  ['iphone-4', 320, 480],
+  ['iphone-5', 320, 568],
   ['iphone-6', 375, 667],
   ['iphone-6+', 414, 736],
   ['iphone-7', 375, 667],
@@ -42,9 +44,9 @@ export type ViewportCase = {
 }
 
 export function viewportPortraitPresets(): ViewportCase[] {
-  return presets.map(([preset, width, height]) => {
+  return presets.map(([preset, height, width]) => {
     return {
-      label: `${preset} ${width}x${height}`,
+      label: `${preset} ${height}x${width}`,
       preset,
       height,
       width,
@@ -84,7 +86,7 @@ export function getDocumentHeight($document: Document) {
   )
 }
 
-export function assertViewportRect(viewport: ViewportCase['viewport']) {
+export function assertViewportBoundingRect(viewport: ViewportCase['viewport']) {
   cy.document()
     .then(($document) => {
       return $document.documentElement.getBoundingClientRect().toJSON()
@@ -101,4 +103,22 @@ export function assertViewportRect(viewport: ViewportCase['viewport']) {
         left: 0,
       })
     })
+}
+
+export type BreakPointOptions = {
+  minHeight?: number
+  maxHeight?: number
+  minWidth?: number
+  maxWidth?: number
+}
+
+export function filterByBreakPoint(options: BreakPointOptions) {
+  return ({ viewport: { viewportHeight, viewportWidth } }: ViewportCase) => {
+    return ![
+      isNumber(options.minHeight) && viewportHeight < options.minHeight,
+      isNumber(options.maxHeight) && viewportHeight > options.maxHeight,
+      isNumber(options.minWidth) && viewportWidth < options.minWidth,
+      isNumber(options.maxWidth) && viewportWidth > options.maxWidth,
+    ].some(Boolean)
+  }
 }
