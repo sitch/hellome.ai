@@ -37,6 +37,7 @@
     "frsource",
     "geoip",
     "gifs",
+    "googlebot",
     "gradientblob",
     "gsap",
     "Haettenschweiler",
@@ -44,15 +45,20 @@
     "hellomebooks",
     "hookform",
     "localstorage",
+    "Loggable",
     "macbook",
     "mjml",
+    "navigations",
     "nextjs",
     "Reaptcha",
     "recaptcha",
+    "resq",
     "Sitch",
     "Sitchenko",
     "sitekey",
     "tailwindcss",
-    "Viewports"
+    "Timeoutable",
+    "Viewports",
+    "Withinable"
   ]
 }

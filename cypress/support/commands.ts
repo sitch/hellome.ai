@@ -53,13 +53,23 @@ import 'cypress-wait-until'
 declare global {
   namespace Cypress {
     interface Chainable {
-      getByData(dataTestAttribute: string): Chainable<JQuery<HTMLElement>>
+      getByData(
+        selector: string,
+        options?:
+          | Partial<
+              Cypress.Loggable &
+                Cypress.Timeoutable &
+                Cypress.Withinable &
+                Cypress.Shadow
+            >
+          | undefined
+      ): Chainable<JQuery<HTMLElement>>
     }
   }
 }
 
-Cypress.Commands.add('getByData', (selector) => {
-  return cy.get(`[data-cy="${selector}"]`)
+Cypress.Commands.add('getByData', (selector, options) => {
+  return cy.get(`[data-cy="${selector}"]`, options)
 })
 
 declare global {
@@ -80,4 +90,23 @@ Cypress.Commands.add('clickCaptcha', () => {
   cy.get('iframe[title=reCAPTCHA]')
     .its('0.contentDocument')
     .should((d) => d.getElementById('recaptcha-token').click())
+})
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      waitForPageLoad(page?: string): Chainable<void>
+    }
+  }
+}
+
+Cypress.Commands.add('waitForPageLoad', (page) => {
+  // cy.waitUntil(() => cy.get('body').should('not.have.class', 'loading'))
+  cy.get('body').should('not.have.class', 'loading')
+  cy.get('#app-loading').should('not.exist')
+  cy.waitForReact(4000, '#__next', 'node_modules/resq/dist/index.js')
+
+  if (page) {
+    cy.getByData(page, { timeout: 20000 }).should('exist')
+  }
 })

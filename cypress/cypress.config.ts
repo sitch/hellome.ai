@@ -8,6 +8,7 @@ export default defineConfig({
     },
     specPattern: 'cypress/e2e/**/*.cy.{js,ts,jsx,tsx}',
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
+    // defaultCommandTimeout: 20000,
   },
   component: {
     devServer: {

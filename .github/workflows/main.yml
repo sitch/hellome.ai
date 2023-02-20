@@ -84,8 +84,8 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           config-file: cypress/cypress.config.ts
-          build: yarn build
-          start: yarn start
+          build: yarn build.ci
+          start: yarn start.ci
           record: ${{ !!secrets.CYPRESS_RECORD_KEY }}
           wait-on: '${{ env.NEXT_PUBLIC_HELLOME_UI_HTTP_URL }}'
           browser: chrome

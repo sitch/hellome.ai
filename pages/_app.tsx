@@ -32,6 +32,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     document.body.classList?.remove('loading')
   }, [])
 
+  if (process.env.NODE_ENV !== 'production') {
+    return <Component {...pageProps} />
+  }
   return (
     <>
       <GoogleAnalytics trackPageViews />

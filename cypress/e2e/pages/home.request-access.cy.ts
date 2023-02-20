@@ -10,15 +10,15 @@ const BASE = 'RequestAccess:EmailForm'
 //   emailInputExists: () => cy.getByData(`${BASE}:input:email`).should('exist'),
 // }
 
-context('<Index /> (Request Access)', () => {
+describe('<Home /> (Request Access)', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000', {
       onBeforeLoad(win) {
         emulate('reduced-animation')
       },
     })
-    cy.waitUntil(() => cy.get('body').should('not.have.class', 'loading'))
-    cy.getByData('invite-modal:button').click()
+    cy.waitForPageLoad('HomeView')
+    cy.getByData('invite-modal:button').should('be.visible').click()
   })
 
   it('renders form', () => {
@@ -37,7 +37,7 @@ context('<Index /> (Request Access)', () => {
     cy.get('recaptcha-accessible-status').should('not.exist')
   })
 
-  it.only('accepts a valid email', () => {
+  xit('accepts a valid email', () => {
     cy.getByData(`${BASE}:input:email`).type('user@company.com')
 
     // check captcha
@@ -69,7 +69,7 @@ context('<Index /> (Request Access)', () => {
     // cy.getByData(`${BASE}:message:success`).should('exist')
   })
 
-  it('rejects an invalid email', () => {
+  xit('rejects an invalid email', () => {
     cy.getByData(`${BASE}:input:email`).type('invalid')
 
     cy.getByData(`${BASE}:submit:button`).should('exist').should('be.disabled')

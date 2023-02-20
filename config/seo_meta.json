@@ -1,0 +1,30 @@
+{
+  "title": "Hello Me Storefront",
+  "titleTemplate": "%s - Hello Me Storefront",
+  "description": "AI Personalized Children's Books",
+  "openGraph": {
+    "title": "Hello Me Storefront",
+    "description": "AI Personalized Children's Books",
+    "type": "website",
+    "url": "https://hellome.ai",
+    "site_name": "Hello Me Storefront",
+    "images": [
+      {
+        "url": "/card.png",
+        "width": "800",
+        "height": "600",
+        "alt": "Hello Me Storefront"
+      }
+    ]
+  },
+  "twitter": {
+    "handle": "@hellomebooks",
+    "site": "@hellomebooks",
+    "cardType": "summary_large_image"
+  },
+  "instagram": {
+    "handle": "@hellomebooks",
+    "site": "@hellomebooks",
+    "cardType": "summary_large_image"
+  }
+}

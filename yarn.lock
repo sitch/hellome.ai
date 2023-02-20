@@ -8681,6 +8681,13 @@ resq@1.10.2:
   dependencies:
     fast-deep-equal "^2.0.1"
 
+resq@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/resq/-/resq-1.11.0.tgz#edec8c58be9af800fd628118c0ca8815283de196"
+  integrity sha512-G10EBz+zAAy3zUd/CDoBbXRL6ia9kOo3xRHrMDsHljI0GDkhYlyjwoCx5+3eCC4swi1uCoZQhskuJkj7Gp57Bw==
+  dependencies:
+    fast-deep-equal "^2.0.1"
+
 restore-cursor@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/restore-cursor/-/restore-cursor-3.1.0.tgz#39f67c54b3a7a58cea5236d95cf0034239631f7e"

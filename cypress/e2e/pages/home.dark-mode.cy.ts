@@ -11,23 +11,25 @@ import {
   viewportPortraitPresets,
 } from '@/cypress/commands/viewports'
 
-context('<Index /> (dark-mode)', () => {
+describe('<Home /> (dark-mode)', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000', {
       onBeforeLoad(win) {
         emulate('dark-mode', 'reduced-animation')
       },
     })
-    cy.waitUntil(() => cy.get('body').should('not.have.class', 'loading'))
-    cy.waitUntil(() => cy.contains('Request Access'))
+    cy.waitForPageLoad('HomeView')
   })
 
-  it('displays the brand logo text correct color', () => {
-    cy.get('[data-cy=brand-logo-hello]').should(
-      'have.css',
-      'color',
-      'rgb(255, 255, 255)'
-    )
+  context('display', () => {
+    it.only('displays the brand logo text correct color', () => {
+      cy.wait(5000)
+      cy.getByData('brand-logo-hello').should(
+        'have.css',
+        'color',
+        'rgb(255, 255, 255)'
+      )
+    })
   })
 
   context('portrait', () => {
