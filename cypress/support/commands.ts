@@ -101,10 +101,10 @@ declare global {
 }
 
 Cypress.Commands.add('waitForPageLoad', (page) => {
+  cy.waitForReact(4000, '#__next', 'node_modules/resq/dist/index.js')
   // cy.waitUntil(() => cy.get('body').should('not.have.class', 'loading'))
   cy.get('body').should('not.have.class', 'loading')
   cy.get('#app-loading').should('not.exist')
-  cy.waitForReact(4000, '#__next', 'node_modules/resq/dist/index.js')
 
   if (page) {
     cy.getByData(page, { timeout: 20000 }).should('exist')

@@ -1,7 +1,16 @@
 import Head from 'next/head'
-import styles from '@/styles/LearnMore.module.css'
+import styles from '@/styles/Faq.module.css'
 
-export default function LearnMore() {
+// # FAQ
+// ## What does HelloMe.ai do?
+// ## How is HelloMe.ai different from competitors?
+// ## What technology does HelloMe.ai use?
+// ## How does HelloMe.ai protect my privacy?
+// ## How does HelloMe.ai protect artists?
+// ## How does HelloMe.ai compensate artists?
+// ## How does HelloMe.ai compensate artists?
+
+export default function FAQ() {
   return (
     <>
       <Head>
@@ -11,10 +20,9 @@ export default function LearnMore() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main} data-cy="LearnMoreView">
+      <main className={styles.main} data-cy="FaqView">
         <section className={styles.section}>
-          <h1>Learn More</h1>
-          <p>...</p>
+          <h1>FAQ</h1>
           <h2>What does HelloMe.ai do?</h2>
           <p>...</p>
           <h2>How is HelloMe.ai different from competitors?</h2>
