@@ -1,15 +1,12 @@
 import { Modal } from 'flowbite-react'
 import React, { useState, MouseEvent, ReactNode } from 'react'
-import styles from './InviteModal.module.css'
-import EmailForm from '@/components/ui/InviteModal/EmailForm'
-import AccessTokenForm from '@/components/ui/InviteModal/AccessTokenForm'
+import styles from './RequestAccessModal.module.css'
+import EmailForm from '@/components/ui/RequestAccessModal/EmailForm'
+import AccessTokenForm from '@/components/ui/RequestAccessModal/AccessTokenForm'
 import Link from 'next/link'
 
 const privacyPolicy = (
-  <p
-    id="helper-text-explanation"
-    className="mt-2 text-sm text-gray-500 dark:text-gray-400"
-  >
+  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
     We’ll never share your details. Read our{' '}
     <Link
       href="/privacy"
@@ -21,12 +18,15 @@ const privacyPolicy = (
   </p>
 )
 
-export interface InviteModalProps {
+export interface RequestAccessModalProps {
   className?: string
   children: ReactNode
 }
 
-export default function InviteModal({ className, children }: InviteModalProps) {
+export default function RequestAccessModal({
+  className,
+  children,
+}: RequestAccessModalProps) {
   const [show, setShow] = useState<boolean>(false)
 
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -36,16 +36,16 @@ export default function InviteModal({ className, children }: InviteModalProps) {
   }
   const onClose = () => setShow(false)
 
-  const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    e.nativeEvent.stopImmediatePropagation()
-    console.log('submit')
-  }
+  // const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault()
+  //   e.nativeEvent.stopImmediatePropagation()
+  //   console.log('submit')
+  // }
 
   return (
     <>
       {/* Toggle Modal */}
-      <a className={className} onClick={onClick}>
+      <a className={className} onClick={onClick} data-cy="invite-modal:button">
         {children}
       </a>
 
@@ -65,6 +65,8 @@ export default function InviteModal({ className, children }: InviteModalProps) {
       >
         <Modal.Header
         // className={styles.modalContainer}
+        // className="prose rounded-t px-4 py-2"
+        // className="prose"
         >
           {/* <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
@@ -72,9 +74,8 @@ export default function InviteModal({ className, children }: InviteModalProps) {
                 </h3>
             </div> */}
 
-          <div className="rounded-t border-b px-4 py-2 text-gray-400 dark:border-gray-600">
-            Request Access
-          </div>
+          <div className="prose px-2 py-2">Request Access</div>
+          {/* Request Access */}
 
           {/* <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
             <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">

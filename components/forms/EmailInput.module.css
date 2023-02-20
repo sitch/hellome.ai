@@ -1,0 +1,133 @@
+.email-input {
+  --text: #444961;
+  --text-placeholder: #8f94ad;
+  --icon: #a6accd;
+  --icon-focus: #646b8c;
+  --icon-invalid: #f04949;
+  --icon-valid: #16bf78;
+  --background: #fff;
+  --border: #d1d6ee;
+  --border-hover: #a6accd;
+  --border-focus: #275efe;
+  --shadow-focus: #{rgba(#275efe, 0.32)};
+  position: relative;
+  /* max-width: 220px; */
+  input {
+    width: 100%;
+    -webkit-appearance: none;
+    outline: none;
+    display: block;
+    font-size: 14px;
+    font-family: inherit;
+    margin: 0;
+    padding: 8px 16px 8px 41px;
+    line-height: 26px;
+    border-radius: 6px;
+    color: var(--text);
+    border: 1px solid var(--bc, var(--border));
+    background: var(--background);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    &::placeholder {
+      color: var(--text-placeholder);
+    }
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+    top: 14px;
+    left: 14px;
+    display: block;
+    position: absolute;
+    fill: none;
+    stroke: var(--i, var(--icon));
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+    transition: stroke 0.3s;
+    path {
+      stroke-dasharray: 80;
+      stroke-dashoffset: var(--path, 170);
+      transition: stroke-dashoffset 0.5s ease var(--path-delay, 0.3s);
+    }
+    polyline {
+      stroke-dasharray: 12;
+      stroke-dashoffset: var(--tick, 12);
+      transition: stroke-dashoffset 0.45s ease var(--tick-delay, 0s);
+    }
+  }
+  &:hover {
+    --bc: var(--border-hover);
+  }
+  &:focus-within {
+    --bc: var(--border-focus);
+    --i: var(--icon-focus);
+    input {
+      box-shadow: 0 1px 6px -1px var(--shadow-focus);
+    }
+  }
+  &:not(.valid) {
+    input {
+      &:not(:placeholder-shown) {
+        &:not(:focus) {
+          & + svg {
+            --i: var(--icon-invalid);
+          }
+        }
+      }
+    }
+  }
+  &.valid {
+    --i: var(--icon-valid);
+    --path: 132;
+    --path-delay: 0s;
+    --tick: 0;
+    --tick-delay: 0.3s;
+  }
+}
+
+/* html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+// Center & dribbble
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: 'Inter UI', 'Inter', Arial;
+  justify-content: center;
+  align-items: center;
+  background: #f6f8ff;
+  .email-input {
+    width: 100%;
+  }
+  .dribbble {
+    position: fixed;
+    display: block;
+    right: 20px;
+    bottom: 20px;
+    img {
+      display: block;
+      height: 28px;
+    }
+  }
+  .twitter {
+    position: fixed;
+    display: block;
+    right: 64px;
+    bottom: 14px;
+    svg {
+      width: 32px;
+      height: 32px;
+      fill: #1da1f2;
+    }
+  }
+} */

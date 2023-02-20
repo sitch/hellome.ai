@@ -6,8 +6,8 @@ import BrandLogo from '@/components/ui/BrandLogo/BrandLogo'
 import dynamic from 'next/dynamic'
 
 // Avoids "document not found" issue
-const InviteModal = dynamic(
-  () => import('@/components/ui/InviteModal/InviteModal'),
+const RequestAccessModal = dynamic(
+  () => import('@/components/ui/RequestAccessModal/RequestAccessModal'),
   { ssr: false }
 )
 
@@ -85,7 +85,7 @@ export default function Home() {
         </div> */}
 
         <div className={styles.grid}>
-          <InviteModal className={styles.card}>
+          <RequestAccessModal className={styles.card}>
             <h2 className={inter.className}>
               Request Access
               <svg
@@ -106,7 +106,7 @@ export default function Home() {
             <p className={inter.className}>
               Try our AI personalized children's book studio.
             </p>
-          </InviteModal>
+          </RequestAccessModal>
 
           {/* ############################################################## */}
 

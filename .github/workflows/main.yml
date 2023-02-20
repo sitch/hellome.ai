@@ -90,6 +90,7 @@ jobs:
           wait-on: '${{ env.NEXT_PUBLIC_HELLOME_UI_HTTP_URL }}'
           browser: chrome
         env:
+          NODE_ENV: 'test'
           # NEXT_PUBLIC_HELLOME_ENV: 'ci'
           NEXT_PUBLIC_HELLOME_UI_HTTP_URL: 'http://localhost:3000'
           # NEXT_PUBLIC_HELLOME_API_HTTP_URL: 'http://localhost:4000'

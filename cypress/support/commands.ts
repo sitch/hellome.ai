@@ -49,3 +49,35 @@ import 'cypress-wait-until'
 // ***********************************************
 
 // import '@/cypress/commands/screenshots'
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getByData(dataTestAttribute: string): Chainable<JQuery<HTMLElement>>
+    }
+  }
+}
+
+Cypress.Commands.add('getByData', (selector) => {
+  return cy.get(`[data-cy="${selector}"]`)
+})
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getCaptcha(): Chainable<JQuery<HTMLElement>>
+      clickCaptcha(): Chainable<JQuery<HTMLElement>>
+    }
+  }
+}
+
+Cypress.Commands.add('getCaptcha', () => {
+  // cy.get('iframe[src*=recaptcha]')
+  cy.get('iframe[title=reCAPTCHA]').its('0.contentDocument').should('exist')
+})
+
+Cypress.Commands.add('clickCaptcha', () => {
+  cy.get('iframe[title=reCAPTCHA]')
+    .its('0.contentDocument')
+    .should((d) => d.getElementById('recaptcha-token').click())
+})

@@ -20,7 +20,6 @@ context('<Index /> (dark-mode)', () => {
     })
     cy.waitUntil(() => cy.get('body').should('not.have.class', 'loading'))
     cy.waitUntil(() => cy.contains('Request Access'))
-    // cy.wait(200)
   })
 
   it('displays the brand logo text correct color', () => {
@@ -34,7 +33,7 @@ context('<Index /> (dark-mode)', () => {
   context('portrait', () => {
     viewportPortraitPresets().forEach(MATCH_IMAGE_TEST_CASE)
 
-    // TODO: fix these break points on dark??
+    // TODO: fix these break points
     viewportPortraitPresets()
       .filter(filterByBreakPoint({ minHeight: 420 }))
       .forEach(SCROLLBAR_TEST_CASE)
@@ -43,7 +42,7 @@ context('<Index /> (dark-mode)', () => {
   context('landscape', () => {
     viewportLandscapePresets().forEach(MATCH_IMAGE_TEST_CASE)
 
-    // TODO: fix these break points on dark??
+    // TODO: fix these break points
     viewportLandscapePresets()
       .filter(filterByBreakPoint({ minHeight: 420 }))
       .forEach(SCROLLBAR_TEST_CASE)

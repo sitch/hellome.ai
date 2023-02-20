@@ -4,7 +4,7 @@ import styles from './AnimatedButton.module.css'
 import classNames from 'classnames'
 
 function LoadingIcon() {
-  return <Spinner color="info" aria-label="Info spinner example" />
+  return <Spinner color="info" aria-label="Button Loading" />
 
   // return ( <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
   // <span className="visually-hidden">
@@ -33,16 +33,24 @@ export default function AnimatedButton({
   children,
   ...props
 }: AnimatedButtonProps) {
-  const rootClassName = classNames({
-    [styles.button]: true,
-    'w-full': wide,
-  })
-
   return (
-    <Button className={rootClassName} outline={true} {...props}>
-      <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
+    <Button
+      className={classNames({
+        [styles.button]: true,
+        [styles.buttonWide]: wide,
+      })}
+      outline={true}
+      {...props}
+    >
+      <div className={styles.container}>
         {loading && <LoadingIcon />}
-        <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">
+        <span
+          className={classNames({
+            [styles.inner]: true,
+            // [styles.innerAnimation]: !(props.disabled ?? false),
+            [styles.innerAnimation]: true,
+          })}
+        >
           {children}
         </span>
       </div>

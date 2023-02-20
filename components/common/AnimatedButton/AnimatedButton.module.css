@@ -1,3 +1,23 @@
 .button {
   @apply animate-button bg-gradient-to-r from-emerald-400 via-indigo-400 to-rose-400;
+
+  /* &:hover {
+    background: red;
+  } */
+}
+
+.buttonWide {
+  @apply w-full;
+}
+
+.inner {
+  @apply text-xl font-black;
+}
+
+.container {
+  /* @apply rounded-t  px-4 py-2 dark:border-gray-600; */
+}
+
+.innerAnimation {
+  @apply animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent;
 }

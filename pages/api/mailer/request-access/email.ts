@@ -15,7 +15,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<EmailResponse | BaseApiResponse>
 ) {
-  // return res.status(Status.CREATED).json({ status: 'OK' })
+  // if (process.env.NODE_ENV !== 'production') {
+  //   return res.status(Status.CREATED).json({ status: 'OK' })
+  // }
 
   if (req.method !== 'POST') {
     return res
@@ -28,9 +30,10 @@ export default async function handler(
     // const payload: EmailPayload = JSON.parse(req.body)
     const payload: EmailPayload = req.body
 
-    console.log('request-access/email', payload)
+    console.log('request-access/email', { payload })
 
-    const { ok, data, error } = castMailData(payload)
+    const { ok, data, error } = castMailData(req, payload)
+    console.log('request-access/email', { data })
 
     if (!ok) {
       res
