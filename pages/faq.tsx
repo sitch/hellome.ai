@@ -20,7 +20,7 @@ export default function FAQ() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main} data-cy="FaqView">
+      <main className={styles.main} data-cy="FaqPage">
         <section className={styles.section}>
           <h1>FAQ</h1>
           <h2>What does HelloMe.ai do?</h2>

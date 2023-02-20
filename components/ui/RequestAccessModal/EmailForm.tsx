@@ -282,6 +282,7 @@ export default function EmailForm(_props: EmailFormProps) {
       {/* Captcha */}
       <div className={styles.formCaptcha}>
         <Reaptcha
+          id="recaptcha"
           // theme="dark"
           ref={captcha}
           sitekey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V2_SITE_KEY!}

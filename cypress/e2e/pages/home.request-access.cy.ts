@@ -17,66 +17,66 @@ describe('<Home /> (Request Access)', () => {
         emulate('reduced-animation')
       },
     })
-    cy.waitForPageLoad('HomeView')
+    cy.waitForPageLoad('HomePage')
     cy.getByData('invite-modal:button').should('be.visible').click()
   })
 
-  it('renders form', () => {
-    cy.getByData(`${BASE}:form`).should('exist')
+  context('display', () => {
+    it('renders form', () => {
+      cy.getByData(`${BASE}:form`).should('exist')
+    })
+
+    it('renders email field', () => {
+      cy.getByData(`${BASE}:input:email`).should('exist')
+    })
+
+    it('renders submit button disabled by default', () => {
+      cy.getByData(`${BASE}:submit:button`)
+        .should('exist')
+        .should('be.disabled')
+    })
+
+    it('renders without captcha by default', () => {
+      cy.get('recaptcha-accessible-status').should('not.exist')
+    })
   })
 
-  it('renders email field', () => {
-    cy.getByData(`${BASE}:input:email`).should('exist')
-  })
+  context('submission', () => {
+    it('accepts a valid email', () => {
+      cy.getByData(`${BASE}:input:email`).type('user@company.com')
 
-  it('renders submit button disabled by default', () => {
-    cy.getByData(`${BASE}:submit:button`).should('exist').should('be.disabled')
-  })
+      // Solve captcha
+      cy.solveCaptcha()
 
-  it('renders without captcha by default', () => {
-    cy.get('recaptcha-accessible-status').should('not.exist')
-  })
+      // Validations
+      cy.getByData(`${BASE}:validations:email`).should('not.exist')
 
-  xit('accepts a valid email', () => {
-    cy.getByData(`${BASE}:input:email`).type('user@company.com')
+      // Submit
+      cy.getByData(`${BASE}:submit:button`)
+        .should('exist')
+        .should('not.be.disabled')
+        .click()
 
-    // check captcha
-    // cy.get('iframe[title="reCAPTCHA"]').should('exist')
+      // Validations
+      cy.getByData(`${BASE}:validations:email`).should('not.exist')
 
-    // cy.get('iframe[.recaptcha-accessible-status').contains(
-    //   'Recaptcha requires verification. '
-    // )
-    // cy.get('.recaptcha-checkbox').click()
+      // Success
+      cy.getByData(`${BASE}:message:success`).should('exist')
+    })
 
-    cy.get('iframe[title=reCAPTCHA]').its('0.contentDocument').should('exist')
-    // .should((d) => d.getElementById('recaptcha-anchor').click())
-    // .should((d) => d.getElementById('recaptcha-token').click())
+    it('rejects an invalid email', () => {
+      cy.getByData(`${BASE}:input:email`).type('invalid')
 
-    // cy.get('iframe[title=reCAPTCHA]')
-    // .then((d) => d.getElementById('recaptcha-anchor').click())
-    // .its('0.contentDocument').get('#recaptcha-anchor').click()
+      // Validations
+      cy.getByData(`${BASE}:validations:email`).should('not.exist')
 
-    // cy.clickCaptcha()
-    // // cy.get('recaptcha-accessible-status').contains('You are verified')
+      // Submit
+      cy.getByData(`${BASE}:submit:button`)
+        .should('exist')
+        .should('be.disabled')
 
-    // // submit
-    // cy.getByData(`${BASE}:submit:button`)
-    //   .should('exist')
-    //   .should('not.be.disabled')
-    // cy.getByData(`${BASE}:submit:button`).click()
-
-    // cy.getByData(`${BASE}:validations:email`).should('not.exist')
-    // cy.getByData(`${BASE}:message:success`).should('exist')
-  })
-
-  xit('rejects an invalid email', () => {
-    cy.getByData(`${BASE}:input:email`).type('invalid')
-
-    cy.getByData(`${BASE}:submit:button`).should('exist').should('be.disabled')
-    cy.getByData(`${BASE}:submit:button`).click()
-
-    // check captcha
-    cy.getByData(`${BASE}:validations:email`).should('exist')
-    cy.getByData(`${BASE}:message:success`).should('not.exist')
+      // Success
+      cy.getByData(`${BASE}:message:success`).should('not.exist')
+    })
   })
 })

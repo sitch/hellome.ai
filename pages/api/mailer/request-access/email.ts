@@ -15,14 +15,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<EmailResponse | BaseApiResponse>
 ) {
-  // if (process.env.NODE_ENV !== 'production') {
-  //   return res.status(Status.CREATED).json({ status: 'OK' })
-  // }
-
   if (req.method !== 'POST') {
     return res
       .status(Status.BAD_REQUEST)
       .json({ status: 'request_error', error: 'bad method' })
+  }
+
+  if (
+    process.env.NODE_ENV !== 'production' ||
+    process.env.MAILER_DISABLED === 'true'
+  ) {
+    return res.status(Status.CREATED).json({ status: 'OK' })
   }
 
   const handleSubmission = async () => {

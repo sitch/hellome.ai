@@ -18,7 +18,7 @@ describe('<Home /> (light-mode)', () => {
         emulate('light-mode', 'reduced-animation')
       },
     })
-    cy.waitForPageLoad('HomeView')
+    cy.waitForPageLoad('HomePage')
   })
 
   context('display', () => {

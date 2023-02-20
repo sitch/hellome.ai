@@ -1,17 +1,20 @@
 import Head from 'next/head'
-// import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import Link from 'next/link'
 import BrandLogo from '@/components/ui/BrandLogo/BrandLogo'
-import dynamic from 'next/dynamic'
 
 // Avoids "document not found" issue
 const RequestAccessModal = dynamic(
   () => import('@/components/ui/RequestAccessModal/RequestAccessModal'),
-  { ssr: false }
+  {
+    ssr: false,
+    // suspense: true,
+  }
 )
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -22,7 +25,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      {/* <Suspense fallback={<AppLoading />}> */}
+      {/* <HomePage font={inter} /> */}
+      {/* </Suspense> */}
+
+      <main className={styles.main} data-cy="HomePage">
         <div className={styles.description}>
           {/* <p>
             Get started by editing&nbsp;
@@ -70,23 +77,36 @@ export default function Home() {
           <BrandLogo />
         </div>
 
-        {/* <div className={styles.center}>
-          <span className={styles.brandNameHelloPart}>Hello</span>
-          <AnimatedText className={styles.brandNameMePart} theme="space">
-            Me
-          </AnimatedText>
-          <span className={styles.brandNameAiPart}>.ai</span>
-        </div> */}
-
-        {/* <div>
-          <span style={{ fontSize: '64px', fontFamily: 'arial', padding: 24 }}>
-            AI with Authenticity
-          </span>
-        </div> */}
-
         <div className={styles.grid}>
+          {/* ############################################################## */}
+
+          <Link className={styles.card} href="/learn-more">
+            <h2 className={font.className}>
+              Learn More
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="ml-1 mb-1 inline h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </h2>
+            <p className={font.className}>
+              Find out about us and what we do at HelloMe.ai.
+            </p>
+          </Link>
+
+          {/* ############################################################## */}
+
           <RequestAccessModal className={styles.card}>
-            <h2 className={inter.className}>
+            <h2 className={font.className}>
               Request Access
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,10 +123,61 @@ export default function Home() {
                 />
               </svg>
             </h2>
-            <p className={inter.className}>
+            <p className={font.className}>
               Try our AI personalized children's book studio.
             </p>
           </RequestAccessModal>
+
+          {/* ############################################################## */}
+
+          {/* <Link className={styles.card} href="/faq">
+            <h2 className={font.className}>
+              FAQ
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="ml-1 mb-1 inline h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </h2>
+            <p className={font.className}>
+              Read answers to our frequently asked questions.
+            </p>
+          </Link> */}
+
+          {/* ############################################################## */}
+
+          {/* <Link className={styles.card} href="/privacy">
+            <h2 className={font.className}>
+              Privacy
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="ml-1 mb-1 inline h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </h2>
+            <p className={font.className}>
+              We never track you and will never use any of your photo's or sell
+              any of your data.
+            </p>
+          </Link> */}
 
           {/* ############################################################## */}
 
@@ -116,11 +187,11 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 className={font.className}>
               //  Store <span>-&gt;</span> 
               Visit our Store
             </h2>
-            <p className={inter.className}>
+            <p className={font.className}>
               Check out our AI personalized children's books.
             </p>
           </a> */}
@@ -133,10 +204,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 className={font.className}>
               Learn More
             </h2>
-            <p className={inter.className}>
+            <p className={font.className}>
               Find out how we work with artists to put the <b>AI</b> in <b>Authenticity</b>
             </p>
           </a> */}
@@ -147,10 +218,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 className={font.className}>
               Docs <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p className={font.className}>
               Find in-depth information about Next.js features and&nbsp;API.
             </p>
           </a>
@@ -161,10 +232,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 className={font.className}>
               Learn <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p className={font.className}>
               Learn about Next.js in an interactive course with&nbsp;quizzes!
             </p>
           </a>
@@ -175,10 +246,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 className={font.className}>
               Templates <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p className={font.className}>
               Discover and deploy boilerplate example Next.js&nbsp;projects.
             </p>
           </a>
@@ -189,10 +260,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 className={font.className}>
               Deploy <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p className={font.className}>
               Instantly deploy your Next.js site to a shareable URL
               with&nbsp;Vercel.
             </p>

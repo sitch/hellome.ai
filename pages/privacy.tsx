@@ -13,7 +13,7 @@ export default function Privacy() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main} data-cy="PrivacyView">
+      <main className={styles.main} data-cy="PrivacyPage">
         <section className={styles.section}>
           <div className={styles.heading}>
             <h1 className={styles.primaryHeading}>Privacy Policy</h1>

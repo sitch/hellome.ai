@@ -18,11 +18,11 @@ describe('<Home /> (dark-mode)', () => {
         emulate('dark-mode', 'reduced-animation')
       },
     })
-    cy.waitForPageLoad('HomeView')
+    cy.waitForPageLoad('HomePage')
   })
 
   context('display', () => {
-    it.only('displays the brand logo text correct color', () => {
+    it('displays the brand logo text correct color', () => {
       cy.wait(5000)
       cy.getByData('brand-logo-hello').should(
         'have.css',

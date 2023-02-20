@@ -76,7 +76,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       getCaptcha(): Chainable<JQuery<HTMLElement>>
-      clickCaptcha(): Chainable<JQuery<HTMLElement>>
+      solveCaptcha(): Chainable<JQuery<HTMLElement>>
     }
   }
 }
@@ -86,10 +86,16 @@ Cypress.Commands.add('getCaptcha', () => {
   cy.get('iframe[title=reCAPTCHA]').its('0.contentDocument').should('exist')
 })
 
-Cypress.Commands.add('clickCaptcha', () => {
+Cypress.Commands.add('solveCaptcha', () => {
   cy.get('iframe[title=reCAPTCHA]')
-    .its('0.contentDocument')
-    .should((d) => d.getElementById('recaptcha-token').click())
+    .first()
+    .its('0.contentDocument.body')
+    .should('not.be.undefined')
+    .and('not.be.empty')
+    .then(cy.wrap)
+    .find('#recaptcha-anchor')
+    .should('be.visible')
+    .click()
 })
 
 declare global {
@@ -107,6 +113,6 @@ Cypress.Commands.add('waitForPageLoad', (page) => {
   cy.get('#app-loading').should('not.exist')
 
   if (page) {
-    cy.getByData(page, { timeout: 20000 }).should('exist')
+    cy.getByData(page).should('exist').should('be.visible')
   }
 })

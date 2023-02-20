@@ -11,7 +11,7 @@ export default function LearnMore() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main} data-cy="LearnMoreView">
+      <main className={styles.main} data-cy="LearnMorePage">
         <section className={styles.section}>
           <h1>Learn More</h1>
           <p>...</p>
