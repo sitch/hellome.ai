@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --config next.nodemon.json --exec next dev",
-    "geo.up": "node ./node_modules/geoip-lite/scripts/updatedb.js license_key=${MAXMIND_LICENSE_KEY}",
-    "postinstall": "yarn geo.up",
     "build": "next build",
     "start": "next start",
     "build.ci": "env NODE_ENV=test yarn build",
@@ -37,6 +35,11 @@
     "ci": "run-s --silent typecheck lint test.ci",
     "fix": "run-s --silent format typecheck lint.fix test.fix",
     "up": "yarn upgrade-interactive --latest",
+    "geo.up": "yarn dotenv -e .env.development.local yarn geoip.up",
+    "geoip.up": "node ./node_modules/geoip-lite/scripts/updatedb.js license_key=${MAXMIND_LICENSE_KEY}",
+    "_geoip.up": "mkdir -p ${GEODATADIR} && node ./node_modules/geoip-lite/scripts/updatedb.js license_key=${MAXMIND_LICENSE_KEY} geodatadir=${GEODATADIR}",
+    "vercel-build": "yarn geoip.up",
+    "postbuild": "yarn geoip.up",
     "find:unused": "npx next-unused"
   },
   "sideEffects": false,
@@ -100,6 +103,7 @@
     "cypress": "^12.6.0",
     "cypress-react-selector": "^3.0.0",
     "cypress-wait-until": "^1.7.2",
+    "dotenv-cli": "^7.0.0",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "eslint-config-prettier": "^8.6.0",
