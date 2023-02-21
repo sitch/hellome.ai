@@ -1,11 +1,10 @@
-import nodemailer from 'nodemailer'
-import type { NextApiRequest, NextApiResponse } from 'next'
-import sendMail, { transport, verifyTransport } from '@/emails'
+import type { NextApiRequest } from 'next'
+// import sendMail, { transport, verifyTransport } from '@/emails'
 import { ComponentMail } from 'mailing-core'
-import type { NextRequest } from 'next/server'
-
 import requestIp from 'request-ip'
-import { Lookup, lookup } from 'geoip-country'
+
+// import { Lookup, lookup } from 'geoip-country'
+import { Lookup, lookup } from 'geoip-lite'
 
 export interface EmailPayload {
   firstName?: string
@@ -20,6 +19,10 @@ export type CastMailData = {
   data: ComponentMail
 }
 
+export function castGeo(ip: string): Lookup | null {
+  return lookup(ip)
+}
+
 export function castMailData(
   req: NextApiRequest,
   { firstName, lastName, email, message }: EmailPayload
@@ -28,19 +31,14 @@ export function castMailData(
   const error = ok ? 'invalid email' : undefined
 
   const detectedIp: string = requestIp.getClientIp(req) as string
-  const geo: Lookup = lookup(detectedIp) as Lookup
+
+  const geo = castGeo(detectedIp)
 
   const meta = `
   ua:    ${req.headers['user-agent']}
   ip:    ${detectedIp}
   geo:   ${JSON.stringify(geo)}
   `
-
-  // const meta = `
-  // ua: ${req.ua}
-  // ip: ${req.ip}
-  // geo: ${JSON.stringify(req.geo)}
-  // `
 
   const data = {
     from: {
@@ -77,9 +75,6 @@ export function castMailData(
       <td>${JSON.stringify(geo)}</td>
     </tr>        
   </table>    
-    
-    
-    
     `,
   }
 

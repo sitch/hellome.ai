@@ -80,7 +80,7 @@ export default function Home() {
         <div className={styles.grid}>
           {/* ############################################################## */}
 
-          <Link className={styles.card} href="/learn-more">
+          {/* <Link className={styles.card} href="/learn-more">
             <h2 className={font.className}>
               Learn More
               <svg
@@ -101,7 +101,7 @@ export default function Home() {
             <p className={font.className}>
               Find out about us and what we do at HelloMe.ai.
             </p>
-          </Link>
+          </Link> */}
 
           {/* ############################################################## */}
 
