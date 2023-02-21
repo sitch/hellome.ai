@@ -68,21 +68,25 @@ export function castMailData(
       <th>Value</th>
     </tr>
     <tr>
-      <td>Email</td>
+      <td><b>Email</b></td>
       <td>${email}</td>
     </tr>    
     <tr>
-      <td>User Agent</td>
+      <td><b>User Agent</b></td>
       <td>${req.headers['user-agent']}</td>
     </tr>
     <tr>
-      <td>IP</td>
+      <td><b>IP</b></td>
       <td>${detectedIp}</td>
     </tr>
     <tr>
-      <td>Geo</td>
+      <td><b>Geo</b></td>
       <td>${JSON.stringify(geo)}</td>
-    </tr>        
+    </tr>  
+    <tr>
+      <td><b>Vercel</b></td>
+      <td>${JSON.stringify(vercelGeo)}</td>
+    </tr>            
   </table>    
     
     
