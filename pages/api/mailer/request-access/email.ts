@@ -1,3 +1,5 @@
+process.env.GEODATADIR = './data/geoip-lite'
+
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sendMail, { transport, verifyTransport } from '@/emails'
 import Status from 'http-status-codes'
