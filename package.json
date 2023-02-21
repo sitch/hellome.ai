@@ -36,8 +36,7 @@
     "fix": "run-s --silent format typecheck lint.fix test.fix",
     "up": "yarn upgrade-interactive --latest",
     "geo.dev": "yarn dotenv -e .env.development.local yarn geo.up",
-    "geo.up": "node ./node_modules/geoip-lite/scripts/updatedb.js license_key=${MAXMIND_LICENSE_KEY}",
-    "_geo.up": "node ./node_modules/geoip-lite/scripts/updatedb.js license_key=${MAXMIND_LICENSE_KEY} geodatadir=${GEODATADIR}",
+    "geo.up": "node ./node_modules/geoip-lite/scripts/updatedb.js license_key=${MAXMIND_LICENSE_KEY} geodatadir=${GEODATADIR}",
     "_vercel-build": "yarn geo.up",
     "postbuild": "yarn geo.up",
     "find:unused": "npx next-unused"
