@@ -1,7 +1,6 @@
 import type { NextApiRequest } from 'next'
 import { ComponentMail } from 'mailing-core'
 import requestIp from 'request-ip'
-import { Lookup, lookup } from 'geoip-country'
 
 // import sendMail, { transport, verifyTransport } from '@/emails'
 
@@ -18,10 +17,6 @@ export type CastMailData = {
   data: ComponentMail
 }
 
-export function castGeo(ip: string) {
-  return lookup(ip) as Lookup
-}
-
 export function castMailData(
   req: NextApiRequest,
   { firstName, lastName, email, message }: EmailPayload
@@ -30,8 +25,6 @@ export function castMailData(
   const error = ok ? 'invalid email' : undefined
 
   const detectedIp: string = requestIp.getClientIp(req) as string
-
-  const geo = castGeo(detectedIp)
 
   const vercelGeo = {
     country: req.headers['x-vercel-ip-country'],
@@ -45,7 +38,6 @@ export function castMailData(
   const meta = `
   ua:     ${req.headers['user-agent']}
   ip:     ${detectedIp}
-  geo:    ${JSON.stringify(geo)}
   vercel: ${JSON.stringify(vercelGeo)}
   `
 
@@ -63,34 +55,27 @@ export function castMailData(
 
     html: `
     <table>
-    <tr>
-      <th>Field</th>
-      <th>Value</th>
-    </tr>
-    <tr>
-      <td><b>Email</b></td>
-      <td>${email}</td>
-    </tr>    
-    <tr>
-      <td><b>User Agent</b></td>
-      <td>${req.headers['user-agent']}</td>
-    </tr>
-    <tr>
-      <td><b>IP</b></td>
-      <td>${detectedIp}</td>
-    </tr>
-    <tr>
-      <td><b>Geo</b></td>
-      <td>${JSON.stringify(geo)}</td>
-    </tr>  
-    <tr>
-      <td><b>Vercel</b></td>
-      <td>${JSON.stringify(vercelGeo)}</td>
-    </tr>            
-  </table>    
-    
-    
-    
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td><b>Email</b></td>
+        <td>${email}</td>
+      </tr>    
+      <tr>
+        <td><b>User Agent</b></td>
+        <td>${req.headers['user-agent']}</td>
+      </tr>
+      <tr>
+        <td><b>IP</b></td>
+        <td>${detectedIp}</td>
+      </tr>
+      <tr>
+        <td><b>Vercel</b></td>
+        <td>${JSON.stringify(vercelGeo)}</td>
+      </tr>            
+    </table>    
     `,
   }
 
