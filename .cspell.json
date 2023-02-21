@@ -15,6 +15,7 @@
   ],
   "ignorePaths": [
     "node_modules/**",
+    "data/**",
     "*.pages",
     "*.docx",
     "*.doc",
