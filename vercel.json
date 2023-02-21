@@ -3,7 +3,7 @@
   "functions": {
     "pages/api/mailer/request-access/email.ts": {
       "maxDuration": 10,
-      "includeFiles": "node_modules/geoip-lite/data/*"
+      "includeFiles": "./data/geoip-lite/*"
     }
   }
 }
