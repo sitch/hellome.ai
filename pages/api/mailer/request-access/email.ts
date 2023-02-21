@@ -1,5 +1,3 @@
-process.env.GEODATADIR = './data/geoip-lite'
-
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sendMail, { transport, verifyTransport } from '@/emails'
 import Status from 'http-status-codes'
@@ -31,8 +29,6 @@ export default async function handler(
   }
 
   const handleSubmission = async () => {
-    // console.log('request-access/email', req.body)
-    // const payload: EmailPayload = JSON.parse(req.body)
     const payload: EmailPayload = req.body
 
     console.log('request-access/email', { payload })

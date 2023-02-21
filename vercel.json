@@ -2,8 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
     "pages/api/mailer/request-access/email.ts": {
-      "maxDuration": 10,
-      "includeFiles": "./data/geoip-lite/*"
+      "maxDuration": 10
     }
   }
 }

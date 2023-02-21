@@ -1,10 +1,9 @@
 import type { NextApiRequest } from 'next'
-// import sendMail, { transport, verifyTransport } from '@/emails'
 import { ComponentMail } from 'mailing-core'
 import requestIp from 'request-ip'
+import { Lookup, lookup } from 'geoip-country'
 
-// import { Lookup, lookup } from 'geoip-country'
-import { Lookup, lookup } from 'geoip-lite'
+// import sendMail, { transport, verifyTransport } from '@/emails'
 
 export interface EmailPayload {
   firstName?: string
@@ -19,8 +18,8 @@ export type CastMailData = {
   data: ComponentMail
 }
 
-export function castGeo(ip: string): Lookup | null {
-  return lookup(ip)
+export function castGeo(ip: string) {
+  return lookup(ip) as Lookup
 }
 
 export function castMailData(
@@ -34,10 +33,20 @@ export function castMailData(
 
   const geo = castGeo(detectedIp)
 
+  const vercelGeo = {
+    country: req.headers['x-vercel-ip-country'],
+    countryRegion: req.headers['x-vercel-ip-country-region'],
+    city: req.headers['x-vercel-ip-city'],
+    latitude: req.headers['x-vercel-ip-latitude'],
+    longitude: req.headers['x-vercel-ip-longitude'],
+    timezone: req.headers['x-vercel-ip-timezone'],
+  }
+
   const meta = `
-  ua:    ${req.headers['user-agent']}
-  ip:    ${detectedIp}
-  geo:   ${JSON.stringify(geo)}
+  ua:     ${req.headers['user-agent']}
+  ip:     ${detectedIp}
+  geo:    ${JSON.stringify(geo)}
+  vercel: ${JSON.stringify(vercelGeo)}
   `
 
   const data = {
@@ -75,6 +84,9 @@ export function castMailData(
       <td>${JSON.stringify(geo)}</td>
     </tr>        
   </table>    
+    
+    
+    
     `,
   }
 
