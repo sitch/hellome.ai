@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon --config next.nodemon.json --exec next dev",
     "geo.up": "node ./node_modules/geoip-lite/scripts/updatedb.js license_key=${MAXMIND_LICENSE_KEY}",
-    "pre:build": "yarn geo.up",
+    "prebuild": "yarn geo.up",
     "build": "next build",
     "start": "next start",
     "build.ci": "env NODE_ENV=test yarn build",
