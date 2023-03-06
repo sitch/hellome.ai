@@ -40,7 +40,7 @@
   "sideEffects": false,
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
-    "@next/font": "13.2.1",
+    "@next/font": "13.2.3",
     "@stdlib/datasets-female-first-names-en": "^0.0.9",
     "@stdlib/datasets-male-first-names-en": "^0.0.9",
     "@vercel/analytics": "^0.1.10",
