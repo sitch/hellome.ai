@@ -113,7 +113,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^8.0.1",
     "prettier": "^2.8.4",
-    "prettier-plugin-tailwindcss": "^0.2.3",
+    "prettier-plugin-tailwindcss": "^0.2.4",
     "resq": "^1.11.0",
     "start-server-and-test": "^2.0.0",
     "tailwind-scrollbar-hide": "^1.1.7",
