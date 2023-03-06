@@ -2134,12 +2134,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@>=10.0.0":
-  version "18.14.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.14.0.tgz#94c47b9217bbac49d4a67a967fdcdeed89ebb7d0"
-  integrity sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==
-
-"@types/node@18.14.2":
+"@types/node@*", "@types/node@18.14.2", "@types/node@>=10.0.0":
   version "18.14.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.14.2.tgz#c076ed1d7b6095078ad3cf21dfeea951842778b1"
   integrity sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==
@@ -6649,10 +6644,10 @@ lz-string@^1.4.4:
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
   integrity sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==
 
-mailing-core@^0.9.10:
-  version "0.9.10"
-  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-0.9.10.tgz#352b0555b0ec29e978ef216fe39378d1c538d369"
-  integrity sha512-9Bxkwvg8Qo2QV6QS/77Vy1exYBQ4LvlGnBzbJKAsKMDrhmpiD3saPe3xrmk/9S0eHB8nYZkTL3W4fHif9/iE8Q==
+mailing-core@^0.9.10, mailing-core@^0.9.12:
+  version "0.9.12"
+  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-0.9.12.tgz#af5706282d44a7aec183d568d9e559e256ff13d2"
+  integrity sha512-x8KZT6F6j9EnlL+wM4dEGzipH5RVpHkPrb4XfDPSdzIgevMoHD+s0cgs4DVfHHbBkPfOVNRK1BWNaLDWV8CqHA==
   dependencies:
     chalk "^4.1.2"
     fs-extra "^10.1.0"
@@ -6663,10 +6658,10 @@ mailing-core@^0.9.10:
     open "^8.4.0"
     posthog-node "^2.0.2"
 
-mailing@^0.9.10:
-  version "0.9.10"
-  resolved "https://registry.yarnpkg.com/mailing/-/mailing-0.9.10.tgz#8e8df68c04f9ffea61e540f04456fb61c8e3e4df"
-  integrity sha512-hLG76FSs8NLmLHOsnhEE1WpN6jVAgks/bJTeQafrp5jW2jZsUqUN1Vot06VVNRQHzg/MC/PC+g5G8PPOB/AE7A==
+mailing@^0.9.12:
+  version "0.9.12"
+  resolved "https://registry.yarnpkg.com/mailing/-/mailing-0.9.12.tgz#df888f7374c49cb4356d417927c4288a33001829"
+  integrity sha512-zU7d9WMRipZWrULuku8Lw9s+atQkihUDiQTfIt4QGPcAH0mfQyuBLoa+D8R7xhPszAaQJ3LrWrS2s7a6K3T4pw==
   dependencies:
     "@babel/parser" "^7.18.11"
     "@prisma/client" "^4.4.0"
@@ -6697,7 +6692,7 @@ mailing@^0.9.10:
     html-minifier-terser "^7.0.0"
     iron-session "^6.2.1"
     lodash "^4.17.21"
-    mailing-core "^0.9.10"
+    mailing-core "^0.9.12"
     mjml "^4.12.0"
     mjml-react "^2.0.7"
     node-fetch "^2.6.7"
