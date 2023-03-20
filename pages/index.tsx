@@ -107,7 +107,7 @@ export default function Home() {
 
           <RequestAccessModal className={styles.card}>
             <h2 className={font.className}>
-              Request Access
+              Artist or Educator
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -123,9 +123,7 @@ export default function Home() {
                 />
               </svg>
             </h2>
-            <p className={font.className}>
-              Try our AI personalized children's book studio.
-            </p>
+            <p className={font.className}>Join the Waitlist</p>
           </RequestAccessModal>
 
           {/* ############################################################## */}
