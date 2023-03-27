@@ -112,7 +112,7 @@
     "postcss-easings": "^3.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^8.0.1",
-    "prettier": "^2.8.5",
+    "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.5",
     "resq": "^1.11.0",
     "start-server-and-test": "^2.0.0",
