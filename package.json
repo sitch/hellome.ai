@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "@downwindcss/easings": "^1.0.4",
-    "@frsource/cypress-plugin-visual-regression-diff": "^3.2.8",
+    "@frsource/cypress-plugin-visual-regression-diff": "^3.2.14",
     "@next/bundle-analyzer": "^13.2.4",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
