@@ -1,0 +1,18 @@
+{
+  "title": "How It Works",
+  "description": "Our personalized children's books are truly one of a kind. The combination of AI and the collaborative efforts of artists, authors, and educators ensures that each book is tailored to the needs, developmental timeline, interests and likeness of the child. Our beautiful premium books will help your child explore their imagination, develop their creativity and promote a lifelong love of reading.",
+  "steps": {
+    "Step1": {
+      "title": "Scan",
+      "description": "Choose to use our face scanning app or upload your own photos"
+    },
+    "Step2": {
+      "title": "Generate",
+      "description": "In under one hour, you will receive an email containing an eBook version of the book to be printed.  You then have 48hrs to confirm we met (or exceeded) your standards!"
+    },
+    "Step3": {
+      "title": "Ship",
+      "description": "Depending on your choice of shipping method, expect to receive your book in as short as 1-3 business days or as long as 5-12 business days "
+    }
+  }
+}

@@ -21,8 +21,14 @@
 .brandNameMePart {
   /* font-size: 15rem; */
   /* @apply text-9xl; */
-  font-size: 13rem;
+  font-size: 6rem;
   line-height: 1;
+}
+
+.brandNameHelloPart.small,
+.brandNameAiPart.small,
+.brandNameMePart.small {
+  font-size: 2rem !important;
 }
 
 /* Mobile */
@@ -33,6 +39,12 @@
     @apply text-6xl;
     /* font-size: 5.7rem; */
   }
+
+  .brandNameHelloPart.small,
+  .brandNameAiPart.small,
+  .brandNameMePart.small {
+    font-size: 2rem !important;
+  }
 }
 
 /* Tablet and Smaller Desktop */
@@ -42,6 +54,12 @@
   .brandNameMePart {
     @apply text-9xl;
     /* font-size: 9rem; */
+  }
+
+  .brandNameHelloPart.small,
+  .brandNameAiPart.small,
+  .brandNameMePart.small {
+    font-size: 2rem !important;
   }
 }
 

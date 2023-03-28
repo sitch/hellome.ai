@@ -1,5 +1,12 @@
 // Declarations for modules without types
-declare module 'next-themes'
+// declare module 'next-themes'
+
+// declare module '*module.css' {
+//   const styles: {
+//     [className: string]: string
+//   }
+//   export default styles
+// }
 
 declare namespace NodeJS {
   export interface ProcessEnv {
@@ -19,11 +26,4 @@ declare namespace NodeJS {
     NEXT_PUBLIC_GOOGLE_RECAPTCHA_V2_SITE_KEY: string
     GOOGLE_RECAPTCHA_V2_SECRET_KEY: string
   }
-}
-
-declare module '*module.css' {
-  const styles: {
-    [className: string]: string
-  }
-  export default styles
 }

@@ -68,8 +68,8 @@ export default function RequestAccessModal({
         // className="prose rounded-t px-4 py-2"
         // className="prose"
         >
-          {/* <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+          {/* <div className="px-6 py-4 border-b rounded-t dark:border-gray-600">
+                <h3 className="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
                     Connect wallet
                 </h3>
             </div> */}

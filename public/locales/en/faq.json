@@ -1,0 +1,98 @@
+{
+  "title": "Frequently Asked Questions",
+  "description": "Not finding what you're looking for? Try our searching our reddit sub-forum, or contacting our support team via email or text message",
+  "links": [
+    {
+      "href": "/contact/email",
+      "children": "Contact by Email"
+    },
+    {
+      "href": "/contact/sms",
+      "children": "Contact by SMS (Text-Message)"
+    },
+    {
+      "href": "/redirects/reddit/faq",
+      "children": "Search our Reddit FAQ"
+    }
+  ],
+  "answers": [
+    {
+      "question": "How long will it take for me to receive the book?",
+      "answer": "\n      It depends on the shipping method you choose.\n      Normal shipping times average around 5-12 business days.\n      Incorrect delivery addresses, customs delays, natural disasters, and delivery restrictions may delay your order. Orders affected by such delays may take as long as 6 weeks to arrive.\n      International Mail and Priority Mail services may require extra transit times and may take up to 28 days to complete delivery.\n      ",
+      "reference": "https://help.luludirect.lulu.com/en/support/solutions/articles/64000265497-shipping-faq"
+    },
+    {
+      "question": "Do you offer expedited shipping?",
+      "answer": "\n      Yes, we do offer expedited shipping.\n      Sure do!\n      However, there are a few select global regions outside of this range.\n      ",
+      "reference": "https://help.luludirect.lulu.com/en/support/solutions/articles/64000265497-shipping-faq"
+    },
+    {
+      "question": "Can I see a preview before purchasing?",
+      "answer": "\n      Yes, you can see a preview of the book before purchasing.\n      \n      Of course! We will send you an email containing the eBook and if you respond within 24hrs we will put a hold on the print process, and a customer service representative will contact you to ensure your 100% satisfaction.\n      "
+    },
+    {
+      "question": "What is your data privacy policy?",
+      "answer": "\n      We are fully GDPR compliant!\n      We will never sell your data in any way, and we destroy any images uploaded immediately following training unless you request they be stored, in which case they will be encrypted and you will be sent private keys, at which point no one but you will be able to decrypt them.\n      "
+    },
+    {
+      "question": "Do you offer a satisfaction guarantee?",
+      "answer": "\n      We are committed to seeking your 100% satisfaction.\n      We feel that a business that does not guarantee satisfaction isn't a business at all!\n      If you feel unsatisfied in any way, reach out to our customer service team any issues will be resolved thoroughly and promptly!\n      "
+    },
+    {
+      "question": "What if I don't want to share images of my child?",
+      "answer": "\n      No problem! By default we offer a male and female avatar, however part of the uniqueness of our product is in it's artistic likeness.\n      Also, due to the nature of dynamic printing, it may be more cost effective for you to purchase our book.\n      Traditional offset printing, which requires large volume minimums, is significantly more economical and can have a higher quality as well.\n      If this is the case, reach out and we can point you in the direction of a company that may satisfy your needs more adequately.\n      "
+    },
+    {
+      "question": "Do I need to model my child's face each time I buy a book?",
+      "answer": "\n      For object or scene based concepts like your house, or your favorite toy, we recommend doing this only once, and choosing to store an encrypted copy with us.\n      For your child's face, we recommend re-modeling as often as you'd like!\n      Particularly during rapid developmental periods, you'll be thankful that you have a copy of 8mos and 12mos for instance.\n      "
+    },
+    {
+      "question": "How realistic will the representation of my child be?",
+      "answer": "\n      As a platform, we are fully capable of representations that are anywhere between hyper-realism, simply iconographic cartooning, and even mild abstraction.\n      That said, your child's representation will be fundamentally dependent upon the Artist's style you choose.\n      "
+    },
+    {
+      "question": "Do you have an ideal age for these books?",
+      "answer": "\n      There is no ideal age for these books.\n      This book is suitable for children of all ages.\n      \n      Currently, we offer books that satisfy the 0-4 year old demographic, but check back with us often, as we plan to continuing striving to serve the 0-3 year old and K-12 curriculum."
+    },
+    {
+      "question": "What are AI personalized children's books?",
+      "answer": "I personalized children's books are books that are tailored to each child based on their interests, personality, and reading level. They are created using artificial intelligence and machine learning algorithms to create a unique story for each child."
+    },
+    {
+      "question": "How do they work?",
+      "answer": "AI personalized children's books work by using artificial intelligence and machine learning algorithms to create a unique story for each child based on their interests, personality, and reading level."
+    },
+    {
+      "question": "What are the benefits of using AI personalized children's books?",
+      "answer": "The benefits of using AI personalized children's books are that they are tailored to each child's interests, personality, and reading level. This means that the child will have a more engaging and enjoyable reading experience."
+    },
+    {
+      "question": "How much do they cost?",
+      "answer": "The cost of AI personalized children's books varies depending on the type of book and the number of pages."
+    },
+    {
+      "question": "How do I order them?",
+      "answer": "To order AI personalized children's books, you can visit our website and fill out the order form."
+    },
+    {
+      "question": "How long does it take to receive my order?",
+      "answer": "It takes approximately 3-5 business days to receive your order."
+    },
+    {
+      "question": "Can I customize my order?",
+      "answer": "Yes, you can customize your order by choosing the type of book, the number of pages, and the child's interests and personality."
+    },
+    {
+      "question": "Do you offer a money-back guarantee?",
+      "answer": "Yes, we offer a money-back guarantee if you are not satisfied with your order."
+    },
+    {
+      "question": "Do you offer discounts?",
+      "answer": "Yes, we offer discounts for bulk orders."
+    },
+    {
+      "question": "What will my child become?",
+      "answer": "Your child will become the star of their very own personalized children's book."
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "header": {
+    "title": "Affordable for everyone",
+    "description": "description"
+  },
+  "plans": {
+    "books": {
+      "unit": {
+        "one": {
+          "title": "Bespoke Book",
+          "cost": "$100",
+          "features": [
+            {
+              "label": "1 Personalized face"
+            },
+            {
+              "label": "(optional) 3 concepts"
+            },
+            {
+              "label": "100% satisfaction guaranteed"
+            }
+          ],
+          "action": {
+            "label": "Get Now",
+            "disabled": false
+          }
+        }
+      },
+      "subscriptions": {
+        "developmental": {
+          "monthly": {
+            "title": "Progressive Developmental Plan",
+            "period": "month",
+            "cost": "$85",
+            "discounted": "15%",
+            "features": [
+              {
+                "label": "15% Discount"
+              },
+              {
+                "label": "Tailored to YOUR child's developmental timeline"
+              },
+              {
+                "label": "Text message support"
+              },
+              {
+                "label": "Text message us your child's latest interests"
+              },
+              {
+                "label": "100% satisfaction guaranteed"
+              }
+            ],
+            "action": {
+              "label": "Coming Soon!",
+              "disabled": true
+            }
+          },
+          "yearly": {
+            "title": "(Guided) Progressive Developmental Plan",
+            "period": "year",
+            "cost": "$900",
+            "discounted": "25%",
+            "features": [
+              {
+                "label": "25% Discount"
+              },
+              {
+                "label": "Tailored to YOUR child's developmental timeline"
+              },
+              {
+                "label": "Text message support"
+              },
+              {
+                "label": "100% satisfaction guaranteed"
+              }
+            ],
+            "action": {
+              "label": "Coming Soon!",
+              "disabled": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "discounts": {
+    "lowIncome": {
+      "description": "",
+      "discount": "At cost"
+    },
+    "disability": {
+      "description": "",
+      "discount": "At cost"
+    }
+  }
+}

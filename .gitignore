@@ -53,3 +53,13 @@ cypress/downloads/*
 cypress/screenshots/*
 cypress/videos/*
 # __image_snapshots__/
+
+# next-pwa
+**/public/workbox-*.js
+**/public/workbox-*.map
+**/public/sw.js
+**/public/sw.js.map
+**/public/fallback-*.js
+**/public/fallback-*.map
+**/public/sitemap*.xml
+**/public/robots.txt

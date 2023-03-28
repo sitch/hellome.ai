@@ -1,5 +1,8 @@
 {
   "watch": [
+    "data/**/*.mdx",
+    "public/locales/**/*.json",
+    "public/locales/**/*.yml",
     ".env",
     ".env.local",
     "next.config.js",

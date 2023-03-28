@@ -1,0 +1,97 @@
+{
+  "description": "AI with Authenticity",
+  "sections": {
+    "customer": {
+      "title": "Customer",
+      "links": [
+        {
+          "href": "/affiliate-program",
+          "children": "Affiliate Program"
+        },
+        {
+          "href": "/become-an-ambassador",
+          "children": "Become an Ambassador"
+        },
+        {
+          "href": "/offers",
+          "children": "Offers"
+        },
+        {
+          "href": "/refer-a-friend?mm_situation=footer",
+          "children": "Refer a Friend"
+        }
+      ]
+    },
+    "company": {
+      "title": "Company",
+      "links": [
+        {
+          "href": "/blog",
+          "children": "Blog"
+        },
+        {
+          "href": "/careers",
+          "children": "Careers"
+        },
+        {
+          "href": "/policies/delivery-info",
+          "children": "Delivery Info"
+        },
+        {
+          "href": "/our-story",
+          "children": "Our Story"
+        },
+        {
+          "href": "/press",
+          "children": "Press"
+        }
+      ]
+    },
+    "policies": {
+      "title": "Policies",
+      "links": [
+        {
+          "href": "/policies/accessibility-statement",
+          "children": "Accessibility Statement"
+        },
+        {
+          "href": "/policies/privacy-policy",
+          "children": "Privacy Policy"
+        },
+        {
+          "href": "/policies/returns-policy",
+          "children": "Returns Policy"
+        },
+        {
+          "href": "/policies/terms-of-service",
+          "children": "Terms of Service"
+        },
+        {
+          "href": "/policies/ugc-terms-and-conditions",
+          "children": "UGC Terms & Conditions"
+        }
+      ]
+    },
+    "learn": {
+      "title": "Get in Touch",
+      "links": [
+        {
+          "href": "/contact-us",
+          "children": "Contact Us"
+        },
+        {
+          "href": "/redirects/discord/join",
+          "children": "Discord"
+        },
+        {
+          "href": "/redirects/reddit/forum",
+          "children": "Forum"
+        },
+        {
+          "href": "/wiki",
+          "children": "Wiki"
+        }
+      ]
+    }
+  }
+}

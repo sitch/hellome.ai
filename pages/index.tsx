@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import { Inter } from '@next/font/google'
+import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import BrandLogo from '@/components/ui/BrandLogo/BrandLogo'
@@ -23,7 +23,6 @@ export default function Home() {
         <title>HelloMe.ai</title>
         <meta name="description" content="AI with Authenticity" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Suspense fallback={<AppLoading />}> */}
       {/* <HomePage font={inter} /> */}

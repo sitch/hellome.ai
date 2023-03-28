@@ -1,0 +1,20 @@
+{
+  "features": {
+    "Feature1": {
+      "title": "Human-first AI",
+      "description": "We work with the finest children's book illustrators and authors to guarantee that you will never receive anything unexpected."
+    },
+    "Feature2": {
+      "title": "Total Data Privacy",
+      "description": "We are GDPR compliant and we guarantee to never sell your data, and follow industry-standards to protect your anonymity and ensure everything about you or your child will be totally protected. "
+    },
+    "Feature3": {
+      "title": "Artistry You Need To See",
+      "description": "We work with REAL Artists to ensure that what you get is in like with what you expect -- and often times it's even better!"
+    },
+    "Feature4": {
+      "title": "Authored for YOUR Child's Interests & Developmental Timeline",
+      "description": "We partner with REAL Authors to ensure that each story contains only elements that are appropriate"
+    }
+  }
+}
