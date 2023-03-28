@@ -12,7 +12,7 @@ describe('Index', () => {
 
     // Sections
     expect(
-      (await screen.findAllByText('Request Access')).at(0)
+      (await screen.findAllByText('Join the Waitlist')).at(0)
     ).toBeInTheDocument()
 
     // TODO: Re-Enable

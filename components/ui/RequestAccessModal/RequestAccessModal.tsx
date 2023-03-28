@@ -74,7 +74,7 @@ export default function RequestAccessModal({
                 </h3>
             </div> */}
 
-          <div className="prose px-2 py-2">Request Access</div>
+          <div className="prose px-2 py-2">Join the Waitlist</div>
           {/* Request Access */}
 
           {/* <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
