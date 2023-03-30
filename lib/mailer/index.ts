@@ -11,7 +11,7 @@ export interface EmailPayload {
   message?: string
 }
 
-export type CastMailData = {
+export interface CastMailData {
   ok: boolean
   error: any
   data: ComponentMail
@@ -24,7 +24,7 @@ export function castMailData(
   const ok = (email?.length ?? -1) > 3
   const error = ok ? 'invalid email' : undefined
 
-  const detectedIp: string = requestIp.getClientIp(req) as string
+  const detectedIp: string = requestIp.getClientIp(req)!
 
   const vercelGeo = {
     country: req.headers['x-vercel-ip-country'],

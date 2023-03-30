@@ -1,15 +1,53 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "extends": [
     "next",
+    "eslint:recommended",
     "next/core-web-vitals",
+    "plugin:@typescript-eslint/strict",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:tailwindcss/recommended",
     "prettier",
     "plugin:json/recommended"
   ],
   "rules": {
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off",
+    // Disable
+    "jsx-a11y/anchor-has-content": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "@typescript-eslint/no-invalid-void-type": [
+      "warn",
+      {
+        "allowInGenericTypeArguments": true
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "off"
+    // Restore
+    // "@typescript-eslint/no-unused-vars": [
+    //   "warn",
+    //   {
+    //     "argsIgnorePattern": "^_",
+    //     "varsIgnorePattern": "^_",
+    //     "caughtErrorsIgnorePattern": "^_"
+    //   }
+    // ]
   },
-  "plugins": ["testing-library"],
+  "plugins": ["testing-library", "@typescript-eslint"],
   "overrides": [
     // Only uses Testing Library lint rules in test files
     {

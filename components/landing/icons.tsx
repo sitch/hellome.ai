@@ -41,7 +41,7 @@ export const DotTextureIcon = () => (
 
 export const ArrowRightIcon = () => (
   <svg
-    className="w-8 rotate-90 transform text-gray-700 lg:rotate-0"
+    className="w-8 rotate-90 text-gray-700 lg:rotate-0"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"

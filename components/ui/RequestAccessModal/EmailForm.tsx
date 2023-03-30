@@ -183,8 +183,7 @@ export default function EmailForm(_props: EmailFormProps) {
           className={classNames({
             [styles.formInput]: true,
             [emailStyles['email-input']]: true,
-            [emailStyles['valid']]:
-              !errors.email && !isEmpty(getValues('email')),
+            [emailStyles.valid]: !errors.email && !isEmpty(getValues('email')),
           })}
         >
           <input

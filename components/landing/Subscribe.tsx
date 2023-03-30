@@ -40,7 +40,7 @@ export const Subscribe = () => {
           placeholder="Email"
           required={true}
           type="text"
-          className="mb-3 h-12 w-full flex-grow appearance-none rounded border border-gray-300 bg-white px-4 shadow-sm transition duration-200 focus:border-deep-purple-accent-400 focus:shadow-outline focus:outline-none md:mr-2 md:mb-0"
+          className="mb-3 h-12 w-full grow appearance-none rounded border border-gray-300 bg-white px-4 shadow-sm transition duration-200 focus:border-deep-purple-accent-400 focus:shadow-outline focus:outline-none md:mb-0 md:mr-2"
         />
         <button
           type="submit"

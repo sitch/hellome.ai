@@ -53,7 +53,7 @@ function FooterItemLink(props: LinkProps) {
   )
 }
 
-export type FooterSectionProps = {
+export interface FooterSectionProps {
   title: string
   links: LinkProps[]
 }
@@ -71,7 +71,7 @@ function FooterSection({ title, links }: FooterSectionProps) {
   )
 }
 
-export type FooterProps = {
+export interface FooterProps {
   description: string
   sections: {
     customer: FooterSectionProps

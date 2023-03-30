@@ -15,7 +15,7 @@ export async function within<T, K extends BaseApiResponse>(
   }, duration_ms)
 
   try {
-    let result = await fn()
+    const result = await fn()
     clearTimeout(id)
     return result
   } catch (error) {

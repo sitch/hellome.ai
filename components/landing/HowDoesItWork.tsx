@@ -3,7 +3,7 @@ import { Book } from '@/components/ui/library/Book/Book'
 import { ArrowRightIcon, DotTextureIcon } from './icons'
 import { ReactNode } from 'react'
 
-export type StepProps = {
+export interface StepProps {
   title: string
   description?: string
   icon?: ReactNode
@@ -32,14 +32,14 @@ export const Step = ({
       >
         Learn more
       </Link>
-      <div className="top-0 right-0 flex h-24 items-center justify-center lg:absolute lg:-mr-8">
+      <div className="right-0 top-0 flex h-24 items-center justify-center lg:absolute lg:-mr-8">
         {!isLast && <ArrowRightIcon />}
       </div>
     </div>
   </>
 )
 
-export type HowDoesItWorkProps = {
+export interface HowDoesItWorkProps {
   title: string
   description: string
   steps: StepProps[]

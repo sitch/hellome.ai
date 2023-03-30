@@ -63,7 +63,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   // Apply loading class
   useEffect(() => {
-    document.body.classList?.remove('loading')
+    document.body.classList.remove('loading')
   }, [])
 
   return (

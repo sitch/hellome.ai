@@ -21,7 +21,7 @@ export function MottoTags() {
   )
 }
 
-export type HeroProps = {
+export interface HeroProps {
   title: string
   subtitle: string | ReactNode
 }

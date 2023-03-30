@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { ZapIcon } from './icons'
 
-export type FeatureProps = {
+export interface FeatureProps {
   icon?: ReactNode
   title: string
   description: string
@@ -37,7 +37,7 @@ export const Feature = ({
   </div>
 )
 
-export type FeaturesProps = {
+export interface FeaturesProps {
   features: FeatureProps[]
 }
 

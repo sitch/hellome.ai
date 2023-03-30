@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useState, useEffect, JSXElementConstructor } from 'react'
 import Link from 'next/link'
 
-export type HeaderProps = {
+export interface HeaderProps {
   HeroComp: JSXElementConstructor<{}>
 }
 
@@ -64,7 +64,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
           </li>
         </ul>
       </nav> */}
-      {HeroComp && <HeroComp />}
+      {/* {HeroComp && <HeroComp />} */}
     </header>
   )
 }

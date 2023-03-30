@@ -2,7 +2,7 @@ import Link, { LinkProps } from 'next/link'
 import { ReactNode, useState } from 'react'
 import { DotTextureIcon, ZapIcon } from './icons'
 
-type AnsweredQuestionProps = {
+interface AnsweredQuestionProps {
   question: string
   answer: ReactNode
 }
@@ -24,7 +24,7 @@ const AnsweredQuestion = ({ question, answer }: AnsweredQuestionProps) => {
           <svg
             viewBox="0 0 24 24"
             className={`w-3 text-gray-600 transition-transform duration-200 ${
-              isOpen ? 'rotate-180 transform' : ''
+              isOpen ? 'rotate-180' : ''
             }`}
           >
             <polyline
@@ -48,7 +48,7 @@ const AnsweredQuestion = ({ question, answer }: AnsweredQuestionProps) => {
   )
 }
 
-export type FAQProps = {
+export interface FAQProps {
   title: string
   icon?: ReactNode
   description: string

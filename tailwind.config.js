@@ -7,17 +7,20 @@ const defaultTheme = require('tailwindcss/defaultTheme')
  **/
 module.exports = {
   content: [
+    './node_modules/flowbite/**/*.js',
     './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
+    './public/**/*.html',
   ],
   plugins: [
+    require('flowbite-typography'),
+    require('flowbite/plugin'),
     require('@downwindcss/easings'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     // require('tailwind-scrollbar-hide'),
     require('@headlessui/tailwindcss'),
-    require('flowbite/plugin'),
   ],
 
   safelist: ['outline-none'],

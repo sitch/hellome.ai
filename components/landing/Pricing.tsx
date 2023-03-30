@@ -5,7 +5,7 @@ import { DotTextureIcon, FeatureCheckIcon } from './icons'
 
 const pricing = I18n.enUS.pricing
 
-export type PricingHeaderProps = {
+export interface PricingHeaderProps {
   title: string
   description: string
 }
@@ -27,12 +27,12 @@ function PricingHeader({ title, description }: PricingHeaderProps) {
   )
 }
 
-export type PriceCardFeature = {
+export interface PriceCardFeature {
   label: string
   icon?: ReactNode
 }
 
-export type PriceCardProps = {
+export interface PriceCardProps {
   title: string
   cost: string
   period?: string

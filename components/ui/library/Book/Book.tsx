@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './Book.module.css'
 
-export type BookProps = {
+export interface BookProps {
   src: string
   alt: string
 }

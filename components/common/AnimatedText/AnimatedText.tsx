@@ -10,12 +10,12 @@ interface AnimatedTextProps {
   hide?: boolean
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({
+const AnimatedText = ({
   theme,
   children,
   className,
   hide,
-}) => {
+}: AnimatedTextProps) => {
   const rootClassName = cn(
     styles.root,
     styles[theme],

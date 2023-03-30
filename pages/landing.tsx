@@ -38,18 +38,15 @@ import { NextSeo } from 'next-seo'
 const ns: (keyof I18nNamespaces)[] = ['common', 'footer']
 // const ns = ['common', 'footer']
 
-type Props = {
+interface Props {
   // Add custom props here
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({
-  locale,
+  locale = i18NextConfig.i18n.defaultLocale,
 }) => ({
   props: {
-    ...(await serverSideTranslations(
-      locale ?? i18NextConfig.i18n.defaultLocale,
-      ns
-    )),
+    ...(await serverSideTranslations(locale, ns)),
   },
 })
 

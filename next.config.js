@@ -23,6 +23,8 @@ const nextConfig = {
   //   // Prefer loading of ES Modules over CommonJS
   //   esmExternals: true,
   // },
+
+  swcMinify: true,
 }
 
 module.exports = withPWA(nextConfig)
