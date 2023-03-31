@@ -1,10 +1,3 @@
-// import {
-//   Button,
-//   Checkbox,
-//   Label,
-//   TextInput,
-//   TextInputProps,
-// } from 'flowbite-react'
 import styles from '@/components/forms/forms.module.css'
 import React, { useState, useRef, useEffect } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'

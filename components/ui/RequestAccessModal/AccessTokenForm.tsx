@@ -1,6 +1,6 @@
-import { Button } from 'flowbite-react/lib/esm/components/Button'
-import { Label } from 'flowbite-react/lib/esm/components/Label'
-import { TextInput } from 'flowbite-react/lib/esm/components/TextInput'
+// import { Button } from 'flowbite-react/lib/esm/components/Button'
+// import { Label } from 'flowbite-react/lib/esm/components/Label'
+// import { TextInput } from 'flowbite-react/lib/esm/components/TextInput'
 
 import styles from '@/components/forms/forms.module.css'
 import React, { useState, MouseEvent } from 'react'
@@ -29,13 +29,15 @@ export default function AccessTokenForm({ onSubmit }: AccessTokenFormProps) {
       {/* Access Token */}
       <div className="border">
         <div className="mb-2 block">
-          <Label
+          <label
             className={styles.formLabel}
             htmlFor="access-code"
-            value="Access Token"
-          />
+            // value="Access Token"
+          >
+            Access Token
+          </label>
         </div>
-        <TextInput
+        <input
           // className={styles.formInput}
           // theme={theme}
           id="access-code"
@@ -47,14 +49,14 @@ export default function AccessTokenForm({ onSubmit }: AccessTokenFormProps) {
         />
       </div>
       <div className="inline w-full">
-        <Button
+        <button
           color="light"
           // className={styles.formSubmit}
           type="submit"
           onClick={onSubmit}
         >
           Submit
-        </Button>
+        </button>
       </div>
     </form>
   )

@@ -11,7 +11,9 @@
     "build.ci": "env NODE_ENV=test yarn build",
     "start.ci": "env NODE_ENV=test yarn start",
     "analyze": "env ANALYZE=true next build",
-    "analyze.source": "source-map-explorer .next/static/**/*.js",
+    "analyze.source.html": "source-map-explorer .next/static/**/*.js --html result.html && open result.html",
+    "analyze.source.tsv": "source-map-explorer .next/static/**/*.js --tsv | column -t -s $'\t' | bat -l tsv",
+    "analyze.source.json": "source-map-explorer .next/static/**/*.js --json",
     "mailing.dev": "npx mailing",
     "mailing.build": "npx mailing server build",
     "mailing.start": "npx mailing server start",
@@ -47,7 +49,7 @@
     "ci": "run-s --silent typecheck lint test.ci",
     "fix": "run-s --silent format typecheck lint.fix test.fix",
     "up": "yarn upgrade-interactive --latest",
-    "find:unused": "next-unused"
+    "unused": "next-unused"
   },
   "sideEffects": false,
   "dependencies": {
@@ -70,7 +72,6 @@
     "dotenv": "^16.0.3",
     "encoding": "^0.1.13",
     "flowbite": "^1.6.4",
-    "flowbite-react": "^0.4.2",
     "gray-matter": "^4.0.3",
     "gsap": "^3.11.5",
     "http-status-codes": "^2.2.0",
@@ -198,11 +199,16 @@
       "@": "./"
     },
     "include": [
-      "pages"
+      "components",
+      "public",
+      "styles"
     ],
-    "exclude": [],
-    "entrypoints": [
-      "pages"
-    ]
+    "exclude": [
+      "public/locales",
+      "public/sw.js",
+      "public/fallback-*.js",
+      "public/workbox-*.js"
+    ],
+    "entrypoints": []
   }
 }
