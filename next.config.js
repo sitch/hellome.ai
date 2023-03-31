@@ -59,7 +59,7 @@ const nextConfig = {
       preventFullImport: true,
     },
     ['date-fns']: {
-      transform: 'date-fns/{member}}',
+      transform: 'date-fns/{{member}}',
       preventFullImport: true,
     },
     ['@fortawesome/free-solid-svg-icons']: {
