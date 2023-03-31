@@ -8,6 +8,7 @@ module.exports = {
     defaultLocale: 'en',
     locales: ['en'],
     // localeExtension: 'yml',
+    localeDetection: true,
   },
   /**
    * To avoid issues when deploying to some PaaS (vercel)

@@ -21,8 +21,10 @@ const formats = {
   readable: 'dd MMM yyyy',
 }
 
+export type DateTimeFormat = keyof typeof formats
+
 export type PublishTimeProps = TimeProps & {
-  format?: keyof typeof formats
+  format?: DateTimeFormat
 }
 
 export function PublishTime({
@@ -31,15 +33,11 @@ export function PublishTime({
   ...props
 }: PublishTimeProps) {
   if (!dateTime) {
-    return null
+    // return null
+    throw new Error('<PublishTime> missing dateTime')
   }
   const date = new Date(dateTime)
-
-  // February 8th, 2022
   const title = dateFns.format(date, formats[format ?? 'long'])
-
-  // Feb. 8, 2022
-  // const label = format(date, 'MMM. d, yyyy')
 
   return (
     <time {...props} itemProp="datePublished" dateTime={dateTime} title={title}>

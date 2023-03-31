@@ -1,11 +1,9 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
-import { I18n } from './I18n'
+import { useTranslation } from 'next-i18next'
 import { DotTextureIcon, FeatureCheckIcon } from './icons'
 
-const pricing = I18n.enUS.pricing
-
-export interface PricingHeaderProps {
+export type PricingHeaderProps = {
   title: string
   description: string
 }
@@ -27,15 +25,15 @@ function PricingHeader({ title, description }: PricingHeaderProps) {
   )
 }
 
-export interface PriceCardFeature {
+export type PriceCardFeature = {
   label: string
   icon?: ReactNode
 }
 
-export interface PriceCardProps {
+export type PriceCardProps = {
   title: string
   cost: string
-  period?: string
+  period?: string | null | undefined
   features: PriceCardFeature[]
   action: {
     label: string
@@ -90,33 +88,74 @@ function PriceCard({ title, cost, features, action, period }: PriceCardProps) {
 }
 
 function PricingAssistance() {
+  const { t } = useTranslation('pricing')
   return (
     <div className="items-center justify-center text-center">
-      Need pricing assistance?
+      {t('assistance.label')}
       <br />
-      <Link href="/pricing/assistance">Qualify Here</Link>
+      <Link
+        href={{
+          pathname: '/policies/[slug]',
+          query: { slug: 'pricing-assistance-policy' },
+        }}
+      >
+        {t('assistance.qualify')}
+      </Link>
     </div>
   )
 }
 
 export function Pricing() {
+  const { t } = useTranslation('pricing')
   return (
     <div className="relative h-full w-full">
       <div className="absolute hidden h-96 w-full bg-gray-50 lg:block" />
       <div className="relative mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
-        <PricingHeader {...pricing.header} />
+        <PricingHeader
+          title={t('header.title')}
+          description={t('header.description')}
+        />
 
         <div className="grid max-w-screen-lg gap-10 sm:mx-auto lg:grid-cols-3">
-          <PriceCard {...pricing.plans.books.unit.one} />
           <PriceCard
-            {...pricing.plans.books.subscriptions.developmental.monthly}
+            title={t('plans.books.unit.one.title')}
+            cost={t('plans.books.unit.one.cost')}
+            period={t('plans.books.unit.one.period')}
+            features={t('plans.books.unit.one.features', {
+              returnObjects: true,
+            })}
+            action={t('plans.books.unit.one.action', {
+              returnObjects: true,
+            })}
           />
           <PriceCard
-            {...pricing.plans.books.subscriptions.developmental.yearly}
+            title={t('plans.books.subscriptions.developmental.monthly.title')}
+            cost={t('plans.books.subscriptions.developmental.monthly.cost')}
+            period={t('plans.books.subscriptions.developmental.monthly.period')}
+            features={t(
+              'plans.books.subscriptions.developmental.monthly.features',
+              { returnObjects: true }
+            )}
+            action={t(
+              'plans.books.subscriptions.developmental.monthly.action',
+              {
+                returnObjects: true,
+              }
+            )}
           />
-
-          <div></div>
-
+          <PriceCard
+            title={t('plans.books.subscriptions.developmental.yearly.title')}
+            cost={t('plans.books.subscriptions.developmental.yearly.cost')}
+            period={t('plans.books.subscriptions.developmental.yearly.period')}
+            features={t(
+              'plans.books.subscriptions.developmental.yearly.features',
+              { returnObjects: true }
+            )}
+            action={t('plans.books.subscriptions.developmental.yearly.action', {
+              returnObjects: true,
+            })}
+          />
+          <br />
           <PricingAssistance />
         </div>
       </div>

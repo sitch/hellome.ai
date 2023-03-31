@@ -22,6 +22,7 @@
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
+    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     // Disable
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/anchor-is-valid": "off",

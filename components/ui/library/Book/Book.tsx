@@ -1,8 +1,8 @@
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import styles from './Book.module.css'
 
-export interface BookProps {
-  src: string
+export type BookProps = {
+  src: StaticImageData | string
   alt: string
 }
 
@@ -13,7 +13,7 @@ export function Book({ src, alt }: BookProps) {
     <>
       <div className={styles.container}>
         <div className={styles.book}>
-          <Image src={src} alt={alt} height={394.656} width={220} />
+          <Image src={src} alt={alt} height={395} width={220} />
         </div>
       </div>
     </>

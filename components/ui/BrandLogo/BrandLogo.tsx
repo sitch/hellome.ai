@@ -4,7 +4,7 @@ import AnimatedText from '@/components/common/AnimatedText/AnimatedText'
 import s from './BrandLogo.module.css'
 import classnames from 'classnames'
 
-interface BrandLogoProps {
+type BrandLogoProps = {
   size?: string
   // className?: string
   // children: string

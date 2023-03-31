@@ -15,6 +15,6 @@
   "ext": "js,json,yml,mdx,lock,.env,.local",
   "ignore": [".git", "node_modules/**/node_modules"],
   "restartable": "rs",
-  "verbose": false,
+  "verbose": true,
   "env": {}
 }

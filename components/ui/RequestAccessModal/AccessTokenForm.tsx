@@ -1,11 +1,7 @@
-import {
-  Button,
-  Checkbox,
-  Label,
-  Modal,
-  TextInput,
-  TextInputProps,
-} from 'flowbite-react'
+import { Button } from 'flowbite-react/lib/esm/components/Button'
+import { Label } from 'flowbite-react/lib/esm/components/Label'
+import { TextInput } from 'flowbite-react/lib/esm/components/TextInput'
+
 import styles from '@/components/forms/forms.module.css'
 import React, { useState, MouseEvent } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
@@ -23,7 +19,7 @@ import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
 //   },
 // }
 
-export interface AccessTokenFormProps {
+export type AccessTokenFormProps = {
   onSubmit: (e: MouseEvent<HTMLButtonElement>) => void
 }
 

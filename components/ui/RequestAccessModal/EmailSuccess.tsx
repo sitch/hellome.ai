@@ -1,6 +1,6 @@
 import { EmailFormData } from './EmailForm'
 
-export interface EmailSuccessProps {
+export type EmailSuccessProps = {
   data: EmailFormData
 }
 

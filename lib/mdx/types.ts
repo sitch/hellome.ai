@@ -1,7 +1,17 @@
-export type MDXType = 'author' | 'article' | 'policy'
-export type Section = 'blog/articles' | 'blog/authors' | 'policies'
+import { LinkProps } from 'next/link'
 
-export interface AuthorSource {
+export type Slug = string
+export type Handle = string
+
+// export type MDXType = 'article' | 'author' | 'policy'
+export type Section =
+  | 'blog/articles'
+  | 'blog/authors'
+  | 'company'
+  | 'customer'
+  | 'policies'
+
+export type AuthorSource = {
   handle: string
   startDate: string
   photo: string
@@ -9,18 +19,18 @@ export interface AuthorSource {
   title: string
 }
 
-export interface ArticleSource {
+export type ArticleSource = {
   slug: string
   publishedAt: string
   photo: string
   authorHandle: string
   authorName: string
-  authorTitle?: string | undefined
+  authorTitle: string | undefined
   title: string
   summary: string
 }
 
-export interface PolicySource {
+export type PolicySource = {
   slug: string
   publishedAt: string
   updatedAt: string
@@ -29,7 +39,7 @@ export interface PolicySource {
 }
 
 export type Author = AuthorSource & {
-  url: string
+  url: LinkProps['href']
   articles?: Article[]
   social?: {
     facebook?: {
@@ -45,7 +55,7 @@ export type Author = AuthorSource & {
 }
 
 export type Article = ArticleSource & {
-  url: string
+  url: LinkProps['href']
   author: Author
   category: string
 }
@@ -57,8 +67,10 @@ export type Policy = PolicySource & {
 export const castAuthor = (author: AuthorSource): Author => {
   return {
     ...author,
-    url: `/blog/authors/${author.handle}`,
-
+    url: {
+      pathname: '/blog/authors/[handle]',
+      query: { handle: author.handle },
+    },
     articles: [],
   }
 }
@@ -66,10 +78,16 @@ export const castAuthor = (author: AuthorSource): Author => {
 export const castArticle = (article: ArticleSource): Article => {
   return {
     ...article,
-    url: `/blog/articles/${article.slug}`,
+    url: {
+      pathname: '/blog/articles/[slug]',
+      query: { slug: article.slug },
+    },
     category: 'AI & Technology',
     author: {
-      url: `/blog/authors/${article.authorHandle}`,
+      url: {
+        pathname: '/blog/authors/[handle]',
+        query: { handle: article.authorHandle },
+      },
       handle: article.authorHandle,
       name: article.authorName,
       title: article.authorTitle ?? '',

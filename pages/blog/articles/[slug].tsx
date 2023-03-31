@@ -1,7 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
-import { MDXProvider } from '@mdx-js/react'
 import Layout from '@/components/mdx/Layout'
 import { MDXPageProps, processMDXPage, listEntries } from '@/lib/mdx'
 import { site } from '@/data/siteConfig'
@@ -10,28 +8,27 @@ import { castArticleSEOProps } from '@/next-seo.config'
 import ArticlePage from '@/components/mdx/blog/articles/ArticlePage'
 import { Article, ArticleSource, castArticle } from '@/lib/mdx/types'
 import { ParsedUrlQuery } from 'querystring'
-
-type Params = ParsedUrlQuery & {
-  slug: string
-}
+// import type { RoutedQuery } from "nextjs-routes";
 
 type Props = MDXPageProps<ArticleSource> & {
   article: Article
+}
+
+type Params = ParsedUrlQuery & {
+  slug: string
 }
 
 const Page: NextPage<Props> = ({ source, article }: Props) => {
   // const title = `${article.title} | ${site.name}`
 
   return (
-    <MDXProvider components={{ Image }}>
-      <Layout>
-        {/* <NextSeo {...castArticleSEOProps(article)} /> */}
+    <Layout>
+      {/* <NextSeo {...castArticleSEOProps(article)} /> */}
 
-        <ArticlePage article={article}>
-          <MDXRemote {...source} />
-        </ArticlePage>
-      </Layout>
-    </MDXProvider>
+      <ArticlePage article={article}>
+        <MDXRemote {...source} />
+      </ArticlePage>
+    </Layout>
   )
 }
 

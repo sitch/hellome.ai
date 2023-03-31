@@ -14,16 +14,12 @@ import {
   AuthorSource,
   castArticle,
   castAuthor,
+  Section,
+  Slug,
 } from './types'
 import { serializeOptions } from './config'
 
-export type Section = 'blog/articles' | 'blog/authors' | 'policies'
-export type Slug = string
-export type FrontMatter = matter.GrayMatterFile<string>['data'] & {
-  slug: Slug
-}
-
-export interface MDXPageProps<T = {}> {
+export type MDXPageProps<T = {}> = {
   // content: MDXRemoteProps
   // excerpt?: matter.GrayMatterFile<string>['excerpt']
   source: MDXRemoteSerializeResult
@@ -44,9 +40,10 @@ export function listEntries(section: Section) {
 
 export type Data = Record<string, any>
 
-interface ProcessResult<T = Data> {
-  // content: string
-  // excerpt: string | undefined
+type ProcessResult<T = Data> = {
+  file: string
+  content: string
+  excerpt: string | undefined
   source: MDXRemoteSerializeResult
   data: T
 }
@@ -70,8 +67,9 @@ export async function processMDXPage<T>(
   const source = await serialize(content, serializeOptions)
 
   return {
-    // content,
-    // excerpt,
+    file,
+    content,
+    excerpt,
     source,
     data: data as T,
   }

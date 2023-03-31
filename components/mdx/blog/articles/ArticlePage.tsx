@@ -7,7 +7,7 @@ import * as DateTimes from '@/components/mdx/ui/DateTimes'
 import * as Media from '@/components/mdx/ui/Media'
 import * as Typography from '@/components/mdx/ui/Typography'
 
-export interface ArticleHeaderProps {
+export type ArticleHeaderProps = {
   article: Article
 }
 
@@ -50,7 +50,7 @@ const ArticleHeader = ({ article }: ArticleHeaderProps) => {
   )
 }
 
-export interface ArticleProps {
+export type ArticleProps = {
   article: Article
   children?: ReactNode
 }

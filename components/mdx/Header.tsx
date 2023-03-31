@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useState, useEffect, JSXElementConstructor } from 'react'
 import Link from 'next/link'
 
-export interface HeaderProps {
+export type HeaderProps = {
   HeroComp: JSXElementConstructor<{}>
 }
 
@@ -58,7 +58,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
             </Link>
           </li>
           <li>
-            <Link legacyBehavior href="/contact">
+            <Link legacyBehavior href="/company/contact">
               <a>Contact</a>
             </Link>
           </li>

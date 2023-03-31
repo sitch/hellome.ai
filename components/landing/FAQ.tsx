@@ -1,8 +1,9 @@
 import Link, { LinkProps } from 'next/link'
+import { route } from 'nextjs-routes'
 import { ReactNode, useState } from 'react'
 import { DotTextureIcon, ZapIcon } from './icons'
 
-interface AnsweredQuestionProps {
+type AnsweredQuestionProps = {
   question: string
   answer: ReactNode
 }
@@ -48,7 +49,7 @@ const AnsweredQuestion = ({ question, answer }: AnsweredQuestionProps) => {
   )
 }
 
-export interface FAQProps {
+export type FAQProps = {
   title: string
   icon?: ReactNode
   description: string
@@ -63,12 +64,11 @@ export const FAQ = ({
   links,
   icon = <ZapIcon />,
 }: FAQProps) => {
-  console.log({ links })
   return (
     <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
       <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
         <div className="mb-16 flex flex-col sm:text-center">
-          <Link href="/" className="mb-6 sm:mx-auto">
+          <Link href="/" aria-label="FAQ" className="mb-6 sm:mx-auto">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-50">
               {icon}
             </div>
@@ -84,8 +84,10 @@ export const FAQ = ({
             <p className="text-base text-gray-700 md:text-lg">{description}</p>
 
             <div className="mt-4 flex flex-col sm:text-center">
-              {links.map((props, index) => (
-                <Link key={index} {...props} />
+              {links.map(({ children, ...props }, index) => (
+                <Link key={index} {...props}>
+                  {children as ReactNode}
+                </Link>
               ))}
             </div>
           </div>

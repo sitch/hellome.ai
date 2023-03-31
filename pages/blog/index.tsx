@@ -8,7 +8,7 @@ import { Article } from '@/lib/mdx/types'
 import { GetStaticProps, NextPage } from 'next'
 import Hero from '@/components/mdx/Hero'
 
-export interface Props {
+export type Props = {
   articles: Article[]
 }
 

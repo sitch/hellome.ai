@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { DotTextureIcon, ZapIcon } from './icons'
 
-export interface AboutUsValueProps {
+export type AboutUsValueProps = {
   icon?: ReactNode
   title: string
 }
@@ -19,7 +19,7 @@ export const AboutUsValue = ({
   </div>
 )
 
-export interface AboutUsProps {
+export type AboutUsProps = {
   title: string
   description: string
   values: AboutUsValueProps[]

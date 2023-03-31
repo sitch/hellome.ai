@@ -21,7 +21,12 @@ export type ParagraphProps = DetailedHTMLProps<
 export function Paragraph({ children, ...props }: ParagraphProps) {
   return (
     <>
-      <p {...props}>{children}</p>
+      <p
+        // className="mt-4 text-base leading-7 text-slate-600"
+        {...props}
+      >
+        {children}
+      </p>
     </>
   )
 }

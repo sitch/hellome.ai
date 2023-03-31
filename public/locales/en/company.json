@@ -1,8 +1,14 @@
 {
   "values": {
-    "Value1": "Trust",
-    "Value2": "Love",
-    "Value3": "Excellence"
+    "Value1": {
+      "title": "Trust"
+    },
+    "Value2": {
+      "title": "Love"
+    },
+    "Value3": {
+      "title": "Excellence"
+    }
   },
   "about": {
     "title": "About Us",

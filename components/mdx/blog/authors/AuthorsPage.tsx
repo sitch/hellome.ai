@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Author } from '@/lib/mdx/types'
 import { useTranslation } from 'next-i18next'
 
-interface AuthorCardProps {
+type AuthorCardProps = {
   author: Author
 }
 
@@ -49,7 +49,7 @@ const AuthorCard = ({ author }: AuthorCardProps) => {
   )
 }
 
-export interface AuthorsPageProps {
+export type AuthorsPageProps = {
   authors: Author[]
 }
 

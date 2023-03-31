@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 type ColorSchemeClass = 'dark' | 'light'
 
-interface ThemeDetected {
+type ThemeDetected = {
   isDark: boolean
   isLight: boolean
   activeTheme: ColorSchemeClass

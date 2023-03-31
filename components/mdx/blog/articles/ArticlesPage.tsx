@@ -8,7 +8,7 @@ import * as DateTimes from '@/components/mdx/ui/DateTimes'
 import * as Media from '@/components/mdx/ui/Media'
 import * as Typography from '@/components/mdx/ui/Typography'
 
-interface TopArticleListItemProps {
+type TopArticleListItemProps = {
   article: Article
 }
 
@@ -60,7 +60,7 @@ const TopArticleListItem = ({ article }: TopArticleListItemProps) => {
   )
 }
 
-interface ArticleListItemProps {
+type ArticleListItemProps = {
   article: Article
 }
 
@@ -116,7 +116,7 @@ const ArticleListItem = ({ article }: ArticleListItemProps) => {
   )
 }
 
-interface TopArticlesProps {
+type TopArticlesProps = {
   articles: Article[]
 }
 
@@ -140,7 +140,7 @@ export const TopArticles = ({ articles }: TopArticlesProps) => {
   )
 }
 
-export interface ArticlesPageProps {
+export type ArticlesPageProps = {
   articles: Article[]
 }
 

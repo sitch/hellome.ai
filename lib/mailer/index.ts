@@ -4,14 +4,14 @@ import requestIp from 'request-ip'
 
 // import sendMail, { transport, verifyTransport } from '@/emails'
 
-export interface EmailPayload {
+export type EmailPayload = {
   firstName?: string
   lastName?: string
   email?: string
   message?: string
 }
 
-export interface CastMailData {
+export type CastMailData = {
   ok: boolean
   error: any
   data: ComponentMail

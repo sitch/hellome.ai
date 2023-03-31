@@ -12,7 +12,7 @@ const getRandomName = (): string => {
   return sample(names!)!
 }
 
-export interface UseRandomNameProps {
+export type UseRandomNameProps = {
   initialName?: string
   intervalMs?: number
 }

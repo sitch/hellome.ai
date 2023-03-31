@@ -70,16 +70,17 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <DefaultSeo {...SEO} />
       <Head>
-        <meta
+        {/* <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
-        />
+        /> */}
       </Head>
       {process.env.NODE_ENV !== 'production' && (
         <GoogleAnalytics trackPageViews />
       )}
+
       <Component {...pageProps} />
-      {process.env.NODE_ENV !== 'production' && <Analytics />}
+      {/* <Analytics mode="production" /> */}
     </>
   )
 }

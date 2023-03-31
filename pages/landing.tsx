@@ -7,12 +7,11 @@ import { FAQ } from '@/components/landing/FAQ'
 import { Features } from '@/components/landing/Features'
 import { Footer } from '@/components/landing/Footer'
 import { HowDoesItWork } from '@/components/landing/HowDoesItWork'
-import { Reviews } from '@/components/landing/Reviews'
-import { Subscribe } from '@/components/landing/Subscribe'
+// import { Reviews } from '@/components/landing/Reviews'
+// import { Subscribe } from '@/components/landing/Subscribe'
 import styles from '@/styles/Home.module.css'
 import { Pricing } from '@/components/landing/Pricing'
 import { AboutUs } from '@/components/landing/AboutUs'
-import { I18n } from '@/components/landing/I18n'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -22,23 +21,31 @@ import {
   faHeart,
   faLock,
   faPalette,
-  faPen,
   faPenNib,
   faPersonBooth,
   faPersonCircleQuestion,
   faRobot,
   faTruckFast,
-  faUsersViewfinder,
+  // faPen,
+  // faUsersViewfinder,
 } from '@fortawesome/free-solid-svg-icons'
-
 import i18NextConfig from '@/next-i18next.config'
 
 import { I18nNamespaces } from '@/i18next.d'
 import { NextSeo } from 'next-seo'
-const ns: (keyof I18nNamespaces)[] = ['common', 'footer']
+const ns: (keyof I18nNamespaces)[] = [
+  'common',
+  'company',
+  'faq',
+  'footer',
+  'landing',
+  'onboarding',
+  'pricing',
+  'product',
+]
 // const ns = ['common', 'footer']
 
-interface Props {
+type Props = {
   // Add custom props here
 }
 
@@ -94,25 +101,25 @@ const Landing = (
       <main data-cy="LandingPage">
         <section className={styles.section}>
           <Hero
-            title={I18n.enUS.headline.title}
-            subtitle={I18n.enUS.headline.subtitle}
+            title={t('landing:headline.title')}
+            subtitle={t('landing:headline.subtitle')}
           />
           <Features
             features={[
               {
-                ...I18n.enUS.product.features.Feature1,
+                ...t('product:features.Feature1', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faFingerprint} />,
               },
               {
-                ...I18n.enUS.product.features.Feature2,
+                ...t('product:features.Feature2', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faLock} />,
               },
               {
-                ...I18n.enUS.product.features.Feature3,
+                ...t('product:features.Feature3', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faPalette} />,
               },
               {
-                ...I18n.enUS.product.features.Feature4,
+                ...t('product:features.Feature4', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faPenNib} />,
               },
             ]}
@@ -120,38 +127,38 @@ const Landing = (
         </section>
         <section className={styles.section}>
           <AboutUs
-            title={I18n.enUS.company.about.title}
-            description={I18n.enUS.company.about.description}
+            title={t('company:about.title')}
+            description={t('company:about.description')}
             values={[
               {
-                title: I18n.enUS.company.values.Value1,
+                ...t('company:values.Value1', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faHandshakeSimple} />,
               },
               {
-                title: I18n.enUS.company.values.Value2,
+                ...t('company:values.Value2', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faHeart} />,
               },
               {
-                title: I18n.enUS.company.values.Value3,
+                ...t('company:values.Value3', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faHandsHoldingChild} />,
               },
             ]}
           />
 
           <HowDoesItWork
-            title={I18n.enUS.onboarding.title}
-            description={I18n.enUS.onboarding.description}
+            title={t('onboarding:title')}
+            description={t('onboarding:description')}
             steps={[
               {
-                ...I18n.enUS.onboarding.steps.Step1,
+                ...t('onboarding:steps.Step1', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faPersonBooth} />,
               },
               {
-                ...I18n.enUS.onboarding.steps.Step2,
+                ...t('onboarding:steps.Step2', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faRobot} />,
               },
               {
-                ...I18n.enUS.onboarding.steps.Step3,
+                ...t('onboarding:steps.Step3', { returnObjects: true }),
                 icon: <FontAwesomeIcon icon={faTruckFast} />,
               },
             ]}
@@ -160,18 +167,16 @@ const Landing = (
         <Pricing />
         {/* <Reviews /> */}
         <FAQ
-          // {...I18n.enUS.FAQ}
-          title={I18n.enUS.FAQ.title}
-          description={I18n.enUS.FAQ.description}
-          links={I18n.enUS.FAQ.links}
-          answers={I18n.enUS.FAQ.answers}
           icon={<FontAwesomeIcon icon={faPersonCircleQuestion} />}
+          title={t('faq:title')}
+          description={t('faq:description')}
+          links={t('faq:links', { returnObjects: true })}
+          answers={t('faq:answers', { returnObjects: true })}
         />
         {/* <section className={styles.section}>
           <Subscribe />
         </section> */}
         <Footer
-          //  {...I18n.enUS.footer}
           description={t('footer:description')}
           sections={t('footer:sections', { returnObjects: true })}
         />

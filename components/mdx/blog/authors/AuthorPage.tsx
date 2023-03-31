@@ -2,7 +2,7 @@ import { Author } from '@/lib/mdx/types'
 import { ReactNode } from 'react'
 import * as Media from '@/components/mdx/ui/Media'
 
-interface AuthorPageProps {
+type AuthorPageProps = {
   author: Author
   children?: ReactNode
 }

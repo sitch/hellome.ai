@@ -1,8 +1,9 @@
-// // @ts-check
+// @ts-check
 
-const defaultTheme = require('tailwindcss/defaultTheme')
+// const defaultTheme = require('tailwindcss/defaultTheme')
 
 /**
+ * See: https://tailwindcss.com/docs/upgrade-guide#configure-content-sources
  * @type {import('tailwindcss').Config}
  **/
 module.exports = {
@@ -14,13 +15,12 @@ module.exports = {
     './public/**/*.html',
   ],
   plugins: [
-    require('flowbite-typography'),
-    require('flowbite/plugin'),
-    require('@downwindcss/easings'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    // require('tailwind-scrollbar-hide'),
     require('@headlessui/tailwindcss'),
+    require('@downwindcss/easings'),
+    require('flowbite/plugin'),
+    require('flowbite-typography'),
   ],
 
   safelist: ['outline-none'],
@@ -372,11 +372,5 @@ module.exports = {
         outline: '0 0 0 3px rgba(101, 31, 255, 0.4)',
       },
     },
-  },
-  variants: {
-    scale: ['responsive', 'hover', 'focus', 'group-hover'],
-    textColor: ['responsive', 'hover', 'focus', 'group-hover'],
-    opacity: ['responsive', 'hover', 'focus', 'group-hover'],
-    backgroundColor: ['responsive', 'hover', 'focus', 'group-hover'],
   },
 }

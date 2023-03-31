@@ -4,7 +4,7 @@ export type EmailErrorResponseStatus =
   | 'transport_error'
   | 'send_error'
 
-export interface BaseApiResponse {
+export type BaseApiResponse = {
   message?: string
 }
 

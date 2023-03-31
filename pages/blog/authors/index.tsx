@@ -11,7 +11,7 @@ import Hero from '@/components/mdx/Hero'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import i18NextConfig from '@/next-i18next.config'
 
-interface Props {
+type Props = {
   authors: Author[]
 }
 

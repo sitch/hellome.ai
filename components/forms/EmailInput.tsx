@@ -16,7 +16,7 @@ const regex = new RegExp(
 
 // });
 
-export interface EmailInputProps {
+export type EmailInputProps = {
   // type?: EmailInputType
 }
 

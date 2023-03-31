@@ -1,18 +1,14 @@
-import { JSXElementConstructor, ReactNode } from 'react'
+import { JSXElementConstructor, ReactNode, Suspense } from 'react'
 import { DefaultSeo } from 'next-seo'
 import { MDXProvider } from '@mdx-js/react'
-import { MDXType } from '@/lib/mdx/types'
+import type { MDXComponents } from 'mdx/types'
+import { DateTimes, Heading, Lists, Media, Typography } from './ui'
+import Link from 'next/link'
+import { LinkProps } from 'next/link'
+import { route } from 'nextjs-routes'
 
-import type { MDXComponents } from 'mdx/types.js'
-import * as Heading from '@/components/mdx/ui/Heading'
-import * as Lists from '@/components/mdx/ui/Lists'
-import * as Media from '@/components/mdx/ui/Media'
-import * as Typography from '@/components/mdx/ui/Typography'
-import Header from '@/components/mdx/Header'
-import Footer from '@/components/mdx/Footer'
-import SEO from '@/next-seo.config'
-
-const components: MDXComponents = {
+export const components: MDXComponents = {
+  ...DateTimes,
   ...Heading,
   ...Lists,
   ...Media,
@@ -26,27 +22,32 @@ const components: MDXComponents = {
   p: Typography.Paragraph,
   pre: Typography.Pre,
   code: Typography.Code,
+  // a: ({ ref: _ref, href, ...props }) => (
+  //   <Link href={route({ pathname: href! } as Route)} {...props} />
+  // ),
+  Link,
 }
 
-export interface LayoutProps {
-  type?: MDXType
+export type LayoutProps = {
+  // type?: MDXType
   HeroComp?: JSXElementConstructor<{}>
   children: ReactNode
 }
-const Layout = ({ type, children, HeroComp }: LayoutProps) => {
-  // Required
-  if (typeof window === undefined) {
-    return null
-  }
+const Layout = ({ children, HeroComp }: LayoutProps) => {
+  // if(typeof window === 'undefined' ) {
+  //   return null
+  // }
 
   return (
     <>
-      <MDXProvider components={components}>
-        {/* <DefaultSeo {...SEO} /> */}
-        {/* <Header HeroComp={HeroComp} /> */}
-        {children}
-        {/* <Footer /> */}
-      </MDXProvider>
+      <Suspense fallback={<>Loading...</>}>
+        <MDXProvider components={components}>
+          {/* <DefaultSeo {...SEO} /> */}
+          {/* <Header HeroComp={HeroComp} /> */}
+          {children}
+          {/* <Footer /> */}
+        </MDXProvider>
+      </Suspense>
     </>
   )
 }

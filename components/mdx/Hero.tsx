@@ -5,7 +5,7 @@ import * as Lists from '@/components/mdx/ui/Lists'
 import * as Media from '@/components/mdx/ui/Media'
 import * as Typography from '@/components/mdx/ui/Typography'
 
-export interface HeroProps {
+export type HeroProps = {
   title: string
   description?: string | undefined
   // subtitle?: ReactNode | (() => ReactNode)

@@ -1,6 +1,6 @@
 import { Article } from '@/lib/mdx/types'
 
-export interface ArticleCardProps {
+export type ArticleCardProps = {
   article: Article
 }
 

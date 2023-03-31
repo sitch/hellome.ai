@@ -48,7 +48,7 @@
 //     input.forEach(single => single.addEventListener('input', e => input.forEach(i => i.value = e.target.value)))
 // })
 
-export interface PasswordInputProps {
+export type PasswordInputProps = {
   // type?: PasswordInputType
 }
 

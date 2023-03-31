@@ -9,7 +9,10 @@ const privacyPolicy = (
   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
     We’ll never share your details. Read our{' '}
     <Link
-      href="/privacy"
+      href={{
+        pathname: '/policies/[slug]',
+        query: { slug: 'privacy-policy' },
+      }}
       className="font-medium text-blue-600 hover:underline dark:text-blue-500"
     >
       Privacy Policy
@@ -18,7 +21,7 @@ const privacyPolicy = (
   </p>
 )
 
-export interface RequestAccessModalProps {
+export type RequestAccessModalProps = {
   className?: string
   children: ReactNode
 }

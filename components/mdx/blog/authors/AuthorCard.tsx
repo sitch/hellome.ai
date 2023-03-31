@@ -1,6 +1,6 @@
 import { Author } from '@/lib/mdx/types'
 
-export interface AuthorCardProps {
+export type AuthorCardProps = {
   author: Author
 }
 

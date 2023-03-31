@@ -43,9 +43,11 @@
     "flexbugs",
     "flowbite",
     "fontawesome",
+    "foos",
     "fortawesome",
     "FOUC",
     "frsource",
+    "fullhuman",
     "geoip",
     "gifs",
     "googlebot",
@@ -64,6 +66,8 @@
     "msapplication",
     "navigations",
     "nextjs",
+    "nosniff",
+    "purgecss",
     "Reaptcha",
     "recaptcha",
     "rehype",
@@ -75,8 +79,10 @@
     "sitekey",
     "tailwindcss",
     "Timeoutable",
+    "typesafe",
     "Viewports",
     "Waitlist",
+    "webm",
     "Withinable"
   ]
 }

@@ -1,10 +1,10 @@
-import {
-  Button,
-  Checkbox,
-  Label,
-  TextInput,
-  TextInputProps,
-} from 'flowbite-react'
+// import {
+//   Button,
+//   Checkbox,
+//   Label,
+//   TextInput,
+//   TextInputProps,
+// } from 'flowbite-react'
 import styles from '@/components/forms/forms.module.css'
 import React, { useState, useRef, useEffect } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
@@ -67,12 +67,12 @@ export async function createRequestAccessByEmail(data: EmailFormData) {
 //   email: { value: string }
 // }
 
-export interface EmailFormData {
+export type EmailFormData = {
   // name: string
   email: string
 }
 
-export interface EmailFormProps {
+export type EmailFormProps = {
   // onSubmit: (e: MouseEvent<HTMLButtonElement>) => void
 }
 

@@ -1,22 +1,26 @@
-import Link from 'next/link'
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
+import Link from 'next/link'
 
-interface HeadingLinkProps {
+type HeadingLinkProps = {
   id: string
   children: ReactNode
 }
 const HeadingLink = ({ id, children }: HeadingLinkProps) => {
   const href = `#${id}`
+
+  // TODO: Restore <Link />
   return (
-    <Link
-      href={href}
+    <a
       className="no-underline"
-      scroll={true}
-      prefetch={false}
-      shallow={true}
+      href={href}
+      aria-label={String(children)}
+      // href={{ hash: id }}
+      // scroll={true}
+      // prefetch={false}
+      // shallow={true}
     >
       {children}
-    </Link>
+    </a>
   )
 }
 
@@ -28,7 +32,11 @@ type HeadingProps = DetailedHTMLProps<
 export type H1Props = HeadingProps
 export function H1({ id, children, ...props }: H1Props) {
   const component = (
-    <h1 {...props} id={id}>
+    <h1
+      className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl"
+      {...props}
+      id={id}
+    >
       {children}
     </h1>
   )

@@ -1,5 +1,4 @@
 import BrandLogo from '@/components/ui/BrandLogo/BrandLogo'
-import Image from 'next/image'
 import { AnimatedBook } from '@/components/ui/library/AnimatedBook/AnimatedBook'
 import { ReactNode } from 'react'
 import { DotTextureIcon } from './icons'
@@ -21,7 +20,7 @@ export function MottoTags() {
   )
 }
 
-export interface HeroProps {
+export type HeroProps = {
   title: string
   subtitle: string | ReactNode
 }
@@ -50,7 +49,6 @@ export const Hero = ({ title, subtitle }: HeroProps) => {
       </p> */}
       {/* <Image
         // src="https://kitwind.io/assets/kometa/half-phone.png"
-        // src="/static/images/sitchenko-infant-drawing.jpeg"
         src="/static/images/sitchenko-infant-drawing-bw.png"
         className="mx-auto w-full border-4 border-black md:w-auto md:max-w-xs"
         alt=""

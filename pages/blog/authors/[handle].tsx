@@ -1,7 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
-import { MDXProvider } from '@mdx-js/react'
 import Layout from '@/components/mdx/Layout'
 import { MDXPageProps, processMDXPage, listEntries } from '@/lib/mdx'
 import { site } from '@/data/siteConfig'
@@ -11,25 +9,23 @@ import AuthorPage from '@/components/mdx/blog/authors/AuthorPage'
 import { Author, AuthorSource, castAuthor } from '@/lib/mdx/types'
 import { ParsedUrlQuery } from 'querystring'
 
-type Params = ParsedUrlQuery & {
-  handle: string
-}
-
 type Props = MDXPageProps<AuthorSource> & {
   author: Author
 }
 
+type Params = ParsedUrlQuery & {
+  handle: string
+}
+
 const Page: NextPage<Props> = ({ source, author }: Props) => {
   return (
-    <MDXProvider components={{ Image }}>
-      <Layout>
-        {/* <NextSeo {...castAuthorSEOProps(author)} /> */}
+    <Layout>
+      {/* <NextSeo {...castAuthorSEOProps(author)} /> */}
 
-        <AuthorPage author={author}>
-          <MDXRemote {...source} />
-        </AuthorPage>
-      </Layout>
-    </MDXProvider>
+      <AuthorPage author={author}>
+        <MDXRemote {...source} />
+      </AuthorPage>
+    </Layout>
   )
 }
 
