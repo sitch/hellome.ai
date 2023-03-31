@@ -55,15 +55,17 @@ const nextConfig = {
 
   modularizeImports: {
     lodash: {
-      transform: 'lodash/{{member}}',
+      transform: 'lodash/fp/{{member}}',
       preventFullImport: true,
     },
     ['date-fns']: {
-      transform: 'date-fns/fp/{{member}}',
+      transform: 'date-fns/{member}}',
+      preventFullImport: true,
     },
     ['@fortawesome/free-solid-svg-icons']: {
       transform: '@fortawesome/free-solid-svg-icons/{{member}}',
       skipDefaultConversion: true,
+      preventFullImport: true,
     },
   },
 
