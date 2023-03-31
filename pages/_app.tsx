@@ -80,7 +80,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       )}
 
       <Component {...pageProps} />
-      {/* <Analytics mode="production" /> */}
+      <Analytics mode="production" />
     </>
   )
 }

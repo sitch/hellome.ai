@@ -45,14 +45,21 @@ const ContentSecurityPolicy = `
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  reactStrictMode: true,
-  i18n: i18nextConfig.i18n,
-
-  devIndicators: {
-    buildActivity: true,
-    buildActivityPosition: 'bottom-left',
+  experimental: {
+    optimizeCss: true,
+    swcTraceProfiling: true,
+    // mdxRs: true,
   },
-
+  i18n: i18nextConfig.i18n,
+  swcMinify: true,
+  reactStrictMode: true,
+  outputFileTracing: true,
+  productionBrowserSourceMaps: true,
+  // compiler: {
+  //   removeConsole: {
+  //     exclude: ['error'],
+  //   },
+  // },
   modularizeImports: {
     lodash: {
       transform: 'lodash/fp/{{member}}',
@@ -68,22 +75,6 @@ const nextConfig = {
       preventFullImport: true,
     },
   },
-
-  swcMinify: true,
-  outputFileTracing: true,
-  productionBrowserSourceMaps: true,
-
-  // compiler: {
-  //   removeConsole: {
-  //     exclude: ['error'],
-  //   },
-  // },
-
-  // experimental: {
-  //   optimizeCss: true,
-  //   swcTraceProfiling: true,
-  //   // mdxRs: true,
-  // },
   async headers() {
     return [
       {
@@ -116,6 +107,10 @@ const nextConfig = {
         ],
       },
     ]
+  },
+  devIndicators: {
+    buildActivity: true,
+    buildActivityPosition: 'bottom-left',
   },
 }
 
