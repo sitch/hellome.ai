@@ -56,12 +56,14 @@ const nextConfig = {
   modularizeImports: {
     lodash: {
       transform: 'lodash/{{member}}',
+      preventFullImport: true,
     },
     ['date-fns']: {
       transform: 'date-fns/fp/{{member}}',
     },
     ['@fortawesome/free-solid-svg-icons']: {
       transform: '@fortawesome/free-solid-svg-icons/{{member}}',
+      skipDefaultConversion: true,
     },
   },
 

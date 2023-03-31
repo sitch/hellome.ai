@@ -1,4 +1,4 @@
-import * as dateFns from 'date-fns'
+import { format as dateFormat } from 'date-fns'
 import { DetailedHTMLProps, TimeHTMLAttributes } from 'react'
 
 export type TimeProps = DetailedHTMLProps<
@@ -37,7 +37,7 @@ export function PublishTime({
     throw new Error('<PublishTime> missing dateTime')
   }
   const date = new Date(dateTime)
-  const title = dateFns.format(date, formats[format ?? 'long'])
+  const title = dateFormat(date, formats[format ?? 'long'])
 
   return (
     <time {...props} itemProp="datePublished" dateTime={dateTime} title={title}>
