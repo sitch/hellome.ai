@@ -87,7 +87,7 @@ class MyDocument extends Document {
 <link rel='apple-touch-startup-image' href='/images/apple_splash_640.png' sizes='640x1136' />
 --> */}
 
-          <style>{`
+          {/* <style>{`
             html, body, #__next {
               height: 100%;
             }
@@ -97,7 +97,7 @@ class MyDocument extends Document {
             h1 {
               text-align: center;
             }
-            `}</style>
+            `}</style> */}
         </Head>
 
         <body className="loading">

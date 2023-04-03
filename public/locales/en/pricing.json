@@ -3,11 +3,16 @@
     "title": "Affordable for everyone",
     "description": "description"
   },
+  "assistance": {
+    "label": "Need pricing assistance?",
+    "qualify": "Qualify Here"
+  },
   "plans": {
     "books": {
       "unit": {
         "one": {
           "title": "Bespoke Book",
+          "period": null,
           "cost": "$100",
           "features": [
             {

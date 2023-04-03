@@ -3,6 +3,8 @@ import { Book } from '@/components/ui/library/Book/Book'
 import { ArrowRightIcon, DotTextureIcon } from './icons'
 import { ReactNode } from 'react'
 
+import bookCover from '@/public/static/images/sitchenko-infant-drawing-bw.png'
+
 export type StepProps = {
   title: string
   description?: string
@@ -21,18 +23,18 @@ export const Step = ({
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50 sm:h-20 sm:w-20">
         {icon}
       </div>
-      <h6 className="mb-2 text-2xl font-extrabold">{title}</h6>
+      <h2 className="mb-2 text-2xl font-extrabold">{title}</h2>
       <p className="mb-3 max-w-md text-sm text-gray-900 sm:mx-auto">
         {description}
       </p>
       <Link
         href="/"
-        aria-label=""
+        aria-label={title}
         className="inline-flex items-center font-semibold text-deep-purple-accent-400 transition-colors duration-200 hover:text-deep-purple-800"
       >
         Learn more
       </Link>
-      <div className="top-0 right-0 flex h-24 items-center justify-center lg:absolute lg:-mr-8">
+      <div className="right-0 top-0 flex h-24 items-center justify-center lg:absolute lg:-mr-8">
         {!isLast && <ArrowRightIcon />}
       </div>
     </div>
@@ -74,10 +76,7 @@ export const HowDoesItWork = ({
           ))}
         </div>
       </div>
-      <Book
-        src="/static/images/sitchenko-infant-drawing-bw.png"
-        alt="sitchenko-infant-drawing-bw"
-      />
+      <Book src={bookCover} alt="sitchenko-infant-drawing-bw" />
     </>
   )
 }

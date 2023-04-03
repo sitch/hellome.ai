@@ -12,6 +12,7 @@ import common from '@/public/locales/en/common.json'
 import company from '@/public/locales/en/company.json'
 import faq from '@/public/locales/en/faq.json'
 import footer from '@/public/locales/en/footer.json'
+import landing from '@/public/locales/en/landing.json'
 import onboarding from '@/public/locales/en/onboarding.json'
 import pricing from '@/public/locales/en/pricing.json'
 import product from '@/public/locales/en/product.json'
@@ -21,6 +22,7 @@ interface I18nNamespaces {
   company: typeof company
   faq: typeof faq
   footer: typeof footer
+  landing: typeof landing
   onboarding: typeof onboarding
   pricing: typeof pricing
   product: typeof product

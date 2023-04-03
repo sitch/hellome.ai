@@ -4,7 +4,7 @@ import requestIp from 'request-ip'
 
 // import sendMail, { transport, verifyTransport } from '@/emails'
 
-export interface EmailPayload {
+export type EmailPayload = {
   firstName?: string
   lastName?: string
   email?: string
@@ -24,7 +24,7 @@ export function castMailData(
   const ok = (email?.length ?? -1) > 3
   const error = ok ? 'invalid email' : undefined
 
-  const detectedIp: string = requestIp.getClientIp(req) as string
+  const detectedIp: string = requestIp.getClientIp(req)!
 
   const vercelGeo = {
     country: req.headers['x-vercel-ip-country'],

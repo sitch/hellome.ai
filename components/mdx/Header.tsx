@@ -58,13 +58,13 @@ const Header = ({ HeroComp }: HeaderProps) => {
             </Link>
           </li>
           <li>
-            <Link legacyBehavior href="/contact">
+            <Link legacyBehavior href="/company/contact">
               <a>Contact</a>
             </Link>
           </li>
         </ul>
       </nav> */}
-      {HeroComp && <HeroComp />}
+      {/* {HeroComp && <HeroComp />} */}
     </header>
   )
 }

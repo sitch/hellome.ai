@@ -1,33 +1,21 @@
 import { useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { site } from '@/data/siteConfig'
-import BlogPostPage from '@/components/mdx/blog/BlogPostPage'
+import ArticlePage from '@/components/mdx/blog/articles/ArticlePage'
 import Layout from '@/components/mdx/Layout'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
+import { processMDXArticles } from '@/lib/mdx'
+import { Article } from '@/lib/mdx/types'
+import { GetStaticProps, NextPage } from 'next'
 import Hero from '@/components/mdx/Hero'
 
-export type MDXBlogPost = {
-  slug: string
-  title: string
-  image: string
-  summary: string
-  publishedAt: string
-  modifiedAt?: string
-  expirationAt?: string
-  section: string
-  locale: string
-  tags?: string[]
-  authors?: string[]
+export type Props = {
+  articles: Article[]
 }
 
-export type BlogProps = {
-  posts: MDXBlogPost[]
-}
-
-export default function Blog({ posts }: BlogProps) {
+const Page: NextPage<Props> = ({ articles }: Props) => {
   const [searchValue, setSearchValue] = useState(['', ''])
 
-  const filteredBlogPosts = posts
+  const filteredArticles = articles
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
@@ -51,7 +39,9 @@ export default function Blog({ posts }: BlogProps) {
   }
 
   return (
-    <Layout HeroComp={() => <Hero heroData={heroData} />}>
+    <Layout
+    // HeroComp={() => <Hero heroData={heroData} />}
+    >
       <NextSeo
         title="Blog Page - HelloMe.ai"
         description="Blog for this website are available here. You can find blog using input box provided in the top. "
@@ -64,20 +54,28 @@ export default function Blog({ posts }: BlogProps) {
         }}
       />
       <section id="blogs">
-        {filteredBlogPosts.length === 0 && (
+        {filteredArticles.length === 0 && (
           <p className="mb-4 text-gray-600 dark:text-gray-400">
-            No posts found.
+            No articles found.
           </p>
         )}
-        {filteredBlogPosts.map((frontMatter) => (
-          <BlogPostPage key={frontMatter.title} post={frontMatter} />
+        {filteredArticles.map((article) => (
+          <ArticlePage key={article.title} article={article}>
+            Children
+          </ArticlePage>
         ))}
       </section>
     </Layout>
   )
 }
 
-export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter('blog/posts')
-  return { props: { posts } }
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const articles = await processMDXArticles('blog/articles')
+  return {
+    props: {
+      articles,
+    },
+  }
 }
+
+export default Page

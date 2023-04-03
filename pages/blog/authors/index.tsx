@@ -1,39 +1,26 @@
 import { useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { site } from '@/data/siteConfig'
-import AuthorPage from '@/components/mdx/blog/AuthorPage'
+import AuthorPage from '@/components/mdx/blog/authors/AuthorPage'
 import Layout from '@/components/mdx/Layout'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
+import { processMDXAuthors } from '@/lib/mdx'
+import { AuthorsPage } from '@/components/mdx/blog/authors/AuthorsPage'
+import { Author } from '@/lib/mdx/types'
+import { GetStaticProps, NextPage } from 'next'
 import Hero from '@/components/mdx/Hero'
-import { AuthorsPage } from '@/components/mdx/blog/AuthorsPage'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import i18NextConfig from '@/next-i18next.config'
 
-export type MDXAuthorPost = {
-  slug: string
-  title: string
-  image: string
-  summary: string
-  publishedAt: string
-  modifiedAt?: string
-  expirationAt?: string
-  section: string
-  locale: string
-  tags?: string[]
-  authors?: string[]
+type Props = {
+  authors: Author[]
 }
 
-export type AuthorsProps = {
-  posts: MDXAuthorPost[]
-}
-
-export default function Authors({ posts }: AuthorsProps) {
+const Page: NextPage<Props> = ({ authors }: Props) => {
   const [searchValue, setSearchValue] = useState(['', ''])
 
-  const filteredAuthors = posts
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    )
-    .filter(({ title }) => title.toLowerCase().includes(searchValue[1]))
+  const filteredAuthors = authors
+    .filter(({ name }) => name.toLowerCase().includes(searchValue[1]))
+    .sort()
 
   const heroData = {
     title: 'All Blogs',
@@ -52,7 +39,9 @@ export default function Authors({ posts }: AuthorsProps) {
   }
 
   return (
-    <Layout HeroComp={() => <Hero heroData={heroData} />}>
+    <Layout
+    // HeroComp={() => <Hero heroData={heroData} />}
+    >
       <NextSeo
         title="Blog Page - HelloMe.ai"
         description="Blog for this website are available here. You can find blog using input box provided in the top. "
@@ -65,23 +54,33 @@ export default function Authors({ posts }: AuthorsProps) {
         }}
       />
 
-      <AuthorsPage authors={filteredAuthors} />
-
       <section id="authors">
         {filteredAuthors.length === 0 && (
           <p className="mb-4 text-gray-600 dark:text-gray-400">
             No posts found.
           </p>
         )}
-        {filteredAuthors.map((frontMatter) => (
-          <AuthorPage key={frontMatter.title} author={frontMatter} />
-        ))}
+
+        <AuthorsPage authors={filteredAuthors} />
+
+        {/* {filteredAuthors.map((author) => (
+          <AuthorPage key={author.handle} author={author} />
+        ))} */}
       </section>
     </Layout>
   )
 }
 
-export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter('blog/authors')
-  return { props: { posts } }
+export const getStaticProps: GetStaticProps<Props> = async ({
+  locale = i18NextConfig.i18n.defaultLocale,
+}) => {
+  const authors = await processMDXAuthors('blog/authors')
+  return {
+    props: {
+      authors,
+      ...(await serverSideTranslations(locale, ['authors'])),
+    },
+  }
 }
+
+export default Page

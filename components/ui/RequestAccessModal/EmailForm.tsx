@@ -1,10 +1,3 @@
-import {
-  Button,
-  Checkbox,
-  Label,
-  TextInput,
-  TextInputProps,
-} from 'flowbite-react'
 import styles from '@/components/forms/forms.module.css'
 import React, { useState, useRef, useEffect } from 'react'
 import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
@@ -67,12 +60,12 @@ export async function createRequestAccessByEmail(data: EmailFormData) {
 //   email: { value: string }
 // }
 
-export interface EmailFormData {
+export type EmailFormData = {
   // name: string
   email: string
 }
 
-export interface EmailFormProps {
+export type EmailFormProps = {
   // onSubmit: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
@@ -183,8 +176,7 @@ export default function EmailForm(_props: EmailFormProps) {
           className={classNames({
             [styles.formInput]: true,
             [emailStyles['email-input']]: true,
-            [emailStyles['valid']]:
-              !errors.email && !isEmpty(getValues('email')),
+            [emailStyles.valid]: !errors.email && !isEmpty(getValues('email')),
           })}
         >
           <input

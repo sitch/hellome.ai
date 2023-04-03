@@ -1,4 +1,4 @@
-import { Modal } from 'flowbite-react'
+// import { Modal } from 'flowbite-react'
 import React, { useState, MouseEvent, ReactNode } from 'react'
 import styles from './RequestAccessModal.module.css'
 import EmailForm from '@/components/ui/RequestAccessModal/EmailForm'
@@ -9,7 +9,10 @@ const privacyPolicy = (
   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
     We’ll never share your details. Read our{' '}
     <Link
-      href="/privacy"
+      href={{
+        pathname: '/policies/[slug]',
+        query: { slug: 'privacy-policy' },
+      }}
       className="font-medium text-blue-600 hover:underline dark:text-blue-500"
     >
       Privacy Policy
@@ -18,7 +21,7 @@ const privacyPolicy = (
   </p>
 )
 
-export interface RequestAccessModalProps {
+export type RequestAccessModalProps = {
   className?: string
   children: ReactNode
 }
@@ -48,85 +51,84 @@ export default function RequestAccessModal({
       <a className={className} onClick={onClick} data-cy="invite-modal:button">
         {children}
       </a>
-
-      {/* Modal */}
-      <Modal
-        show={show}
-        size="md"
-        popup={true}
-        onClose={onClose}
-
-        // See: https://github.com/shorwood/tailwindcss-unsplash
-        // style={{
-        //   backgroundImage: "url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809')",
-        // }}
-
-        // className={styles.modalContainer}
-      >
-        <Modal.Header
-        // className={styles.modalContainer}
-        // className="prose rounded-t px-4 py-2"
-        // className="prose"
-        >
-          {/* <div className="px-6 py-4 border-b rounded-t dark:border-gray-600">
-                <h3 className="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
-                    Connect wallet
-                </h3>
-            </div> */}
-
-          <div className="prose px-2 py-2">Join the Waitlist</div>
-          {/* Request Access */}
-
-          {/* <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
-            <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">
-              Request Access
-            </span>
-          </div> */}
-        </Modal.Header>
-
-        <Modal.Body className={styles.modalBody}>
-          <div
-          // className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8"
-          >
-            {/* <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-          Request Access
-        </h3> */}
-
-            {/* <h3 className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-xl font-black">
-              Request Access
-            </h3> */}
-
-            {/* <p className="mt-2 text-sm text-gray-500 dark:text-gray-400"> */}
-            {/* <p className="mt-2 text-sm"></p>
-              We're so excited to get to know you!
-            </p> */}
-
-            <EmailForm />
-
-            {/* <div className="my-3 flex items-center px-3">
-              <hr className="w-full border-slate-600" />
-              <span className="mx-3 text-slate-500">or</span>
-              <hr className="w-full border-slate-600" />
-            </div> */}
-
-            {/* <AccessTokenForm onSubmit={onSubmit} />
-
-      <div className="my-3 flex items-center px-3">
-        <hr className="w-full border-slate-600" />
-        <span className="mx-3 text-slate-500">or</span>
-        <hr className="w-full border-slate-600" />
-      </div>
-
-
-<p className="text-black">
-              You can <a href="/earn">earn</a>
-            </p> */}
-
-            {privacyPolicy}
-          </div>
-        </Modal.Body>
-      </Modal>
     </>
+
+    //       {/* Modal */}
+    //       <Modal
+    //         show={show}
+    //         size="md"
+    //         popup={true}
+    //         onClose={onClose}
+
+    //         // See: https://github.com/shorwood/tailwindcss-unsplash
+    //         // style={{
+    //         //   backgroundImage: "url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809')",
+    //         // }}
+
+    //         // className={styles.modalContainer}
+    //       >
+    //         <Modal.Header
+    //         // className={styles.modalContainer}
+    //         // className="prose rounded-t px-4 py-2"
+    //         // className="prose"
+    //         >
+    //           {/* <div className="px-6 py-4 border-b rounded-t dark:border-gray-600">
+    //                 <h3 className="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+    //                     Connect wallet
+    //                 </h3>
+    //             </div> */}
+
+    //           <div className="prose p-2">Join the Waitlist</div>
+    //           {/* Request Access */}
+
+    //           {/* <div className="rounded-t border-b px-4 py-2 dark:border-gray-600">
+    //             <span className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-xl font-black text-transparent">
+    //               Request Access
+    //             </span>
+    //           </div> */}
+    //         </Modal.Header>
+
+    //         <Modal.Body className={styles.modalBody}>
+    //           <div
+    //           // className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8"
+    //           >
+    //             {/* <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+    //           Request Access
+    //         </h3> */}
+
+    //             {/* <h3 className="animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-xl font-black">
+    //               Request Access
+    //             </h3> */}
+
+    //             {/* <p className="mt-2 text-sm text-gray-500 dark:text-gray-400"> */}
+    //             {/* <p className="mt-2 text-sm"></p>
+    //               We're so excited to get to know you!
+    //             </p> */}
+
+    //             <EmailForm />
+
+    //             {/* <div className="my-3 flex items-center px-3">
+    //               <hr className="w-full border-slate-600" />
+    //               <span className="mx-3 text-slate-500">or</span>
+    //               <hr className="w-full border-slate-600" />
+    //             </div> */}
+
+    //             {/* <AccessTokenForm onSubmit={onSubmit} />
+
+    //       <div className="my-3 flex items-center px-3">
+    //         <hr className="w-full border-slate-600" />
+    //         <span className="mx-3 text-slate-500">or</span>
+    //         <hr className="w-full border-slate-600" />
+    //       </div>
+
+    // <p className="text-black">
+    //               You can <a href="/earn">earn</a>
+    //             </p> */}
+
+    //             {privacyPolicy}
+    //           </div>
+    //         </Modal.Body>
+    //       </Modal>
   )
 }
 

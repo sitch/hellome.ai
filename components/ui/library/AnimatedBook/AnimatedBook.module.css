@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap'); */
 /* * {
   padding: 0;
   margin: 0 auto;
@@ -117,24 +117,19 @@
 }
 @keyframes nextPage {
   0 {
-    /* background-image: url('https://picsum.photos/420/300?random=1'); */
-    background-image: url('/static/images/sitchenko-infant-drawing-bw.png');
+    background-image: url('https://picsum.photos/420/300?random=1');
   }
   20 {
-    /* background-image: url('https://picsum.photos/420/300?random=2'); */
-    background-image: url('/static/images/sitchenko-infant-drawing-bw.png');
+    background-image: url('https://picsum.photos/420/300?random=2');
   }
   40 {
-    /* background-image: url('https://picsum.photos/420/300?random=3'); */
-    background-image: url('/static/images/sitchenko-infant-drawing-bw.png');
+    background-image: url('https://picsum.photos/420/300?random=3');
   }
   60 {
-    /* background-image: url('https://picsum.photos/420/300?random=4'); */
-    background-image: url('/static/images/sitchenko-infant-drawing-bw.png');
+    background-image: url('https://picsum.photos/420/300?random=4');
   }
   80 {
-    /* background-image: url('https://picsum.photos/420/300?random=5'); */
-    background-image: url('/static/images/sitchenko-infant-drawing-bw.png');
+    background-image: url('https://picsum.photos/420/300?random=5');
   }
 }
 .gap {

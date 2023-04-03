@@ -1,13 +1,4 @@
-// Declarations for modules without types
-// declare module 'next-themes'
-
-// declare module '*module.css' {
-//   const styles: {
-//     [className: string]: string
-//   }
-//   export default styles
-// }
-
+// Declarations for `process.env`
 declare namespace NodeJS {
   export interface ProcessEnv {
     // Next.js
@@ -27,3 +18,8 @@ declare namespace NodeJS {
     GOOGLE_RECAPTCHA_V2_SECRET_KEY: string
   }
 }
+
+// Declarations for modules without types
+declare module 'flowbite/plugin'
+declare module 'flowbite-typography'
+declare module 'next-compose-plugins'

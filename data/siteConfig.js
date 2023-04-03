@@ -1,6 +1,6 @@
 // @ts-check
 
-const nextI18nextConfig = require('@/next-i18next.config')
+const nextI18nextConfig = require('../next-i18next.config')
 
 const twitter = 'hellomebooks'
 const instagram = 'hellomebooks'

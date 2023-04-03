@@ -65,7 +65,7 @@ export const AboutUs = ({ title, description, values }: AboutUsProps) => {
 
       <div className="relative px-4 sm:px-0">
         <div className="absolute inset-0 h-1/2 bg-gray-100" />
-        <div className="relative mx-auto grid divide-y overflow-hidden rounded bg-white shadow sm:max-w-screen-sm sm:grid-cols-3 sm:divide-y-0 sm:divide-x lg:max-w-screen-md">
+        <div className="relative mx-auto grid divide-y overflow-hidden rounded bg-white shadow sm:max-w-screen-sm sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:max-w-screen-md">
           {values.map((props, index) => (
             <AboutUsValue key={index} {...props} />
           ))}

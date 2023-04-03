@@ -24,11 +24,11 @@ export const Feature = ({
       </div>
     </div>
     <div>
-      <h6 className="mb-3 text-xl font-bold leading-5">{title}</h6>
+      <h2 className="mb-3 text-xl font-bold leading-5">{title}</h2>
       <p className="mb-3 text-sm text-gray-900">{description}</p>
       <Link
         href="/"
-        aria-label=""
+        aria-label={title}
         className="inline-flex items-center font-semibold text-deep-purple-accent-400 transition-colors duration-200 hover:text-deep-purple-800"
       >
         {action.label}
