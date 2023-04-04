@@ -101,32 +101,34 @@ const Landing = (
       <main data-cy="LandingPage">
         <section className={styles.section}>
           <Hero
-            title={t('landing:headline.title')}
-            subtitle={t('landing:headline.subtitle')}
-          />
-          <Features
-            features={[
-              {
-                ...t('product:features.Feature1', { returnObjects: true }),
-                icon: <FontAwesomeIcon icon={faFingerprint} />,
-              },
-              {
-                ...t('product:features.Feature2', { returnObjects: true }),
-                icon: <FontAwesomeIcon icon={faLock} />,
-              },
-              {
-                ...t('product:features.Feature3', { returnObjects: true }),
-                icon: <FontAwesomeIcon icon={faPalette} />,
-              },
-              {
-                ...t('product:features.Feature4', { returnObjects: true }),
-                icon: <FontAwesomeIcon icon={faPenNib} />,
-              },
-            ]}
+          // title={t('landing:headline.title')}
+          // subtitle={t('landing:headline.subtitle')}
           />
         </section>
         <section className={styles.section}>
-          <AboutUs
+          <Features
+          // features={[
+          //   {
+          //     ...t('product:features.Feature1', { returnObjects: true }),
+          //     icon: <FontAwesomeIcon icon={faFingerprint} />,
+          //   },
+          //   {
+          //     ...t('product:features.Feature2', { returnObjects: true }),
+          //     icon: <FontAwesomeIcon icon={faLock} />,
+          //   },
+          //   {
+          //     ...t('product:features.Feature3', { returnObjects: true }),
+          //     icon: <FontAwesomeIcon icon={faPalette} />,
+          //   },
+          //   {
+          //     ...t('product:features.Feature4', { returnObjects: true }),
+          //     icon: <FontAwesomeIcon icon={faPenNib} />,
+          //   },
+          // ]}
+          />
+        {/* </section> */}
+        {/* <section className={styles.section}> */}
+          {/* <AboutUs
             title={t('company:about.title')}
             description={t('company:about.description')}
             values={[
@@ -143,7 +145,7 @@ const Landing = (
                 icon: <FontAwesomeIcon icon={faHandsHoldingChild} />,
               },
             ]}
-          />
+          /> */}
 
           <HowDoesItWork
             title={t('onboarding:title')}
@@ -164,7 +166,7 @@ const Landing = (
             ]}
           />
         </section>
-        <Pricing />
+        {/* <Pricing /> */}
         {/* <Reviews /> */}
         <FAQ
           icon={<FontAwesomeIcon icon={faPersonCircleQuestion} />}
@@ -177,8 +179,8 @@ const Landing = (
           <Subscribe />
         </section> */}
         <Footer
-          description={t('footer:description')}
-          sections={t('footer:sections', { returnObjects: true })}
+        // description={t('footer:description')}
+        // sections={t('footer:sections', { returnObjects: true })}
         />
       </main>
     </>

@@ -2,13 +2,18 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemote } from 'next-mdx-remote'
 import Layout from '@/components/mdx/Layout'
 import { MDXPageProps, processMDXPage, listEntries } from '@/lib/mdx'
-import { site } from '@/data/siteConfig'
-import { NextSeo } from 'next-seo'
-import { castArticleSEOProps } from '@/next-seo.config'
 import ArticlePage from '@/components/mdx/blog/articles/ArticlePage'
-import { Article, ArticleSource, castArticle } from '@/lib/mdx/types'
+import {
+  Article,
+  ArticleSource,
+  AuthorSource,
+  castArticle,
+} from '@/lib/mdx/types'
 import { ParsedUrlQuery } from 'querystring'
-// import type { RoutedQuery } from "nextjs-routes";
+import { ArticleSEO } from '@/components/seo/ArticleSEO'
+import { DefaultArticleSEO } from '@/components/seo/DefaultArticleSEO'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import i18NextConfig from '@/next-i18next.config'
 
 type Props = MDXPageProps<ArticleSource> & {
   article: Article
@@ -19,12 +24,10 @@ type Params = ParsedUrlQuery & {
 }
 
 const Page: NextPage<Props> = ({ source, article }: Props) => {
-  // const title = `${article.title} | ${site.name}`
-
   return (
     <Layout>
-      {/* <NextSeo {...castArticleSEOProps(article)} /> */}
-
+      <DefaultArticleSEO />
+      <ArticleSEO article={article} />
       <ArticlePage article={article}>
         <MDXRemote {...source} />
       </ArticlePage>
@@ -42,13 +45,20 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
+  locale = i18NextConfig.i18n.defaultLocale,
   params,
 }) => {
-  const mdx = await processMDXPage<ArticleSource>('blog/articles', params!.slug)
+  const slug = params!.slug
+  const mdx = await processMDXPage<ArticleSource>('blog/articles', slug)
+  const { data } = await processMDXPage<AuthorSource>(
+    'blog/authors',
+    mdx.data.authorHandle
+  )
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['articles', 'footer'])),
       ...mdx,
-      article: castArticle(mdx.data),
+      article: castArticle({ ...mdx.data, slug }, [data]),
     },
   }
 }

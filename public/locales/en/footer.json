@@ -54,6 +54,7 @@
           "href": {
             "pathname": "/blog"
           },
+          "aria-label": "Blog",
           "children": "Blog"
         },
         {
@@ -99,7 +100,7 @@
       ]
     },
     "policies": {
-      "title": "Policies",
+      "title": "Legal",
       "links": [
         {
           "href": {
@@ -154,7 +155,7 @@
       ]
     },
     "learn": {
-      "title": "Get in Touch",
+      "title": "Support",
       "links": [
         {
           "href": {

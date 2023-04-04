@@ -22,10 +22,16 @@ module.exports = {
     },
     sections: {
       tech: {
+        name: 'AI & Technology',
         theme: {
           color: '#000000',
         },
-        tags: [],
+        tags: [
+          {
+            name: 'AI',
+            color: '#000000',
+          },
+        ],
       },
     },
 

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Book } from '@/components/ui/library/Book/Book'
+import { Book } from '@/components/books/Book/Book'
 import { ArrowRightIcon, DotTextureIcon } from './icons'
 import { ReactNode } from 'react'
 

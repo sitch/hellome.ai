@@ -75,6 +75,15 @@ const nextConfig = {
       preventFullImport: true,
     },
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/blog/articles',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {

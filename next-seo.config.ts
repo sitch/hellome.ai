@@ -46,8 +46,8 @@
 //   type: 'website',
 //   locale,
 //   url: url,
-//   title: title,
-//   description: description,
+//   title,
+//   description,
 //   images: [
 //     {url: `${site.url}/open-graph/${locale}/og_homepage_3200x1400.png`, alt: title, width: 3200, height: 1400,},
 //     {url: `${site.url}/open-graph/${locale}/og_homepage_1200x630.png`, alt: title, width: 1200, height: 630,},
@@ -61,17 +61,18 @@
 //   type: 'website',
 //   locale,
 //   url: url,
-//   title: title,
-//   description: description,
+//   title,
+//   description,
 //   images: [
 //     {url: `${site.url}/open-graph/${locale}/og_article_3200x1400.png`, alt: title, width: 3200, height: 1400,},
 //     {url: `${site.url}/open-graph/${locale}/og_article_1200x630.png`, alt: title, width: 1200, height: 630,},
 //   ],
 // })
 
-import { DefaultSeoProps } from 'next-seo'
+import { DefaultSeoProps, NextSeoProps } from 'next-seo'
 import { site, social } from '@/data/siteConfig'
 import { uniq } from 'lodash'
+import { Article } from './lib/mdx/types'
 
 const defaultSEOWebsiteProps: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name}`,
@@ -156,14 +157,14 @@ export const castArticleSEOProps = ({
   summary,
   slug,
   locale,
-  locales,
+  locales = [],
   section,
   tags = [],
   publishedAt,
   modifiedAt,
   expirationAt,
-  authors,
-}: BlogPost): DefaultSeoProps => {
+  authors = [],
+}: Article): NextSeoProps => {
   const url = `${site.url}/blog/${slug}`
 
   return {
@@ -171,7 +172,9 @@ export const castArticleSEOProps = ({
     title,
     description: summary,
     canonical: url,
-    themeColor: site.sections[section]?.theme?.color ?? site.theme.color,
+    themeColor: section
+      ? site.sections[section]?.theme?.color ?? site.theme.color
+      : site.theme.color,
     languageAlternates: locales.map((locale: string) => ({
       hrefLang: locale,
       href: `${site.url}/${locale}/blog/${slug}`,
@@ -180,7 +183,7 @@ export const castArticleSEOProps = ({
       type: 'article',
       locale,
       url,
-      title: title,
+      title,
       description: summary,
       images: [
         {
@@ -199,7 +202,12 @@ export const castArticleSEOProps = ({
       article: {
         section,
         authors: authors.map((handle) => `${site.url}/authors/${handle}`),
-        tags: uniq([...(site.sections[section]?.tags ?? []), ...tags]),
+        tags: uniq([
+          ...(section
+            ? site.sections[section]?.tags.map(({ name }) => name) ?? []
+            : []),
+          ...tags,
+        ]),
         ...(publishedAt
           ? { publishedTime: new Date(publishedAt).toISOString() }
           : {}),
@@ -232,8 +240,8 @@ const article = ({
   type: 'website',
   locale,
   url: url,
-  title: title,
-  description: description,
+  title,
+  description,
   images: [
     {
       url: `${site.url}/open-graph/${locale}/og_article_3200x1400.png`,

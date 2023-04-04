@@ -103,6 +103,7 @@ class MyDocument extends Document {
         <body className="loading">
           <Main />
           <NextScript />
+          {/* </div> */}
         </body>
       </Html>
     )

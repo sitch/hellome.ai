@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   return {
     props: {
       authors,
-      ...(await serverSideTranslations(locale, ['authors'])),
+      ...(await serverSideTranslations(locale, ['authors', 'footer'])),
     },
   }
 }

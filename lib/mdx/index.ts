@@ -75,22 +75,47 @@ export async function processMDXPage<T>(
   }
 }
 
-export async function processMDXAuthors(section: Section): Promise<Author[]> {
+export async function listAuthorSources(): Promise<AuthorSource[]> {
+  const section = 'blog/authors'
   const handles = listEntries(section)
   const promises = handles.map(async (handle) => {
     const { data } = await processMDXPage<AuthorSource>(section, handle)
-    return castAuthor(data)
+    return data
   })
-
   return await Promise.all(promises)
 }
 
-export async function processMDXArticles(section: Section): Promise<Article[]> {
-  const titles = listEntries(section)
-  const promises = titles.map(async (handle) => {
+export async function listArticleSources(): Promise<ArticleSource[]> {
+  const section = 'blog/articles'
+  const handles = listEntries(section)
+  const promises = handles.map(async (handle) => {
     const { data } = await processMDXPage<ArticleSource>(section, handle)
-    return castArticle(data)
+    return data
   })
-
   return await Promise.all(promises)
+}
+
+export async function processMDXAuthors(section: Section): Promise<Author[]> {
+  const authorSources = await listAuthorSources()
+  const articleSources = await listArticleSources()
+
+  return authorSources.map((data) => {
+    const articles = articleSources.filter(
+      ({ authorHandle }) => authorHandle === data.handle
+    )
+    return castAuthor(data, articles)
+  })
+}
+
+export async function processMDXArticles(section: Section): Promise<Article[]> {
+  const authorSources = await listAuthorSources()
+  const articleSources = await listArticleSources()
+
+  return articleSources.map((data) => {
+    const authors = authorSources.filter(
+      ({ handle }) => handle === data.authorHandle
+    )
+
+    return castArticle(data, authors)
+  })
 }

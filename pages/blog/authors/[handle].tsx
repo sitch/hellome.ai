@@ -1,13 +1,19 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemote } from 'next-mdx-remote'
 import Layout from '@/components/mdx/Layout'
-import { MDXPageProps, processMDXPage, listEntries } from '@/lib/mdx'
-import { site } from '@/data/siteConfig'
-import { NextSeo } from 'next-seo'
-// import { castAuthorSEOProps } from '@/next-seo.config'
+import {
+  MDXPageProps,
+  processMDXPage,
+  listEntries,
+  listArticleSources,
+} from '@/lib/mdx'
 import AuthorPage from '@/components/mdx/blog/authors/AuthorPage'
 import { Author, AuthorSource, castAuthor } from '@/lib/mdx/types'
 import { ParsedUrlQuery } from 'querystring'
+import { DefaultAuthorSEO } from '@/components/seo/DefaultAuthorSEO'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+// import { AuthorSEO } from '@/components/seo/AuthorSEO'
+import i18NextConfig from '@/next-i18next.config'
 
 type Props = MDXPageProps<AuthorSource> & {
   author: Author
@@ -20,8 +26,8 @@ type Params = ParsedUrlQuery & {
 const Page: NextPage<Props> = ({ source, author }: Props) => {
   return (
     <Layout>
-      {/* <NextSeo {...castAuthorSEOProps(author)} /> */}
-
+      <DefaultAuthorSEO />
+      {/* <AuthorSEO author={author} /> */}
       <AuthorPage author={author}>
         <MDXRemote {...source} />
       </AuthorPage>
@@ -39,13 +45,20 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
+  locale = i18NextConfig.i18n.defaultLocale,
   params,
 }) => {
-  const mdx = await processMDXPage<AuthorSource>('blog/authors', params!.handle)
+  const handle = params!.handle
+  const mdx = await processMDXPage<AuthorSource>('blog/authors', handle)
+  const articles = await listArticleSources()
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['authors', 'footer'])),
       ...mdx,
-      author: castAuthor(mdx.data),
+      author: castAuthor(
+        { ...mdx.data, handle },
+        articles.filter(({ authorHandle }) => authorHandle === mdx.data.handle)
+      ),
     },
   }
 }

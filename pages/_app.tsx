@@ -12,10 +12,9 @@ import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { Analytics } from '@vercel/analytics/react'
 import { GoogleAnalytics, event, pageView } from 'nextjs-google-analytics'
-import { useRouter } from 'next/router'
 import { config } from '@fortawesome/fontawesome-svg-core'
-import { DefaultSeo } from 'next-seo'
-import SEO from '@/next-seo.config'
+
+import { DefaultWebsiteSEO } from '@/components/seo/DefaultWebsiteSEO'
 
 // Tell Font Awesome to skip adding the CSS automatically
 // since it's already imported above
@@ -68,7 +67,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <DefaultSeo {...SEO} />
+      <DefaultWebsiteSEO />
+
       <Head>
         {/* <meta
           name="viewport"

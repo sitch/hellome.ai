@@ -5,16 +5,15 @@
 }
 
 .space {
-  /* background-image: url('/images/space.gif'); */
+  background-color: black;
+  background-image: url('/images/space.gif');
 }
 
 @media (prefers-reduced-motion: reduce) {
   .space {
-    background-image: none;
     background-color: black;
   }
 }
-
 .video {
   height: 100px;
   width: 100px;

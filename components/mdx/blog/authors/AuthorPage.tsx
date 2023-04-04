@@ -1,6 +1,7 @@
 import { Author } from '@/lib/mdx/types'
 import { ReactNode } from 'react'
 import * as Media from '@/components/mdx/ui/Media'
+import { ArticleListItem } from '../articles/ArticleListItem'
 
 type AuthorPageProps = {
   author: Author
@@ -14,19 +15,15 @@ const AuthorPage = ({ author, children }: AuthorPageProps) => {
         <div className="container mx-auto flex flex-col px-5 py-24">
           <div className="mx-auto lg:w-4/6">
             <div className="h-64 overflow-hidden rounded-lg">
-              <img
-                alt="content"
+              <Media.Img
                 className="h-full w-full object-cover object-center"
-                // src="https://dummyimage.com/1200x500"
+                alt={author.name}
                 src={author.photo}
+                // width={255.994}
+                // height={826.626}
+                height={1024}
+                width={1280}
               />
-              {/* <Media.ResponsiveImage */}
-              {/* <Media.Img
-              src={author.photo}
-              alt={`photo of ${author.name}`}
-              height={64}
-              width={1280}
-            /> */}
             </div>
             <div className="mt-10 flex flex-col sm:flex-row">
               <div className="text-center sm:w-1/3 sm:py-8 sm:pr-8">
@@ -58,7 +55,14 @@ const AuthorPage = ({ author, children }: AuthorPageProps) => {
                   <h2 className="title-font mt-4 text-lg font-medium text-gray-900">
                     {author.name}
                   </h2>
+
+                  {/* Line under author name */}
                   <div className="mb-4 mt-2 h-1 w-12 rounded bg-indigo-500"></div>
+
+                  {/* <p className="m-0 p-0 text-base text-gray-700">
+                    {author.location}
+                  </p> */}
+
                   <p className="text-base">{author.title}</p>
                 </div>
               </div>
@@ -66,22 +70,27 @@ const AuthorPage = ({ author, children }: AuthorPageProps) => {
                 <div className="format mb-4 text-lg leading-relaxed">
                   {children}
                 </div>
-                {/* <a className="inline-flex items-center text-indigo-500">
-                  Learn More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="ml-2 h-4 w-4"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container mx-auto flex flex-col px-5 py-24">
+          <div className="mx-auto lg:w-4/6">
+            {/* <h2 className="title-font mt-4 text-lg font-medium text-gray-900">
+              Articles
+            </h2> */}
+
+            {author.articles?.map((article) => (
+              <ArticleListItem
+                key={article.slug}
+                author={author}
+                article={article}
+                displayAuthorSection={false}
+              />
+            ))}
           </div>
         </div>
       </section>

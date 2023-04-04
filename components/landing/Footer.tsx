@@ -78,44 +78,55 @@ function FooterSection({ title, links }: FooterSectionProps) {
   )
 }
 
-export type FooterProps = {
-  description: string
-  sections: {
-    customer: FooterSectionProps
-    company: FooterSectionProps
-    policies: FooterSectionProps
-    learn: FooterSectionProps
-  }
-}
-export const Footer = ({ description, sections }: FooterProps) => {
-  return (
-    <div className="mx-auto px-4 pt-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
-      <div className="row-gap-10 mb-8 grid gap-16 lg:grid-cols-6">
-        <div className="md:max-w-md lg:col-span-2">
-          <Link
-            href="/"
-            aria-label="Go home"
-            title="Company"
-            className="inline-flex items-center"
-          >
-            <LogoIcon />
-            <span className="ml-2 text-xl font-bold uppercase tracking-wide text-gray-800">
-              {business.dba}
-            </span>
-          </Link>
-          <div className="mt-4 lg:max-w-sm">
-            <p className="text-sm text-gray-800">{description}</p>
-            <p className="mt-4 text-sm text-gray-800">{`v${pkg.version}`}</p>
+// export type FooterProps = {
+//   description: string
+//   sections: {
+//     customer: FooterSectionProps
+//     company: FooterSectionProps
+//     policies: FooterSectionProps
+//     learn: FooterSectionProps
+//   }
+// }
+
+export const Footer = () =>
+  // { description, sections }: FooterProps
+  {
+    const { t, ready } = useTranslation('footer')
+
+    if (!ready) {
+      return null
+    }
+
+    const sections = t('footer:sections', { returnObjects: true })
+
+    return (
+      <div className="mx-auto px-4 pt-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+        <div className="row-gap-10 mb-8 grid gap-16 lg:grid-cols-6">
+          <div className="md:max-w-md lg:col-span-2">
+            <Link
+              href="/"
+              aria-label="Go home"
+              title="Company"
+              className="inline-flex items-center"
+            >
+              <LogoIcon />
+              <span className="ml-2 text-xl font-bold uppercase tracking-wide text-gray-800">
+                {business.dba}
+              </span>
+            </Link>
+            <div className="mt-4 lg:max-w-sm">
+              <p className="text-sm text-gray-800">{t('footer:description')}</p>
+              <p className="mt-4 text-sm text-gray-800">{`v${pkg.version}`}</p>
+            </div>
+          </div>
+          <div className="row-gap-8 grid grid-cols-2 gap-5 md:grid-cols-4 lg:col-span-4">
+            <FooterSection {...sections.customer} />
+            <FooterSection {...sections.company} />
+            <FooterSection {...sections.policies} />
+            <FooterSection {...sections.learn} />
           </div>
         </div>
-        <div className="row-gap-8 grid grid-cols-2 gap-5 md:grid-cols-4 lg:col-span-4">
-          <FooterSection {...sections.customer} />
-          <FooterSection {...sections.company} />
-          <FooterSection {...sections.policies} />
-          <FooterSection {...sections.learn} />
-        </div>
+        <SocialFooter />
       </div>
-      <SocialFooter />
-    </div>
-  )
-}
+    )
+  }

@@ -77,8 +77,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   const articles = await processMDXArticles('blog/articles')
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['articles', 'footer'])),
       articles,
-      ...(await serverSideTranslations(locale, ['articles'])),
     },
   }
 }

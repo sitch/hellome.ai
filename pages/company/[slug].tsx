@@ -8,6 +8,8 @@ import { castArticleSEOProps } from '@/next-seo.config'
 import { Data } from '@/lib/mdx'
 import { ParsedUrlQuery } from 'querystring'
 import { Heading, Typography } from '@/components/mdx/ui'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import i18NextConfig from '@/next-i18next.config'
 
 type Props = MDXPageProps<Data> & {}
 
@@ -48,11 +50,13 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
+  locale = i18NextConfig.i18n.defaultLocale,
   params,
 }) => {
   const mdx = await processMDXPage<Data>('company', params!.slug)
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['company', 'footer'])),
       ...mdx,
     },
   }

@@ -1,7 +1,11 @@
 import { LinkProps } from 'next/link'
+import { site } from '@/data/siteConfig'
+import { Locale, Query, Route, StaticRoute } from 'nextjs-routes'
 
 export type Slug = string
 export type Handle = string
+
+export type LocaleCode = Locale
 
 // export type MDXType = 'article' | 'author' | 'policy'
 export type Section =
@@ -16,18 +20,115 @@ export type AuthorSource = {
   startDate: string
   photo: string
   name: string
-  title: string
+  title?: string
+  gender: string
+  about: string
+  location: string
+  color?: string
 }
+
+export type Author = AuthorSource & {
+  route: Exclude<LinkProps['href'], Query | StaticRoute<'blog/authors'>>
+  articles?: Article[]
+  social?: {
+    facebook?: {
+      id: string
+      url: string
+    }
+    twitter?: {
+      id: string
+      handle: string
+      url: string
+    }
+    instagram?: {
+      id: string
+      handle: string
+      url: string
+    }
+  }
+  // category: string
+  locale?: LocaleCode
+  locales?: LocaleCode[]
+  // section?: BlogSection
+  // tags?: BlogTag[]
+  modifiedAt?: string
+  // expirationAt?: string
+  // authors?: Author[]
+  firstName: string
+  lastName: string
+  url: string
+}
+
+export const castAuthor = (
+  author: AuthorSource,
+  articles?: ArticleSource[]
+): Author => {
+  const name = author.name.trim()
+  const nameParts = author.name.trim().split(/\s+/)
+
+  return {
+    ...author,
+    name,
+    firstName: nameParts.slice(0).join(''),
+    lastName: nameParts.length >= 2 ? nameParts.slice(-1).join('') : '',
+    url: `/blog/authors/${author.handle}`,
+    route: {
+      pathname: '/blog/authors/[handle]',
+      query: { handle: author.handle },
+    },
+    ...(articles
+      ? { articles: articles.map((article) => castArticle(article)) }
+      : {}),
+  }
+}
+
+export type BlogTag = string
+export type BlogSection = keyof typeof site.sections
 
 export type ArticleSource = {
   slug: string
   publishedAt: string
   photo: string
   authorHandle: string
-  authorName: string
-  authorTitle: string | undefined
   title: string
   summary: string
+  draft?: boolean
+}
+
+export type Article = ArticleSource & {
+  route: Exclude<LinkProps['href'], Query | StaticRoute<'blog/articles'>>
+  category: string
+  locale?: LocaleCode
+  locales?: LocaleCode[]
+  section?: BlogSection
+  tags?: BlogTag[]
+  modifiedAt?: string
+  expirationAt?: string
+  author?: Author
+  authors?: Author[]
+  url: string
+}
+
+export const castArticle = (
+  article: ArticleSource,
+  authors?: AuthorSource[]
+): Article => {
+  return {
+    ...article,
+    draft: article.draft ?? false,
+    url: `/blog/articles/${article.slug}`,
+    route: {
+      pathname: '/blog/articles/[slug]',
+      query: { slug: article.slug },
+    },
+    category: 'AI & Technology',
+    ...(authors
+      ? { author: authors.map((author) => castAuthor(author))[0] }
+      : {}),
+    ...(authors
+      ? { authors: authors.map((author) => castAuthor(author)) }
+      : {}),
+  }
 }
 
 export type PolicySource = {
@@ -38,61 +139,6 @@ export type PolicySource = {
   description: string
 }
 
-export type Author = AuthorSource & {
-  url: LinkProps['href']
-  articles?: Article[]
-  social?: {
-    facebook?: {
-      url: string
-    }
-    twitter?: {
-      url: string
-    }
-    instagram?: {
-      url: string
-    }
-  }
-}
-
-export type Article = ArticleSource & {
-  url: LinkProps['href']
-  author: Author
-  category: string
-}
-
 export type Policy = PolicySource & {
   // types
-}
-
-export const castAuthor = (author: AuthorSource): Author => {
-  return {
-    ...author,
-    url: {
-      pathname: '/blog/authors/[handle]',
-      query: { handle: author.handle },
-    },
-    articles: [],
-  }
-}
-
-export const castArticle = (article: ArticleSource): Article => {
-  return {
-    ...article,
-    url: {
-      pathname: '/blog/articles/[slug]',
-      query: { slug: article.slug },
-    },
-    category: 'AI & Technology',
-    author: {
-      url: {
-        pathname: '/blog/authors/[handle]',
-        query: { handle: article.authorHandle },
-      },
-      handle: article.authorHandle,
-      name: article.authorName,
-      title: article.authorTitle ?? '',
-      photo: '',
-      startDate: '',
-    },
-  }
 }
