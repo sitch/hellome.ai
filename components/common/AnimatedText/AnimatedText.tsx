@@ -3,19 +3,19 @@ import styles from './AnimatedText.module.css'
 
 export type AnimatedTextTheme = 'space'
 
-interface AnimatedTextProps {
+type AnimatedTextProps = {
   theme: AnimatedTextTheme
   children: string
   className?: string
   hide?: boolean
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({
+const AnimatedText = ({
   theme,
   children,
   className,
   hide,
-}) => {
+}: AnimatedTextProps) => {
   const rootClassName = cn(
     styles.root,
     styles[theme],

@@ -23,7 +23,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
         <div className="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0">
           <div className="relative flex flex-wrap items-center justify-between gap-6 lg:gap-0 lg:py-4">
             <div className="relative z-20 flex w-full justify-between md:px-0 lg:w-max">
-              <a
+              <Link
                 href="/"
                 aria-label="logo"
                 className="flex items-center space-x-2"
@@ -64,7 +64,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                     </clipPath>
                   </defs>
                 </svg>
-              </a>
+              </Link>
               <button
                 aria-label="humburger"
                 id="hamburger"
@@ -149,7 +149,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="transistion relative m-auto hidden h-5 w-5 fill-gray-500 duration-300 group-hover:rotate-180 group-hover:fill-yellow-400 dark:block dark:fill-gray-300"
+                  className="relative m-auto hidden h-5 w-5 fill-gray-500 transition duration-300 group-hover:rotate-180 group-hover:fill-yellow-400 dark:block dark:fill-gray-300"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -161,7 +161,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                 </svg>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="transistion relative m-auto h-5 w-5 fill-gray-500 duration-300 group-hover:-rotate-90 group-hover:fill-blue-900 dark:hidden"
+                  className="relative m-auto h-5 w-5 fill-gray-500 transition duration-300 group-hover:-rotate-90 group-hover:fill-blue-900 dark:hidden"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -176,7 +176,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="transistion relative m-auto hidden h-5 w-5 fill-gray-500 duration-300 group-hover:rotate-180 group-hover:fill-yellow-400 dark:block dark:fill-gray-300"
+                  className="relative m-auto hidden h-5 w-5 fill-gray-500 transition duration-300 group-hover:rotate-180 group-hover:fill-yellow-400 dark:block dark:fill-gray-300"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -188,7 +188,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                 </svg>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="transistion relative m-auto h-5 w-5 fill-gray-500 duration-300 group-hover:-rotate-90 group-hover:fill-blue-900 dark:hidden"
+                  className="relative m-auto h-5 w-5 fill-gray-500 transition duration-300 group-hover:-rotate-90 group-hover:fill-blue-900 dark:hidden"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
