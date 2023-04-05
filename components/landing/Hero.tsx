@@ -38,7 +38,6 @@ export const Hero = () =>
       <div className=" mx-auto flex max-w-2xl flex-col items-center justify-center px-4 pt-16 sm:max-w-xl md:max-w-2xl md:px-8 lg:pt-32">
         <BrandLogo size="small" />
 
-
         <br />
         <br />
         <div className=" prose mb-10 max-w-xl text-gray-800 sm:text-center md:mx-auto md:mb-12 lg:max-w-2xl">
