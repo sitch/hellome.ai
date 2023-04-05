@@ -126,8 +126,8 @@ const Landing = (
           //   },
           // ]}
           />
-        {/* </section> */}
-        {/* <section className={styles.section}> */}
+          {/* </section> */}
+          {/* <section className={styles.section}> */}
           {/* <AboutUs
             title={t('company:about.title')}
             description={t('company:about.description')}
