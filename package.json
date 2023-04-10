@@ -87,7 +87,7 @@
     "@types/mjml-react": "^2.0.6",
     "@types/node": "18.15.3",
     "@types/nodemailer": "^6.4.7",
-    "@types/react": "18.0.28",
+    "@types/react": "18.0.34",
     "@types/react-dom": "18.0.11",
     "@types/request-ip": "^0.0.37",
     "@types/testing-library__jest-dom": "^5.14.5",
