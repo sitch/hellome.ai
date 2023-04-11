@@ -32,7 +32,7 @@ const openGraphForArticle = (article: Article): OpenGraph => {
 
   const url = urlForArticle(article)
   const authors = (article.authors ?? []).map(
-    (handle) => `${site.url}/authors/${handle}`
+    ({ handle }) => `${site.url}/authors/${handle}`
   )
 
   const sectionTags = section
@@ -96,6 +96,7 @@ export const ArticleSEO = ({ article }: ArticleSEOProps) => {
     hrefLang: locale,
     href: urlForArticle(article, locale),
   }))
+
   return (
     <NextSeo
       title={title}

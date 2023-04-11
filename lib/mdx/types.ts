@@ -5,7 +5,24 @@ import { Locale, Query, Route, StaticRoute } from 'nextjs-routes'
 export type Slug = string
 export type Handle = string
 
-export type LocaleCode = Locale
+export type LocaleCode = string
+
+export type SocialMedia = {
+  facebook?: {
+    id: string
+    url: string
+  }
+  twitter?: {
+    id: string
+    handle: string
+    url: string
+  }
+  instagram?: {
+    id: string
+    handle: string
+    url: string
+  }
+}
 
 // export type MDXType = 'article' | 'author' | 'policy'
 export type Section =
@@ -30,22 +47,7 @@ export type AuthorSource = {
 export type Author = AuthorSource & {
   route: Exclude<LinkProps['href'], Query | StaticRoute<'blog/authors'>>
   articles?: Article[]
-  social?: {
-    facebook?: {
-      id: string
-      url: string
-    }
-    twitter?: {
-      id: string
-      handle: string
-      url: string
-    }
-    instagram?: {
-      id: string
-      handle: string
-      url: string
-    }
-  }
+  social?: SocialMedia
   // category: string
   locale?: LocaleCode
   locales?: LocaleCode[]
