@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// TODO REMOVE
+// -----------------------------------------------------------------------------
+
+model User {
+  id           String      @id @default(cuid())
+  Role         Role?       @relation(fields: [roleId], references: [id])
+  roleId       String?
+  Permission   Permission? @relation(fields: [permissionId], references: [id])
+  permissionId String?
+  Acl          Acl[]
+}
+
+// -----------------------------------------------------------------------------
+// Permissions
+// -----------------------------------------------------------------------------
+
+enum RoleName {
+  // ADMIN
+  CUSTOMER
+  AUTHOR
+  ARTIST
+  // DEVELOPER
+}
+
+model Role {
+  id          String       @id @default(cuid())
+  name        RoleName     @unique
+  permissions Permission[]
+  users       User[]
+
+  @@map(name: "roles")
+}
+
+enum Action {
+  create
+  read
+  update
+  delete
+  manage
+}
+
+enum Subject {
+  User
+  Acl
+  Role
+  Permission
+
+  Concept
+  SwellAPI__RENAME
+
+  // Account
+  // Session
+  // VerificationToken
+  //
+  // Topic
+  // Comment
+  // Tag
+  //
+  // AuditLog
+}
+
+model Permission {
+  id         String  @id @default(cuid())
+  roleId     String  @map(name: "role_id")
+  action     Action
+  subject    Subject
+  conditions Json[]
+  role       Role    @relation(fields: [roleId], references: [id])
+  users      User[]
+
+  @@unique([action, subject, roleId])
+  @@map(name: "permissions")
+}
+
+model Acl {
+  id        String  @id @default(cuid())
+  action    Action
+  subject   Subject
+  subjectId String  @map(name: "subject_id")
+  userId    String  @map(name: "user_id")
+  user      User    @relation(fields: [userId], references: [id])
+
+  @@unique([action, subject, subjectId, userId])
+  @@map(name: "acls")
+}

@@ -1,4 +1,4 @@
-import glob from 'glob'
+import {globSync} from 'glob'
 
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -34,7 +34,7 @@ export function sectionDir(section: Section) {
 
 export function listEntries(section: Section) {
   const ext = '.mdx'
-  const files = glob.globSync(`${sectionDir(section)}/*${ext}`)
+  const files = globSync(`${sectionDir(section)}/*${ext}`)
   return files.map((file) => path.basename(file, ext))
 }
 
