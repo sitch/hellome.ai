@@ -1,4 +1,4 @@
-import {globSync} from 'glob'
+import { globSync } from 'glob'
 
 import fs from 'fs'
 import matter from 'gray-matter'

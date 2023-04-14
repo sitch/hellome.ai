@@ -11,7 +11,8 @@ datasource db {
 }
 
 // -----------------------------------------------------------------------------
-// ERD Generators
+// Generators
+// See: https://www.prisma.io/docs/concepts/components/prisma-schema/generators
 // -----------------------------------------------------------------------------
 
 generator erd {

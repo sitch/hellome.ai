@@ -9233,10 +9233,10 @@ magic-string@^0.25.0, magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-mailing-core@^0.9.12:
-  version "0.9.12"
-  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-0.9.12.tgz#af5706282d44a7aec183d568d9e559e256ff13d2"
-  integrity sha512-x8KZT6F6j9EnlL+wM4dEGzipH5RVpHkPrb4XfDPSdzIgevMoHD+s0cgs4DVfHHbBkPfOVNRK1BWNaLDWV8CqHA==
+mailing-core@^0.9.13:
+  version "0.9.13"
+  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-0.9.13.tgz#ed0fea7c5e5a3253b52877435465c986d71d6917"
+  integrity sha512-0Pp/i+qGADfwiEFCPeFtm3Ae8+N3KiG5SmuB43FLfleZ7OLI57kFvIIBQZpsx5sXTtcR/I88ofjuKF4uaN3MJA==
   dependencies:
     chalk "^4.1.2"
     fs-extra "^10.1.0"
@@ -9247,10 +9247,10 @@ mailing-core@^0.9.12:
     open "^8.4.0"
     posthog-node "^2.0.2"
 
-mailing@^0.9.12:
-  version "0.9.12"
-  resolved "https://registry.yarnpkg.com/mailing/-/mailing-0.9.12.tgz#df888f7374c49cb4356d417927c4288a33001829"
-  integrity sha512-zU7d9WMRipZWrULuku8Lw9s+atQkihUDiQTfIt4QGPcAH0mfQyuBLoa+D8R7xhPszAaQJ3LrWrS2s7a6K3T4pw==
+mailing@^0.9.13:
+  version "0.9.13"
+  resolved "https://registry.yarnpkg.com/mailing/-/mailing-0.9.13.tgz#ed87991e8f47b061c0aa464ed66b8e2d3930e81e"
+  integrity sha512-mL3jHFIk8oySX/ZLeyhQHI+dI5GZXYy4Htv/VWX8M98AKbm8vDGzMQT6ft0i2gnQZHMZvOKADHnZEiMGDb+eUA==
   dependencies:
     "@babel/parser" "^7.18.11"
     "@prisma/client" "^4.4.0"
@@ -9281,7 +9281,7 @@ mailing@^0.9.12:
     html-minifier-terser "^7.0.0"
     iron-session "^6.2.1"
     lodash "^4.17.21"
-    mailing-core "^0.9.12"
+    mailing-core "^0.9.13"
     mjml "^4.12.0"
     mjml-react "^2.0.7"
     node-fetch "^2.6.7"

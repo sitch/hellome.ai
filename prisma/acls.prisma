@@ -15,12 +15,14 @@ datasource db {
 // -----------------------------------------------------------------------------
 
 model User {
-  id           String      @id @default(cuid())
-  Role         Role?       @relation(fields: [roleId], references: [id])
-  roleId       String?
-  Permission   Permission? @relation(fields: [permissionId], references: [id])
-  permissionId String?
-  Acl          Acl[]
+  id String @id @default(cuid())
+
+  // *Permissions*
+  acls        Acl[]
+  roles       Role[]
+  permissions Permission[]
+
+  @@map(name: "users")
 }
 
 // -----------------------------------------------------------------------------
@@ -59,7 +61,7 @@ enum Subject {
   Permission
 
   Concept
-  SwellAPI__RENAME
+  SwellCommerce
 
   // Account
   // Session
