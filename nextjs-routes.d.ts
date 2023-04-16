@@ -11,6 +11,7 @@ declare module "nextjs-routes" {
   } from "nextjs";
 
   export type Route =
+    | StaticRoute<"/404">
     | StaticRoute<"/_offline">
     | StaticRoute<"/api/mailer/request-access/email">
     | DynamicRoute<"/blog/articles/[slug]", { "slug": string }>
