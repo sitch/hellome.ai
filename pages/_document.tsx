@@ -1,11 +1,4 @@
-import Document, {
-  DocumentContext,
-  DocumentInitialProps,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 import { site } from '@/data/siteConfig'
 import i18nextConfig from '@/next-i18next.config'
 
@@ -14,8 +7,6 @@ type NewRelicProps = {
 }
 
 class MyDocument extends Document<NewRelicProps> {
-
-
   render() {
     const lang =
       this.props.__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale
