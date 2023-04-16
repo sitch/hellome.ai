@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package",
   "name": "hellome.ai",
   "version": "0.3.1",
   "private": true,
@@ -113,7 +114,10 @@
     "sharp": "^0.32.0",
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
-    "zod": "^3.21.4"
+    "zod": "^3.21.1"
+  },
+  "peerDependencies": {
+    "zod": "3.21.1"
   },
   "dependencies.todo": {
     "@headlessui/react": "^1.7.13",

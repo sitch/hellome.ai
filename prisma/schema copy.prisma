@@ -11,48 +11,6 @@ datasource db {
 }
 
 // -----------------------------------------------------------------------------
-// Generators
-// See: https://www.prisma.io/docs/concepts/components/prisma-schema/generators
-// -----------------------------------------------------------------------------
-
-generator docs {
-  provider = "node node_modules/prisma-docs-generator"
-  output   = "../doc/prisma"
-}
-
-generator erd {
-  provider                  = "prisma-erd-generator"
-  output                    = "../@assets/images/db/ERD.svg"
-  theme                     = "default"
-  includeRelationFromFields = true
-}
-
-generator erd_simple {
-  provider  = "prisma-erd-generator"
-  output    = "../@assets/images/db/ERD.simple.svg"
-  theme     = "default"
-  tableOnly = true
-}
-
-generator zod {
-  provider                         = "zod-prisma-types"
-  output                           = "../@gen/zod" // default is ./generated/zod
-  useMultipleFiles                 = true // default is false
-  createInputTypes                 = true // default is true
-  createModelTypes                 = true // default is true
-  addInputTypeValidation           = true // default is true
-  addIncludeType                   = true // default is true
-  addSelectType                    = true // default is true
-  validateWhereUniqueInput         = true // default is false
-  createOptionalDefaultValuesTypes = true // default is false
-  createRelationValuesTypes        = true // default is false
-  createPartialTypes               = true // default is false
-  useDefaultValidators             = true // default is true
-  coerceDate                       = true // default is true
-  writeNullishInModelTypes         = false // default is false
-}
-
-// -----------------------------------------------------------------------------
 // Concepts
 // -----------------------------------------------------------------------------
 

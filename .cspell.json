@@ -23,6 +23,8 @@
   "ignorePaths": [
     "node_modules/**",
     "data/**",
+    "@gen/**",
+    "doc/**",
     "public/*.map",
     "public/fallback-*.js",
     "public/sw.js",
