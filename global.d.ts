@@ -22,10 +22,9 @@ declare namespace NodeJS {
     DO_SPACES_KEY: string
     DO_SPACES_SECRET: string
 
-    // NewRelic
-    NEW_RELIC_APP_NAME: string
-    NEW_RELIC_INGEST_LICENSE_KEY: string
-    NEW_RELIC_BROWSER_LICENSE_KEY: string
+    // Sentry
+    SENTRY_DSN: string
+    NEXT_PUBLIC_SENTRY_DSN: string
   }
 }
 

@@ -70,7 +70,7 @@
     "@stdlib/datasets-female-first-names-en": "^0.0.9",
     "@stdlib/datasets-male-first-names-en": "^0.0.9",
     "@vercel/analytics": "^0.1.11",
-    "@vercel/og": "^0.5.2",
+    "@vercel/og": "^0.5.3",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
     "crypto": "^1.0.1",

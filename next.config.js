@@ -23,6 +23,7 @@ const analyzeConfig = {
 const withPWA = require('next-pwa')(pwaConfig)
 const withRoutes = require('nextjs-routes/config')()
 const withBundleAnalyzer = require('@next/bundle-analyzer')(analyzeConfig)
+const { withSentryConfig } = require('@sentry/nextjs')
 const i18nextConfig = require('./next-i18next.config')
 
 // // You might need to insert additional domains in script-src if you are using external services
@@ -173,4 +174,37 @@ const nextConfig = {
   },
 }
 
-module.exports = withBundleAnalyzer(withPWA(withRoutes(nextConfig)))
+// See: https://blog.sentry.io/2022/09/27/deploy-your-next-js-application-on-vercel-using-sentry-and-github-actions/
+
+// This file sets a custom webpack configuration to use your Next.js app
+// with Sentry.
+// https://nextjs.org/docs/api-reference/next.config.js/introduction
+// https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+/**
+ * @type {import('@sentry/nextjs').SentryWebpackPluginOptions}
+ **/
+const sentryWebpackPluginOptions = {
+  // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  // the following options are set automatically, and overriding them is not
+  // recommended:
+  //   release, url, org, project, authToken, configFile, stripPrefix,
+  //   urlPrefix, include, ignore
+
+  silent: true, // Suppresses all logs
+  // For all available options, see:
+  // <https://github.com/getsentry/sentry-webpack-plugin#options>.
+}
+
+/**
+ * @type {import('@sentry/nextjs/types/config/types').UserSentryOptions}
+ **/
+const userSentryOptions = {
+  hideSourceMaps: true,
+}
+
+module.exports = withSentryConfig(
+  withBundleAnalyzer(withPWA(withRoutes(nextConfig))),
+  sentryWebpackPluginOptions,
+  userSentryOptions
+)

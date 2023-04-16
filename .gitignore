@@ -63,3 +63,6 @@ cypress/videos/*
 **/public/fallback-*.map
 **/public/sitemap*.xml
 **/public/robots.txt
+
+# Sentry
+.sentryclirc
