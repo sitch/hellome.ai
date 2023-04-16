@@ -1,0 +1,28 @@
+import { z } from 'zod';
+import type { Prisma } from '@prisma/client';
+import { ConceptTensorIncludeSchema } from '../inputTypeSchemas/ConceptTensorIncludeSchema'
+import { ConceptTensorCreateInputSchema } from '../inputTypeSchemas/ConceptTensorCreateInputSchema'
+import { ConceptTensorUncheckedCreateInputSchema } from '../inputTypeSchemas/ConceptTensorUncheckedCreateInputSchema'
+import { DreamBoothPredictionArgsSchema } from "../outputTypeSchemas/DreamBoothPredictionArgsSchema"
+// Select schema needs to be in file to prevent circular imports
+//------------------------------------------------------
+
+export const ConceptTensorSelectSchema: z.ZodType<Prisma.ConceptTensorSelect> = z.object({
+  id: z.boolean().optional(),
+  identifier: z.boolean().optional(),
+  classNoun: z.boolean().optional(),
+  classPrompt: z.boolean().optional(),
+  instancePrompt: z.boolean().optional(),
+  tensorUrl: z.boolean().optional(),
+  createdAt: z.boolean().optional(),
+  dreamBoothPredictionId: z.boolean().optional(),
+  prediction: z.union([z.boolean(),z.lazy(() => DreamBoothPredictionArgsSchema)]).optional(),
+}).strict()
+
+export const ConceptTensorCreateArgsSchema: z.ZodType<Prisma.ConceptTensorCreateArgs> = z.object({
+  select: ConceptTensorSelectSchema.optional(),
+  include: ConceptTensorIncludeSchema.optional(),
+  data: z.union([ ConceptTensorCreateInputSchema,ConceptTensorUncheckedCreateInputSchema ]),
+}).strict()
+
+export default ConceptTensorCreateArgsSchema;
