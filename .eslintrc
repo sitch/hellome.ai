@@ -5,6 +5,11 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "ignorePatterns": [
+    "./@gen/**/*.js",
+    "./@gen/**/*.ts",
+    "./doc/prisma/*"
+  ],
   "extends": [
     "next",
     "eslint:recommended",
