@@ -16,6 +16,16 @@ declare namespace NodeJS {
     GOOGLE_RECAPTCHA_V3_SECRET_KEY: string
     NEXT_PUBLIC_GOOGLE_RECAPTCHA_V2_SITE_KEY: string
     GOOGLE_RECAPTCHA_V2_SECRET_KEY: string
+
+    // Digital Ocean
+    DATABASE_URL: string
+    DO_SPACES_KEY: string
+    DO_SPACES_SECRET: string
+
+    // NewRelic
+    NEW_RELIC_APP_NAME: string
+    NEW_RELIC_INGEST_LICENSE_KEY: string
+    NEW_RELIC_BROWSER_LICENSE_KEY: string
   }
 }
 

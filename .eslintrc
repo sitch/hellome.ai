@@ -50,6 +50,12 @@
   },
   "plugins": ["testing-library", "@typescript-eslint"],
   "overrides": [
+    {
+      "files": ["**/*.d.ts"],
+      "rules": {
+        "@typescript-eslint/consistent-type-definitions": "off"
+      }
+    },
     // Only uses Testing Library lint rules in test files
     {
       "files": [
