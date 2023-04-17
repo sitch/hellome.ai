@@ -3,6 +3,7 @@ import type { Prisma } from '@prisma/client';
 
 export const PredictionSelectSchema: z.ZodType<Prisma.PredictionSelect> = z.object({
   id: z.boolean().optional(),
+  uuid: z.boolean().optional(),
   input: z.boolean().optional(),
   output: z.boolean().optional(),
   status: z.boolean().optional(),

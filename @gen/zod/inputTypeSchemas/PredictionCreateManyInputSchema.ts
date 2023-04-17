@@ -4,7 +4,8 @@ import { NullableJsonNullValueInputSchema } from './NullableJsonNullValueInputSc
 import { InputJsonValue } from './InputJsonValue';
 
 export const PredictionCreateManyInputSchema: z.ZodType<Prisma.PredictionCreateManyInput> = z.object({
-  id: z.string().cuid().optional(),
+  id: z.number().int().optional(),
+  uuid: z.string(),
   input: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
   output: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
   status: z.string().optional().nullable(),

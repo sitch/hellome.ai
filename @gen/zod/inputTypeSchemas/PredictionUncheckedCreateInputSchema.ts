@@ -4,7 +4,8 @@ import { NullableJsonNullValueInputSchema } from './NullableJsonNullValueInputSc
 import { InputJsonValue } from './InputJsonValue';
 
 export const PredictionUncheckedCreateInputSchema: z.ZodType<Prisma.PredictionUncheckedCreateInput> = z.object({
-  id: z.string().cuid().optional(),
+  id: z.number().int().optional(),
+  uuid: z.string(),
   input: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
   output: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
   status: z.string().optional().nullable(),

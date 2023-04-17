@@ -4,6 +4,7 @@ import { SortOrderSchema } from './SortOrderSchema';
 
 export const PredictionCountOrderByAggregateInputSchema: z.ZodType<Prisma.PredictionCountOrderByAggregateInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
+  uuid: z.lazy(() => SortOrderSchema).optional(),
   input: z.lazy(() => SortOrderSchema).optional(),
   output: z.lazy(() => SortOrderSchema).optional(),
   status: z.lazy(() => SortOrderSchema).optional(),

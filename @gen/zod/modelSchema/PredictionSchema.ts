@@ -6,7 +6,8 @@ import { NullableJsonValue } from "../inputTypeSchemas/NullableJsonValue"
 /////////////////////////////////////////
 
 export const PredictionSchema = z.object({
-  id: z.string().cuid(),
+  id: z.number().int(),
+  uuid: z.string(),
   input: NullableJsonValue.optional(),
   output: NullableJsonValue.optional(),
   status: z.string().nullable(),
@@ -34,7 +35,7 @@ export type PredictionPartial = z.infer<typeof PredictionPartialSchema>
 /////////////////////////////////////////
 
 export const PredictionOptionalDefaultsSchema = PredictionSchema.merge(z.object({
-  id: z.string().cuid().optional(),
+  id: z.number().int().optional(),
 }))
 
 export type PredictionOptionalDefaults = z.infer<typeof PredictionOptionalDefaultsSchema>
