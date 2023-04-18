@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// TODO REMOVE
+// -----------------------------------------------------------------------------
+
+model User {
+  id String @id @default(cuid())
+
+  // TODO: *Add here *
+  families            Family[]
+  relationships       Relationship[] @relation("sourceUserRelationships")
+  targetRelationships Relationship[] @relation("targetUserRelationships") @ignore
+}
+
+// -----------------------------------------------------------------------------
+// Families
+// -----------------------------------------------------------------------------
+
+enum RelationshipRole {
+  parent
+  child
+  grandparent
+  nibling
+  pibling
+}
+
+model Relationship {
+  id           String           @id @default(cuid())
+  sourceRole   RelationshipRole @map("source_role")
+  targetRole   RelationshipRole @map("target_role")
+  createdAt    DateTime         @default(now()) @map("created_at")
+  updatedAt    DateTime         @updatedAt @map("updated_at")
+  sourceUserId String           @map("source_user_id")
+  targetUserId String           @map("target_user_id")
+  sourceUser   User             @relation("sourceUserRelationships", fields: [sourceUserId], references: [id], onDelete: Cascade)
+  targetUser   User             @relation("targetUserRelationships", fields: [targetUserId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceUserId, targetUserId, sourceRole, targetRole])
+  @@index([sourceUserId], name: "sourceUserId")
+  @@index([targetUserId], name: "targetUserId")
+  @@map("relationships")
+}
+
+model Family {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  users     User[]
+
+  @@map("families")
+}

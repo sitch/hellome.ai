@@ -1,0 +1,208 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// TODO REMOVE
+// -----------------------------------------------------------------------------
+
+model User {
+  id String @id @default(cuid())
+
+  // TODO: *Add here *
+  authorId String? @unique @map("author_id")
+  artistId String? @unique @map("artist_id")
+  author   Author? @relation(fields: [authorId], references: [id])
+  artist   Artist? @relation(fields: [artistId], references: [id])
+}
+
+// -----------------------------------------------------------------------------
+// Stories
+// See: https://help.tableau.com/current/pro/desktop/en-us/bookshop_data.htm
+// See: https://ceur-ws.org/Vol-2695/paper3.pdf
+// See: https://iopscience.iop.org/article/10.1088/1742-6596/1213/5/052008/pdf
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Accounts
+// -----------------------------------------------------------------------------
+
+model Author {
+  id String @id @default(cuid())
+
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  createdAt DateTime @default(now()) @map(name: "created_at")
+
+  user     User?
+  stories  Story[]
+  editions Edition[]
+}
+
+model Artist {
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  createdAt DateTime @default(now()) @map(name: "created_at")
+
+  user     User?
+  stories  Story[]
+  editions Edition[]
+}
+
+// -----------------------------------------------------------------------------
+// Stories
+// -----------------------------------------------------------------------------
+
+enum Category {
+  FICTION
+}
+
+enum Tag {
+  AGES_0_1
+}
+
+enum Genre {
+  BOYS
+  GIRLS
+}
+
+// enum StoryStatus {
+//   DRAFT
+//   PUBLISHED
+// }
+
+model Story {
+  id       String  @id @default(cuid())
+  artistId String? @map(name: "artist_id")
+  authorId String  @map(name: "author_id")
+
+  // Swell.is
+  swellProductId String     @map(name: "swell_product_id")
+  genre          Genre
+  tags           Tag[]
+  categories     Category[]
+
+  // isbn10         String
+  // isbn13         String
+  // sku            String
+  // publishYear    Int?          @map(name: "publish_year")
+  // copyrightYear  Int?          @map(name: "copyright_year")
+  // pdfPreviewUrl  String        @map(name: "pdf_preview_url")
+
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
+  publishedAt DateTime @map(name: "published_at")
+
+  author       Author             @relation(fields: [authorId], references: [id])
+  artist       Artist?            @relation(fields: [artistId], references: [id])
+  books        Edition[]
+  // reviews      StoryReview[]
+  translations StoryTranslation[]
+}
+
+enum Locale {
+  en_US
+}
+
+enum Translator {
+  HUMAN
+  MACHINE
+}
+
+enum TranslationStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model StoryTranslation {
+  id         String            @id @default(cuid())
+  status     TranslationStatus @default(DRAFT)
+  locale     Locale
+  translator Translator
+  title      String
+  pageCount  Int               @map(name: "page_count")
+  createdAt  DateTime          @default(now()) @map(name: "created_at")
+  updatedAt  DateTime          @updatedAt @map(name: "updated_at")
+  pages      Page[]
+  Story      Story?            @relation(fields: [storyId], references: [id])
+  storyId    String?
+}
+
+model Page {
+  id                 String            @id @default(cuid())
+  index              Int
+  text               String
+  imagePrompt        String?
+  imageUrl           String?
+  substitutions      Json?
+  createdAt          DateTime          @default(now()) @map(name: "created_at")
+  updatedAt          DateTime          @updatedAt @map(name: "updated_at")
+  StoryTranslation   StoryTranslation? @relation(fields: [storyTranslationId], references: [id]) @ignore
+  storyTranslationId String?           @ignore
+  images             PageImage[]
+}
+
+model PageImage {
+  id            String   @id @default(cuid())
+  pageId        String   @unique
+  url           String   @unique
+  // bbox          Float[]
+  height        Float
+  width         Float
+  x             Float
+  y             Float
+  prompt        String?
+  substitutions Json?
+  createdAt     DateTime @default(now()) @map(name: "created_at")
+  updatedAt     DateTime @updatedAt @map(name: "updated_at")
+  Page          Page     @relation(fields: [pageId], references: [id]) @ignore
+}
+
+enum BookFormat {
+  SQUARE_8X8
+}
+
+model Edition {
+  id       String @id @default(cuid())
+  artistId String
+  authorId String
+  storyId  String
+  title    String
+
+  substitutions Json?
+
+  // user User
+
+  artist      Artist            @relation(fields: [artistId], references: [id])
+  author      Author            @relation(fields: [authorId], references: [id])
+  story       Story             @relation(fields: [storyId], references: [id])
+  publishedAt DateTime          @map(name: "published_at")
+  createdAt   DateTime          @default(now()) @map(name: "created_at")
+  purchases   EditionPurchase[]
+}
+
+model EditionPurchase {
+  id             String     @id @default(cuid())
+  swellUserId    String
+  swellProductId String
+  format         BookFormat
+  pdfUrl         String
+  edition        Edition    @relation(fields: [editionId], references: [id])
+  editionId      String
+}
+
+// model UserStory {
+//   id      String @id @default(cuid())
+//   storyId String @map(name: "story_id")
+//   story   Story  @relation(fields: [storyId], references: [id])
+
+//   createdAt DateTime @default(now()) @map(name: "created_at")
+//   updatedAt DateTime @updatedAt @map(name: "updated_at")
+// }

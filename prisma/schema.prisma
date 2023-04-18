@@ -1,6 +1,13 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// =============================================================================
+// Issues
+// =============================================================================
+// `pg_vector` support
+// See: https://github.com/prisma/prisma/issues/18442
+// =============================================================================
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -34,42 +41,222 @@ generator erd_simple {
   tableOnly = true
 }
 
+// generator zod {
+//   provider          = "prisma-zod-generator"
+//   output            = "../@gen/zod"
+//   isGenerateSelect  = true
+//   isGenerateInclude = true
+// }
+
 generator zod {
-  provider                         = "zod-prisma-types"
-  output                           = "../@gen/zod" // default is ./generated/zod
-  useMultipleFiles                 = true // default is false
-  createInputTypes                 = true // default is true
-  createModelTypes                 = true // default is true
-  addInputTypeValidation           = true // default is true
-  addIncludeType                   = true // default is true
-  addSelectType                    = true // default is true
-  validateWhereUniqueInput         = true // default is false
-  createOptionalDefaultValuesTypes = true // default is false
-  createRelationValuesTypes        = true // default is false
-  createPartialTypes               = true // default is false
-  useDefaultValidators             = true // default is true
-  coerceDate                       = true // default is true
-  writeNullishInModelTypes         = false // default is false
+  provider = "zod-prisma-types"
+  output   = "../@gen/zod" // default is ./generated/zod
+  // useMultipleFiles                 = true // default is false
+  // createInputTypes                 = true // default is true
+  // createModelTypes                 = true // default is true
+  // addInputTypeValidation           = true // default is true
+  // addIncludeType                   = true // default is true
+  // addSelectType                    = true // default is true
+  // validateWhereUniqueInput         = true // default is false
+  // createOptionalDefaultValuesTypes = true // default is false
+  // createRelationValuesTypes        = false // default is false
+  // createPartialTypes               = true // default is false
+  // useDefaultValidators             = true // default is true
+  // coerceDate                       = true // default is true
+  // writeNullishInModelTypes         = false // default is false
 }
 
 // -----------------------------------------------------------------------------
-// Concepts
+// Accounts
 // -----------------------------------------------------------------------------
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id String @id @default(cuid())
+
+  email     String   @unique @db.Citext()
+  name      String
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // concepts     Concept[]
+  Edition Edition[]
+
+  @@map("users")
 }
+
+model PDF {
+  id String @id @default(cuid())
+
+  book Edition? @ignore
+}
+
+model Author {
+  id String @id @default(cuid())
+
+  stories   Story[]
+  pageTexts PageText[]
+}
+
+model Artist {
+  id String @id @default(cuid())
+
+  stories      Story[]
+  pageArtworks PageArtwork[]
+}
+
+model Translator {
+  id String @id @default(cuid())
+
+  pageTexts PageText[]
+}
+
+model Photo {
+  id String @id @default(cuid())
+
+  pageArtworks PageArtwork[] @ignore
+}
+
+// -----------------------------------------------------------------------------
+// Locales
+// -----------------------------------------------------------------------------
+
+enum Locale {
+  en_US
+}
+
+// -----------------------------------------------------------------------------
+// Stories
+// -----------------------------------------------------------------------------
 
 model Story {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  artistId     String?       @map("artist_id")
+  authorId     String?       @map("author_id")
+  artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  pages        Page[]
+  pageArtworks PageArtwork[] @ignore
+  pageTexts    PageText[]    @ignore
+
+  @@index([artistId], name: "Story_artistId")
+  @@index([authorId], name: "Story_authorId")
+  @@map("stories")
 }
 
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum PageType {
+  FrontCover
+  Body
+  BackCover
+}
+
+enum PageArtworkType {
+  machine_generated
+  user_creative_work
+  user_scribble
+}
+
+enum PageTextType {
+  machine_generated
+  machine_translated
+  user_creative_work
+  user_translated
+}
+
+model PageArtwork {
+  id String @id @default(cuid())
+
+  status    PageStatus @default(DRAFT)
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  pageId   String @map("page_id")
+  storyId  String @map("story_id")
+  artistId String @map("artist_id")
+  photoId  String @map("photo_id")
+  page     Page   @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  story    Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  artist   Artist @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  photo    Photo  @relation(fields: [photoId], references: [id], onDelete: Cascade)
+
+  @@index([pageId], name: "PageArtwork_pageId")
+  @@map("page_artworks")
+}
+
+model PageText {
+  id String @id @default(cuid())
+
+  status    PageStatus   @default(DRAFT)
+  locale    Locale
+  text      String
+  type      PageTextType
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  pageId       String      @map("page_id")
+  storyId      String      @map("story_id")
+  authorId     String?     @map("author_id")
+  translatorId String?     @map("translator_id")
+  page         Page        @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  story        Story       @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  author       Author?     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  translator   Translator? @relation(fields: [translatorId], references: [id])
+
+  @@index([pageId], name: "PageText_pageId")
+  @@map("page_texts")
+}
+
+model Page {
+  id String @id @default(cuid())
+
+  status     PageStatus @default(DRAFT)
+  type       PageType
+  pageNumber Int        @map("page_number") @db.SmallInt()
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+
+  storyId  String        @map("story_id")
+  story    Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  artworks PageArtwork[]
+  texts    PageText[]
+
+  @@index([storyId], name: "Page_storyId")
+  @@map("pages")
+}
+
+// -----------------------------------------------------------------------------
+// Editions
+// -----------------------------------------------------------------------------
+
+model Edition {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  userId String @unique @map("user_id")
+  pdfId  String @unique @map("pdf_id")
+  user   User   @relation(fields: [userId], references: [id])
+  pdf    PDF    @relation(fields: [pdfId], references: [id])
+
+  @@index([userId], name: "Edition_userId")
+  @@map("editions")
+}
+
+// -----------------------------------------------------------------------------
+// DreamBooth Prediction
+// -----------------------------------------------------------------------------
+
 model Prediction {
-  id           Int       @id @default(autoincrement())
+  id           String    @id @default(cuid())
   uuid         String    @unique
   input        Json?
   output       Json?
@@ -81,4 +268,6 @@ model Prediction {
   metrics      Json?
   error        String?
   logs         String?   @db.Text
+
+  @@map(name: "predictions")
 }
