@@ -1,0 +1,67 @@
+import { z } from 'zod'
+import { StringFilterObjectSchema } from './StringFilter.schema'
+import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema'
+import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema'
+import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema'
+
+import type { Prisma } from '@prisma/client'
+
+const Schema: z.ZodType<Prisma.PredictionWhereInput> = z
+  .object({
+    AND: z
+      .union([
+        z.lazy(() => PredictionWhereInputObjectSchema),
+        z.lazy(() => PredictionWhereInputObjectSchema).array(),
+      ])
+      .optional(),
+    OR: z
+      .lazy(() => PredictionWhereInputObjectSchema)
+      .array()
+      .optional(),
+    NOT: z
+      .union([
+        z.lazy(() => PredictionWhereInputObjectSchema),
+        z.lazy(() => PredictionWhereInputObjectSchema).array(),
+      ])
+      .optional(),
+    id: z
+      .union([z.lazy(() => StringFilterObjectSchema), z.string()])
+      .optional(),
+    uuid: z
+      .union([z.lazy(() => StringFilterObjectSchema), z.string()])
+      .optional(),
+    input: z.lazy(() => JsonNullableFilterObjectSchema).optional(),
+    output: z.lazy(() => JsonNullableFilterObjectSchema).optional(),
+    status: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
+    created_at: z
+      .union([z.lazy(() => DateTimeNullableFilterObjectSchema), z.date()])
+      .optional()
+      .nullable(),
+    started_at: z
+      .union([z.lazy(() => DateTimeNullableFilterObjectSchema), z.date()])
+      .optional()
+      .nullable(),
+    completed_at: z
+      .union([z.lazy(() => DateTimeNullableFilterObjectSchema), z.date()])
+      .optional()
+      .nullable(),
+    version: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
+    metrics: z.lazy(() => JsonNullableFilterObjectSchema).optional(),
+    error: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
+    logs: z
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
+      .optional()
+      .nullable(),
+  })
+  .strict()
+
+export const PredictionWhereInputObjectSchema = Schema

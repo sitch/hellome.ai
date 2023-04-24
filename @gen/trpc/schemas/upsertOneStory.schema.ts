@@ -1,0 +1,20 @@
+import { z } from 'zod'
+import { StoryIncludeObjectSchema } from './objects/StoryInclude.schema'
+import { StoryWhereUniqueInputObjectSchema } from './objects/StoryWhereUniqueInput.schema'
+import { StoryCreateInputObjectSchema } from './objects/StoryCreateInput.schema'
+import { StoryUncheckedCreateInputObjectSchema } from './objects/StoryUncheckedCreateInput.schema'
+import { StoryUpdateInputObjectSchema } from './objects/StoryUpdateInput.schema'
+import { StoryUncheckedUpdateInputObjectSchema } from './objects/StoryUncheckedUpdateInput.schema'
+
+export const StoryUpsertSchema = z.object({
+  include: StoryIncludeObjectSchema.optional(),
+  where: StoryWhereUniqueInputObjectSchema,
+  create: z.union([
+    StoryCreateInputObjectSchema,
+    StoryUncheckedCreateInputObjectSchema,
+  ]),
+  update: z.union([
+    StoryUpdateInputObjectSchema,
+    StoryUncheckedUpdateInputObjectSchema,
+  ]),
+})
