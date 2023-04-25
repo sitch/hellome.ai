@@ -5,7 +5,14 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": ["./@gen/**/*.js", "./@gen/**/*.ts", "./doc/prisma/*"],
+  "ignorePatterns": [
+    "./@gen/**/*"
+  ],
+  "plugins": [
+    "testing-library",
+    "@typescript-eslint",
+    "json"
+  ],
   "extends": [
     "next",
     "eslint:recommended",
@@ -23,7 +30,10 @@
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+    "@typescript-eslint/consistent-type-definitions": [
+      "warn",
+      "type"
+    ],
     // Disable
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/anchor-is-valid": "off",
@@ -32,6 +42,7 @@
     "jsx-a11y/no-autofocus": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "tailwindcss/no-custom-classname": "off",
+    "@typescript-eslint/no-unnecessary-condition": "off",
     "@typescript-eslint/no-invalid-void-type": [
       "warn",
       {
@@ -49,10 +60,23 @@
     //   }
     // ]
   },
-  "plugins": ["testing-library", "@typescript-eslint"],
   "overrides": [
     {
-      "files": ["**/*.d.ts"],
+      "files": [
+        "*.yaml",
+        "*.yml"
+      ],
+      "plugins": [
+        "yaml"
+      ],
+      "extends": [
+        "plugin:yaml/recommended"
+      ]
+    },
+    {
+      "files": [
+        "**/*.d.ts"
+      ],
       "rules": {
         "@typescript-eslint/consistent-type-definitions": "off"
       }
@@ -63,7 +87,9 @@
         "**/__tests__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"
       ],
-      "extends": ["plugin:testing-library/react"]
+      "extends": [
+        "plugin:testing-library/react"
+      ]
     }
   ]
 }

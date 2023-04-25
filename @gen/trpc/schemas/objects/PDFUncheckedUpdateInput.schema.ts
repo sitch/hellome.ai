@@ -48,7 +48,7 @@ const Schema: z.ZodType<Prisma.PDFUncheckedUpdateInput> = z
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    book: z
+    edition: z
       .lazy(() => EditionUncheckedUpdateOneWithoutPdfNestedInputObjectSchema)
       .optional(),
   })

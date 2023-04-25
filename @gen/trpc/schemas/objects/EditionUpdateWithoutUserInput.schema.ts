@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { PDFUpdateOneRequiredWithoutBookNestedInputObjectSchema } from './PDFUpdateOneRequiredWithoutBookNestedInput.schema'
+import { PDFUpdateOneRequiredWithoutEditionNestedInputObjectSchema } from './PDFUpdateOneRequiredWithoutEditionNestedInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -26,7 +26,7 @@ const Schema: z.ZodType<Prisma.EditionUpdateWithoutUserInput> = z
       ])
       .optional(),
     pdf: z
-      .lazy(() => PDFUpdateOneRequiredWithoutBookNestedInputObjectSchema)
+      .lazy(() => PDFUpdateOneRequiredWithoutEditionNestedInputObjectSchema)
       .optional(),
   })
   .strict()

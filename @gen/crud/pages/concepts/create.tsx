@@ -8,7 +8,6 @@ export default function ConceptCreate() {
     description: '',
     createdAt: '',
     updatedAt: '',
-    userId: '',
   })
   const router = useRouter()
 
@@ -83,17 +82,6 @@ export default function ConceptCreate() {
             value={formState.updatedAt}
             onChange={(e) =>
               setFormState({ ...formState, updatedAt: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <label htmlFor="userId">UserId:</label>
-          <input
-            type="text"
-            id="userId"
-            value={formState.userId}
-            onChange={(e) =>
-              setFormState({ ...formState, userId: e.target.value })
             }
           />
         </div>

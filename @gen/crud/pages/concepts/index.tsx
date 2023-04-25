@@ -29,7 +29,6 @@ export default function ConceptIndex({ concepts }: ConceptIndexProps) {
           <div className="cell">Description</div>
           <div className="cell">CreatedAt</div>
           <div className="cell">UpdatedAt</div>
-          <div className="cell">UserId</div>
           <div className="cell">Actions</div>
         </div>
         {concepts.map((concept) => (
@@ -48,9 +47,6 @@ export default function ConceptIndex({ concepts }: ConceptIndexProps) {
             </div>
             <div className="cell" data-title="updatedAt">
               {concept.updatedAt}
-            </div>
-            <div className="cell" data-title="userId">
-              {concept.userId}
             </div>
             <div className="cell actions" data-title="actions">
               <div className="action-buttons">

@@ -11,7 +11,6 @@ const Schema: z.ZodType<Prisma.ConceptMinOrderByAggregateInput> = z
     description: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),
     updatedAt: z.lazy(() => SortOrderSchema).optional(),
-    userId: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict()
 

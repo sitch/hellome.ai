@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { EditionFindManySchema } from '../findManyEdition.schema'
-import { ConceptArgsObjectSchema } from './ConceptArgs.schema'
+import { UserCountOutputTypeArgsObjectSchema } from './UserCountOutputTypeArgs.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -9,10 +9,9 @@ const Schema: z.ZodType<Prisma.UserInclude> = z
     Edition: z
       .union([z.boolean(), z.lazy(() => EditionFindManySchema)])
       .optional(),
-    Concept: z
-      .union([z.boolean(), z.lazy(() => ConceptArgsObjectSchema)])
+    _count: z
+      .union([z.boolean(), z.lazy(() => UserCountOutputTypeArgsObjectSchema)])
       .optional(),
-    _count: z.boolean().optional(),
   })
   .strict()
 

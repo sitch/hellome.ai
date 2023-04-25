@@ -10,9 +10,13 @@ type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any
 export const builder = initTRPC.context<Context>()
 export type TRPCCreateOptions = ArgumentTypes<(typeof builder)['create']>[0]
 
+export const transformer = superjson
+
 const trpcOptions: TRPCCreateOptions = {
-  transformer: superjson,
+  // transformer,
   errorFormatter({ shape, error }) {
+    console.error({ shape, error })
+
     return {
       ...shape,
       data: {

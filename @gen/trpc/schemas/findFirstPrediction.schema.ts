@@ -1,10 +1,12 @@
 import { z } from 'zod'
+import { PredictionSelectObjectSchema } from './objects/PredictionSelect.schema'
 import { PredictionOrderByWithRelationInputObjectSchema } from './objects/PredictionOrderByWithRelationInput.schema'
 import { PredictionWhereInputObjectSchema } from './objects/PredictionWhereInput.schema'
 import { PredictionWhereUniqueInputObjectSchema } from './objects/PredictionWhereUniqueInput.schema'
 import { PredictionScalarFieldEnumSchema } from './enums/PredictionScalarFieldEnum.schema'
 
 export const PredictionFindFirstSchema = z.object({
+  select: PredictionSelectObjectSchema.optional(),
   orderBy: z
     .union([
       PredictionOrderByWithRelationInputObjectSchema,

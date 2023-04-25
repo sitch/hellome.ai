@@ -12,18 +12,39 @@ declare module "nextjs-routes" {
 
   export type Route =
     | StaticRoute<"/404">
-    | StaticRoute<"/_offline">
+    | StaticRoute<"/_dev_/500">
+    | StaticRoute<"/_dev_/_error">
+    | StaticRoute<"/_dev_/_offline">
+    | StaticRoute<"/_dev_/landing">
+    | StaticRoute<"/_dev_/upload">
+    | DynamicRoute<"/api/ai/concepts/[id]", { "id": string }>
+    | StaticRoute<"/api/ai/concepts">
+    | StaticRoute<"/api/ai/concepts/replicate-webhook">
+    | StaticRoute<"/api/ai/concepts/train">
+    | StaticRoute<"/api/generate-temporary-url">
     | StaticRoute<"/api/mailer/request-access/email">
+    | StaticRoute<"/api/print/create-print-job">
+    | StaticRoute<"/api/print/job">
+    | StaticRoute<"/api/s3-upload">
+    | DynamicRoute<"/api/trpc/[trpc]", { "trpc": string }>
+    | StaticRoute<"/app/concepts">
+    | StaticRoute<"/app/concepts/new">
+    | StaticRoute<"/app/concepts/train">
     | DynamicRoute<"/blog/articles/[slug]", { "slug": string }>
     | StaticRoute<"/blog/articles">
     | DynamicRoute<"/blog/authors/[handle]", { "handle": string }>
     | StaticRoute<"/blog/authors">
-    | DynamicRoute<"/company/[slug]", { "slug": string }>
-    | DynamicRoute<"/customer/[slug]", { "slug": string }>
+    | StaticRoute<"/dev/vision/explore">
+    | StaticRoute<"/dev/vision/human">
+    | StaticRoute<"/dev/vision/mediapipe">
     | StaticRoute<"/">
-    | StaticRoute<"/landing">
-    | DynamicRoute<"/policies/[slug]", { "slug": string }>
-    | DynamicRoute<"/redirects/[slug]", { "slug": string }>;
+    | StaticRoute<"/pages/accounts/forgot-password">
+    | StaticRoute<"/pages/accounts/reset-password">
+    | StaticRoute<"/pages/accounts/signup">
+    | DynamicRoute<"/pages/company/[slug]", { "slug": string }>
+    | DynamicRoute<"/pages/customer/[slug]", { "slug": string }>
+    | DynamicRoute<"/pages/policies/[slug]", { "slug": string }>
+    | DynamicRoute<"/pages/redirects/[slug]", { "slug": string }>;
 
   interface StaticRoute<Pathname> {
     pathname: Pathname;
@@ -46,7 +67,8 @@ declare module "nextjs-routes" {
     { pathname: P }
   >["query"];
 
-  export type Locale = undefined;
+  export type Locale = 
+    | "en";
 
   /**
    * A typesafe utility function for generating paths in your application.
@@ -65,9 +87,11 @@ declare module "nextjs-routes" {
   > = Omit<NextGetServerSidePropsContext, 'params' | 'query' | 'defaultLocale' | 'locale' | 'locales'> & {
     params: Extract<Route, { pathname: Pathname }>["query"];
     query: Query;
-    defaultLocale?: undefined;
-    locale?: Locale;
-    locales?: undefined;
+    defaultLocale: "en";
+    locale: Locale;
+    locales: [
+          "en"
+        ];
   };
 
   /**
@@ -101,7 +125,7 @@ declare module "next/link" {
     extends Omit<NextLinkProps, "href" | "locale">,
       AnchorHTMLAttributes<HTMLAnchorElement> {
     href: Route | StaticRoute | Omit<Route, "pathname">
-    locale?: false;
+    locale?: Locale | false;
   }
 
   type LinkReactElement = DetailedReactHTMLElement<
@@ -130,7 +154,7 @@ declare module "next/router" {
   type StaticRoute = Exclude<Route, { query: any }>["pathname"];
 
   interface TransitionOptions extends Omit<NextTransitionOptions, "locale"> {
-    locale?: false;
+    locale?: Locale | false;
   }
 
   type PathnameAndQuery<Pathname> = Required<
@@ -160,10 +184,12 @@ declare module "next/router" {
         | "replace"
         | "route"
       > & {
-        defaultLocale?: undefined;
+        defaultLocale: "en";
         domainLocales?: undefined;
-        locale?: Locale;
-        locales?: undefined;
+        locale: Locale;
+        locales: [
+          "en"
+        ];
         push(
           url: Route | StaticRoute | Omit<Route, "pathname">,
           as?: string,

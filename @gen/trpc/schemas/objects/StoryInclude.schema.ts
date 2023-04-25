@@ -4,6 +4,7 @@ import { AuthorArgsObjectSchema } from './AuthorArgs.schema'
 import { PageFindManySchema } from '../findManyPage.schema'
 import { PageArtworkFindManySchema } from '../findManyPageArtwork.schema'
 import { PageTextFindManySchema } from '../findManyPageText.schema'
+import { StoryCountOutputTypeArgsObjectSchema } from './StoryCountOutputTypeArgs.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -22,7 +23,9 @@ const Schema: z.ZodType<Prisma.StoryInclude> = z
     pageTexts: z
       .union([z.boolean(), z.lazy(() => PageTextFindManySchema)])
       .optional(),
-    _count: z.boolean().optional(),
+    _count: z
+      .union([z.boolean(), z.lazy(() => StoryCountOutputTypeArgsObjectSchema)])
+      .optional(),
   })
   .strict()
 

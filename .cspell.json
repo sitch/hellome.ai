@@ -47,6 +47,8 @@
     "fkey",
     "pkey",
     "agender",
+    "middlewares",
+    "openapitools",
     "antispoof",
     "autoincrement",
     "Barlinks",

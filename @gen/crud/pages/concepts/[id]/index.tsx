@@ -28,9 +28,6 @@ export default function ConceptShow({ concept }: ConceptShowProps) {
         <p>
           <strong>UpdatedAt:</strong> {concept.updatedAt}
         </p>
-        <p>
-          <strong>UserId:</strong> {concept.userId}
-        </p>
       </div>
       <footer>
         <a href="/concepts" className="secondary-btn">

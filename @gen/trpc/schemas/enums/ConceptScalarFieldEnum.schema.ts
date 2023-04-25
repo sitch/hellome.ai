@@ -7,5 +7,4 @@ export const ConceptScalarFieldEnumSchema = z.enum([
   'description',
   'createdAt',
   'updatedAt',
-  'userId',
 ])

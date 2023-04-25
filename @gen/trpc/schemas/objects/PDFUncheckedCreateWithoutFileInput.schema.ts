@@ -14,7 +14,7 @@ const Schema: z.ZodType<Prisma.PDFUncheckedCreateWithoutFileInput> = z
       .union([z.lazy(() => PDFCreatetagsInputObjectSchema), z.string().array()])
       .optional(),
     createdAt: z.date().optional(),
-    book: z
+    edition: z
       .lazy(() => EditionUncheckedCreateNestedOneWithoutPdfInputObjectSchema)
       .optional(),
   })

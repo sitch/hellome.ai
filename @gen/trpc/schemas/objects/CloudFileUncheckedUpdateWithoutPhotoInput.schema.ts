@@ -87,7 +87,7 @@ const Schema: z.ZodType<Prisma.CloudFileUncheckedUpdateWithoutPhotoInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    PDF: z
+    pdf: z
       .lazy(() => PDFUncheckedUpdateOneWithoutFileNestedInputObjectSchema)
       .optional(),
   })

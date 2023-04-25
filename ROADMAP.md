@@ -24,3 +24,9 @@
 ### Closed Beta
 
 - Set for `2023-05-01`.
+
+## Vercel
+
+- See: <https://www.prisma.io/docs/guides/deployment/deployment-guides/deploying-to-vercel>
+
+a hosted PostgreSQL database and a connection string for it, e.g. postgresql://username:password@your_postgres_db.cloud.com/db_identifier (you can use Supabase, which offers a free plan)

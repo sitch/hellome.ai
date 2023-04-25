@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { PDFCreateNestedOneWithoutBookInputObjectSchema } from './PDFCreateNestedOneWithoutBookInput.schema'
+import { PDFCreateNestedOneWithoutEditionInputObjectSchema } from './PDFCreateNestedOneWithoutEditionInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -8,7 +8,7 @@ const Schema: z.ZodType<Prisma.EditionCreateWithoutUserInput> = z
     id: z.string().optional(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
-    pdf: z.lazy(() => PDFCreateNestedOneWithoutBookInputObjectSchema),
+    pdf: z.lazy(() => PDFCreateNestedOneWithoutEditionInputObjectSchema),
   })
   .strict()
 

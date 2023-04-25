@@ -31,10 +31,10 @@ const Schema: z.ZodType<Prisma.CloudFileUncheckedCreateInput> = z
     signature: z.string(),
     privacy: z.lazy(() => FilePrivacySchema).optional(),
     createdAt: z.date().optional(),
-    Photo: z
+    photo: z
       .lazy(() => PhotoUncheckedCreateNestedOneWithoutFileInputObjectSchema)
       .optional(),
-    PDF: z
+    pdf: z
       .lazy(() => PDFUncheckedCreateNestedOneWithoutFileInputObjectSchema)
       .optional(),
   })

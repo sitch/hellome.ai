@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { UserCreateNestedOneWithoutEditionInputObjectSchema } from './UserCreateNestedOneWithoutEditionInput.schema'
-import { PDFCreateNestedOneWithoutBookInputObjectSchema } from './PDFCreateNestedOneWithoutBookInput.schema'
+import { PDFCreateNestedOneWithoutEditionInputObjectSchema } from './PDFCreateNestedOneWithoutEditionInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -10,7 +10,7 @@ const Schema: z.ZodType<Prisma.EditionCreateInput> = z
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
     user: z.lazy(() => UserCreateNestedOneWithoutEditionInputObjectSchema),
-    pdf: z.lazy(() => PDFCreateNestedOneWithoutBookInputObjectSchema),
+    pdf: z.lazy(() => PDFCreateNestedOneWithoutEditionInputObjectSchema),
   })
   .strict()
 

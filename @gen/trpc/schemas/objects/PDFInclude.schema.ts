@@ -9,7 +9,7 @@ const Schema: z.ZodType<Prisma.PDFInclude> = z
     file: z
       .union([z.boolean(), z.lazy(() => CloudFileArgsObjectSchema)])
       .optional(),
-    book: z
+    edition: z
       .union([z.boolean(), z.lazy(() => EditionArgsObjectSchema)])
       .optional(),
   })

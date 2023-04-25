@@ -2,7 +2,6 @@ import { z } from 'zod'
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
 import { EditionUpdateManyWithoutUserNestedInputObjectSchema } from './EditionUpdateManyWithoutUserNestedInput.schema'
-import { ConceptUpdateOneWithoutUserNestedInputObjectSchema } from './ConceptUpdateOneWithoutUserNestedInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -40,9 +39,6 @@ const Schema: z.ZodType<Prisma.UserUpdateInput> = z
       .optional(),
     Edition: z
       .lazy(() => EditionUpdateManyWithoutUserNestedInputObjectSchema)
-      .optional(),
-    Concept: z
-      .lazy(() => ConceptUpdateOneWithoutUserNestedInputObjectSchema)
       .optional(),
   })
   .strict()

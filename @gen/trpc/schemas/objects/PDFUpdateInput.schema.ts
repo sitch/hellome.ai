@@ -3,7 +3,7 @@ import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdat
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema'
 import { PDFUpdatetagsInputObjectSchema } from './PDFUpdatetagsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { CloudFileUpdateOneRequiredWithoutPDFNestedInputObjectSchema } from './CloudFileUpdateOneRequiredWithoutPDFNestedInput.schema'
+import { CloudFileUpdateOneRequiredWithoutPdfNestedInputObjectSchema } from './CloudFileUpdateOneRequiredWithoutPdfNestedInput.schema'
 import { EditionUpdateOneWithoutPdfNestedInputObjectSchema } from './EditionUpdateOneWithoutPdfNestedInput.schema'
 
 import type { Prisma } from '@prisma/client'
@@ -44,9 +44,9 @@ const Schema: z.ZodType<Prisma.PDFUpdateInput> = z
       ])
       .optional(),
     file: z
-      .lazy(() => CloudFileUpdateOneRequiredWithoutPDFNestedInputObjectSchema)
+      .lazy(() => CloudFileUpdateOneRequiredWithoutPdfNestedInputObjectSchema)
       .optional(),
-    book: z
+    edition: z
       .lazy(() => EditionUpdateOneWithoutPdfNestedInputObjectSchema)
       .optional(),
   })

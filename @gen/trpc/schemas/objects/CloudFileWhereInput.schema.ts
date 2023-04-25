@@ -67,14 +67,14 @@ const Schema: z.ZodType<Prisma.CloudFileWhereInput> = z
     createdAt: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
       .optional(),
-    Photo: z
+    photo: z
       .union([
         z.lazy(() => PhotoRelationFilterObjectSchema),
         z.lazy(() => PhotoWhereInputObjectSchema),
       ])
       .optional()
       .nullable(),
-    PDF: z
+    pdf: z
       .union([
         z.lazy(() => PDFRelationFilterObjectSchema),
         z.lazy(() => PDFWhereInputObjectSchema),

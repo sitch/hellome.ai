@@ -53,7 +53,7 @@ const Schema: z.ZodType<Prisma.PDFWhereInput> = z
         z.lazy(() => CloudFileWhereInputObjectSchema),
       ])
       .optional(),
-    book: z
+    edition: z
       .union([
         z.lazy(() => EditionRelationFilterObjectSchema),
         z.lazy(() => EditionWhereInputObjectSchema),

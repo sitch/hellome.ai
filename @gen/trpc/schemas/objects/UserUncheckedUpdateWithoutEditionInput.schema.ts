@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { ConceptUncheckedUpdateOneWithoutUserNestedInputObjectSchema } from './ConceptUncheckedUpdateOneWithoutUserNestedInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -36,9 +35,6 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateWithoutEditionInput> = z
         z.date(),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
-      .optional(),
-    Concept: z
-      .lazy(() => ConceptUncheckedUpdateOneWithoutUserNestedInputObjectSchema)
       .optional(),
   })
   .strict()

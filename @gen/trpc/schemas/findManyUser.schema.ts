@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { UserSelectObjectSchema } from './objects/UserSelect.schema'
 import { UserIncludeObjectSchema } from './objects/UserInclude.schema'
 import { UserOrderByWithRelationInputObjectSchema } from './objects/UserOrderByWithRelationInput.schema'
 import { UserWhereInputObjectSchema } from './objects/UserWhereInput.schema'
@@ -6,6 +7,7 @@ import { UserWhereUniqueInputObjectSchema } from './objects/UserWhereUniqueInput
 import { UserScalarFieldEnumSchema } from './enums/UserScalarFieldEnum.schema'
 
 export const UserFindManySchema = z.object({
+  select: z.lazy(() => UserSelectObjectSchema.optional()),
   include: z.lazy(() => UserIncludeObjectSchema.optional()),
   orderBy: z
     .union([

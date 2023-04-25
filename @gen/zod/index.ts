@@ -54,7 +54,7 @@ export const AuthorScalarFieldEnumSchema = z.enum(['id']);
 
 export const CloudFileScalarFieldEnumSchema = z.enum(['id','resourceType','filename','size','ext','mime','metadata','path','signature','privacy','createdAt']);
 
-export const ConceptScalarFieldEnumSchema = z.enum(['id','name','type','description','createdAt','updatedAt','userId']);
+export const ConceptScalarFieldEnumSchema = z.enum(['id','name','type','description','createdAt','updatedAt']);
 
 export const EditionScalarFieldEnumSchema = z.enum(['id','createdAt','updatedAt','userId','pdfId']);
 
@@ -163,23 +163,6 @@ export const CloudFileSchema = z.object({
 
 export type CloudFile = z.infer<typeof CloudFileSchema>
 
-// CLOUD FILE RELATION SCHEMA
-//------------------------------------------------------
-
-export type CloudFileRelations = {
-  Photo?: PhotoWithRelations | null;
-  PDF?: PDFWithRelations | null;
-};
-
-export type CloudFileWithRelations = Omit<z.infer<typeof CloudFileSchema>, "metadata"> & {
-  metadata?: NullableJsonInput;
-} & CloudFileRelations
-
-export const CloudFileWithRelationsSchema: z.ZodType<CloudFileWithRelations> = CloudFileSchema.merge(z.object({
-  Photo: z.lazy(() => PhotoWithRelationsSchema).nullable(),
-  PDF: z.lazy(() => PDFWithRelationsSchema).nullable(),
-}))
-
 /////////////////////////////////////////
 // PHOTO SCHEMA
 /////////////////////////////////////////
@@ -194,23 +177,6 @@ export const PhotoSchema = z.object({
 })
 
 export type Photo = z.infer<typeof PhotoSchema>
-
-// PHOTO RELATION SCHEMA
-//------------------------------------------------------
-
-export type PhotoRelations = {
-  file: CloudFileWithRelations;
-  pageArtworks: PageArtworkWithRelations[];
-  concepts: ConceptWithRelations[];
-};
-
-export type PhotoWithRelations = z.infer<typeof PhotoSchema> & PhotoRelations
-
-export const PhotoWithRelationsSchema: z.ZodType<PhotoWithRelations> = PhotoSchema.merge(z.object({
-  file: z.lazy(() => CloudFileWithRelationsSchema),
-  pageArtworks: z.lazy(() => PageArtworkWithRelationsSchema).array(),
-  concepts: z.lazy(() => ConceptWithRelationsSchema).array(),
-}))
 
 /////////////////////////////////////////
 // PDF SCHEMA
@@ -228,21 +194,6 @@ export const PDFSchema = z.object({
 
 export type PDF = z.infer<typeof PDFSchema>
 
-// PDF RELATION SCHEMA
-//------------------------------------------------------
-
-export type PDFRelations = {
-  file: CloudFileWithRelations;
-  book?: EditionWithRelations | null;
-};
-
-export type PDFWithRelations = z.infer<typeof PDFSchema> & PDFRelations
-
-export const PDFWithRelationsSchema: z.ZodType<PDFWithRelations> = PDFSchema.merge(z.object({
-  file: z.lazy(() => CloudFileWithRelationsSchema),
-  book: z.lazy(() => EditionWithRelationsSchema).nullable(),
-}))
-
 /////////////////////////////////////////
 // USER SCHEMA
 /////////////////////////////////////////
@@ -257,21 +208,6 @@ export const UserSchema = z.object({
 
 export type User = z.infer<typeof UserSchema>
 
-// USER RELATION SCHEMA
-//------------------------------------------------------
-
-export type UserRelations = {
-  Edition: EditionWithRelations[];
-  Concept?: ConceptWithRelations | null;
-};
-
-export type UserWithRelations = z.infer<typeof UserSchema> & UserRelations
-
-export const UserWithRelationsSchema: z.ZodType<UserWithRelations> = UserSchema.merge(z.object({
-  Edition: z.lazy(() => EditionWithRelationsSchema).array(),
-  Concept: z.lazy(() => ConceptWithRelationsSchema).nullable(),
-}))
-
 /////////////////////////////////////////
 // AUTHOR SCHEMA
 /////////////////////////////////////////
@@ -281,21 +217,6 @@ export const AuthorSchema = z.object({
 })
 
 export type Author = z.infer<typeof AuthorSchema>
-
-// AUTHOR RELATION SCHEMA
-//------------------------------------------------------
-
-export type AuthorRelations = {
-  stories: StoryWithRelations[];
-  pageTexts: PageTextWithRelations[];
-};
-
-export type AuthorWithRelations = z.infer<typeof AuthorSchema> & AuthorRelations
-
-export const AuthorWithRelationsSchema: z.ZodType<AuthorWithRelations> = AuthorSchema.merge(z.object({
-  stories: z.lazy(() => StoryWithRelationsSchema).array(),
-  pageTexts: z.lazy(() => PageTextWithRelationsSchema).array(),
-}))
 
 /////////////////////////////////////////
 // ARTIST SCHEMA
@@ -307,21 +228,6 @@ export const ArtistSchema = z.object({
 
 export type Artist = z.infer<typeof ArtistSchema>
 
-// ARTIST RELATION SCHEMA
-//------------------------------------------------------
-
-export type ArtistRelations = {
-  stories: StoryWithRelations[];
-  pageArtworks: PageArtworkWithRelations[];
-};
-
-export type ArtistWithRelations = z.infer<typeof ArtistSchema> & ArtistRelations
-
-export const ArtistWithRelationsSchema: z.ZodType<ArtistWithRelations> = ArtistSchema.merge(z.object({
-  stories: z.lazy(() => StoryWithRelationsSchema).array(),
-  pageArtworks: z.lazy(() => PageArtworkWithRelationsSchema).array(),
-}))
-
 /////////////////////////////////////////
 // TRANSLATOR SCHEMA
 /////////////////////////////////////////
@@ -331,19 +237,6 @@ export const TranslatorSchema = z.object({
 })
 
 export type Translator = z.infer<typeof TranslatorSchema>
-
-// TRANSLATOR RELATION SCHEMA
-//------------------------------------------------------
-
-export type TranslatorRelations = {
-  pageTexts: PageTextWithRelations[];
-};
-
-export type TranslatorWithRelations = z.infer<typeof TranslatorSchema> & TranslatorRelations
-
-export const TranslatorWithRelationsSchema: z.ZodType<TranslatorWithRelations> = TranslatorSchema.merge(z.object({
-  pageTexts: z.lazy(() => PageTextWithRelationsSchema).array(),
-}))
 
 /////////////////////////////////////////
 // STORY SCHEMA
@@ -358,27 +251,6 @@ export const StorySchema = z.object({
 })
 
 export type Story = z.infer<typeof StorySchema>
-
-// STORY RELATION SCHEMA
-//------------------------------------------------------
-
-export type StoryRelations = {
-  artist?: ArtistWithRelations | null;
-  author?: AuthorWithRelations | null;
-  pages: PageWithRelations[];
-  pageArtworks: PageArtworkWithRelations[];
-  pageTexts: PageTextWithRelations[];
-};
-
-export type StoryWithRelations = z.infer<typeof StorySchema> & StoryRelations
-
-export const StoryWithRelationsSchema: z.ZodType<StoryWithRelations> = StorySchema.merge(z.object({
-  artist: z.lazy(() => ArtistWithRelationsSchema).nullable(),
-  author: z.lazy(() => AuthorWithRelationsSchema).nullable(),
-  pages: z.lazy(() => PageWithRelationsSchema).array(),
-  pageArtworks: z.lazy(() => PageArtworkWithRelationsSchema).array(),
-  pageTexts: z.lazy(() => PageTextWithRelationsSchema).array(),
-}))
 
 /////////////////////////////////////////
 // PAGE ARTWORK SCHEMA
@@ -396,25 +268,6 @@ export const PageArtworkSchema = z.object({
 })
 
 export type PageArtwork = z.infer<typeof PageArtworkSchema>
-
-// PAGE ARTWORK RELATION SCHEMA
-//------------------------------------------------------
-
-export type PageArtworkRelations = {
-  page: PageWithRelations;
-  story: StoryWithRelations;
-  artist: ArtistWithRelations;
-  photo: PhotoWithRelations;
-};
-
-export type PageArtworkWithRelations = z.infer<typeof PageArtworkSchema> & PageArtworkRelations
-
-export const PageArtworkWithRelationsSchema: z.ZodType<PageArtworkWithRelations> = PageArtworkSchema.merge(z.object({
-  page: z.lazy(() => PageWithRelationsSchema),
-  story: z.lazy(() => StoryWithRelationsSchema),
-  artist: z.lazy(() => ArtistWithRelationsSchema),
-  photo: z.lazy(() => PhotoWithRelationsSchema),
-}))
 
 /////////////////////////////////////////
 // PAGE TEXT SCHEMA
@@ -436,25 +289,6 @@ export const PageTextSchema = z.object({
 
 export type PageText = z.infer<typeof PageTextSchema>
 
-// PAGE TEXT RELATION SCHEMA
-//------------------------------------------------------
-
-export type PageTextRelations = {
-  page: PageWithRelations;
-  story: StoryWithRelations;
-  author?: AuthorWithRelations | null;
-  translator?: TranslatorWithRelations | null;
-};
-
-export type PageTextWithRelations = z.infer<typeof PageTextSchema> & PageTextRelations
-
-export const PageTextWithRelationsSchema: z.ZodType<PageTextWithRelations> = PageTextSchema.merge(z.object({
-  page: z.lazy(() => PageWithRelationsSchema),
-  story: z.lazy(() => StoryWithRelationsSchema),
-  author: z.lazy(() => AuthorWithRelationsSchema).nullable(),
-  translator: z.lazy(() => TranslatorWithRelationsSchema).nullable(),
-}))
-
 /////////////////////////////////////////
 // PAGE SCHEMA
 /////////////////////////////////////////
@@ -471,23 +305,6 @@ export const PageSchema = z.object({
 
 export type Page = z.infer<typeof PageSchema>
 
-// PAGE RELATION SCHEMA
-//------------------------------------------------------
-
-export type PageRelations = {
-  story: StoryWithRelations;
-  artworks: PageArtworkWithRelations[];
-  texts: PageTextWithRelations[];
-};
-
-export type PageWithRelations = z.infer<typeof PageSchema> & PageRelations
-
-export const PageWithRelationsSchema: z.ZodType<PageWithRelations> = PageSchema.merge(z.object({
-  story: z.lazy(() => StoryWithRelationsSchema),
-  artworks: z.lazy(() => PageArtworkWithRelationsSchema).array(),
-  texts: z.lazy(() => PageTextWithRelationsSchema).array(),
-}))
-
 /////////////////////////////////////////
 // EDITION SCHEMA
 /////////////////////////////////////////
@@ -501,21 +318,6 @@ export const EditionSchema = z.object({
 })
 
 export type Edition = z.infer<typeof EditionSchema>
-
-// EDITION RELATION SCHEMA
-//------------------------------------------------------
-
-export type EditionRelations = {
-  user: UserWithRelations;
-  pdf: PDFWithRelations;
-};
-
-export type EditionWithRelations = z.infer<typeof EditionSchema> & EditionRelations
-
-export const EditionWithRelationsSchema: z.ZodType<EditionWithRelations> = EditionSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema),
-  pdf: z.lazy(() => PDFWithRelationsSchema),
-}))
 
 /////////////////////////////////////////
 // CONCEPT SCHEMA
@@ -531,25 +333,9 @@ export const ConceptSchema = z.object({
   description: z.string().nullable(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
-  userId: z.string().cuid().nullable(),
 })
 
 export type Concept = z.infer<typeof ConceptSchema>
-
-// CONCEPT RELATION SCHEMA
-//------------------------------------------------------
-
-export type ConceptRelations = {
-  user?: UserWithRelations | null;
-  photos: PhotoWithRelations[];
-};
-
-export type ConceptWithRelations = z.infer<typeof ConceptSchema> & ConceptRelations
-
-export const ConceptWithRelationsSchema: z.ZodType<ConceptWithRelations> = ConceptSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema).nullable(),
-  photos: z.lazy(() => PhotoWithRelationsSchema).array(),
-}))
 
 /////////////////////////////////////////
 // PREDICTION SCHEMA
@@ -580,8 +366,8 @@ export type Prediction = z.infer<typeof PredictionSchema>
 //------------------------------------------------------
 
 export const CloudFileIncludeSchema: z.ZodType<Prisma.CloudFileInclude> = z.object({
-  Photo: z.union([z.boolean(),z.lazy(() => PhotoArgsSchema)]).optional(),
-  PDF: z.union([z.boolean(),z.lazy(() => PDFArgsSchema)]).optional(),
+  photo: z.union([z.boolean(),z.lazy(() => PhotoArgsSchema)]).optional(),
+  pdf: z.union([z.boolean(),z.lazy(() => PDFArgsSchema)]).optional(),
 }).strict()
 
 export const CloudFileArgsSchema: z.ZodType<Prisma.CloudFileArgs> = z.object({
@@ -601,8 +387,8 @@ export const CloudFileSelectSchema: z.ZodType<Prisma.CloudFileSelect> = z.object
   signature: z.boolean().optional(),
   privacy: z.boolean().optional(),
   createdAt: z.boolean().optional(),
-  Photo: z.union([z.boolean(),z.lazy(() => PhotoArgsSchema)]).optional(),
-  PDF: z.union([z.boolean(),z.lazy(() => PDFArgsSchema)]).optional(),
+  photo: z.union([z.boolean(),z.lazy(() => PhotoArgsSchema)]).optional(),
+  pdf: z.union([z.boolean(),z.lazy(() => PDFArgsSchema)]).optional(),
 }).strict()
 
 // PHOTO
@@ -647,7 +433,7 @@ export const PhotoSelectSchema: z.ZodType<Prisma.PhotoSelect> = z.object({
 
 export const PDFIncludeSchema: z.ZodType<Prisma.PDFInclude> = z.object({
   file: z.union([z.boolean(),z.lazy(() => CloudFileArgsSchema)]).optional(),
-  book: z.union([z.boolean(),z.lazy(() => EditionArgsSchema)]).optional(),
+  edition: z.union([z.boolean(),z.lazy(() => EditionArgsSchema)]).optional(),
 }).strict()
 
 export const PDFArgsSchema: z.ZodType<Prisma.PDFArgs> = z.object({
@@ -664,7 +450,7 @@ export const PDFSelectSchema: z.ZodType<Prisma.PDFSelect> = z.object({
   createdAt: z.boolean().optional(),
   fileId: z.boolean().optional(),
   file: z.union([z.boolean(),z.lazy(() => CloudFileArgsSchema)]).optional(),
-  book: z.union([z.boolean(),z.lazy(() => EditionArgsSchema)]).optional(),
+  edition: z.union([z.boolean(),z.lazy(() => EditionArgsSchema)]).optional(),
 }).strict()
 
 // USER
@@ -672,7 +458,6 @@ export const PDFSelectSchema: z.ZodType<Prisma.PDFSelect> = z.object({
 
 export const UserIncludeSchema: z.ZodType<Prisma.UserInclude> = z.object({
   Edition: z.union([z.boolean(),z.lazy(() => EditionFindManyArgsSchema)]).optional(),
-  Concept: z.union([z.boolean(),z.lazy(() => ConceptArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => UserCountOutputTypeArgsSchema)]).optional(),
 }).strict()
 
@@ -696,7 +481,6 @@ export const UserSelectSchema: z.ZodType<Prisma.UserSelect> = z.object({
   updatedAt: z.boolean().optional(),
   createdAt: z.boolean().optional(),
   Edition: z.union([z.boolean(),z.lazy(() => EditionFindManyArgsSchema)]).optional(),
-  Concept: z.union([z.boolean(),z.lazy(() => ConceptArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => UserCountOutputTypeArgsSchema)]).optional(),
 }).strict()
 
@@ -956,7 +740,6 @@ export const EditionSelectSchema: z.ZodType<Prisma.EditionSelect> = z.object({
 //------------------------------------------------------
 
 export const ConceptIncludeSchema: z.ZodType<Prisma.ConceptInclude> = z.object({
-  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
   photos: z.union([z.boolean(),z.lazy(() => PhotoFindManyArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => ConceptCountOutputTypeArgsSchema)]).optional(),
 }).strict()
@@ -981,8 +764,6 @@ export const ConceptSelectSchema: z.ZodType<Prisma.ConceptSelect> = z.object({
   description: z.boolean().optional(),
   createdAt: z.boolean().optional(),
   updatedAt: z.boolean().optional(),
-  userId: z.boolean().optional(),
-  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
   photos: z.union([z.boolean(),z.lazy(() => PhotoFindManyArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => ConceptCountOutputTypeArgsSchema)]).optional(),
 }).strict()
@@ -1025,8 +806,8 @@ export const CloudFileWhereInputSchema: z.ZodType<Prisma.CloudFileWhereInput> = 
   signature: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   privacy: z.union([ z.lazy(() => EnumFilePrivacyFilterSchema),z.lazy(() => FilePrivacySchema) ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
-  Photo: z.union([ z.lazy(() => PhotoRelationFilterSchema),z.lazy(() => PhotoWhereInputSchema) ]).optional().nullable(),
-  PDF: z.union([ z.lazy(() => PDFRelationFilterSchema),z.lazy(() => PDFWhereInputSchema) ]).optional().nullable(),
+  photo: z.union([ z.lazy(() => PhotoRelationFilterSchema),z.lazy(() => PhotoWhereInputSchema) ]).optional().nullable(),
+  pdf: z.union([ z.lazy(() => PDFRelationFilterSchema),z.lazy(() => PDFWhereInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const CloudFileOrderByWithRelationInputSchema: z.ZodType<Prisma.CloudFileOrderByWithRelationInput> = z.object({
@@ -1041,8 +822,8 @@ export const CloudFileOrderByWithRelationInputSchema: z.ZodType<Prisma.CloudFile
   signature: z.lazy(() => SortOrderSchema).optional(),
   privacy: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  Photo: z.lazy(() => PhotoOrderByWithRelationInputSchema).optional(),
-  PDF: z.lazy(() => PDFOrderByWithRelationInputSchema).optional()
+  photo: z.lazy(() => PhotoOrderByWithRelationInputSchema).optional(),
+  pdf: z.lazy(() => PDFOrderByWithRelationInputSchema).optional()
 }).strict();
 
 export const CloudFileWhereUniqueInputSchema: z.ZodType<Prisma.CloudFileWhereUniqueInput> = z.object({
@@ -1157,7 +938,7 @@ export const PDFWhereInputSchema: z.ZodType<Prisma.PDFWhereInput> = z.object({
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   fileId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   file: z.union([ z.lazy(() => CloudFileRelationFilterSchema),z.lazy(() => CloudFileWhereInputSchema) ]).optional(),
-  book: z.union([ z.lazy(() => EditionRelationFilterSchema),z.lazy(() => EditionWhereInputSchema) ]).optional().nullable(),
+  edition: z.union([ z.lazy(() => EditionRelationFilterSchema),z.lazy(() => EditionWhereInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const PDFOrderByWithRelationInputSchema: z.ZodType<Prisma.PDFOrderByWithRelationInput> = z.object({
@@ -1169,7 +950,7 @@ export const PDFOrderByWithRelationInputSchema: z.ZodType<Prisma.PDFOrderByWithR
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   fileId: z.lazy(() => SortOrderSchema).optional(),
   file: z.lazy(() => CloudFileOrderByWithRelationInputSchema).optional(),
-  book: z.lazy(() => EditionOrderByWithRelationInputSchema).optional()
+  edition: z.lazy(() => EditionOrderByWithRelationInputSchema).optional()
 }).strict();
 
 export const PDFWhereUniqueInputSchema: z.ZodType<Prisma.PDFWhereUniqueInput> = z.object({
@@ -1214,8 +995,7 @@ export const UserWhereInputSchema: z.ZodType<Prisma.UserWhereInput> = z.object({
   email: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
-  Edition: z.lazy(() => EditionListRelationFilterSchema).optional(),
-  Concept: z.union([ z.lazy(() => ConceptRelationFilterSchema),z.lazy(() => ConceptWhereInputSchema) ]).optional().nullable(),
+  Edition: z.lazy(() => EditionListRelationFilterSchema).optional()
 }).strict();
 
 export const UserOrderByWithRelationInputSchema: z.ZodType<Prisma.UserOrderByWithRelationInput> = z.object({
@@ -1224,8 +1004,7 @@ export const UserOrderByWithRelationInputSchema: z.ZodType<Prisma.UserOrderByWit
   email: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  Edition: z.lazy(() => EditionOrderByRelationAggregateInputSchema).optional(),
-  Concept: z.lazy(() => ConceptOrderByWithRelationInputSchema).optional()
+  Edition: z.lazy(() => EditionOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
 export const UserWhereUniqueInputSchema: z.ZodType<Prisma.UserWhereUniqueInput> = z.object({
@@ -1671,8 +1450,6 @@ export const ConceptWhereInputSchema: z.ZodType<Prisma.ConceptWhereInput> = z.ob
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
-  userId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
-  user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
   photos: z.lazy(() => PhotoListRelationFilterSchema).optional()
 }).strict();
 
@@ -1683,14 +1460,11 @@ export const ConceptOrderByWithRelationInputSchema: z.ZodType<Prisma.ConceptOrde
   description: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional(),
-  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
   photos: z.lazy(() => PhotoOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
 export const ConceptWhereUniqueInputSchema: z.ZodType<Prisma.ConceptWhereUniqueInput> = z.object({
-  id: z.string().cuid().optional(),
-  userId: z.string().cuid().optional()
+  id: z.string().cuid().optional()
 }).strict();
 
 export const ConceptOrderByWithAggregationInputSchema: z.ZodType<Prisma.ConceptOrderByWithAggregationInput> = z.object({
@@ -1700,7 +1474,6 @@ export const ConceptOrderByWithAggregationInputSchema: z.ZodType<Prisma.ConceptO
   description: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => ConceptCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => ConceptMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => ConceptMinOrderByAggregateInputSchema).optional()
@@ -1716,7 +1489,6 @@ export const ConceptScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.Conce
   description: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
   createdAt: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
-  userId: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
 }).strict();
 
 export const PredictionWhereInputSchema: z.ZodType<Prisma.PredictionWhereInput> = z.object({
@@ -1805,8 +1577,8 @@ export const CloudFileCreateInputSchema: z.ZodType<Prisma.CloudFileCreateInput> 
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
-  Photo: z.lazy(() => PhotoCreateNestedOneWithoutFileInputSchema).optional(),
-  PDF: z.lazy(() => PDFCreateNestedOneWithoutFileInputSchema).optional()
+  photo: z.lazy(() => PhotoCreateNestedOneWithoutFileInputSchema).optional(),
+  pdf: z.lazy(() => PDFCreateNestedOneWithoutFileInputSchema).optional()
 }).strict();
 
 export const CloudFileUncheckedCreateInputSchema: z.ZodType<Prisma.CloudFileUncheckedCreateInput> = z.object({
@@ -1821,8 +1593,8 @@ export const CloudFileUncheckedCreateInputSchema: z.ZodType<Prisma.CloudFileUnch
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
-  Photo: z.lazy(() => PhotoUncheckedCreateNestedOneWithoutFileInputSchema).optional(),
-  PDF: z.lazy(() => PDFUncheckedCreateNestedOneWithoutFileInputSchema).optional()
+  photo: z.lazy(() => PhotoUncheckedCreateNestedOneWithoutFileInputSchema).optional(),
+  pdf: z.lazy(() => PDFUncheckedCreateNestedOneWithoutFileInputSchema).optional()
 }).strict();
 
 export const CloudFileUpdateInputSchema: z.ZodType<Prisma.CloudFileUpdateInput> = z.object({
@@ -1837,8 +1609,8 @@ export const CloudFileUpdateInputSchema: z.ZodType<Prisma.CloudFileUpdateInput> 
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Photo: z.lazy(() => PhotoUpdateOneWithoutFileNestedInputSchema).optional(),
-  PDF: z.lazy(() => PDFUpdateOneWithoutFileNestedInputSchema).optional()
+  photo: z.lazy(() => PhotoUpdateOneWithoutFileNestedInputSchema).optional(),
+  pdf: z.lazy(() => PDFUpdateOneWithoutFileNestedInputSchema).optional()
 }).strict();
 
 export const CloudFileUncheckedUpdateInputSchema: z.ZodType<Prisma.CloudFileUncheckedUpdateInput> = z.object({
@@ -1853,8 +1625,8 @@ export const CloudFileUncheckedUpdateInputSchema: z.ZodType<Prisma.CloudFileUnch
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Photo: z.lazy(() => PhotoUncheckedUpdateOneWithoutFileNestedInputSchema).optional(),
-  PDF: z.lazy(() => PDFUncheckedUpdateOneWithoutFileNestedInputSchema).optional()
+  photo: z.lazy(() => PhotoUncheckedUpdateOneWithoutFileNestedInputSchema).optional(),
+  pdf: z.lazy(() => PDFUncheckedUpdateOneWithoutFileNestedInputSchema).optional()
 }).strict();
 
 export const CloudFileCreateManyInputSchema: z.ZodType<Prisma.CloudFileCreateManyInput> = z.object({
@@ -1976,8 +1748,8 @@ export const PDFCreateInputSchema: z.ZodType<Prisma.PDFCreateInput> = z.object({
   pages: z.number().positive(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  file: z.lazy(() => CloudFileCreateNestedOneWithoutPDFInputSchema),
-  book: z.lazy(() => EditionCreateNestedOneWithoutPdfInputSchema).optional()
+  file: z.lazy(() => CloudFileCreateNestedOneWithoutPdfInputSchema),
+  edition: z.lazy(() => EditionCreateNestedOneWithoutPdfInputSchema).optional()
 }).strict();
 
 export const PDFUncheckedCreateInputSchema: z.ZodType<Prisma.PDFUncheckedCreateInput> = z.object({
@@ -1988,7 +1760,7 @@ export const PDFUncheckedCreateInputSchema: z.ZodType<Prisma.PDFUncheckedCreateI
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   fileId: z.string().cuid(),
-  book: z.lazy(() => EditionUncheckedCreateNestedOneWithoutPdfInputSchema).optional()
+  edition: z.lazy(() => EditionUncheckedCreateNestedOneWithoutPdfInputSchema).optional()
 }).strict();
 
 export const PDFUpdateInputSchema: z.ZodType<Prisma.PDFUpdateInput> = z.object({
@@ -1998,8 +1770,8 @@ export const PDFUpdateInputSchema: z.ZodType<Prisma.PDFUpdateInput> = z.object({
   pages: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  file: z.lazy(() => CloudFileUpdateOneRequiredWithoutPDFNestedInputSchema).optional(),
-  book: z.lazy(() => EditionUpdateOneWithoutPdfNestedInputSchema).optional()
+  file: z.lazy(() => CloudFileUpdateOneRequiredWithoutPdfNestedInputSchema).optional(),
+  edition: z.lazy(() => EditionUpdateOneWithoutPdfNestedInputSchema).optional()
 }).strict();
 
 export const PDFUncheckedUpdateInputSchema: z.ZodType<Prisma.PDFUncheckedUpdateInput> = z.object({
@@ -2010,7 +1782,7 @@ export const PDFUncheckedUpdateInputSchema: z.ZodType<Prisma.PDFUncheckedUpdateI
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   fileId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  book: z.lazy(() => EditionUncheckedUpdateOneWithoutPdfNestedInputSchema).optional()
+  edition: z.lazy(() => EditionUncheckedUpdateOneWithoutPdfNestedInputSchema).optional()
 }).strict();
 
 export const PDFCreateManyInputSchema: z.ZodType<Prisma.PDFCreateManyInput> = z.object({
@@ -2048,8 +1820,7 @@ export const UserCreateInputSchema: z.ZodType<Prisma.UserCreateInput> = z.object
   email: z.string().email().min(3).max(160),
   updatedAt: z.coerce.date().optional(),
   createdAt: z.coerce.date().optional(),
-  Edition: z.lazy(() => EditionCreateNestedManyWithoutUserInputSchema).optional(),
-  Concept: z.lazy(() => ConceptCreateNestedOneWithoutUserInputSchema).optional()
+  Edition: z.lazy(() => EditionCreateNestedManyWithoutUserInputSchema).optional()
 }).strict();
 
 export const UserUncheckedCreateInputSchema: z.ZodType<Prisma.UserUncheckedCreateInput> = z.object({
@@ -2058,8 +1829,7 @@ export const UserUncheckedCreateInputSchema: z.ZodType<Prisma.UserUncheckedCreat
   email: z.string().email().min(3).max(160),
   updatedAt: z.coerce.date().optional(),
   createdAt: z.coerce.date().optional(),
-  Edition: z.lazy(() => EditionUncheckedCreateNestedManyWithoutUserInputSchema).optional(),
-  Concept: z.lazy(() => ConceptUncheckedCreateNestedOneWithoutUserInputSchema).optional()
+  Edition: z.lazy(() => EditionUncheckedCreateNestedManyWithoutUserInputSchema).optional()
 }).strict();
 
 export const UserUpdateInputSchema: z.ZodType<Prisma.UserUpdateInput> = z.object({
@@ -2068,8 +1838,7 @@ export const UserUpdateInputSchema: z.ZodType<Prisma.UserUpdateInput> = z.object
   email: z.union([ z.string().email().min(3).max(160),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Edition: z.lazy(() => EditionUpdateManyWithoutUserNestedInputSchema).optional(),
-  Concept: z.lazy(() => ConceptUpdateOneWithoutUserNestedInputSchema).optional()
+  Edition: z.lazy(() => EditionUpdateManyWithoutUserNestedInputSchema).optional()
 }).strict();
 
 export const UserUncheckedUpdateInputSchema: z.ZodType<Prisma.UserUncheckedUpdateInput> = z.object({
@@ -2078,8 +1847,7 @@ export const UserUncheckedUpdateInputSchema: z.ZodType<Prisma.UserUncheckedUpdat
   email: z.union([ z.string().email().min(3).max(160),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Edition: z.lazy(() => EditionUncheckedUpdateManyWithoutUserNestedInputSchema).optional(),
-  Concept: z.lazy(() => ConceptUncheckedUpdateOneWithoutUserNestedInputSchema).optional()
+  Edition: z.lazy(() => EditionUncheckedUpdateManyWithoutUserNestedInputSchema).optional()
 }).strict();
 
 export const UserCreateManyInputSchema: z.ZodType<Prisma.UserCreateManyInput> = z.object({
@@ -2525,7 +2293,7 @@ export const EditionCreateInputSchema: z.ZodType<Prisma.EditionCreateInput> = z.
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   user: z.lazy(() => UserCreateNestedOneWithoutEditionInputSchema),
-  pdf: z.lazy(() => PDFCreateNestedOneWithoutBookInputSchema)
+  pdf: z.lazy(() => PDFCreateNestedOneWithoutEditionInputSchema)
 }).strict();
 
 export const EditionUncheckedCreateInputSchema: z.ZodType<Prisma.EditionUncheckedCreateInput> = z.object({
@@ -2541,7 +2309,7 @@ export const EditionUpdateInputSchema: z.ZodType<Prisma.EditionUpdateInput> = z.
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   user: z.lazy(() => UserUpdateOneRequiredWithoutEditionNestedInputSchema).optional(),
-  pdf: z.lazy(() => PDFUpdateOneRequiredWithoutBookNestedInputSchema).optional()
+  pdf: z.lazy(() => PDFUpdateOneRequiredWithoutEditionNestedInputSchema).optional()
 }).strict();
 
 export const EditionUncheckedUpdateInputSchema: z.ZodType<Prisma.EditionUncheckedUpdateInput> = z.object({
@@ -2581,7 +2349,6 @@ export const ConceptCreateInputSchema: z.ZodType<Prisma.ConceptCreateInput> = z.
   description: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  user: z.lazy(() => UserCreateNestedOneWithoutConceptInputSchema).optional(),
   photos: z.lazy(() => PhotoCreateNestedManyWithoutConceptsInputSchema).optional()
 }).strict();
 
@@ -2592,7 +2359,6 @@ export const ConceptUncheckedCreateInputSchema: z.ZodType<Prisma.ConceptUnchecke
   description: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  userId: z.string().cuid().optional().nullable(),
   photos: z.lazy(() => PhotoUncheckedCreateNestedManyWithoutConceptsInputSchema).optional()
 }).strict();
 
@@ -2603,7 +2369,6 @@ export const ConceptUpdateInputSchema: z.ZodType<Prisma.ConceptUpdateInput> = z.
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  user: z.lazy(() => UserUpdateOneWithoutConceptNestedInputSchema).optional(),
   photos: z.lazy(() => PhotoUpdateManyWithoutConceptsNestedInputSchema).optional()
 }).strict();
 
@@ -2614,7 +2379,6 @@ export const ConceptUncheckedUpdateInputSchema: z.ZodType<Prisma.ConceptUnchecke
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  userId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   photos: z.lazy(() => PhotoUncheckedUpdateManyWithoutConceptsNestedInputSchema).optional()
 }).strict();
 
@@ -2624,8 +2388,7 @@ export const ConceptCreateManyInputSchema: z.ZodType<Prisma.ConceptCreateManyInp
   type: z.lazy(() => ConceptTypeSchema),
   description: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  userId: z.string().cuid().optional().nullable()
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export const ConceptUpdateManyMutationInputSchema: z.ZodType<Prisma.ConceptUpdateManyMutationInput> = z.object({
@@ -2644,7 +2407,6 @@ export const ConceptUncheckedUpdateManyInputSchema: z.ZodType<Prisma.ConceptUnch
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  userId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const PredictionCreateInputSchema: z.ZodType<Prisma.PredictionCreateInput> = z.object({
@@ -3083,11 +2845,6 @@ export const EditionListRelationFilterSchema: z.ZodType<Prisma.EditionListRelati
   none: z.lazy(() => EditionWhereInputSchema).optional()
 }).strict();
 
-export const ConceptRelationFilterSchema: z.ZodType<Prisma.ConceptRelationFilter> = z.object({
-  is: z.lazy(() => ConceptWhereInputSchema).optional().nullable(),
-  isNot: z.lazy(() => ConceptWhereInputSchema).optional().nullable()
-}).strict();
-
 export const EditionOrderByRelationAggregateInputSchema: z.ZodType<Prisma.EditionOrderByRelationAggregateInput> = z.object({
   _count: z.lazy(() => SortOrderSchema).optional()
 }).strict();
@@ -3446,8 +3203,8 @@ export const EnumPageTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumPageTy
 }).strict();
 
 export const UserRelationFilterSchema: z.ZodType<Prisma.UserRelationFilter> = z.object({
-  is: z.lazy(() => UserWhereInputSchema).optional().nullable(),
-  isNot: z.lazy(() => UserWhereInputSchema).optional().nullable()
+  is: z.lazy(() => UserWhereInputSchema).optional(),
+  isNot: z.lazy(() => UserWhereInputSchema).optional()
 }).strict();
 
 export const EditionCountOrderByAggregateInputSchema: z.ZodType<Prisma.EditionCountOrderByAggregateInput> = z.object({
@@ -3497,8 +3254,7 @@ export const ConceptCountOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptCo
   type: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional()
+  updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export const ConceptMaxOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptMaxOrderByAggregateInput> = z.object({
@@ -3507,8 +3263,7 @@ export const ConceptMaxOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptMaxO
   type: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional()
+  updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export const ConceptMinOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptMinOrderByAggregateInput> = z.object({
@@ -3517,8 +3272,7 @@ export const ConceptMinOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptMinO
   type: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional()
+  updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export const EnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumConceptTypeWithAggregatesFilter> = z.object({
@@ -3790,9 +3544,9 @@ export const PDFCreatetagsInputSchema: z.ZodType<Prisma.PDFCreatetagsInput> = z.
   set: z.string().array()
 }).strict();
 
-export const CloudFileCreateNestedOneWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileCreateNestedOneWithoutPDFInput> = z.object({
-  create: z.union([ z.lazy(() => CloudFileCreateWithoutPDFInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPDFInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => CloudFileCreateOrConnectWithoutPDFInputSchema).optional(),
+export const CloudFileCreateNestedOneWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileCreateNestedOneWithoutPdfInput> = z.object({
+  create: z.union([ z.lazy(() => CloudFileCreateWithoutPdfInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPdfInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => CloudFileCreateOrConnectWithoutPdfInputSchema).optional(),
   connect: z.lazy(() => CloudFileWhereUniqueInputSchema).optional()
 }).strict();
 
@@ -3813,12 +3567,12 @@ export const PDFUpdatetagsInputSchema: z.ZodType<Prisma.PDFUpdatetagsInput> = z.
   push: z.union([ z.string(),z.string().array() ]).optional(),
 }).strict();
 
-export const CloudFileUpdateOneRequiredWithoutPDFNestedInputSchema: z.ZodType<Prisma.CloudFileUpdateOneRequiredWithoutPDFNestedInput> = z.object({
-  create: z.union([ z.lazy(() => CloudFileCreateWithoutPDFInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPDFInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => CloudFileCreateOrConnectWithoutPDFInputSchema).optional(),
-  upsert: z.lazy(() => CloudFileUpsertWithoutPDFInputSchema).optional(),
+export const CloudFileUpdateOneRequiredWithoutPdfNestedInputSchema: z.ZodType<Prisma.CloudFileUpdateOneRequiredWithoutPdfNestedInput> = z.object({
+  create: z.union([ z.lazy(() => CloudFileCreateWithoutPdfInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPdfInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => CloudFileCreateOrConnectWithoutPdfInputSchema).optional(),
+  upsert: z.lazy(() => CloudFileUpsertWithoutPdfInputSchema).optional(),
   connect: z.lazy(() => CloudFileWhereUniqueInputSchema).optional(),
-  update: z.union([ z.lazy(() => CloudFileUpdateWithoutPDFInputSchema),z.lazy(() => CloudFileUncheckedUpdateWithoutPDFInputSchema) ]).optional(),
+  update: z.union([ z.lazy(() => CloudFileUpdateWithoutPdfInputSchema),z.lazy(() => CloudFileUncheckedUpdateWithoutPdfInputSchema) ]).optional(),
 }).strict();
 
 export const EditionUpdateOneWithoutPdfNestedInputSchema: z.ZodType<Prisma.EditionUpdateOneWithoutPdfNestedInput> = z.object({
@@ -3848,23 +3602,11 @@ export const EditionCreateNestedManyWithoutUserInputSchema: z.ZodType<Prisma.Edi
   connect: z.union([ z.lazy(() => EditionWhereUniqueInputSchema),z.lazy(() => EditionWhereUniqueInputSchema).array() ]).optional(),
 }).strict();
 
-export const ConceptCreateNestedOneWithoutUserInputSchema: z.ZodType<Prisma.ConceptCreateNestedOneWithoutUserInput> = z.object({
-  create: z.union([ z.lazy(() => ConceptCreateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutUserInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => ConceptCreateOrConnectWithoutUserInputSchema).optional(),
-  connect: z.lazy(() => ConceptWhereUniqueInputSchema).optional()
-}).strict();
-
 export const EditionUncheckedCreateNestedManyWithoutUserInputSchema: z.ZodType<Prisma.EditionUncheckedCreateNestedManyWithoutUserInput> = z.object({
   create: z.union([ z.lazy(() => EditionCreateWithoutUserInputSchema),z.lazy(() => EditionCreateWithoutUserInputSchema).array(),z.lazy(() => EditionUncheckedCreateWithoutUserInputSchema),z.lazy(() => EditionUncheckedCreateWithoutUserInputSchema).array() ]).optional(),
   connectOrCreate: z.union([ z.lazy(() => EditionCreateOrConnectWithoutUserInputSchema),z.lazy(() => EditionCreateOrConnectWithoutUserInputSchema).array() ]).optional(),
   createMany: z.lazy(() => EditionCreateManyUserInputEnvelopeSchema).optional(),
   connect: z.union([ z.lazy(() => EditionWhereUniqueInputSchema),z.lazy(() => EditionWhereUniqueInputSchema).array() ]).optional(),
-}).strict();
-
-export const ConceptUncheckedCreateNestedOneWithoutUserInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateNestedOneWithoutUserInput> = z.object({
-  create: z.union([ z.lazy(() => ConceptCreateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutUserInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => ConceptCreateOrConnectWithoutUserInputSchema).optional(),
-  connect: z.lazy(() => ConceptWhereUniqueInputSchema).optional()
 }).strict();
 
 export const EditionUpdateManyWithoutUserNestedInputSchema: z.ZodType<Prisma.EditionUpdateManyWithoutUserNestedInput> = z.object({
@@ -3881,16 +3623,6 @@ export const EditionUpdateManyWithoutUserNestedInputSchema: z.ZodType<Prisma.Edi
   deleteMany: z.union([ z.lazy(() => EditionScalarWhereInputSchema),z.lazy(() => EditionScalarWhereInputSchema).array() ]).optional(),
 }).strict();
 
-export const ConceptUpdateOneWithoutUserNestedInputSchema: z.ZodType<Prisma.ConceptUpdateOneWithoutUserNestedInput> = z.object({
-  create: z.union([ z.lazy(() => ConceptCreateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutUserInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => ConceptCreateOrConnectWithoutUserInputSchema).optional(),
-  upsert: z.lazy(() => ConceptUpsertWithoutUserInputSchema).optional(),
-  disconnect: z.boolean().optional(),
-  delete: z.boolean().optional(),
-  connect: z.lazy(() => ConceptWhereUniqueInputSchema).optional(),
-  update: z.union([ z.lazy(() => ConceptUpdateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedUpdateWithoutUserInputSchema) ]).optional(),
-}).strict();
-
 export const EditionUncheckedUpdateManyWithoutUserNestedInputSchema: z.ZodType<Prisma.EditionUncheckedUpdateManyWithoutUserNestedInput> = z.object({
   create: z.union([ z.lazy(() => EditionCreateWithoutUserInputSchema),z.lazy(() => EditionCreateWithoutUserInputSchema).array(),z.lazy(() => EditionUncheckedCreateWithoutUserInputSchema),z.lazy(() => EditionUncheckedCreateWithoutUserInputSchema).array() ]).optional(),
   connectOrCreate: z.union([ z.lazy(() => EditionCreateOrConnectWithoutUserInputSchema),z.lazy(() => EditionCreateOrConnectWithoutUserInputSchema).array() ]).optional(),
@@ -3903,16 +3635,6 @@ export const EditionUncheckedUpdateManyWithoutUserNestedInputSchema: z.ZodType<P
   update: z.union([ z.lazy(() => EditionUpdateWithWhereUniqueWithoutUserInputSchema),z.lazy(() => EditionUpdateWithWhereUniqueWithoutUserInputSchema).array() ]).optional(),
   updateMany: z.union([ z.lazy(() => EditionUpdateManyWithWhereWithoutUserInputSchema),z.lazy(() => EditionUpdateManyWithWhereWithoutUserInputSchema).array() ]).optional(),
   deleteMany: z.union([ z.lazy(() => EditionScalarWhereInputSchema),z.lazy(() => EditionScalarWhereInputSchema).array() ]).optional(),
-}).strict();
-
-export const ConceptUncheckedUpdateOneWithoutUserNestedInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateOneWithoutUserNestedInput> = z.object({
-  create: z.union([ z.lazy(() => ConceptCreateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutUserInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => ConceptCreateOrConnectWithoutUserInputSchema).optional(),
-  upsert: z.lazy(() => ConceptUpsertWithoutUserInputSchema).optional(),
-  disconnect: z.boolean().optional(),
-  delete: z.boolean().optional(),
-  connect: z.lazy(() => ConceptWhereUniqueInputSchema).optional(),
-  update: z.union([ z.lazy(() => ConceptUpdateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedUpdateWithoutUserInputSchema) ]).optional(),
 }).strict();
 
 export const StoryCreateNestedManyWithoutAuthorInputSchema: z.ZodType<Prisma.StoryCreateNestedManyWithoutAuthorInput> = z.object({
@@ -4523,9 +4245,9 @@ export const UserCreateNestedOneWithoutEditionInputSchema: z.ZodType<Prisma.User
   connect: z.lazy(() => UserWhereUniqueInputSchema).optional()
 }).strict();
 
-export const PDFCreateNestedOneWithoutBookInputSchema: z.ZodType<Prisma.PDFCreateNestedOneWithoutBookInput> = z.object({
-  create: z.union([ z.lazy(() => PDFCreateWithoutBookInputSchema),z.lazy(() => PDFUncheckedCreateWithoutBookInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => PDFCreateOrConnectWithoutBookInputSchema).optional(),
+export const PDFCreateNestedOneWithoutEditionInputSchema: z.ZodType<Prisma.PDFCreateNestedOneWithoutEditionInput> = z.object({
+  create: z.union([ z.lazy(() => PDFCreateWithoutEditionInputSchema),z.lazy(() => PDFUncheckedCreateWithoutEditionInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => PDFCreateOrConnectWithoutEditionInputSchema).optional(),
   connect: z.lazy(() => PDFWhereUniqueInputSchema).optional()
 }).strict();
 
@@ -4537,18 +4259,12 @@ export const UserUpdateOneRequiredWithoutEditionNestedInputSchema: z.ZodType<Pri
   update: z.union([ z.lazy(() => UserUpdateWithoutEditionInputSchema),z.lazy(() => UserUncheckedUpdateWithoutEditionInputSchema) ]).optional(),
 }).strict();
 
-export const PDFUpdateOneRequiredWithoutBookNestedInputSchema: z.ZodType<Prisma.PDFUpdateOneRequiredWithoutBookNestedInput> = z.object({
-  create: z.union([ z.lazy(() => PDFCreateWithoutBookInputSchema),z.lazy(() => PDFUncheckedCreateWithoutBookInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => PDFCreateOrConnectWithoutBookInputSchema).optional(),
-  upsert: z.lazy(() => PDFUpsertWithoutBookInputSchema).optional(),
+export const PDFUpdateOneRequiredWithoutEditionNestedInputSchema: z.ZodType<Prisma.PDFUpdateOneRequiredWithoutEditionNestedInput> = z.object({
+  create: z.union([ z.lazy(() => PDFCreateWithoutEditionInputSchema),z.lazy(() => PDFUncheckedCreateWithoutEditionInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => PDFCreateOrConnectWithoutEditionInputSchema).optional(),
+  upsert: z.lazy(() => PDFUpsertWithoutEditionInputSchema).optional(),
   connect: z.lazy(() => PDFWhereUniqueInputSchema).optional(),
-  update: z.union([ z.lazy(() => PDFUpdateWithoutBookInputSchema),z.lazy(() => PDFUncheckedUpdateWithoutBookInputSchema) ]).optional(),
-}).strict();
-
-export const UserCreateNestedOneWithoutConceptInputSchema: z.ZodType<Prisma.UserCreateNestedOneWithoutConceptInput> = z.object({
-  create: z.union([ z.lazy(() => UserCreateWithoutConceptInputSchema),z.lazy(() => UserUncheckedCreateWithoutConceptInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => UserCreateOrConnectWithoutConceptInputSchema).optional(),
-  connect: z.lazy(() => UserWhereUniqueInputSchema).optional()
+  update: z.union([ z.lazy(() => PDFUpdateWithoutEditionInputSchema),z.lazy(() => PDFUncheckedUpdateWithoutEditionInputSchema) ]).optional(),
 }).strict();
 
 export const PhotoCreateNestedManyWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreateNestedManyWithoutConceptsInput> = z.object({
@@ -4565,16 +4281,6 @@ export const PhotoUncheckedCreateNestedManyWithoutConceptsInputSchema: z.ZodType
 
 export const EnumConceptTypeFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumConceptTypeFieldUpdateOperationsInput> = z.object({
   set: z.lazy(() => ConceptTypeSchema).optional()
-}).strict();
-
-export const UserUpdateOneWithoutConceptNestedInputSchema: z.ZodType<Prisma.UserUpdateOneWithoutConceptNestedInput> = z.object({
-  create: z.union([ z.lazy(() => UserCreateWithoutConceptInputSchema),z.lazy(() => UserUncheckedCreateWithoutConceptInputSchema) ]).optional(),
-  connectOrCreate: z.lazy(() => UserCreateOrConnectWithoutConceptInputSchema).optional(),
-  upsert: z.lazy(() => UserUpsertWithoutConceptInputSchema).optional(),
-  disconnect: z.boolean().optional(),
-  delete: z.boolean().optional(),
-  connect: z.lazy(() => UserWhereUniqueInputSchema).optional(),
-  update: z.union([ z.lazy(() => UserUpdateWithoutConceptInputSchema),z.lazy(() => UserUncheckedUpdateWithoutConceptInputSchema) ]).optional(),
 }).strict();
 
 export const PhotoUpdateManyWithoutConceptsNestedInputSchema: z.ZodType<Prisma.PhotoUpdateManyWithoutConceptsNestedInput> = z.object({
@@ -4935,7 +4641,7 @@ export const PDFCreateWithoutFileInputSchema: z.ZodType<Prisma.PDFCreateWithoutF
   pages: z.number(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  book: z.lazy(() => EditionCreateNestedOneWithoutPdfInputSchema).optional()
+  edition: z.lazy(() => EditionCreateNestedOneWithoutPdfInputSchema).optional()
 }).strict();
 
 export const PDFUncheckedCreateWithoutFileInputSchema: z.ZodType<Prisma.PDFUncheckedCreateWithoutFileInput> = z.object({
@@ -4945,7 +4651,7 @@ export const PDFUncheckedCreateWithoutFileInputSchema: z.ZodType<Prisma.PDFUnche
   pages: z.number(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  book: z.lazy(() => EditionUncheckedCreateNestedOneWithoutPdfInputSchema).optional()
+  edition: z.lazy(() => EditionUncheckedCreateNestedOneWithoutPdfInputSchema).optional()
 }).strict();
 
 export const PDFCreateOrConnectWithoutFileInputSchema: z.ZodType<Prisma.PDFCreateOrConnectWithoutFileInput> = z.object({
@@ -4990,7 +4696,7 @@ export const PDFUpdateWithoutFileInputSchema: z.ZodType<Prisma.PDFUpdateWithoutF
   pages: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  book: z.lazy(() => EditionUpdateOneWithoutPdfNestedInputSchema).optional()
+  edition: z.lazy(() => EditionUpdateOneWithoutPdfNestedInputSchema).optional()
 }).strict();
 
 export const PDFUncheckedUpdateWithoutFileInputSchema: z.ZodType<Prisma.PDFUncheckedUpdateWithoutFileInput> = z.object({
@@ -5000,7 +4706,7 @@ export const PDFUncheckedUpdateWithoutFileInputSchema: z.ZodType<Prisma.PDFUnche
   pages: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  book: z.lazy(() => EditionUncheckedUpdateOneWithoutPdfNestedInputSchema).optional()
+  edition: z.lazy(() => EditionUncheckedUpdateOneWithoutPdfNestedInputSchema).optional()
 }).strict();
 
 export const CloudFileCreateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileCreateWithoutPhotoInput> = z.object({
@@ -5015,7 +4721,7 @@ export const CloudFileCreateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileC
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
-  PDF: z.lazy(() => PDFCreateNestedOneWithoutFileInputSchema).optional()
+  pdf: z.lazy(() => PDFCreateNestedOneWithoutFileInputSchema).optional()
 }).strict();
 
 export const CloudFileUncheckedCreateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileUncheckedCreateWithoutPhotoInput> = z.object({
@@ -5030,7 +4736,7 @@ export const CloudFileUncheckedCreateWithoutPhotoInputSchema: z.ZodType<Prisma.C
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
-  PDF: z.lazy(() => PDFUncheckedCreateNestedOneWithoutFileInputSchema).optional()
+  pdf: z.lazy(() => PDFUncheckedCreateNestedOneWithoutFileInputSchema).optional()
 }).strict();
 
 export const CloudFileCreateOrConnectWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileCreateOrConnectWithoutPhotoInput> = z.object({
@@ -5074,8 +4780,7 @@ export const ConceptCreateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptCrea
   type: z.lazy(() => ConceptTypeSchema),
   description: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  user: z.lazy(() => UserCreateNestedOneWithoutConceptInputSchema).optional()
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export const ConceptUncheckedCreateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateWithoutPhotosInput> = z.object({
@@ -5084,8 +4789,7 @@ export const ConceptUncheckedCreateWithoutPhotosInputSchema: z.ZodType<Prisma.Co
   type: z.lazy(() => ConceptTypeSchema),
   description: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  userId: z.string().optional().nullable()
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export const ConceptCreateOrConnectWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptCreateOrConnectWithoutPhotosInput> = z.object({
@@ -5110,7 +4814,7 @@ export const CloudFileUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileU
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  PDF: z.lazy(() => PDFUpdateOneWithoutFileNestedInputSchema).optional()
+  pdf: z.lazy(() => PDFUpdateOneWithoutFileNestedInputSchema).optional()
 }).strict();
 
 export const CloudFileUncheckedUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileUncheckedUpdateWithoutPhotoInput> = z.object({
@@ -5125,7 +4829,7 @@ export const CloudFileUncheckedUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.C
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  PDF: z.lazy(() => PDFUncheckedUpdateOneWithoutFileNestedInputSchema).optional()
+  pdf: z.lazy(() => PDFUncheckedUpdateOneWithoutFileNestedInputSchema).optional()
 }).strict();
 
 export const PageArtworkUpsertWithWhereUniqueWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtworkUpsertWithWhereUniqueWithoutPhotoInput> = z.object({
@@ -5184,10 +4888,9 @@ export const ConceptScalarWhereInputSchema: z.ZodType<Prisma.ConceptScalarWhereI
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
-  userId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
 }).strict();
 
-export const CloudFileCreateWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileCreateWithoutPDFInput> = z.object({
+export const CloudFileCreateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileCreateWithoutPdfInput> = z.object({
   id: z.string().optional(),
   resourceType: z.lazy(() => FileResourceTypeSchema),
   filename: z.string(),
@@ -5199,10 +4902,10 @@ export const CloudFileCreateWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileCre
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
-  Photo: z.lazy(() => PhotoCreateNestedOneWithoutFileInputSchema).optional()
+  photo: z.lazy(() => PhotoCreateNestedOneWithoutFileInputSchema).optional()
 }).strict();
 
-export const CloudFileUncheckedCreateWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileUncheckedCreateWithoutPDFInput> = z.object({
+export const CloudFileUncheckedCreateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUncheckedCreateWithoutPdfInput> = z.object({
   id: z.string().optional(),
   resourceType: z.lazy(() => FileResourceTypeSchema),
   filename: z.string(),
@@ -5214,12 +4917,12 @@ export const CloudFileUncheckedCreateWithoutPDFInputSchema: z.ZodType<Prisma.Clo
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
-  Photo: z.lazy(() => PhotoUncheckedCreateNestedOneWithoutFileInputSchema).optional()
+  photo: z.lazy(() => PhotoUncheckedCreateNestedOneWithoutFileInputSchema).optional()
 }).strict();
 
-export const CloudFileCreateOrConnectWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileCreateOrConnectWithoutPDFInput> = z.object({
+export const CloudFileCreateOrConnectWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileCreateOrConnectWithoutPdfInput> = z.object({
   where: z.lazy(() => CloudFileWhereUniqueInputSchema),
-  create: z.union([ z.lazy(() => CloudFileCreateWithoutPDFInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPDFInputSchema) ]),
+  create: z.union([ z.lazy(() => CloudFileCreateWithoutPdfInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPdfInputSchema) ]),
 }).strict();
 
 export const EditionCreateWithoutPdfInputSchema: z.ZodType<Prisma.EditionCreateWithoutPdfInput> = z.object({
@@ -5241,12 +4944,12 @@ export const EditionCreateOrConnectWithoutPdfInputSchema: z.ZodType<Prisma.Editi
   create: z.union([ z.lazy(() => EditionCreateWithoutPdfInputSchema),z.lazy(() => EditionUncheckedCreateWithoutPdfInputSchema) ]),
 }).strict();
 
-export const CloudFileUpsertWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileUpsertWithoutPDFInput> = z.object({
-  update: z.union([ z.lazy(() => CloudFileUpdateWithoutPDFInputSchema),z.lazy(() => CloudFileUncheckedUpdateWithoutPDFInputSchema) ]),
-  create: z.union([ z.lazy(() => CloudFileCreateWithoutPDFInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPDFInputSchema) ]),
+export const CloudFileUpsertWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUpsertWithoutPdfInput> = z.object({
+  update: z.union([ z.lazy(() => CloudFileUpdateWithoutPdfInputSchema),z.lazy(() => CloudFileUncheckedUpdateWithoutPdfInputSchema) ]),
+  create: z.union([ z.lazy(() => CloudFileCreateWithoutPdfInputSchema),z.lazy(() => CloudFileUncheckedCreateWithoutPdfInputSchema) ]),
 }).strict();
 
-export const CloudFileUpdateWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileUpdateWithoutPDFInput> = z.object({
+export const CloudFileUpdateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUpdateWithoutPdfInput> = z.object({
   id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   resourceType: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => EnumFileResourceTypeFieldUpdateOperationsInputSchema) ]).optional(),
   filename: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
@@ -5258,10 +4961,10 @@ export const CloudFileUpdateWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileUpd
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Photo: z.lazy(() => PhotoUpdateOneWithoutFileNestedInputSchema).optional()
+  photo: z.lazy(() => PhotoUpdateOneWithoutFileNestedInputSchema).optional()
 }).strict();
 
-export const CloudFileUncheckedUpdateWithoutPDFInputSchema: z.ZodType<Prisma.CloudFileUncheckedUpdateWithoutPDFInput> = z.object({
+export const CloudFileUncheckedUpdateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUncheckedUpdateWithoutPdfInput> = z.object({
   id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   resourceType: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => EnumFileResourceTypeFieldUpdateOperationsInputSchema) ]).optional(),
   filename: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
@@ -5273,7 +4976,7 @@ export const CloudFileUncheckedUpdateWithoutPDFInputSchema: z.ZodType<Prisma.Clo
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Photo: z.lazy(() => PhotoUncheckedUpdateOneWithoutFileNestedInputSchema).optional()
+  photo: z.lazy(() => PhotoUncheckedUpdateOneWithoutFileNestedInputSchema).optional()
 }).strict();
 
 export const EditionUpsertWithoutPdfInputSchema: z.ZodType<Prisma.EditionUpsertWithoutPdfInput> = z.object({
@@ -5299,7 +5002,7 @@ export const EditionCreateWithoutUserInputSchema: z.ZodType<Prisma.EditionCreate
   id: z.string().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pdf: z.lazy(() => PDFCreateNestedOneWithoutBookInputSchema)
+  pdf: z.lazy(() => PDFCreateNestedOneWithoutEditionInputSchema)
 }).strict();
 
 export const EditionUncheckedCreateWithoutUserInputSchema: z.ZodType<Prisma.EditionUncheckedCreateWithoutUserInput> = z.object({
@@ -5317,31 +5020,6 @@ export const EditionCreateOrConnectWithoutUserInputSchema: z.ZodType<Prisma.Edit
 export const EditionCreateManyUserInputEnvelopeSchema: z.ZodType<Prisma.EditionCreateManyUserInputEnvelope> = z.object({
   data: z.union([ z.lazy(() => EditionCreateManyUserInputSchema),z.lazy(() => EditionCreateManyUserInputSchema).array() ]),
   skipDuplicates: z.boolean().optional()
-}).strict();
-
-export const ConceptCreateWithoutUserInputSchema: z.ZodType<Prisma.ConceptCreateWithoutUserInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  type: z.lazy(() => ConceptTypeSchema),
-  description: z.string().optional().nullable(),
-  createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  photos: z.lazy(() => PhotoCreateNestedManyWithoutConceptsInputSchema).optional()
-}).strict();
-
-export const ConceptUncheckedCreateWithoutUserInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateWithoutUserInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  type: z.lazy(() => ConceptTypeSchema),
-  description: z.string().optional().nullable(),
-  createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  photos: z.lazy(() => PhotoUncheckedCreateNestedManyWithoutConceptsInputSchema).optional()
-}).strict();
-
-export const ConceptCreateOrConnectWithoutUserInputSchema: z.ZodType<Prisma.ConceptCreateOrConnectWithoutUserInput> = z.object({
-  where: z.lazy(() => ConceptWhereUniqueInputSchema),
-  create: z.union([ z.lazy(() => ConceptCreateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutUserInputSchema) ]),
 }).strict();
 
 export const EditionUpsertWithWhereUniqueWithoutUserInputSchema: z.ZodType<Prisma.EditionUpsertWithWhereUniqueWithoutUserInput> = z.object({
@@ -5369,31 +5047,6 @@ export const EditionScalarWhereInputSchema: z.ZodType<Prisma.EditionScalarWhereI
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   userId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   pdfId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
-}).strict();
-
-export const ConceptUpsertWithoutUserInputSchema: z.ZodType<Prisma.ConceptUpsertWithoutUserInput> = z.object({
-  update: z.union([ z.lazy(() => ConceptUpdateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedUpdateWithoutUserInputSchema) ]),
-  create: z.union([ z.lazy(() => ConceptCreateWithoutUserInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutUserInputSchema) ]),
-}).strict();
-
-export const ConceptUpdateWithoutUserInputSchema: z.ZodType<Prisma.ConceptUpdateWithoutUserInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  photos: z.lazy(() => PhotoUpdateManyWithoutConceptsNestedInputSchema).optional()
-}).strict();
-
-export const ConceptUncheckedUpdateWithoutUserInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateWithoutUserInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  photos: z.lazy(() => PhotoUncheckedUpdateManyWithoutConceptsNestedInputSchema).optional()
 }).strict();
 
 export const StoryCreateWithoutAuthorInputSchema: z.ZodType<Prisma.StoryCreateWithoutAuthorInput> = z.object({
@@ -6382,8 +6035,7 @@ export const UserCreateWithoutEditionInputSchema: z.ZodType<Prisma.UserCreateWit
   name: z.string(),
   email: z.string(),
   updatedAt: z.coerce.date().optional(),
-  createdAt: z.coerce.date().optional(),
-  Concept: z.lazy(() => ConceptCreateNestedOneWithoutUserInputSchema).optional()
+  createdAt: z.coerce.date().optional()
 }).strict();
 
 export const UserUncheckedCreateWithoutEditionInputSchema: z.ZodType<Prisma.UserUncheckedCreateWithoutEditionInput> = z.object({
@@ -6391,8 +6043,7 @@ export const UserUncheckedCreateWithoutEditionInputSchema: z.ZodType<Prisma.User
   name: z.string(),
   email: z.string(),
   updatedAt: z.coerce.date().optional(),
-  createdAt: z.coerce.date().optional(),
-  Concept: z.lazy(() => ConceptUncheckedCreateNestedOneWithoutUserInputSchema).optional()
+  createdAt: z.coerce.date().optional()
 }).strict();
 
 export const UserCreateOrConnectWithoutEditionInputSchema: z.ZodType<Prisma.UserCreateOrConnectWithoutEditionInput> = z.object({
@@ -6400,17 +6051,17 @@ export const UserCreateOrConnectWithoutEditionInputSchema: z.ZodType<Prisma.User
   create: z.union([ z.lazy(() => UserCreateWithoutEditionInputSchema),z.lazy(() => UserUncheckedCreateWithoutEditionInputSchema) ]),
 }).strict();
 
-export const PDFCreateWithoutBookInputSchema: z.ZodType<Prisma.PDFCreateWithoutBookInput> = z.object({
+export const PDFCreateWithoutEditionInputSchema: z.ZodType<Prisma.PDFCreateWithoutEditionInput> = z.object({
   id: z.string().optional(),
   height: z.number(),
   width: z.number(),
   pages: z.number(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  file: z.lazy(() => CloudFileCreateNestedOneWithoutPDFInputSchema)
+  file: z.lazy(() => CloudFileCreateNestedOneWithoutPdfInputSchema)
 }).strict();
 
-export const PDFUncheckedCreateWithoutBookInputSchema: z.ZodType<Prisma.PDFUncheckedCreateWithoutBookInput> = z.object({
+export const PDFUncheckedCreateWithoutEditionInputSchema: z.ZodType<Prisma.PDFUncheckedCreateWithoutEditionInput> = z.object({
   id: z.string().optional(),
   height: z.number(),
   width: z.number(),
@@ -6420,9 +6071,9 @@ export const PDFUncheckedCreateWithoutBookInputSchema: z.ZodType<Prisma.PDFUnche
   fileId: z.string()
 }).strict();
 
-export const PDFCreateOrConnectWithoutBookInputSchema: z.ZodType<Prisma.PDFCreateOrConnectWithoutBookInput> = z.object({
+export const PDFCreateOrConnectWithoutEditionInputSchema: z.ZodType<Prisma.PDFCreateOrConnectWithoutEditionInput> = z.object({
   where: z.lazy(() => PDFWhereUniqueInputSchema),
-  create: z.union([ z.lazy(() => PDFCreateWithoutBookInputSchema),z.lazy(() => PDFUncheckedCreateWithoutBookInputSchema) ]),
+  create: z.union([ z.lazy(() => PDFCreateWithoutEditionInputSchema),z.lazy(() => PDFUncheckedCreateWithoutEditionInputSchema) ]),
 }).strict();
 
 export const UserUpsertWithoutEditionInputSchema: z.ZodType<Prisma.UserUpsertWithoutEditionInput> = z.object({
@@ -6436,7 +6087,6 @@ export const UserUpdateWithoutEditionInputSchema: z.ZodType<Prisma.UserUpdateWit
   email: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Concept: z.lazy(() => ConceptUpdateOneWithoutUserNestedInputSchema).optional()
 }).strict();
 
 export const UserUncheckedUpdateWithoutEditionInputSchema: z.ZodType<Prisma.UserUncheckedUpdateWithoutEditionInput> = z.object({
@@ -6445,25 +6095,24 @@ export const UserUncheckedUpdateWithoutEditionInputSchema: z.ZodType<Prisma.User
   email: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Concept: z.lazy(() => ConceptUncheckedUpdateOneWithoutUserNestedInputSchema).optional()
 }).strict();
 
-export const PDFUpsertWithoutBookInputSchema: z.ZodType<Prisma.PDFUpsertWithoutBookInput> = z.object({
-  update: z.union([ z.lazy(() => PDFUpdateWithoutBookInputSchema),z.lazy(() => PDFUncheckedUpdateWithoutBookInputSchema) ]),
-  create: z.union([ z.lazy(() => PDFCreateWithoutBookInputSchema),z.lazy(() => PDFUncheckedCreateWithoutBookInputSchema) ]),
+export const PDFUpsertWithoutEditionInputSchema: z.ZodType<Prisma.PDFUpsertWithoutEditionInput> = z.object({
+  update: z.union([ z.lazy(() => PDFUpdateWithoutEditionInputSchema),z.lazy(() => PDFUncheckedUpdateWithoutEditionInputSchema) ]),
+  create: z.union([ z.lazy(() => PDFCreateWithoutEditionInputSchema),z.lazy(() => PDFUncheckedCreateWithoutEditionInputSchema) ]),
 }).strict();
 
-export const PDFUpdateWithoutBookInputSchema: z.ZodType<Prisma.PDFUpdateWithoutBookInput> = z.object({
+export const PDFUpdateWithoutEditionInputSchema: z.ZodType<Prisma.PDFUpdateWithoutEditionInput> = z.object({
   id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   pages: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  file: z.lazy(() => CloudFileUpdateOneRequiredWithoutPDFNestedInputSchema).optional()
+  file: z.lazy(() => CloudFileUpdateOneRequiredWithoutPdfNestedInputSchema).optional()
 }).strict();
 
-export const PDFUncheckedUpdateWithoutBookInputSchema: z.ZodType<Prisma.PDFUncheckedUpdateWithoutBookInput> = z.object({
+export const PDFUncheckedUpdateWithoutEditionInputSchema: z.ZodType<Prisma.PDFUncheckedUpdateWithoutEditionInput> = z.object({
   id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6471,29 +6120,6 @@ export const PDFUncheckedUpdateWithoutBookInputSchema: z.ZodType<Prisma.PDFUnche
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   fileId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-}).strict();
-
-export const UserCreateWithoutConceptInputSchema: z.ZodType<Prisma.UserCreateWithoutConceptInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  email: z.string(),
-  updatedAt: z.coerce.date().optional(),
-  createdAt: z.coerce.date().optional(),
-  Edition: z.lazy(() => EditionCreateNestedManyWithoutUserInputSchema).optional()
-}).strict();
-
-export const UserUncheckedCreateWithoutConceptInputSchema: z.ZodType<Prisma.UserUncheckedCreateWithoutConceptInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  email: z.string(),
-  updatedAt: z.coerce.date().optional(),
-  createdAt: z.coerce.date().optional(),
-  Edition: z.lazy(() => EditionUncheckedCreateNestedManyWithoutUserInputSchema).optional()
-}).strict();
-
-export const UserCreateOrConnectWithoutConceptInputSchema: z.ZodType<Prisma.UserCreateOrConnectWithoutConceptInput> = z.object({
-  where: z.lazy(() => UserWhereUniqueInputSchema),
-  create: z.union([ z.lazy(() => UserCreateWithoutConceptInputSchema),z.lazy(() => UserUncheckedCreateWithoutConceptInputSchema) ]),
 }).strict();
 
 export const PhotoCreateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreateWithoutConceptsInput> = z.object({
@@ -6519,29 +6145,6 @@ export const PhotoUncheckedCreateWithoutConceptsInputSchema: z.ZodType<Prisma.Ph
 export const PhotoCreateOrConnectWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreateOrConnectWithoutConceptsInput> = z.object({
   where: z.lazy(() => PhotoWhereUniqueInputSchema),
   create: z.union([ z.lazy(() => PhotoCreateWithoutConceptsInputSchema),z.lazy(() => PhotoUncheckedCreateWithoutConceptsInputSchema) ]),
-}).strict();
-
-export const UserUpsertWithoutConceptInputSchema: z.ZodType<Prisma.UserUpsertWithoutConceptInput> = z.object({
-  update: z.union([ z.lazy(() => UserUpdateWithoutConceptInputSchema),z.lazy(() => UserUncheckedUpdateWithoutConceptInputSchema) ]),
-  create: z.union([ z.lazy(() => UserCreateWithoutConceptInputSchema),z.lazy(() => UserUncheckedCreateWithoutConceptInputSchema) ]),
-}).strict();
-
-export const UserUpdateWithoutConceptInputSchema: z.ZodType<Prisma.UserUpdateWithoutConceptInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  email: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Edition: z.lazy(() => EditionUpdateManyWithoutUserNestedInputSchema).optional()
-}).strict();
-
-export const UserUncheckedUpdateWithoutConceptInputSchema: z.ZodType<Prisma.UserUncheckedUpdateWithoutConceptInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  email: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  Edition: z.lazy(() => EditionUncheckedUpdateManyWithoutUserNestedInputSchema).optional()
 }).strict();
 
 export const PhotoUpsertWithWhereUniqueWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoUpsertWithWhereUniqueWithoutConceptsInput> = z.object({
@@ -6619,7 +6222,6 @@ export const ConceptUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUpda
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  user: z.lazy(() => UserUpdateOneWithoutConceptNestedInputSchema).optional()
 }).strict();
 
 export const ConceptUncheckedUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateWithoutPhotosInput> = z.object({
@@ -6629,7 +6231,6 @@ export const ConceptUncheckedUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.Co
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  userId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const ConceptUncheckedUpdateManyWithoutConceptsInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateManyWithoutConceptsInput> = z.object({
@@ -6639,7 +6240,6 @@ export const ConceptUncheckedUpdateManyWithoutConceptsInputSchema: z.ZodType<Pri
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  userId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const EditionCreateManyUserInputSchema: z.ZodType<Prisma.EditionCreateManyUserInput> = z.object({
@@ -6653,7 +6253,7 @@ export const EditionUpdateWithoutUserInputSchema: z.ZodType<Prisma.EditionUpdate
   id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pdf: z.lazy(() => PDFUpdateOneRequiredWithoutBookNestedInputSchema).optional()
+  pdf: z.lazy(() => PDFUpdateOneRequiredWithoutEditionNestedInputSchema).optional()
 }).strict();
 
 export const EditionUncheckedUpdateWithoutUserInputSchema: z.ZodType<Prisma.EditionUncheckedUpdateWithoutUserInput> = z.object({

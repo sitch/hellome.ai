@@ -47,13 +47,6 @@ const Schema: z.ZodType<Prisma.ConceptUncheckedUpdateManyWithoutConceptsInput> =
           z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
-      userId: z
-        .union([
-          z.string(),
-          z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-        ])
-        .optional()
-        .nullable(),
     })
     .strict()
 

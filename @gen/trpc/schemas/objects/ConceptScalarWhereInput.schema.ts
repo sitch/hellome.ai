@@ -47,10 +47,6 @@ const Schema: z.ZodType<Prisma.ConceptScalarWhereInput> = z
     updatedAt: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
       .optional(),
-    userId: z
-      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
-      .optional()
-      .nullable(),
   })
   .strict()
 

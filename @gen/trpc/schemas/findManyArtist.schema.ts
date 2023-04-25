@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { ArtistSelectObjectSchema } from './objects/ArtistSelect.schema'
 import { ArtistIncludeObjectSchema } from './objects/ArtistInclude.schema'
 import { ArtistOrderByWithRelationInputObjectSchema } from './objects/ArtistOrderByWithRelationInput.schema'
 import { ArtistWhereInputObjectSchema } from './objects/ArtistWhereInput.schema'
@@ -6,6 +7,7 @@ import { ArtistWhereUniqueInputObjectSchema } from './objects/ArtistWhereUniqueI
 import { ArtistScalarFieldEnumSchema } from './enums/ArtistScalarFieldEnum.schema'
 
 export const ArtistFindManySchema = z.object({
+  select: z.lazy(() => ArtistSelectObjectSchema.optional()),
   include: z.lazy(() => ArtistIncludeObjectSchema.optional()),
   orderBy: z
     .union([

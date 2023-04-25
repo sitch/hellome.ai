@@ -24,66 +24,60 @@ datasource db {
 
 generator docs {
   provider = "node node_modules/prisma-docs-generator"
-  output   = "../doc/prisma"
+  output   = "../@gen/doc/prisma"
 }
 
 generator erd {
   provider                  = "prisma-erd-generator"
-  output                    = "../@assets/images/db/ERD.svg"
+  output                    = "../@gen/erd/ERD.svg"
   theme                     = "default"
   includeRelationFromFields = true
 }
 
 generator erd_simple {
   provider  = "prisma-erd-generator"
-  output    = "../@assets/images/db/ERD.simple.svg"
+  output    = "../@gen/erd/ERD.simple.svg"
   theme     = "default"
   tableOnly = true
 }
 
-// generator zod {
-//   provider          = "prisma-zod-generator"
-//   output            = "../@gen/zod"
-//   isGenerateSelect  = true
-//   isGenerateInclude = true
-// }
-
 generator zod {
-  provider                  = "zod-prisma-types"
-  output                    = "../@gen/zod" // default is ./generated/zod
-  // useMultipleFiles                 = true // default is false
-  // createInputTypes                 = true // default is true
-  // createModelTypes                 = true // default is true
-  // addInputTypeValidation           = true // default is true
-  // addIncludeType                   = true // default is true
-  // addSelectType                    = true // default is true
-  // validateWhereUniqueInput         = true // default is false
-  // createOptionalDefaultValuesTypes = true // default is false
-  createRelationValuesTypes = true // default is false
-  // createPartialTypes               = true // default is false
-  // useDefaultValidators             = true // default is true
-  // coerceDate                       = true // default is true
-  // writeNullishInModelTypes         = false // default is false
+  provider = "zod-prisma-types"
+  output   = "../@gen/zod" // default is ./generated/zod
+  // useMultipleFiles                 = true  // default is false
+  // createInputTypes                 = false // default is true
+  // createModelTypes                 = false // default is true
+  // addInputTypeValidation           = false // default is true
+  // addIncludeType                   = false // default is true
+  // addSelectType                    = false // default is true
+  // validateWhereUniqueInput         = true  // default is false
+  // createOptionalDefaultValuesTypes = true  // default is false
+  // createRelationValuesTypes        = true  // default is false
+  // createPartialTypes               = true  // default is false
+  // useDefaultValidators             = false // default is true
+  // coerceDate                       = false // default is true
+  // writeNullishInModelTypes         = true  // default is false
 }
 
 generator trpc {
-  provider = "prisma-trpc-generator"
-
+  provider                 = "prisma-trpc-generator"
+  output                   = "../@gen/trpc"
+  // output                   = "../server"
   contextPath              = "../server/context"
   trpcOptionsPath          = "../server/trpcOptions"
-  // withMiddleware           = "../server/myMiddleware"
+  // withMiddleware           = "../server/middlewares/defaultMiddleware"
   withMiddleware           = false
   withZod                  = true
   withShield               = true
-  isGenerateSelect         = false
+  isGenerateSelect         = true
   isGenerateInclude        = true
   showModelNameInProcedure = true
-  output                   = "../@gen/trpc"
-  // output         = "../server"
+
+  // generateModelActions = "aggregate,aggregateRaw,count,create,createMany,delete,deleteMany,findFirst,findFirstOrThrow,findMany,findRaw,findUnique,findUniqueOrThrow,groupBy,update,updateMany,upsert"
+  // generateModelActions = "create,createMany,findMany,findFirst,delete,deleteMany"
 }
 
 generator crud {
-  // provider = "node ../node_modules/prisma-next-crud-generator"
   provider = "prisma-next-crud-generator"
   output   = "../@gen/crud"
 }
@@ -114,7 +108,8 @@ model CloudFile {
   size         Int /// Filesize in bytes @zod.number.positive()
   ext          String /// File extension
   mime         String /// File MIME type
-  metadata     Json? /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+  ///Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+  metadata     Json?
 
   // Cloud
   path      String      @unique /// Path on blob store
@@ -123,8 +118,8 @@ model CloudFile {
 
   createdAt DateTime @default(now()) @map("created_at")
 
-  Photo Photo? //  @ignore
-  PDF   PDF? // @ignore
+  photo Photo? // @ ignore
+  pdf   PDF? // @ ignore
 
   // TODO: Add permissions
 
@@ -149,8 +144,8 @@ model Photo {
 
   fileId       String        @unique @map("file_id") /// @zod.string.cuid()
   file         CloudFile     @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
-  pageArtworks PageArtwork[] // @ignore
-  concepts     Concept[] // @ignore
+  pageArtworks PageArtwork[] // @ ignore
+  concepts     Concept[] // @ ignore
 
   @@map("photos")
 }
@@ -168,9 +163,9 @@ model PDF {
   // etag String @unique /// Generate via: md5($file.content)-$id
   // url  String @unique /// @zod.string.url()
 
-  fileId String    @unique @map("file_id") /// @zod.string.cuid()
-  file   CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
-  book   Edition? // @ignore
+  fileId  String    @unique @map("file_id") /// @zod.string.cuid()
+  file    CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
+  edition Edition? // @ ignore
 
   @@map("pdfs")
 }
@@ -191,7 +186,7 @@ model User {
 
   // concepts     Concept[]
   Edition Edition[]
-  Concept Concept?
+  // Concept Concept?
 
   @@map("users")
 }
@@ -240,8 +235,8 @@ model Story {
   artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
   author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
   pages        Page[]
-  pageArtworks PageArtwork[] //  @ignore
-  pageTexts    PageText[] //  @ignore
+  pageArtworks PageArtwork[]
+  pageTexts    PageText[]
 
   @@index([artistId], name: "Story_artistId")
   @@index([authorId], name: "Story_authorId")
@@ -370,12 +365,12 @@ model Concept {
   createdAt   DateTime    @default(now()) @map("created_at")
   updatedAt   DateTime    @updatedAt @map("updated_at")
 
-  userId String? @unique @map("user_id") /// @zod.string.cuid()
-  user   User?   @relation(fields: [userId], references: [id])
+  // userId String? @unique @map("user_id") /// @zod.string.cuid()
+  // user   User?   @relation(fields: [userId], references: [id])
 
   photos Photo[]
 
-  @@index([userId], name: "Concept_userId")
+  // @@index([userId], name: "Concept_userId")
   @@map("concepts")
 }
 

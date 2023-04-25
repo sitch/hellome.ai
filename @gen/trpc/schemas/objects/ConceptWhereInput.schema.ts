@@ -4,8 +4,6 @@ import { EnumConceptTypeFilterObjectSchema } from './EnumConceptTypeFilter.schem
 import { ConceptTypeSchema } from '../enums/ConceptType.schema'
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema'
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { UserRelationFilterObjectSchema } from './UserRelationFilter.schema'
-import { UserWhereInputObjectSchema } from './UserWhereInput.schema'
 import { PhotoListRelationFilterObjectSchema } from './PhotoListRelationFilter.schema'
 
 import type { Prisma } from '@prisma/client'
@@ -50,17 +48,6 @@ const Schema: z.ZodType<Prisma.ConceptWhereInput> = z
     updatedAt: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
       .optional(),
-    userId: z
-      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
-      .optional()
-      .nullable(),
-    user: z
-      .union([
-        z.lazy(() => UserRelationFilterObjectSchema),
-        z.lazy(() => UserWhereInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
     photos: z.lazy(() => PhotoListRelationFilterObjectSchema).optional(),
   })
   .strict()

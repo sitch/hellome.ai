@@ -4,7 +4,6 @@ import { ConceptTypeSchema } from '../enums/ConceptType.schema'
 import { EnumConceptTypeFieldUpdateOperationsInputObjectSchema } from './EnumConceptTypeFieldUpdateOperationsInput.schema'
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { UserUpdateOneWithoutConceptNestedInputObjectSchema } from './UserUpdateOneWithoutConceptNestedInput.schema'
 import { PhotoUpdateManyWithoutConceptsNestedInputObjectSchema } from './PhotoUpdateManyWithoutConceptsNestedInput.schema'
 
 import type { Prisma } from '@prisma/client'
@@ -47,9 +46,6 @@ const Schema: z.ZodType<Prisma.ConceptUpdateInput> = z
         z.date(),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
-      .optional(),
-    user: z
-      .lazy(() => UserUpdateOneWithoutConceptNestedInputObjectSchema)
       .optional(),
     photos: z
       .lazy(() => PhotoUpdateManyWithoutConceptsNestedInputObjectSchema)

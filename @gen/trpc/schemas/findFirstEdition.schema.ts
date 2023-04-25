@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { EditionSelectObjectSchema } from './objects/EditionSelect.schema'
 import { EditionIncludeObjectSchema } from './objects/EditionInclude.schema'
 import { EditionOrderByWithRelationInputObjectSchema } from './objects/EditionOrderByWithRelationInput.schema'
 import { EditionWhereInputObjectSchema } from './objects/EditionWhereInput.schema'
@@ -6,6 +7,7 @@ import { EditionWhereUniqueInputObjectSchema } from './objects/EditionWhereUniqu
 import { EditionScalarFieldEnumSchema } from './enums/EditionScalarFieldEnum.schema'
 
 export const EditionFindFirstSchema = z.object({
+  select: EditionSelectObjectSchema.optional(),
   include: EditionIncludeObjectSchema.optional(),
   orderBy: z
     .union([

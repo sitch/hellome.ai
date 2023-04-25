@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { PDFCreatetagsInputObjectSchema } from './PDFCreatetagsInput.schema'
-import { CloudFileCreateNestedOneWithoutPDFInputObjectSchema } from './CloudFileCreateNestedOneWithoutPDFInput.schema'
+import { CloudFileCreateNestedOneWithoutPdfInputObjectSchema } from './CloudFileCreateNestedOneWithoutPdfInput.schema'
 import { EditionCreateNestedOneWithoutPdfInputObjectSchema } from './EditionCreateNestedOneWithoutPdfInput.schema'
 
 import type { Prisma } from '@prisma/client'
@@ -15,8 +15,8 @@ const Schema: z.ZodType<Prisma.PDFCreateInput> = z
       .union([z.lazy(() => PDFCreatetagsInputObjectSchema), z.string().array()])
       .optional(),
     createdAt: z.date().optional(),
-    file: z.lazy(() => CloudFileCreateNestedOneWithoutPDFInputObjectSchema),
-    book: z
+    file: z.lazy(() => CloudFileCreateNestedOneWithoutPdfInputObjectSchema),
+    edition: z
       .lazy(() => EditionCreateNestedOneWithoutPdfInputObjectSchema)
       .optional(),
   })

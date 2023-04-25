@@ -11,7 +11,6 @@ const Schema: z.ZodType<Prisma.ConceptUncheckedCreateWithoutPhotosInput> = z
     description: z.string().optional().nullable(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
-    userId: z.string().optional().nullable(),
   })
   .strict()
 

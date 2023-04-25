@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { PageTextSelectObjectSchema } from './objects/PageTextSelect.schema'
 import { PageTextIncludeObjectSchema } from './objects/PageTextInclude.schema'
 import { PageTextOrderByWithRelationInputObjectSchema } from './objects/PageTextOrderByWithRelationInput.schema'
 import { PageTextWhereInputObjectSchema } from './objects/PageTextWhereInput.schema'
@@ -6,6 +7,7 @@ import { PageTextWhereUniqueInputObjectSchema } from './objects/PageTextWhereUni
 import { PageTextScalarFieldEnumSchema } from './enums/PageTextScalarFieldEnum.schema'
 
 export const PageTextFindManySchema = z.object({
+  select: z.lazy(() => PageTextSelectObjectSchema.optional()),
   include: z.lazy(() => PageTextIncludeObjectSchema.optional()),
   orderBy: z
     .union([

@@ -42,7 +42,7 @@ const Schema: z.ZodType<Prisma.PDFUncheckedUpdateWithoutFileInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    book: z
+    edition: z
       .lazy(() => EditionUncheckedUpdateOneWithoutPdfNestedInputObjectSchema)
       .optional(),
   })

@@ -12,7 +12,6 @@ const Schema: z.ZodType<Prisma.ConceptUncheckedCreateInput> = z
     description: z.string().optional().nullable(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
-    userId: z.string().optional().nullable(),
     photos: z
       .lazy(
         () => PhotoUncheckedCreateNestedManyWithoutConceptsInputObjectSchema

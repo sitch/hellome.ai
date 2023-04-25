@@ -79,17 +79,6 @@ export default function ConceptEdit({ concept }) {
             }
           />
         </div>
-        <div>
-          <label htmlFor="userId">UserId:</label>
-          <input
-            type="text"
-            id="userId"
-            value={formState.userId}
-            onChange={(e) =>
-              setFormState({ ...formState, userId: e.target.value })
-            }
-          />
-        </div>
         <footer>
           <button type="submit" className="primary-btn">
             Update

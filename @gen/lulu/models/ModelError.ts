@@ -1,5 +1,4 @@
 // @ts-nocheck
-/* tslint:disable */
 /* eslint-disable */
 /**
  * Universal Publishing Platform API

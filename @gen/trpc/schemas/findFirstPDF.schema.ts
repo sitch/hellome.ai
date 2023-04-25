@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { PDFSelectObjectSchema } from './objects/PDFSelect.schema'
 import { PDFIncludeObjectSchema } from './objects/PDFInclude.schema'
 import { PDFOrderByWithRelationInputObjectSchema } from './objects/PDFOrderByWithRelationInput.schema'
 import { PDFWhereInputObjectSchema } from './objects/PDFWhereInput.schema'
@@ -6,6 +7,7 @@ import { PDFWhereUniqueInputObjectSchema } from './objects/PDFWhereUniqueInput.s
 import { PDFScalarFieldEnumSchema } from './enums/PDFScalarFieldEnum.schema'
 
 export const PDFFindFirstSchema = z.object({
+  select: PDFSelectObjectSchema.optional(),
   include: PDFIncludeObjectSchema.optional(),
   orderBy: z
     .union([

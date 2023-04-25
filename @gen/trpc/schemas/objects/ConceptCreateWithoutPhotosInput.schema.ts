@@ -1,6 +1,5 @@
 import { z } from 'zod'
 import { ConceptTypeSchema } from '../enums/ConceptType.schema'
-import { UserCreateNestedOneWithoutConceptInputObjectSchema } from './UserCreateNestedOneWithoutConceptInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -12,9 +11,6 @@ const Schema: z.ZodType<Prisma.ConceptCreateWithoutPhotosInput> = z
     description: z.string().optional().nullable(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
-    user: z
-      .lazy(() => UserCreateNestedOneWithoutConceptInputObjectSchema)
-      .optional(),
   })
   .strict()
 

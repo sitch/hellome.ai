@@ -46,13 +46,6 @@ const Schema: z.ZodType<Prisma.ConceptUncheckedUpdateWithoutPhotosInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    userId: z
-      .union([
-        z.string(),
-        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
-      ])
-      .optional()
-      .nullable(),
   })
   .strict()
 

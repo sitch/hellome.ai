@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import { ConceptUncheckedCreateNestedOneWithoutUserInputObjectSchema } from './ConceptUncheckedCreateNestedOneWithoutUserInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -10,9 +9,6 @@ const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutEditionInput> = z
     email: z.string(),
     updatedAt: z.date().optional(),
     createdAt: z.date().optional(),
-    Concept: z
-      .lazy(() => ConceptUncheckedCreateNestedOneWithoutUserInputObjectSchema)
-      .optional(),
   })
   .strict()
 

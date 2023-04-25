@@ -17,7 +17,9 @@ const Schema: z.ZodType<Prisma.PDFOrderByWithRelationInput> = z
     file: z
       .lazy(() => CloudFileOrderByWithRelationInputObjectSchema)
       .optional(),
-    book: z.lazy(() => EditionOrderByWithRelationInputObjectSchema).optional(),
+    edition: z
+      .lazy(() => EditionOrderByWithRelationInputObjectSchema)
+      .optional(),
   })
   .strict()
 

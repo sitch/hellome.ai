@@ -1,56 +1,45 @@
-import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
 import { makeZodI18nMap } from 'zod-i18n-map'
 import { useTranslation, Trans } from 'next-i18next'
 import GridLayout from 'react-grid-layout'
 import Webcam from 'react-webcam'
 import { Camera } from 'react-camera-pro'
-import {
-  SubmitHandler,
-  useForm,
-  SubmitErrorHandler,
-  Controller,
-  FormProvider,
-  useFieldArray,
-} from 'react-hook-form'
+import { SubmitHandler, SubmitErrorHandler, Controller } from 'react-hook-form'
 
-import {
-  ConceptSchema,
-  ConceptIncludeSchema,
-  ConceptWithRelations,
-  CloudFileWithRelations,
-  PhotoWithRelations,
-  ConceptTypeSchema,
-  ConceptWithRelationsSchema,
-} from '@/@gen/zod'
 import { ImageInput } from '@/components/forms/files/ImageInput'
 import AnimatedButton from '../common/AnimatedButton/AnimatedButton'
 import Canvas from '../canvas'
 import InitWebcam from '../vision/InitWebcam'
 import { useRef } from 'react'
 import { trpc } from '@/utils/trpc'
-import { createConceptSchema } from '@/server/schema/concept.schema'
+import { useZodForm } from '@/lib/hooks/useZodForm'
 
-const formSchema = createConceptSchema
+import {
+  CloudFileSchema,
+  ConceptSchema,
+  ConceptTypeSchema,
+  PhotoSchema,
+} from '@/@gen/zod'
 
-// const formSchema = ConceptSchema.merge(ConceptIncludeSchema)
-//   const formSchema = ConceptSchema.merge(
-//   z.object({
-//     username: z.string().min(1, 'Username is required').max(100),
-//     // email: z.string().email('Invalid email').min(1, 'Email is required'),
-//     password: z
-//       .string()
-//       .min(1, 'Password is required')
-//       .min(8, 'Password must have more than 8 characters'),
-//     confirmPassword: z.string().min(1, 'Password confirmation is required'),
-//     terms: z.literal(true, {
-//       errorMap: () => ({ message: 'You must accept the terms and conditions' }),
-//     }),
-//   })
-// ).refine((data) => data.password === data.confirmPassword, {
-//   path: ['confirmPassword'],
-//   message: 'Passwords do not match',
-// })
+// See: https://zod.dev/?id=recursive-types
+// const formSchema = ConceptCreateInputSchema
+// type FormSchemaType = z.infer<
+//   typeof formSchema & {
+//     photos: z.infer<
+//       typeof PhotoCreateWithoutConceptsInputSchema & {
+//         file: z.infer<typeof CloudFileCreateWithoutPhotoInputSchema>
+//       }
+//     >
+//   }
+// >
+
+const formSchema = ConceptSchema.extend({
+  photos: PhotoSchema.omit({ fileId: true })
+    .extend({
+      file: CloudFileSchema,
+    })
+    .array(),
+})
 
 type FormSchemaType = z.infer<typeof formSchema>
 
@@ -61,26 +50,88 @@ export const ConceptForm = () => {
   // z.setErrorMap(makeZodI18nMap({ t, handlePath: { ns: ['common', 'zod'] } }))
 
   const {
+    getValues,
     control,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormSchemaType>({
-    resolver: zodResolver(formSchema),
+  } = useZodForm({
+    schema: formSchema,
     defaultValues: {
+      // include: {
+      //   photos: true,
+      // },
+      // data: {
       type: 'person',
+      // photos: [],
+      // },
     },
   })
 
   const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
-    console.log(data)
+    console.info('success', data)
 
     // debugger
-    createConcept.mutate({ data })
+
+    // createConcept.mutate({
+    //   data: {
+    //     type: 'person' as ConceptTypeType,
+    //     name: 'me',
+    //     description: 'hello',
+    //   },
+    // })
+
+    // createConcept.mutate({
+    //   data: {
+    //     type: 'person',
+    //     name: 'me',
+    //     description: 'hello',
+    //     photos: {
+    //       create: [
+    //         {
+    //           height: 1,
+    //           width: 1,
+    //           tags: [],
+    //           file: {
+    //             create: {
+    //               metadata: {
+    //                 exif: 'ok',
+    //               },
+    //               filename: 'filename',
+    //               resourceType: 'image',
+    //               size: 100,
+    //               ext: 'ext',
+    //               mime: 'mime',
+    //               path: 'path',
+    //               signature: 'signature',
+    //               privacy: 'private',
+    //             },
+    //           },
+    //         },
+    //       ],
+    //     },
+    //   },
+    // })
+
+    // const photos = data.photos
+    createConcept.mutate({
+      data: {
+        ...data,
+        photos: {
+          create: data.photos.map(({ file, ...photo }) => ({
+            ...photo,
+            file: {
+              create: file,
+            },
+          })),
+        },
+      },
+      include: { photos: true },
+    })
   }
 
   const onErrors: SubmitErrorHandler<FormSchemaType> = (data) => {
-    console.log(data)
+    console.error('error', data, getValues())
   }
 
   const layout = [
@@ -145,14 +196,15 @@ export const ConceptForm = () => {
                     {t('form.schema.name.label')}
                   </label>
                   <input
-                    type="text"
                     id="name"
+                    aria-invalid={errors.name ? 'true' : 'false'}
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm"
+                    type="text"
                     placeholder="Concept name"
                     {...register('name')}
                   />
                   {errors.name?.message && (
-                    <span className="mt-2 block text-red-800">
+                    <span role="alert" className="mt-2 block text-red-800">
                       {errors.name.message}
                     </span>
                   )}
@@ -181,7 +233,7 @@ export const ConceptForm = () => {
                         <input
                           type="radio"
                           id={`type-${type}`}
-                          name="type"
+                          // aria-invalid={errors.type ? 'true' : 'false'}
                           // defaultValue="type-small"
                           className="peer hidden"
                           // required=""
@@ -318,13 +370,14 @@ export const ConceptForm = () => {
                       </label>
                       <textarea
                         id="description"
+                        aria-invalid={errors.description ? 'true' : 'false'}
                         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm"
                         placeholder={t('form.schema.description.placeholder')}
                         rows={5}
                         {...register('description')}
                       />
                       {errors.description?.message && (
-                        <span className="mt-2 block text-red-800">
+                        <span role="alert" className="mt-2 block text-red-800">
                           {errors.description.message}
                         </span>
                       )}
@@ -334,7 +387,6 @@ export const ConceptForm = () => {
               </div>
 
               <>
-                {/*
                 <div className="m-8 rounded-lg border border-black bg-zinc-50 p-8 drop-shadow-xl">
                   <label
                     htmlFor="photos"
@@ -348,7 +400,7 @@ export const ConceptForm = () => {
                     // defaultValue={[] as PhotoUpdateManyWithoutConceptsNestedInput[]}
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                      <ImageInput<PhotoWithRelations>
+                      <ImageInput<object>
                         // mode="development"
                         id="photos"
                         name="photos"
@@ -360,7 +412,7 @@ export const ConceptForm = () => {
                         imageValidateSizeMinWidth={512}
                         imageValidateSizeMinHeight={512}
                         required={true}
-                        cast={(file, metadata): PhotoWithRelations => {
+                        cast={(file, metadata): object => {
                           const meta = file.getMetadata() as Record<
                             string,
                             string | number
@@ -406,18 +458,16 @@ export const ConceptForm = () => {
                   />
 
                   {errors.photos && (
-                    <span className="mt-2 block text-red-800">
+                    <span role="alert" className="mt-2 block text-red-800">
                       {errors.photos.message}
                     </span>
                   )}
-                </div> */}
+                </div>
               </>
               <div
                 className="m-auto flex pt-20"
                 // className="bg-slate-600"
               >
-                {/* <input type="submit" /> */}
-
                 <AnimatedButton
                   wide={true}
                   type="submit"

@@ -1,6 +1,5 @@
 node_modules
 .next
 public
-@gen/zod
-@assets/images/db/*.svg
-doc/prisma
+openapi.lulu.yml
+@gen/

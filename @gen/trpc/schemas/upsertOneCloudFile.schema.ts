@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { CloudFileSelectObjectSchema } from './objects/CloudFileSelect.schema'
 import { CloudFileIncludeObjectSchema } from './objects/CloudFileInclude.schema'
 import { CloudFileWhereUniqueInputObjectSchema } from './objects/CloudFileWhereUniqueInput.schema'
 import { CloudFileCreateInputObjectSchema } from './objects/CloudFileCreateInput.schema'
@@ -7,6 +8,7 @@ import { CloudFileUpdateInputObjectSchema } from './objects/CloudFileUpdateInput
 import { CloudFileUncheckedUpdateInputObjectSchema } from './objects/CloudFileUncheckedUpdateInput.schema'
 
 export const CloudFileUpsertSchema = z.object({
+  select: CloudFileSelectObjectSchema.optional(),
   include: CloudFileIncludeObjectSchema.optional(),
   where: CloudFileWhereUniqueInputObjectSchema,
   create: z.union([

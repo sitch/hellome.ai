@@ -6,10 +6,10 @@ import type { Prisma } from '@prisma/client'
 
 const Schema: z.ZodType<Prisma.CloudFileInclude> = z
   .object({
-    Photo: z
+    photo: z
       .union([z.boolean(), z.lazy(() => PhotoArgsObjectSchema)])
       .optional(),
-    PDF: z.union([z.boolean(), z.lazy(() => PDFArgsObjectSchema)]).optional(),
+    pdf: z.union([z.boolean(), z.lazy(() => PDFArgsObjectSchema)]).optional(),
   })
   .strict()
 

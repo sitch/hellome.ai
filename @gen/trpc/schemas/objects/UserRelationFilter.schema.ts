@@ -5,14 +5,8 @@ import type { Prisma } from '@prisma/client'
 
 const Schema: z.ZodType<Prisma.UserRelationFilter> = z
   .object({
-    is: z
-      .lazy(() => UserWhereInputObjectSchema)
-      .optional()
-      .nullable(),
-    isNot: z
-      .lazy(() => UserWhereInputObjectSchema)
-      .optional()
-      .nullable(),
+    is: z.lazy(() => UserWhereInputObjectSchema).optional(),
+    isNot: z.lazy(() => UserWhereInputObjectSchema).optional(),
   })
   .strict()
 

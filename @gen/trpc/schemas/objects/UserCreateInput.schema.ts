@@ -1,6 +1,5 @@
 import { z } from 'zod'
 import { EditionCreateNestedManyWithoutUserInputObjectSchema } from './EditionCreateNestedManyWithoutUserInput.schema'
-import { ConceptCreateNestedOneWithoutUserInputObjectSchema } from './ConceptCreateNestedOneWithoutUserInput.schema'
 
 import type { Prisma } from '@prisma/client'
 
@@ -13,9 +12,6 @@ const Schema: z.ZodType<Prisma.UserCreateInput> = z
     createdAt: z.date().optional(),
     Edition: z
       .lazy(() => EditionCreateNestedManyWithoutUserInputObjectSchema)
-      .optional(),
-    Concept: z
-      .lazy(() => ConceptCreateNestedOneWithoutUserInputObjectSchema)
       .optional(),
   })
   .strict()

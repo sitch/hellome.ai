@@ -18,8 +18,8 @@ const Schema: z.ZodType<Prisma.CloudFileOrderByWithRelationInput> = z
     signature: z.lazy(() => SortOrderSchema).optional(),
     privacy: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),
-    Photo: z.lazy(() => PhotoOrderByWithRelationInputObjectSchema).optional(),
-    PDF: z.lazy(() => PDFOrderByWithRelationInputObjectSchema).optional(),
+    photo: z.lazy(() => PhotoOrderByWithRelationInputObjectSchema).optional(),
+    pdf: z.lazy(() => PDFOrderByWithRelationInputObjectSchema).optional(),
   })
   .strict()
 
