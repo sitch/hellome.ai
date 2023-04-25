@@ -69,7 +69,7 @@ generator zod {
 generator trpc {
   provider = "prisma-trpc-generator"
 
-  contextPath              = "../server/createContext"
+  contextPath              = "../server/context"
   trpcOptionsPath          = "../server/trpcOptions"
   // withMiddleware           = "../server/myMiddleware"
   withMiddleware           = false

@@ -1,7 +1,7 @@
 import * as trpc from '@trpc/server'
 import { permissions } from '../../shield/shield'
 
-import { Context } from '../../../../server/createContext'
+import { Context } from '../../../../server/context'
 
 import trpcOptions from '../../../../server/trpcOptions'
 

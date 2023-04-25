@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[0] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[1] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[2] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[3] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[4] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[5] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[6] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[7] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[8] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[9] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[10] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[11] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[12] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[13] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[14] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[15] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[16] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[17] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[18] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[19] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[20] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[21] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[22] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[23] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[24] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[25] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[26] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[27] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[28] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[29] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[30] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[31] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[32] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[33] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .confidenceMetric/2 handles vector[34] 1`] = `0.9702989999999999`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[0] 1`] = `0`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[1] 1`] = `0.15`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[2] 1`] = `0.3`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[3] 1`] = `0.44999999999999996`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[4] 1`] = `0.6`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[5] 1`] = `0.15000000000000002`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[6] 1`] = `0.21213203435596428`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[7] 1`] = `0.33541019662496846`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[8] 1`] = `0.4743416490252569`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[9] 1`] = `0.6184658438426491`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[10] 1`] = `0.30000000000000004`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[11] 1`] = `0.33541019662496846`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[12] 1`] = `0.42426406871192857`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[13] 1`] = `0.5408326913195983`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[14] 1`] = `0.6708203932499369`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[15] 1`] = `0.45`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[16] 1`] = `0.4743416490252569`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[17] 1`] = `0.5408326913195983`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[18] 1`] = `0.6363961030678927`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[19] 1`] = `0.75`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[20] 1`] = `0.6`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[21] 1`] = `0.6184658438426491`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[22] 1`] = `0.6708203932499369`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[23] 1`] = `0.75`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[24] 1`] = `0.848528137423857`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[25] 1`] = `0.75`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[26] 1`] = `0.7648529270389177`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[27] 1`] = `0.8077747210701756`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[28] 1`] = `0.874642784226795`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[29] 1`] = `0.9604686356149273`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[30] 1`] = `0.9`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[31] 1`] = `0.9124143795447329`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[32] 1`] = `0.9486832980505138`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[33] 1`] = `1.0062305898749053`;
+
+exports[`DEFAULT_COORDINATES .distanceMetric/2 handles vector[34] 1`] = `1.0816653826391966`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[0] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[1] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[2] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[3] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[4] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[5] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[6] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[7] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[8] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[9] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[10] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[11] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[12] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[13] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[14] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[15] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[16] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[17] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[18] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[19] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[20] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[21] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[22] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[23] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[24] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[25] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[26] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[27] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[28] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[29] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[30] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[31] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[32] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[33] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .scoreFaceResult/2 handles vector[34] 1`] = `0.99`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[0] 1`] = `true`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[1] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[2] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[3] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[4] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[5] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[6] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[7] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[8] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[9] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[10] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[11] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[12] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[13] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[14] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[15] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[16] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[17] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[18] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[19] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[20] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[21] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[22] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[23] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[24] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[25] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[26] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[27] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[28] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[29] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[30] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[31] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[32] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[33] 1`] = `false`;
+
+exports[`DEFAULT_COORDINATES .withinToleranceBounds/2 handles vector[34] 1`] = `false`;

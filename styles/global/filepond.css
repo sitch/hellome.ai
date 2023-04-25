@@ -1,0 +1,66 @@
+/* Filepond */
+
+@import 'filepond/dist/filepond.css';
+
+/* GRID */
+.filepond--item {
+  width: calc(50% - 0.5em);
+  height: 240px !important;
+}
+
+@media (min-width: 30em) {
+  .filepond--item {
+    width: calc(50% - 0.5em);
+  }
+}
+
+@media (min-width: 50em) {
+  .filepond--item {
+    width: calc(33.33% - 0.5em);
+  }
+}
+
+/* .filepond--list {
+  @apply grid grid-cols-4 gap-4;
+} */
+
+/* the border radius of the drop area */
+.filepond--panel-root {
+  /* border-radius: 1em !important; */
+  background-color: transparent !important;
+}
+
+/* the text color of the drop label*/
+.filepond--drop-label {
+  color: #555 !important;
+  /* background-color: #3d369773; */
+  /* background-color: rgb(var(--secondary-2)); */
+
+  border-width: 2px !important;
+  border-radius: 1rem !important;
+  border-style: dashed !important;
+  border-color: #cbd5e1 !important;
+  background-color: #f8fafc !important;
+}
+
+/* SUCCESS COLOR */
+.filepond--image-preview-overlay-success {
+  /* mix-blend-mode: normal; */
+  /* color: rgb(var(--success)) !important; */
+  color: #3d369773 !important;
+}
+
+/* error state color */
+/* [data-filepond-item-state*='error'] .filepond--item-panel,
+[data-filepond-item-state*='invalid'] .filepond--item-panel {
+  background-color: yellow !important;
+}
+
+[data-filepond-item-state='processing-complete'] .filepond--item-panel {
+  background-color: pink !important;
+} */
+
+/* the background color of the file and file panel (used when dropping an image) */
+/* .filepond--item-panel {
+  background-color: yellow !important;
+} */

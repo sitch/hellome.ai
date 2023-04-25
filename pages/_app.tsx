@@ -2,6 +2,7 @@
 import '@/styles/global/main.css'
 import '@/styles/global/chrome-bug.css'
 import '@/styles/global/dark-mode.css'
+import '@/styles/global/filepond.css'
 
 // Icons
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -13,6 +14,7 @@ import { appWithTranslation } from 'next-i18next'
 import { Analytics } from '@vercel/analytics/react'
 import { GoogleAnalytics, event, pageView } from 'nextjs-google-analytics'
 import { config } from '@fortawesome/fontawesome-svg-core'
+import { trpc } from '@/utils/trpc'
 
 import { DefaultWebsiteSEO } from '@/components/seo/DefaultWebsiteSEO'
 
@@ -88,4 +90,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 /**
  * @link https://github.com/i18next/next-i18next#unserializable-configs
  */
-export default appWithTranslation(MyApp)
+export default trpc.withTRPC(appWithTranslation(MyApp))

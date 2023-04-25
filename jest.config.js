@@ -1,3 +1,10 @@
+// Setup env files
+// const dotenv = require('dotenv')
+// dotenv.config({ path: '.env.template', override: true })
+// dotenv.config({ path: '.env', override: true })
+// dotenv.config({ path: '.env.local', override: true })
+// dotenv.config({ path: '.env.test', override: true })
+
 const nextJest = require('next/jest')
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -32,6 +39,9 @@ const customJestConfig = {
 
     // Cypress
     '<rootDir>/cypress/',
+
+    // Fixtures
+    '<rootDir>/__tests__/components/vision/human/fixtures.ts',
   ],
 }
 

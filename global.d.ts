@@ -19,12 +19,17 @@ declare namespace NodeJS {
 
     // Digital Ocean
     DATABASE_URL: string
-    DO_SPACES_KEY: string
-    DO_SPACES_SECRET: string
+    DIGITAL_OCEAN_SPACES_KEY: string
+    DIGITAL_OCEAN_SPACES_SECRET: string
+    DIGITAL_OCEAN_SPACES_BUCKET: string
+    DIGITAL_OCEAN_SPACES_ENDPOINT: string
 
     // Sentry
     SENTRY_DSN: string
     NEXT_PUBLIC_SENTRY_DSN: string
+
+    // Replicate
+    REPLICATE_API_TOKEN: string
   }
 }
 

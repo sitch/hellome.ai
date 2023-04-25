@@ -10,6 +10,7 @@ import { GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import i18NextConfig from '@/next-i18next.config'
 import Hero from '@/components/mdx/Hero'
+import Header from '@/components/landing/Header'
 
 type Props = {
   articles: Article[]
