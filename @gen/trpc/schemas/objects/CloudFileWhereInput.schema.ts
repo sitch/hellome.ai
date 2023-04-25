@@ -3,7 +3,7 @@ import { StringFilterObjectSchema } from './StringFilter.schema'
 import { EnumFileResourceTypeFilterObjectSchema } from './EnumFileResourceTypeFilter.schema'
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
 import { IntFilterObjectSchema } from './IntFilter.schema'
-import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema'
+import { JsonFilterObjectSchema } from './JsonFilter.schema'
 import { EnumFilePrivacyFilterObjectSchema } from './EnumFilePrivacyFilter.schema'
 import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
@@ -51,7 +51,7 @@ const Schema: z.ZodType<Prisma.CloudFileWhereInput> = z
     mime: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
-    metadata: z.lazy(() => JsonNullableFilterObjectSchema).optional(),
+    metadata: z.lazy(() => JsonFilterObjectSchema).optional(),
     path: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),

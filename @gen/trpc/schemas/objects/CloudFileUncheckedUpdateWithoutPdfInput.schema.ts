@@ -3,7 +3,7 @@ import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdat
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
 import { EnumFileResourceTypeFieldUpdateOperationsInputObjectSchema } from './EnumFileResourceTypeFieldUpdateOperationsInput.schema'
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema'
-import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema'
+import { JsonNullValueInputSchema } from '../enums/JsonNullValueInput.schema'
 import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { EnumFilePrivacyFieldUpdateOperationsInputObjectSchema } from './EnumFilePrivacyFieldUpdateOperationsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
@@ -61,7 +61,7 @@ const Schema: z.ZodType<Prisma.CloudFileUncheckedUpdateWithoutPdfInput> = z
       ])
       .optional(),
     metadata: z
-      .union([z.lazy(() => NullableJsonNullValueInputSchema), jsonSchema])
+      .union([z.lazy(() => JsonNullValueInputSchema), jsonSchema])
       .optional(),
     path: z
       .union([

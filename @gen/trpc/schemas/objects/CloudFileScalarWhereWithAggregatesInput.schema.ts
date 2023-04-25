@@ -3,7 +3,7 @@ import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFi
 import { EnumFileResourceTypeWithAggregatesFilterObjectSchema } from './EnumFileResourceTypeWithAggregatesFilter.schema'
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
 import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema'
-import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema'
+import { JsonWithAggregatesFilterObjectSchema } from './JsonWithAggregatesFilter.schema'
 import { EnumFilePrivacyWithAggregatesFilterObjectSchema } from './EnumFilePrivacyWithAggregatesFilter.schema'
 import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema'
@@ -53,9 +53,7 @@ const Schema: z.ZodType<Prisma.CloudFileScalarWhereWithAggregatesInput> = z
     mime: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
-    metadata: z
-      .lazy(() => JsonNullableWithAggregatesFilterObjectSchema)
-      .optional(),
+    metadata: z.lazy(() => JsonWithAggregatesFilterObjectSchema).optional(),
     path: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),

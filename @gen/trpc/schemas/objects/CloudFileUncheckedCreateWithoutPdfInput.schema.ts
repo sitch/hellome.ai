@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
-import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema'
+import { JsonNullValueInputSchema } from '../enums/JsonNullValueInput.schema'
 import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { PhotoUncheckedCreateNestedOneWithoutFileInputObjectSchema } from './PhotoUncheckedCreateNestedOneWithoutFileInput.schema'
 
@@ -23,9 +23,7 @@ const Schema: z.ZodType<Prisma.CloudFileUncheckedCreateWithoutPdfInput> = z
     size: z.number(),
     ext: z.string(),
     mime: z.string(),
-    metadata: z
-      .union([z.lazy(() => NullableJsonNullValueInputSchema), jsonSchema])
-      .optional(),
+    metadata: z.union([z.lazy(() => JsonNullValueInputSchema), jsonSchema]),
     path: z.string(),
     signature: z.string(),
     privacy: z.lazy(() => FilePrivacySchema).optional(),

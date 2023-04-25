@@ -5,14 +5,8 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": [
-    "./@gen/**/*"
-  ],
-  "plugins": [
-    "testing-library",
-    "@typescript-eslint",
-    "json"
-  ],
+  "ignorePatterns": ["./@gen/**/*"],
+  "plugins": ["testing-library", "@typescript-eslint", "json"],
   "extends": [
     "next",
     "eslint:recommended",
@@ -30,10 +24,7 @@
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/consistent-type-definitions": [
-      "warn",
-      "type"
-    ],
+    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     // Disable
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/anchor-is-valid": "off",
@@ -62,21 +53,12 @@
   },
   "overrides": [
     {
-      "files": [
-        "*.yaml",
-        "*.yml"
-      ],
-      "plugins": [
-        "yaml"
-      ],
-      "extends": [
-        "plugin:yaml/recommended"
-      ]
+      "files": ["*.yaml", "*.yml"],
+      "plugins": ["yaml"],
+      "extends": ["plugin:yaml/recommended"]
     },
     {
-      "files": [
-        "**/*.d.ts"
-      ],
+      "files": ["**/*.d.ts"],
       "rules": {
         "@typescript-eslint/consistent-type-definitions": "off"
       }
@@ -87,9 +69,7 @@
         "**/__tests__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"
       ],
-      "extends": [
-        "plugin:testing-library/react"
-      ]
+      "extends": ["plugin:testing-library/react"]
     }
   ]
 }
