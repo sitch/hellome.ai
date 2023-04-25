@@ -3,16 +3,16 @@
   "description": "Not finding what you're looking for? Try our searching our reddit sub-forum, or contacting our support team via email or text message",
   "links": [
     {
-      "href": "/company/contact#email",
+      "href": "/pages/company/contact#email",
       "children": "Contact by Email"
     },
     {
-      "href": "/company/contact#sms",
+      "href": "/pages/company/contact#sms",
       "children": "Contact by SMS (Text-Message)"
     },
     {
       "href": {
-        "pathname": "/redirects/[slug]",
+        "pathname": "/pages/redirects/[slug]",
         "query": {
           "slug": "reddit-forum"
         }

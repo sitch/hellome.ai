@@ -16,6 +16,9 @@ import landing from '@/public/locales/en/landing.json'
 import onboarding from '@/public/locales/en/onboarding.json'
 import pricing from '@/public/locales/en/pricing.json'
 import product from '@/public/locales/en/product.json'
+import concepts from '@/public/locales/en/concepts.json'
+import filepond from '@/public/locales/en/filepond.json'
+import zod from '@/public/locales/en/zod.json'
 
 interface I18nNamespaces {
   common: typeof common
@@ -26,6 +29,9 @@ interface I18nNamespaces {
   onboarding: typeof onboarding
   pricing: typeof pricing
   product: typeof product
+  concepts: typeof concepts
+  filepond: typeof filepond
+  zod: typeof zod
 }
 
 declare module 'i18next' {

@@ -2,7 +2,7 @@ import { SVGProps } from 'react'
 
 export const ZapIcon = (props: SVGProps<SVGSVGElement> = {}) => (
   <svg
-    className="h-10 w-10 text-deep-purple-accent-400"
+    className="text-deep-purple-accent-400 h-10 w-10"
     stroke="currentColor"
     viewBox="0 0 52 52"
     {...props}
@@ -19,7 +19,7 @@ export const ZapIcon = (props: SVGProps<SVGSVGElement> = {}) => (
 
 export const DotTextureIcon = (props: SVGProps<SVGSVGElement> = {}) => (
   <svg
-    className="absolute left-0 top-0 z-0 -ml-20 -mt-8 hidden w-32 text-blue-gray-100 sm:block lg:-ml-28 lg:-mt-10 lg:w-32"
+    className="text-blue-gray-100 absolute left-0 top-0 z-0 -ml-20 -mt-8 hidden w-32 sm:block lg:-ml-28 lg:-mt-10 lg:w-32"
     viewBox="0 0 52 24"
     fill="currentColor"
     {...props}
@@ -60,7 +60,7 @@ export const ArrowRightIcon = (props: SVGProps<SVGSVGElement> = {}) => (
 
 export const FeatureCheckIcon = (props: SVGProps<SVGSVGElement> = {}) => (
   <svg
-    className="h-4 w-4 text-teal-accent-400"
+    className="text-teal-accent-400 h-4 w-4"
     viewBox="0 0 24 24"
     strokeLinecap="round"
     strokeWidth="2"
@@ -73,7 +73,7 @@ export const FeatureCheckIcon = (props: SVGProps<SVGSVGElement> = {}) => (
 
 export const LogoIcon = (props: SVGProps<SVGSVGElement> = {}) => (
   <svg
-    className="w-8 text-deep-purple-accent-400"
+    className="text-deep-purple-accent-400 w-8"
     viewBox="0 0 24 24"
     strokeLinejoin="round"
     strokeWidth="2"

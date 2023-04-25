@@ -49,8 +49,8 @@ generator erd_simple {
 // }
 
 generator zod {
-  provider = "zod-prisma-types"
-  output   = "../@gen/zod" // default is ./generated/zod
+  provider                  = "zod-prisma-types"
+  output                    = "../@gen/zod" // default is ./generated/zod
   // useMultipleFiles                 = true // default is false
   // createInputTypes                 = true // default is true
   // createModelTypes                 = true // default is true
@@ -59,11 +59,120 @@ generator zod {
   // addSelectType                    = true // default is true
   // validateWhereUniqueInput         = true // default is false
   // createOptionalDefaultValuesTypes = true // default is false
-  // createRelationValuesTypes        = false // default is false
+  createRelationValuesTypes = true // default is false
   // createPartialTypes               = true // default is false
   // useDefaultValidators             = true // default is true
   // coerceDate                       = true // default is true
   // writeNullishInModelTypes         = false // default is false
+}
+
+generator trpc {
+  provider = "prisma-trpc-generator"
+
+  contextPath              = "../server/createContext"
+  trpcOptionsPath          = "../server/trpcOptions"
+  // withMiddleware           = "../server/myMiddleware"
+  withMiddleware           = false
+  withZod                  = true
+  withShield               = true
+  isGenerateSelect         = false
+  isGenerateInclude        = true
+  showModelNameInProcedure = true
+  output                   = "../@gen/trpc"
+  // output         = "../server"
+}
+
+generator crud {
+  // provider = "node ../node_modules/prisma-next-crud-generator"
+  provider = "prisma-next-crud-generator"
+  output   = "../@gen/crud"
+}
+
+// -----------------------------------------------------------------------------
+// Storage
+// -----------------------------------------------------------------------------
+
+enum FileResourceType {
+  ckpt
+  image
+  model
+  pdf
+  safetensor
+  video
+}
+
+enum FilePrivacy {
+  public  @map("public-read")
+  private
+}
+
+model CloudFile {
+  id String @id @default(cuid())
+
+  resourceType FileResourceType @map("resource_type")
+  filename     String
+  size         Int /// Filesize in bytes @zod.number.positive()
+  ext          String /// File extension
+  mime         String /// File MIME type
+  metadata     Json? /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+
+  // Cloud
+  path      String      @unique /// Path on blob store
+  signature String      @unique /// Signature on blob store
+  privacy   FilePrivacy @default(private) /// Privacy on blob store
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  Photo Photo? //  @ignore
+  PDF   PDF? // @ignore
+
+  // TODO: Add permissions
+
+  @@map("cloud_files")
+}
+
+// -----------------------------------------------------------------------------
+// User File Types
+// -----------------------------------------------------------------------------
+
+model Photo {
+  id String @id @default(cuid())
+
+  height    Int      @db.SmallInt /// @zod.number.positive()
+  width     Int      @db.SmallInt /// @zod.number.positive()
+  tags      String[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Web
+  // etag String @unique /// Generate via: md5($file.content)-$id
+  // url  String @unique /// @zod.string.url()
+
+  fileId       String        @unique @map("file_id") /// @zod.string.cuid()
+  file         CloudFile     @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
+  pageArtworks PageArtwork[] // @ignore
+  concepts     Concept[] // @ignore
+
+  @@map("photos")
+}
+
+model PDF {
+  id String @id @default(cuid())
+
+  height    Int      @db.SmallInt /// @zod.number.positive()
+  width     Int      @db.SmallInt /// @zod.number.positive()
+  pages     Int      @db.SmallInt /// @zod.number.positive()
+  tags      String[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Web
+  // etag String @unique /// Generate via: md5($file.content)-$id
+  // url  String @unique /// @zod.string.url()
+
+  fileId String    @unique @map("file_id") /// @zod.string.cuid()
+  file   CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
+  book   Edition? // @ignore
+
+  @@map("pdfs")
 }
 
 // -----------------------------------------------------------------------------
@@ -71,23 +180,20 @@ generator zod {
 // -----------------------------------------------------------------------------
 
 model User {
-  id String @id @default(cuid())
-
-  email     String   @unique @db.Citext()
+  id        String   @id @default(cuid())
+  /// @zod.string.min(1).max(160)
   name      String
+  /// @zod.string.email().min(3).max(160)
+  email     String   @unique
+  // email     String   @unique @db.Citext()
   updatedAt DateTime @updatedAt @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")
 
   // concepts     Concept[]
   Edition Edition[]
+  Concept Concept?
 
   @@map("users")
-}
-
-model PDF {
-  id String @id @default(cuid())
-
-  book Edition? @ignore
 }
 
 model Author {
@@ -110,18 +216,13 @@ model Translator {
   pageTexts PageText[]
 }
 
-model Photo {
-  id String @id @default(cuid())
-
-  pageArtworks PageArtwork[] @ignore
-}
-
 // -----------------------------------------------------------------------------
 // Locales
 // -----------------------------------------------------------------------------
 
 enum Locale {
   en_US
+  en
 }
 
 // -----------------------------------------------------------------------------
@@ -134,13 +235,13 @@ model Story {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  artistId     String?       @map("artist_id")
-  authorId     String?       @map("author_id")
+  artistId     String?       @map("artist_id") /// @zod.string.cuid()
+  authorId     String?       @map("author_id") /// @zod.string.cuid()
   artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
   author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
   pages        Page[]
-  pageArtworks PageArtwork[] @ignore
-  pageTexts    PageText[]    @ignore
+  pageArtworks PageArtwork[] //  @ignore
+  pageTexts    PageText[] //  @ignore
 
   @@index([artistId], name: "Story_artistId")
   @@index([authorId], name: "Story_authorId")
@@ -178,10 +279,10 @@ model PageArtwork {
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime   @updatedAt @map("updated_at")
 
-  pageId   String @map("page_id")
-  storyId  String @map("story_id")
-  artistId String @map("artist_id")
-  photoId  String @map("photo_id")
+  pageId   String @map("page_id") /// @zod.string.cuid()
+  storyId  String @map("story_id") /// @zod.string.cuid()
+  artistId String @map("artist_id") /// @zod.string.cuid()
+  photoId  String @map("photo_id") /// @zod.string.cuid()
   page     Page   @relation(fields: [pageId], references: [id], onDelete: Cascade)
   story    Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
   artist   Artist @relation(fields: [artistId], references: [id], onDelete: Cascade)
@@ -196,15 +297,15 @@ model PageText {
 
   status    PageStatus   @default(DRAFT)
   locale    Locale
-  text      String
+  text      String /// @zod.string.min(1).max(5000)
   type      PageTextType
   createdAt DateTime     @default(now()) @map("created_at")
   updatedAt DateTime     @updatedAt @map("updated_at")
 
-  pageId       String      @map("page_id")
-  storyId      String      @map("story_id")
-  authorId     String?     @map("author_id")
-  translatorId String?     @map("translator_id")
+  pageId       String      @map("page_id") /// @zod.string.cuid()
+  storyId      String      @map("story_id") /// @zod.string.cuid()
+  authorId     String?     @map("author_id") /// @zod.string.cuid()
+  translatorId String?     @map("translator_id") /// @zod.string.cuid()
   page         Page        @relation(fields: [pageId], references: [id], onDelete: Cascade)
   story        Story       @relation(fields: [storyId], references: [id], onDelete: Cascade)
   author       Author?     @relation(fields: [authorId], references: [id], onDelete: Cascade)
@@ -219,11 +320,11 @@ model Page {
 
   status     PageStatus @default(DRAFT)
   type       PageType
-  pageNumber Int        @map("page_number") @db.SmallInt()
+  pageNumber Int        @map("page_number") @db.SmallInt() /// @zod.number.gte(1).lte(100)
   createdAt  DateTime   @default(now()) @map("created_at")
   updatedAt  DateTime   @updatedAt @map("updated_at")
 
-  storyId  String        @map("story_id")
+  storyId  String        @map("story_id") /// @zod.string.cuid()
   story    Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
   artworks PageArtwork[]
   texts    PageText[]
@@ -242,13 +343,40 @@ model Edition {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  userId String @unique @map("user_id")
-  pdfId  String @unique @map("pdf_id")
+  userId String @unique @map("user_id") /// @zod.string.cuid()
+  pdfId  String @unique @map("pdf_id") /// @zod.string.cuid()
   user   User   @relation(fields: [userId], references: [id])
   pdf    PDF    @relation(fields: [pdfId], references: [id])
 
   @@index([userId], name: "Edition_userId")
   @@map("editions")
+}
+
+// -----------------------------------------------------------------------------
+// Concepts
+// -----------------------------------------------------------------------------
+
+enum ConceptType {
+  person
+  place
+  thing
+}
+
+model Concept {
+  id          String      @id @default(cuid())
+  name        String /// @zod.string.min(1).max(100
+  type        ConceptType
+  description String?
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+
+  userId String? @unique @map("user_id") /// @zod.string.cuid()
+  user   User?   @relation(fields: [userId], references: [id])
+
+  photos Photo[]
+
+  @@index([userId], name: "Concept_userId")
+  @@map("concepts")
 }
 
 // -----------------------------------------------------------------------------

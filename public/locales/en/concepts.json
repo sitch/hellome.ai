@@ -1,0 +1,39 @@
+{
+  "form": {
+    "h1": "Concept Training",
+    "schema": {
+      "type": {
+        "label": "Type",
+        "description": "Type of the concept.",
+        "enum": {
+          "person": {
+            "label": "Person",
+            "description": "Description of Person"
+          },
+          "place": {
+            "label": "Place",
+            "description": "Description of Place"
+          },
+          "thing": {
+            "label": "Thing",
+            "description": "Description of Thing"
+          }
+        }
+      },
+      "name": {
+        "label": "Name",
+        "description": "Name of the concept.",
+        "placeholder": "Name of the concept."
+      },
+      "photos": {
+        "label": "Media",
+        "description": "Photos, or Scribbles"
+      },
+      "description": {
+        "label": "Description",
+        "description": "Description of the concept",
+        "placeholder": "Description of the concept"
+      }
+    }
+  }
+}

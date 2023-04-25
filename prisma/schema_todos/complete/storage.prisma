@@ -33,7 +33,7 @@ model CloudFile {
 
   resourceType FileResourceType @map("resource_type")
   filename     String
-  size         Int /// Filesize in bytes
+  size         Int /// Filesize in bytes @zod.number.positive()
   ext          String /// File extension
   mime         String /// File MIME type
   metadata     Json? /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
@@ -60,16 +60,16 @@ model CloudFile {
 model Photo {
   id String @id @default(cuid())
 
-  height    Int      @db.SmallInt
-  width     Int      @db.SmallInt
+  height    Int      @db.SmallInt /// @zod.number.positive()
+  width     Int      @db.SmallInt /// @zod.number.positive()
   tags      String[]
   createdAt DateTime @default(now()) @map("created_at")
 
   // Web
-  // etag String @unique /// Generate via: md5($content)-$id
-  // url  String @unique
+  // etag String @unique /// Generate via: md5($file.content)-$id
+  // url  String @unique /// @zod.string.url()
 
-  fileId String    @unique @map("file_id")
+  fileId String    @unique @map("file_id")  /// @zod.string.cuid()
   file   CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
 
   @@map("photos")
@@ -78,13 +78,17 @@ model Photo {
 model PDF {
   id String @id @default(cuid())
 
-  height    Int      @db.SmallInt
-  width     Int      @db.SmallInt
-  pages     Int      @db.SmallInt
+  height    Int      @db.SmallInt /// @zod.number.positive()
+  width     Int      @db.SmallInt /// @zod.number.positive()
+  pages     Int      @db.SmallInt /// @zod.number.positive()
   tags      String[]
   createdAt DateTime @default(now()) @map("created_at")
 
-  fileId String    @unique @map("file_id")
+  // Web
+  // etag String @unique /// Generate via: md5($file.content)-$id
+  // url  String @unique /// @zod.string.url()
+
+  fileId String    @unique @map("file_id") /// @zod.string.cuid()
   file   CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
 
   @@map("pdfs")

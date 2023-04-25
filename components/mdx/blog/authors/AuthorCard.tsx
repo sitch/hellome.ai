@@ -31,13 +31,13 @@ export const AuthorCard = ({ author }: AuthorCardProps) => {
           <div className="flex items-center space-x-3 sm:justify-center">
             <a
               href={author.social?.twitter?.url}
-              className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="hover:text-deep-purple-accent-400 text-gray-600 transition-colors duration-300"
             >
               <TwitterIcon className="h-5" />
             </a>
             <a
               href={author.social?.facebook?.url}
-              className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="hover:text-deep-purple-accent-400 text-gray-600 transition-colors duration-300"
             >
               <FacebookIcon className="h-5" />
             </a>

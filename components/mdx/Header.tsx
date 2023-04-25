@@ -66,7 +66,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                 </svg>
               </Link>
               <button
-                aria-label="humburger"
+                aria-label="hamburger"
                 id="hamburger"
                 className="relative -mr-6 p-6 lg:hidden"
               >
@@ -171,7 +171,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
             </div>
             <div className="fixed right-14 top-3 z-20 sm:right-24 lg:hidden">
               <button
-                aria-label="switche theme"
+                aria-label="switch theme"
                 className="switcher group relative flex h-9 w-9 rounded-full before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800"
               >
                 <svg

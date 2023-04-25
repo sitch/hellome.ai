@@ -6,7 +6,8 @@ import { DateTimes, Heading, Lists, Media, Typography } from './ui'
 import Link from 'next/link'
 import { LinkProps } from 'next/link'
 import { route } from 'nextjs-routes'
-import Header from './Header'
+// import Header from './Header'
+import Header from '@/components/landing/Header'
 import { Footer } from '@/components/landing/Footer'
 // import Footer from './Footer'
 import { useTranslation } from 'next-i18next'
@@ -211,6 +212,7 @@ const Layout = ({ children, HeroComp }: LayoutProps) => {
             data-gr-ext-installed=""
           >
             <Header />
+
             {/* <Hero /> */}
 
             {/* <section className={styles.section}> */}

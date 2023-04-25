@@ -10,7 +10,7 @@ const privacyPolicy = (
     We’ll never share your details. Read our{' '}
     <Link
       href={{
-        pathname: '/policies/[slug]',
+        pathname: '/pages/policies/[slug]',
         query: { slug: 'privacy-policy' },
       }}
       className="font-medium text-blue-600 hover:underline dark:text-blue-500"

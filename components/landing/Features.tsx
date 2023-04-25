@@ -49,7 +49,7 @@ export const Feature = ({
       <Link
         href="/"
         aria-label={title}
-        className="inline-flex items-center font-semibold text-deep-purple-accent-400 transition-colors duration-200 hover:text-deep-purple-800"
+        className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
       >
         {action.label}
       </Link>

@@ -6,7 +6,7 @@
       "links": [
         {
           "href": {
-            "pathname": "/customer/[slug]",
+            "pathname": "/pages/customer/[slug]",
             "query": {
               "slug": "affiliate-program"
             }
@@ -16,7 +16,7 @@
         },
         {
           "href": {
-            "pathname": "/customer/[slug]",
+            "pathname": "/pages/customer/[slug]",
             "query": {
               "slug": "become-an-ambassador"
             }
@@ -26,7 +26,7 @@
         },
         {
           "href": {
-            "pathname": "/customer/[slug]",
+            "pathname": "/pages/customer/[slug]",
             "query": {
               "slug": "offers"
             }
@@ -36,7 +36,7 @@
         },
         {
           "href": {
-            "pathname": "/customer/[slug]",
+            "pathname": "/pages/customer/[slug]",
             "query": {
               "slug": "refer-a-friend",
               "referrer": "hellome:landing.footer"
@@ -52,14 +52,14 @@
       "links": [
         {
           "href": {
-            "pathname": "/blog"
+            "pathname": "/pages/blog"
           },
           "aria-label": "Blog",
           "children": "Blog"
         },
         {
           "href": {
-            "pathname": "/company/[slug]",
+            "pathname": "/pages/company/[slug]",
             "query": {
               "slug": "careers"
             }
@@ -69,7 +69,7 @@
         },
         {
           "href": {
-            "pathname": "/policies/[slug]",
+            "pathname": "/pages/policies/[slug]",
             "query": {
               "slug": "delivery-info"
             }
@@ -79,7 +79,7 @@
         },
         {
           "href": {
-            "pathname": "/company/[slug]",
+            "pathname": "/pages/company/[slug]",
             "query": {
               "slug": "our-story"
             }
@@ -89,7 +89,7 @@
         },
         {
           "href": {
-            "pathname": "/company/[slug]",
+            "pathname": "/pages/company/[slug]",
             "query": {
               "slug": "press"
             }
@@ -104,7 +104,7 @@
       "links": [
         {
           "href": {
-            "pathname": "/policies/[slug]",
+            "pathname": "/pages/policies/[slug]",
             "query": {
               "slug": "accessibility-statement"
             }
@@ -114,7 +114,7 @@
         },
         {
           "href": {
-            "pathname": "/policies/[slug]",
+            "pathname": "/pages/policies/[slug]",
             "query": {
               "slug": "privacy-policy"
             }
@@ -124,7 +124,7 @@
         },
         {
           "href": {
-            "pathname": "/policies/[slug]",
+            "pathname": "/pages/policies/[slug]",
             "query": {
               "slug": "returns-policy"
             }
@@ -134,7 +134,7 @@
         },
         {
           "href": {
-            "pathname": "/policies/[slug]",
+            "pathname": "/pages/policies/[slug]",
             "query": {
               "slug": "terms-of-service"
             }
@@ -144,7 +144,7 @@
         },
         {
           "href": {
-            "pathname": "/policies/[slug]",
+            "pathname": "/pages/policies/[slug]",
             "query": {
               "slug": "ugc-terms-and-conditions"
             }
@@ -159,7 +159,7 @@
       "links": [
         {
           "href": {
-            "pathname": "/company/[slug]",
+            "pathname": "/pages/company/[slug]",
             "query": {
               "slug": "contact"
             }
@@ -169,7 +169,7 @@
         },
         {
           "href": {
-            "pathname": "/redirects/[slug]",
+            "pathname": "/pages/redirects/[slug]",
             "query": {
               "slug": "join-discord"
             }
@@ -179,7 +179,7 @@
         },
         {
           "href": {
-            "pathname": "/redirects/[slug]",
+            "pathname": "/pages/redirects/[slug]",
             "query": {
               "slug": "reddit-forum"
             }
@@ -189,7 +189,7 @@
         },
         {
           "href": {
-            "pathname": "/company/[slug]",
+            "pathname": "/pages/company/[slug]",
             "query": {
               "slug": "wiki"
             }

@@ -20,7 +20,7 @@ export const Subscribe = () => {
     <div className="mx-auto flex max-w-2xl flex-col items-center justify-center px-4 pt-16 sm:max-w-xl md:max-w-2xl md:px-8 lg:pt-32">
       <div className="mb-10 max-w-xl sm:text-center md:mx-auto md:mb-12 lg:max-w-2xl">
         <div>
-          <p className="mb-4 inline-block rounded-full bg-teal-accent-400 px-3 py-px text-xs font-semibold uppercase tracking-wider text-teal-900">
+          <p className="bg-teal-accent-400 mb-4 inline-block rounded-full px-3 py-px text-xs font-semibold uppercase tracking-wider text-teal-900">
             {content.tag.label}
           </p>
         </div>
@@ -40,11 +40,11 @@ export const Subscribe = () => {
           placeholder="Email"
           required={true}
           type="text"
-          className="mb-3 h-12 w-full grow appearance-none rounded border border-gray-300 bg-white px-4 shadow-sm transition duration-200 focus:border-deep-purple-accent-400 focus:shadow-outline focus:outline-none md:mb-0 md:mr-2"
+          className="focus:border-deep-purple-accent-400 mb-3 h-12 w-full grow appearance-none rounded border border-gray-300 bg-white px-4 shadow-sm transition duration-200 focus:shadow-outline focus:outline-none md:mb-0 md:mr-2"
         />
         <button
           type="submit"
-          className="inline-flex h-12 w-full items-center justify-center rounded bg-deep-purple-accent-400 px-6 font-medium tracking-wide text-white shadow-md transition duration-200 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none md:w-auto"
+          className="bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 inline-flex h-12 w-full items-center justify-center rounded px-6 font-medium tracking-wide text-white shadow-md transition duration-200 focus:shadow-outline focus:outline-none md:w-auto"
         >
           {content.action.label}
         </button>

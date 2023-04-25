@@ -72,9 +72,9 @@ function PriceCard({ title, cost, features, action, period }: PriceCardProps) {
           disabled={action.disabled}
           className={
             action.disabled
-              ? 'inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded bg-teal-accent-400 px-6 font-semibold tracking-wide text-teal-900 shadow-md focus:outline-none'
+              ? 'bg-teal-accent-400 inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded px-6 font-semibold tracking-wide text-teal-900 shadow-md focus:outline-none'
               : // : 'inline-flex h-12 w-full items-center justify-center rounded bg-teal-accent-400 px-6 font-semibold tracking-wide text-teal-900 shadow-md transition duration-200 hover:bg-teal-accent-700 focus:shadow-outline focus:outline-none'
-                'inline-flex h-12 w-full items-center justify-center rounded bg-deep-purple-accent-400 px-6 font-medium tracking-wide text-white shadow-md transition duration-200 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
+                'bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 inline-flex h-12 w-full items-center justify-center rounded px-6 font-medium tracking-wide text-white shadow-md transition duration-200 focus:shadow-outline focus:outline-none'
           }
         >
           {action.label}
@@ -95,7 +95,7 @@ function PricingAssistance() {
       <br />
       <Link
         href={{
-          pathname: '/policies/[slug]',
+          pathname: '/pages/policies/[slug]',
           query: { slug: 'pricing-assistance-policy' },
         }}
       >

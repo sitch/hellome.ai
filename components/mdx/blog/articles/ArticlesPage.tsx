@@ -18,28 +18,30 @@ export const ArticlesPage = ({ articles }: ArticlesPageProps) => {
   return (
     <>
       <section className="body-font overflow-hidden text-gray-600">
-        <div className="container mx-auto px-5 py-24">
-          <div className="-my-8 divide-y-2 divide-gray-100">
-            {articles.length >= 4 ? (
-              <>
-                <TopArticles articles={articlesTop} />
-                {articlesRest.map((article) => (
+        <div className="sm:px-34 mx-auto max-w-screen-xl px-4 pb-8 pt-16 lg:px-8 lg:pt-24">
+          <div className="container mx-auto px-5 py-24">
+            <div className="-my-8 divide-y-2 divide-gray-100">
+              {articles.length >= 4 ? (
+                <>
+                  <TopArticles articles={articlesTop} />
+                  {articlesRest.map((article) => (
+                    <ArticleListItem
+                      key={article.slug}
+                      author={article.author!}
+                      article={article}
+                    />
+                  ))}
+                </>
+              ) : (
+                articles.map((article) => (
                   <ArticleListItem
                     key={article.slug}
                     author={article.author!}
                     article={article}
                   />
-                ))}
-              </>
-            ) : (
-              articles.map((article) => (
-                <ArticleListItem
-                  key={article.slug}
-                  author={article.author!}
-                  article={article}
-                />
-              ))
-            )}
+                ))
+              )}
+            </div>
           </div>
         </div>
       </section>
