@@ -2,19 +2,18 @@
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
   "ignorePatterns": ["./@gen/**/*"],
-  "plugins": ["testing-library", "@typescript-eslint", "json", "tailwindcss"],
+  "plugins": ["@typescript-eslint", "tailwindcss"],
   "extends": [
-    "next",
     "eslint:recommended",
+    "next",
     "next/core-web-vitals",
+    "prettier",
     "plugin:@typescript-eslint/strict",
     "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:tailwindcss/recommended",
-    "prettier",
-    "plugin:json/recommended"
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "react/no-unescaped-entities": "off",
@@ -67,7 +66,7 @@
     {
       "files": ["*.json", "*.jsonc"],
       "plugins": ["json"],
-      "extends": ["plugin:yaml/recommended"]
+      "extends": ["plugin:json/recommended"]
     },
     {
       "files": ["*.yaml", "*.yml"],
@@ -86,6 +85,7 @@
         "**/__tests__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"
       ],
+      "plugins": ["testing-library"],
       "extends": ["plugin:testing-library/react"]
     }
   ]

@@ -78,7 +78,7 @@ export default function Canvas({
       />
 
       {scribbleExists && (
-        <div className="animate-in fade-in text-left duration-700">
+        <div className="text-left animate-in fade-in duration-700">
           <button className="lil-button" onClick={undo}>
             <UndoIcon className="icon" />
             Undo

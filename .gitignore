@@ -66,3 +66,6 @@ cypress/videos/*
 
 # Sentry
 .sentryclirc
+
+# Prisma
+prisma/.env

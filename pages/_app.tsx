@@ -20,6 +20,8 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import { trpc } from '@/utils/trpc'
 
 import { DefaultWebsiteSEO } from '@/components/seo/DefaultWebsiteSEO'
+import { TailwindIndicator } from '@/components/tailwind-indicator'
+import { ThemeProvider } from '@/components/theme-provider'
 
 // Tell Font Awesome to skip adding the CSS automatically
 // since it's already imported above
@@ -84,7 +86,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <GoogleAnalytics trackPageViews />
       )}
 
-      <Component {...pageProps} />
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Component {...pageProps} />
+
+        <TailwindIndicator />
+      </ThemeProvider>
+
       {/* <Analytics mode="production" /> */}
     </>
   )

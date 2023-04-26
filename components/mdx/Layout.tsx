@@ -19,7 +19,7 @@ const Hero = () => (
       aria-hidden="true"
       className="absolute inset-0 top-56 grid grid-cols-2 -space-x-52 opacity-50 dark:opacity-30"
     >
-      <div className="from-primary h-56 bg-gradient-to-br to-purple-400 blur-[106px] dark:from-blue-700" />
+      <div className="h-56 bg-gradient-to-br from-primary to-purple-400 blur-[106px] dark:from-blue-700" />
       <div className="h-32 bg-gradient-to-r from-cyan-400 to-sky-300 blur-[106px] dark:to-indigo-600" />
     </div>
     <div className="mx-auto px-4 pt-32 sm:px-12 sm:pt-40 md:pt-48 lg:pt-56 xl:max-w-6xl xl:px-0">
@@ -67,12 +67,12 @@ const Hero = () => (
       </div>
       <div className="relative -mx-4 mt-16 flex snap-x snap-mandatory justify-between gap-6 overflow-x-auto border-y border-gray-100 px-4 py-8 dark:border-gray-800 sm:-mx-12 sm:px-12 lg:mx-0 lg:px-0">
         <div className="snap-center text-center sm:text-left">
-          <div className="border-primary/20 shadow-primary/10 mx-auto mb-4 flex h-12 w-12 rounded-xl border bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 sm:ml-0 sm:mr-auto">
+          <div className="mx-auto mb-4 flex h-12 w-12 rounded-xl border border-primary/20 bg-white shadow-md shadow-primary/10 dark:border-gray-700 dark:bg-gray-800 sm:ml-0 sm:mr-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="text-primary m-auto h-6 w-6 dark:text-blue-300"
+              className="m-auto h-6 w-6 text-primary dark:text-blue-300"
             >
               <path
                 className="text-primaryLight"
@@ -207,7 +207,7 @@ const Layout = ({ children, HeroComp }: LayoutProps) => {
           {/* <main className={styles.main}> */}
 
           <main
-            className="selection:bg-primary/10 selection:text-primary min-h-screen bg-white dark:bg-gray-900"
+            className="min-h-screen bg-white selection:bg-primary/10 selection:text-primary dark:bg-gray-900"
             data-new-gr-c-s-check-loaded="14.1102.0"
             data-gr-ext-installed=""
           >

@@ -147,11 +147,5 @@ export const ConceptForm = () => {
     return <div>Loading...</div>
   }
 
-  return (
-    <>
-
-
-    
-    </>
-  )
+  return <></>
 }
