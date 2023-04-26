@@ -151,7 +151,7 @@ export const CloudFileSchema = z.object({
   /**
    * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
    */
-  metadata: z.lazy(() => InputJsonValue),
+  metadata: z.record(z.union([z.string(), z.number()])),
   /**
    * Path on blob store
    */
@@ -1574,7 +1574,7 @@ export const CloudFileCreateInputSchema: z.ZodType<Prisma.CloudFileCreateInput> 
   size: z.number().positive(),
   ext: z.string(),
   mime: z.string(),
-  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.lazy(() => InputJsonValue) ]),
+  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]),
   path: z.string(),
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
@@ -1590,7 +1590,7 @@ export const CloudFileUncheckedCreateInputSchema: z.ZodType<Prisma.CloudFileUnch
   size: z.number().positive(),
   ext: z.string(),
   mime: z.string(),
-  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.lazy(() => InputJsonValue) ]),
+  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]),
   path: z.string(),
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
@@ -1606,7 +1606,7 @@ export const CloudFileUpdateInputSchema: z.ZodType<Prisma.CloudFileUpdateInput> 
   size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   ext: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.lazy(() => InputJsonValue) ]).optional(),
+  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   path: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
@@ -1622,7 +1622,7 @@ export const CloudFileUncheckedUpdateInputSchema: z.ZodType<Prisma.CloudFileUnch
   size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   ext: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.lazy(() => InputJsonValue) ]).optional(),
+  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   path: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
@@ -1638,7 +1638,7 @@ export const CloudFileCreateManyInputSchema: z.ZodType<Prisma.CloudFileCreateMan
   size: z.number().positive(),
   ext: z.string(),
   mime: z.string(),
-  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.lazy(() => InputJsonValue) ]),
+  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]),
   path: z.string(),
   signature: z.string(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
@@ -1652,7 +1652,7 @@ export const CloudFileUpdateManyMutationInputSchema: z.ZodType<Prisma.CloudFileU
   size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   ext: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.lazy(() => InputJsonValue) ]).optional(),
+  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   path: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
@@ -1666,7 +1666,7 @@ export const CloudFileUncheckedUpdateManyInputSchema: z.ZodType<Prisma.CloudFile
   size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   ext: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.lazy(() => InputJsonValue) ]).optional(),
+  metadata: z.union([ z.lazy(() => JsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   path: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   signature: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
