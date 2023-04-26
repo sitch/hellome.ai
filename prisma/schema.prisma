@@ -108,8 +108,9 @@ model CloudFile {
   size         Int /// Filesize in bytes @zod.number.positive()
   ext          String /// File extension
   mime         String /// File MIME type
-  ///Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
-  metadata     Json?
+  /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+  /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
+  metadata     Json
 
   // Cloud
   path      String      @unique /// Path on blob store
