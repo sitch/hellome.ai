@@ -14,6 +14,7 @@ const pwaConfig = {
   //   // video: ...,
   // },
 }
+const i18nextConfig = require('./next-i18next.config')
 
 const analyzeConfig = {
   enabled: process.env.ANALYZE === 'true',
@@ -23,8 +24,7 @@ const analyzeConfig = {
 const withPWA = require('next-pwa')(pwaConfig)
 const withRoutes = require('nextjs-routes/config')()
 const withBundleAnalyzer = require('@next/bundle-analyzer')(analyzeConfig)
-const { withSentryConfig } = require('@sentry/nextjs')
-const i18nextConfig = require('./next-i18next.config')
+// const { withSentryConfig } = require('@sentry/nextjs')
 
 // // You might need to insert additional domains in script-src if you are using external services
 // const ContentSecurityPolicy = `
@@ -126,6 +126,12 @@ const nextConfig = {
       preventFullImport: true,
     },
   },
+  images: {
+    domains: [
+      `${process.env.S3_UPLOAD_BUCKET}.s3.amazonaws.com`,
+      `${process.env.S3_UPLOAD_BUCKET}.s3.${process.env.S3_UPLOAD_REGION}.amazonaws.com`,
+    ],
+  },
   async redirects() {
     return [
       {
@@ -137,35 +143,35 @@ const nextConfig = {
   },
   async headers() {
     return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          // {
-          //   key: 'Content-Security-Policy',
-          //   value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
-          // },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          // {
-          //   key: 'X-XSS-Protection',
-          //   value: '1; mode=block',
-          // },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-        ],
-      },
+      // {
+      //   source: '/(.*)',
+      //   headers: [
+      //     {
+      //       key: 'X-Frame-Options',
+      //       value: 'DENY',
+      //     },
+      //     // {
+      //     //   key: 'Content-Security-Policy',
+      //     //   value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
+      //     // },
+      //     {
+      //       key: 'X-Content-Type-Options',
+      //       value: 'nosniff',
+      //     },
+      //     // {
+      //     //   key: 'X-XSS-Protection',
+      //     //   value: '1; mode=block',
+      //     // },
+      //     {
+      //       key: 'Permissions-Policy',
+      //       value: 'camera=(), microphone=(), geolocation=()',
+      //     },
+      //     {
+      //       key: 'Referrer-Policy',
+      //       value: 'origin-when-cross-origin',
+      //     },
+      //   ],
+      // },
     ]
   },
   devIndicators: {
@@ -203,8 +209,10 @@ const userSentryOptions = {
   hideSourceMaps: true,
 }
 
-module.exports = withSentryConfig(
-  withBundleAnalyzer(withPWA(withRoutes(nextConfig))),
-  sentryWebpackPluginOptions,
-  userSentryOptions
-)
+// module.exports = withSentryConfig(
+//   withBundleAnalyzer(withPWA(withRoutes(nextConfig))),
+//   sentryWebpackPluginOptions,
+//   userSentryOptions
+// )
+
+module.exports = withBundleAnalyzer(withPWA(withRoutes(nextConfig)))

@@ -4,6 +4,9 @@ import '@/styles/global/chrome-bug.css'
 import '@/styles/global/dark-mode.css'
 import '@/styles/global/filepond.css'
 
+// import "@fontsource/inter";
+// import "@fontsource/maven-pro"
+
 // Icons
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
@@ -82,7 +85,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       )}
 
       <Component {...pageProps} />
-      <Analytics mode="production" />
+      {/* <Analytics mode="production" /> */}
     </>
   )
 }

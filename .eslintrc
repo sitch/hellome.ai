@@ -1,12 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "ignorePatterns": ["./@gen/**/*"],
-  "plugins": ["testing-library", "@typescript-eslint", "json"],
+  "plugins": ["testing-library", "@typescript-eslint", "json", "tailwindcss"],
   "extends": [
     "next",
     "eslint:recommended",
@@ -51,7 +47,28 @@
     //   }
     // ]
   },
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn"],
+      "config": "./tailwind.config.js"
+    },
+    "next": {
+      "rootDir": ["./"]
+    }
+  },
   "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser"
+      // "parserOptions": {
+      // "project": "./tsconfig.json"
+      // },
+    },
+    {
+      "files": ["*.json", "*.jsonc"],
+      "plugins": ["json"],
+      "extends": ["plugin:yaml/recommended"]
+    },
     {
       "files": ["*.yaml", "*.yml"],
       "plugins": ["yaml"],
