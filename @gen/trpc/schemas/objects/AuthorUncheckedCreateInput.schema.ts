@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { StoryUncheckedCreateNestedManyWithoutAuthorInputObjectSchema } from './StoryUncheckedCreateNestedManyWithoutAuthorInput.schema'
 import { PageTextUncheckedCreateNestedManyWithoutAuthorInputObjectSchema } from './PageTextUncheckedCreateNestedManyWithoutAuthorInput.schema'
-
+import { StoryUncheckedCreateNestedManyWithoutAuthorInputObjectSchema } from './StoryUncheckedCreateNestedManyWithoutAuthorInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.AuthorUncheckedCreateInput> = z
   .object({

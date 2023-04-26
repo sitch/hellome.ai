@@ -1,19 +1,21 @@
-import styles from './index.module.css'
 // import { Layout } from '@/components/common'
 // import MediaPipeDemo from '@/components/vision/mediapipe/MediapipeDemo'
 // import  FaceFilter  from '@/components/vision/FaceFilter'
-import dynamic from 'next/dynamic'
+
+import dynamic from "next/dynamic"
+
+import styles from "./index.module.css"
 
 // See: https://github.com/google/mediapipe/issues/2546
 const FaceFilter = dynamic(
-  () => import('@/components/vision/mediapipe/FaceFilter'),
+  () => import("@/components/vision/mediapipe/FaceFilter"),
   {
     ssr: false,
   }
 )
 
 const AlterBackground = dynamic(
-  () => import('@/components/vision/mediapipe/AlterBackground'),
+  () => import("@/components/vision/mediapipe/AlterBackground"),
   {
     ssr: false,
   }

@@ -1,7 +1,7 @@
-import { z } from 'zod'
-import { EditionSelectObjectSchema } from './objects/EditionSelect.schema'
 import { EditionIncludeObjectSchema } from './objects/EditionInclude.schema'
+import { EditionSelectObjectSchema } from './objects/EditionSelect.schema'
 import { EditionWhereUniqueInputObjectSchema } from './objects/EditionWhereUniqueInput.schema'
+import { z } from 'zod'
 
 export const EditionFindUniqueSchema = z.object({
   select: EditionSelectObjectSchema.optional(),

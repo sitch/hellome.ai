@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { CloudFileUpdateWithoutPdfInputObjectSchema } from './CloudFileUpdateWithoutPdfInput.schema'
-import { CloudFileUncheckedUpdateWithoutPdfInputObjectSchema } from './CloudFileUncheckedUpdateWithoutPdfInput.schema'
 import { CloudFileCreateWithoutPdfInputObjectSchema } from './CloudFileCreateWithoutPdfInput.schema'
 import { CloudFileUncheckedCreateWithoutPdfInputObjectSchema } from './CloudFileUncheckedCreateWithoutPdfInput.schema'
-
+import { CloudFileUncheckedUpdateWithoutPdfInputObjectSchema } from './CloudFileUncheckedUpdateWithoutPdfInput.schema'
+import { CloudFileUpdateWithoutPdfInputObjectSchema } from './CloudFileUpdateWithoutPdfInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.CloudFileUpsertWithoutPdfInput> = z
   .object({

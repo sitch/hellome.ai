@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { PageTypeSchema } from '../enums/PageType.schema'
+import { NestedEnumPageTypeFilterObjectSchema } from './NestedEnumPageTypeFilter.schema'
 import { NestedEnumPageTypeWithAggregatesFilterObjectSchema } from './NestedEnumPageTypeWithAggregatesFilter.schema'
 import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import { NestedEnumPageTypeFilterObjectSchema } from './NestedEnumPageTypeFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EnumPageTypeWithAggregatesFilter> = z
   .object({

@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { PDFCreatetagsInputObjectSchema } from './PDFCreatetagsInput.schema'
 import { EditionCreateNestedOneWithoutPdfInputObjectSchema } from './EditionCreateNestedOneWithoutPdfInput.schema'
-
+import { PDFCreatetagsInputObjectSchema } from './PDFCreatetagsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PDFCreateWithoutFileInput> = z
   .object({

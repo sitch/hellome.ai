@@ -20,7 +20,7 @@
 }
 .book:before,
 .book:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
 }

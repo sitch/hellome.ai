@@ -7,10 +7,10 @@
 // See: https://docs.bunny.net/docs/bunny-ai-image-generation#blueprints
 // See: https://docs.bunny.net/docs/bunny-ai-image-generation#blueprints
 
-import { range } from 'lodash'
-import type { NextPage } from 'next'
-import Image from 'next/image'
-import { useState } from 'react'
+import { useState } from "react"
+import type { NextPage } from "next"
+import Image from "next/image"
+import { range } from "lodash"
 
 /**
  * Sanitize a URL.
@@ -23,19 +23,19 @@ import { useState } from 'react'
  */
 function sanitizeUrl(url: string | undefined) {
   if (!url) {
-    return 'about:blank'
+    return "about:blank"
   }
 
   const invalidProtocolRegex = /^(%20|\s)*(javascript|data|vbscript)/im
   const ctrlCharactersRegex = /[^\x20-\x7EÀ-ž]/gim
   const urlSchemeRegex = /^([^:]+):/gm
-  const relativeFirstCharacters = ['.', '/']
+  const relativeFirstCharacters = [".", "/"]
 
   function _isRelativeUrlWithoutProtocol(url: string) {
     return relativeFirstCharacters.includes(url[0])
   }
 
-  const sanitizedUrl = url.replace(ctrlCharactersRegex, '').trim()
+  const sanitizedUrl = url.replace(ctrlCharactersRegex, "").trim()
   if (_isRelativeUrlWithoutProtocol(sanitizedUrl)) {
     return sanitizedUrl
   }
@@ -47,20 +47,20 @@ function sanitizeUrl(url: string | undefined) {
 
   const urlScheme = urlSchemeParseResults[0]
   if (invalidProtocolRegex.test(urlScheme)) {
-    return 'about:blank'
+    return "about:blank"
   }
 
   return sanitizedUrl
 }
 
 function sanitizePrompt(prompt: string): string {
-  return sanitizeUrl(prompt.trim().replaceAll('\n', '').replaceAll(/\s+/g, '-'))
+  return sanitizeUrl(prompt.trim().replaceAll("\n", "").replaceAll(/\s+/g, "-"))
 }
 
 const config = {
   // engine: 'dalle-256',
   // engine: 'dalle-512',
-  engine: 'dalle-1024',
+  engine: "dalle-1024",
   // engine: 'sd15-512',
   // engine: 'sd21-512',
   // engine: 'sd21-768',
@@ -70,7 +70,7 @@ const config = {
   // width: 1024,
 
   //  blueprint: 'avatar',
-  blueprint: 'default',
+  blueprint: "default",
 }
 
 function urlBunnyNet(index: number, prompt: string) {
@@ -154,7 +154,7 @@ const Explore: NextPage = () => {
             onClick={() => setPage(page - 1)}
           >
             Prev
-          </button>{' '}
+          </button>{" "}
           <button
             className="rounded bg-orange-500 px-4 py-2 font-bold text-white hover:bg-orange-700"
             onClick={() => setPage(page + 1)}

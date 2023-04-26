@@ -1,11 +1,12 @@
-import { prisma } from '@/server/utils/prisma'
-import { Prediction, Prisma } from '@prisma/client'
+import { Prediction, Prisma } from "@prisma/client"
+
+import { prisma } from "@/server/utils/prisma"
 
 export async function upsertPrediction(predictionData: Prediction) {
-  console.log('🤔 upsert prediction? ', predictionData.id)
+  console.log("🤔 upsert prediction? ", predictionData.id)
 
-  if (predictionData.status !== 'succeeded') {
-    console.log('🙈 skipping incomplete or unsuccessful prediction')
+  if (predictionData.status !== "succeeded") {
+    console.log("🙈 skipping incomplete or unsuccessful prediction")
     return
   }
 
@@ -31,7 +32,7 @@ export async function upsertPrediction(predictionData: Prediction) {
       create: prediction,
     })
 
-    console.log('✅ upserted prediction ', prediction.uuid)
+    console.log("✅ upserted prediction ", prediction.uuid)
   } catch (e) {
     console.error(e)
   } finally {
@@ -43,7 +44,7 @@ export async function getRecentPredictions() {
   const predictions = await prisma.prediction.findMany({
     orderBy: [
       {
-        id: 'asc',
+        id: "asc",
       },
     ],
     select: {

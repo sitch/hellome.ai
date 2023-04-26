@@ -1,8 +1,8 @@
-import { z } from 'zod'
-import { TranslatorWhereInputObjectSchema } from './objects/TranslatorWhereInput.schema'
+import { TranslatorScalarFieldEnumSchema } from './enums/TranslatorScalarFieldEnum.schema'
 import { TranslatorOrderByWithAggregationInputObjectSchema } from './objects/TranslatorOrderByWithAggregationInput.schema'
 import { TranslatorScalarWhereWithAggregatesInputObjectSchema } from './objects/TranslatorScalarWhereWithAggregatesInput.schema'
-import { TranslatorScalarFieldEnumSchema } from './enums/TranslatorScalarFieldEnum.schema'
+import { TranslatorWhereInputObjectSchema } from './objects/TranslatorWhereInput.schema'
+import { z } from 'zod'
 
 export const TranslatorGroupBySchema = z.object({
   where: TranslatorWhereInputObjectSchema.optional(),

@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { PDFSelectObjectSchema } from './PDFSelect.schema'
 import { PDFIncludeObjectSchema } from './PDFInclude.schema'
-
+import { PDFSelectObjectSchema } from './PDFSelect.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PDFArgs> = z
   .object({

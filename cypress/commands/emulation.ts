@@ -1,17 +1,17 @@
 /// <reference types="cypress" />
 
 const optionFeatureMap = {
-  'dark-mode': {
-    name: 'prefers-color-scheme',
-    value: 'dark',
+  "dark-mode": {
+    name: "prefers-color-scheme",
+    value: "dark",
   },
-  'light-mode': {
-    name: 'prefers-color-scheme',
-    value: 'light',
+  "light-mode": {
+    name: "prefers-color-scheme",
+    value: "light",
   },
-  'reduced-animation': {
-    name: 'prefers-reduced-motion',
-    value: 'reduce',
+  "reduced-animation": {
+    name: "prefers-reduced-motion",
+    value: "reduce",
   },
 }
 
@@ -24,18 +24,18 @@ export type Option = keyof typeof optionFeatureMap
 export function emulate(...options: Option[]) {
   const features = options.map((option) => optionFeatureMap[option])
 
-  Cypress.automation('remote:debugger:protocol', {
-    command: 'Emulation.setEmulatedMedia',
+  Cypress.automation("remote:debugger:protocol", {
+    command: "Emulation.setEmulatedMedia",
     params: {
-      media: 'page',
+      media: "page",
       features,
     },
   })
 }
 
 export function disableAnimationStyles() {
-  cy.get('body').invoke(
-    'append',
+  cy.get("body").invoke(
+    "append",
     Cypress.$(`
       <style id="__cypress-animation-disabler">
         *, *:before, *:after {

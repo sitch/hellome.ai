@@ -4,8 +4,8 @@
  * @type {import('next-pwa').PWAConfig}
  **/
 const pwaConfig = {
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
   // fallbacks: {
   //   image: '/static/images/fallback.png',
   //   // document: '/other-offline',  // if you want to fallback to a custom page other than /_offline
@@ -14,16 +14,16 @@ const pwaConfig = {
   //   // video: ...,
   // },
 }
-const i18nextConfig = require('./next-i18next.config')
+const i18nextConfig = require("./next-i18next.config")
 
 const analyzeConfig = {
-  enabled: process.env.ANALYZE === 'true',
+  enabled: process.env.ANALYZE === "true",
   openAnalyzer: true,
 }
 
-const withPWA = require('next-pwa')(pwaConfig)
-const withRoutes = require('nextjs-routes/config')()
-const withBundleAnalyzer = require('@next/bundle-analyzer')(analyzeConfig)
+const withPWA = require("next-pwa")(pwaConfig)
+const withRoutes = require("nextjs-routes/config")()
+const withBundleAnalyzer = require("@next/bundle-analyzer")(analyzeConfig)
 // const { withSentryConfig } = require('@sentry/nextjs')
 
 // // You might need to insert additional domains in script-src if you are using external services
@@ -113,15 +113,15 @@ const nextConfig = {
   // },
   modularizeImports: {
     lodash: {
-      transform: 'lodash/fp/{{member}}',
+      transform: "lodash/fp/{{member}}",
       preventFullImport: true,
     },
-    ['date-fns']: {
-      transform: 'date-fns/{{member}}',
+    ["date-fns"]: {
+      transform: "date-fns/{{member}}",
       preventFullImport: true,
     },
-    ['@fortawesome/free-solid-svg-icons']: {
-      transform: '@fortawesome/free-solid-svg-icons/{{member}}',
+    ["@fortawesome/free-solid-svg-icons"]: {
+      transform: "@fortawesome/free-solid-svg-icons/{{member}}",
       skipDefaultConversion: true,
       preventFullImport: true,
     },
@@ -135,8 +135,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/blog',
-        destination: '/blog/articles',
+        source: "/blog",
+        destination: "/blog/articles",
         permanent: true,
       },
     ]
@@ -176,7 +176,7 @@ const nextConfig = {
   },
   devIndicators: {
     buildActivity: true,
-    buildActivityPosition: 'bottom-left',
+    buildActivityPosition: "bottom-left",
   },
 }
 

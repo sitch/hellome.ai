@@ -1,10 +1,10 @@
-import { z } from 'zod'
-import { EditionSelectObjectSchema } from './objects/EditionSelect.schema'
+import { EditionScalarFieldEnumSchema } from './enums/EditionScalarFieldEnum.schema'
 import { EditionIncludeObjectSchema } from './objects/EditionInclude.schema'
 import { EditionOrderByWithRelationInputObjectSchema } from './objects/EditionOrderByWithRelationInput.schema'
+import { EditionSelectObjectSchema } from './objects/EditionSelect.schema'
 import { EditionWhereInputObjectSchema } from './objects/EditionWhereInput.schema'
 import { EditionWhereUniqueInputObjectSchema } from './objects/EditionWhereUniqueInput.schema'
-import { EditionScalarFieldEnumSchema } from './enums/EditionScalarFieldEnum.schema'
+import { z } from 'zod'
 
 export const EditionFindManySchema = z.object({
   select: z.lazy(() => EditionSelectObjectSchema.optional()),

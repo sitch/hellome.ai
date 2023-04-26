@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { PageCreateWithoutStoryInputObjectSchema } from './PageCreateWithoutStoryInput.schema'
-import { PageUncheckedCreateWithoutStoryInputObjectSchema } from './PageUncheckedCreateWithoutStoryInput.schema'
-import { PageCreateOrConnectWithoutStoryInputObjectSchema } from './PageCreateOrConnectWithoutStoryInput.schema'
-import { PageUpsertWithWhereUniqueWithoutStoryInputObjectSchema } from './PageUpsertWithWhereUniqueWithoutStoryInput.schema'
 import { PageCreateManyStoryInputEnvelopeObjectSchema } from './PageCreateManyStoryInputEnvelope.schema'
-import { PageWhereUniqueInputObjectSchema } from './PageWhereUniqueInput.schema'
-import { PageUpdateWithWhereUniqueWithoutStoryInputObjectSchema } from './PageUpdateWithWhereUniqueWithoutStoryInput.schema'
-import { PageUpdateManyWithWhereWithoutStoryInputObjectSchema } from './PageUpdateManyWithWhereWithoutStoryInput.schema'
+import { PageCreateOrConnectWithoutStoryInputObjectSchema } from './PageCreateOrConnectWithoutStoryInput.schema'
+import { PageCreateWithoutStoryInputObjectSchema } from './PageCreateWithoutStoryInput.schema'
 import { PageScalarWhereInputObjectSchema } from './PageScalarWhereInput.schema'
-
+import { PageUncheckedCreateWithoutStoryInputObjectSchema } from './PageUncheckedCreateWithoutStoryInput.schema'
+import { PageUpdateManyWithWhereWithoutStoryInputObjectSchema } from './PageUpdateManyWithWhereWithoutStoryInput.schema'
+import { PageUpdateWithWhereUniqueWithoutStoryInputObjectSchema } from './PageUpdateWithWhereUniqueWithoutStoryInput.schema'
+import { PageUpsertWithWhereUniqueWithoutStoryInputObjectSchema } from './PageUpsertWithWhereUniqueWithoutStoryInput.schema'
+import { PageWhereUniqueInputObjectSchema } from './PageWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageUpdateManyWithoutStoryNestedInput> = z
   .object({

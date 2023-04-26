@@ -1,25 +1,25 @@
-import z from 'zod'
-import { makeZodI18nMap } from 'zod-i18n-map'
-import { useTranslation, Trans } from 'next-i18next'
-import GridLayout from 'react-grid-layout'
-import Webcam from 'react-webcam'
-import { Camera } from 'react-camera-pro'
-import { SubmitHandler, SubmitErrorHandler, Controller } from 'react-hook-form'
+import { useRef } from "react"
+import { Trans, useTranslation } from "next-i18next"
+import { Camera } from "react-camera-pro"
+import GridLayout from "react-grid-layout"
+import { Controller, SubmitErrorHandler, SubmitHandler } from "react-hook-form"
+import Webcam from "react-webcam"
+import z from "zod"
+import { makeZodI18nMap } from "zod-i18n-map"
 
-import { ImageInput } from '@/components/forms/files/ImageInput'
-import AnimatedButton from '../common/AnimatedButton/AnimatedButton'
-import Canvas from '../canvas'
-import InitWebcam from '../vision/InitWebcam'
-import { useRef } from 'react'
-import { trpc } from '@/utils/trpc'
-import { useZodForm } from '@/lib/hooks/useZodForm'
-
+import { useZodForm } from "@/lib/hooks/useZodForm"
+import { trpc } from "@/utils/trpc"
+import { ImageInput } from "@/components/forms/files/ImageInput"
 import {
   CloudFileSchema,
   ConceptSchema,
   ConceptTypeSchema,
   PhotoSchema,
-} from '@/@gen/zod'
+} from "@/@gen/zod"
+
+import Canvas from "../canvas"
+import AnimatedButton from "../common/AnimatedButton/AnimatedButton"
+import InitWebcam from "../vision/InitWebcam"
 
 // See: https://zod.dev/?id=recursive-types
 // const formSchema = ConceptCreateInputSchema
@@ -46,7 +46,7 @@ type FormSchemaType = z.infer<typeof formSchema>
 export const ConceptForm = () => {
   const createConcept = trpc.createOneConcept.useMutation()
 
-  const { t } = useTranslation('concepts')
+  const { t } = useTranslation("concepts")
   // z.setErrorMap(makeZodI18nMap({ t, handlePath: { ns: ['common', 'zod'] } }))
 
   const {
@@ -62,14 +62,14 @@ export const ConceptForm = () => {
       //   photos: true,
       // },
       // data: {
-      type: 'person',
+      type: "person",
       // photos: [],
       // },
     },
   })
 
   const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
-    console.info('success', data)
+    console.info("success", data)
 
     // debugger
 
@@ -132,13 +132,13 @@ export const ConceptForm = () => {
   }
 
   const onErrors: SubmitErrorHandler<FormSchemaType> = (data) => {
-    console.error('error', data, getValues())
+    console.error("error", data, getValues())
   }
 
   const layout = [
-    { i: 'aaa', x: 0, y: 0, w: 1, h: 2, static: true },
-    { i: 'bbb', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-    { i: 'ccc', x: 4, y: 0, w: 1, h: 2 },
+    { i: "aaa", x: 0, y: 0, w: 1, h: 2, static: true },
+    { i: "bbb", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
+    { i: "ccc", x: 4, y: 0, w: 1, h: 2 },
   ]
 
   const camera = useRef(null)
@@ -173,7 +173,7 @@ export const ConceptForm = () => {
 
       <div className=" m-0 h-full w-full flex-auto rounded-md p-0 text-center drop-shadow-xl">
         <div className=" mr-0 w-full max-w-full pr-0">
-          <h1>{t('form.h1')}</h1>
+          <h1>{t("form.h1")}</h1>
           <div className="mx-auto w-full">
             <form
               className="space-y-4 md:space-y-6"
@@ -194,15 +194,15 @@ export const ConceptForm = () => {
                     htmlFor="name"
                     className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    {t('form.schema.name.label')}
+                    {t("form.schema.name.label")}
                   </label>
                   <input
                     id="name"
-                    aria-invalid={errors.name ? 'true' : 'false'}
+                    aria-invalid={errors.name ? "true" : "false"}
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm"
                     type="text"
                     placeholder="Concept name"
-                    {...register('name')}
+                    {...register("name")}
                   />
                   {errors.name?.message && (
                     <span role="alert" className="mt-2 block text-red-800">
@@ -225,7 +225,7 @@ export const ConceptForm = () => {
                     htmlFor="type"
                     className="mb-2 block rounded-lg border border-black bg-white p-4 text-sm font-medium text-gray-900       dark:text-white"
                   >
-                    {t('form.schema.type.label')}
+                    {t("form.schema.type.label")}
                   </label>
 
                   <ul className="grid w-full list-none gap-6 p-0 md:grid-cols-3">
@@ -242,13 +242,13 @@ export const ConceptForm = () => {
                         <label
                           htmlFor={`type-${type}`}
                           className={`${
-                            type === 'person'
-                              ? 'bg-orange-50'
-                              : type === 'place'
-                              ? 'bg-green-50'
-                              : type === 'thing'
-                              ? 'bg-yellow-50'
-                              : ''
+                            type === "person"
+                              ? "bg-orange-50"
+                              : type === "place"
+                              ? "bg-green-50"
+                              : type === "thing"
+                              ? "bg-yellow-50"
+                              : ""
                           } inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-800  p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-blue-500`}
                         >
                           <div className="block">
@@ -367,15 +367,15 @@ export const ConceptForm = () => {
                         htmlFor="description"
                         className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                       >
-                        {t('form.schema.description.label')}
+                        {t("form.schema.description.label")}
                       </label>
                       <textarea
                         id="description"
-                        aria-invalid={errors.description ? 'true' : 'false'}
+                        aria-invalid={errors.description ? "true" : "false"}
                         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm"
-                        placeholder={t('form.schema.description.placeholder')}
+                        placeholder={t("form.schema.description.placeholder")}
                         rows={5}
-                        {...register('description')}
+                        {...register("description")}
                       />
                       {errors.description?.message && (
                         <span role="alert" className="mt-2 block text-red-800">
@@ -393,7 +393,7 @@ export const ConceptForm = () => {
                     htmlFor="photos"
                     className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    {t('form.schema.photos.label')}
+                    {t("form.schema.photos.label")}
                   </label>
 
                   <Controller
@@ -405,11 +405,11 @@ export const ConceptForm = () => {
                         // mode="development"
                         id="photos"
                         name="photos"
-                        acceptedFileTypes={['image/png', 'image/jpeg']}
+                        acceptedFileTypes={["image/png", "image/jpeg"]}
                         maxFiles={30}
-                        minFileSize={'1KB'}
-                        maxFileSize={'12MB'}
-                        maxTotalFileSize={'360MB'}
+                        minFileSize={"1KB"}
+                        maxFileSize={"12MB"}
+                        maxTotalFileSize={"360MB"}
                         imageValidateSizeMinWidth={512}
                         imageValidateSizeMinHeight={512}
                         required={true}
@@ -420,7 +420,7 @@ export const ConceptForm = () => {
                           >
                           const status = file.status
 
-                          console.log('file', status, { file, meta })
+                          console.log("file", status, { file, meta })
 
                           return {
                             // TODO: REMOVE ID
@@ -436,14 +436,14 @@ export const ConceptForm = () => {
                               // TODO: REMOVE ID
                               id: file.serverId,
                               createdAt: new Date(),
-                              signature: 'signature',
-                              path: 'path',
+                              signature: "signature",
+                              path: "path",
                               // updatedAt: new Date().toString(),
                               //
                               //
 
-                              resourceType: 'image',
-                              privacy: 'private',
+                              resourceType: "image",
+                              privacy: "private",
                               filename: file.filename,
                               size: file.fileSize,
                               ext: file.fileExtension,

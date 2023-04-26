@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { SortOrderSchema } from '../enums/SortOrder.schema'
 import { ConceptCountOrderByAggregateInputObjectSchema } from './ConceptCountOrderByAggregateInput.schema'
 import { ConceptMaxOrderByAggregateInputObjectSchema } from './ConceptMaxOrderByAggregateInput.schema'
 import { ConceptMinOrderByAggregateInputObjectSchema } from './ConceptMinOrderByAggregateInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ConceptOrderByWithAggregationInput> = z
   .object({

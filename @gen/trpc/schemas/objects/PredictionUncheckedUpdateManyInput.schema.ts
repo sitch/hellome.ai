@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { NullableJsonNullValueInputSchema } from '../enums/NullableJsonNullValueInput.schema'
-import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema'
-
+import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const literalSchema = z.union([z.string(), z.number(), z.boolean()])
 const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>

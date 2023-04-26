@@ -1,10 +1,10 @@
-import { z } from 'zod'
-import { AuthorSelectObjectSchema } from './objects/AuthorSelect.schema'
+import { AuthorScalarFieldEnumSchema } from './enums/AuthorScalarFieldEnum.schema'
 import { AuthorIncludeObjectSchema } from './objects/AuthorInclude.schema'
 import { AuthorOrderByWithRelationInputObjectSchema } from './objects/AuthorOrderByWithRelationInput.schema'
+import { AuthorSelectObjectSchema } from './objects/AuthorSelect.schema'
 import { AuthorWhereInputObjectSchema } from './objects/AuthorWhereInput.schema'
 import { AuthorWhereUniqueInputObjectSchema } from './objects/AuthorWhereUniqueInput.schema'
-import { AuthorScalarFieldEnumSchema } from './enums/AuthorScalarFieldEnum.schema'
+import { z } from 'zod'
 
 export const AuthorFindManySchema = z.object({
   select: z.lazy(() => AuthorSelectObjectSchema.optional()),

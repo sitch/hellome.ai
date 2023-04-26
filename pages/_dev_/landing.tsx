@@ -1,23 +1,9 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
-import { Hero } from '@/components/landing/Hero'
-import { FAQ } from '@/components/landing/FAQ'
-import { Features } from '@/components/landing/Features'
-import { Footer } from '@/components/landing/Footer'
-import { HowDoesItWork } from '@/components/landing/HowDoesItWork'
-// import { Reviews } from '@/components/landing/Reviews'
-// import { Subscribe } from '@/components/landing/Subscribe'
-import styles from '@/styles/Home.module.css'
-import { Pricing } from '@/components/landing/Pricing'
-import { AboutUs } from '@/components/landing/AboutUs'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
+import Head from "next/head"
 import {
   faFingerprint,
-  faHandshakeSimple,
   faHandsHoldingChild,
+  faHandshakeSimple,
   faHeart,
   faLock,
   faPalette,
@@ -28,34 +14,44 @@ import {
   faTruckFast,
   // faPen,
   // faUsersViewfinder,
-} from '@fortawesome/free-solid-svg-icons'
-import i18NextConfig from '@/next-i18next.config'
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useTranslation } from "next-i18next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { NextSeo } from "next-seo"
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper"
+import { Swiper, SwiperSlide } from "swiper/react"
 
-import { I18nNamespaces } from '@/i18next.d'
-import { NextSeo } from 'next-seo'
-import Header from '@/components/landing/Header'
-import Head from 'next/head'
-
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
-
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { AboutUs } from "@/components/landing/AboutUs"
+import { FAQ } from "@/components/landing/FAQ"
+import { Features } from "@/components/landing/Features"
+import { Footer } from "@/components/landing/Footer"
+import Header from "@/components/landing/Header"
+import { Hero } from "@/components/landing/Hero"
+import { HowDoesItWork } from "@/components/landing/HowDoesItWork"
+import { Pricing } from "@/components/landing/Pricing"
+// import { Reviews } from '@/components/landing/Reviews'
+// import { Subscribe } from '@/components/landing/Subscribe'
+import styles from "@/styles/Home.module.css"
+import { I18nNamespaces } from "@/i18next.d"
+import i18NextConfig from "@/next-i18next.config"
 
 // Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
-import Team from '@/components/landing/Team'
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "swiper/css/scrollbar"
+import Team from "@/components/landing/Team"
 
 const ns: (keyof I18nNamespaces)[] = [
-  'common',
-  'company',
-  'faq',
-  'footer',
-  'landing',
-  'onboarding',
-  'pricing',
-  'product',
+  "common",
+  "company",
+  "faq",
+  "footer",
+  "landing",
+  "onboarding",
+  "pricing",
+  "product",
 ]
 // const ns = ['common', 'footer']
 
@@ -94,8 +90,8 @@ const Landing = (
       },
     },
     navigation: {
-      nextEl: '.next-button',
-      prevEl: '.prev-button',
+      nextEl: ".next-button",
+      prevEl: ".prev-button",
     },
   }
 
@@ -739,19 +735,19 @@ const Landing = (
           /> */}
 
         <HowDoesItWork
-          title={t('onboarding:title')}
-          description={t('onboarding:description')}
+          title={t("onboarding:title")}
+          description={t("onboarding:description")}
           steps={[
             {
-              ...t('onboarding:steps.Step1', { returnObjects: true }),
+              ...t("onboarding:steps.Step1", { returnObjects: true }),
               icon: <FontAwesomeIcon icon={faPersonBooth} />,
             },
             {
-              ...t('onboarding:steps.Step2', { returnObjects: true }),
+              ...t("onboarding:steps.Step2", { returnObjects: true }),
               icon: <FontAwesomeIcon icon={faRobot} />,
             },
             {
-              ...t('onboarding:steps.Step3', { returnObjects: true }),
+              ...t("onboarding:steps.Step3", { returnObjects: true }),
               icon: <FontAwesomeIcon icon={faTruckFast} />,
             },
           ]}
@@ -761,10 +757,10 @@ const Landing = (
         {/* <Reviews /> */}
         <FAQ
           icon={<FontAwesomeIcon icon={faPersonCircleQuestion} />}
-          title={t('faq:title')}
-          description={t('faq:description')}
-          links={t('faq:links', { returnObjects: true })}
-          answers={t('faq:answers', { returnObjects: true })}
+          title={t("faq:title")}
+          description={t("faq:description")}
+          links={t("faq:links", { returnObjects: true })}
+          answers={t("faq:answers", { returnObjects: true })}
         />
         {/* <section className={styles.section}>
           <Subscribe />

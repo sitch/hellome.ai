@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
 import { StoryCreateWithoutPageTextsInputObjectSchema } from './StoryCreateWithoutPageTextsInput.schema'
 import { StoryUncheckedCreateWithoutPageTextsInputObjectSchema } from './StoryUncheckedCreateWithoutPageTextsInput.schema'
-
+import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StoryCreateOrConnectWithoutPageTextsInput> = z
   .object({

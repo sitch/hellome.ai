@@ -1,15 +1,16 @@
-import { Component, RefObject } from 'react'
-import type { FaceResult, Human, Result } from '@vladmandic/human'
-import { log, status } from '@/components/vision/logging'
-import { config } from '@/lib/human/config'
-import { FaceManifold } from '../FaceManifold/FaceManifold'
-import { runFaceAnalysis } from '../analysis'
-import { defaultFaceAnalysis } from '@/components/vision/human/defaults'
+import { Component, RefObject } from "react"
+import type { FaceResult, Human, Result } from "@vladmandic/human"
+import { isEqual, remove } from "lodash"
 
-import type { FaceAnalysis } from '../analysis'
-import FaceImporterInstructions from '../FaceImporterInstructions/FaceImporterInstructions'
-import { ManifoldVector } from '../manifolds'
-import { isEqual, remove } from 'lodash'
+import { config } from "@/lib/human/config"
+import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
+import { log, status } from "@/components/vision/logging"
+
+import FaceImporterInstructions from "../FaceImporterInstructions/FaceImporterInstructions"
+import { FaceManifold } from "../FaceManifold/FaceManifold"
+import { runFaceAnalysis, type FaceAnalysis } from "../analysis"
+import { ManifoldVector } from "../manifolds"
+
 type FacePredictionOverlayProps = {
   inputId: string // video
   outputId: string // canvas
@@ -46,7 +47,7 @@ class FacePredictionOverlay extends Component<
       analysis: defaultFaceAnalysis,
     }
 
-    if (typeof document === 'undefined') {
+    if (typeof document === "undefined") {
       return
     }
 
@@ -57,23 +58,23 @@ class FacePredictionOverlay extends Component<
     this.video =
       (document.getElementById(this.props.inputId) as
         | HTMLVideoElement
-        | undefined) ?? document.createElement('video')
+        | undefined) ?? document.createElement("video")
     this.canvas =
       (document.getElementById(this.props.outputId) as
         | HTMLCanvasElement
-        | undefined) ?? document.createElement('canvas')
+        | undefined) ?? document.createElement("canvas")
 
     // human is loaded as dynamic import in component constructor and then sets ready state
-    import('@vladmandic/human').then((H) => {
+    import("@vladmandic/human").then((H) => {
       this.human = new H.default(config) as Human
 
       log(
-        `human version:${this.human.version}| tfjs version:${this.human.tf.version['tfjs-core']}`
+        `human version:${this.human.version}| tfjs version:${this.human.tf.version["tfjs-core"]}`
       )
       log(`platform:${this.human.env.platform}| agent:${this.human.env.agent}`)
 
       // preload all models
-      status('loading models...')
+      status("loading models...")
       this.human.load().then(() => {
         log(
           `backend:${this.human!.tf.getBackend()}| available:${
@@ -88,10 +89,10 @@ class FacePredictionOverlay extends Component<
         )
 
         // warmup function to initialize backend for future faster detection
-        status('initializing...')
+        status("initializing...")
         this.human!.warmup().then(() => {
           this.setState({ ready: true })
-          status('ready...')
+          status("ready...")
         })
       })
     })
@@ -208,9 +209,9 @@ class FacePredictionOverlay extends Component<
       return null
     }
     if (this.video.paused) {
-      status('paused')
+      status("paused")
     } else {
-      status(`fps: ${this.fps.toFixed(1).padStart(5, ' ')}`)
+      status(`fps: ${this.fps.toFixed(1).padStart(5, " ")}`)
 
       const interpolated = this.human.next(this.human.result) // smoothen result using last-known results
       this.human.draw.canvas(this.video, this.canvas) // draw canvas to screen

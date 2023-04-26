@@ -1,8 +1,8 @@
-import { z } from 'zod'
-import { ConceptWhereInputObjectSchema } from './objects/ConceptWhereInput.schema'
+import { ConceptScalarFieldEnumSchema } from './enums/ConceptScalarFieldEnum.schema'
 import { ConceptOrderByWithAggregationInputObjectSchema } from './objects/ConceptOrderByWithAggregationInput.schema'
 import { ConceptScalarWhereWithAggregatesInputObjectSchema } from './objects/ConceptScalarWhereWithAggregatesInput.schema'
-import { ConceptScalarFieldEnumSchema } from './enums/ConceptScalarFieldEnum.schema'
+import { ConceptWhereInputObjectSchema } from './objects/ConceptWhereInput.schema'
+import { z } from 'zod'
 
 export const ConceptGroupBySchema = z.object({
   where: ConceptWhereInputObjectSchema.optional(),

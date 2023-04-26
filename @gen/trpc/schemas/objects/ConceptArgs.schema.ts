@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { ConceptSelectObjectSchema } from './ConceptSelect.schema'
 import { ConceptIncludeObjectSchema } from './ConceptInclude.schema'
-
+import { ConceptSelectObjectSchema } from './ConceptSelect.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ConceptArgs> = z
   .object({

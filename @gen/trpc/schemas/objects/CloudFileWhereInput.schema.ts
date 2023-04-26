@@ -1,18 +1,17 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { EnumFileResourceTypeFilterObjectSchema } from './EnumFileResourceTypeFilter.schema'
+import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
+import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
+import { EnumFilePrivacyFilterObjectSchema } from './EnumFilePrivacyFilter.schema'
+import { EnumFileResourceTypeFilterObjectSchema } from './EnumFileResourceTypeFilter.schema'
 import { IntFilterObjectSchema } from './IntFilter.schema'
 import { JsonFilterObjectSchema } from './JsonFilter.schema'
-import { EnumFilePrivacyFilterObjectSchema } from './EnumFilePrivacyFilter.schema'
-import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { PhotoRelationFilterObjectSchema } from './PhotoRelationFilter.schema'
-import { PhotoWhereInputObjectSchema } from './PhotoWhereInput.schema'
 import { PDFRelationFilterObjectSchema } from './PDFRelationFilter.schema'
 import { PDFWhereInputObjectSchema } from './PDFWhereInput.schema'
-
+import { PhotoRelationFilterObjectSchema } from './PhotoRelationFilter.schema'
+import { PhotoWhereInputObjectSchema } from './PhotoWhereInput.schema'
+import { StringFilterObjectSchema } from './StringFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.CloudFileWhereInput> = z
   .object({

@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'Lato';
+  font-family: "Lato";
   font-display: swap;
   font-style: normal;
   font-weight: 100;
-  src: local('Lato'), url('/lato-light.woff2');
+  src: local("Lato"), url("/lato-light.woff2");
 }
 html {
-  font-family: 'Lato', 'Segoe UI';
+  font-family: "Lato", "Segoe UI";
   font-size: 16px;
   font-variant: small-caps;
 }

@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, HTMLAttributes, ImgHTMLAttributes } from 'react'
-import Image from 'next/image'
+import { DetailedHTMLProps, HTMLAttributes, ImgHTMLAttributes } from "react"
+import Image from "next/image"
 
 type ImgProps = DetailedHTMLProps<
   ImgHTMLAttributes<HTMLImageElement>,
@@ -23,7 +23,7 @@ export const Img = ({
       height={Number(height)}
       width={Number(width)}
       placeholder={
-        placeholder === 'blur' || placeholder === 'empty'
+        placeholder === "blur" || placeholder === "empty"
           ? placeholder
           : undefined
       }
@@ -48,7 +48,7 @@ export const ResponsiveImage = ({
       src={String(src)}
       alt={String(alt)}
       placeholder={
-        placeholder === 'blur' || placeholder === 'empty'
+        placeholder === "blur" || placeholder === "empty"
           ? placeholder
           : undefined
       }

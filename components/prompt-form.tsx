@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useState } from 'react'
+import { FormEventHandler, useEffect, useState } from "react"
 
 type Props = {
   initialPrompt?: string
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export default function PromptForm({
-  initialPrompt = '',
+  initialPrompt = "",
   onSubmit,
   scribbleExists = false,
   isProcessing = false,
@@ -41,7 +41,7 @@ export default function PromptForm({
 
         <button
           className={`text-small inline-block flex-none rounded-r-md bg-black px-5 py-3 text-white ${
-            disabled ? 'cursor-not-allowed opacity-20	' : ''
+            disabled ? "cursor-not-allowed opacity-20	" : ""
           }`}
           type="submit"
           disabled={disabled}

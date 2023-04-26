@@ -15,7 +15,7 @@
 }
 
 .formInput::before {
-  background-image: url('/images/space.gif');
+  background-image: url("/images/space.gif");
 
   display: inline-block;
   width: 2225px;
@@ -23,7 +23,7 @@
   margin-right: 5px;
 }
 .formInput::after {
-  background-image: url('/images/space.gif');
+  background-image: url("/images/space.gif");
 
   display: inline-block;
   width: 2225px;

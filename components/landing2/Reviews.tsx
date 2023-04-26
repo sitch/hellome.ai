@@ -1,11 +1,11 @@
-import Image from 'next/image'
+import Image from "next/image"
 
 const reviews = [
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
@@ -14,123 +14,123 @@ const reviews = [
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to get my kids excited about reading. The stories are fun and the illustrations are beautiful.',
+      "These books are a great way to get my kids excited about reading. The stories are fun and the illustrations are beautiful.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are amazing.',
+      "These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are amazing.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to get my kids interested in reading. The stories are fun and the illustrations are beautiful.',
+      "These books are a great way to get my kids interested in reading. The stories are fun and the illustrations are beautiful.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to get my kids excited about reading. The stories are engaging and the illustrations are amazing.',
+      "These books are a great way to get my kids excited about reading. The stories are engaging and the illustrations are amazing.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.',
+      "These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to get my kids interested in reading. The stories are fun and the illustrations are amazing.',
+      "These books are a great way to get my kids interested in reading. The stories are fun and the illustrations are amazing.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.',
+      "These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to get my kids excited about reading. The stories are fun and the illustrations are amazing.',
+      "These books are a great way to get my kids excited about reading. The stories are fun and the illustrations are amazing.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.',
+      "These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to get my kids interested in reading. The stories are fun and the illustrations are amazing.',
+      "These books are a great way to get my kids interested in reading. The stories are fun and the illustrations are amazing.",
   },
 
   {
     customer: {
-      name: 'John',
+      name: "John",
       image:
-        'https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+        "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
     },
     rating: 5,
     review:
-      'These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.',
+      "These books are a great way to encourage my kids to read. The stories are engaging and the illustrations are beautiful.",
   },
 ]
 

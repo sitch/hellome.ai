@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { PageStatusSchema } from '../enums/PageStatus.schema'
+import { ArtistCreateNestedOneWithoutPageArtworksInputObjectSchema } from './ArtistCreateNestedOneWithoutPageArtworksInput.schema'
 import { PageCreateNestedOneWithoutArtworksInputObjectSchema } from './PageCreateNestedOneWithoutArtworksInput.schema'
 import { StoryCreateNestedOneWithoutPageArtworksInputObjectSchema } from './StoryCreateNestedOneWithoutPageArtworksInput.schema'
-import { ArtistCreateNestedOneWithoutPageArtworksInputObjectSchema } from './ArtistCreateNestedOneWithoutPageArtworksInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageArtworkCreateWithoutPhotoInput> = z
   .object({

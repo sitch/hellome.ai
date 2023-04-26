@@ -1,4 +1,4 @@
-import PulseLoader from 'react-spinners/PulseLoader'
+import PulseLoader from "react-spinners/PulseLoader"
 
 export default function Loader() {
   return (

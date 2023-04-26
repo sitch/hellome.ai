@@ -8,11 +8,12 @@
 // //   }),
 // // });
 
-import { t } from '@gen/trpc/routers/helpers/createRouter'
+import { t } from "@gen/trpc/routers/helpers/createRouter"
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server"
+
+import { conceptRouter } from "@/server/routers/concept.router"
 // import { conceptsRouter } from '@gen/trpc/routers/Concept.router'
-import connectDB from '@/server/utils/prisma'
-import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
-import { conceptRouter } from '@/server/routers/concept.router'
+import connectDB from "@/server/utils/prisma"
 
 // Connect to Prisma
 connectDB()

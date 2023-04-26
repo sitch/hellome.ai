@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { EnumPageStatusFilterObjectSchema } from './EnumPageStatusFilter.schema'
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { EnumLocaleFilterObjectSchema } from './EnumLocaleFilter.schema'
 import { LocaleSchema } from '../enums/Locale.schema'
-import { EnumPageTextTypeFilterObjectSchema } from './EnumPageTextTypeFilter.schema'
+import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { PageTextTypeSchema } from '../enums/PageTextType.schema'
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
+import { EnumLocaleFilterObjectSchema } from './EnumLocaleFilter.schema'
+import { EnumPageStatusFilterObjectSchema } from './EnumPageStatusFilter.schema'
+import { EnumPageTextTypeFilterObjectSchema } from './EnumPageTextTypeFilter.schema'
+import { StringFilterObjectSchema } from './StringFilter.schema'
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextScalarWhereInput> = z
   .object({

@@ -2,9 +2,10 @@
 // import { Label } from 'flowbite-react/lib/esm/components/Label'
 // import { TextInput } from 'flowbite-react/lib/esm/components/TextInput'
 
-import styles from '@/components/forms/forms.module.css'
-import React, { useState, MouseEvent } from 'react'
-import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
+import React, { MouseEvent, useState } from "react"
+
+import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+import styles from "@/components/forms/forms.module.css"
 
 // See: https://flowbite.com/docs/forms/input-field/
 

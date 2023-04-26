@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
 import { PhotoCreateWithoutFileInputObjectSchema } from './PhotoCreateWithoutFileInput.schema'
 import { PhotoUncheckedCreateWithoutFileInputObjectSchema } from './PhotoUncheckedCreateWithoutFileInput.schema'
-
+import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoCreateOrConnectWithoutFileInput> = z
   .object({

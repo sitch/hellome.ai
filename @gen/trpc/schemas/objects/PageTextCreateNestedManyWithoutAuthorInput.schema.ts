@@ -1,11 +1,10 @@
-import { z } from 'zod'
+import { PageTextCreateManyAuthorInputEnvelopeObjectSchema } from './PageTextCreateManyAuthorInputEnvelope.schema'
+import { PageTextCreateOrConnectWithoutAuthorInputObjectSchema } from './PageTextCreateOrConnectWithoutAuthorInput.schema'
 import { PageTextCreateWithoutAuthorInputObjectSchema } from './PageTextCreateWithoutAuthorInput.schema'
 import { PageTextUncheckedCreateWithoutAuthorInputObjectSchema } from './PageTextUncheckedCreateWithoutAuthorInput.schema'
-import { PageTextCreateOrConnectWithoutAuthorInputObjectSchema } from './PageTextCreateOrConnectWithoutAuthorInput.schema'
-import { PageTextCreateManyAuthorInputEnvelopeObjectSchema } from './PageTextCreateManyAuthorInputEnvelope.schema'
 import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextCreateNestedManyWithoutAuthorInput> = z
   .object({

@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { StoryCreateWithoutArtistInputObjectSchema } from './StoryCreateWithoutArtistInput.schema'
-import { StoryUncheckedCreateWithoutArtistInputObjectSchema } from './StoryUncheckedCreateWithoutArtistInput.schema'
-import { StoryCreateOrConnectWithoutArtistInputObjectSchema } from './StoryCreateOrConnectWithoutArtistInput.schema'
-import { StoryUpsertWithWhereUniqueWithoutArtistInputObjectSchema } from './StoryUpsertWithWhereUniqueWithoutArtistInput.schema'
 import { StoryCreateManyArtistInputEnvelopeObjectSchema } from './StoryCreateManyArtistInputEnvelope.schema'
-import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
-import { StoryUpdateWithWhereUniqueWithoutArtistInputObjectSchema } from './StoryUpdateWithWhereUniqueWithoutArtistInput.schema'
-import { StoryUpdateManyWithWhereWithoutArtistInputObjectSchema } from './StoryUpdateManyWithWhereWithoutArtistInput.schema'
+import { StoryCreateOrConnectWithoutArtistInputObjectSchema } from './StoryCreateOrConnectWithoutArtistInput.schema'
+import { StoryCreateWithoutArtistInputObjectSchema } from './StoryCreateWithoutArtistInput.schema'
 import { StoryScalarWhereInputObjectSchema } from './StoryScalarWhereInput.schema'
-
+import { StoryUncheckedCreateWithoutArtistInputObjectSchema } from './StoryUncheckedCreateWithoutArtistInput.schema'
+import { StoryUpdateManyWithWhereWithoutArtistInputObjectSchema } from './StoryUpdateManyWithWhereWithoutArtistInput.schema'
+import { StoryUpdateWithWhereUniqueWithoutArtistInputObjectSchema } from './StoryUpdateWithWhereUniqueWithoutArtistInput.schema'
+import { StoryUpsertWithWhereUniqueWithoutArtistInputObjectSchema } from './StoryUpsertWithWhereUniqueWithoutArtistInput.schema'
+import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StoryUpdateManyWithoutArtistNestedInput> = z
   .object({

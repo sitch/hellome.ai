@@ -1,9 +1,10 @@
-import Link from 'next/link'
-import { Article, Author } from '@/lib/mdx/types'
-import { useTranslation } from 'next-i18next'
+import Link from "next/link"
+import { useTranslation } from "next-i18next"
 
-import { ArticleListItem } from './ArticleListItem'
-import { TopArticles } from './TopArticles'
+import { Article, Author } from "@/lib/mdx/types"
+
+import { ArticleListItem } from "./ArticleListItem"
+import { TopArticles } from "./TopArticles"
 
 export type ArticlesPageProps = {
   articles: Article[]
@@ -13,7 +14,7 @@ export const ArticlesPage = ({ articles }: ArticlesPageProps) => {
   const articlesTop = articles.slice(0, 3)
   const articlesRest = articles.slice(3)
 
-  const { t } = useTranslation('articles')
+  const { t } = useTranslation("articles")
 
   return (
     <>

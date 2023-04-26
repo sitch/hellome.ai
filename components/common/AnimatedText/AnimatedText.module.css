@@ -6,7 +6,7 @@
 
 .space {
   background-color: black;
-  background-image: url('/images/space.gif');
+  background-image: url("/images/space.gif");
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link"
 
 const Footer = () => {
   //   return (
@@ -23,7 +23,7 @@ const Footer = () => {
 
   return (
     <>
-      {' '}
+      {" "}
       <footer className="bg-gray-50 dark:bg-gray-800">
         <div className="mx-auto max-w-screen-xl p-4 py-6 md:p-8 lg:p-10">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
@@ -311,7 +311,7 @@ const Footer = () => {
               Flowbite
             </a>
             <span className="block text-center text-sm text-gray-500 dark:text-gray-400">
-              © 2021-2022{' '}
+              © 2021-2022{" "}
               <a href="#" className="hover:underline">
                 Flowbite™
               </a>

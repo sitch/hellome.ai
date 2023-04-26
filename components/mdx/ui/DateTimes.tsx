@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, TimeHTMLAttributes } from 'react'
-import { format } from 'date-fns'
+import { DetailedHTMLProps, TimeHTMLAttributes } from "react"
+import { format } from "date-fns"
 
 export type TimeProps = DetailedHTMLProps<
   TimeHTMLAttributes<HTMLTimeElement>,
@@ -12,13 +12,13 @@ export function Time({ children, ...props }: TimeProps) {
 
 const formats = {
   // February 8th, 2022
-  long: 'MMMM do, yyyy',
+  long: "MMMM do, yyyy",
 
   // Feb. 8, 2022
-  med: 'MMM. d, yyyy',
+  med: "MMM. d, yyyy",
 
   // 08 Feb 2022
-  readable: 'dd MMM yyyy',
+  readable: "dd MMM yyyy",
 }
 
 export type DateTimeFormat = keyof typeof formats
@@ -34,10 +34,10 @@ export function PublishTime({
 }: PublishTimeProps) {
   if (!dateTime) {
     // return null
-    throw new Error('<PublishTime> missing dateTime')
+    throw new Error("<PublishTime> missing dateTime")
   }
   const date = new Date(dateTime)
-  const title = format(date, formats[dateFormat ?? 'long'])
+  const title = format(date, formats[dateFormat ?? "long"])
 
   return (
     <time {...props} itemProp="datePublished" dateTime={dateTime} title={title}>

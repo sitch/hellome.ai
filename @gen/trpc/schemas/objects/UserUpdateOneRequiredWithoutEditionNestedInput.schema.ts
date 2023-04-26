@@ -1,13 +1,12 @@
-import { z } from 'zod'
+import { UserCreateOrConnectWithoutEditionInputObjectSchema } from './UserCreateOrConnectWithoutEditionInput.schema'
 import { UserCreateWithoutEditionInputObjectSchema } from './UserCreateWithoutEditionInput.schema'
 import { UserUncheckedCreateWithoutEditionInputObjectSchema } from './UserUncheckedCreateWithoutEditionInput.schema'
-import { UserCreateOrConnectWithoutEditionInputObjectSchema } from './UserCreateOrConnectWithoutEditionInput.schema'
+import { UserUncheckedUpdateWithoutEditionInputObjectSchema } from './UserUncheckedUpdateWithoutEditionInput.schema'
+import { UserUpdateWithoutEditionInputObjectSchema } from './UserUpdateWithoutEditionInput.schema'
 import { UserUpsertWithoutEditionInputObjectSchema } from './UserUpsertWithoutEditionInput.schema'
 import { UserWhereUniqueInputObjectSchema } from './UserWhereUniqueInput.schema'
-import { UserUpdateWithoutEditionInputObjectSchema } from './UserUpdateWithoutEditionInput.schema'
-import { UserUncheckedUpdateWithoutEditionInputObjectSchema } from './UserUncheckedUpdateWithoutEditionInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.UserUpdateOneRequiredWithoutEditionNestedInput> =
   z

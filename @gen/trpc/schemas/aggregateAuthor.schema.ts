@@ -1,10 +1,10 @@
-import { z } from 'zod'
+import { AuthorCountAggregateInputObjectSchema } from './objects/AuthorCountAggregateInput.schema'
+import { AuthorMaxAggregateInputObjectSchema } from './objects/AuthorMaxAggregateInput.schema'
+import { AuthorMinAggregateInputObjectSchema } from './objects/AuthorMinAggregateInput.schema'
 import { AuthorOrderByWithRelationInputObjectSchema } from './objects/AuthorOrderByWithRelationInput.schema'
 import { AuthorWhereInputObjectSchema } from './objects/AuthorWhereInput.schema'
 import { AuthorWhereUniqueInputObjectSchema } from './objects/AuthorWhereUniqueInput.schema'
-import { AuthorCountAggregateInputObjectSchema } from './objects/AuthorCountAggregateInput.schema'
-import { AuthorMinAggregateInputObjectSchema } from './objects/AuthorMinAggregateInput.schema'
-import { AuthorMaxAggregateInputObjectSchema } from './objects/AuthorMaxAggregateInput.schema'
+import { z } from 'zod'
 
 export const AuthorAggregateSchema = z.object({
   orderBy: z

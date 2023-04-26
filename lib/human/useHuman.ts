@@ -27,10 +27,10 @@
 //   requestAnimationFrame(drawVideo) // run draw loop
 // }
 
-import { Human, DrawOptions } from '@vladmandic/human'
-import { RefObject, useLayoutEffect, useState } from 'react'
-import { human } from '__tests__/components/vision/human/fixtures'
-import { useTimeoutFn } from 'react-use'
+import { RefObject, useLayoutEffect, useState } from "react"
+import { DrawOptions, Human } from "@vladmandic/human"
+import { human } from "__tests__/components/vision/human/fixtures"
+import { useTimeoutFn } from "react-use"
 
 // Estimates 30fps = 1000ms / 30 == ~33.3
 export const DRAW_LOOP_INTERVAL_MS = 30
@@ -173,7 +173,7 @@ export function useHuman({ human, videoRef, canvasRef }: UseHumanProps) {
   }, [paused, detectPerformance, human, videoRef])
 
   async function drawLoop() {
-    console.log('timeout')
+    console.log("timeout")
 
     if (!paused) {
       const interpolated = human.next(human.result) // smoothen result using last-known results

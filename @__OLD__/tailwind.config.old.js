@@ -6,50 +6,50 @@ module.exports = {
   // darkMode: 'class',
   // darkMode: ['class', '[data-mode="dark"]'],
   content: [
-    './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    "./node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   plugins: [
-    require('@downwindcss/easings'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
+    require("@downwindcss/easings"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
     // require('tailwind-scrollbar-hide'),
-    require('@headlessui/tailwindcss'),
-    require('flowbite/plugin'),
+    require("@headlessui/tailwindcss"),
+    require("flowbite/plugin"),
   ],
-  safelist: ['outline-none'],
+  safelist: ["outline-none"],
   theme: {
     extend: {
       // ***********************************************************
       animation: {
-        bg: 'bg 1.0s ease infinite',
-        text: 'text 2.2s ease infinite',
-        button: 'button 2.2s ease infinite',
+        bg: "bg 1.0s ease infinite",
+        text: "text 2.2s ease infinite",
+        button: "button 2.2s ease infinite",
       },
       keyframes: {
         bg: {
-          '0%': { 'background-position': '0 0' },
-          '100%': { 'background-position': '366px 0' },
+          "0%": { "background-position": "0 0" },
+          "100%": { "background-position": "366px 0" },
         },
         text: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
         button: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
       },

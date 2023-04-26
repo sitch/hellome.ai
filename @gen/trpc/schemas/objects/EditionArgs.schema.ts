@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { EditionSelectObjectSchema } from './EditionSelect.schema'
 import { EditionIncludeObjectSchema } from './EditionInclude.schema'
-
+import { EditionSelectObjectSchema } from './EditionSelect.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionArgs> = z
   .object({

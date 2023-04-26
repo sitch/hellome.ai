@@ -1,19 +1,20 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { MDXRemote } from 'next-mdx-remote'
-import Layout from '@/components/mdx/Layout'
-import { MDXPageProps, processMDXPage, listEntries } from '@/lib/mdx'
-import ArticlePage from '@/components/mdx/blog/articles/ArticlePage'
+import { ParsedUrlQuery } from "querystring"
+import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { MDXRemote } from "next-mdx-remote"
+
+import { MDXPageProps, listEntries, processMDXPage } from "@/lib/mdx"
 import {
   Article,
   ArticleSource,
   AuthorSource,
   castArticle,
-} from '@/lib/mdx/types'
-import { ParsedUrlQuery } from 'querystring'
-import { ArticleSEO } from '@/components/seo/ArticleSEO'
-import { DefaultArticleSEO } from '@/components/seo/DefaultArticleSEO'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import i18NextConfig from '@/next-i18next.config'
+} from "@/lib/mdx/types"
+import Layout from "@/components/mdx/Layout"
+import ArticlePage from "@/components/mdx/blog/articles/ArticlePage"
+import { ArticleSEO } from "@/components/seo/ArticleSEO"
+import { DefaultArticleSEO } from "@/components/seo/DefaultArticleSEO"
+import i18NextConfig from "@/next-i18next.config"
 
 type Props = MDXPageProps<ArticleSource> & {
   article: Article
@@ -36,7 +37,7 @@ const Page: NextPage<Props> = ({ source, article }: Props) => {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const entries = listEntries('blog/articles')
+  const entries = listEntries("blog/articles")
   const paths = entries.map((slug) => ({ params: { slug } }))
   return {
     paths,
@@ -49,14 +50,14 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const slug = params!.slug
-  const mdx = await processMDXPage<ArticleSource>('blog/articles', slug)
+  const mdx = await processMDXPage<ArticleSource>("blog/articles", slug)
   const { data } = await processMDXPage<AuthorSource>(
-    'blog/authors',
+    "blog/authors",
     mdx.data.authorHandle
   )
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['articles', 'footer'])),
+      ...(await serverSideTranslations(locale, ["articles", "footer"])),
       ...mdx,
       article: castArticle({ ...mdx.data, slug }, [data]),
     },

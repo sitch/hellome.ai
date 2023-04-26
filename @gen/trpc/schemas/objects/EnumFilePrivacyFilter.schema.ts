@@ -1,8 +1,7 @@
-import { z } from 'zod'
 import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { NestedEnumFilePrivacyFilterObjectSchema } from './NestedEnumFilePrivacyFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EnumFilePrivacyFilter> = z
   .object({

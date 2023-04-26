@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { PageUpdateWithoutArtworksInputObjectSchema } from './PageUpdateWithoutArtworksInput.schema'
-import { PageUncheckedUpdateWithoutArtworksInputObjectSchema } from './PageUncheckedUpdateWithoutArtworksInput.schema'
 import { PageCreateWithoutArtworksInputObjectSchema } from './PageCreateWithoutArtworksInput.schema'
 import { PageUncheckedCreateWithoutArtworksInputObjectSchema } from './PageUncheckedCreateWithoutArtworksInput.schema'
-
+import { PageUncheckedUpdateWithoutArtworksInputObjectSchema } from './PageUncheckedUpdateWithoutArtworksInput.schema'
+import { PageUpdateWithoutArtworksInputObjectSchema } from './PageUpdateWithoutArtworksInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageUpsertWithoutArtworksInput> = z
   .object({

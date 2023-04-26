@@ -1,5 +1,6 @@
-import classnames from 'classnames'
-import styles from './PageFlipBook.module.css'
+import classnames from "classnames"
+
+import styles from "./PageFlipBook.module.css"
 
 // Source: https://cssdeck.com/labs/pure-css3-page-flip-effect
 export function PageFlipBook() {

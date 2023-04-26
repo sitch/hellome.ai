@@ -1,10 +1,9 @@
-import { z } from 'zod'
+import { PhotoCreateOrConnectWithoutPageArtworksInputObjectSchema } from './PhotoCreateOrConnectWithoutPageArtworksInput.schema'
 import { PhotoCreateWithoutPageArtworksInputObjectSchema } from './PhotoCreateWithoutPageArtworksInput.schema'
 import { PhotoUncheckedCreateWithoutPageArtworksInputObjectSchema } from './PhotoUncheckedCreateWithoutPageArtworksInput.schema'
-import { PhotoCreateOrConnectWithoutPageArtworksInputObjectSchema } from './PhotoCreateOrConnectWithoutPageArtworksInput.schema'
 import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoCreateNestedOneWithoutPageArtworksInput> = z
   .object({

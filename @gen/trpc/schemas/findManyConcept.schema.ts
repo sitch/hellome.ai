@@ -1,10 +1,10 @@
-import { z } from 'zod'
-import { ConceptSelectObjectSchema } from './objects/ConceptSelect.schema'
+import { ConceptScalarFieldEnumSchema } from './enums/ConceptScalarFieldEnum.schema'
 import { ConceptIncludeObjectSchema } from './objects/ConceptInclude.schema'
 import { ConceptOrderByWithRelationInputObjectSchema } from './objects/ConceptOrderByWithRelationInput.schema'
+import { ConceptSelectObjectSchema } from './objects/ConceptSelect.schema'
 import { ConceptWhereInputObjectSchema } from './objects/ConceptWhereInput.schema'
 import { ConceptWhereUniqueInputObjectSchema } from './objects/ConceptWhereUniqueInput.schema'
-import { ConceptScalarFieldEnumSchema } from './enums/ConceptScalarFieldEnum.schema'
+import { z } from 'zod'
 
 export const ConceptFindManySchema = z.object({
   select: z.lazy(() => ConceptSelectObjectSchema.optional()),

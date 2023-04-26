@@ -1,6 +1,7 @@
-import { createNextApiHandler } from '@trpc/server/adapters/next'
-import { appRouter } from '@/server/routers/_app'
-import { createContext } from '@/server/context'
+import { createNextApiHandler } from "@trpc/server/adapters/next"
+
+import { createContext } from "@/server/context"
+import { appRouter } from "@/server/routers/_app"
 
 // export API handler
 // @see https://trpc.io/docs/api-handler

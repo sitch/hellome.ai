@@ -1,17 +1,17 @@
-import { t, shieldedProcedure } from '@/@gen/trpc/routers/helpers/createRouter'
-import { ConceptAggregateSchema } from '@/@gen/trpc/schemas/aggregateConcept.schema'
-import { ConceptCreateManySchema } from '@/@gen/trpc/schemas/createManyConcept.schema'
-import { ConceptCreateOneSchema } from '@/@gen/trpc/schemas/createOneConcept.schema'
-import { ConceptDeleteManySchema } from '@/@gen/trpc/schemas/deleteManyConcept.schema'
-import { ConceptDeleteOneSchema } from '@/@gen/trpc/schemas/deleteOneConcept.schema'
-import { ConceptFindFirstSchema } from '@/@gen/trpc/schemas/findFirstConcept.schema'
-import { ConceptFindManySchema } from '@/@gen/trpc/schemas/findManyConcept.schema'
-import { ConceptFindUniqueSchema } from '@/@gen/trpc/schemas/findUniqueConcept.schema'
-import { ConceptGroupBySchema } from '@/@gen/trpc/schemas/groupByConcept.schema'
-import { ConceptUpdateManySchema } from '@/@gen/trpc/schemas/updateManyConcept.schema'
-import { ConceptUpdateOneSchema } from '@/@gen/trpc/schemas/updateOneConcept.schema'
-import { ConceptUpsertSchema } from '@/@gen/trpc/schemas/upsertOneConcept.schema'
-import { ConceptCreateInputSchema, ConceptCreateArgsSchema } from '@/@gen/zod'
+import { shieldedProcedure, t } from "@/@gen/trpc/routers/helpers/createRouter"
+import { ConceptAggregateSchema } from "@/@gen/trpc/schemas/aggregateConcept.schema"
+import { ConceptCreateManySchema } from "@/@gen/trpc/schemas/createManyConcept.schema"
+import { ConceptCreateOneSchema } from "@/@gen/trpc/schemas/createOneConcept.schema"
+import { ConceptDeleteManySchema } from "@/@gen/trpc/schemas/deleteManyConcept.schema"
+import { ConceptDeleteOneSchema } from "@/@gen/trpc/schemas/deleteOneConcept.schema"
+import { ConceptFindFirstSchema } from "@/@gen/trpc/schemas/findFirstConcept.schema"
+import { ConceptFindManySchema } from "@/@gen/trpc/schemas/findManyConcept.schema"
+import { ConceptFindUniqueSchema } from "@/@gen/trpc/schemas/findUniqueConcept.schema"
+import { ConceptGroupBySchema } from "@/@gen/trpc/schemas/groupByConcept.schema"
+import { ConceptUpdateManySchema } from "@/@gen/trpc/schemas/updateManyConcept.schema"
+import { ConceptUpdateOneSchema } from "@/@gen/trpc/schemas/updateOneConcept.schema"
+import { ConceptUpsertSchema } from "@/@gen/trpc/schemas/upsertOneConcept.schema"
+import { ConceptCreateArgsSchema, ConceptCreateInputSchema } from "@/@gen/zod"
 
 export const conceptRouter = t.router({
   createOneConcept: shieldedProcedure

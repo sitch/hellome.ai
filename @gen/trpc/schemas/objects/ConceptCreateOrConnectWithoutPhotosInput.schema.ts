@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { ConceptWhereUniqueInputObjectSchema } from './ConceptWhereUniqueInput.schema'
 import { ConceptCreateWithoutPhotosInputObjectSchema } from './ConceptCreateWithoutPhotosInput.schema'
 import { ConceptUncheckedCreateWithoutPhotosInputObjectSchema } from './ConceptUncheckedCreateWithoutPhotosInput.schema'
-
+import { ConceptWhereUniqueInputObjectSchema } from './ConceptWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ConceptCreateOrConnectWithoutPhotosInput> = z
   .object({

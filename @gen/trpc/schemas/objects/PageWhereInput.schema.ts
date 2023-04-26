@@ -1,17 +1,16 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { EnumPageStatusFilterObjectSchema } from './EnumPageStatusFilter.schema'
 import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { EnumPageTypeFilterObjectSchema } from './EnumPageTypeFilter.schema'
 import { PageTypeSchema } from '../enums/PageType.schema'
-import { IntFilterObjectSchema } from './IntFilter.schema'
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { StoryRelationFilterObjectSchema } from './StoryRelationFilter.schema'
-import { StoryWhereInputObjectSchema } from './StoryWhereInput.schema'
+import { EnumPageStatusFilterObjectSchema } from './EnumPageStatusFilter.schema'
+import { EnumPageTypeFilterObjectSchema } from './EnumPageTypeFilter.schema'
+import { IntFilterObjectSchema } from './IntFilter.schema'
 import { PageArtworkListRelationFilterObjectSchema } from './PageArtworkListRelationFilter.schema'
 import { PageTextListRelationFilterObjectSchema } from './PageTextListRelationFilter.schema'
-
+import { StoryRelationFilterObjectSchema } from './StoryRelationFilter.schema'
+import { StoryWhereInputObjectSchema } from './StoryWhereInput.schema'
+import { StringFilterObjectSchema } from './StringFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageWhereInput> = z
   .object({

@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { PageTextCreateWithoutPageInputObjectSchema } from './PageTextCreateWithoutPageInput.schema'
-import { PageTextUncheckedCreateWithoutPageInputObjectSchema } from './PageTextUncheckedCreateWithoutPageInput.schema'
-import { PageTextCreateOrConnectWithoutPageInputObjectSchema } from './PageTextCreateOrConnectWithoutPageInput.schema'
-import { PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema } from './PageTextUpsertWithWhereUniqueWithoutPageInput.schema'
 import { PageTextCreateManyPageInputEnvelopeObjectSchema } from './PageTextCreateManyPageInputEnvelope.schema'
-import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
-import { PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema } from './PageTextUpdateWithWhereUniqueWithoutPageInput.schema'
-import { PageTextUpdateManyWithWhereWithoutPageInputObjectSchema } from './PageTextUpdateManyWithWhereWithoutPageInput.schema'
+import { PageTextCreateOrConnectWithoutPageInputObjectSchema } from './PageTextCreateOrConnectWithoutPageInput.schema'
+import { PageTextCreateWithoutPageInputObjectSchema } from './PageTextCreateWithoutPageInput.schema'
 import { PageTextScalarWhereInputObjectSchema } from './PageTextScalarWhereInput.schema'
-
+import { PageTextUncheckedCreateWithoutPageInputObjectSchema } from './PageTextUncheckedCreateWithoutPageInput.schema'
+import { PageTextUpdateManyWithWhereWithoutPageInputObjectSchema } from './PageTextUpdateManyWithWhereWithoutPageInput.schema'
+import { PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema } from './PageTextUpdateWithWhereUniqueWithoutPageInput.schema'
+import { PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema } from './PageTextUpsertWithWhereUniqueWithoutPageInput.schema'
+import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutPageNestedInput> =
   z

@@ -173,7 +173,7 @@
   right: -0.75em;
   top: -0.75em;
   bottom: -0.75em;
-  content: '';
+  content: "";
 }
 /* Soft styles */
 .filepond--file-action-button {
@@ -212,10 +212,10 @@
   height: 2em;
   padding: 0.1875em;
 }
-.filepond--action-edit-item.filepond--action-edit-item[data-align*='center'] {
+.filepond--action-edit-item.filepond--action-edit-item[data-align*="center"] {
   margin-left: -0.1875em;
 }
-.filepond--action-edit-item.filepond--action-edit-item[data-align*='bottom'] {
+.filepond--action-edit-item.filepond--action-edit-item[data-align*="bottom"] {
   margin-bottom: -0.1875em;
 }
 .filepond--action-edit-item-alt {
@@ -379,79 +379,79 @@
 .filepond--file {
   /* .filepond--file-action-button */
 }
-.filepond--file [data-align*='left'] {
+.filepond--file [data-align*="left"] {
   left: 0.5625em;
 }
-.filepond--file [data-align*='right'] {
+.filepond--file [data-align*="right"] {
   right: 0.5625em;
 }
-.filepond--file [data-align*='center'] {
+.filepond--file [data-align*="center"] {
   left: calc(50% - 0.8125em); /* .8125 is half of button width */
 }
-.filepond--file [data-align*='bottom'] {
+.filepond--file [data-align*="bottom"] {
   bottom: 1.125em;
 }
-.filepond--file [data-align='center'] {
+.filepond--file [data-align="center"] {
   top: calc(50% - 0.8125em);
 }
 .filepond--file .filepond--progress-indicator {
   margin-top: 0.1875em;
 }
-.filepond--file .filepond--progress-indicator[data-align*='right'] {
+.filepond--file .filepond--progress-indicator[data-align*="right"] {
   margin-right: 0.1875em;
 }
-.filepond--file .filepond--progress-indicator[data-align*='left'] {
+.filepond--file .filepond--progress-indicator[data-align*="left"] {
   margin-left: 0.1875em;
 }
 /* make sure text does not overlap */
-[data-filepond-item-state='cancelled'] .filepond--file-info,
-[data-filepond-item-state*='invalid'] .filepond--file-info,
-[data-filepond-item-state*='error'] .filepond--file-info {
+[data-filepond-item-state="cancelled"] .filepond--file-info,
+[data-filepond-item-state*="invalid"] .filepond--file-info,
+[data-filepond-item-state*="error"] .filepond--file-info {
   margin-right: 2.25em;
 }
-[data-filepond-item-state~='processing'] .filepond--file-status-sub {
+[data-filepond-item-state~="processing"] .filepond--file-status-sub {
   opacity: 0;
 }
-[data-filepond-item-state~='processing']
+[data-filepond-item-state~="processing"]
   .filepond--action-abort-item-processing
   ~ .filepond--file-status
   .filepond--file-status-sub {
   opacity: 0.5;
 }
-[data-filepond-item-state='processing-error'] .filepond--file-status-sub {
+[data-filepond-item-state="processing-error"] .filepond--file-status-sub {
   opacity: 0;
 }
-[data-filepond-item-state='processing-error']
+[data-filepond-item-state="processing-error"]
   .filepond--action-retry-item-processing
   ~ .filepond--file-status
   .filepond--file-status-sub {
   opacity: 0.5;
 }
-[data-filepond-item-state='processing-complete'] {
+[data-filepond-item-state="processing-complete"] {
   /* busy state */
 }
-[data-filepond-item-state='processing-complete']
+[data-filepond-item-state="processing-complete"]
   .filepond--action-revert-item-processing
   svg {
   -webkit-animation: fall 0.5s 0.125s linear both;
   animation: fall 0.5s 0.125s linear both;
 }
-[data-filepond-item-state='processing-complete'] {
+[data-filepond-item-state="processing-complete"] {
   /* hide details by default, only show when can revert */
 }
-[data-filepond-item-state='processing-complete'] .filepond--file-status-sub {
+[data-filepond-item-state="processing-complete"] .filepond--file-status-sub {
   opacity: 0.5;
 }
-[data-filepond-item-state='processing-complete']
-  .filepond--processing-complete-indicator:not([style*='hidden'])
+[data-filepond-item-state="processing-complete"]
+  .filepond--processing-complete-indicator:not([style*="hidden"])
   ~ .filepond--file-status
   .filepond--file-status-sub {
   opacity: 0;
 }
-[data-filepond-item-state='processing-complete'] .filepond--file-info-sub {
+[data-filepond-item-state="processing-complete"] .filepond--file-info-sub {
   opacity: 0;
 }
-[data-filepond-item-state='processing-complete']
+[data-filepond-item-state="processing-complete"]
   .filepond--action-revert-item-processing
   ~ .filepond--file-info
   .filepond--file-info-sub {
@@ -459,15 +459,15 @@
 }
 /* file state can be invalid or error, both are visually similar but */
 /* having them as separate states might be useful */
-[data-filepond-item-state*='invalid'] .filepond--panel,
-[data-filepond-item-state*='invalid'] .filepond--file-wrapper,
-[data-filepond-item-state*='error'] .filepond--panel,
-[data-filepond-item-state*='error'] .filepond--file-wrapper {
+[data-filepond-item-state*="invalid"] .filepond--panel,
+[data-filepond-item-state*="invalid"] .filepond--file-wrapper,
+[data-filepond-item-state*="error"] .filepond--panel,
+[data-filepond-item-state*="error"] .filepond--file-wrapper {
   -webkit-animation: shake 0.65s linear both;
   animation: shake 0.65s linear both;
 }
 /* spins progress indicator when file is marked as busy */
-[data-filepond-item-state*='busy'] .filepond--progress-indicator svg {
+[data-filepond-item-state*="busy"] .filepond--progress-indicator svg {
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
 }
@@ -597,12 +597,12 @@
   }
 }
 /* ignore all other interaction elements while dragging a file */
-.filepond--hopper[data-hopper-state='drag-over'] > * {
+.filepond--hopper[data-hopper-state="drag-over"] > * {
   pointer-events: none;
 }
 /* capture all hit tests using a hidden layer, this speeds up the event flow */
-.filepond--hopper[data-hopper-state='drag-over']::after {
-  content: '';
+.filepond--hopper[data-hopper-state="drag-over"]::after {
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -658,25 +658,25 @@
   transition: box-shadow 0.125s ease-in-out;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
-.filepond--item[data-drag-state='drag'] {
+.filepond--item[data-drag-state="drag"] {
   cursor: -webkit-grabbing;
   cursor: grabbing;
 }
-.filepond--item[data-drag-state='drag'] > .filepond--panel {
+.filepond--item[data-drag-state="drag"] > .filepond--panel {
   box-shadow: 0 0.125em 0.3125em rgba(0, 0, 0, 0.325);
 }
-.filepond--item[data-drag-state]:not([data-drag-state='idle']) {
+.filepond--item[data-drag-state]:not([data-drag-state="idle"]) {
   z-index: 2;
 }
 /* states */
 .filepond--item-panel {
   background-color: #64605e;
 }
-[data-filepond-item-state='processing-complete'] .filepond--item-panel {
+[data-filepond-item-state="processing-complete"] .filepond--item-panel {
   background-color: #369763;
 }
-[data-filepond-item-state*='invalid'] .filepond--item-panel,
-[data-filepond-item-state*='error'] .filepond--item-panel {
+[data-filepond-item-state*="invalid"] .filepond--item-panel,
+[data-filepond-item-state*="error"] .filepond--item-panel {
   background-color: #c44e47;
 }
 /* style of item panel */
@@ -694,11 +694,11 @@
   will-change: transform;
 }
 /* scroll mode */
-.filepond--list-scroller[data-state='overflow'] .filepond--list {
+.filepond--list-scroller[data-state="overflow"] .filepond--list {
   bottom: 0;
   right: 0;
 }
-.filepond--list-scroller[data-state='overflow'] {
+.filepond--list-scroller[data-state="overflow"] {
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -741,24 +741,24 @@
   left: 0.75em;
   right: 0.75em;
 }
-.filepond--root[data-style-panel-layout~='integrated'] {
+.filepond--root[data-style-panel-layout~="integrated"] {
   width: 100%;
   height: 100%;
   max-width: none;
   margin: 0;
 }
-.filepond--root[data-style-panel-layout~='circle'] .filepond--panel-root,
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--panel-root {
+.filepond--root[data-style-panel-layout~="circle"] .filepond--panel-root,
+.filepond--root[data-style-panel-layout~="integrated"] .filepond--panel-root {
   border-radius: 0;
 }
-.filepond--root[data-style-panel-layout~='circle'] .filepond--panel-root > *,
-.filepond--root[data-style-panel-layout~='integrated']
+.filepond--root[data-style-panel-layout~="circle"] .filepond--panel-root > *,
+.filepond--root[data-style-panel-layout~="integrated"]
   .filepond--panel-root
   > * {
   display: none;
 }
-.filepond--root[data-style-panel-layout~='circle'] .filepond--drop-label,
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--drop-label {
+.filepond--root[data-style-panel-layout~="circle"] .filepond--drop-label,
+.filepond--root[data-style-panel-layout~="integrated"] .filepond--drop-label {
   bottom: 0;
   height: auto;
   display: flex;
@@ -766,67 +766,67 @@
   align-items: center;
   z-index: 7;
 }
-.filepond--root[data-style-panel-layout~='circle'],
-.filepond--root[data-style-panel-layout~='integrated'] {
+.filepond--root[data-style-panel-layout~="circle"],
+.filepond--root[data-style-panel-layout~="integrated"] {
   /* we're only loading one item, this makes the intro animation a bit nicer */
 }
-.filepond--root[data-style-panel-layout~='circle'] .filepond--item-panel,
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--item-panel {
+.filepond--root[data-style-panel-layout~="circle"] .filepond--item-panel,
+.filepond--root[data-style-panel-layout~="integrated"] .filepond--item-panel {
   display: none;
 }
-.filepond--root[data-style-panel-layout~='compact'] .filepond--list-scroller,
-.filepond--root[data-style-panel-layout~='integrated']
+.filepond--root[data-style-panel-layout~="compact"] .filepond--list-scroller,
+.filepond--root[data-style-panel-layout~="integrated"]
   .filepond--list-scroller {
   overflow: hidden;
   height: 100%;
   margin-top: 0;
   margin-bottom: 0;
 }
-.filepond--root[data-style-panel-layout~='compact'] .filepond--list,
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--list {
+.filepond--root[data-style-panel-layout~="compact"] .filepond--list,
+.filepond--root[data-style-panel-layout~="integrated"] .filepond--list {
   left: 0;
   right: 0;
   height: 100%;
 }
-.filepond--root[data-style-panel-layout~='compact'] .filepond--item,
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--item {
+.filepond--root[data-style-panel-layout~="compact"] .filepond--item,
+.filepond--root[data-style-panel-layout~="integrated"] .filepond--item {
   margin: 0;
 }
-.filepond--root[data-style-panel-layout~='compact'] .filepond--file-wrapper,
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--file-wrapper {
+.filepond--root[data-style-panel-layout~="compact"] .filepond--file-wrapper,
+.filepond--root[data-style-panel-layout~="integrated"] .filepond--file-wrapper {
   height: 100%;
 }
-.filepond--root[data-style-panel-layout~='compact'] .filepond--drop-label,
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--drop-label {
+.filepond--root[data-style-panel-layout~="compact"] .filepond--drop-label,
+.filepond--root[data-style-panel-layout~="integrated"] .filepond--drop-label {
   z-index: 7;
 }
-.filepond--root[data-style-panel-layout~='circle'] {
+.filepond--root[data-style-panel-layout~="circle"] {
   border-radius: 99999rem;
   overflow: hidden;
 }
-.filepond--root[data-style-panel-layout~='circle'] > .filepond--panel {
+.filepond--root[data-style-panel-layout~="circle"] > .filepond--panel {
   border-radius: inherit;
 }
-.filepond--root[data-style-panel-layout~='circle'] > .filepond--panel > * {
+.filepond--root[data-style-panel-layout~="circle"] > .filepond--panel > * {
   display: none;
 }
-.filepond--root[data-style-panel-layout~='circle'] {
+.filepond--root[data-style-panel-layout~="circle"] {
   /* circle cuts of this info, so best to hide it */
 }
-.filepond--root[data-style-panel-layout~='circle'] .filepond--file-info {
+.filepond--root[data-style-panel-layout~="circle"] .filepond--file-info {
   display: none;
 }
-.filepond--root[data-style-panel-layout~='circle'] .filepond--file-status {
+.filepond--root[data-style-panel-layout~="circle"] .filepond--file-status {
   display: none;
 }
-.filepond--root[data-style-panel-layout~='circle'] .filepond--action-edit-item {
+.filepond--root[data-style-panel-layout~="circle"] .filepond--action-edit-item {
   opacity: 1 !important;
   visibility: visible !important;
 }
 /* dirfty way to fix circular overflow issue on safari 11+ */
 @media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
-    .filepond--root[data-style-panel-layout~='circle'] {
+    .filepond--root[data-style-panel-layout~="circle"] {
       will-change: transform;
     }
   }
@@ -848,13 +848,13 @@
   /* no interaction possible with panel */
   pointer-events: none;
 }
-.filepond-panel:not([data-scalable='false']) {
+.filepond-panel:not([data-scalable="false"]) {
   height: auto !important;
 }
-.filepond--panel[data-scalable='false'] > div {
+.filepond--panel[data-scalable="false"] > div {
   display: none;
 }
-.filepond--panel[data-scalable='true'] {
+.filepond--panel[data-scalable="true"] {
   /* this seems to fix Chrome performance issues */
   /* - when box-shadow is enabled */
   /* - when multiple ponds are active on the same page */
@@ -887,7 +887,7 @@
   /* fixes tiny transparant line between top and center panel */
 }
 .filepond--panel-top::after {
-  content: '';
+  content: "";
   position: absolute;
   height: 2px;
   left: 0;
@@ -913,7 +913,7 @@
   /* fixes tiny transparant line between bottom and center of panel */
 }
 .filepond--panel-bottom::before {
-  content: '';
+  content: "";
   position: absolute;
   height: 2px;
   left: 0;
@@ -988,8 +988,8 @@
   line-height: normal;
 
   /* up uses default system font family */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
   /* will increase font weight a bit on Safari */
   font-weight: 450;

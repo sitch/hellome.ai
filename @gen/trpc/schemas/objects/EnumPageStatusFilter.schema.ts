@@ -1,8 +1,7 @@
-import { z } from 'zod'
 import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { NestedEnumPageStatusFilterObjectSchema } from './NestedEnumPageStatusFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EnumPageStatusFilter> = z
   .object({

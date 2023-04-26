@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { StoryUncheckedUpdateManyWithoutAuthorNestedInputObjectSchema } from './StoryUncheckedUpdateManyWithoutAuthorNestedInput.schema'
-
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.AuthorUncheckedUpdateWithoutPageTextsInput> = z
   .object({

@@ -1,14 +1,13 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { IntFilterObjectSchema } from './IntFilter.schema'
-import { StringNullableListFilterObjectSchema } from './StringNullableListFilter.schema'
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
 import { CloudFileRelationFilterObjectSchema } from './CloudFileRelationFilter.schema'
 import { CloudFileWhereInputObjectSchema } from './CloudFileWhereInput.schema'
+import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
 import { EditionRelationFilterObjectSchema } from './EditionRelationFilter.schema'
 import { EditionWhereInputObjectSchema } from './EditionWhereInput.schema'
-
+import { IntFilterObjectSchema } from './IntFilter.schema'
+import { StringFilterObjectSchema } from './StringFilter.schema'
+import { StringNullableListFilterObjectSchema } from './StringNullableListFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PDFWhereInput> = z
   .object({

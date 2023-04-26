@@ -1,6 +1,6 @@
-import Image from 'next/image'
-import { useState, useEffect, JSXElementConstructor } from 'react'
-import Link from 'next/link'
+import { JSXElementConstructor, useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
 
 export type HeaderProps = {
   HeroComp?: JSXElementConstructor<{}>

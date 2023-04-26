@@ -5,8 +5,8 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-} from 'react'
-import { useMount } from 'react-use'
+} from "react"
+import { useMount } from "react-use"
 
 type InitWebcamProps = {
   elementId: string
@@ -56,7 +56,7 @@ export default function InitWebcam({
     const constraints = {
       audio: false,
       video: {
-        facingMode: 'user',
+        facingMode: "user",
         // width: { ideal: document.body.clientWidth },
       },
     }
@@ -77,7 +77,7 @@ export default function InitWebcam({
         await video.play()
 
         console.log(
-          'video:',
+          "video:",
           video.videoWidth,
           video.videoHeight,
           track?.label,

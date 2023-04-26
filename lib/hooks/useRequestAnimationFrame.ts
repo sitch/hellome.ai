@@ -1,6 +1,7 @@
-import { useLayoutEffect, useState } from 'react'
-import { now } from 'lodash'
-import { calculateAvgResponseMs, calculateFPS } from '@/lib/human/utils'
+import { useLayoutEffect, useState } from "react"
+import { now } from "lodash"
+
+import { calculateAvgResponseMs, calculateFPS } from "@/lib/human/utils"
 
 export type UseRequestAnimationFrameOptions = {
   fps?: {

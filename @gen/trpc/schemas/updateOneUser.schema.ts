@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { UserSelectObjectSchema } from './objects/UserSelect.schema'
 import { UserIncludeObjectSchema } from './objects/UserInclude.schema'
-import { UserUpdateInputObjectSchema } from './objects/UserUpdateInput.schema'
+import { UserSelectObjectSchema } from './objects/UserSelect.schema'
 import { UserUncheckedUpdateInputObjectSchema } from './objects/UserUncheckedUpdateInput.schema'
+import { UserUpdateInputObjectSchema } from './objects/UserUpdateInput.schema'
 import { UserWhereUniqueInputObjectSchema } from './objects/UserWhereUniqueInput.schema'
+import { z } from 'zod'
 
 export const UserUpdateOneSchema = z.object({
   select: UserSelectObjectSchema.optional(),

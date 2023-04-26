@@ -1,7 +1,7 @@
-import { z } from 'zod'
-import { PhotoSelectObjectSchema } from './objects/PhotoSelect.schema'
 import { PhotoIncludeObjectSchema } from './objects/PhotoInclude.schema'
+import { PhotoSelectObjectSchema } from './objects/PhotoSelect.schema'
 import { PhotoWhereUniqueInputObjectSchema } from './objects/PhotoWhereUniqueInput.schema'
+import { z } from 'zod'
 
 export const PhotoDeleteOneSchema = z.object({
   select: PhotoSelectObjectSchema.optional(),

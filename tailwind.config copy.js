@@ -10,61 +10,61 @@
  * @type {import('tailwindcss').Config}
  **/
 module.exports = {
-  presets: [require('./tailwind.blog.preset.js')],
-  darkMode: 'class',
+  presets: [require("./tailwind.blog.preset.js")],
+  darkMode: "class",
   content: [
-    './node_modules/flowbite/**/*.js',
+    "./node_modules/flowbite/**/*.js",
     // './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './public/**/*.html',
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./public/**/*.html",
   ],
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@headlessui/tailwindcss'),
-    require('@downwindcss/easings'),
-    require('flowbite/plugin'),
-    require('flowbite-typography'),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@headlessui/tailwindcss"),
+    require("@downwindcss/easings"),
+    require("flowbite/plugin"),
+    require("flowbite-typography"),
   ],
 
-  safelist: ['outline-none'],
+  safelist: ["outline-none"],
 
   theme: {
     extend: {
       animation: {
-        bg: 'bg 1.0s ease infinite',
-        text: 'text 2.2s ease infinite',
-        button: 'button 2.2s ease infinite',
-        background: 'background ease infinite',
+        bg: "bg 1.0s ease infinite",
+        text: "text 2.2s ease infinite",
+        button: "button 2.2s ease infinite",
+        background: "background ease infinite",
       },
       keyframes: {
         background: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
         },
         bg: {
-          '0%': { 'background-position': '0 0' },
-          '100%': { 'background-position': '366px 0' },
+          "0%": { "background-position": "0 0" },
+          "100%": { "background-position": "366px 0" },
         },
         text: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
         button: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
       },
@@ -366,20 +366,20 @@ module.exports = {
       //   },
       // },
       spacing: {
-        7: '1.75rem',
-        9: '2.25rem',
-        28: '7rem',
-        80: '20rem',
-        96: '24rem',
+        7: "1.75rem",
+        9: "2.25rem",
+        28: "7rem",
+        80: "20rem",
+        96: "24rem",
       },
       height: {
-        '1/2': '50%',
+        "1/2": "50%",
       },
       scale: {
-        30: '.3',
+        30: ".3",
       },
       boxShadow: {
-        outline: '0 0 0 3px rgba(101, 31, 255, 0.4)',
+        outline: "0 0 0 3px rgba(101, 31, 255, 0.4)",
       },
     },
   },

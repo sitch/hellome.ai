@@ -1,17 +1,18 @@
-import Image from 'next/image'
-import { DotTextureIcon } from './icons'
+import Image from "next/image"
+
+import { DotTextureIcon } from "./icons"
 
 const content = {
   // heading: "Create AI Personalized Children's Books",
   tag: {
-    label: 'Brand New',
+    label: "Brand New",
   },
-  heading: 'HelloMe.ai',
+  heading: "HelloMe.ai",
   description: "Create AI Personalized Children's Books",
   action: {
     // label: "Join Waitlist",
-    label: 'Subscribe',
-    description: 'We are currently at capacity, check back soon!',
+    label: "Subscribe",
+    description: "We are currently at capacity, check back soon!",
   },
 }
 
@@ -27,9 +28,9 @@ export const Subscribe = () => {
         <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
           <span className="relative inline-block">
             <DotTextureIcon />
-            <span className="relative">{content.heading.split(' ')[0]}</span>
-          </span>{' '}
-          {content.heading.split(' ').slice(1).join(' ')}
+            <span className="relative">{content.heading.split(" ")[0]}</span>
+          </span>{" "}
+          {content.heading.split(" ").slice(1).join(" ")}
         </h2>
         <p className="text-base text-gray-700 md:text-lg">
           {content.description}

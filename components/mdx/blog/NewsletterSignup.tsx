@@ -49,7 +49,7 @@ export const NewsletterSignup = () => {
                 </div>
               </div>
               <div className="newsletter-form-footer mx-auto max-w-screen-sm text-left text-sm text-gray-500 dark:text-gray-300">
-                We care about the protection of your data.{' '}
+                We care about the protection of your data.{" "}
                 <a
                   href="#"
                   className="text-primary-600 dark:text-primary-500 font-medium hover:underline"

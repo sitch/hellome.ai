@@ -1,35 +1,35 @@
 // @ts-check
 
-const nextI18nextConfig = require('../next-i18next.config')
+const nextI18nextConfig = require("../next-i18next.config")
 
-const twitter = 'hellomebooks'
-const instagram = 'hellomebooks'
-const facebook = 'hellomeai'
-const facebookId = '100091223025818'
-const facebookGroupId = '902112190894512'
-const domain = 'hellome.ai'
+const twitter = "hellomebooks"
+const instagram = "hellomebooks"
+const facebook = "hellomeai"
+const facebookId = "100091223025818"
+const facebookGroupId = "902112190894512"
+const domain = "hellome.ai"
 
 module.exports = {
   site: {
-    name: 'HelloMe.ai',
-    title: 'HelloMe.ai',
+    name: "HelloMe.ai",
+    title: "HelloMe.ai",
     description:
       "HelloMe.ai is a Human-first company that creates premium AI personalized children's books",
     domain,
     url: `https://${domain}`,
     theme: {
-      color: '#000000',
+      color: "#000000",
     },
     sections: {
       tech: {
-        name: 'AI & Technology',
+        name: "AI & Technology",
         theme: {
-          color: '#000000',
+          color: "#000000",
         },
         tags: [
           {
-            name: 'AI',
-            color: '#000000',
+            name: "AI",
+            color: "#000000",
           },
         ],
       },
@@ -39,15 +39,15 @@ module.exports = {
     // locales: nextI18nextConfig.i18n.locales,
   },
   business: {
-    dba: 'HelloMe.ai',
+    dba: "HelloMe.ai",
     legal: {
       // name: 'Michael Sitchenko',
-      name: 'HelloMe AI,INC',
+      name: "HelloMe AI,INC",
     },
   },
   social: {
     discord: {
-      inviteURL: 'https://discord.gg/JZj6AtXapx',
+      inviteURL: "https://discord.gg/JZj6AtXapx",
     },
     facebook: {
       id: facebook,

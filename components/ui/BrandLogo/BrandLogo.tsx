@@ -1,8 +1,11 @@
-import cn from 'clsx'
-import AnimatedText from '@/components/common/AnimatedText/AnimatedText'
 // import styles from '@/styles/Home.module.css'
-import s from './BrandLogo.module.css'
-import classnames from 'classnames'
+
+import classnames from "classnames"
+import cn from "clsx"
+
+import AnimatedText from "@/components/common/AnimatedText/AnimatedText"
+
+import s from "./BrandLogo.module.css"
 
 type BrandLogoProps = {
   size?: string

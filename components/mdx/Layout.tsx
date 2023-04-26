@@ -1,17 +1,18 @@
-import { JSXElementConstructor, ReactNode, Suspense } from 'react'
-import { DefaultSeo } from 'next-seo'
-import { MDXProvider } from '@mdx-js/react'
-import type { MDXComponents } from 'mdx/types'
-import { DateTimes, Heading, Lists, Media, Typography } from './ui'
-import Link from 'next/link'
-import { LinkProps } from 'next/link'
-import { route } from 'nextjs-routes'
-// import Header from './Header'
-import Header from '@/components/landing/Header'
-import { Footer } from '@/components/landing/Footer'
+import { JSXElementConstructor, ReactNode, Suspense } from "react"
+import Link, { LinkProps } from "next/link"
+import { MDXProvider } from "@mdx-js/react"
+import type { MDXComponents } from "mdx/types"
 // import Footer from './Footer'
-import { useTranslation } from 'next-i18next'
-import styles from '@/styles/Layout.module.css'
+import { useTranslation } from "next-i18next"
+import { DefaultSeo } from "next-seo"
+import { route } from "nextjs-routes"
+
+import { Footer } from "@/components/landing/Footer"
+// import Header from './Header'
+import Header from "@/components/landing/Header"
+import styles from "@/styles/Layout.module.css"
+
+import { DateTimes, Heading, Lists, Media, Typography } from "./ui"
 
 const Hero = () => (
   <section className="relative">
@@ -37,7 +38,7 @@ const Hero = () => (
                 <style
                   dangerouslySetInnerHTML={{
                     __html:
-                      '\n                                  .st0 {\nfill: #957fef\n}\n                              ',
+                      "\n                                  .st0 {\nfill: #957fef\n}\n                              ",
                   }}
                 />
                 <path
@@ -195,7 +196,7 @@ const Layout = ({ children, HeroComp }: LayoutProps) => {
   // if(typeof window === 'undefined' ) {
   //   return null
   // }
-  const { t } = useTranslation(['footer'])
+  const { t } = useTranslation(["footer"])
 
   return (
     <>

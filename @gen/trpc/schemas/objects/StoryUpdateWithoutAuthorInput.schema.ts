@@ -1,12 +1,11 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
 import { ArtistUpdateOneWithoutStoriesNestedInputObjectSchema } from './ArtistUpdateOneWithoutStoriesNestedInput.schema'
-import { PageUpdateManyWithoutStoryNestedInputObjectSchema } from './PageUpdateManyWithoutStoryNestedInput.schema'
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
 import { PageArtworkUpdateManyWithoutStoryNestedInputObjectSchema } from './PageArtworkUpdateManyWithoutStoryNestedInput.schema'
 import { PageTextUpdateManyWithoutStoryNestedInputObjectSchema } from './PageTextUpdateManyWithoutStoryNestedInput.schema'
-
+import { PageUpdateManyWithoutStoryNestedInputObjectSchema } from './PageUpdateManyWithoutStoryNestedInput.schema'
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StoryUpdateWithoutAuthorInput> = z
   .object({

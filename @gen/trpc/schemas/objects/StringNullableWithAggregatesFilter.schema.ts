@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { QueryModeSchema } from '../enums/QueryMode.schema'
-import { NestedStringNullableWithAggregatesFilterObjectSchema } from './NestedStringNullableWithAggregatesFilter.schema'
 import { NestedIntNullableFilterObjectSchema } from './NestedIntNullableFilter.schema'
 import { NestedStringNullableFilterObjectSchema } from './NestedStringNullableFilter.schema'
-
+import { NestedStringNullableWithAggregatesFilterObjectSchema } from './NestedStringNullableWithAggregatesFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StringNullableWithAggregatesFilter> = z
   .object({

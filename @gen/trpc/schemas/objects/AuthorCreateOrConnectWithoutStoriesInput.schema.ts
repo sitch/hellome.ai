@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { AuthorWhereUniqueInputObjectSchema } from './AuthorWhereUniqueInput.schema'
 import { AuthorCreateWithoutStoriesInputObjectSchema } from './AuthorCreateWithoutStoriesInput.schema'
 import { AuthorUncheckedCreateWithoutStoriesInputObjectSchema } from './AuthorUncheckedCreateWithoutStoriesInput.schema'
-
+import { AuthorWhereUniqueInputObjectSchema } from './AuthorWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.AuthorCreateOrConnectWithoutStoriesInput> = z
   .object({

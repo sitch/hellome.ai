@@ -1,6 +1,7 @@
-import Link from 'next/link'
-import { ReactNode } from 'react'
-import { DotTextureIcon, ZapIcon } from './icons'
+import { ReactNode } from "react"
+import Link from "next/link"
+
+import { DotTextureIcon, ZapIcon } from "./icons"
 
 export type AboutUsValueProps = {
   icon?: ReactNode

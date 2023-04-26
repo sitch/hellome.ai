@@ -1,5 +1,6 @@
-import Image, { StaticImageData } from 'next/image'
-import styles from './Book.module.css'
+import Image, { StaticImageData } from "next/image"
+
+import styles from "./Book.module.css"
 
 export type BookProps = {
   src: StaticImageData | string

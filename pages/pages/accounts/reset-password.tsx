@@ -12,7 +12,7 @@ export default function ResetPassword() {
             <input
               autoComplete="false"
               name="hidden"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
             />
             <input
               name="_redirect"

@@ -1,8 +1,8 @@
-import { z } from 'zod'
-import { PDFWhereInputObjectSchema } from './objects/PDFWhereInput.schema'
+import { PDFScalarFieldEnumSchema } from './enums/PDFScalarFieldEnum.schema'
 import { PDFOrderByWithAggregationInputObjectSchema } from './objects/PDFOrderByWithAggregationInput.schema'
 import { PDFScalarWhereWithAggregatesInputObjectSchema } from './objects/PDFScalarWhereWithAggregatesInput.schema'
-import { PDFScalarFieldEnumSchema } from './enums/PDFScalarFieldEnum.schema'
+import { PDFWhereInputObjectSchema } from './objects/PDFWhereInput.schema'
+import { z } from 'zod'
 
 export const PDFGroupBySchema = z.object({
   where: PDFWhereInputObjectSchema.optional(),

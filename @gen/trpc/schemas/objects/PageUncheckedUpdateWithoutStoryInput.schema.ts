@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from './EnumPageStatusFieldUpdateOperationsInput.schema'
 import { PageTypeSchema } from '../enums/PageType.schema'
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
+import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from './EnumPageStatusFieldUpdateOperationsInput.schema'
 import { EnumPageTypeFieldUpdateOperationsInputObjectSchema } from './EnumPageTypeFieldUpdateOperationsInput.schema'
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema'
-import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
 import { PageArtworkUncheckedUpdateManyWithoutPageNestedInputObjectSchema } from './PageArtworkUncheckedUpdateManyWithoutPageNestedInput.schema'
 import { PageTextUncheckedUpdateManyWithoutPageNestedInputObjectSchema } from './PageTextUncheckedUpdateManyWithoutPageNestedInput.schema'
-
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageUncheckedUpdateWithoutStoryInput> = z
   .object({

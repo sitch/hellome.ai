@@ -1,19 +1,20 @@
-import Canvas from 'components/canvas'
-import PromptForm from 'components/prompt-form'
-import Head from 'next/head'
-import { FormEventHandler, useState } from 'react'
-import Predictions from 'components/concepts'
-import Error from 'components/error'
-import uploadFile from 'lib/upload'
-import naughtyWords from 'naughty-words'
-import Script from 'next/script'
-import seeds from 'lib/seeds'
-import pkg from '@/package.json'
-import sleep from 'lib/sleep'
+import { FormEventHandler, useState } from "react"
+import Head from "next/head"
+import Script from "next/script"
+import Canvas from "components/canvas"
+import Predictions from "components/concepts"
+import Error from "components/error"
+import PromptForm from "components/prompt-form"
+import seeds from "lib/seeds"
+import sleep from "lib/sleep"
+import uploadFile from "lib/upload"
+import naughtyWords from "naughty-words"
+
+import pkg from "@/package.json"
 
 const HOST = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000'
+  : "http://localhost:3000"
 
 export default function Home() {
   const [error, setError] = useState(null)
@@ -33,12 +34,12 @@ export default function Home() {
 
     const target = e.target as EventTarget & { prompt: { value: string } }
 
-    const prompt = (target.prompt.value ?? '')
+    const prompt = (target.prompt.value ?? "")
       .split(/\s+/)
       .map((word: string) =>
-        naughtyWords.en.includes(word) ? 'something' : word
+        naughtyWords.en.includes(word) ? "something" : word
       )
-      .join(' ')
+      .join(" ")
 
     setError(null)
     setIsProcessing(true)
@@ -48,13 +49,13 @@ export default function Home() {
     const body = {
       prompt,
       image: fileUrl,
-      structure: 'scribble',
+      structure: "scribble",
     }
 
-    const response = await fetch('/api/ai/concepts', {
-      method: 'POST',
+    const response = await fetch("/api/ai/concepts", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     })
@@ -71,11 +72,11 @@ export default function Home() {
     }
 
     while (
-      prediction.status !== 'succeeded' &&
-      prediction.status !== 'failed'
+      prediction.status !== "succeeded" &&
+      prediction.status !== "failed"
     ) {
       await sleep(500)
-      const response = await fetch('/api/ai/concepts/' + prediction.id)
+      const response = await fetch("/api/ai/concepts/" + prediction.id)
       prediction = await response.json()
       setPredictions((predictions) => ({
         ...predictions,

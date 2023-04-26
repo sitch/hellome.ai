@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
-import { type Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient, type Prisma } from "@prisma/client"
 
 const prisma = new PrismaClient({
-  errorFormat: 'pretty',
+  errorFormat: "pretty",
 })
 
 const stories: Prisma.StoryCreateInput[] = [
@@ -31,7 +31,7 @@ const stories: Prisma.StoryCreateInput[] = [
 ]
 
 async function main() {
-  console.info('Start seeding ...')
+  console.info("Start seeding ...")
 
   await Promise.all(
     stories.map(async (data) => {
@@ -40,7 +40,7 @@ async function main() {
     })
   )
 
-  console.info('Seeding finished.')
+  console.info("Seeding finished.")
 }
 
 main()

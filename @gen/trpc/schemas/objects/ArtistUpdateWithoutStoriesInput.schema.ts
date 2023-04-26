@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { PageArtworkUpdateManyWithoutArtistNestedInputObjectSchema } from './PageArtworkUpdateManyWithoutArtistNestedInput.schema'
-
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ArtistUpdateWithoutStoriesInput> = z
   .object({

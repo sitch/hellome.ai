@@ -1,14 +1,15 @@
-import { Result } from '@vladmandic/human'
-import { inRange } from 'lodash'
-import { FaceAnalysis } from '../analysis'
+import { Result } from "@vladmandic/human"
+import { inRange } from "lodash"
+
+import { FaceAnalysis } from "../analysis"
 
 export type DialogType =
-  | 'FaceDirection'
-  | 'Occlusion'
-  | 'FaceMissing'
-  | 'MultipleFaces'
-  | 'FaceProximity'
-  | 'FaceCentering'
+  | "FaceDirection"
+  | "Occlusion"
+  | "FaceMissing"
+  | "MultipleFaces"
+  | "FaceProximity"
+  | "FaceCentering"
 
 export type Dialog = {
   type: DialogType
@@ -31,22 +32,22 @@ export function getDialogs(result: Result, analysis: FaceAnalysis): Dialog[] {
 
   if (result.face.length === 0) {
     results.push({
-      type: 'FaceMissing',
-      text: 'No face found, Please move your face into screen',
+      type: "FaceMissing",
+      text: "No face found, Please move your face into screen",
     })
   }
 
   if (result.face.length > 1) {
     results.push({
-      type: 'MultipleFaces',
-      text: 'Multiple faces found, please just have one face in view',
+      type: "MultipleFaces",
+      text: "Multiple faces found, please just have one face in view",
     })
   }
 
   if (result.hand.length > 0) {
     results.push({
-      type: 'Occlusion',
-      text: 'Please move your hand off the screen',
+      type: "Occlusion",
+      text: "Please move your hand off the screen",
     })
   }
 
@@ -57,15 +58,15 @@ export function getDialogs(result: Result, analysis: FaceAnalysis): Dialog[] {
     inRange(x, constraints.y.min, constraints.y.max)
   ) {
     results.push({
-      type: 'FaceCentering',
-      text: 'Please move your face into the center of the screen',
+      type: "FaceCentering",
+      text: "Please move your face into the center of the screen",
     })
   }
 
   if (height < constraints.height.min || width < constraints.width.min) {
     results.push({
-      type: 'FaceProximity',
-      text: 'Please move your face into screen',
+      type: "FaceProximity",
+      text: "Please move your face into screen",
     })
   }
 

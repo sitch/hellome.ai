@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { LocaleSchema } from '../enums/Locale.schema'
+import { NestedEnumLocaleFilterObjectSchema } from './NestedEnumLocaleFilter.schema'
 import { NestedEnumLocaleWithAggregatesFilterObjectSchema } from './NestedEnumLocaleWithAggregatesFilter.schema'
 import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import { NestedEnumLocaleFilterObjectSchema } from './NestedEnumLocaleFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EnumLocaleWithAggregatesFilter> = z
   .object({

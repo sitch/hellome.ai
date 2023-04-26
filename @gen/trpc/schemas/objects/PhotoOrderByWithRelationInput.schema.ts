@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { SortOrderSchema } from '../enums/SortOrder.schema'
 import { CloudFileOrderByWithRelationInputObjectSchema } from './CloudFileOrderByWithRelationInput.schema'
-import { PageArtworkOrderByRelationAggregateInputObjectSchema } from './PageArtworkOrderByRelationAggregateInput.schema'
 import { ConceptOrderByRelationAggregateInputObjectSchema } from './ConceptOrderByRelationAggregateInput.schema'
-
+import { PageArtworkOrderByRelationAggregateInputObjectSchema } from './PageArtworkOrderByRelationAggregateInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoOrderByWithRelationInput> = z
   .object({

@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import { Article, Author } from '@/lib/mdx/types'
-import { useTranslation } from 'next-i18next'
+import Link from "next/link"
+import { useTranslation } from "next-i18next"
 
-import * as Heading from '@/components/mdx/ui/Heading'
-import * as Lists from '@/components/mdx/ui/Lists'
-import * as DateTimes from '@/components/mdx/ui/DateTimes'
-import * as Media from '@/components/mdx/ui/Media'
-import * as Typography from '@/components/mdx/ui/Typography'
+import { Article, Author } from "@/lib/mdx/types"
+import * as DateTimes from "@/components/mdx/ui/DateTimes"
+import * as Heading from "@/components/mdx/ui/Heading"
+import * as Lists from "@/components/mdx/ui/Lists"
+import * as Media from "@/components/mdx/ui/Media"
+import * as Typography from "@/components/mdx/ui/Typography"
 
 type ArticleListItemProps = {
   author: Author
@@ -19,7 +19,7 @@ export const ArticleListItem = ({
   article,
   displayAuthorSection = true,
 }: ArticleListItemProps) => {
-  const { t } = useTranslation('articles')
+  const { t } = useTranslation("articles")
 
   const viewCount = 0
   const commentCount = 0

@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Indie Flower', cursive;
+  font-family: "Indie Flower", cursive;
   background-color: #eee;
   color: #555;
   text-align: center;
@@ -18,12 +18,12 @@ $bookAngle: 60deg;
 $speed: 5s;
 $borderColor: #555;
 
-$images: url('https://picsum.photos/420/300?random=1'),
-  url('https://picsum.photos/420/300?random=2'),
-  url('https://picsum.photos/420/300?random=3'),
-  url('https://picsum.photos/420/300?random=4'),
-  url('https://picsum.photos/420/300?random=5'),
-  url('https://picsum.photos/420/300?random=1');
+$images: url("https://picsum.photos/420/300?random=1"),
+  url("https://picsum.photos/420/300?random=2"),
+  url("https://picsum.photos/420/300?random=3"),
+  url("https://picsum.photos/420/300?random=4"),
+  url("https://picsum.photos/420/300?random=5"),
+  url("https://picsum.photos/420/300?random=1");
 
 // Preload to images
 .imgLoader {
@@ -115,7 +115,7 @@ $images: url('https://picsum.photos/420/300?random=1'),
     overflow: hidden;
 
     &::after {
-      content: '';
+      content: "";
       width: 210px;
       height: 300px;
       position: absolute;
@@ -149,7 +149,7 @@ $images: url('https://picsum.photos/420/300?random=1'),
   left: calc(50% - 5px);
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -181,7 +181,7 @@ $images: url('https://picsum.photos/420/300?random=1'),
   background-size: 420px 300px;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0px;
     right: 0%;

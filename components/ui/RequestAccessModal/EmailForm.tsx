@@ -1,15 +1,17 @@
-import styles from '@/components/forms/forms.module.css'
-import React, { useState, useRef, useEffect } from 'react'
-import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
-import Reaptcha from 'reaptcha'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import EmailSuccess from './EmailSuccess'
-import { ErrorMessage } from '@hookform/error-message'
-import EmailInput from '@/components/forms/EmailInput'
-import PasswordInput from '@/components/forms/PasswordInput'
-import emailStyles from '@/components/forms/EmailInput.module.css'
-import classNames from 'classnames'
-import { isEmpty } from 'lodash'
+import React, { useEffect, useRef, useState } from "react"
+import { ErrorMessage } from "@hookform/error-message"
+import classNames from "classnames"
+import { isEmpty } from "lodash"
+import { SubmitHandler, useForm } from "react-hook-form"
+import Reaptcha from "reaptcha"
+
+import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+import EmailInput from "@/components/forms/EmailInput"
+import emailStyles from "@/components/forms/EmailInput.module.css"
+import PasswordInput from "@/components/forms/PasswordInput"
+import styles from "@/components/forms/forms.module.css"
+
+import EmailSuccess from "./EmailSuccess"
 
 // *****************************************************************************
 // ReCaptcha
@@ -32,15 +34,15 @@ const emailIcon = (
 )
 
 export async function createRequestAccessByEmail(data: EmailFormData) {
-  const resp = await fetch('/api/mailer/request-access/email', {
-    method: 'POST',
+  const resp = await fetch("/api/mailer/request-access/email", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   })
   const result = await resp.json()
-  console.log('resp', { result })
+  console.log("resp", { result })
   return result
 }
 
@@ -92,7 +94,7 @@ export default function EmailForm(_props: EmailFormProps) {
     getValues,
     formState,
     // formState:  { isValid, errors } ,
-  } = useForm<EmailFormData>({ mode: 'all' })
+  } = useForm<EmailFormData>({ mode: "all" })
 
   const {
     isDirty,
@@ -175,8 +177,8 @@ export default function EmailForm(_props: EmailFormProps) {
         <div
           className={classNames({
             [styles.formInput]: true,
-            [emailStyles['email-input']]: true,
-            [emailStyles.valid]: !errors.email && !isEmpty(getValues('email')),
+            [emailStyles["email-input"]]: true,
+            [emailStyles.valid]: !errors.email && !isEmpty(getValues("email")),
           })}
         >
           <input
@@ -187,10 +189,10 @@ export default function EmailForm(_props: EmailFormProps) {
             // className="animate-bg rounded-lg bg-gradient-to-tr from-blue-400 via-green-500 to-red-500"
 
             placeholder="name@company.com"
-            {...register('email', {
+            {...register("email", {
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: 'Entered value does not match email format',
+                message: "Entered value does not match email format",
               },
               maxLength: 256,
               required: true,

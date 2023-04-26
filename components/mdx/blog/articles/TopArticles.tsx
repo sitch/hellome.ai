@@ -1,5 +1,6 @@
-import { Article } from '@/lib/mdx/types'
-import { ArticleCard } from './ArticleCard'
+import { Article } from "@/lib/mdx/types"
+
+import { ArticleCard } from "./ArticleCard"
 
 type TopArticlesProps = {
   articles: Article[]

@@ -1,5 +1,6 @@
-import { Result } from '@vladmandic/human'
-import { ManifoldCoordinates } from './manifolds'
+import { Result } from "@vladmandic/human"
+
+import { ManifoldCoordinates } from "./manifolds"
 
 export function validateResult(
   coordinates: ManifoldCoordinates,

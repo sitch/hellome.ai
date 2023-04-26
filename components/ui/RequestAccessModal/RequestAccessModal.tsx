@@ -1,17 +1,20 @@
 // import { Modal } from 'flowbite-react'
-import React, { useState, MouseEvent, ReactNode } from 'react'
-import styles from './RequestAccessModal.module.css'
-import EmailForm from '@/components/ui/RequestAccessModal/EmailForm'
-import AccessTokenForm from '@/components/ui/RequestAccessModal/AccessTokenForm'
-import Link from 'next/link'
+
+import React, { MouseEvent, ReactNode, useState } from "react"
+import Link from "next/link"
+
+import AccessTokenForm from "@/components/ui/RequestAccessModal/AccessTokenForm"
+import EmailForm from "@/components/ui/RequestAccessModal/EmailForm"
+
+import styles from "./RequestAccessModal.module.css"
 
 const privacyPolicy = (
   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-    We’ll never share your details. Read our{' '}
+    We’ll never share your details. Read our{" "}
     <Link
       href={{
-        pathname: '/pages/policies/[slug]',
-        query: { slug: 'privacy-policy' },
+        pathname: "/pages/policies/[slug]",
+        query: { slug: "privacy-policy" },
       }}
       className="font-medium text-blue-600 hover:underline dark:text-blue-500"
     >

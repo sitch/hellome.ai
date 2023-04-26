@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { EditionWhereUniqueInputObjectSchema } from './EditionWhereUniqueInput.schema'
 import { EditionCreateWithoutUserInputObjectSchema } from './EditionCreateWithoutUserInput.schema'
 import { EditionUncheckedCreateWithoutUserInputObjectSchema } from './EditionUncheckedCreateWithoutUserInput.schema'
-
+import { EditionWhereUniqueInputObjectSchema } from './EditionWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionCreateOrConnectWithoutUserInput> = z
   .object({

@@ -1,8 +1,8 @@
-import packageData from '@/package.json'
-import dataUriToBuffer from 'data-uri-to-buffer'
-import { S3, PutObjectCommand, ListObjectsCommand } from '@aws-sdk/client-s3'
+import { ListObjectsCommand, PutObjectCommand, S3 } from "@aws-sdk/client-s3"
+import dataUriToBuffer from "data-uri-to-buffer"
 
-import { uploadFile } from '@/lib/s3/client'
+import { uploadFile } from "@/lib/s3/client"
+import packageData from "@/package.json"
 
 // import { PutObjectCommand } from "@aws-sdk/client-s3";
 // import * as Upload from 'upload-js-full'
@@ -23,9 +23,9 @@ import { uploadFile } from '@/lib/s3/client'
 
 const s3Client = new S3({
   forcePathStyle: false, // Configures to use subdomain/virtual calling format.
-  endpoint: 'https://nyc3.digitaloceanspaces.com',
+  endpoint: "https://nyc3.digitaloceanspaces.com",
   // endpoint: process.env.DIGITAL_OCEAN_SPACES_ENDPOINT,
-  region: 'us-east-1',
+  region: "us-east-1",
   credentials: {
     accessKeyId: process.env.DIGITAL_OCEAN_SPACES_KEY,
     secretAccessKey: process.env.DIGITAL_OCEAN_SPACES_SECRET,
@@ -44,7 +44,7 @@ export default async function uploader(scribbleDataURI: string | undefined) {
   }
 
   const url = await uploadFile({
-    Key: 'test/test.png',
+    Key: "test/test.png",
     Body: dataUriToBuffer(scribbleDataURI),
   })
 

@@ -1,10 +1,10 @@
-import { z } from 'zod'
-import { StorySelectObjectSchema } from './objects/StorySelect.schema'
+import { StoryScalarFieldEnumSchema } from './enums/StoryScalarFieldEnum.schema'
 import { StoryIncludeObjectSchema } from './objects/StoryInclude.schema'
 import { StoryOrderByWithRelationInputObjectSchema } from './objects/StoryOrderByWithRelationInput.schema'
+import { StorySelectObjectSchema } from './objects/StorySelect.schema'
 import { StoryWhereInputObjectSchema } from './objects/StoryWhereInput.schema'
 import { StoryWhereUniqueInputObjectSchema } from './objects/StoryWhereUniqueInput.schema'
-import { StoryScalarFieldEnumSchema } from './enums/StoryScalarFieldEnum.schema'
+import { z } from 'zod'
 
 export const StoryFindManySchema = z.object({
   select: z.lazy(() => StorySelectObjectSchema.optional()),

@@ -14,12 +14,17 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-
+import "./commands"
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/react18'
+import { mount } from "cypress/react18"
+
+// Example use:
+// cy.mount(<MyComponent />)
+
+import "@frsource/cypress-plugin-visual-regression-diff"
+import "cypress-react-selector"
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -33,10 +38,4 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount)
-
-// Example use:
-// cy.mount(<MyComponent />)
-
-import '@frsource/cypress-plugin-visual-regression-diff'
-import 'cypress-react-selector'
+Cypress.Commands.add("mount", mount)

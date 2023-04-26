@@ -1,18 +1,20 @@
-import useRequestAnimationFrame from '@/lib/hooks/useRequestAnimationFrame'
-import { detectLoop, drawLoop } from '@/lib/human/callbacks'
-import { disposeResult } from '@/lib/human/utils'
-import { MemoryInfo } from '@tensorflow/tfjs-core'
-import Human, { Result } from '@vladmandic/human'
-import { RefObject, useState } from 'react'
-import { useMount } from 'react-use'
-import { FaceAnalysis, runFaceAnalysis } from '../analysis'
-import { defaultFaceAnalysis } from '../defaults'
-import FaceImporterInstructions from '../FaceImporterInstructions/FaceImporterInstructions'
-import { FaceManifold } from '../FaceManifold/FaceManifold'
+import { RefObject, useState } from "react"
+import { MemoryInfo } from "@tensorflow/tfjs-core"
+import Human, { Result } from "@vladmandic/human"
+import { useMount } from "react-use"
+
+import useRequestAnimationFrame from "@/lib/hooks/useRequestAnimationFrame"
+import { detectLoop, drawLoop } from "@/lib/human/callbacks"
+import { disposeResult } from "@/lib/human/utils"
+
+import FaceImporterInstructions from "../FaceImporterInstructions/FaceImporterInstructions"
+import { FaceManifold } from "../FaceManifold/FaceManifold"
+import { FaceAnalysis, runFaceAnalysis } from "../analysis"
+import { defaultFaceAnalysis } from "../defaults"
 
 export type PerformanceMetricsProps = {
   memory: MemoryInfo
-  performance: Result['performance'] | undefined
+  performance: Result["performance"] | undefined
 }
 
 export function PerformanceMetrics({
@@ -54,7 +56,7 @@ export default function FacePrediction({
   const [memory, setMemory] = useState<MemoryInfo>(
     () => human.tf.memory() as MemoryInfo
   )
-  const [performance, setPerformance] = useState<Result['performance']>()
+  const [performance, setPerformance] = useState<Result["performance"]>()
   const [analysis, setAnalysis] = useState<FaceAnalysis>(defaultFaceAnalysis)
 
   // useMount(() => {

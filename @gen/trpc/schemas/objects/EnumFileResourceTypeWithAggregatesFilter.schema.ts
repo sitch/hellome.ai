@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
+import { NestedEnumFileResourceTypeFilterObjectSchema } from './NestedEnumFileResourceTypeFilter.schema'
 import { NestedEnumFileResourceTypeWithAggregatesFilterObjectSchema } from './NestedEnumFileResourceTypeWithAggregatesFilter.schema'
 import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import { NestedEnumFileResourceTypeFilterObjectSchema } from './NestedEnumFileResourceTypeFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EnumFileResourceTypeWithAggregatesFilter> = z
   .object({

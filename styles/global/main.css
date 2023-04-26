@@ -1,13 +1,13 @@
 @tailwind base;
-@import './base.css';
+@import "./base.css";
 
 @tailwind components;
-@import './components.css';
+@import "./components.css";
 
 @tailwind utilities;
 
 body {
-  background-image: url('/static/images/ui/00058-761687943.png') !important;
+  background-image: url("/static/images/ui/00058-761687943.png") !important;
   /* opacity: */
   /* background-image: url('/static/images/ui/00025-1079708828.png') !important; */
   /* background-image: url('/static/images/ui/00027-1079708830.png') !important; */

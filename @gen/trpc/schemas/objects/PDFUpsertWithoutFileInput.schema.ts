@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { PDFUpdateWithoutFileInputObjectSchema } from './PDFUpdateWithoutFileInput.schema'
-import { PDFUncheckedUpdateWithoutFileInputObjectSchema } from './PDFUncheckedUpdateWithoutFileInput.schema'
 import { PDFCreateWithoutFileInputObjectSchema } from './PDFCreateWithoutFileInput.schema'
 import { PDFUncheckedCreateWithoutFileInputObjectSchema } from './PDFUncheckedCreateWithoutFileInput.schema'
-
+import { PDFUncheckedUpdateWithoutFileInputObjectSchema } from './PDFUncheckedUpdateWithoutFileInput.schema'
+import { PDFUpdateWithoutFileInputObjectSchema } from './PDFUpdateWithoutFileInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PDFUpsertWithoutFileInput> = z
   .object({

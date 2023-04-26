@@ -1,7 +1,9 @@
-import { Human, FaceLandmark, Point, Result } from '@vladmandic/human'
-export { DEFAULT_COORDINATES } from '@/components/vision/human/defaults'
-import { UsableFaceResult } from '@/components/vision/human/manifolds'
-import { config } from '@/lib/human/config'
+import { FaceLandmark, Human, Point, Result } from "@vladmandic/human"
+
+import { config } from "@/lib/human/config"
+import { UsableFaceResult } from "@/components/vision/human/manifolds"
+
+export { DEFAULT_COORDINATES } from "@/components/vision/human/defaults"
 
 // let human: Human | undefined
 // import('@vladmandic/human').then((H) => {

@@ -1,15 +1,16 @@
-import React from 'react'
+import React from "react"
+import { EMAIL_PREFERENCES_URL } from "mailing-core"
 import {
-  MjmlSection,
-  MjmlWrapper,
   MjmlColumn,
-  MjmlText,
-  MjmlImage,
   MjmlGroup,
-} from 'mjml-react'
-import Link from './Link'
-import { colors, fontSize, fontWeight } from '../theme'
-import { EMAIL_PREFERENCES_URL } from 'mailing-core'
+  MjmlImage,
+  MjmlSection,
+  MjmlText,
+  MjmlWrapper,
+} from "mjml-react"
+
+import { colors, fontSize, fontWeight } from "../theme"
+import Link from "./Link"
 
 type FooterProps = {
   includeUnsubscribe?: boolean
@@ -25,7 +26,7 @@ export default function Footer({ includeUnsubscribe = false }: FooterProps) {
         <MjmlSection>
           <MjmlGroup>
             <MjmlColumn
-              padding={'48px 0'}
+              padding={"48px 0"}
               borderRight={`2px solid ${colors.black}`}
             >
               <MjmlText
@@ -47,10 +48,10 @@ export default function Footer({ includeUnsubscribe = false }: FooterProps) {
                   <img
                     height={12}
                     width={16}
-                    src={'https://mailing.run/welcome-template/discord.png'}
+                    src={"https://mailing.run/welcome-template/discord.png"}
                     alt=""
                     style={{
-                      verticalAlign: 'text-bottom',
+                      verticalAlign: "text-bottom",
                       paddingRight: 6,
                       paddingBottom: 4,
                     }}
@@ -59,7 +60,7 @@ export default function Footer({ includeUnsubscribe = false }: FooterProps) {
                 </Link>
               </MjmlText>
             </MjmlColumn>
-            <MjmlColumn padding={'48px 0'}>
+            <MjmlColumn padding={"48px 0"}>
               <MjmlText
                 align="center"
                 fontSize={fontSize.xs}
@@ -79,10 +80,10 @@ export default function Footer({ includeUnsubscribe = false }: FooterProps) {
                   <img
                     height={16}
                     width={16}
-                    src={'https://mailing.run/welcome-template/github.png'}
+                    src={"https://mailing.run/welcome-template/github.png"}
                     alt=""
                     style={{
-                      verticalAlign: 'text-bottom',
+                      verticalAlign: "text-bottom",
                       paddingRight: 6,
                       paddingBottom: 2,
                     }}
@@ -117,7 +118,7 @@ export default function Footer({ includeUnsubscribe = false }: FooterProps) {
               >
                 You&rsquo;re receiving this email because you asked for
                 occasional updates about Mailing. If you don&rsquo;t want to
-                receive these in the future, you can{' '}
+                receive these in the future, you can{" "}
                 <Link
                   color={colors.slate400}
                   textDecoration="underline"
@@ -135,7 +136,7 @@ export default function Footer({ includeUnsubscribe = false }: FooterProps) {
             <MjmlImage
               height={16}
               width={13}
-              src={'https://mailing.run/welcome-template/logo.png'}
+              src={"https://mailing.run/welcome-template/logo.png"}
               href="https://mailing.run"
             />
           </MjmlColumn>

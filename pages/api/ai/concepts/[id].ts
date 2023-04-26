@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server'
-import Replicate from 'replicate'
-import packageData from '@/package.json'
-import type { NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from "next/server"
+import Replicate from "replicate"
+
+import packageData from "@/package.json"
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -9,7 +9,7 @@ const replicate = new Replicate({
 })
 
 export default async function handler(req: NextRequest) {
-  const predictionId = req.nextUrl.searchParams.get('id')
+  const predictionId = req.nextUrl.searchParams.get("id")
   const prediction = await replicate.predictions.get(predictionId!)
 
   if (prediction.error) {
@@ -20,5 +20,5 @@ export default async function handler(req: NextRequest) {
 }
 
 export const config = {
-  runtime: 'edge',
+  runtime: "edge",
 }

@@ -1,5 +1,5 @@
 // pages/api/s3-upload.js
-import { APIRoute } from 'next-s3-upload'
+import { APIRoute } from "next-s3-upload"
 
 // AWS s3
 export default APIRoute.configure({

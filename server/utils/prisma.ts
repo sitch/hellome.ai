@@ -1,7 +1,7 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from "@prisma/client"
 
 const options: Prisma.PrismaClientOptions = {
-  log: ['query'],
+  log: ["query"],
 }
 
 const globalPrisma = global as unknown as {
@@ -10,7 +10,7 @@ const globalPrisma = global as unknown as {
 
 export const prisma = globalPrisma.prisma ?? new PrismaClient(options)
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   globalPrisma.prisma = prisma
 }
 
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== 'production') {
 async function connectDB() {
   try {
     await prisma.$connect()
-    console.log('🚀 Database connected successfully')
+    console.log("🚀 Database connected successfully")
   } catch (error) {
     console.log(error)
     process.exit(1)

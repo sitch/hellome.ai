@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { LocaleSchema } from '../enums/Locale.schema'
+import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextCreateManyInput> = z
   .object({

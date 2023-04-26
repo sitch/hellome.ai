@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { TranslatorSelectObjectSchema } from './TranslatorSelect.schema'
 import { TranslatorIncludeObjectSchema } from './TranslatorInclude.schema'
-
+import { TranslatorSelectObjectSchema } from './TranslatorSelect.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.TranslatorArgs> = z
   .object({

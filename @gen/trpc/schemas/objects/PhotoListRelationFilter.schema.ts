@@ -1,7 +1,6 @@
-import { z } from 'zod'
 import { PhotoWhereInputObjectSchema } from './PhotoWhereInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoListRelationFilter> = z
   .object({

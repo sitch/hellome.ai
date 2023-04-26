@@ -1,4 +1,4 @@
-import { EmailFormData } from './EmailForm'
+import { EmailFormData } from "./EmailForm"
 
 export type EmailSuccessProps = {
   data: EmailFormData

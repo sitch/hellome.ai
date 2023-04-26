@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { StoryCreateNestedManyWithoutArtistInputObjectSchema } from './StoryCreateNestedManyWithoutArtistInput.schema'
 import { PageArtworkCreateNestedManyWithoutArtistInputObjectSchema } from './PageArtworkCreateNestedManyWithoutArtistInput.schema'
-
+import { StoryCreateNestedManyWithoutArtistInputObjectSchema } from './StoryCreateNestedManyWithoutArtistInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ArtistCreateInput> = z
   .object({

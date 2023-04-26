@@ -1,8 +1,8 @@
-import { z } from 'zod'
-import { PageSelectObjectSchema } from './objects/PageSelect.schema'
-import { PageIncludeObjectSchema } from './objects/PageInclude.schema'
 import { PageCreateInputObjectSchema } from './objects/PageCreateInput.schema'
+import { PageIncludeObjectSchema } from './objects/PageInclude.schema'
+import { PageSelectObjectSchema } from './objects/PageSelect.schema'
 import { PageUncheckedCreateInputObjectSchema } from './objects/PageUncheckedCreateInput.schema'
+import { z } from 'zod'
 
 export const PageCreateOneSchema = z.object({
   select: PageSelectObjectSchema.optional(),

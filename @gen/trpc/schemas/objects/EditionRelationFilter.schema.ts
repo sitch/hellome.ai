@@ -1,7 +1,6 @@
-import { z } from 'zod'
 import { EditionWhereInputObjectSchema } from './EditionWhereInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionRelationFilter> = z
   .object({

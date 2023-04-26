@@ -1,29 +1,30 @@
-import { useState } from 'react'
-import { NextSeo } from 'next-seo'
-import { site } from '@/data/siteConfig'
-import AuthorPage from '@/components/mdx/blog/authors/AuthorPage'
-import Layout from '@/components/mdx/Layout'
-import { processMDXAuthors } from '@/lib/mdx'
-import { AuthorsPage } from '@/components/mdx/blog/authors/AuthorsPage'
-import { Author } from '@/lib/mdx/types'
-import { GetStaticProps, NextPage } from 'next'
-import Hero from '@/components/mdx/Hero'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import i18NextConfig from '@/next-i18next.config'
+import { useState } from "react"
+import { GetStaticProps, NextPage } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { NextSeo } from "next-seo"
+
+import { processMDXAuthors } from "@/lib/mdx"
+import { Author } from "@/lib/mdx/types"
+import Hero from "@/components/mdx/Hero"
+import Layout from "@/components/mdx/Layout"
+import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"
+import { AuthorsPage } from "@/components/mdx/blog/authors/AuthorsPage"
+import { site } from "@/data/siteConfig"
+import i18NextConfig from "@/next-i18next.config"
 
 type Props = {
   authors: Author[]
 }
 
 const Page: NextPage<Props> = ({ authors }: Props) => {
-  const [searchValue, setSearchValue] = useState(['', ''])
+  const [searchValue, setSearchValue] = useState(["", ""])
 
   const filteredAuthors = authors
     .filter(({ name }) => name.toLowerCase().includes(searchValue[1]))
     .sort()
 
   const heroData = {
-    title: 'All Blogs',
+    title: "All Blogs",
     subtitle: () => (
       <input
         aria-label="Search blogs"
@@ -48,9 +49,9 @@ const Page: NextPage<Props> = ({ authors }: Props) => {
         canonical={`${site.url}/blog`}
         openGraph={{
           url: `${site.url}/blog`,
-          title: 'Blog Page - HelloMe.ai',
+          title: "Blog Page - HelloMe.ai",
           description:
-            'Blog for this website are available here. You can find blog using input box provided in the top. ',
+            "Blog for this website are available here. You can find blog using input box provided in the top. ",
         }}
       />
 
@@ -74,11 +75,11 @@ const Page: NextPage<Props> = ({ authors }: Props) => {
 export const getStaticProps: GetStaticProps<Props> = async ({
   locale = i18NextConfig.i18n.defaultLocale,
 }) => {
-  const authors = await processMDXAuthors('blog/authors')
+  const authors = await processMDXAuthors("blog/authors")
   return {
     props: {
       authors,
-      ...(await serverSideTranslations(locale, ['authors', 'footer'])),
+      ...(await serverSideTranslations(locale, ["authors", "footer"])),
     },
   }
 }

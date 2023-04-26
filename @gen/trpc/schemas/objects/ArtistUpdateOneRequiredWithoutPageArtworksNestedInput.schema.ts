@@ -1,13 +1,12 @@
-import { z } from 'zod'
+import { ArtistCreateOrConnectWithoutPageArtworksInputObjectSchema } from './ArtistCreateOrConnectWithoutPageArtworksInput.schema'
 import { ArtistCreateWithoutPageArtworksInputObjectSchema } from './ArtistCreateWithoutPageArtworksInput.schema'
 import { ArtistUncheckedCreateWithoutPageArtworksInputObjectSchema } from './ArtistUncheckedCreateWithoutPageArtworksInput.schema'
-import { ArtistCreateOrConnectWithoutPageArtworksInputObjectSchema } from './ArtistCreateOrConnectWithoutPageArtworksInput.schema'
+import { ArtistUncheckedUpdateWithoutPageArtworksInputObjectSchema } from './ArtistUncheckedUpdateWithoutPageArtworksInput.schema'
+import { ArtistUpdateWithoutPageArtworksInputObjectSchema } from './ArtistUpdateWithoutPageArtworksInput.schema'
 import { ArtistUpsertWithoutPageArtworksInputObjectSchema } from './ArtistUpsertWithoutPageArtworksInput.schema'
 import { ArtistWhereUniqueInputObjectSchema } from './ArtistWhereUniqueInput.schema'
-import { ArtistUpdateWithoutPageArtworksInputObjectSchema } from './ArtistUpdateWithoutPageArtworksInput.schema'
-import { ArtistUncheckedUpdateWithoutPageArtworksInputObjectSchema } from './ArtistUncheckedUpdateWithoutPageArtworksInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ArtistUpdateOneRequiredWithoutPageArtworksNestedInput> =
   z

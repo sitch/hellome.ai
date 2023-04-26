@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { SortOrderSchema } from '../enums/SortOrder.schema'
 import { PageArtworkCountOrderByAggregateInputObjectSchema } from './PageArtworkCountOrderByAggregateInput.schema'
 import { PageArtworkMaxOrderByAggregateInputObjectSchema } from './PageArtworkMaxOrderByAggregateInput.schema'
 import { PageArtworkMinOrderByAggregateInputObjectSchema } from './PageArtworkMinOrderByAggregateInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageArtworkOrderByWithAggregationInput> = z
   .object({

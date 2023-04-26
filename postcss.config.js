@@ -1,32 +1,32 @@
 module.exports = {
   plugins: [
-    'postcss-easings',
-    'tailwindcss/nesting',
-    'tailwindcss',
-    'autoprefixer',
-    'postcss-flexbugs-fixes',
+    "postcss-easings",
+    "tailwindcss/nesting",
+    "tailwindcss",
+    "autoprefixer",
+    "postcss-flexbugs-fixes",
 
     [
-      '@fullhuman/postcss-purgecss',
+      "@fullhuman/postcss-purgecss",
       {
         content: [
-          './pages/**/*.{js,jsx,ts,tsx}',
-          './components/**/*.{js,jsx,ts,tsx}',
+          "./pages/**/*.{js,jsx,ts,tsx}",
+          "./components/**/*.{js,jsx,ts,tsx}",
         ],
         defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
       },
     ],
 
     [
-      'postcss-preset-env',
+      "postcss-preset-env",
       {
         autoprefixer: {
-          flexbox: 'no-2009',
+          flexbox: "no-2009",
         },
         stage: 3,
         features: {
-          'custom-properties': false,
-          'nesting-rules': true,
+          "custom-properties": false,
+          "nesting-rules": true,
         },
       },
     ],

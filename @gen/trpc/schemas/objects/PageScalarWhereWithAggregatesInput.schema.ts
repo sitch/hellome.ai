@@ -1,13 +1,12 @@
-import { z } from 'zod'
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
-import { EnumPageStatusWithAggregatesFilterObjectSchema } from './EnumPageStatusWithAggregatesFilter.schema'
 import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { EnumPageTypeWithAggregatesFilterObjectSchema } from './EnumPageTypeWithAggregatesFilter.schema'
 import { PageTypeSchema } from '../enums/PageType.schema'
-import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema'
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema'
-
+import { EnumPageStatusWithAggregatesFilterObjectSchema } from './EnumPageStatusWithAggregatesFilter.schema'
+import { EnumPageTypeWithAggregatesFilterObjectSchema } from './EnumPageTypeWithAggregatesFilter.schema'
+import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema'
+import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageScalarWhereWithAggregatesInput> = z
   .object({

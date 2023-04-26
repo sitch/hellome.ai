@@ -1,14 +1,13 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
+import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
+import { JsonNullValueInputSchema } from '../enums/JsonNullValueInput.schema'
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
+import { EnumFilePrivacyFieldUpdateOperationsInputObjectSchema } from './EnumFilePrivacyFieldUpdateOperationsInput.schema'
 import { EnumFileResourceTypeFieldUpdateOperationsInputObjectSchema } from './EnumFileResourceTypeFieldUpdateOperationsInput.schema'
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema'
-import { JsonNullValueInputSchema } from '../enums/JsonNullValueInput.schema'
-import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
-import { EnumFilePrivacyFieldUpdateOperationsInputObjectSchema } from './EnumFilePrivacyFieldUpdateOperationsInput.schema'
-import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const literalSchema = z.union([z.string(), z.number(), z.boolean()])
 const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>

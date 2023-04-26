@@ -1,30 +1,31 @@
-import { useState } from 'react'
-import { NextSeo } from 'next-seo'
-import { site } from '@/data/siteConfig'
-import ArticlePage from '@/components/mdx/blog/articles/ArticlePage'
-import Layout from '@/components/mdx/Layout'
-import { processMDXArticles } from '@/lib/mdx'
-import { ArticlesPage } from '@/components/mdx/blog/articles/ArticlesPage'
-import { Article } from '@/lib/mdx/types'
-import { GetStaticProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import i18NextConfig from '@/next-i18next.config'
-import Hero from '@/components/mdx/Hero'
-import Header from '@/components/landing/Header'
+import { useState } from "react"
+import { GetStaticProps, NextPage } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { NextSeo } from "next-seo"
+
+import { processMDXArticles } from "@/lib/mdx"
+import { Article } from "@/lib/mdx/types"
+import Header from "@/components/landing/Header"
+import Hero from "@/components/mdx/Hero"
+import Layout from "@/components/mdx/Layout"
+import ArticlePage from "@/components/mdx/blog/articles/ArticlePage"
+import { ArticlesPage } from "@/components/mdx/blog/articles/ArticlesPage"
+import { site } from "@/data/siteConfig"
+import i18NextConfig from "@/next-i18next.config"
 
 type Props = {
   articles: Article[]
 }
 
 const Page: NextPage<Props> = ({ articles }: Props) => {
-  const [searchValue, setSearchValue] = useState(['', ''])
+  const [searchValue, setSearchValue] = useState(["", ""])
 
   const filteredArticles = articles
     .filter(({ title }) => title.toLowerCase().includes(searchValue[1]))
     .sort()
 
   const heroData = {
-    title: 'All Blogs',
+    title: "All Blogs",
     subtitle: () => (
       <input
         aria-label="Search blogs"
@@ -49,9 +50,9 @@ const Page: NextPage<Props> = ({ articles }: Props) => {
         canonical={`${site.url}/blog`}
         openGraph={{
           url: `${site.url}/blog`,
-          title: 'Blog Page - HelloMe.ai',
+          title: "Blog Page - HelloMe.ai",
           description:
-            'Blog for this website are available here. You can find blog using input box provided in the top. ',
+            "Blog for this website are available here. You can find blog using input box provided in the top. ",
         }}
       />
 
@@ -75,10 +76,10 @@ const Page: NextPage<Props> = ({ articles }: Props) => {
 export const getStaticProps: GetStaticProps<Props> = async ({
   locale = i18NextConfig.i18n.defaultLocale,
 }) => {
-  const articles = await processMDXArticles('blog/articles')
+  const articles = await processMDXArticles("blog/articles")
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['articles', 'footer'])),
+      ...(await serverSideTranslations(locale, ["articles", "footer"])),
       articles,
     },
   }

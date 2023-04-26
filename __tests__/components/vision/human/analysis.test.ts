@@ -1,9 +1,10 @@
-import { runFaceAnalysis } from '@/components/vision/human/analysis'
-import { defaultFaceAnalysis } from '@/components/vision/human/defaults'
-import { DEFAULT_RESULT, human } from './fixtures'
-import { isUsable } from '@/components/vision/human/validations'
+import { runFaceAnalysis } from "@/components/vision/human/analysis"
+import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
+import { isUsable } from "@/components/vision/human/validations"
 
-describe('Given: DEFAULT_RESULT', () => {
+import { DEFAULT_RESULT, human } from "./fixtures"
+
+describe("Given: DEFAULT_RESULT", () => {
   const result = DEFAULT_RESULT
 
   // describe('.runFaceAnalysis/1', () => {
@@ -11,8 +12,8 @@ describe('Given: DEFAULT_RESULT', () => {
   //     expect(vectors).toMatchSnapshot()
   // })
 
-  describe('.runFaceAnalysis/2', () => {
-    it('Given: defaultFaceAnalysis', async () => {
+  describe(".runFaceAnalysis/2", () => {
+    it("Given: defaultFaceAnalysis", async () => {
       const prevAnalysis = defaultFaceAnalysis
 
       expect(isUsable(prevAnalysis.coordinates, result)).toEqual(true)

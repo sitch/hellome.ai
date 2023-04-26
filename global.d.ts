@@ -34,6 +34,6 @@ declare namespace NodeJS {
 }
 
 // Declarations for modules without types
-declare module 'flowbite/plugin'
-declare module 'flowbite-typography'
-declare module 'next-compose-plugins'
+declare module "flowbite/plugin"
+declare module "flowbite-typography"
+declare module "next-compose-plugins"

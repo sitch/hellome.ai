@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import { Article, Author } from '@/lib/mdx/types'
-import { useTranslation } from 'next-i18next'
+import Link from "next/link"
+import { useTranslation } from "next-i18next"
 
-import * as Heading from '@/components/mdx/ui/Heading'
-import * as Lists from '@/components/mdx/ui/Lists'
-import * as DateTimes from '@/components/mdx/ui/DateTimes'
-import * as Media from '@/components/mdx/ui/Media'
-import * as Typography from '@/components/mdx/ui/Typography'
+import { Article, Author } from "@/lib/mdx/types"
+import * as DateTimes from "@/components/mdx/ui/DateTimes"
+import * as Heading from "@/components/mdx/ui/Heading"
+import * as Lists from "@/components/mdx/ui/Lists"
+import * as Media from "@/components/mdx/ui/Media"
+import * as Typography from "@/components/mdx/ui/Typography"
 
 type TopArticleCardProps = {
   author: Author
@@ -70,11 +70,11 @@ const TopArticleCard = ({ author, article }: TopArticleCardProps) => {
 type ArticleCardProps = {
   author: Author
   article: Article
-  layout?: 'top' | 'default'
+  layout?: "top" | "default"
 }
 
 export const ArticleCard = ({ author, article, layout }: ArticleCardProps) => {
-  if (layout === 'top') {
+  if (layout === "top") {
     return <TopArticleCard author={author} article={article} />
   }
 

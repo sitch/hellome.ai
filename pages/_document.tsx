@@ -1,9 +1,9 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document'
-import { site } from '@/data/siteConfig'
-import i18nextConfig from '@/next-i18next.config'
+import Document, { Head, Html, Main, NextScript } from "next/document"
 
-import { fontSans } from '@/lib/fonts'
-import { cn } from '@/lib/utils'
+import { fontSans } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+import { site } from "@/data/siteConfig"
+import i18nextConfig from "@/next-i18next.config"
 
 type NewRelicProps = {
   browserTimingHeader: string
@@ -111,7 +111,7 @@ class MyDocument extends Document<NewRelicProps> {
           //  className="loading"
 
           className={`loading ${cn(
-            'min-h-screen bg-background font-sans antialiased',
+            "min-h-screen bg-background font-sans antialiased",
             fontSans.variable
           )}`}
         >

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/image"
 
 export default function SignUp() {
   return (
@@ -19,7 +19,7 @@ export default function SignUp() {
               <input
                 autoComplete="false"
                 name="hidden"
-                style={{ display: 'none' }}
+                style={{ display: "none" }}
               />
               <input name="_redirect" type="hidden" defaultValue="#" />
               <div className="mt-4 space-y-6">
@@ -82,7 +82,7 @@ export default function SignUp() {
                         className="block w-full appearance-none rounded-xl border border-gray-200 bg-white px-6 py-3 text-black placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                         placeholder="What are you working on?"
                         rows={4}
-                        defaultValue={''}
+                        defaultValue={""}
                       />
                     </div>
                   </div>

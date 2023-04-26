@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { TranslatorSelectObjectSchema } from './objects/TranslatorSelect.schema'
 import { TranslatorIncludeObjectSchema } from './objects/TranslatorInclude.schema'
-import { TranslatorUpdateInputObjectSchema } from './objects/TranslatorUpdateInput.schema'
+import { TranslatorSelectObjectSchema } from './objects/TranslatorSelect.schema'
 import { TranslatorUncheckedUpdateInputObjectSchema } from './objects/TranslatorUncheckedUpdateInput.schema'
+import { TranslatorUpdateInputObjectSchema } from './objects/TranslatorUpdateInput.schema'
 import { TranslatorWhereUniqueInputObjectSchema } from './objects/TranslatorWhereUniqueInput.schema'
+import { z } from 'zod'
 
 export const TranslatorUpdateOneSchema = z.object({
   select: TranslatorSelectObjectSchema.optional(),

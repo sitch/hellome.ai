@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-
+import { StringFilterObjectSchema } from './StringFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionScalarWhereInput> = z
   .object({

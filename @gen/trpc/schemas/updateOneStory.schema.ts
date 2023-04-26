@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { StorySelectObjectSchema } from './objects/StorySelect.schema'
 import { StoryIncludeObjectSchema } from './objects/StoryInclude.schema'
-import { StoryUpdateInputObjectSchema } from './objects/StoryUpdateInput.schema'
+import { StorySelectObjectSchema } from './objects/StorySelect.schema'
 import { StoryUncheckedUpdateInputObjectSchema } from './objects/StoryUncheckedUpdateInput.schema'
+import { StoryUpdateInputObjectSchema } from './objects/StoryUpdateInput.schema'
 import { StoryWhereUniqueInputObjectSchema } from './objects/StoryWhereUniqueInput.schema'
+import { z } from 'zod'
 
 export const StoryUpdateOneSchema = z.object({
   select: StorySelectObjectSchema.optional(),

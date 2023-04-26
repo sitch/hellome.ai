@@ -1,16 +1,15 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema'
 import { ArtistRelationFilterObjectSchema } from './ArtistRelationFilter.schema'
 import { ArtistWhereInputObjectSchema } from './ArtistWhereInput.schema'
 import { AuthorRelationFilterObjectSchema } from './AuthorRelationFilter.schema'
 import { AuthorWhereInputObjectSchema } from './AuthorWhereInput.schema'
-import { PageListRelationFilterObjectSchema } from './PageListRelationFilter.schema'
+import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
 import { PageArtworkListRelationFilterObjectSchema } from './PageArtworkListRelationFilter.schema'
+import { PageListRelationFilterObjectSchema } from './PageListRelationFilter.schema'
 import { PageTextListRelationFilterObjectSchema } from './PageTextListRelationFilter.schema'
-
+import { StringFilterObjectSchema } from './StringFilter.schema'
+import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StoryWhereInput> = z
   .object({

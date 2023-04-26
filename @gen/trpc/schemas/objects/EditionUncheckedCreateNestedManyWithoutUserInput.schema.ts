@@ -1,11 +1,10 @@
-import { z } from 'zod'
+import { EditionCreateManyUserInputEnvelopeObjectSchema } from './EditionCreateManyUserInputEnvelope.schema'
+import { EditionCreateOrConnectWithoutUserInputObjectSchema } from './EditionCreateOrConnectWithoutUserInput.schema'
 import { EditionCreateWithoutUserInputObjectSchema } from './EditionCreateWithoutUserInput.schema'
 import { EditionUncheckedCreateWithoutUserInputObjectSchema } from './EditionUncheckedCreateWithoutUserInput.schema'
-import { EditionCreateOrConnectWithoutUserInputObjectSchema } from './EditionCreateOrConnectWithoutUserInput.schema'
-import { EditionCreateManyUserInputEnvelopeObjectSchema } from './EditionCreateManyUserInputEnvelope.schema'
 import { EditionWhereUniqueInputObjectSchema } from './EditionWhereUniqueInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionUncheckedCreateNestedManyWithoutUserInput> =
   z

@@ -1,8 +1,9 @@
-import { DefaultSeoProps, NextSeo } from 'next-seo'
-import { site } from '@/data/siteConfig'
-import { Article, LocaleCode } from '@/lib/mdx/types'
-import { uniq } from 'lodash'
-import { OpenGraph } from 'next-seo/lib/types'
+import { uniq } from "lodash"
+import { DefaultSeoProps, NextSeo } from "next-seo"
+import { OpenGraph } from "next-seo/lib/types"
+
+import { Article, LocaleCode } from "@/lib/mdx/types"
+import { site } from "@/data/siteConfig"
 
 export const defaults: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name} Blog`,
@@ -42,7 +43,7 @@ const openGraphForArticle = (article: Article): OpenGraph => {
   const tags = uniq([...sectionTags, ...(article.tags ?? [])])
 
   return {
-    type: 'article',
+    type: "article",
     locale,
     url,
     title,

@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { siteConfig } from '@/config/site'
+import Link from "next/link"
 
-import { buttonVariants } from '@/components/ui/button'
+import { siteConfig } from "@/config/site"
+import { buttonVariants } from "@/components/ui/button"
 
 export default function IndexPage() {
   return (
@@ -22,7 +22,7 @@ export default function IndexPage() {
           href="/"
           target="_blank"
           rel="noreferrer"
-          className={buttonVariants({ size: 'lg' })}
+          className={buttonVariants({ size: "lg" })}
         >
           Documentation
         </Link>
@@ -31,7 +31,7 @@ export default function IndexPage() {
           rel="noreferrer"
           // href={siteConfig.links.github}
           href="/"
-          className={buttonVariants({ variant: 'outline', size: 'lg' })}
+          className={buttonVariants({ variant: "outline", size: "lg" })}
         >
           GitHub
         </Link>

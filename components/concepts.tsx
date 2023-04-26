@@ -1,17 +1,7 @@
-import copy from 'copy-to-clipboard'
-import { Copy as CopyIcon, PlusCircle as PlusCircleIcon } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import {
-  DetailedHTMLProps,
-  Fragment,
-  HTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import Loader from 'components/loader'
-import { Prediction } from '@prisma/client'
+import { Fragment, useEffect, useRef, useState } from "react"
+import { Prediction } from "@prisma/client"
+import Loader from "components/loader"
+import copy from "copy-to-clipboard"
 
 type Props = {
   predictions: object
@@ -24,7 +14,7 @@ export default function Predictions({ predictions, submissionCount }: Props) {
 
   useEffect(() => {
     if (submissionCount > 0) {
-      scrollRef.current!.scrollIntoView({ behavior: 'smooth' })
+      scrollRef.current!.scrollIntoView({ behavior: "smooth" })
     }
   }, [predictions, submissionCount])
 
@@ -50,14 +40,14 @@ export default function Predictions({ predictions, submissionCount }: Props) {
               submissionCount == Object.keys(predictions).length && (
                 <div ref={scrollRef} />
               )}
-            <Prediction prediction={prediction} />
+            <PredictionItem prediction={prediction} />
           </Fragment>
         ))}
     </section>
   )
 }
 
-type PredictionProps = {
+type PredictionItemProps = {
   prediction: Prediction & {
     input: {
       image: string
@@ -68,16 +58,16 @@ type PredictionProps = {
   showLinkToNewScribble?: boolean
 }
 
-export function Prediction({
+export function PredictionItem({
   prediction,
   showLinkToNewScribble = false,
-}: PredictionProps) {
+}: PredictionItemProps) {
   const [linkCopied, setLinkCopied] = useState(false)
 
   const copyLink = () => {
     const url =
       window.location.origin +
-      '/scribbles/' +
+      "/scribbles/" +
       (prediction.uuid || prediction.id) // if the prediction is from the Replicate API it'll have `id`. If it's from the SQL database, it'll have `uuid`
     copy(url)
     setLinkCopied(true)

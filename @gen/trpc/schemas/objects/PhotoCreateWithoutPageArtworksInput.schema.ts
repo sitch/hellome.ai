@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { PhotoCreatetagsInputObjectSchema } from './PhotoCreatetagsInput.schema'
 import { CloudFileCreateNestedOneWithoutPhotoInputObjectSchema } from './CloudFileCreateNestedOneWithoutPhotoInput.schema'
 import { ConceptCreateNestedManyWithoutPhotosInputObjectSchema } from './ConceptCreateNestedManyWithoutPhotosInput.schema'
-
+import { PhotoCreatetagsInputObjectSchema } from './PhotoCreatetagsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoCreateWithoutPageArtworksInput> = z
   .object({

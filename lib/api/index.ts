@@ -6,8 +6,8 @@ export type CastPayload<T> = {
   error: CastPayloadError | undefined
 }
 
-export type BaseSuccessResponseStatus = 'OK'
-export type BaseErrorResponseStatus = 'request_error'
+export type BaseSuccessResponseStatus = "OK"
+export type BaseErrorResponseStatus = "request_error"
 
 export type BaseApiResponse = {
   message?: string
@@ -15,9 +15,9 @@ export type BaseApiResponse = {
 
 export type EmailErrorResponseStatus =
   | BaseErrorResponseStatus
-  | 'validation_error'
-  | 'transport_error'
-  | 'send_error'
+  | "validation_error"
+  | "transport_error"
+  | "send_error"
 
 export type EmailSuccessResponse = BaseApiResponse & {
   status: BaseSuccessResponseStatus
@@ -38,7 +38,7 @@ export type VisionTrainPayload = {
 
 export type VisionTrainErrorResponseStatus =
   | BaseErrorResponseStatus
-  | 'training_error'
+  | "training_error"
 
 export type VisionTrainSuccessResponse = BaseApiResponse & {
   status: BaseSuccessResponseStatus

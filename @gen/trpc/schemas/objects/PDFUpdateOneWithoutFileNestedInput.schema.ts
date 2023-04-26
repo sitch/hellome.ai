@@ -1,13 +1,12 @@
-import { z } from 'zod'
+import { PDFCreateOrConnectWithoutFileInputObjectSchema } from './PDFCreateOrConnectWithoutFileInput.schema'
 import { PDFCreateWithoutFileInputObjectSchema } from './PDFCreateWithoutFileInput.schema'
 import { PDFUncheckedCreateWithoutFileInputObjectSchema } from './PDFUncheckedCreateWithoutFileInput.schema'
-import { PDFCreateOrConnectWithoutFileInputObjectSchema } from './PDFCreateOrConnectWithoutFileInput.schema'
+import { PDFUncheckedUpdateWithoutFileInputObjectSchema } from './PDFUncheckedUpdateWithoutFileInput.schema'
+import { PDFUpdateWithoutFileInputObjectSchema } from './PDFUpdateWithoutFileInput.schema'
 import { PDFUpsertWithoutFileInputObjectSchema } from './PDFUpsertWithoutFileInput.schema'
 import { PDFWhereUniqueInputObjectSchema } from './PDFWhereUniqueInput.schema'
-import { PDFUpdateWithoutFileInputObjectSchema } from './PDFUpdateWithoutFileInput.schema'
-import { PDFUncheckedUpdateWithoutFileInputObjectSchema } from './PDFUncheckedUpdateWithoutFileInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PDFUpdateOneWithoutFileNestedInput> = z
   .object({

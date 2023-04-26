@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { PageArgsObjectSchema } from './PageArgs.schema'
-import { StoryArgsObjectSchema } from './StoryArgs.schema'
 import { ArtistArgsObjectSchema } from './ArtistArgs.schema'
+import { PageArgsObjectSchema } from './PageArgs.schema'
 import { PhotoArgsObjectSchema } from './PhotoArgs.schema'
-
+import { StoryArgsObjectSchema } from './StoryArgs.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageArtworkSelect> = z
   .object({

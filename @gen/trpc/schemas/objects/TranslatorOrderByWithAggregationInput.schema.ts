@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { SortOrderSchema } from '../enums/SortOrder.schema'
 import { TranslatorCountOrderByAggregateInputObjectSchema } from './TranslatorCountOrderByAggregateInput.schema'
 import { TranslatorMaxOrderByAggregateInputObjectSchema } from './TranslatorMaxOrderByAggregateInput.schema'
 import { TranslatorMinOrderByAggregateInputObjectSchema } from './TranslatorMinOrderByAggregateInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.TranslatorOrderByWithAggregationInput> = z
   .object({

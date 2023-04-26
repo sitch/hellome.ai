@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { StoryListRelationFilterObjectSchema } from './StoryListRelationFilter.schema'
 import { PageTextListRelationFilterObjectSchema } from './PageTextListRelationFilter.schema'
-
+import { StoryListRelationFilterObjectSchema } from './StoryListRelationFilter.schema'
+import { StringFilterObjectSchema } from './StringFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.AuthorWhereInput> = z
   .object({

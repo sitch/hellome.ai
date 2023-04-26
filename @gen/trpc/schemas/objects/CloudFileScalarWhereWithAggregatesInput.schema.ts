@@ -1,14 +1,13 @@
-import { z } from 'zod'
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
-import { EnumFileResourceTypeWithAggregatesFilterObjectSchema } from './EnumFileResourceTypeWithAggregatesFilter.schema'
+import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
 import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
+import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema'
+import { EnumFilePrivacyWithAggregatesFilterObjectSchema } from './EnumFilePrivacyWithAggregatesFilter.schema'
+import { EnumFileResourceTypeWithAggregatesFilterObjectSchema } from './EnumFileResourceTypeWithAggregatesFilter.schema'
 import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema'
 import { JsonWithAggregatesFilterObjectSchema } from './JsonWithAggregatesFilter.schema'
-import { EnumFilePrivacyWithAggregatesFilterObjectSchema } from './EnumFilePrivacyWithAggregatesFilter.schema'
-import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
-import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema'
-
+import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.CloudFileScalarWhereWithAggregatesInput> = z
   .object({

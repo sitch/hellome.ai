@@ -1,13 +1,12 @@
-import { z } from 'zod'
+import { PhotoCreateOrConnectWithoutPageArtworksInputObjectSchema } from './PhotoCreateOrConnectWithoutPageArtworksInput.schema'
 import { PhotoCreateWithoutPageArtworksInputObjectSchema } from './PhotoCreateWithoutPageArtworksInput.schema'
 import { PhotoUncheckedCreateWithoutPageArtworksInputObjectSchema } from './PhotoUncheckedCreateWithoutPageArtworksInput.schema'
-import { PhotoCreateOrConnectWithoutPageArtworksInputObjectSchema } from './PhotoCreateOrConnectWithoutPageArtworksInput.schema'
+import { PhotoUncheckedUpdateWithoutPageArtworksInputObjectSchema } from './PhotoUncheckedUpdateWithoutPageArtworksInput.schema'
+import { PhotoUpdateWithoutPageArtworksInputObjectSchema } from './PhotoUpdateWithoutPageArtworksInput.schema'
 import { PhotoUpsertWithoutPageArtworksInputObjectSchema } from './PhotoUpsertWithoutPageArtworksInput.schema'
 import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
-import { PhotoUpdateWithoutPageArtworksInputObjectSchema } from './PhotoUpdateWithoutPageArtworksInput.schema'
-import { PhotoUncheckedUpdateWithoutPageArtworksInputObjectSchema } from './PhotoUncheckedUpdateWithoutPageArtworksInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoUpdateOneRequiredWithoutPageArtworksNestedInput> =
   z

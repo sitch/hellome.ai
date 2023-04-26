@@ -1,6 +1,5 @@
-import { Disclosure } from '@headlessui/react'
-import { ChevronUpIcon } from '@heroicons/react/20/solid'
-import { Tab } from '@headlessui/react'
+import { Disclosure, Tab } from "@headlessui/react"
+import { ChevronUpIcon } from "@heroicons/react/20/solid"
 
 export default function Example() {
   return (
@@ -27,7 +26,7 @@ export default function Example() {
                   <span>What is your refund policy?</span>
                   <ChevronUpIcon
                     className={`${
-                      open ? 'rotate-180' : ''
+                      open ? "rotate-180" : ""
                     } h-5 w-5 text-purple-500`}
                   />
                 </Disclosure.Button>
@@ -46,7 +45,7 @@ export default function Example() {
                   <span>Do you offer technical support?</span>
                   <ChevronUpIcon
                     className={`${
-                      open ? 'rotate-180' : ''
+                      open ? "rotate-180" : ""
                     } h-5 w-5 text-purple-500`}
                   />
                 </Disclosure.Button>

@@ -1,10 +1,10 @@
-import { z } from 'zod'
+import { ArtistCountAggregateInputObjectSchema } from './objects/ArtistCountAggregateInput.schema'
+import { ArtistMaxAggregateInputObjectSchema } from './objects/ArtistMaxAggregateInput.schema'
+import { ArtistMinAggregateInputObjectSchema } from './objects/ArtistMinAggregateInput.schema'
 import { ArtistOrderByWithRelationInputObjectSchema } from './objects/ArtistOrderByWithRelationInput.schema'
 import { ArtistWhereInputObjectSchema } from './objects/ArtistWhereInput.schema'
 import { ArtistWhereUniqueInputObjectSchema } from './objects/ArtistWhereUniqueInput.schema'
-import { ArtistCountAggregateInputObjectSchema } from './objects/ArtistCountAggregateInput.schema'
-import { ArtistMinAggregateInputObjectSchema } from './objects/ArtistMinAggregateInput.schema'
-import { ArtistMaxAggregateInputObjectSchema } from './objects/ArtistMaxAggregateInput.schema'
+import { z } from 'zod'
 
 export const ArtistAggregateSchema = z.object({
   orderBy: z

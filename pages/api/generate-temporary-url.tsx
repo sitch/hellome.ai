@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { generateTemporaryUrl } from 'next-s3-upload'
+import { NextApiRequest, NextApiResponse } from "next"
+import { generateTemporaryUrl } from "next-s3-upload"
 
 type Props = {
   query: {

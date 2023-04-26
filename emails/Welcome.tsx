@@ -1,12 +1,13 @@
-import React from 'react'
-import { MjmlColumn, MjmlSection, MjmlSpacer, MjmlWrapper } from 'mjml-react'
-import BaseLayout from './components/BaseLayout'
-import Button from './components/Button'
-import Footer from './components/Footer'
-import Heading from './components/Heading'
-import Header from './components/Header'
-import Text from './components/Text'
-import { fontSize, colors, spacing, fontFamily, screens } from './theme'
+import React from "react"
+import { MjmlColumn, MjmlSection, MjmlSpacer, MjmlWrapper } from "mjml-react"
+
+import BaseLayout from "./components/BaseLayout"
+import Button from "./components/Button"
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import Heading from "./components/Heading"
+import Text from "./components/Text"
+import { colors, fontFamily, fontSize, screens, spacing } from "./theme"
 
 const welcomeStyle = `
   .h1 > * {
@@ -61,10 +62,10 @@ const Welcome = ({ includeUnsubscribe }: WelcomeProps) => {
               fontSize={fontSize.md}
               paddingBottom={spacing.s7}
             >
-              It shows previews from{' '}
+              It shows previews from{" "}
               <span className="code">emails/previews</span>. Keep it open while
               you build your emails and it’ll live reload as you develop. To see
-              it in action with this preview, make a change to{' '}
+              it in action with this preview, make a change to{" "}
               <span className="code">emails/previews/Welcome.tsx</span>. You can
               deploy your Mailing server to Vercel or Netlify to share the
               Preview Viewer with your team.
@@ -76,7 +77,7 @@ const Welcome = ({ includeUnsubscribe }: WelcomeProps) => {
               align="left"
               cssClass="sm-hidden"
             >
-              More Demo Templates{'  '}
+              More Demo Templates{"  "}
               <span style={{ fontFamily: fontFamily.serif }}>&rarr;</span>
             </Button>
             <MjmlSpacer height={spacing.s3} cssClass="lg-hidden" />
@@ -86,7 +87,7 @@ const Welcome = ({ includeUnsubscribe }: WelcomeProps) => {
               align="right"
               cssClass="lg-hidden"
             >
-              More Demo Templates{'  '}
+              More Demo Templates{"  "}
               <span style={{ fontFamily: fontFamily.serif }}>&rarr;</span>
             </Button>
           </MjmlColumn>
@@ -109,7 +110,7 @@ const Welcome = ({ includeUnsubscribe }: WelcomeProps) => {
               backgroundColor={colors.blue}
               cssClass="sm-hidden"
             >
-              Check out the Docs{'  '}
+              Check out the Docs{"  "}
               <span style={{ fontFamily: fontFamily.serif }}>&rarr;</span>
             </Button>
             <MjmlSpacer height={spacing.s3} cssClass="lg-hidden" />
@@ -119,7 +120,7 @@ const Welcome = ({ includeUnsubscribe }: WelcomeProps) => {
               backgroundColor={colors.blue}
               cssClass="lg-hidden"
             >
-              Check out the Docs{'  '}
+              Check out the Docs{"  "}
               <span style={{ fontFamily: fontFamily.serif }}>&rarr;</span>
             </Button>
             <MjmlSpacer height={spacing.s9} />
@@ -130,5 +131,5 @@ const Welcome = ({ includeUnsubscribe }: WelcomeProps) => {
     </BaseLayout>
   )
 }
-Welcome.subject = 'Thank you for installing Mailing :)'
+Welcome.subject = "Thank you for installing Mailing :)"
 export default Welcome

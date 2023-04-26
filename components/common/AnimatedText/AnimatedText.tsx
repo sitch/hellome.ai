@@ -1,7 +1,8 @@
-import cn from 'clsx'
-import styles from './AnimatedText.module.css'
+import cn from "clsx"
 
-export type AnimatedTextTheme = 'space'
+import styles from "./AnimatedText.module.css"
+
+export type AnimatedTextTheme = "space"
 
 type AnimatedTextProps = {
   theme: AnimatedTextTheme
@@ -21,8 +22,8 @@ const AnimatedText = ({
     styles[theme],
     {
       transform: true,
-      'translate-y-0 opacity-100': !hide,
-      'translate-y-full opacity-0': hide,
+      "translate-y-0 opacity-100": !hide,
+      "translate-y-full opacity-0": hide,
     },
     className
   )

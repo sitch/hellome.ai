@@ -5,8 +5,8 @@ export default function Header() {
         <div className="flex items-center sm:justify-between sm:gap-4">
           <div className="relative hidden sm:block">
             <label className="sr-only" htmlFor="search">
-              {' '}
-              Search{' '}
+              {" "}
+              Search{" "}
             </label>
 
             <input

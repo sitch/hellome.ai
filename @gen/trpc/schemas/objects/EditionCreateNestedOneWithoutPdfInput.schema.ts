@@ -1,10 +1,9 @@
-import { z } from 'zod'
+import { EditionCreateOrConnectWithoutPdfInputObjectSchema } from './EditionCreateOrConnectWithoutPdfInput.schema'
 import { EditionCreateWithoutPdfInputObjectSchema } from './EditionCreateWithoutPdfInput.schema'
 import { EditionUncheckedCreateWithoutPdfInputObjectSchema } from './EditionUncheckedCreateWithoutPdfInput.schema'
-import { EditionCreateOrConnectWithoutPdfInputObjectSchema } from './EditionCreateOrConnectWithoutPdfInput.schema'
 import { EditionWhereUniqueInputObjectSchema } from './EditionWhereUniqueInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionCreateNestedOneWithoutPdfInput> = z
   .object({

@@ -1,7 +1,8 @@
-import Link, { LinkProps } from 'next/link'
-import { route } from 'nextjs-routes'
-import { ReactNode, useState } from 'react'
-import { DotTextureIcon, ZapIcon } from './icons'
+import { ReactNode, useState } from "react"
+import Link, { LinkProps } from "next/link"
+import { route } from "nextjs-routes"
+
+import { DotTextureIcon, ZapIcon } from "./icons"
 
 type AnsweredQuestionProps = {
   question: string
@@ -25,7 +26,7 @@ const AnsweredQuestion = ({ question, answer }: AnsweredQuestionProps) => {
           <svg
             viewBox="0 0 24 24"
             className={`w-3 text-gray-600 transition-transform duration-200 ${
-              isOpen ? 'rotate-180' : ''
+              isOpen ? "rotate-180" : ""
             }`}
           >
             <polyline
@@ -77,9 +78,9 @@ export const FAQ = ({
             <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
               <span className="relative inline-block">
                 <DotTextureIcon />
-                <span className="relative">{title.split(' ')[0]}</span>
-              </span>{' '}
-              {title.split(' ').slice(1).join(' ')}
+                <span className="relative">{title.split(" ")[0]}</span>
+              </span>{" "}
+              {title.split(" ").slice(1).join(" ")}
             </h2>
             <p className="text-base text-gray-700 md:text-lg">{description}</p>
 

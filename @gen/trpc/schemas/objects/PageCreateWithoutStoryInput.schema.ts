@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { PageTypeSchema } from '../enums/PageType.schema'
 import { PageArtworkCreateNestedManyWithoutPageInputObjectSchema } from './PageArtworkCreateNestedManyWithoutPageInput.schema'
 import { PageTextCreateNestedManyWithoutPageInputObjectSchema } from './PageTextCreateNestedManyWithoutPageInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageCreateWithoutStoryInput> = z
   .object({

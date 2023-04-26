@@ -41,8 +41,8 @@
 // Plugins
 // ***********************************************
 
-import '@frsource/cypress-plugin-visual-regression-diff/dist/support'
-import 'cypress-wait-until'
+import "@frsource/cypress-plugin-visual-regression-diff/dist/support"
+import "cypress-wait-until"
 
 // ***********************************************
 // User Commands
@@ -68,7 +68,7 @@ declare global {
   }
 }
 
-Cypress.Commands.add('getByData', (selector, options) => {
+Cypress.Commands.add("getByData", (selector, options) => {
   return cy.get(`[data-cy="${selector}"]`, options)
 })
 
@@ -81,20 +81,20 @@ declare global {
   }
 }
 
-Cypress.Commands.add('getCaptcha', () => {
+Cypress.Commands.add("getCaptcha", () => {
   // cy.get('iframe[src*=recaptcha]')
-  cy.get('iframe[title=reCAPTCHA]').its('0.contentDocument').should('exist')
+  cy.get("iframe[title=reCAPTCHA]").its("0.contentDocument").should("exist")
 })
 
-Cypress.Commands.add('solveCaptcha', () => {
-  cy.get('iframe[title=reCAPTCHA]')
+Cypress.Commands.add("solveCaptcha", () => {
+  cy.get("iframe[title=reCAPTCHA]")
     .first()
-    .its('0.contentDocument.body')
-    .should('not.be.undefined')
-    .and('not.be.empty')
+    .its("0.contentDocument.body")
+    .should("not.be.undefined")
+    .and("not.be.empty")
     .then(cy.wrap)
-    .find('#recaptcha-anchor')
-    .should('be.visible')
+    .find("#recaptcha-anchor")
+    .should("be.visible")
     .click()
 })
 
@@ -106,13 +106,13 @@ declare global {
   }
 }
 
-Cypress.Commands.add('waitForPageLoad', (page) => {
-  cy.waitForReact(4000, '#__next', 'node_modules/resq/dist/index.js')
+Cypress.Commands.add("waitForPageLoad", (page) => {
+  cy.waitForReact(4000, "#__next", "node_modules/resq/dist/index.js")
   // cy.waitUntil(() => cy.get('body').should('not.have.class', 'loading'))
-  cy.get('body').should('not.have.class', 'loading')
-  cy.get('#app-loading').should('not.exist')
+  cy.get("body").should("not.have.class", "loading")
+  cy.get("#app-loading").should("not.exist")
 
   if (page) {
-    cy.getByData(page).should('exist').should('be.visible')
+    cy.getByData(page).should("exist").should("be.visible")
   }
 })

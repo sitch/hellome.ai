@@ -69,10 +69,12 @@
 //   ],
 // })
 
-import { DefaultSeoProps, NextSeoProps } from 'next-seo'
-import { site, social } from '@/data/siteConfig'
-import { uniq } from 'lodash'
-import { Article } from './lib/mdx/types'
+import { uniq } from "lodash"
+import { DefaultSeoProps, NextSeoProps } from "next-seo"
+
+import { site, social } from "@/data/siteConfig"
+
+import { Article } from "./lib/mdx/types"
 
 const defaultSEOWebsiteProps: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name}`,
@@ -85,7 +87,7 @@ const defaultSEOWebsiteProps: DefaultSeoProps = {
     href: `${site.url}/${locale}`,
   })),
   openGraph: {
-    type: 'website',
+    type: "website",
     locale: site.i18n.defaultLocale,
     url: `${site.url}/${site.i18n.defaultLocale}`,
     title: site.title,
@@ -94,31 +96,31 @@ const defaultSEOWebsiteProps: DefaultSeoProps = {
     images: [
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_3200x1400.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 3200,
         height: 1400,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_1200x1200.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 1200,
         height: 1200,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_600x600.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 600,
         height: 600,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_1200x630.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 1200,
         height: 630,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_600x315.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 600,
         height: 315,
       },
@@ -131,7 +133,7 @@ const defaultSEOWebsiteProps: DefaultSeoProps = {
     handle: social.twitter.handle,
     // site: social.twitter.url,
     site: site.url,
-    cardType: 'summary_large_image',
+    cardType: "summary_large_image",
   },
   additionalMetaTags: [],
   additionalLinkTags: [],
@@ -180,7 +182,7 @@ export const castArticleSEOProps = ({
       href: `${site.url}/${locale}/blog/${slug}`,
     })),
     openGraph: {
-      type: 'article',
+      type: "article",
       locale,
       url,
       title,
@@ -237,7 +239,7 @@ const article = ({
   title: string
   description: string
 }) => ({
-  type: 'website',
+  type: "website",
   locale,
   url: url,
   title,

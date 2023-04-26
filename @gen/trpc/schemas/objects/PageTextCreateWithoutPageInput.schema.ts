@@ -1,12 +1,11 @@
-import { z } from 'zod'
-import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { LocaleSchema } from '../enums/Locale.schema'
+import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import { StoryCreateNestedOneWithoutPageTextsInputObjectSchema } from './StoryCreateNestedOneWithoutPageTextsInput.schema'
 import { AuthorCreateNestedOneWithoutPageTextsInputObjectSchema } from './AuthorCreateNestedOneWithoutPageTextsInput.schema'
+import { StoryCreateNestedOneWithoutPageTextsInputObjectSchema } from './StoryCreateNestedOneWithoutPageTextsInput.schema'
 import { TranslatorCreateNestedOneWithoutPageTextsInputObjectSchema } from './TranslatorCreateNestedOneWithoutPageTextsInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextCreateWithoutPageInput> = z
   .object({

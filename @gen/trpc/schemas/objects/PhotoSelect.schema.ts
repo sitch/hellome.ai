@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { CloudFileArgsObjectSchema } from './CloudFileArgs.schema'
-import { PageArtworkFindManySchema } from '../findManyPageArtwork.schema'
 import { ConceptFindManySchema } from '../findManyConcept.schema'
+import { PageArtworkFindManySchema } from '../findManyPageArtwork.schema'
+import { CloudFileArgsObjectSchema } from './CloudFileArgs.schema'
 import { PhotoCountOutputTypeArgsObjectSchema } from './PhotoCountOutputTypeArgs.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoSelect> = z
   .object({

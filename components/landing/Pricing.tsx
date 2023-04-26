@@ -1,7 +1,8 @@
-import Link from 'next/link'
-import { ReactNode } from 'react'
-import { useTranslation } from 'next-i18next'
-import { DotTextureIcon, FeatureCheckIcon } from './icons'
+import { ReactNode } from "react"
+import Link from "next/link"
+import { useTranslation } from "next-i18next"
+
+import { DotTextureIcon, FeatureCheckIcon } from "./icons"
 
 export type PricingHeaderProps = {
   title: string
@@ -15,9 +16,9 @@ function PricingHeader({ title, description }: PricingHeaderProps) {
         <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
           <span className="relative inline-block">
             <DotTextureIcon />
-            <span className="relative">{title.split(' ')[0]}</span>
-          </span>{' '}
-          {title.split(' ').slice(1).join(' ')}
+            <span className="relative">{title.split(" ")[0]}</span>
+          </span>{" "}
+          {title.split(" ").slice(1).join(" ")}
         </h2>
         <p className="text-base text-gray-700 md:text-lg">{description}</p>
       </div>
@@ -72,9 +73,9 @@ function PriceCard({ title, cost, features, action, period }: PriceCardProps) {
           disabled={action.disabled}
           className={
             action.disabled
-              ? 'bg-teal-accent-400 inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded px-6 font-semibold tracking-wide text-teal-900 shadow-md focus:outline-none'
+              ? "bg-teal-accent-400 inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded px-6 font-semibold tracking-wide text-teal-900 shadow-md focus:outline-none"
               : // : 'inline-flex h-12 w-full items-center justify-center rounded bg-teal-accent-400 px-6 font-semibold tracking-wide text-teal-900 shadow-md transition duration-200 hover:bg-teal-accent-700 focus:shadow-outline focus:outline-none'
-                'bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline inline-flex h-12 w-full items-center justify-center rounded px-6 font-medium tracking-wide text-white shadow-md transition duration-200 focus:outline-none'
+                "bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline inline-flex h-12 w-full items-center justify-center rounded px-6 font-medium tracking-wide text-white shadow-md transition duration-200 focus:outline-none"
           }
         >
           {action.label}
@@ -88,70 +89,70 @@ function PriceCard({ title, cost, features, action, period }: PriceCardProps) {
 }
 
 function PricingAssistance() {
-  const { t } = useTranslation('pricing')
+  const { t } = useTranslation("pricing")
   return (
     <div className="items-center justify-center text-center">
-      {t('assistance.label')}
+      {t("assistance.label")}
       <br />
       <Link
         href={{
-          pathname: '/pages/policies/[slug]',
-          query: { slug: 'pricing-assistance-policy' },
+          pathname: "/pages/policies/[slug]",
+          query: { slug: "pricing-assistance-policy" },
         }}
       >
-        {t('assistance.qualify')}
+        {t("assistance.qualify")}
       </Link>
     </div>
   )
 }
 
 export function Pricing() {
-  const { t } = useTranslation('pricing')
+  const { t } = useTranslation("pricing")
   return (
     <div className="relative h-full w-full">
       <div className="absolute hidden h-96 w-full bg-gray-50 lg:block" />
       <div className="relative mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
         <PricingHeader
-          title={t('header.title')}
-          description={t('header.description')}
+          title={t("header.title")}
+          description={t("header.description")}
         />
 
         <div className="grid max-w-screen-lg gap-10 sm:mx-auto lg:grid-cols-3">
           <PriceCard
-            title={t('plans.books.unit.one.title')}
-            cost={t('plans.books.unit.one.cost')}
-            period={t('plans.books.unit.one.period')}
-            features={t('plans.books.unit.one.features', {
+            title={t("plans.books.unit.one.title")}
+            cost={t("plans.books.unit.one.cost")}
+            period={t("plans.books.unit.one.period")}
+            features={t("plans.books.unit.one.features", {
               returnObjects: true,
             })}
-            action={t('plans.books.unit.one.action', {
+            action={t("plans.books.unit.one.action", {
               returnObjects: true,
             })}
           />
           <PriceCard
-            title={t('plans.books.subscriptions.developmental.monthly.title')}
-            cost={t('plans.books.subscriptions.developmental.monthly.cost')}
-            period={t('plans.books.subscriptions.developmental.monthly.period')}
+            title={t("plans.books.subscriptions.developmental.monthly.title")}
+            cost={t("plans.books.subscriptions.developmental.monthly.cost")}
+            period={t("plans.books.subscriptions.developmental.monthly.period")}
             features={t(
-              'plans.books.subscriptions.developmental.monthly.features',
+              "plans.books.subscriptions.developmental.monthly.features",
               { returnObjects: true }
             )}
             action={t(
-              'plans.books.subscriptions.developmental.monthly.action',
+              "plans.books.subscriptions.developmental.monthly.action",
               {
                 returnObjects: true,
               }
             )}
           />
           <PriceCard
-            title={t('plans.books.subscriptions.developmental.yearly.title')}
-            cost={t('plans.books.subscriptions.developmental.yearly.cost')}
-            period={t('plans.books.subscriptions.developmental.yearly.period')}
+            title={t("plans.books.subscriptions.developmental.yearly.title")}
+            cost={t("plans.books.subscriptions.developmental.yearly.cost")}
+            period={t("plans.books.subscriptions.developmental.yearly.period")}
             features={t(
-              'plans.books.subscriptions.developmental.yearly.features',
+              "plans.books.subscriptions.developmental.yearly.features",
               { returnObjects: true }
             )}
-            action={t('plans.books.subscriptions.developmental.yearly.action', {
+            action={t("plans.books.subscriptions.developmental.yearly.action", {
               returnObjects: true,
             })}
           />

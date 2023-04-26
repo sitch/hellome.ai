@@ -1,10 +1,10 @@
-import { z } from 'zod'
-import { PageArtworkSelectObjectSchema } from './objects/PageArtworkSelect.schema'
+import { PageArtworkScalarFieldEnumSchema } from './enums/PageArtworkScalarFieldEnum.schema'
 import { PageArtworkIncludeObjectSchema } from './objects/PageArtworkInclude.schema'
 import { PageArtworkOrderByWithRelationInputObjectSchema } from './objects/PageArtworkOrderByWithRelationInput.schema'
+import { PageArtworkSelectObjectSchema } from './objects/PageArtworkSelect.schema'
 import { PageArtworkWhereInputObjectSchema } from './objects/PageArtworkWhereInput.schema'
 import { PageArtworkWhereUniqueInputObjectSchema } from './objects/PageArtworkWhereUniqueInput.schema'
-import { PageArtworkScalarFieldEnumSchema } from './enums/PageArtworkScalarFieldEnum.schema'
+import { z } from 'zod'
 
 export const PageArtworkFindFirstSchema = z.object({
   select: PageArtworkSelectObjectSchema.optional(),

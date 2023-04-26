@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { PhotoSelectObjectSchema } from './objects/PhotoSelect.schema'
 import { PhotoIncludeObjectSchema } from './objects/PhotoInclude.schema'
-import { PhotoUpdateInputObjectSchema } from './objects/PhotoUpdateInput.schema'
+import { PhotoSelectObjectSchema } from './objects/PhotoSelect.schema'
 import { PhotoUncheckedUpdateInputObjectSchema } from './objects/PhotoUncheckedUpdateInput.schema'
+import { PhotoUpdateInputObjectSchema } from './objects/PhotoUpdateInput.schema'
 import { PhotoWhereUniqueInputObjectSchema } from './objects/PhotoWhereUniqueInput.schema'
+import { z } from 'zod'
 
 export const PhotoUpdateOneSchema = z.object({
   select: PhotoSelectObjectSchema.optional(),

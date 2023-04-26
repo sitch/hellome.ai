@@ -1,4 +1,4 @@
-import { SiteHeader } from '@/components/site-header'
+import { SiteHeader } from "@/components/site-header"
 
 type LayoutProps = {
   children: React.ReactNode

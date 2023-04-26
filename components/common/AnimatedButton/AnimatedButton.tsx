@@ -1,8 +1,11 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
 // import { Button, ButtonProps, Spinner } from 'flowbite-react'
-import styles from './AnimatedButton.module.css'
-import classNames from 'classnames'
-import Loader from '@/components/loader'
+
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
+import classNames from "classnames"
+
+import Loader from "@/components/loader"
+
+import styles from "./AnimatedButton.module.css"
 
 // function LoadingIcon() {
 //   return <Spinner color="info" aria-label="Button Loading" />
@@ -25,7 +28,7 @@ import Loader from '@/components/loader'
 export type AnimatedButtonProps = {
   wide?: boolean
   loading?: boolean
-  caret?: 'left' | 'right' | undefined
+  caret?: "left" | "right" | undefined
   children: ReactNode
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -68,20 +71,20 @@ export default function AnimatedButton({
       <button
         {...props}
         className={`${
-          wide ? 'w-full' : ''
+          wide ? "w-full" : ""
         } shadow-indigo group relative mb-1 mr-1 inline-flex animate-button items-center  justify-center rounded-lg bg-gradient-to-r  from-emerald-400 via-indigo-400 to-rose-400 p-0.5 text-sm font-medium text-gray-900 shadow-lg transition-all duration-75 ease-in hover:shadow-blue-700/50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800`}
       >
         <span
           className={`${
-            wide ? 'w-full' : ''
+            wide ? "w-full" : ""
           } relative rounded-md bg-white px-6 py-3 font-semibold transition-all duration-75  ease-in group-hover:bg-white/5 group-hover:text-white dark:bg-gray-900`}
         >
           {loading ? (
             <Loader />
           ) : (
             <>
-              {' '}
-              {caret == 'left' && (
+              {" "}
+              {caret == "left" && (
                 <svg
                   className="mr-2 inline h-2.5 w-2.5 rotate-180"
                   width="16"
@@ -98,7 +101,7 @@ export default function AnimatedButton({
                 </svg>
               )}
               {children}
-              {caret == 'right' && (
+              {caret == "right" && (
                 <svg
                   className="mr-2 inline h-2.5 w-2.5 "
                   width="16"

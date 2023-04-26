@@ -1,11 +1,11 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
-import { useEffect } from 'react'
+import { ParsedUrlQuery } from "querystring"
+import { useEffect } from "react"
+import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { useRouter } from "next/router"
 
 const redirects = {
-  'reddit-forum': 'https://www.reddit.com/r/HelloMe.ai/',
-  'join-discord': 'https://www.reddit.com/r/HelloMe.ai/',
+  "reddit-forum": "https://www.reddit.com/r/HelloMe.ai/",
+  "join-discord": "https://www.reddit.com/r/HelloMe.ai/",
 }
 type Slug = keyof typeof redirects
 type Destination = string

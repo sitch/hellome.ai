@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react'
-import Webcam from 'react-webcam'
-import { FaceMesh, ResultsListener } from '@mediapipe/face_mesh'
-import { Camera } from '@mediapipe/camera_utils'
+import React, { useEffect, useRef } from "react"
+import { Camera } from "@mediapipe/camera_utils"
+import { FaceMesh, ResultsListener } from "@mediapipe/face_mesh"
+import Webcam from "react-webcam"
 
 const FaceFilter = () => {
   const faceMeshRef = useRef<FaceMesh | null>(null)
@@ -16,7 +16,7 @@ const FaceFilter = () => {
     canvasRef.current!.width = videoWidth
     canvasRef.current!.height = videoHeight
     const canvasElement = canvasRef.current!
-    const canvasCtx = canvasElement.getContext('2d')
+    const canvasCtx = canvasElement.getContext("2d")
     canvasCtx!.clearRect(0, 0, canvasElement!.width, canvasElement!.height)
     canvasCtx!.drawImage(
       results.image,
@@ -67,17 +67,17 @@ const FaceFilter = () => {
     faceMesh.onResults(onResults)
 
     if (
-      typeof webcamRef.current! !== 'undefined' &&
+      typeof webcamRef.current! !== "undefined" &&
       webcamRef.current! !== null
     ) {
-      const maskFilterImage = document.createElement('img', {
+      const maskFilterImage = document.createElement("img", {
         ref: filterImgRef,
-        style: { objectFit: 'contain' },
+        style: { objectFit: "contain" },
       } as ElementCreationOptions)
       // maskFilterImage.objectFit = 'contain'
       maskFilterImage.onload = function () {
         filterImgRef.current = maskFilterImage
-        webcamRef.current!.video!.crossOrigin = 'anonymous'
+        webcamRef.current!.video!.crossOrigin = "anonymous"
 
         const camera = new Camera(webcamRef.current!.video!, {
           onFrame: async () => {
@@ -89,7 +89,7 @@ const FaceFilter = () => {
         })
         camera.start()
       }
-      maskFilterImage.src = 'images/mask.png'
+      maskFilterImage.src = "images/mask.png"
     }
   }, [])
 

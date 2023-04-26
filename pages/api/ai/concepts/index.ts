@@ -1,7 +1,8 @@
-import { NextResponse } from 'next/server'
-import Replicate from 'replicate'
-import packageData from '@/package.json'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next"
+import { NextResponse } from "next/server"
+import Replicate from "replicate"
+
+import packageData from "@/package.json"
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -25,7 +26,7 @@ export default async function handler(
 ) {
   if (!process.env.REPLICATE_API_TOKEN) {
     throw new Error(
-      'The REPLICATE_API_TOKEN environment variable is not set. See README.md for instructions on how to set it.'
+      "The REPLICATE_API_TOKEN environment variable is not set. See README.md for instructions on how to set it."
     )
   }
 
@@ -33,10 +34,10 @@ export default async function handler(
 
   // https://replicate.com/rossjillian/controlnet
   const prediction = await replicate.predictions.create({
-    version: 'd55b9f2dcfb156089686b8f767776d5b61b007187a4e1e611881818098100fbb',
+    version: "d55b9f2dcfb156089686b8f767776d5b61b007187a4e1e611881818098100fbb",
     input,
     webhook: `${WEBHOOK_HOST}/api/ai/concepts/replicate-webhook`,
-    webhook_events_filter: ['start', 'completed'],
+    webhook_events_filter: ["start", "completed"],
   })
 
   if (prediction.error) {
@@ -47,10 +48,10 @@ export default async function handler(
 }
 
 export const config = {
-  runtime: 'edge',
+  runtime: "edge",
   api: {
     bodyParser: {
-      sizeLimit: '10mb',
+      sizeLimit: "10mb",
     },
   },
 }

@@ -1,5 +1,6 @@
-import { DefaultSeo, DefaultSeoProps } from 'next-seo'
-import { site, social } from '@/data/siteConfig'
+import { DefaultSeo, DefaultSeoProps } from "next-seo"
+
+import { site, social } from "@/data/siteConfig"
 
 const defaults: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name}`,
@@ -12,7 +13,7 @@ const defaults: DefaultSeoProps = {
     href: `${site.url}/${locale}`,
   })),
   openGraph: {
-    type: 'website',
+    type: "website",
     locale: site.i18n.defaultLocale,
     url: `${site.url}/${site.i18n.defaultLocale}`,
     title: site.title,
@@ -21,31 +22,31 @@ const defaults: DefaultSeoProps = {
     images: [
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_3200x1400.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 3200,
         height: 1400,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_1200x1200.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 1200,
         height: 1200,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_600x600.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 600,
         height: 600,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_1200x630.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 1200,
         height: 630,
       },
       {
         url: `${site.url}/open-graph/${site.i18n.defaultLocale}/og_homepage_600x315.png`,
-        type: 'image/png',
+        type: "image/png",
         width: 600,
         height: 315,
       },
@@ -58,7 +59,7 @@ const defaults: DefaultSeoProps = {
     handle: social.twitter.handle,
     // site: social.twitter.url,
     site: site.url,
-    cardType: 'summary_large_image',
+    cardType: "summary_large_image",
   },
   additionalMetaTags: [],
   additionalLinkTags: [],

@@ -1,6 +1,7 @@
-import { FaceResult, Human } from '@vladmandic/human'
-import * as React from 'react'
-import { ManifoldVector } from '../manifolds'
+import * as React from "react"
+import { FaceResult, Human } from "@vladmandic/human"
+
+import { ManifoldVector } from "../manifolds"
 
 export type FaceClipProps = {
   human: Human | undefined

@@ -1,8 +1,7 @@
-import { z } from 'zod'
 import { QueryModeSchema } from '../enums/QueryMode.schema'
 import { NestedStringFilterObjectSchema } from './NestedStringFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StringFilter> = z
   .object({

@@ -1,13 +1,12 @@
-import { z } from 'zod'
+import { EditionCreateOrConnectWithoutPdfInputObjectSchema } from './EditionCreateOrConnectWithoutPdfInput.schema'
 import { EditionCreateWithoutPdfInputObjectSchema } from './EditionCreateWithoutPdfInput.schema'
 import { EditionUncheckedCreateWithoutPdfInputObjectSchema } from './EditionUncheckedCreateWithoutPdfInput.schema'
-import { EditionCreateOrConnectWithoutPdfInputObjectSchema } from './EditionCreateOrConnectWithoutPdfInput.schema'
+import { EditionUncheckedUpdateWithoutPdfInputObjectSchema } from './EditionUncheckedUpdateWithoutPdfInput.schema'
+import { EditionUpdateWithoutPdfInputObjectSchema } from './EditionUpdateWithoutPdfInput.schema'
 import { EditionUpsertWithoutPdfInputObjectSchema } from './EditionUpsertWithoutPdfInput.schema'
 import { EditionWhereUniqueInputObjectSchema } from './EditionWhereUniqueInput.schema'
-import { EditionUpdateWithoutPdfInputObjectSchema } from './EditionUpdateWithoutPdfInput.schema'
-import { EditionUncheckedUpdateWithoutPdfInputObjectSchema } from './EditionUncheckedUpdateWithoutPdfInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionUncheckedUpdateOneWithoutPdfNestedInput> =
   z

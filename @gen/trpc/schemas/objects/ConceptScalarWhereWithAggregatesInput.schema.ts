@@ -1,11 +1,10 @@
-import { z } from 'zod'
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
-import { EnumConceptTypeWithAggregatesFilterObjectSchema } from './EnumConceptTypeWithAggregatesFilter.schema'
 import { ConceptTypeSchema } from '../enums/ConceptType.schema'
-import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema'
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema'
-
+import { EnumConceptTypeWithAggregatesFilterObjectSchema } from './EnumConceptTypeWithAggregatesFilter.schema'
+import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema'
+import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ConceptScalarWhereWithAggregatesInput> = z
   .object({

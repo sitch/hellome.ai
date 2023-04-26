@@ -1,11 +1,10 @@
-import { z } from 'zod'
-import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
-import { PhotoUpdateWithoutConceptsInputObjectSchema } from './PhotoUpdateWithoutConceptsInput.schema'
-import { PhotoUncheckedUpdateWithoutConceptsInputObjectSchema } from './PhotoUncheckedUpdateWithoutConceptsInput.schema'
 import { PhotoCreateWithoutConceptsInputObjectSchema } from './PhotoCreateWithoutConceptsInput.schema'
 import { PhotoUncheckedCreateWithoutConceptsInputObjectSchema } from './PhotoUncheckedCreateWithoutConceptsInput.schema'
-
+import { PhotoUncheckedUpdateWithoutConceptsInputObjectSchema } from './PhotoUncheckedUpdateWithoutConceptsInput.schema'
+import { PhotoUpdateWithoutConceptsInputObjectSchema } from './PhotoUpdateWithoutConceptsInput.schema'
+import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoUpsertWithWhereUniqueWithoutConceptsInput> =
   z

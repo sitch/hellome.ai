@@ -1,8 +1,8 @@
-import { z } from 'zod'
-import { PageArtworkSelectObjectSchema } from './objects/PageArtworkSelect.schema'
-import { PageArtworkIncludeObjectSchema } from './objects/PageArtworkInclude.schema'
 import { PageArtworkCreateInputObjectSchema } from './objects/PageArtworkCreateInput.schema'
+import { PageArtworkIncludeObjectSchema } from './objects/PageArtworkInclude.schema'
+import { PageArtworkSelectObjectSchema } from './objects/PageArtworkSelect.schema'
 import { PageArtworkUncheckedCreateInputObjectSchema } from './objects/PageArtworkUncheckedCreateInput.schema'
+import { z } from 'zod'
 
 export const PageArtworkCreateOneSchema = z.object({
   select: PageArtworkSelectObjectSchema.optional(),

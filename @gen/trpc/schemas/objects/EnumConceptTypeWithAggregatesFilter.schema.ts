@@ -1,10 +1,9 @@
-import { z } from 'zod'
 import { ConceptTypeSchema } from '../enums/ConceptType.schema'
+import { NestedEnumConceptTypeFilterObjectSchema } from './NestedEnumConceptTypeFilter.schema'
 import { NestedEnumConceptTypeWithAggregatesFilterObjectSchema } from './NestedEnumConceptTypeWithAggregatesFilter.schema'
 import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import { NestedEnumConceptTypeFilterObjectSchema } from './NestedEnumConceptTypeFilter.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EnumConceptTypeWithAggregatesFilter> = z
   .object({

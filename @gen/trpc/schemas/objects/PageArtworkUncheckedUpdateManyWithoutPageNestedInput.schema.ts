@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { PageArtworkCreateWithoutPageInputObjectSchema } from './PageArtworkCreateWithoutPageInput.schema'
-import { PageArtworkUncheckedCreateWithoutPageInputObjectSchema } from './PageArtworkUncheckedCreateWithoutPageInput.schema'
-import { PageArtworkCreateOrConnectWithoutPageInputObjectSchema } from './PageArtworkCreateOrConnectWithoutPageInput.schema'
-import { PageArtworkUpsertWithWhereUniqueWithoutPageInputObjectSchema } from './PageArtworkUpsertWithWhereUniqueWithoutPageInput.schema'
 import { PageArtworkCreateManyPageInputEnvelopeObjectSchema } from './PageArtworkCreateManyPageInputEnvelope.schema'
-import { PageArtworkWhereUniqueInputObjectSchema } from './PageArtworkWhereUniqueInput.schema'
-import { PageArtworkUpdateWithWhereUniqueWithoutPageInputObjectSchema } from './PageArtworkUpdateWithWhereUniqueWithoutPageInput.schema'
-import { PageArtworkUpdateManyWithWhereWithoutPageInputObjectSchema } from './PageArtworkUpdateManyWithWhereWithoutPageInput.schema'
+import { PageArtworkCreateOrConnectWithoutPageInputObjectSchema } from './PageArtworkCreateOrConnectWithoutPageInput.schema'
+import { PageArtworkCreateWithoutPageInputObjectSchema } from './PageArtworkCreateWithoutPageInput.schema'
 import { PageArtworkScalarWhereInputObjectSchema } from './PageArtworkScalarWhereInput.schema'
-
+import { PageArtworkUncheckedCreateWithoutPageInputObjectSchema } from './PageArtworkUncheckedCreateWithoutPageInput.schema'
+import { PageArtworkUpdateManyWithWhereWithoutPageInputObjectSchema } from './PageArtworkUpdateManyWithWhereWithoutPageInput.schema'
+import { PageArtworkUpdateWithWhereUniqueWithoutPageInputObjectSchema } from './PageArtworkUpdateWithWhereUniqueWithoutPageInput.schema'
+import { PageArtworkUpsertWithWhereUniqueWithoutPageInputObjectSchema } from './PageArtworkUpsertWithWhereUniqueWithoutPageInput.schema'
+import { PageArtworkWhereUniqueInputObjectSchema } from './PageArtworkWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutPageNestedInput> =
   z

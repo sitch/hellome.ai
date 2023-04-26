@@ -1,14 +1,13 @@
-import { z } from 'zod'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { IntFilterObjectSchema } from './IntFilter.schema'
-import { StringNullableListFilterObjectSchema } from './StringNullableListFilter.schema'
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
 import { CloudFileRelationFilterObjectSchema } from './CloudFileRelationFilter.schema'
 import { CloudFileWhereInputObjectSchema } from './CloudFileWhereInput.schema'
-import { PageArtworkListRelationFilterObjectSchema } from './PageArtworkListRelationFilter.schema'
 import { ConceptListRelationFilterObjectSchema } from './ConceptListRelationFilter.schema'
-
+import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
+import { IntFilterObjectSchema } from './IntFilter.schema'
+import { PageArtworkListRelationFilterObjectSchema } from './PageArtworkListRelationFilter.schema'
+import { StringFilterObjectSchema } from './StringFilter.schema'
+import { StringNullableListFilterObjectSchema } from './StringNullableListFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoWhereInput> = z
   .object({

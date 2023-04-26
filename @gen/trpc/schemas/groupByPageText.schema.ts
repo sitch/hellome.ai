@@ -1,8 +1,8 @@
-import { z } from 'zod'
-import { PageTextWhereInputObjectSchema } from './objects/PageTextWhereInput.schema'
+import { PageTextScalarFieldEnumSchema } from './enums/PageTextScalarFieldEnum.schema'
 import { PageTextOrderByWithAggregationInputObjectSchema } from './objects/PageTextOrderByWithAggregationInput.schema'
 import { PageTextScalarWhereWithAggregatesInputObjectSchema } from './objects/PageTextScalarWhereWithAggregatesInput.schema'
-import { PageTextScalarFieldEnumSchema } from './enums/PageTextScalarFieldEnum.schema'
+import { PageTextWhereInputObjectSchema } from './objects/PageTextWhereInput.schema'
+import { z } from 'zod'
 
 export const PageTextGroupBySchema = z.object({
   where: PageTextWhereInputObjectSchema.optional(),

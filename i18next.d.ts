@@ -5,20 +5,19 @@
  *
  * @link https://www.i18next.com/overview/typescript
  */
-import 'i18next'
-
+import "i18next"
 // import all namespaces (for the default language, only)
-import common from '@/public/locales/en/common.json'
-import company from '@/public/locales/en/company.json'
-import faq from '@/public/locales/en/faq.json'
-import footer from '@/public/locales/en/footer.json'
-import landing from '@/public/locales/en/landing.json'
-import onboarding from '@/public/locales/en/onboarding.json'
-import pricing from '@/public/locales/en/pricing.json'
-import product from '@/public/locales/en/product.json'
-import concepts from '@/public/locales/en/concepts.json'
-import filepond from '@/public/locales/en/filepond.json'
-import zod from '@/public/locales/en/zod.json'
+import common from "@/public/locales/en/common.json"
+import company from "@/public/locales/en/company.json"
+import concepts from "@/public/locales/en/concepts.json"
+import faq from "@/public/locales/en/faq.json"
+import filepond from "@/public/locales/en/filepond.json"
+import footer from "@/public/locales/en/footer.json"
+import landing from "@/public/locales/en/landing.json"
+import onboarding from "@/public/locales/en/onboarding.json"
+import pricing from "@/public/locales/en/pricing.json"
+import product from "@/public/locales/en/product.json"
+import zod from "@/public/locales/en/zod.json"
 
 interface I18nNamespaces {
   common: typeof common
@@ -34,9 +33,9 @@ interface I18nNamespaces {
   zod: typeof zod
 }
 
-declare module 'i18next' {
+declare module "i18next" {
   interface CustomTypeOptions {
-    defaultNS: 'common'
+    defaultNS: "common"
     resources: I18nNamespaces
   }
 }

@@ -1,6 +1,7 @@
-import AnimatedButton from '@/components/common/AnimatedButton/AnimatedButton'
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image"
+import Link from "next/link"
+
+import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 
 export default function Custom404() {
   return (

@@ -1,7 +1,8 @@
-import { DefaultSeoProps, NextSeo } from 'next-seo'
-import { site } from '@/data/siteConfig'
-import { Author, LocaleCode } from '@/lib/mdx/types'
-import { OpenGraph } from 'next-seo/lib/types'
+import { DefaultSeoProps, NextSeo } from "next-seo"
+import { OpenGraph } from "next-seo/lib/types"
+
+import { Author, LocaleCode } from "@/lib/mdx/types"
+import { site } from "@/data/siteConfig"
 
 export const defaults: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name} Blog`,
@@ -32,7 +33,7 @@ const openGraphForAuthor = (author: Author): OpenGraph => {
   const url = urlForAuthor(author)
 
   return {
-    type: 'author',
+    type: "author",
     locale,
     url,
     title,

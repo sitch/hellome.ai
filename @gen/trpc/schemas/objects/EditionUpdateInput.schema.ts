@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { UserUpdateOneRequiredWithoutEditionNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutEditionNestedInput.schema'
 import { PDFUpdateOneRequiredWithoutEditionNestedInputObjectSchema } from './PDFUpdateOneRequiredWithoutEditionNestedInput.schema'
-
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
+import { UserUpdateOneRequiredWithoutEditionNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutEditionNestedInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.EditionUpdateInput> = z
   .object({

@@ -1,8 +1,8 @@
-import { z } from 'zod'
-import { PageArtworkWhereInputObjectSchema } from './objects/PageArtworkWhereInput.schema'
+import { PageArtworkScalarFieldEnumSchema } from './enums/PageArtworkScalarFieldEnum.schema'
 import { PageArtworkOrderByWithAggregationInputObjectSchema } from './objects/PageArtworkOrderByWithAggregationInput.schema'
 import { PageArtworkScalarWhereWithAggregatesInputObjectSchema } from './objects/PageArtworkScalarWhereWithAggregatesInput.schema'
-import { PageArtworkScalarFieldEnumSchema } from './enums/PageArtworkScalarFieldEnum.schema'
+import { PageArtworkWhereInputObjectSchema } from './objects/PageArtworkWhereInput.schema'
+import { z } from 'zod'
 
 export const PageArtworkGroupBySchema = z.object({
   where: PageArtworkWhereInputObjectSchema.optional(),

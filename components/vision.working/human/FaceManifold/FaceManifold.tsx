@@ -1,9 +1,9 @@
-import { FaceResult, Human } from '@vladmandic/human'
+import { FaceResult, Human } from "@vladmandic/human"
+import clsx from "clsx"
 
-import FaceClip from './FaceClip'
-import type { FaceAnalysis } from '../analysis'
-import clsx from 'clsx'
-import { ManifoldVector } from '../manifolds'
+import type { FaceAnalysis } from "../analysis"
+import { ManifoldVector } from "../manifolds"
+import FaceClip from "./FaceClip"
 
 const MIN_GRID_COLUMNS = 1
 const MAX_GRID_COLUMNS = 12
@@ -38,9 +38,9 @@ export function FaceManifold({ human, analysis, onError }: FaceManifoldProps) {
     <div
       className={clsx({
         grid: true,
-        'gap-4': true,
+        "gap-4": true,
         // 'w-3/5': true,
-        'grid-cols-7': true,
+        "grid-cols-7": true,
         // 'grid-cols-7': columns === 7,
         // [`grid-cols-${columns}`]: true,
       })}

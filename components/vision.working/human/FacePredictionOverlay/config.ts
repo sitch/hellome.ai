@@ -1,8 +1,8 @@
-import type { Config } from '@vladmandic/human'
+import type { Config } from "@vladmandic/human"
 
 export const config: Partial<Config> = {
   debug: false,
-  modelBasePath: 'https://cdn.jsdelivr.net/npm/@vladmandic/human/models',
+  modelBasePath: "https://cdn.jsdelivr.net/npm/@vladmandic/human/models",
   // face: { enabled: true },
   body: { enabled: false },
   hand: { enabled: true },
@@ -15,7 +15,7 @@ export const config: Partial<Config> = {
   // results: false,     // show results tree
   // useWebRTC: false,   // use webrtc as camera source instead of local webcam
 
-  backend: 'humangl',
+  backend: "humangl",
   // backend: 'webgpu',
 
   deallocate: true,

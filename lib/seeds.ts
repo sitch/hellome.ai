@@ -1,10 +1,10 @@
 const seeds = [
   {
-    prompt: 'the sun setting behind the mountains',
+    prompt: "the sun setting behind the mountains",
     paths: [
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -621,7 +621,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -830,7 +830,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -983,7 +983,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -1188,7 +1188,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -1361,7 +1361,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -1750,7 +1750,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -1859,7 +1859,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -1920,7 +1920,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -1981,7 +1981,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -2111,11 +2111,11 @@ const seeds = [
     ],
   },
   {
-    prompt: 'a photo of a cat',
+    prompt: "a photo of a cat",
     paths: [
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -3000,7 +3000,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -3273,7 +3273,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -4354,7 +4354,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -4443,7 +4443,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -4532,7 +4532,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -4605,7 +4605,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -4682,7 +4682,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -4739,7 +4739,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -4804,7 +4804,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -5053,7 +5053,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -5390,7 +5390,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -5751,7 +5751,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -5880,7 +5880,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -6125,7 +6125,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -6446,7 +6446,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -6611,7 +6611,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -6837,11 +6837,11 @@ const seeds = [
     ],
   },
   {
-    prompt: 'a goofy owl',
+    prompt: "a goofy owl",
     paths: [
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8266,7 +8266,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8375,7 +8375,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8464,7 +8464,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8525,7 +8525,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8578,7 +8578,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8631,7 +8631,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8760,7 +8760,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8805,7 +8805,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -8854,7 +8854,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -9119,7 +9119,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -9384,7 +9384,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -9673,7 +9673,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -10062,7 +10062,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -10195,7 +10195,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -10640,7 +10640,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {
@@ -10689,7 +10689,7 @@ const seeds = [
       },
       {
         drawMode: true,
-        strokeColor: 'black',
+        strokeColor: "black",
         strokeWidth: 4,
         paths: [
           {

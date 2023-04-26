@@ -1,14 +1,15 @@
-import type { FaceResult, Human, Result } from '@vladmandic/human'
-import { indexOf, isEqual } from 'lodash'
+import type { FaceResult, Human, Result } from "@vladmandic/human"
+import { indexOf, isEqual } from "lodash"
+
 import {
-  findNearestManifoldVector,
   ManifoldCoordinates,
   ManifoldVector,
   ManifoldVectorCandidate,
   UsableFaceResult,
-} from './manifolds'
-import { scoreFaceResult } from './metrics'
-import { isUsable } from './validations'
+  findNearestManifoldVector,
+} from "./manifolds"
+import { scoreFaceResult } from "./metrics"
+import { isUsable } from "./validations"
 
 export type FaceAnalysis = {
   coordinates: ManifoldCoordinates

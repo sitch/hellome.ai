@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
-import { PageTextUpdateWithoutPageInputObjectSchema } from './PageTextUpdateWithoutPageInput.schema'
 import { PageTextUncheckedUpdateWithoutPageInputObjectSchema } from './PageTextUncheckedUpdateWithoutPageInput.schema'
-
+import { PageTextUpdateWithoutPageInputObjectSchema } from './PageTextUpdateWithoutPageInput.schema'
+import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextUpdateWithWhereUniqueWithoutPageInput> =
   z

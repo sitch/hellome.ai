@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { PDFSelectObjectSchema } from './objects/PDFSelect.schema'
 import { PDFIncludeObjectSchema } from './objects/PDFInclude.schema'
-import { PDFUpdateInputObjectSchema } from './objects/PDFUpdateInput.schema'
+import { PDFSelectObjectSchema } from './objects/PDFSelect.schema'
 import { PDFUncheckedUpdateInputObjectSchema } from './objects/PDFUncheckedUpdateInput.schema'
+import { PDFUpdateInputObjectSchema } from './objects/PDFUpdateInput.schema'
 import { PDFWhereUniqueInputObjectSchema } from './objects/PDFWhereUniqueInput.schema'
+import { z } from 'zod'
 
 export const PDFUpdateOneSchema = z.object({
   select: PDFSelectObjectSchema.optional(),

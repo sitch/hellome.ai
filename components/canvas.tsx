@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from "react"
+import { Trash as TrashIcon, Undo as UndoIcon } from "lucide-react"
 import {
   CanvasPath,
   ReactSketchCanvas,
   ReactSketchCanvasRef,
-} from 'react-sketch-canvas'
-import { Undo as UndoIcon, Trash as TrashIcon } from 'lucide-react'
+} from "react-sketch-canvas"
 
 type Props = {
   startingPaths: CanvasPath[]
@@ -23,13 +23,13 @@ export default function Canvas({
 
   const onChange = useCallback(async () => {
     const paths = await canvasRef.current!.exportPaths()
-    localStorage.setItem('paths', JSON.stringify(paths, null, 2))
+    localStorage.setItem("paths", JSON.stringify(paths, null, 2))
 
     if (!paths.length) return
 
     setScribbleExists(true)
 
-    const data = await canvasRef.current!.exportImage('png')
+    const data = await canvasRef.current!.exportImage("png")
     onScribble(data)
   }, [onScribble, setScribbleExists])
 
@@ -43,8 +43,8 @@ export default function Canvas({
     // Hack to work around Firefox bug in react-sketch-canvas
     // https://github.com/vinothpandian/react-sketch-canvas/issues/54
     document
-      .querySelector('#react-sketch-canvas__stroke-group-0')
-      ?.removeAttribute('mask')
+      .querySelector("#react-sketch-canvas__stroke-group-0")
+      ?.removeAttribute("mask")
 
     loadStartingPaths()
   }, [loadStartingPaths])

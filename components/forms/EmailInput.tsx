@@ -1,11 +1,12 @@
-import classNames from 'classnames'
-import { useCallback, useRef } from 'react'
-import emailStyles from '@/components/forms/EmailInput.module.css'
+import { useCallback, useRef } from "react"
+import classNames from "classnames"
+
+import emailStyles from "@/components/forms/EmailInput.module.css"
 
 const regex = new RegExp(
   '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|' +
     '(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])' +
-    '|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+    "|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"
 )
 
 // document.querySelectorAll('.email-input').forEach(container => {
@@ -40,8 +41,8 @@ export default function EmailInput(props: EmailInputProps) {
     <>
       <div
         className={classNames({
-          [emailStyles['email-input']]: true,
-          'email-input': true,
+          [emailStyles["email-input"]]: true,
+          "email-input": true,
           // 'valid': regex.test(input.value),
           valid: true,
         })}

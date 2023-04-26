@@ -1,9 +1,11 @@
-import Link, { LinkProps } from 'next/link'
-import { useTranslation } from 'next-i18next'
-import { LogoIcon } from './icons'
-import pkg from '@/package.json'
-import { business, social } from '@/data/siteConfig'
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
+import Link, { LinkProps } from "next/link"
+import { useTranslation } from "next-i18next"
+
+import { business, social } from "@/data/siteConfig"
+import pkg from "@/package.json"
+
+import { LogoIcon } from "./icons"
 
 function SocialFooter() {
   const year = new Date().getFullYear()
@@ -91,13 +93,13 @@ function FooterSection({ title, links }: FooterSectionProps) {
 export const Footer = () =>
   // { description, sections }: FooterProps
   {
-    const { t, ready } = useTranslation('footer')
+    const { t, ready } = useTranslation("footer")
 
     if (!ready) {
       return null
     }
 
-    const sections = t('footer:sections', { returnObjects: true })
+    const sections = t("footer:sections", { returnObjects: true })
 
     return (
       <div className="mx-auto px-4 pt-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
@@ -115,7 +117,7 @@ export const Footer = () =>
               </span>
             </Link>
             <div className="mt-4 lg:max-w-sm">
-              <p className="text-sm text-gray-800">{t('footer:description')}</p>
+              <p className="text-sm text-gray-800">{t("footer:description")}</p>
               <p className="mt-4 text-sm text-gray-800">{`v${pkg.version}`}</p>
             </div>
           </div>

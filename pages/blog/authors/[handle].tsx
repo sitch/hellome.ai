@@ -1,19 +1,20 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { MDXRemote } from 'next-mdx-remote'
-import Layout from '@/components/mdx/Layout'
+import { ParsedUrlQuery } from "querystring"
+import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { MDXRemote } from "next-mdx-remote"
+
 import {
   MDXPageProps,
-  processMDXPage,
-  listEntries,
   listArticleSources,
-} from '@/lib/mdx'
-import AuthorPage from '@/components/mdx/blog/authors/AuthorPage'
-import { Author, AuthorSource, castAuthor } from '@/lib/mdx/types'
-import { ParsedUrlQuery } from 'querystring'
-import { DefaultAuthorSEO } from '@/components/seo/DefaultAuthorSEO'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+  listEntries,
+  processMDXPage,
+} from "@/lib/mdx"
+import { Author, AuthorSource, castAuthor } from "@/lib/mdx/types"
+import Layout from "@/components/mdx/Layout"
+import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"
+import { DefaultAuthorSEO } from "@/components/seo/DefaultAuthorSEO"
 // import { AuthorSEO } from '@/components/seo/AuthorSEO'
-import i18NextConfig from '@/next-i18next.config'
+import i18NextConfig from "@/next-i18next.config"
 
 type Props = MDXPageProps<AuthorSource> & {
   author: Author
@@ -36,7 +37,7 @@ const Page: NextPage<Props> = ({ source, author }: Props) => {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const entries = listEntries('blog/authors')
+  const entries = listEntries("blog/authors")
   const paths = entries.map((handle) => ({ params: { handle } }))
   return {
     paths,
@@ -49,11 +50,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const handle = params!.handle
-  const mdx = await processMDXPage<AuthorSource>('blog/authors', handle)
+  const mdx = await processMDXPage<AuthorSource>("blog/authors", handle)
   const articles = await listArticleSources()
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['authors', 'footer'])),
+      ...(await serverSideTranslations(locale, ["authors", "footer"])),
       ...mdx,
       author: castAuthor(
         { ...mdx.data, handle },

@@ -1,5 +1,5 @@
-import { z } from 'zod'
 import { AuthorCreateManyInputObjectSchema } from './objects/AuthorCreateManyInput.schema'
+import { z } from 'zod'
 
 export const AuthorCreateManySchema = z.object({
   data: z.union([

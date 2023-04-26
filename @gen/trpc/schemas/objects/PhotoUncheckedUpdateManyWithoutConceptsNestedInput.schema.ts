@@ -1,14 +1,13 @@
-import { z } from 'zod'
-import { PhotoCreateWithoutConceptsInputObjectSchema } from './PhotoCreateWithoutConceptsInput.schema'
-import { PhotoUncheckedCreateWithoutConceptsInputObjectSchema } from './PhotoUncheckedCreateWithoutConceptsInput.schema'
 import { PhotoCreateOrConnectWithoutConceptsInputObjectSchema } from './PhotoCreateOrConnectWithoutConceptsInput.schema'
+import { PhotoCreateWithoutConceptsInputObjectSchema } from './PhotoCreateWithoutConceptsInput.schema'
+import { PhotoScalarWhereInputObjectSchema } from './PhotoScalarWhereInput.schema'
+import { PhotoUncheckedCreateWithoutConceptsInputObjectSchema } from './PhotoUncheckedCreateWithoutConceptsInput.schema'
+import { PhotoUpdateManyWithWhereWithoutConceptsInputObjectSchema } from './PhotoUpdateManyWithWhereWithoutConceptsInput.schema'
+import { PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema } from './PhotoUpdateWithWhereUniqueWithoutConceptsInput.schema'
 import { PhotoUpsertWithWhereUniqueWithoutConceptsInputObjectSchema } from './PhotoUpsertWithWhereUniqueWithoutConceptsInput.schema'
 import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
-import { PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema } from './PhotoUpdateWithWhereUniqueWithoutConceptsInput.schema'
-import { PhotoUpdateManyWithWhereWithoutConceptsInputObjectSchema } from './PhotoUpdateManyWithWhereWithoutConceptsInput.schema'
-import { PhotoScalarWhereInputObjectSchema } from './PhotoScalarWhereInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoUncheckedUpdateManyWithoutConceptsNestedInput> =
   z

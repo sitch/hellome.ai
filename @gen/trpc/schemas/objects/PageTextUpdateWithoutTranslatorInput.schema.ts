@@ -1,17 +1,16 @@
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from './EnumPageStatusFieldUpdateOperationsInput.schema'
 import { LocaleSchema } from '../enums/Locale.schema'
-import { EnumLocaleFieldUpdateOperationsInputObjectSchema } from './EnumLocaleFieldUpdateOperationsInput.schema'
+import { PageStatusSchema } from '../enums/PageStatus.schema'
 import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import { EnumPageTextTypeFieldUpdateOperationsInputObjectSchema } from './EnumPageTextTypeFieldUpdateOperationsInput.schema'
+import { AuthorUpdateOneWithoutPageTextsNestedInputObjectSchema } from './AuthorUpdateOneWithoutPageTextsNestedInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
+import { EnumLocaleFieldUpdateOperationsInputObjectSchema } from './EnumLocaleFieldUpdateOperationsInput.schema'
+import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from './EnumPageStatusFieldUpdateOperationsInput.schema'
+import { EnumPageTextTypeFieldUpdateOperationsInputObjectSchema } from './EnumPageTextTypeFieldUpdateOperationsInput.schema'
 import { PageUpdateOneRequiredWithoutTextsNestedInputObjectSchema } from './PageUpdateOneRequiredWithoutTextsNestedInput.schema'
 import { StoryUpdateOneRequiredWithoutPageTextsNestedInputObjectSchema } from './StoryUpdateOneRequiredWithoutPageTextsNestedInput.schema'
-import { AuthorUpdateOneWithoutPageTextsNestedInputObjectSchema } from './AuthorUpdateOneWithoutPageTextsNestedInput.schema'
-
+import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextUpdateWithoutTranslatorInput> = z
   .object({

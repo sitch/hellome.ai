@@ -1,23 +1,22 @@
-import { globSync } from 'glob'
+import fs from "fs"
+import path from "path"
+import { globSync } from "glob"
+import matter from "gray-matter"
+import { castArray } from "lodash"
+import { MDXRemoteSerializeResult } from "next-mdx-remote/dist/types"
+import { serialize } from "next-mdx-remote/serialize"
 
-import fs from 'fs'
-import matter from 'gray-matter'
-import path from 'path'
-import { serialize } from 'next-mdx-remote/serialize'
-
-import { castArray } from 'lodash'
-import { MDXRemoteSerializeResult } from 'next-mdx-remote/dist/types'
+import { serializeOptions } from "./config"
 import {
   Article,
   ArticleSource,
   Author,
   AuthorSource,
-  castArticle,
-  castAuthor,
   Section,
   Slug,
-} from './types'
-import { serializeOptions } from './config'
+  castArticle,
+  castAuthor,
+} from "./types"
 
 export type MDXPageProps<T = {}> = {
   // content: MDXRemoteProps
@@ -33,7 +32,7 @@ export function sectionDir(section: Section) {
 }
 
 export function listEntries(section: Section) {
-  const ext = '.mdx'
+  const ext = ".mdx"
   const files = globSync(`${sectionDir(section)}/*${ext}`)
   return files.map((file) => path.basename(file, ext))
 }
@@ -58,7 +57,7 @@ export async function processMDXPage<T>(
   const filename = path.join(sectionDir(section), ...dirs, `${basename}.mdx`)
 
   // Read
-  const file = fs.readFileSync(filename, 'utf8')
+  const file = fs.readFileSync(filename, "utf8")
 
   // Parse
   const { content, data, excerpt } = matter(file)
@@ -76,7 +75,7 @@ export async function processMDXPage<T>(
 }
 
 export async function listAuthorSources(): Promise<AuthorSource[]> {
-  const section = 'blog/authors'
+  const section = "blog/authors"
   const handles = listEntries(section)
   const promises = handles.map(async (handle) => {
     const { data } = await processMDXPage<AuthorSource>(section, handle)
@@ -86,7 +85,7 @@ export async function listAuthorSources(): Promise<AuthorSource[]> {
 }
 
 export async function listArticleSources(): Promise<ArticleSource[]> {
-  const section = 'blog/articles'
+  const section = "blog/articles"
   const handles = listEntries(section)
   const promises = handles.map(async (handle) => {
     const { data } = await processMDXPage<ArticleSource>(section, handle)

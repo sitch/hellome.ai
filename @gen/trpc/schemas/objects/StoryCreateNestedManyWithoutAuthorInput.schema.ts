@@ -1,11 +1,10 @@
-import { z } from 'zod'
+import { StoryCreateManyAuthorInputEnvelopeObjectSchema } from './StoryCreateManyAuthorInputEnvelope.schema'
+import { StoryCreateOrConnectWithoutAuthorInputObjectSchema } from './StoryCreateOrConnectWithoutAuthorInput.schema'
 import { StoryCreateWithoutAuthorInputObjectSchema } from './StoryCreateWithoutAuthorInput.schema'
 import { StoryUncheckedCreateWithoutAuthorInputObjectSchema } from './StoryUncheckedCreateWithoutAuthorInput.schema'
-import { StoryCreateOrConnectWithoutAuthorInputObjectSchema } from './StoryCreateOrConnectWithoutAuthorInput.schema'
-import { StoryCreateManyAuthorInputEnvelopeObjectSchema } from './StoryCreateManyAuthorInputEnvelope.schema'
 import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StoryCreateNestedManyWithoutAuthorInput> = z
   .object({

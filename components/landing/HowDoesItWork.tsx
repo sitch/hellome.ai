@@ -1,9 +1,10 @@
-import Link from 'next/link'
-import { Book } from '@/components/books/Book/Book'
-import { ArrowRightIcon, DotTextureIcon } from './icons'
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
+import Link from "next/link"
 
-import bookCover from '@/public/static/images/sitchenko-infant-drawing-bw.png'
+import { Book } from "@/components/books/Book/Book"
+import bookCover from "@/public/static/images/sitchenko-infant-drawing-bw.png"
+
+import { ArrowRightIcon, DotTextureIcon } from "./icons"
 
 export type StepProps = {
   title: string
@@ -63,9 +64,9 @@ export const HowDoesItWork = ({
           <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
             <span className="relative inline-block">
               <DotTextureIcon />
-              <span className="relative">{title.split(' ')[0]}</span>
-            </span>{' '}
-            {title.split(' ').slice(1).join(' ')}
+              <span className="relative">{title.split(" ")[0]}</span>
+            </span>{" "}
+            {title.split(" ").slice(1).join(" ")}
           </h2>
           <p className="text-base text-gray-700 md:text-lg">{description}</p>
         </div>

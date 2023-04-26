@@ -1,9 +1,8 @@
-import { z } from 'zod'
 import { PageTextScalarWhereInputObjectSchema } from './PageTextScalarWhereInput.schema'
-import { PageTextUpdateManyMutationInputObjectSchema } from './PageTextUpdateManyMutationInput.schema'
 import { PageTextUncheckedUpdateManyWithoutTextsInputObjectSchema } from './PageTextUncheckedUpdateManyWithoutTextsInput.schema'
-
+import { PageTextUpdateManyMutationInputObjectSchema } from './PageTextUpdateManyMutationInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextUpdateManyWithWhereWithoutPageInput> = z
   .object({

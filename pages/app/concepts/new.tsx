@@ -1,8 +1,9 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import i18NextConfig from '@/next-i18next.config'
-import { I18nNamespaces } from '@/i18next.d'
-import { PageLayout } from '@/components/ui/Layout/Layout'
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+
+import { PageLayout } from "@/components/ui/Layout/Layout"
+import { I18nNamespaces } from "@/i18next.d"
+import i18NextConfig from "@/next-i18next.config"
 
 // import { useS3Upload } from 'next-s3-upload'
 
@@ -15,9 +16,9 @@ const ns: (keyof I18nNamespaces)[] = [
   // 'onboarding',
   // 'pricing',
   // 'product',
-  'concepts',
-  'zod',
-  'filepond',
+  "concepts",
+  "zod",
+  "filepond",
 ]
 
 type Props = {

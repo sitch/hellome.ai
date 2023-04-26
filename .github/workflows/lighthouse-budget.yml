@@ -5,7 +5,7 @@ on:
   #   branches:
   #     - main
   schedule:
-    - cron: '*/180 * * * *'
+    - cron: "*/180 * * * *"
   repository_dispatch:
     types: lighthouse
 
@@ -21,6 +21,6 @@ jobs:
             https://hellome.ai/
             https://hellome.ai/blog/
 
-          budgetPath: '.github/lighthouse/budget/budget.json'
+          budgetPath: ".github/lighthouse/budget/budget.json"
           uploadArtifacts: true
           temporaryPublicStorage: true

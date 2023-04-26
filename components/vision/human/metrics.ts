@@ -1,10 +1,11 @@
-import { FaceResult, Result } from '@vladmandic/human'
-import { distance } from 'ml-distance'
+import { FaceResult, Result } from "@vladmandic/human"
+import { distance } from "ml-distance"
+
 import type {
   ManifoldCoordinates,
   ManifoldVector,
   UsableFaceResult,
-} from './manifolds'
+} from "./manifolds"
 
 export function confidenceMetric(
   face: UsableFaceResult,

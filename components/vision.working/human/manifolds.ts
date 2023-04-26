@@ -1,12 +1,13 @@
-import type { FaceResult, Result } from '@vladmandic/human'
+import type { FaceResult, Result } from "@vladmandic/human"
+
 import {
   distanceMetric,
   withinConfidenceBounds,
   withinToleranceBounds,
-} from './metrics'
+} from "./metrics"
 
 export type UsableFaceResult = FaceResult & {
-  rotation: NonNullable<FaceResult['rotation']>
+  rotation: NonNullable<FaceResult["rotation"]>
 }
 
 export type Point2D<T = number> = {
@@ -29,7 +30,7 @@ export type ManifoldVector = {
   label: string
   index: Point2D
   origin: Point2D
-  tolerance: ManifoldCoordinates['tolerance']
+  tolerance: ManifoldCoordinates["tolerance"]
   candidate?: {
     result: Result
     face: FaceResult

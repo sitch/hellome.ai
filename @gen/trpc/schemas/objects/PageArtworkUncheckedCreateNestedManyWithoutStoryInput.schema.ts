@@ -1,11 +1,10 @@
-import { z } from 'zod'
+import { PageArtworkCreateManyStoryInputEnvelopeObjectSchema } from './PageArtworkCreateManyStoryInputEnvelope.schema'
+import { PageArtworkCreateOrConnectWithoutStoryInputObjectSchema } from './PageArtworkCreateOrConnectWithoutStoryInput.schema'
 import { PageArtworkCreateWithoutStoryInputObjectSchema } from './PageArtworkCreateWithoutStoryInput.schema'
 import { PageArtworkUncheckedCreateWithoutStoryInputObjectSchema } from './PageArtworkUncheckedCreateWithoutStoryInput.schema'
-import { PageArtworkCreateOrConnectWithoutStoryInputObjectSchema } from './PageArtworkCreateOrConnectWithoutStoryInput.schema'
-import { PageArtworkCreateManyStoryInputEnvelopeObjectSchema } from './PageArtworkCreateManyStoryInputEnvelope.schema'
 import { PageArtworkWhereUniqueInputObjectSchema } from './PageArtworkWhereUniqueInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageArtworkUncheckedCreateNestedManyWithoutStoryInput> =
   z

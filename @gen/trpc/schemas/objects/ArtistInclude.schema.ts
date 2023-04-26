@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { StoryFindManySchema } from '../findManyStory.schema'
 import { PageArtworkFindManySchema } from '../findManyPageArtwork.schema'
+import { StoryFindManySchema } from '../findManyStory.schema'
 import { ArtistCountOutputTypeArgsObjectSchema } from './ArtistCountOutputTypeArgs.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ArtistInclude> = z
   .object({

@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
-import { StoryUpdateWithoutArtistInputObjectSchema } from './StoryUpdateWithoutArtistInput.schema'
 import { StoryUncheckedUpdateWithoutArtistInputObjectSchema } from './StoryUncheckedUpdateWithoutArtistInput.schema'
-
+import { StoryUpdateWithoutArtistInputObjectSchema } from './StoryUpdateWithoutArtistInput.schema'
+import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.StoryUpdateWithWhereUniqueWithoutArtistInput> = z
   .object({

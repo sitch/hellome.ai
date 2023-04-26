@@ -1,12 +1,9 @@
-import Link from 'next/link'
-import { ReactNode } from 'react'
-import { ZapIcon } from './icons'
-import { useTranslation } from 'next-i18next'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ReactNode } from "react"
+import Link from "next/link"
 import {
   faFingerprint,
-  faHandshakeSimple,
   faHandsHoldingChild,
+  faHandshakeSimple,
   faHeart,
   faLock,
   faPalette,
@@ -17,7 +14,11 @@ import {
   faTruckFast,
   // faPen,
   // faUsersViewfinder,
-} from '@fortawesome/free-solid-svg-icons'
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useTranslation } from "next-i18next"
+
+import { ZapIcon } from "./icons"
 
 export type FeatureProps = {
   icon?: ReactNode
@@ -31,7 +32,7 @@ export type FeatureProps = {
 export const Feature = ({
   title,
   description,
-  action = { label: 'Learn More' },
+  action = { label: "Learn More" },
   icon = <ZapIcon />,
 }: FeatureProps) => (
   <div className="flex max-w-md flex-col sm:mx-auto sm:flex-row">
@@ -64,11 +65,11 @@ export type FeaturesProps = {
 export const Features = () =>
   // { features }: FeaturesProps
   {
-    const { t } = useTranslation('product')
+    const { t } = useTranslation("product")
 
     const features = [
       {
-        ...t('features.Feature1', { returnObjects: true }),
+        ...t("features.Feature1", { returnObjects: true }),
         icon: (
           <FontAwesomeIcon
             // size="lg"
@@ -77,7 +78,7 @@ export const Features = () =>
         ),
       },
       {
-        ...t('features.Feature2', { returnObjects: true }),
+        ...t("features.Feature2", { returnObjects: true }),
         icon: (
           <FontAwesomeIcon
             // size="lg"
@@ -86,7 +87,7 @@ export const Features = () =>
         ),
       },
       {
-        ...t('features.Feature3', { returnObjects: true }),
+        ...t("features.Feature3", { returnObjects: true }),
         icon: (
           <FontAwesomeIcon
             // size="lg"
@@ -95,7 +96,7 @@ export const Features = () =>
         ),
       },
       {
-        ...t('features.Feature4', { returnObjects: true }),
+        ...t("features.Feature4", { returnObjects: true }),
         icon: (
           <FontAwesomeIcon
             // size="lg"

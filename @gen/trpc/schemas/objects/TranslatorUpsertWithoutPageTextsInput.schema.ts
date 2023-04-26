@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { TranslatorUpdateWithoutPageTextsInputObjectSchema } from './TranslatorUpdateWithoutPageTextsInput.schema'
-import { TranslatorUncheckedUpdateWithoutPageTextsInputObjectSchema } from './TranslatorUncheckedUpdateWithoutPageTextsInput.schema'
 import { TranslatorCreateWithoutPageTextsInputObjectSchema } from './TranslatorCreateWithoutPageTextsInput.schema'
 import { TranslatorUncheckedCreateWithoutPageTextsInputObjectSchema } from './TranslatorUncheckedCreateWithoutPageTextsInput.schema'
-
+import { TranslatorUncheckedUpdateWithoutPageTextsInputObjectSchema } from './TranslatorUncheckedUpdateWithoutPageTextsInput.schema'
+import { TranslatorUpdateWithoutPageTextsInputObjectSchema } from './TranslatorUpdateWithoutPageTextsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.TranslatorUpsertWithoutPageTextsInput> = z
   .object({

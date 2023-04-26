@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { PhotoCreatetagsInputObjectSchema } from './PhotoCreatetagsInput.schema'
 import { ConceptUncheckedCreateNestedManyWithoutPhotosInputObjectSchema } from './ConceptUncheckedCreateNestedManyWithoutPhotosInput.schema'
-
+import { PhotoCreatetagsInputObjectSchema } from './PhotoCreatetagsInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PhotoUncheckedCreateWithoutPageArtworksInput> = z
   .object({

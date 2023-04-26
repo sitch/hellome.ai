@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
 import { PageTextCreateWithoutTranslatorInputObjectSchema } from './PageTextCreateWithoutTranslatorInput.schema'
 import { PageTextUncheckedCreateWithoutTranslatorInputObjectSchema } from './PageTextUncheckedCreateWithoutTranslatorInput.schema'
-
+import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextCreateOrConnectWithoutTranslatorInput> =
   z

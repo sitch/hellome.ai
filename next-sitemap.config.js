@@ -1,6 +1,6 @@
 // @ts-check
 
-const siteConfig = require('./data/siteConfig')
+const siteConfig = require("./data/siteConfig")
 
 /**
  * @type {import('next-sitemap').IConfig}
@@ -11,8 +11,8 @@ module.exports = {
   robotsTxtOptions: {
     policies: [
       {
-        userAgent: '*',
-        allow: '/',
+        userAgent: "*",
+        allow: "/",
       },
     ],
   },

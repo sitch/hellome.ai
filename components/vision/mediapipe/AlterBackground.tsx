@@ -1,11 +1,14 @@
-import React, { useRef, useEffect, useState } from 'react'
-import Webcam from 'react-webcam'
-import { SelfieSegmentation } from '@mediapipe/selfie_segmentation'
-import { Camera } from '@mediapipe/camera_utils'
-import * as StackBlur from 'stackblur-canvas'
-import { isIOS, isMacOs } from 'react-device-detect'
-import { getRecordingOptions } from './utils'
-import type { ResultsListener } from '@mediapipe/selfie_segmentation'
+import React, { useEffect, useRef, useState } from "react"
+import { Camera } from "@mediapipe/camera_utils"
+import {
+  SelfieSegmentation,
+  type ResultsListener,
+} from "@mediapipe/selfie_segmentation"
+import { isIOS, isMacOs } from "react-device-detect"
+import Webcam from "react-webcam"
+import * as StackBlur from "stackblur-canvas"
+
+import { getRecordingOptions } from "./utils"
 
 export const AlterBackground = () => {
   const selfieSegmentationRef = useRef<SelfieSegmentation | null>(null)
@@ -19,7 +22,7 @@ export const AlterBackground = () => {
   const backgroundImgRef = useRef<HTMLImageElement | null>(null)
   const [isRecording, setRecording] = useState<boolean>(false)
   const [recordedChunks, setRecordedChunks] = useState<BlobPart[]>([])
-  const [blobURL, setBlobURL] = useState('')
+  const [blobURL, setBlobURL] = useState("")
 
   const onResults: ResultsListener = (results) => {
     const videoWidth = webcamRef.current!.video!.videoWidth
@@ -28,12 +31,12 @@ export const AlterBackground = () => {
     canvasRef.current!.width = videoWidth
     canvasRef.current!.height = videoHeight
     const canvasElement = canvasRef.current! as HTMLCanvasElement
-    const canvasCtx = canvasElement.getContext('2d')
+    const canvasCtx = canvasElement.getContext("2d")
 
     canvasCtx!.save()
     canvasCtx!.clearRect(0, 0, canvasElement.width, canvasElement.height)
 
-    canvasCtx!.globalCompositeOperation = 'copy'
+    canvasCtx!.globalCompositeOperation = "copy"
     canvasCtx!.filter = `blur(3px)`
     canvasCtx!.drawImage(
       results.segmentationMask,
@@ -44,8 +47,8 @@ export const AlterBackground = () => {
     )
 
     canvasCtx!.globalCompositeOperation =
-      (isIOS || isMacOs) && !isVirtualBgRef.current ? 'source-out' : 'source-in'
-    canvasCtx!.filter = 'none'
+      (isIOS || isMacOs) && !isVirtualBgRef.current ? "source-out" : "source-in"
+    canvasCtx!.filter = "none"
     canvasCtx!.drawImage(
       results.image,
       0,
@@ -54,7 +57,7 @@ export const AlterBackground = () => {
       canvasElement.height
     )
 
-    canvasCtx!.globalCompositeOperation = 'destination-atop'
+    canvasCtx!.globalCompositeOperation = "destination-atop"
     if ((isIOS || isMacOs) && !isVirtualBgRef.current) {
       StackBlur.canvasRGB(
         canvasElement,
@@ -65,7 +68,7 @@ export const AlterBackground = () => {
         15
       )
     } else {
-      canvasCtx!.filter = isVirtualBgRef.current ? 'none' : 'blur(15px)'
+      canvasCtx!.filter = isVirtualBgRef.current ? "none" : "blur(15px)"
     }
     canvasCtx!.drawImage(
       isVirtualBgRef.current ? backgroundImgRef.current! : results.image,
@@ -93,17 +96,17 @@ export const AlterBackground = () => {
     selfieSegmentation.onResults(onResults)
 
     if (
-      typeof webcamRef.current !== 'undefined' &&
+      typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null
     ) {
-      const maskFilterImage = document.createElement('img', {
+      const maskFilterImage = document.createElement("img", {
         ref: backgroundImgRef,
-        style: { objectFit: 'contain' },
+        style: { objectFit: "contain" },
       } as ElementCreationOptions)
       // maskFilterImage.objectFit = 'contain'
       maskFilterImage.onload = function () {
         backgroundImgRef.current = maskFilterImage
-        webcamRef.current!.video!.crossOrigin = 'anonymous'
+        webcamRef.current!.video!.crossOrigin = "anonymous"
 
         const camera = new Camera(webcamRef.current!.video!, {
           onFrame: async () => {
@@ -117,7 +120,7 @@ export const AlterBackground = () => {
         })
         camera.start()
       }
-      maskFilterImage.src = 'images/lab.png'
+      maskFilterImage.src = "images/lab.png"
     }
   }, [])
 
@@ -183,10 +186,10 @@ export const AlterBackground = () => {
     e
   ) => {
     switch (e.target.value) {
-      case 'blur':
+      case "blur":
         setVirtualBg(false)
         break
-      case 'virtual':
+      case "virtual":
         setVirtualBg(true)
         break
       default:
@@ -214,7 +217,7 @@ export const AlterBackground = () => {
       options as MediaRecorderOptions
     )
     mediaRecorderRef.current!.addEventListener(
-      'dataavailable',
+      "dataavailable",
       handleDataAvailable
     )
     mediaRecorderRef.current!.start()
@@ -226,11 +229,11 @@ export const AlterBackground = () => {
   }
 
   const stopStreaming = () => {
-    if (mediaRecorderRef.current?.state === 'recording') {
-      const portal = document.getElementById('fk-dialog')
+    if (mediaRecorderRef.current?.state === "recording") {
+      const portal = document.getElementById("fk-dialog")
       if (portal) {
-        portal.style.top = '99px'
-        portal.style.bottom = 'unset'
+        portal.style.top = "99px"
+        portal.style.bottom = "unset"
       }
       stopRecording()
     }
@@ -238,7 +241,7 @@ export const AlterBackground = () => {
     stopCanvasStream()
 
     mediaRecorderRef.current!.removeEventListener(
-      'dataavailable',
+      "dataavailable",
       handleDataAvailable
     )
   }
@@ -286,20 +289,20 @@ export const AlterBackground = () => {
           <button
             onClick={isRecording ? handleStopRecording : handleStartRecording}
           >
-            {isRecording ? 'Stop' : 'Start'} Recording
+            {isRecording ? "Stop" : "Start"} Recording
           </button>
         ) : (
           <video
             src={blobURL}
             controls
-            style={{ position: 'unset', transform: 'unset' }}
+            style={{ position: "unset", transform: "unset" }}
           />
         )}
       </div>
       <Webcam
         ref={webcamRef}
         videoConstraints={{
-          facingMode: 'user',
+          facingMode: "user",
         }}
       />
       <canvas ref={canvasRef} className="output_canvas"></canvas>

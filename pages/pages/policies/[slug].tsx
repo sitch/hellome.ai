@@ -1,15 +1,15 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { MDXRemote } from 'next-mdx-remote'
-import Layout from '@/components/mdx/Layout'
-import { MDXPageProps, processMDXPage, listEntries } from '@/lib/mdx'
-import { site } from '@/data/siteConfig'
-import { NextSeo } from 'next-seo'
-import { castArticleSEOProps } from '@/next-seo.config'
-import { Data } from '@/lib/mdx'
-import { ParsedUrlQuery } from 'querystring'
-import { Heading, Typography } from '@/components/mdx/ui'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import i18NextConfig from '@/next-i18next.config'
+import { ParsedUrlQuery } from "querystring"
+import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { MDXRemote } from "next-mdx-remote"
+import { NextSeo } from "next-seo"
+
+import { Data, MDXPageProps, listEntries, processMDXPage } from "@/lib/mdx"
+import Layout from "@/components/mdx/Layout"
+import { Heading, Typography } from "@/components/mdx/ui"
+import { site } from "@/data/siteConfig"
+import i18NextConfig from "@/next-i18next.config"
+import { castArticleSEOProps } from "@/next-seo.config"
 
 type Props = MDXPageProps<Data> & {
   slug: string
@@ -44,7 +44,7 @@ const Page: NextPage<Props> = ({ source, data }: Props) => {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const entries = listEntries('policies')
+  const entries = listEntries("policies")
   const paths = entries.map((slug) => ({ params: { slug } }))
   return {
     paths,
@@ -57,10 +57,10 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const slug = params!.slug
-  const mdx = await processMDXPage<Data>('policies', slug)
+  const mdx = await processMDXPage<Data>("policies", slug)
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['footer'])),
+      ...(await serverSideTranslations(locale, ["footer"])),
       slug,
       ...mdx,
     },

@@ -1,6 +1,7 @@
-import { LinkProps } from 'next/link'
-import { site } from '@/data/siteConfig'
-import { Locale, Query, Route, StaticRoute } from 'nextjs-routes'
+import { LinkProps } from "next/link"
+import { Locale, Query, Route, StaticRoute } from "nextjs-routes"
+
+import { site } from "@/data/siteConfig"
 
 export type Slug = string
 export type Handle = string
@@ -26,11 +27,11 @@ export type SocialMedia = {
 
 // export type MDXType = 'article' | 'author' | 'policy'
 export type Section =
-  | 'blog/articles'
-  | 'blog/authors'
-  | 'company'
-  | 'customer'
-  | 'policies'
+  | "blog/articles"
+  | "blog/authors"
+  | "company"
+  | "customer"
+  | "policies"
 
 export type AuthorSource = {
   handle: string
@@ -45,7 +46,7 @@ export type AuthorSource = {
 }
 
 export type Author = AuthorSource & {
-  route: Exclude<LinkProps['href'], Query | StaticRoute<'blog/authors'>>
+  route: Exclude<LinkProps["href"], Query | StaticRoute<"blog/authors">>
   articles?: Article[]
   social?: SocialMedia
   // category: string
@@ -71,11 +72,11 @@ export const castAuthor = (
   return {
     ...author,
     name,
-    firstName: nameParts.slice(0).join(''),
-    lastName: nameParts.length >= 2 ? nameParts.slice(-1).join('') : '',
+    firstName: nameParts.slice(0).join(""),
+    lastName: nameParts.length >= 2 ? nameParts.slice(-1).join("") : "",
     url: `/blog/authors/${author.handle}`,
     route: {
-      pathname: '/blog/authors/[handle]',
+      pathname: "/blog/authors/[handle]",
       query: { handle: author.handle },
     },
     ...(articles
@@ -98,7 +99,7 @@ export type ArticleSource = {
 }
 
 export type Article = ArticleSource & {
-  route: Exclude<LinkProps['href'], Query | StaticRoute<'blog/articles'>>
+  route: Exclude<LinkProps["href"], Query | StaticRoute<"blog/articles">>
   category: string
   locale?: LocaleCode
   locales?: LocaleCode[]
@@ -120,10 +121,10 @@ export const castArticle = (
     draft: article.draft ?? false,
     url: `/blog/articles/${article.slug}`,
     route: {
-      pathname: '/blog/articles/[slug]',
+      pathname: "/blog/articles/[slug]",
       query: { slug: article.slug },
     },
-    category: 'AI & Technology',
+    category: "AI & Technology",
     ...(authors
       ? { author: authors.map((author) => castAuthor(author))[0] }
       : {}),

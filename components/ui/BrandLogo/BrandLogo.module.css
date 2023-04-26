@@ -2,17 +2,17 @@
 /* @import url('/fonts/Humanist522.woff'); */
 
 @font-face {
-  font-family: 'Humanist 522';
-  src: url('/fonts/Humanist522.woff') format('woff');
+  font-family: "Humanist 522";
+  src: url("/fonts/Humanist522.woff") format("woff");
 }
 
 .brandNameHelloPart {
-  font-family: 'Humanist 522', Arial, Helvetica, sans-serif;
+  font-family: "Humanist 522", Arial, Helvetica, sans-serif;
   @apply pr-3 tracking-tight;
 }
 
 .brandNameMePart {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   /* text-stroke: 0.07rem rgba(0, 0, 0, 0.711);
   -webkit-text-stroke: 0.07rem rgba(0, 0, 0, 0.711); */
 }

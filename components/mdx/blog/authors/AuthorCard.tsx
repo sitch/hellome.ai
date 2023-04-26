@@ -1,7 +1,8 @@
-import Link from 'next/link'
-import { Author } from '@/lib/mdx/types'
-import * as Media from '@/components/mdx/ui/Media'
-import { FacebookIcon, TwitterIcon } from '@/components/landing/icons'
+import Link from "next/link"
+
+import { Author } from "@/lib/mdx/types"
+import { FacebookIcon, TwitterIcon } from "@/components/landing/icons"
+import * as Media from "@/components/mdx/ui/Media"
 
 type AuthorCardProps = {
   author: Author

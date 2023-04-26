@@ -1,14 +1,14 @@
-import React from 'react'
-import cx from 'classnames'
-import { MjmlButton } from 'mjml-react'
+import React from "react"
+import cx from "classnames"
+import { MjmlButton } from "mjml-react"
 
 import {
+  borderRadius,
   colors,
   fontSize,
-  borderRadius,
-  lineHeight,
   fontWeight,
-} from '../theme'
+  lineHeight,
+} from "../theme"
 
 type ButtonProps = React.ComponentProps<typeof MjmlButton>
 
@@ -24,7 +24,7 @@ export default function Button(props: ButtonProps) {
         backgroundColor={colors.blue}
         color={colors.black}
         borderRadius={borderRadius.base}
-        cssClass={cx('button', props.cssClass)}
+        cssClass={cx("button", props.cssClass)}
         {...props}
       />
     </>

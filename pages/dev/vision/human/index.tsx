@@ -1,8 +1,11 @@
-import Head from 'next/head'
-import InitWebcam from '@/components/vision/InitWebcam'
-import FacePredictionOverlay from '@/components/vision/human/FacePredictionOverlay/FacePredictionOverlay'
-import styles from './index.module.css'
-import { useRef } from 'react'
+import { useRef } from "react"
+import Head from "next/head"
+
+import InitWebcam from "@/components/vision/InitWebcam"
+import FacePredictionOverlay from "@/components/vision/human/FacePredictionOverlay/FacePredictionOverlay"
+
+import styles from "./index.module.css"
+
 // import { Layout } from '@/components/common'
 
 export default function Index() {

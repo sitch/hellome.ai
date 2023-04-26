@@ -1,10 +1,9 @@
-import { z } from 'zod'
-import { ArtistUpdateWithoutStoriesInputObjectSchema } from './ArtistUpdateWithoutStoriesInput.schema'
-import { ArtistUncheckedUpdateWithoutStoriesInputObjectSchema } from './ArtistUncheckedUpdateWithoutStoriesInput.schema'
 import { ArtistCreateWithoutStoriesInputObjectSchema } from './ArtistCreateWithoutStoriesInput.schema'
 import { ArtistUncheckedCreateWithoutStoriesInputObjectSchema } from './ArtistUncheckedCreateWithoutStoriesInput.schema'
-
+import { ArtistUncheckedUpdateWithoutStoriesInputObjectSchema } from './ArtistUncheckedUpdateWithoutStoriesInput.schema'
+import { ArtistUpdateWithoutStoriesInputObjectSchema } from './ArtistUpdateWithoutStoriesInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.ArtistUpsertWithoutStoriesInput> = z
   .object({

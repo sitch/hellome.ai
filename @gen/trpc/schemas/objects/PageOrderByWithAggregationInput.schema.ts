@@ -1,12 +1,11 @@
-import { z } from 'zod'
 import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { PageCountOrderByAggregateInputObjectSchema } from './PageCountOrderByAggregateInput.schema'
 import { PageAvgOrderByAggregateInputObjectSchema } from './PageAvgOrderByAggregateInput.schema'
+import { PageCountOrderByAggregateInputObjectSchema } from './PageCountOrderByAggregateInput.schema'
 import { PageMaxOrderByAggregateInputObjectSchema } from './PageMaxOrderByAggregateInput.schema'
 import { PageMinOrderByAggregateInputObjectSchema } from './PageMinOrderByAggregateInput.schema'
 import { PageSumOrderByAggregateInputObjectSchema } from './PageSumOrderByAggregateInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageOrderByWithAggregationInput> = z
   .object({

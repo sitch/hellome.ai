@@ -1,12 +1,11 @@
-import { z } from 'zod'
 import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { PDFCountOrderByAggregateInputObjectSchema } from './PDFCountOrderByAggregateInput.schema'
 import { PDFAvgOrderByAggregateInputObjectSchema } from './PDFAvgOrderByAggregateInput.schema'
+import { PDFCountOrderByAggregateInputObjectSchema } from './PDFCountOrderByAggregateInput.schema'
 import { PDFMaxOrderByAggregateInputObjectSchema } from './PDFMaxOrderByAggregateInput.schema'
 import { PDFMinOrderByAggregateInputObjectSchema } from './PDFMinOrderByAggregateInput.schema'
 import { PDFSumOrderByAggregateInputObjectSchema } from './PDFSumOrderByAggregateInput.schema'
-
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PDFOrderByWithAggregationInput> = z
   .object({

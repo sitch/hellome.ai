@@ -21,8 +21,8 @@
 //   )
 // }
 
-import { useState } from 'react'
-import { usePresignedUpload } from 'next-s3-upload'
+import { useState } from "react"
+import { usePresignedUpload } from "next-s3-upload"
 
 export default function UploadComponent() {
   const [imageUrl, setImageUrl] = useState<string>()

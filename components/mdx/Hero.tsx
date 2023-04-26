@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
 
-import * as Heading from '@/components/mdx/ui/Heading'
-import * as Lists from '@/components/mdx/ui/Lists'
-import * as Media from '@/components/mdx/ui/Media'
-import * as Typography from '@/components/mdx/ui/Typography'
+import * as Heading from "@/components/mdx/ui/Heading"
+import * as Lists from "@/components/mdx/ui/Lists"
+import * as Media from "@/components/mdx/ui/Media"
+import * as Typography from "@/components/mdx/ui/Typography"
 
 export type HeroProps = {
   title: string

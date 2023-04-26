@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component } from "react"
 
 type InitWebcamProps = {
   elementId: string
@@ -22,7 +22,7 @@ class InitWebcam extends Component<InitWebcamProps, InitWebcamState> {
       ready: false,
     }
 
-    if (typeof document === 'undefined') {
+    if (typeof document === "undefined") {
       return
     }
 
@@ -30,15 +30,15 @@ class InitWebcam extends Component<InitWebcamProps, InitWebcamState> {
     this.video =
       (document.getElementById(this.props.elementId) as
         | HTMLVideoElement
-        | undefined) ?? document.createElement('video')
-    this.video.style.display = 'none'
+        | undefined) ?? document.createElement("video")
+    this.video.style.display = "none"
     this.video.id = this.props.elementId
 
     // media
     this.constraints = {
       audio: false,
       video: {
-        facingMode: 'user',
+        facingMode: "user",
         width: { ideal: document.body.clientWidth },
       },
     }
@@ -60,7 +60,7 @@ class InitWebcam extends Component<InitWebcamProps, InitWebcamState> {
   override render(this: InitWebcam) {
     if (this.state.ready)
       console.log(
-        'video:',
+        "video:",
         this.video!.videoWidth,
         this.video!.videoHeight,
         this.track!.label,

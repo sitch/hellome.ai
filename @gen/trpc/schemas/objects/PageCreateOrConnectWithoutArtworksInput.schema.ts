@@ -1,9 +1,8 @@
-import { z } from 'zod'
-import { PageWhereUniqueInputObjectSchema } from './PageWhereUniqueInput.schema'
 import { PageCreateWithoutArtworksInputObjectSchema } from './PageCreateWithoutArtworksInput.schema'
 import { PageUncheckedCreateWithoutArtworksInputObjectSchema } from './PageUncheckedCreateWithoutArtworksInput.schema'
-
+import { PageWhereUniqueInputObjectSchema } from './PageWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageCreateOrConnectWithoutArtworksInput> = z
   .object({

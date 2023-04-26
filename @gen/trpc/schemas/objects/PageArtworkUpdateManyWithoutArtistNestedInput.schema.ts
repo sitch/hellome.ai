@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { PageArtworkCreateWithoutArtistInputObjectSchema } from './PageArtworkCreateWithoutArtistInput.schema'
-import { PageArtworkUncheckedCreateWithoutArtistInputObjectSchema } from './PageArtworkUncheckedCreateWithoutArtistInput.schema'
-import { PageArtworkCreateOrConnectWithoutArtistInputObjectSchema } from './PageArtworkCreateOrConnectWithoutArtistInput.schema'
-import { PageArtworkUpsertWithWhereUniqueWithoutArtistInputObjectSchema } from './PageArtworkUpsertWithWhereUniqueWithoutArtistInput.schema'
 import { PageArtworkCreateManyArtistInputEnvelopeObjectSchema } from './PageArtworkCreateManyArtistInputEnvelope.schema'
-import { PageArtworkWhereUniqueInputObjectSchema } from './PageArtworkWhereUniqueInput.schema'
-import { PageArtworkUpdateWithWhereUniqueWithoutArtistInputObjectSchema } from './PageArtworkUpdateWithWhereUniqueWithoutArtistInput.schema'
-import { PageArtworkUpdateManyWithWhereWithoutArtistInputObjectSchema } from './PageArtworkUpdateManyWithWhereWithoutArtistInput.schema'
+import { PageArtworkCreateOrConnectWithoutArtistInputObjectSchema } from './PageArtworkCreateOrConnectWithoutArtistInput.schema'
+import { PageArtworkCreateWithoutArtistInputObjectSchema } from './PageArtworkCreateWithoutArtistInput.schema'
 import { PageArtworkScalarWhereInputObjectSchema } from './PageArtworkScalarWhereInput.schema'
-
+import { PageArtworkUncheckedCreateWithoutArtistInputObjectSchema } from './PageArtworkUncheckedCreateWithoutArtistInput.schema'
+import { PageArtworkUpdateManyWithWhereWithoutArtistInputObjectSchema } from './PageArtworkUpdateManyWithWhereWithoutArtistInput.schema'
+import { PageArtworkUpdateWithWhereUniqueWithoutArtistInputObjectSchema } from './PageArtworkUpdateWithWhereUniqueWithoutArtistInput.schema'
+import { PageArtworkUpsertWithWhereUniqueWithoutArtistInputObjectSchema } from './PageArtworkUpsertWithWhereUniqueWithoutArtistInput.schema'
+import { PageArtworkWhereUniqueInputObjectSchema } from './PageArtworkWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageArtworkUpdateManyWithoutArtistNestedInput> =
   z

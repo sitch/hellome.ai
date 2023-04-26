@@ -1,10 +1,10 @@
-import { z } from 'zod'
-import { PageSelectObjectSchema } from './objects/PageSelect.schema'
+import { PageScalarFieldEnumSchema } from './enums/PageScalarFieldEnum.schema'
 import { PageIncludeObjectSchema } from './objects/PageInclude.schema'
 import { PageOrderByWithRelationInputObjectSchema } from './objects/PageOrderByWithRelationInput.schema'
+import { PageSelectObjectSchema } from './objects/PageSelect.schema'
 import { PageWhereInputObjectSchema } from './objects/PageWhereInput.schema'
 import { PageWhereUniqueInputObjectSchema } from './objects/PageWhereUniqueInput.schema'
-import { PageScalarFieldEnumSchema } from './enums/PageScalarFieldEnum.schema'
+import { z } from 'zod'
 
 export const PageFindManySchema = z.object({
   select: z.lazy(() => PageSelectObjectSchema.optional()),

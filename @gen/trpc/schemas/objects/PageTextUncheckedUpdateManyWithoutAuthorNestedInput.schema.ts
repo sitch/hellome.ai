@@ -1,15 +1,14 @@
-import { z } from 'zod'
-import { PageTextCreateWithoutAuthorInputObjectSchema } from './PageTextCreateWithoutAuthorInput.schema'
-import { PageTextUncheckedCreateWithoutAuthorInputObjectSchema } from './PageTextUncheckedCreateWithoutAuthorInput.schema'
-import { PageTextCreateOrConnectWithoutAuthorInputObjectSchema } from './PageTextCreateOrConnectWithoutAuthorInput.schema'
-import { PageTextUpsertWithWhereUniqueWithoutAuthorInputObjectSchema } from './PageTextUpsertWithWhereUniqueWithoutAuthorInput.schema'
 import { PageTextCreateManyAuthorInputEnvelopeObjectSchema } from './PageTextCreateManyAuthorInputEnvelope.schema'
-import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
-import { PageTextUpdateWithWhereUniqueWithoutAuthorInputObjectSchema } from './PageTextUpdateWithWhereUniqueWithoutAuthorInput.schema'
-import { PageTextUpdateManyWithWhereWithoutAuthorInputObjectSchema } from './PageTextUpdateManyWithWhereWithoutAuthorInput.schema'
+import { PageTextCreateOrConnectWithoutAuthorInputObjectSchema } from './PageTextCreateOrConnectWithoutAuthorInput.schema'
+import { PageTextCreateWithoutAuthorInputObjectSchema } from './PageTextCreateWithoutAuthorInput.schema'
 import { PageTextScalarWhereInputObjectSchema } from './PageTextScalarWhereInput.schema'
-
+import { PageTextUncheckedCreateWithoutAuthorInputObjectSchema } from './PageTextUncheckedCreateWithoutAuthorInput.schema'
+import { PageTextUpdateManyWithWhereWithoutAuthorInputObjectSchema } from './PageTextUpdateManyWithWhereWithoutAuthorInput.schema'
+import { PageTextUpdateWithWhereUniqueWithoutAuthorInputObjectSchema } from './PageTextUpdateWithWhereUniqueWithoutAuthorInput.schema'
+import { PageTextUpsertWithWhereUniqueWithoutAuthorInputObjectSchema } from './PageTextUpsertWithWhereUniqueWithoutAuthorInput.schema'
+import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutAuthorNestedInput> =
   z

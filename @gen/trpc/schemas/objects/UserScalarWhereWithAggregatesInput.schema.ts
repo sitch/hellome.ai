@@ -1,8 +1,7 @@
-import { z } from 'zod'
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
 import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema'
-
+import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
 import type { Prisma } from '@prisma/client'
+import { z } from 'zod'
 
 const Schema: z.ZodType<Prisma.UserScalarWhereWithAggregatesInput> = z
   .object({

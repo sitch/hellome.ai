@@ -1,9 +1,10 @@
-import { distance } from 'ml-distance'
+import { distance } from "ml-distance"
+
 import type {
   ManifoldCoordinates,
   ManifoldVector,
   UsableFaceResult,
-} from './manifolds'
+} from "./manifolds"
 
 export function confidenceMetric(
   face: UsableFaceResult,

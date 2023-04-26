@@ -1,7 +1,9 @@
-import { Author } from '@/lib/mdx/types'
-import { ReactNode } from 'react'
-import * as Media from '@/components/mdx/ui/Media'
-import { ArticleListItem } from '../articles/ArticleListItem'
+import { ReactNode } from "react"
+
+import { Author } from "@/lib/mdx/types"
+import * as Media from "@/components/mdx/ui/Media"
+
+import { ArticleListItem } from "../articles/ArticleListItem"
 
 type AuthorPageProps = {
   author: Author
