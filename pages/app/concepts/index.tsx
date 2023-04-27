@@ -1,15 +1,15 @@
 import { FormEventHandler, useState } from "react"
 import Head from "next/head"
 import Script from "next/script"
-import Canvas from "components/canvas"
-import Predictions from "components/concepts"
-import Error from "components/error"
-import PromptForm from "components/prompt-form"
-import seeds from "lib/seeds"
-import sleep from "lib/sleep"
-import uploadFile from "lib/upload"
 import naughtyWords from "naughty-words"
 
+import seeds from "@/lib/replicate/seeds"
+import sleep from "@/lib/replicate/sleep"
+import uploadFile from "@/lib/replicate/upload"
+import Canvas from "@/components/canvas"
+import Predictions from "@/components/concepts"
+import Error from "@/components/error"
+import PromptForm from "@/components/prompt-form"
 import pkg from "@/package.json"
 
 const HOST = process.env.VERCEL_URL

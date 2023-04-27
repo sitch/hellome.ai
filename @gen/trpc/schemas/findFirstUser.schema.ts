@@ -1,10 +1,11 @@
-import { UserScalarFieldEnumSchema } from './enums/UserScalarFieldEnum.schema'
-import { UserIncludeObjectSchema } from './objects/UserInclude.schema'
-import { UserOrderByWithRelationInputObjectSchema } from './objects/UserOrderByWithRelationInput.schema'
-import { UserSelectObjectSchema } from './objects/UserSelect.schema'
-import { UserWhereInputObjectSchema } from './objects/UserWhereInput.schema'
-import { UserWhereUniqueInputObjectSchema } from './objects/UserWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { UserScalarFieldEnumSchema } from "./enums/UserScalarFieldEnum.schema"
+import { UserIncludeObjectSchema } from "./objects/UserInclude.schema"
+import { UserOrderByWithRelationInputObjectSchema } from "./objects/UserOrderByWithRelationInput.schema"
+import { UserSelectObjectSchema } from "./objects/UserSelect.schema"
+import { UserWhereInputObjectSchema } from "./objects/UserWhereInput.schema"
+import { UserWhereUniqueInputObjectSchema } from "./objects/UserWhereUniqueInput.schema"
 
 export const UserFindFirstSchema = z.object({
   select: UserSelectObjectSchema.optional(),

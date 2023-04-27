@@ -1,6 +1,7 @@
-import { TranslatorCountOutputTypeSelectObjectSchema } from './TranslatorCountOutputTypeSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { TranslatorCountOutputTypeSelectObjectSchema } from "./TranslatorCountOutputTypeSelect.schema"
 
 const Schema: z.ZodType<Prisma.TranslatorCountOutputTypeArgs> = z
   .object({

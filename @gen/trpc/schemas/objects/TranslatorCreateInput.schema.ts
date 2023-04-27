@@ -1,6 +1,7 @@
-import { PageTextCreateNestedManyWithoutTranslatorInputObjectSchema } from './PageTextCreateNestedManyWithoutTranslatorInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextCreateNestedManyWithoutTranslatorInputObjectSchema } from "./PageTextCreateNestedManyWithoutTranslatorInput.schema"
 
 const Schema: z.ZodType<Prisma.TranslatorCreateInput> = z
   .object({

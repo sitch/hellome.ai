@@ -1,9 +1,10 @@
-import { EditionCreateWithoutPdfInputObjectSchema } from './EditionCreateWithoutPdfInput.schema'
-import { EditionUncheckedCreateWithoutPdfInputObjectSchema } from './EditionUncheckedCreateWithoutPdfInput.schema'
-import { EditionUncheckedUpdateWithoutPdfInputObjectSchema } from './EditionUncheckedUpdateWithoutPdfInput.schema'
-import { EditionUpdateWithoutPdfInputObjectSchema } from './EditionUpdateWithoutPdfInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { EditionCreateWithoutPdfInputObjectSchema } from "./EditionCreateWithoutPdfInput.schema"
+import { EditionUncheckedCreateWithoutPdfInputObjectSchema } from "./EditionUncheckedCreateWithoutPdfInput.schema"
+import { EditionUncheckedUpdateWithoutPdfInputObjectSchema } from "./EditionUncheckedUpdateWithoutPdfInput.schema"
+import { EditionUpdateWithoutPdfInputObjectSchema } from "./EditionUpdateWithoutPdfInput.schema"
 
 const Schema: z.ZodType<Prisma.EditionUpsertWithoutPdfInput> = z
   .object({

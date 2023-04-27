@@ -1,3 +1,3 @@
-import { z } from 'zod'
+import { z } from "zod"
 
-export const FilePrivacySchema = z.enum(['public', 'private'])
+export const FilePrivacySchema = z.enum(["public", "private"])

@@ -1,8 +1,9 @@
-import { PageTextFindManySchema } from '../findManyPageText.schema'
-import { StoryFindManySchema } from '../findManyStory.schema'
-import { AuthorCountOutputTypeArgsObjectSchema } from './AuthorCountOutputTypeArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextFindManySchema } from "../findManyPageText.schema"
+import { StoryFindManySchema } from "../findManyStory.schema"
+import { AuthorCountOutputTypeArgsObjectSchema } from "./AuthorCountOutputTypeArgs.schema"
 
 const Schema: z.ZodType<Prisma.AuthorSelect> = z
   .object({

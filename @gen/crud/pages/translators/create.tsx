@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function TranslatorCreate() {
   const [formState, setFormState] = useState({})
@@ -7,13 +7,13 @@ export default function TranslatorCreate() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/translators', {
-      method: 'POST',
+    fetch("/api/translators", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Translator created!')
-        router.push('/translators')
+        alert("Translator created!")
+        router.push("/translators")
       }
     })
   }

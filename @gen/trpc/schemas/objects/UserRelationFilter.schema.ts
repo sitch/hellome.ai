@@ -1,6 +1,7 @@
-import { UserWhereInputObjectSchema } from './UserWhereInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { UserWhereInputObjectSchema } from "./UserWhereInput.schema"
 
 const Schema: z.ZodType<Prisma.UserRelationFilter> = z
   .object({

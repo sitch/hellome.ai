@@ -3,8 +3,8 @@ import { MemoryInfo } from "@tensorflow/tfjs-core"
 import Human, { Result } from "@vladmandic/human"
 import { useMount } from "react-use"
 
-import useRequestAnimationFrame from "@/lib/hooks/useRequestAnimationFrame"
 import { detectLoop, drawLoop } from "@/lib/human/callbacks"
+import useRequestAnimationFrame from "@/lib/human/useRequestAnimationFrame"
 import { disposeResult } from "@/lib/human/utils"
 
 import FaceImporterInstructions from "../FaceImporterInstructions/FaceImporterInstructions"

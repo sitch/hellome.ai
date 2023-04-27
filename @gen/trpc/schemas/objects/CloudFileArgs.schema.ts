@@ -1,7 +1,8 @@
-import { CloudFileIncludeObjectSchema } from './CloudFileInclude.schema'
-import { CloudFileSelectObjectSchema } from './CloudFileSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { CloudFileIncludeObjectSchema } from "./CloudFileInclude.schema"
+import { CloudFileSelectObjectSchema } from "./CloudFileSelect.schema"
 
 const Schema: z.ZodType<Prisma.CloudFileArgs> = z
   .object({

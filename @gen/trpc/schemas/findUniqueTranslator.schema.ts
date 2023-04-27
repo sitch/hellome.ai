@@ -1,7 +1,8 @@
-import { TranslatorIncludeObjectSchema } from './objects/TranslatorInclude.schema'
-import { TranslatorSelectObjectSchema } from './objects/TranslatorSelect.schema'
-import { TranslatorWhereUniqueInputObjectSchema } from './objects/TranslatorWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { TranslatorIncludeObjectSchema } from "./objects/TranslatorInclude.schema"
+import { TranslatorSelectObjectSchema } from "./objects/TranslatorSelect.schema"
+import { TranslatorWhereUniqueInputObjectSchema } from "./objects/TranslatorWhereUniqueInput.schema"
 
 export const TranslatorFindUniqueSchema = z.object({
   select: TranslatorSelectObjectSchema.optional(),

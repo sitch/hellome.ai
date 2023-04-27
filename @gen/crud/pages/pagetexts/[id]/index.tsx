@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { PageText } from '@prisma/client'
+import React from "react"
+import { PageText } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface PageTextShowProps {
   pagetext: PageText

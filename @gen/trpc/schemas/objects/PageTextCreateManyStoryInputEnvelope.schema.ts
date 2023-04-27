@@ -1,6 +1,7 @@
-import { PageTextCreateManyStoryInputObjectSchema } from './PageTextCreateManyStoryInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextCreateManyStoryInputObjectSchema } from "./PageTextCreateManyStoryInput.schema"
 
 const Schema: z.ZodType<Prisma.PageTextCreateManyStoryInputEnvelope> = z
   .object({

@@ -1,6 +1,7 @@
-import { EditionCreateManyUserInputObjectSchema } from './EditionCreateManyUserInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { EditionCreateManyUserInputObjectSchema } from "./EditionCreateManyUserInput.schema"
 
 const Schema: z.ZodType<Prisma.EditionCreateManyUserInputEnvelope> = z
   .object({

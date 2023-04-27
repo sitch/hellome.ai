@@ -4,17 +4,17 @@
 } */
 
 .filepond--hopper {
-  /* background-color: #999; */
-  height: 600px;
   border: 3px solid pink;
   background: yellow;
+  /* background-color: #999; */
+  height: 600px;
 }
 
 .filepond--drip {
-  /* background-color: #999; */
-  height: 600px;
   border: 3px solid pink;
   background: yellow;
+  /* background-color: #999; */
+  height: 600px;
 }
 
 .filepond--image-preview-overlay-success {
@@ -39,8 +39,8 @@
 
 /* the text color of the drop label*/
 .filepond--drop-label {
-  color: #555;
   background-color: #3d369773;
+  color: #555;
 }
 
 /* underline color for "Browse" button */

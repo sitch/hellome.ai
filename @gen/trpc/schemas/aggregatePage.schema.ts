@@ -1,12 +1,13 @@
-import { PageAvgAggregateInputObjectSchema } from './objects/PageAvgAggregateInput.schema'
-import { PageCountAggregateInputObjectSchema } from './objects/PageCountAggregateInput.schema'
-import { PageMaxAggregateInputObjectSchema } from './objects/PageMaxAggregateInput.schema'
-import { PageMinAggregateInputObjectSchema } from './objects/PageMinAggregateInput.schema'
-import { PageOrderByWithRelationInputObjectSchema } from './objects/PageOrderByWithRelationInput.schema'
-import { PageSumAggregateInputObjectSchema } from './objects/PageSumAggregateInput.schema'
-import { PageWhereInputObjectSchema } from './objects/PageWhereInput.schema'
-import { PageWhereUniqueInputObjectSchema } from './objects/PageWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PageAvgAggregateInputObjectSchema } from "./objects/PageAvgAggregateInput.schema"
+import { PageCountAggregateInputObjectSchema } from "./objects/PageCountAggregateInput.schema"
+import { PageMaxAggregateInputObjectSchema } from "./objects/PageMaxAggregateInput.schema"
+import { PageMinAggregateInputObjectSchema } from "./objects/PageMinAggregateInput.schema"
+import { PageOrderByWithRelationInputObjectSchema } from "./objects/PageOrderByWithRelationInput.schema"
+import { PageSumAggregateInputObjectSchema } from "./objects/PageSumAggregateInput.schema"
+import { PageWhereInputObjectSchema } from "./objects/PageWhereInput.schema"
+import { PageWhereUniqueInputObjectSchema } from "./objects/PageWhereUniqueInput.schema"
 
 export const PageAggregateSchema = z.object({
   orderBy: z

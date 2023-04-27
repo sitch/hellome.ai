@@ -1,10 +1,11 @@
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { ArtistCreateNestedOneWithoutPageArtworksInputObjectSchema } from './ArtistCreateNestedOneWithoutPageArtworksInput.schema'
-import { PageCreateNestedOneWithoutArtworksInputObjectSchema } from './PageCreateNestedOneWithoutArtworksInput.schema'
-import { PhotoCreateNestedOneWithoutPageArtworksInputObjectSchema } from './PhotoCreateNestedOneWithoutPageArtworksInput.schema'
-import { StoryCreateNestedOneWithoutPageArtworksInputObjectSchema } from './StoryCreateNestedOneWithoutPageArtworksInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageStatusSchema } from "../enums/PageStatus.schema"
+import { ArtistCreateNestedOneWithoutPageArtworksInputObjectSchema } from "./ArtistCreateNestedOneWithoutPageArtworksInput.schema"
+import { PageCreateNestedOneWithoutArtworksInputObjectSchema } from "./PageCreateNestedOneWithoutArtworksInput.schema"
+import { PhotoCreateNestedOneWithoutPageArtworksInputObjectSchema } from "./PhotoCreateNestedOneWithoutPageArtworksInput.schema"
+import { StoryCreateNestedOneWithoutPageArtworksInputObjectSchema } from "./StoryCreateNestedOneWithoutPageArtworksInput.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkCreateInput> = z
   .object({

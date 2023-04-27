@@ -1,6 +1,7 @@
-import { StoryUncheckedCreateNestedManyWithoutArtistInputObjectSchema } from './StoryUncheckedCreateNestedManyWithoutArtistInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { StoryUncheckedCreateNestedManyWithoutArtistInputObjectSchema } from "./StoryUncheckedCreateNestedManyWithoutArtistInput.schema"
 
 const Schema: z.ZodType<Prisma.ArtistUncheckedCreateWithoutPageArtworksInput> =
   z

@@ -1,5 +1,6 @@
-import { PhotoCreateManyInputObjectSchema } from './objects/PhotoCreateManyInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PhotoCreateManyInputObjectSchema } from "./objects/PhotoCreateManyInput.schema"
 
 export const PhotoCreateManySchema = z.object({
   data: z.union([

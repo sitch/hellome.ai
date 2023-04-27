@@ -26,7 +26,7 @@ const Page: NextPage<Props> = ({ source, data }: Props) => {
     <Layout>
       {/* <NextSeo {...castArticleSEOProps(article)} /> */}
 
-      <div className="prose format m-auto max-w-prose p-8">
+      <div className="format prose m-auto max-w-prose p-8">
         <div className="relative mx-auto max-w-[37.5rem] pb-24 pt-20 text-center">
           <Heading.H1>{data.title}</Heading.H1>
 

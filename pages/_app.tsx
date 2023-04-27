@@ -1,10 +1,16 @@
 // Base
-import "@/styles/global/main.css"
-import "@/styles/global/chrome-bug.css"
-import "@/styles/global/dark-mode.css"
+// import "@/styles/global/main.css"
+// import "@/styles/global/chrome-bug.css"
+// import "@/styles/global/dark-mode.css"
+// import "@/styles/global/filepond.css"
+
+// NEW
+import "@/styles/globals.css"
 import "@/styles/global/filepond.css"
-// import "@fontsource/inter";
-// import "@fontsource/maven-pro"
+import "@/styles/global/chrome-bug.css"
+import "@/styles/global/filepond.css"
+//
+//
 
 // Icons
 import "@fortawesome/fontawesome-svg-core/styles.css"

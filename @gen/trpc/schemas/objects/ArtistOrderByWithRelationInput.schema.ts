@@ -1,8 +1,9 @@
-import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { PageArtworkOrderByRelationAggregateInputObjectSchema } from './PageArtworkOrderByRelationAggregateInput.schema'
-import { StoryOrderByRelationAggregateInputObjectSchema } from './StoryOrderByRelationAggregateInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { SortOrderSchema } from "../enums/SortOrder.schema"
+import { PageArtworkOrderByRelationAggregateInputObjectSchema } from "./PageArtworkOrderByRelationAggregateInput.schema"
+import { StoryOrderByRelationAggregateInputObjectSchema } from "./StoryOrderByRelationAggregateInput.schema"
 
 const Schema: z.ZodType<Prisma.ArtistOrderByWithRelationInput> = z
   .object({

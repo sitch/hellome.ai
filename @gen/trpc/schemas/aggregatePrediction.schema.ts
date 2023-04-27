@@ -1,10 +1,11 @@
-import { PredictionCountAggregateInputObjectSchema } from './objects/PredictionCountAggregateInput.schema'
-import { PredictionMaxAggregateInputObjectSchema } from './objects/PredictionMaxAggregateInput.schema'
-import { PredictionMinAggregateInputObjectSchema } from './objects/PredictionMinAggregateInput.schema'
-import { PredictionOrderByWithRelationInputObjectSchema } from './objects/PredictionOrderByWithRelationInput.schema'
-import { PredictionWhereInputObjectSchema } from './objects/PredictionWhereInput.schema'
-import { PredictionWhereUniqueInputObjectSchema } from './objects/PredictionWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PredictionCountAggregateInputObjectSchema } from "./objects/PredictionCountAggregateInput.schema"
+import { PredictionMaxAggregateInputObjectSchema } from "./objects/PredictionMaxAggregateInput.schema"
+import { PredictionMinAggregateInputObjectSchema } from "./objects/PredictionMinAggregateInput.schema"
+import { PredictionOrderByWithRelationInputObjectSchema } from "./objects/PredictionOrderByWithRelationInput.schema"
+import { PredictionWhereInputObjectSchema } from "./objects/PredictionWhereInput.schema"
+import { PredictionWhereUniqueInputObjectSchema } from "./objects/PredictionWhereUniqueInput.schema"
 
 export const PredictionAggregateSchema = z.object({
   orderBy: z

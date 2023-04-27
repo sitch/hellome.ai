@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PageArtworkEdit({ pageartwork }) {
   const [formState, setFormState] = useState(pageartwork)
@@ -8,11 +8,11 @@ export default function PageArtworkEdit({ pageartwork }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/pageartworks/${pageartwork.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('PageArtwork updated!')
+        alert("PageArtwork updated!")
         router.push(`/pageartworks/${pageartwork.id}`)
       }
     })

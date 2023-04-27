@@ -1,12 +1,13 @@
-import { PDFAvgAggregateInputObjectSchema } from './objects/PDFAvgAggregateInput.schema'
-import { PDFCountAggregateInputObjectSchema } from './objects/PDFCountAggregateInput.schema'
-import { PDFMaxAggregateInputObjectSchema } from './objects/PDFMaxAggregateInput.schema'
-import { PDFMinAggregateInputObjectSchema } from './objects/PDFMinAggregateInput.schema'
-import { PDFOrderByWithRelationInputObjectSchema } from './objects/PDFOrderByWithRelationInput.schema'
-import { PDFSumAggregateInputObjectSchema } from './objects/PDFSumAggregateInput.schema'
-import { PDFWhereInputObjectSchema } from './objects/PDFWhereInput.schema'
-import { PDFWhereUniqueInputObjectSchema } from './objects/PDFWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PDFAvgAggregateInputObjectSchema } from "./objects/PDFAvgAggregateInput.schema"
+import { PDFCountAggregateInputObjectSchema } from "./objects/PDFCountAggregateInput.schema"
+import { PDFMaxAggregateInputObjectSchema } from "./objects/PDFMaxAggregateInput.schema"
+import { PDFMinAggregateInputObjectSchema } from "./objects/PDFMinAggregateInput.schema"
+import { PDFOrderByWithRelationInputObjectSchema } from "./objects/PDFOrderByWithRelationInput.schema"
+import { PDFSumAggregateInputObjectSchema } from "./objects/PDFSumAggregateInput.schema"
+import { PDFWhereInputObjectSchema } from "./objects/PDFWhereInput.schema"
+import { PDFWhereUniqueInputObjectSchema } from "./objects/PDFWhereUniqueInput.schema"
 
 export const PDFAggregateSchema = z.object({
   orderBy: z

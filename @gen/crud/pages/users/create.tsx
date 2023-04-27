@@ -1,24 +1,24 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function UserCreate() {
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    updatedAt: '',
-    createdAt: '',
+    name: "",
+    email: "",
+    updatedAt: "",
+    createdAt: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/users', {
-      method: 'POST',
+    fetch("/api/users", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('User created!')
-        router.push('/users')
+        alert("User created!")
+        router.push("/users")
       }
     })
   }

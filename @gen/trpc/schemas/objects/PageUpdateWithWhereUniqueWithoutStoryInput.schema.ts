@@ -1,8 +1,9 @@
-import { PageUncheckedUpdateWithoutStoryInputObjectSchema } from './PageUncheckedUpdateWithoutStoryInput.schema'
-import { PageUpdateWithoutStoryInputObjectSchema } from './PageUpdateWithoutStoryInput.schema'
-import { PageWhereUniqueInputObjectSchema } from './PageWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageUncheckedUpdateWithoutStoryInputObjectSchema } from "./PageUncheckedUpdateWithoutStoryInput.schema"
+import { PageUpdateWithoutStoryInputObjectSchema } from "./PageUpdateWithoutStoryInput.schema"
+import { PageWhereUniqueInputObjectSchema } from "./PageWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PageUpdateWithWhereUniqueWithoutStoryInput> = z
   .object({

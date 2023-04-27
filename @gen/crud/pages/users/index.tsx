@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { User } from '@prisma/client'
+import React from "react"
+import { User } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface UserIndexProps {
   users: User[]
@@ -8,8 +9,8 @@ interface UserIndexProps {
 
 export default function UserIndex({ users }: UserIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/users/${id}`, { method: 'DELETE' }).then(() => {
-      alert('User deleted')
+    fetch(`/api/users/${id}`, { method: "DELETE" }).then(() => {
+      alert("User deleted")
       location.reload()
     })
   }

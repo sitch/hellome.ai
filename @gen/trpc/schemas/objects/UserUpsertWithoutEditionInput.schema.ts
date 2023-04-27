@@ -1,9 +1,10 @@
-import { UserCreateWithoutEditionInputObjectSchema } from './UserCreateWithoutEditionInput.schema'
-import { UserUncheckedCreateWithoutEditionInputObjectSchema } from './UserUncheckedCreateWithoutEditionInput.schema'
-import { UserUncheckedUpdateWithoutEditionInputObjectSchema } from './UserUncheckedUpdateWithoutEditionInput.schema'
-import { UserUpdateWithoutEditionInputObjectSchema } from './UserUpdateWithoutEditionInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { UserCreateWithoutEditionInputObjectSchema } from "./UserCreateWithoutEditionInput.schema"
+import { UserUncheckedCreateWithoutEditionInputObjectSchema } from "./UserUncheckedCreateWithoutEditionInput.schema"
+import { UserUncheckedUpdateWithoutEditionInputObjectSchema } from "./UserUncheckedUpdateWithoutEditionInput.schema"
+import { UserUpdateWithoutEditionInputObjectSchema } from "./UserUpdateWithoutEditionInput.schema"
 
 const Schema: z.ZodType<Prisma.UserUpsertWithoutEditionInput> = z
   .object({

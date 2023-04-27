@@ -1,10 +1,11 @@
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { PageTypeSchema } from '../enums/PageType.schema'
-import { PageArtworkCreateNestedManyWithoutPageInputObjectSchema } from './PageArtworkCreateNestedManyWithoutPageInput.schema'
-import { PageTextCreateNestedManyWithoutPageInputObjectSchema } from './PageTextCreateNestedManyWithoutPageInput.schema'
-import { StoryCreateNestedOneWithoutPagesInputObjectSchema } from './StoryCreateNestedOneWithoutPagesInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageStatusSchema } from "../enums/PageStatus.schema"
+import { PageTypeSchema } from "../enums/PageType.schema"
+import { PageArtworkCreateNestedManyWithoutPageInputObjectSchema } from "./PageArtworkCreateNestedManyWithoutPageInput.schema"
+import { PageTextCreateNestedManyWithoutPageInputObjectSchema } from "./PageTextCreateNestedManyWithoutPageInput.schema"
+import { StoryCreateNestedOneWithoutPagesInputObjectSchema } from "./StoryCreateNestedOneWithoutPagesInput.schema"
 
 const Schema: z.ZodType<Prisma.PageCreateInput> = z
   .object({

@@ -1,8 +1,9 @@
-import { PageArtworkListRelationFilterObjectSchema } from './PageArtworkListRelationFilter.schema'
-import { StoryListRelationFilterObjectSchema } from './StoryListRelationFilter.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkListRelationFilterObjectSchema } from "./PageArtworkListRelationFilter.schema"
+import { StoryListRelationFilterObjectSchema } from "./StoryListRelationFilter.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
 
 const Schema: z.ZodType<Prisma.ArtistWhereInput> = z
   .object({

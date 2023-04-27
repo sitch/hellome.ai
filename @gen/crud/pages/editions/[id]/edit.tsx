@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function EditionEdit({ edition }) {
   const [formState, setFormState] = useState(edition)
@@ -8,11 +8,11 @@ export default function EditionEdit({ edition }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/editions/${edition.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Edition updated!')
+        alert("Edition updated!")
         router.push(`/editions/${edition.id}`)
       }
     })

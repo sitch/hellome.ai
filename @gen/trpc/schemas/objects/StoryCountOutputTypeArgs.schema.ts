@@ -1,6 +1,7 @@
-import { StoryCountOutputTypeSelectObjectSchema } from './StoryCountOutputTypeSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { StoryCountOutputTypeSelectObjectSchema } from "./StoryCountOutputTypeSelect.schema"
 
 const Schema: z.ZodType<Prisma.StoryCountOutputTypeArgs> = z
   .object({

@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { Photo } from '@prisma/client'
+import React from "react"
+import { Photo } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface PhotoShowProps {
   photo: Photo

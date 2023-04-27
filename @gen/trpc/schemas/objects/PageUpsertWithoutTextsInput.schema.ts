@@ -1,9 +1,10 @@
-import { PageCreateWithoutTextsInputObjectSchema } from './PageCreateWithoutTextsInput.schema'
-import { PageUncheckedCreateWithoutTextsInputObjectSchema } from './PageUncheckedCreateWithoutTextsInput.schema'
-import { PageUncheckedUpdateWithoutTextsInputObjectSchema } from './PageUncheckedUpdateWithoutTextsInput.schema'
-import { PageUpdateWithoutTextsInputObjectSchema } from './PageUpdateWithoutTextsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageCreateWithoutTextsInputObjectSchema } from "./PageCreateWithoutTextsInput.schema"
+import { PageUncheckedCreateWithoutTextsInputObjectSchema } from "./PageUncheckedCreateWithoutTextsInput.schema"
+import { PageUncheckedUpdateWithoutTextsInputObjectSchema } from "./PageUncheckedUpdateWithoutTextsInput.schema"
+import { PageUpdateWithoutTextsInputObjectSchema } from "./PageUpdateWithoutTextsInput.schema"
 
 const Schema: z.ZodType<Prisma.PageUpsertWithoutTextsInput> = z
   .object({

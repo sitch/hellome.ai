@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function CloudFileEdit({ cloudfile }) {
   const [formState, setFormState] = useState(cloudfile)
@@ -8,11 +8,11 @@ export default function CloudFileEdit({ cloudfile }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/cloudfiles/${cloudfile.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('CloudFile updated!')
+        alert("CloudFile updated!")
         router.push(`/cloudfiles/${cloudfile.id}`)
       }
     })

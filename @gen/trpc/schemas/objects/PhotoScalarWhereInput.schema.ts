@@ -1,9 +1,10 @@
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { IntFilterObjectSchema } from './IntFilter.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { StringNullableListFilterObjectSchema } from './StringNullableListFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { DateTimeFilterObjectSchema } from "./DateTimeFilter.schema"
+import { IntFilterObjectSchema } from "./IntFilter.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
+import { StringNullableListFilterObjectSchema } from "./StringNullableListFilter.schema"
 
 const Schema: z.ZodType<Prisma.PhotoScalarWhereInput> = z
   .object({

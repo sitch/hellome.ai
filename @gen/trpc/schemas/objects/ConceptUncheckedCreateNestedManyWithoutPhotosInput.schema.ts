@@ -1,9 +1,10 @@
-import { ConceptCreateOrConnectWithoutPhotosInputObjectSchema } from './ConceptCreateOrConnectWithoutPhotosInput.schema'
-import { ConceptCreateWithoutPhotosInputObjectSchema } from './ConceptCreateWithoutPhotosInput.schema'
-import { ConceptUncheckedCreateWithoutPhotosInputObjectSchema } from './ConceptUncheckedCreateWithoutPhotosInput.schema'
-import { ConceptWhereUniqueInputObjectSchema } from './ConceptWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptCreateOrConnectWithoutPhotosInputObjectSchema } from "./ConceptCreateOrConnectWithoutPhotosInput.schema"
+import { ConceptCreateWithoutPhotosInputObjectSchema } from "./ConceptCreateWithoutPhotosInput.schema"
+import { ConceptUncheckedCreateWithoutPhotosInputObjectSchema } from "./ConceptUncheckedCreateWithoutPhotosInput.schema"
+import { ConceptWhereUniqueInputObjectSchema } from "./ConceptWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.ConceptUncheckedCreateNestedManyWithoutPhotosInput> =
   z

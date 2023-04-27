@@ -1,7 +1,8 @@
-import { PDFArgsObjectSchema } from './PDFArgs.schema'
-import { PhotoArgsObjectSchema } from './PhotoArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PDFArgsObjectSchema } from "./PDFArgs.schema"
+import { PhotoArgsObjectSchema } from "./PhotoArgs.schema"
 
 const Schema: z.ZodType<Prisma.CloudFileSelect> = z
   .object({

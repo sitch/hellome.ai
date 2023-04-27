@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { PageArtwork } from '@prisma/client'
+import React from "react"
+import { PageArtwork } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface PageArtworkShowProps {
   pageartwork: PageArtwork

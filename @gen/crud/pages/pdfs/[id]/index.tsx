@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { PDF } from '@prisma/client'
+import React from "react"
+import { PDF } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface PDFShowProps {
   pdf: PDF

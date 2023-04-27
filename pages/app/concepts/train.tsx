@@ -10,6 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 // import { UserForm } from '@/components/forms/UserForm'
 import { PageLayout } from "@/components/ui/Layout/Layout"
+import { MainLayout } from "@/components/app/Layout"
 import Canvas from "@/components/canvas"
 import { ConceptForm } from "@/components/forms/ConceptForm"
 import { I18nNamespaces } from "@/i18next.d"
@@ -31,7 +32,7 @@ const AlterBackground = dynamic(
 )
 
 const ns: (keyof I18nNamespaces)[] = [
-  // 'common',
+  "common",
   // 'company',
   // 'faq',
   // 'footer',
@@ -151,43 +152,17 @@ const Train = (
   //
   //
 
-  // return <FaceFilter />
-
   return (
     <>
-      <PageLayout
-      // title="Concept Training"
-      >
-        {/*
-                
-              
-                
-              <div>
-
-                <input onChange={handleFileChange} type="file" />
-
-                <div className="pt-8">
-                  {uploadFiles.map((file, index) => (
-                    <div key={index}>
-                      File #{index} progress: {file.progress}%
-                    </div>
-                  ))}
-                </div>
-              </div> 
-              
-              
-              
-              
-              
-              */}
-
-        <div className="">
-          <ConceptForm />
+      <MainLayout>
+        <div className="bg-gray-50 dark:bg-gray-900">
+          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+            <div className="mx-auto max-w-2xl">
+              <ConceptForm />
+            </div>
+          </div>
         </div>
-
-        {/* <FaceFilter /> */}
-        {/* <AlterBackground /> */}
-      </PageLayout>
+      </MainLayout>
     </>
   )
 }

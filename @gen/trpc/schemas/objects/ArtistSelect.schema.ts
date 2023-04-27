@@ -1,8 +1,9 @@
-import { PageArtworkFindManySchema } from '../findManyPageArtwork.schema'
-import { StoryFindManySchema } from '../findManyStory.schema'
-import { ArtistCountOutputTypeArgsObjectSchema } from './ArtistCountOutputTypeArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkFindManySchema } from "../findManyPageArtwork.schema"
+import { StoryFindManySchema } from "../findManyStory.schema"
+import { ArtistCountOutputTypeArgsObjectSchema } from "./ArtistCountOutputTypeArgs.schema"
 
 const Schema: z.ZodType<Prisma.ArtistSelect> = z
   .object({

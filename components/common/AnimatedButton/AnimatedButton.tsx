@@ -1,35 +1,13 @@
-// import { Button, ButtonProps, Spinner } from 'flowbite-react'
-
 import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
-import classNames from "classnames"
 
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import Loader from "@/components/loader"
-
-import styles from "./AnimatedButton.module.css"
-
-// function LoadingIcon() {
-//   return <Spinner color="info" aria-label="Button Loading" />
-
-//   // return ( <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-//   // <span className="visually-hidden">
-//   //   {/* Loading... */}
-//   //   </span>
-//   // </div>)
-
-//   // return (  <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-300" role="status">
-//   // <span className="visually-hidden">
-//   //   {/* Loading... */}
-//   // </span>
-//   // </div>)
-
-//   // return (<svg className="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>)
-// }
 
 export type AnimatedButtonProps = {
   wide?: boolean
   loading?: boolean
   caret?: "left" | "right" | undefined
-  children: ReactNode
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -38,52 +16,54 @@ export type AnimatedButtonProps = {
 export default function AnimatedButton({
   wide = false,
   loading = false,
+  disabled,
   caret = undefined,
   children,
+  className,
   ...props
 }: AnimatedButtonProps) {
-  // return (
-  //   <button
-  //     className={classNames({
-  //       [styles.button]: true,
-  //       [styles.buttonWide]: wide,
-  //     })}
-  //     // outline={true}
-  //     {...props}
-  //   >
-  //     <div className={styles.container}>
-  //       {/* {loading && <LoadingIcon />} */}
-  //       <span
-  //         className={classNames({
-  //           [styles.inner]: true,
-  //           // [styles.innerAnimation]: !(props.disabled ?? false),
-  //           [styles.innerAnimation]: true,
-  //         })}
-  //       >
-  //         {children}
-  //       </span>
-  //     </div>
-  //   </button>
-  // )
-
   return (
     <>
       <button
+        // variant="outline"
+        className={cn(
+          className ?? "",
+          wide ? "w-full" : "",
+          "group",
+          "animate-button bg-gradient-to-r from-emerald-400 via-indigo-400 to-rose-400 transition-all ease-in",
+          "rounded-lg",
+          "shadow-indigo shadow-lg hover:shadow-blue-700/50",
+          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
+          "focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800",
+          "text-sm font-medium text-gray-900",
+          "disabled:pointer-events-none disabled:opacity-50",
+          "h-auto w-auto",
+          // "relative inline-flex items-center justify-center",
+          "mb-1 mr-1 p-0.5"
+        )}
+        disabled={!!loading || disabled}
         {...props}
-        className={`${
-          wide ? "w-full" : ""
-        } shadow-indigo group relative mb-1 mr-1 inline-flex animate-button items-center  justify-center rounded-lg bg-gradient-to-r  from-emerald-400 via-indigo-400 to-rose-400 p-0.5 text-sm font-medium text-gray-900 shadow-lg transition-all duration-75 ease-in hover:shadow-blue-700/50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800`}
       >
         <span
-          className={`${
-            wide ? "w-full" : ""
-          } relative rounded-md bg-white px-6 py-3 font-semibold transition-all duration-75  ease-in group-hover:bg-white/5 group-hover:text-white dark:bg-gray-900`}
+          className={cn(
+            "font-semibold",
+            "text-gray-900 dark:text-white",
+            "bg-white dark:bg-gray-900",
+            "group-hover:bg-white/5 group-hover:text-white",
+            "dark:group-hover:bg-gray-900/5 dark:group-hover:text-gray-900",
+            "transition-all duration-2.2s ease-in",
+            "inline-flex h-full w-full",
+            "relative",
+            loading ? "px-2 py-3" : "px-6 py-3",
+            loading ? "cursor-wait" : "",
+            disabled ? "cursor-not-allowed" : "",
+            "rounded-md"
+          )}
         >
           {loading ? (
             <Loader />
           ) : (
             <>
-              {" "}
               {caret == "left" && (
                 <svg
                   className="mr-2 inline h-2.5 w-2.5 rotate-180"

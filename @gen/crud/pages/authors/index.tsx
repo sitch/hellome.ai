@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Author } from '@prisma/client'
+import React from "react"
+import { Author } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface AuthorIndexProps {
   authors: Author[]
@@ -8,8 +9,8 @@ interface AuthorIndexProps {
 
 export default function AuthorIndex({ authors }: AuthorIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/authors/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Author deleted')
+    fetch(`/api/authors/${id}`, { method: "DELETE" }).then(() => {
+      alert("Author deleted")
       location.reload()
     })
   }

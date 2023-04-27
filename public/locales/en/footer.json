@@ -52,7 +52,7 @@
       "links": [
         {
           "href": {
-            "pathname": "/pages/blog"
+            "pathname": "/blog"
           },
           "aria-label": "Blog",
           "children": "Blog"

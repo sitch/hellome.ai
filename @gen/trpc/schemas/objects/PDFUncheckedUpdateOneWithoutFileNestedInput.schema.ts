@@ -1,12 +1,13 @@
-import { PDFCreateOrConnectWithoutFileInputObjectSchema } from './PDFCreateOrConnectWithoutFileInput.schema'
-import { PDFCreateWithoutFileInputObjectSchema } from './PDFCreateWithoutFileInput.schema'
-import { PDFUncheckedCreateWithoutFileInputObjectSchema } from './PDFUncheckedCreateWithoutFileInput.schema'
-import { PDFUncheckedUpdateWithoutFileInputObjectSchema } from './PDFUncheckedUpdateWithoutFileInput.schema'
-import { PDFUpdateWithoutFileInputObjectSchema } from './PDFUpdateWithoutFileInput.schema'
-import { PDFUpsertWithoutFileInputObjectSchema } from './PDFUpsertWithoutFileInput.schema'
-import { PDFWhereUniqueInputObjectSchema } from './PDFWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PDFCreateOrConnectWithoutFileInputObjectSchema } from "./PDFCreateOrConnectWithoutFileInput.schema"
+import { PDFCreateWithoutFileInputObjectSchema } from "./PDFCreateWithoutFileInput.schema"
+import { PDFUncheckedCreateWithoutFileInputObjectSchema } from "./PDFUncheckedCreateWithoutFileInput.schema"
+import { PDFUncheckedUpdateWithoutFileInputObjectSchema } from "./PDFUncheckedUpdateWithoutFileInput.schema"
+import { PDFUpdateWithoutFileInputObjectSchema } from "./PDFUpdateWithoutFileInput.schema"
+import { PDFUpsertWithoutFileInputObjectSchema } from "./PDFUpsertWithoutFileInput.schema"
+import { PDFWhereUniqueInputObjectSchema } from "./PDFWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PDFUncheckedUpdateOneWithoutFileNestedInput> = z
   .object({

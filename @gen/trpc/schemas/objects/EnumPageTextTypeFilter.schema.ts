@@ -1,7 +1,8 @@
-import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import { NestedEnumPageTextTypeFilterObjectSchema } from './NestedEnumPageTextTypeFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextTypeSchema } from "../enums/PageTextType.schema"
+import { NestedEnumPageTextTypeFilterObjectSchema } from "./NestedEnumPageTextTypeFilter.schema"
 
 const Schema: z.ZodType<Prisma.EnumPageTextTypeFilter> = z
   .object({

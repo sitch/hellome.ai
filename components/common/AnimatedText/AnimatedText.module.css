@@ -5,8 +5,8 @@
 }
 
 .space {
-  background-color: black;
   background-image: url("/images/space.gif");
+  background-color: black;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -15,6 +15,6 @@
   }
 }
 .video {
-  height: 100px;
   width: 100px;
+  height: 100px;
 }

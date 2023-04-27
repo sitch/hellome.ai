@@ -1,6 +1,7 @@
-import { AuthorWhereInputObjectSchema } from './AuthorWhereInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { AuthorWhereInputObjectSchema } from "./AuthorWhereInput.schema"
 
 const Schema: z.ZodType<Prisma.AuthorRelationFilter> = z
   .object({

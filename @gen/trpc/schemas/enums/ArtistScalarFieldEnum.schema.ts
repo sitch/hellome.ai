@@ -1,3 +1,3 @@
-import { z } from 'zod'
+import { z } from "zod"
 
-export const ArtistScalarFieldEnumSchema = z.enum(['id'])
+export const ArtistScalarFieldEnumSchema = z.enum(["id"])

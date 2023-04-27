@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function ConceptEdit({ concept }) {
   const [formState, setFormState] = useState(concept)
@@ -8,11 +8,11 @@ export default function ConceptEdit({ concept }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/concepts/${concept.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Concept updated!')
+        alert("Concept updated!")
         router.push(`/concepts/${concept.id}`)
       }
     })

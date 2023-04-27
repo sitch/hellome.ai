@@ -1,24 +1,24 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function StoryCreate() {
   const [formState, setFormState] = useState({
-    createdAt: '',
-    updatedAt: '',
-    artistId: '',
-    authorId: '',
+    createdAt: "",
+    updatedAt: "",
+    artistId: "",
+    authorId: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/storys', {
-      method: 'POST',
+    fetch("/api/storys", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Story created!')
-        router.push('/storys')
+        alert("Story created!")
+        router.push("/storys")
       }
     })
   }

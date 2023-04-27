@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { Concept } from '@prisma/client'
+import React from "react"
+import { Concept } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface ConceptShowProps {
   concept: Concept

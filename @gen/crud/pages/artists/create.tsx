@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function ArtistCreate() {
   const [formState, setFormState] = useState({})
@@ -7,13 +7,13 @@ export default function ArtistCreate() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/artists', {
-      method: 'POST',
+    fetch("/api/artists", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Artist created!')
-        router.push('/artists')
+        alert("Artist created!")
+        router.push("/artists")
       }
     })
   }

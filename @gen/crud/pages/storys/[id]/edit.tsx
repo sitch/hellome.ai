@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function StoryEdit({ story }) {
   const [formState, setFormState] = useState(story)
@@ -8,11 +8,11 @@ export default function StoryEdit({ story }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/storys/${story.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Story updated!')
+        alert("Story updated!")
         router.push(`/storys/${story.id}`)
       }
     })

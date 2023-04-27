@@ -1,5 +1,6 @@
-import { ConceptCreateManyInputObjectSchema } from './objects/ConceptCreateManyInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { ConceptCreateManyInputObjectSchema } from "./objects/ConceptCreateManyInput.schema"
 
 export const ConceptCreateManySchema = z.object({
   data: z.union([

@@ -1,8 +1,9 @@
-import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { CloudFileOrderByWithRelationInputObjectSchema } from './CloudFileOrderByWithRelationInput.schema'
-import { EditionOrderByWithRelationInputObjectSchema } from './EditionOrderByWithRelationInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { SortOrderSchema } from "../enums/SortOrder.schema"
+import { CloudFileOrderByWithRelationInputObjectSchema } from "./CloudFileOrderByWithRelationInput.schema"
+import { EditionOrderByWithRelationInputObjectSchema } from "./EditionOrderByWithRelationInput.schema"
 
 const Schema: z.ZodType<Prisma.PDFOrderByWithRelationInput> = z
   .object({

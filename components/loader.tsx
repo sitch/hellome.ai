@@ -1,9 +1,14 @@
 import PulseLoader from "react-spinners/PulseLoader"
+import { LoaderSizeMarginProps } from "react-spinners/helpers/props"
 
-export default function Loader() {
+export default function Loader(props: LoaderSizeMarginProps) {
   return (
-    <div>
-      <PulseLoader size={12} margin={4} className="opacity-40" />
-    </div>
+    <PulseLoader
+      size={12}
+      margin={4}
+      className="opacity-40"
+      color="#3d369773"
+      {...props}
+    />
   )
 }

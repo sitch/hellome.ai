@@ -1,8 +1,9 @@
-import { EditionScalarWhereInputObjectSchema } from './EditionScalarWhereInput.schema'
-import { EditionUncheckedUpdateManyWithoutEditionInputObjectSchema } from './EditionUncheckedUpdateManyWithoutEditionInput.schema'
-import { EditionUpdateManyMutationInputObjectSchema } from './EditionUpdateManyMutationInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { EditionScalarWhereInputObjectSchema } from "./EditionScalarWhereInput.schema"
+import { EditionUncheckedUpdateManyWithoutEditionInputObjectSchema } from "./EditionUncheckedUpdateManyWithoutEditionInput.schema"
+import { EditionUpdateManyMutationInputObjectSchema } from "./EditionUpdateManyMutationInput.schema"
 
 const Schema: z.ZodType<Prisma.EditionUpdateManyWithWhereWithoutUserInput> = z
   .object({

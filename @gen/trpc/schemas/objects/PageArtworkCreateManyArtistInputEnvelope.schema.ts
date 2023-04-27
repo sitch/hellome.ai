@@ -1,6 +1,7 @@
-import { PageArtworkCreateManyArtistInputObjectSchema } from './PageArtworkCreateManyArtistInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkCreateManyArtistInputObjectSchema } from "./PageArtworkCreateManyArtistInput.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkCreateManyArtistInputEnvelope> = z
   .object({

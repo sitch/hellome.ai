@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { Edition } from '@prisma/client'
+import React from "react"
+import { Edition } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface EditionShowProps {
   edition: Edition

@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { PDF } from '@prisma/client'
+import React from "react"
+import { PDF } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface PDFIndexProps {
   pdfs: PDF[]
@@ -8,8 +9,8 @@ interface PDFIndexProps {
 
 export default function PDFIndex({ pdfs }: PDFIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/pdfs/${id}`, { method: 'DELETE' }).then(() => {
-      alert('PDF deleted')
+    fetch(`/api/pdfs/${id}`, { method: "DELETE" }).then(() => {
+      alert("PDF deleted")
       location.reload()
     })
   }

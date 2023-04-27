@@ -79,6 +79,7 @@
     "datasource",
     "davinci",
     "deepmerge",
+    "Doka",
     "downwindcss",
     "Doxzoo",
     "dribbble",
@@ -172,6 +173,7 @@
     "recaptcha",
     "rehype",
     "resq",
+    "rlig",
     "roadmap",
     "safetensor",
     "safetensors",
@@ -192,6 +194,7 @@
     "spacegray",
     "spacegrey",
     "stackblur",
+    "Supabase",
     "superjson",
     "swiper",
     "tailwindcss",
@@ -214,6 +217,7 @@
     "Waitlist",
     "webgpu",
     "webm",
+    "webp",
     "webrtc",
     "Withinable"
   ]

@@ -1,7 +1,8 @@
-import { AuthorIncludeObjectSchema } from './AuthorInclude.schema'
-import { AuthorSelectObjectSchema } from './AuthorSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { AuthorIncludeObjectSchema } from "./AuthorInclude.schema"
+import { AuthorSelectObjectSchema } from "./AuthorSelect.schema"
 
 const Schema: z.ZodType<Prisma.AuthorArgs> = z
   .object({

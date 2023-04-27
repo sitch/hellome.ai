@@ -1,9 +1,10 @@
-import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import { NestedEnumPageTextTypeFilterObjectSchema } from './NestedEnumPageTextTypeFilter.schema'
-import { NestedEnumPageTextTypeWithAggregatesFilterObjectSchema } from './NestedEnumPageTextTypeWithAggregatesFilter.schema'
-import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextTypeSchema } from "../enums/PageTextType.schema"
+import { NestedEnumPageTextTypeFilterObjectSchema } from "./NestedEnumPageTextTypeFilter.schema"
+import { NestedEnumPageTextTypeWithAggregatesFilterObjectSchema } from "./NestedEnumPageTextTypeWithAggregatesFilter.schema"
+import { NestedIntFilterObjectSchema } from "./NestedIntFilter.schema"
 
 const Schema: z.ZodType<Prisma.EnumPageTextTypeWithAggregatesFilter> = z
   .object({

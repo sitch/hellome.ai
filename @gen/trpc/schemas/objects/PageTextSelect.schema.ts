@@ -1,9 +1,10 @@
-import { AuthorArgsObjectSchema } from './AuthorArgs.schema'
-import { PageArgsObjectSchema } from './PageArgs.schema'
-import { StoryArgsObjectSchema } from './StoryArgs.schema'
-import { TranslatorArgsObjectSchema } from './TranslatorArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { AuthorArgsObjectSchema } from "./AuthorArgs.schema"
+import { PageArgsObjectSchema } from "./PageArgs.schema"
+import { StoryArgsObjectSchema } from "./StoryArgs.schema"
+import { TranslatorArgsObjectSchema } from "./TranslatorArgs.schema"
 
 const Schema: z.ZodType<Prisma.PageTextSelect> = z
   .object({

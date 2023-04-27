@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function AuthorEdit({ author }) {
   const [formState, setFormState] = useState(author)
@@ -8,11 +8,11 @@ export default function AuthorEdit({ author }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/authors/${author.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Author updated!')
+        alert("Author updated!")
         router.push(`/authors/${author.id}`)
       }
     })

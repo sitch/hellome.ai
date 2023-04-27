@@ -1,7 +1,8 @@
-import { PageTextUncheckedUpdateManyWithoutTranslatorNestedInputObjectSchema } from './PageTextUncheckedUpdateManyWithoutTranslatorNestedInput.schema'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextUncheckedUpdateManyWithoutTranslatorNestedInputObjectSchema } from "./PageTextUncheckedUpdateManyWithoutTranslatorNestedInput.schema"
+import { StringFieldUpdateOperationsInputObjectSchema } from "./StringFieldUpdateOperationsInput.schema"
 
 const Schema: z.ZodType<Prisma.TranslatorUncheckedUpdateInput> = z
   .object({

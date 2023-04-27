@@ -1,8 +1,9 @@
-import { ConceptScalarWhereInputObjectSchema } from './ConceptScalarWhereInput.schema'
-import { ConceptUncheckedUpdateManyWithoutConceptsInputObjectSchema } from './ConceptUncheckedUpdateManyWithoutConceptsInput.schema'
-import { ConceptUpdateManyMutationInputObjectSchema } from './ConceptUpdateManyMutationInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptScalarWhereInputObjectSchema } from "./ConceptScalarWhereInput.schema"
+import { ConceptUncheckedUpdateManyWithoutConceptsInputObjectSchema } from "./ConceptUncheckedUpdateManyWithoutConceptsInput.schema"
+import { ConceptUpdateManyMutationInputObjectSchema } from "./ConceptUpdateManyMutationInput.schema"
 
 const Schema: z.ZodType<Prisma.ConceptUpdateManyWithWhereWithoutPhotosInput> = z
   .object({

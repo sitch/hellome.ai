@@ -1,8 +1,9 @@
-import { StoryScalarFieldEnumSchema } from './enums/StoryScalarFieldEnum.schema'
-import { StoryOrderByWithAggregationInputObjectSchema } from './objects/StoryOrderByWithAggregationInput.schema'
-import { StoryScalarWhereWithAggregatesInputObjectSchema } from './objects/StoryScalarWhereWithAggregatesInput.schema'
-import { StoryWhereInputObjectSchema } from './objects/StoryWhereInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { StoryScalarFieldEnumSchema } from "./enums/StoryScalarFieldEnum.schema"
+import { StoryOrderByWithAggregationInputObjectSchema } from "./objects/StoryOrderByWithAggregationInput.schema"
+import { StoryScalarWhereWithAggregatesInputObjectSchema } from "./objects/StoryScalarWhereWithAggregatesInput.schema"
+import { StoryWhereInputObjectSchema } from "./objects/StoryWhereInput.schema"
 
 export const StoryGroupBySchema = z.object({
   where: StoryWhereInputObjectSchema.optional(),

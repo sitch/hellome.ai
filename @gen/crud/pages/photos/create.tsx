@@ -1,25 +1,25 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PhotoCreate() {
   const [formState, setFormState] = useState({
-    height: '',
-    width: '',
-    tags: '',
-    createdAt: '',
-    fileId: '',
+    height: "",
+    width: "",
+    tags: "",
+    createdAt: "",
+    fileId: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/photos', {
-      method: 'POST',
+    fetch("/api/photos", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Photo created!')
-        router.push('/photos')
+        alert("Photo created!")
+        router.push("/photos")
       }
     })
   }

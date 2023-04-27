@@ -1,9 +1,9 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export const StoryScalarFieldEnumSchema = z.enum([
-  'id',
-  'createdAt',
-  'updatedAt',
-  'artistId',
-  'authorId',
+  "id",
+  "createdAt",
+  "updatedAt",
+  "artistId",
+  "authorId",
 ])

@@ -1,11 +1,11 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export const PDFScalarFieldEnumSchema = z.enum([
-  'id',
-  'height',
-  'width',
-  'pages',
-  'tags',
-  'createdAt',
-  'fileId',
+  "id",
+  "height",
+  "width",
+  "pages",
+  "tags",
+  "createdAt",
+  "fileId",
 ])

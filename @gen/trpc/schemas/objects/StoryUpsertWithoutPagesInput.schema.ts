@@ -1,9 +1,10 @@
-import { StoryCreateWithoutPagesInputObjectSchema } from './StoryCreateWithoutPagesInput.schema'
-import { StoryUncheckedCreateWithoutPagesInputObjectSchema } from './StoryUncheckedCreateWithoutPagesInput.schema'
-import { StoryUncheckedUpdateWithoutPagesInputObjectSchema } from './StoryUncheckedUpdateWithoutPagesInput.schema'
-import { StoryUpdateWithoutPagesInputObjectSchema } from './StoryUpdateWithoutPagesInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { StoryCreateWithoutPagesInputObjectSchema } from "./StoryCreateWithoutPagesInput.schema"
+import { StoryUncheckedCreateWithoutPagesInputObjectSchema } from "./StoryUncheckedCreateWithoutPagesInput.schema"
+import { StoryUncheckedUpdateWithoutPagesInputObjectSchema } from "./StoryUncheckedUpdateWithoutPagesInput.schema"
+import { StoryUpdateWithoutPagesInputObjectSchema } from "./StoryUpdateWithoutPagesInput.schema"
 
 const Schema: z.ZodType<Prisma.StoryUpsertWithoutPagesInput> = z
   .object({

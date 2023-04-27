@@ -1,9 +1,9 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export const UserScalarFieldEnumSchema = z.enum([
-  'id',
-  'name',
-  'email',
-  'updatedAt',
-  'createdAt',
+  "id",
+  "name",
+  "email",
+  "updatedAt",
+  "createdAt",
 ])

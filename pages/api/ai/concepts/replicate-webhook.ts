@@ -3,7 +3,7 @@
 
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import { upsertPrediction } from "@/lib/db"
+import { upsertPrediction } from "@/lib/replicate/db"
 
 export default async function handler(
   req: NextApiRequest,

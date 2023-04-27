@@ -1,9 +1,10 @@
-import { ArtistCreateOrConnectWithoutPageArtworksInputObjectSchema } from './ArtistCreateOrConnectWithoutPageArtworksInput.schema'
-import { ArtistCreateWithoutPageArtworksInputObjectSchema } from './ArtistCreateWithoutPageArtworksInput.schema'
-import { ArtistUncheckedCreateWithoutPageArtworksInputObjectSchema } from './ArtistUncheckedCreateWithoutPageArtworksInput.schema'
-import { ArtistWhereUniqueInputObjectSchema } from './ArtistWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ArtistCreateOrConnectWithoutPageArtworksInputObjectSchema } from "./ArtistCreateOrConnectWithoutPageArtworksInput.schema"
+import { ArtistCreateWithoutPageArtworksInputObjectSchema } from "./ArtistCreateWithoutPageArtworksInput.schema"
+import { ArtistUncheckedCreateWithoutPageArtworksInputObjectSchema } from "./ArtistUncheckedCreateWithoutPageArtworksInput.schema"
+import { ArtistWhereUniqueInputObjectSchema } from "./ArtistWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.ArtistCreateNestedOneWithoutPageArtworksInput> =
   z

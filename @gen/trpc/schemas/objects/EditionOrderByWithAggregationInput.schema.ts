@@ -1,9 +1,10 @@
-import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { EditionCountOrderByAggregateInputObjectSchema } from './EditionCountOrderByAggregateInput.schema'
-import { EditionMaxOrderByAggregateInputObjectSchema } from './EditionMaxOrderByAggregateInput.schema'
-import { EditionMinOrderByAggregateInputObjectSchema } from './EditionMinOrderByAggregateInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { SortOrderSchema } from "../enums/SortOrder.schema"
+import { EditionCountOrderByAggregateInputObjectSchema } from "./EditionCountOrderByAggregateInput.schema"
+import { EditionMaxOrderByAggregateInputObjectSchema } from "./EditionMaxOrderByAggregateInput.schema"
+import { EditionMinOrderByAggregateInputObjectSchema } from "./EditionMinOrderByAggregateInput.schema"
 
 const Schema: z.ZodType<Prisma.EditionOrderByWithAggregationInput> = z
   .object({

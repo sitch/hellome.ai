@@ -1,10 +1,11 @@
-import { PageTextCreateManyPageInputEnvelopeObjectSchema } from './PageTextCreateManyPageInputEnvelope.schema'
-import { PageTextCreateOrConnectWithoutPageInputObjectSchema } from './PageTextCreateOrConnectWithoutPageInput.schema'
-import { PageTextCreateWithoutPageInputObjectSchema } from './PageTextCreateWithoutPageInput.schema'
-import { PageTextUncheckedCreateWithoutPageInputObjectSchema } from './PageTextUncheckedCreateWithoutPageInput.schema'
-import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextCreateManyPageInputEnvelopeObjectSchema } from "./PageTextCreateManyPageInputEnvelope.schema"
+import { PageTextCreateOrConnectWithoutPageInputObjectSchema } from "./PageTextCreateOrConnectWithoutPageInput.schema"
+import { PageTextCreateWithoutPageInputObjectSchema } from "./PageTextCreateWithoutPageInput.schema"
+import { PageTextUncheckedCreateWithoutPageInputObjectSchema } from "./PageTextUncheckedCreateWithoutPageInput.schema"
+import { PageTextWhereUniqueInputObjectSchema } from "./PageTextWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PageTextUncheckedCreateNestedManyWithoutPageInput> =
   z

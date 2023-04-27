@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { PageText } from '@prisma/client'
+import React from "react"
+import { PageText } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface PageTextIndexProps {
   pagetexts: PageText[]
@@ -8,8 +9,8 @@ interface PageTextIndexProps {
 
 export default function PageTextIndex({ pagetexts }: PageTextIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/pagetexts/${id}`, { method: 'DELETE' }).then(() => {
-      alert('PageText deleted')
+    fetch(`/api/pagetexts/${id}`, { method: "DELETE" }).then(() => {
+      alert("PageText deleted")
       location.reload()
     })
   }

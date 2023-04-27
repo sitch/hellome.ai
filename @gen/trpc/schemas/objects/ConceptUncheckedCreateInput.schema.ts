@@ -1,7 +1,8 @@
-import { ConceptTypeSchema } from '../enums/ConceptType.schema'
-import { PhotoUncheckedCreateNestedManyWithoutConceptsInputObjectSchema } from './PhotoUncheckedCreateNestedManyWithoutConceptsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptTypeSchema } from "../enums/ConceptType.schema"
+import { PhotoUncheckedCreateNestedManyWithoutConceptsInputObjectSchema } from "./PhotoUncheckedCreateNestedManyWithoutConceptsInput.schema"
 
 const Schema: z.ZodType<Prisma.ConceptUncheckedCreateInput> = z
   .object({

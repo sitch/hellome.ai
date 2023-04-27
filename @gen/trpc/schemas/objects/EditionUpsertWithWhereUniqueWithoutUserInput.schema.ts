@@ -1,10 +1,11 @@
-import { EditionCreateWithoutUserInputObjectSchema } from './EditionCreateWithoutUserInput.schema'
-import { EditionUncheckedCreateWithoutUserInputObjectSchema } from './EditionUncheckedCreateWithoutUserInput.schema'
-import { EditionUncheckedUpdateWithoutUserInputObjectSchema } from './EditionUncheckedUpdateWithoutUserInput.schema'
-import { EditionUpdateWithoutUserInputObjectSchema } from './EditionUpdateWithoutUserInput.schema'
-import { EditionWhereUniqueInputObjectSchema } from './EditionWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { EditionCreateWithoutUserInputObjectSchema } from "./EditionCreateWithoutUserInput.schema"
+import { EditionUncheckedCreateWithoutUserInputObjectSchema } from "./EditionUncheckedCreateWithoutUserInput.schema"
+import { EditionUncheckedUpdateWithoutUserInputObjectSchema } from "./EditionUncheckedUpdateWithoutUserInput.schema"
+import { EditionUpdateWithoutUserInputObjectSchema } from "./EditionUpdateWithoutUserInput.schema"
+import { EditionWhereUniqueInputObjectSchema } from "./EditionWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.EditionUpsertWithWhereUniqueWithoutUserInput> = z
   .object({

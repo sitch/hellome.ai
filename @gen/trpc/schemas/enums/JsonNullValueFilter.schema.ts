@@ -1,7 +1,7 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export const JsonNullValueFilterSchema = z.enum([
-  'DbNull',
-  'JsonNull',
-  'AnyNull',
+  "DbNull",
+  "JsonNull",
+  "AnyNull",
 ])

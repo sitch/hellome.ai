@@ -1,11 +1,12 @@
-import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { ArtistOrderByWithRelationInputObjectSchema } from './ArtistOrderByWithRelationInput.schema'
-import { AuthorOrderByWithRelationInputObjectSchema } from './AuthorOrderByWithRelationInput.schema'
-import { PageArtworkOrderByRelationAggregateInputObjectSchema } from './PageArtworkOrderByRelationAggregateInput.schema'
-import { PageOrderByRelationAggregateInputObjectSchema } from './PageOrderByRelationAggregateInput.schema'
-import { PageTextOrderByRelationAggregateInputObjectSchema } from './PageTextOrderByRelationAggregateInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { SortOrderSchema } from "../enums/SortOrder.schema"
+import { ArtistOrderByWithRelationInputObjectSchema } from "./ArtistOrderByWithRelationInput.schema"
+import { AuthorOrderByWithRelationInputObjectSchema } from "./AuthorOrderByWithRelationInput.schema"
+import { PageArtworkOrderByRelationAggregateInputObjectSchema } from "./PageArtworkOrderByRelationAggregateInput.schema"
+import { PageOrderByRelationAggregateInputObjectSchema } from "./PageOrderByRelationAggregateInput.schema"
+import { PageTextOrderByRelationAggregateInputObjectSchema } from "./PageTextOrderByRelationAggregateInput.schema"
 
 const Schema: z.ZodType<Prisma.StoryOrderByWithRelationInput> = z
   .object({

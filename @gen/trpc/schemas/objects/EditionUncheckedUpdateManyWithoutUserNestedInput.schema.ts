@@ -1,14 +1,15 @@
-import { EditionCreateManyUserInputEnvelopeObjectSchema } from './EditionCreateManyUserInputEnvelope.schema'
-import { EditionCreateOrConnectWithoutUserInputObjectSchema } from './EditionCreateOrConnectWithoutUserInput.schema'
-import { EditionCreateWithoutUserInputObjectSchema } from './EditionCreateWithoutUserInput.schema'
-import { EditionScalarWhereInputObjectSchema } from './EditionScalarWhereInput.schema'
-import { EditionUncheckedCreateWithoutUserInputObjectSchema } from './EditionUncheckedCreateWithoutUserInput.schema'
-import { EditionUpdateManyWithWhereWithoutUserInputObjectSchema } from './EditionUpdateManyWithWhereWithoutUserInput.schema'
-import { EditionUpdateWithWhereUniqueWithoutUserInputObjectSchema } from './EditionUpdateWithWhereUniqueWithoutUserInput.schema'
-import { EditionUpsertWithWhereUniqueWithoutUserInputObjectSchema } from './EditionUpsertWithWhereUniqueWithoutUserInput.schema'
-import { EditionWhereUniqueInputObjectSchema } from './EditionWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { EditionCreateManyUserInputEnvelopeObjectSchema } from "./EditionCreateManyUserInputEnvelope.schema"
+import { EditionCreateOrConnectWithoutUserInputObjectSchema } from "./EditionCreateOrConnectWithoutUserInput.schema"
+import { EditionCreateWithoutUserInputObjectSchema } from "./EditionCreateWithoutUserInput.schema"
+import { EditionScalarWhereInputObjectSchema } from "./EditionScalarWhereInput.schema"
+import { EditionUncheckedCreateWithoutUserInputObjectSchema } from "./EditionUncheckedCreateWithoutUserInput.schema"
+import { EditionUpdateManyWithWhereWithoutUserInputObjectSchema } from "./EditionUpdateManyWithWhereWithoutUserInput.schema"
+import { EditionUpdateWithWhereUniqueWithoutUserInputObjectSchema } from "./EditionUpdateWithWhereUniqueWithoutUserInput.schema"
+import { EditionUpsertWithWhereUniqueWithoutUserInputObjectSchema } from "./EditionUpsertWithWhereUniqueWithoutUserInput.schema"
+import { EditionWhereUniqueInputObjectSchema } from "./EditionWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.EditionUncheckedUpdateManyWithoutUserNestedInput> =
   z

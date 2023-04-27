@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PhotoEdit({ photo }) {
   const [formState, setFormState] = useState(photo)
@@ -8,11 +8,11 @@ export default function PhotoEdit({ photo }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/photos/${photo.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Photo updated!')
+        alert("Photo updated!")
         router.push(`/photos/${photo.id}`)
       }
     })

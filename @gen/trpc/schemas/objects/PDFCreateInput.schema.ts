@@ -1,8 +1,9 @@
-import { CloudFileCreateNestedOneWithoutPdfInputObjectSchema } from './CloudFileCreateNestedOneWithoutPdfInput.schema'
-import { EditionCreateNestedOneWithoutPdfInputObjectSchema } from './EditionCreateNestedOneWithoutPdfInput.schema'
-import { PDFCreatetagsInputObjectSchema } from './PDFCreatetagsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { CloudFileCreateNestedOneWithoutPdfInputObjectSchema } from "./CloudFileCreateNestedOneWithoutPdfInput.schema"
+import { EditionCreateNestedOneWithoutPdfInputObjectSchema } from "./EditionCreateNestedOneWithoutPdfInput.schema"
+import { PDFCreatetagsInputObjectSchema } from "./PDFCreatetagsInput.schema"
 
 const Schema: z.ZodType<Prisma.PDFCreateInput> = z
   .object({

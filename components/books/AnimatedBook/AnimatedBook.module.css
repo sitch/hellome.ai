@@ -54,8 +54,8 @@
   top: 45px;
   left: 0;
   width: 100%;
-  font-size: 2em;
   font-weight: normal;
+  font-size: 2em;
   line-height: 1;
 }
 .credit {
@@ -67,23 +67,23 @@
 }
 .book {
   position: relative;
+  transform: scale(1.2);
   perspective: 630px;
   perspective-origin: center 50px;
-  transform: scale(1.2);
   filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.25));
 }
 .page {
-  width: 210px;
-  height: 300px;
-  background-color: #bbb;
   position: absolute;
   top: 0px;
   right: 50%;
   transform-origin: 100% 100%;
-  border: solid #555 2px;
-  background-size: 420px 300px;
-  background-position: center;
   transform-style: preserve-3d;
+  border: solid #555 2px;
+  background-position: center;
+  background-size: 420px 300px;
+  background-color: #bbb;
+  width: 210px;
+  height: 300px;
 }
 .page:nth-child(1) {
   transform: rotateX(60deg) rotateY(3deg);
@@ -94,8 +94,8 @@
 .page:nth-child(3) {
   transform: rotateX(60deg) rotateY(6deg);
   animation: nextPage 25s infinite -24s steps(1);
-  background-size: 420px 300px;
   background-position: -2px -2px;
+  background-size: 420px 300px;
 }
 .page:nth-child(4) {
   transform: rotateX(60deg) rotateY(177deg);
@@ -108,17 +108,17 @@
   overflow: hidden;
 }
 .page:nth-child(6)::after {
-  content: "";
-  width: 210px;
-  height: 300px;
   position: absolute;
   top: 0px;
   right: 0%;
-  transform-origin: center;
   transform: rotateY(180deg);
+  transform-origin: center;
   animation: nextPage 25s -20s infinite steps(1);
-  background-size: 420px 300px;
   background-position: 100% -2px;
+  background-size: 420px 300px;
+  width: 210px;
+  height: 300px;
+  content: "";
 }
 @keyframes nextPage {
   0 {
@@ -143,56 +143,56 @@
   }
 }
 .gap {
-  width: 10px;
-  height: 300px;
-  background: none;
-  transform: rotateX(60deg);
-  transform-origin: bottom;
   position: absolute;
   top: 0px;
   left: calc(50% - 5px);
+  transform: rotateX(60deg);
+  transform-origin: bottom;
+  background: none;
+  width: 10px;
+  height: 300px;
 }
 .gap::after {
-  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
+  border-radius: 50%;
   background-color: #555;
   width: 10px;
   height: 5px;
-  border-radius: 50%;
+  content: "";
 }
 .pages,
 .flips {
   transform-style: preserve-3d;
 }
 .flip {
-  width: 32px;
-  height: 300px;
   position: absolute;
   top: 0px;
-  transform-origin: 100% 100%;
   right: 100%;
-  border: solid #555;
-  border-width: 2px 0px;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
   perspective: 4200px;
   perspective-origin: center;
-  transform-style: preserve-3d;
+  border: solid #555;
+  border-width: 2px 0px;
   background-size: 420px 300px;
+  width: 32px;
+  height: 300px;
 
   /* background-image: url('/images/space.gif'); */
   /* background-image: url('/images/space.gif'); */
 }
 .flip::after {
-  content: "";
   position: absolute;
   top: 0px;
   right: 0%;
-  width: 100%;
-  height: 100%;
   transform-origin: center;
   background-size: 420px 300px;
+  width: 100%;
+  height: 100%;
+  content: "";
 }
 .flip.flip1 {
   right: 50%;
@@ -203,8 +203,8 @@
   animation: nextFlip1 25s -20s infinite steps(1);
 }
 .flip:not(.flip1) {
-  right: calc(100% - 2px);
   top: -2px;
+  right: calc(100% - 2px);
   transform-origin: right;
   animation: flip2 5s ease-in-out infinite;
 }
@@ -227,8 +227,8 @@
   animation: nextFlip7 25s -20s infinite steps(1);
 }
 .flip.flip7 {
-  width: 30px;
   border-width: 2px 0px 2px 2px;
+  width: 30px;
 }
 .flip.flip7::after {
   animation: nextFlip7 25s -20s infinite steps(1);
@@ -254,505 +254,505 @@
 }
 @keyframes nextFlip1 {
   0 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -178px -2px;
-    transform: rotateY(0deg);
   }
   10 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -210px -2px;
-    transform: rotateY(180deg);
   }
   20 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -178px -2px;
-    transform: rotateY(0deg);
   }
   30 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -210px -2px;
-    transform: rotateY(180deg);
   }
   40 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -178px -2px;
-    transform: rotateY(0deg);
   }
   50 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -210px -2px;
-    transform: rotateY(180deg);
   }
   60 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -178px -2px;
-    transform: rotateY(0deg);
   }
   70 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -210px -2px;
-    transform: rotateY(180deg);
   }
   80 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -178px -2px;
-    transform: rotateY(0deg);
   }
   90 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -210px -2px;
-    transform: rotateY(180deg);
   }
 }
 @keyframes nextFlip2 {
   0 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -148px -2px;
-    transform: rotateY(0deg);
   }
   10.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -238px -2px;
-    transform: rotateY(180deg);
   }
   20 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -148px -2px;
-    transform: rotateY(0deg);
   }
   30.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -238px -2px;
-    transform: rotateY(180deg);
   }
   40 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -148px -2px;
-    transform: rotateY(0deg);
   }
   50.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -238px -2px;
-    transform: rotateY(180deg);
   }
   60 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -148px -2px;
-    transform: rotateY(0deg);
   }
   70.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -238px -2px;
-    transform: rotateY(180deg);
   }
   80 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -148px -2px;
-    transform: rotateY(0deg);
   }
   90.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -238px -2px;
-    transform: rotateY(180deg);
   }
 }
 @keyframes nextFlip3 {
   0 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -118px -2px;
-    transform: rotateY(0deg);
   }
   11 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -268px -2px;
-    transform: rotateY(180deg);
   }
   20 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -118px -2px;
-    transform: rotateY(0deg);
   }
   31 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -268px -2px;
-    transform: rotateY(180deg);
   }
   40 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -118px -2px;
-    transform: rotateY(0deg);
   }
   51 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -268px -2px;
-    transform: rotateY(180deg);
   }
   60 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -118px -2px;
-    transform: rotateY(0deg);
   }
   71 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -268px -2px;
-    transform: rotateY(180deg);
   }
   80 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -118px -2px;
-    transform: rotateY(0deg);
   }
   91 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -268px -2px;
-    transform: rotateY(180deg);
   }
 }
 @keyframes nextFlip4 {
   0 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -88px -2px;
-    transform: rotateY(0deg);
   }
   11.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -298px -2px;
-    transform: rotateY(180deg);
   }
   20 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -88px -2px;
-    transform: rotateY(0deg);
   }
   31.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -298px -2px;
-    transform: rotateY(180deg);
   }
   40 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -88px -2px;
-    transform: rotateY(0deg);
   }
   51.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -298px -2px;
-    transform: rotateY(180deg);
   }
   60 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -88px -2px;
-    transform: rotateY(0deg);
   }
   71.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -298px -2px;
-    transform: rotateY(180deg);
   }
   80 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -88px -2px;
-    transform: rotateY(0deg);
   }
   91.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -298px -2px;
-    transform: rotateY(180deg);
   }
 }
 @keyframes nextFlip5 {
   0 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -58px -2px;
-    transform: rotateY(0deg);
   }
   12 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -328px -2px;
-    transform: rotateY(180deg);
   }
   20 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -58px -2px;
-    transform: rotateY(0deg);
   }
   32 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -328px -2px;
-    transform: rotateY(180deg);
   }
   40 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -58px -2px;
-    transform: rotateY(0deg);
   }
   52 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -328px -2px;
-    transform: rotateY(180deg);
   }
   60 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -58px -2px;
-    transform: rotateY(0deg);
   }
   72 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -328px -2px;
-    transform: rotateY(180deg);
   }
   80 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -58px -2px;
-    transform: rotateY(0deg);
   }
   92 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -328px -2px;
-    transform: rotateY(180deg);
   }
 }
 @keyframes nextFlip6 {
   0 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -28px -2px;
-    transform: rotateY(0deg);
   }
   12.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -358px -2px;
-    transform: rotateY(180deg);
   }
   20 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -28px -2px;
-    transform: rotateY(0deg);
   }
   32.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -358px -2px;
-    transform: rotateY(180deg);
   }
   40 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -28px -2px;
-    transform: rotateY(0deg);
   }
   52.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -358px -2px;
-    transform: rotateY(180deg);
   }
   60 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -28px -2px;
-    transform: rotateY(0deg);
   }
   72.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -358px -2px;
-    transform: rotateY(180deg);
   }
   80 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -28px -2px;
-    transform: rotateY(0deg);
   }
   92.5 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -358px -2px;
-    transform: rotateY(180deg);
   }
 }
 @keyframes nextFlip7 {
   0 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -2px -2px;
-    transform: rotateY(0deg);
   }
   13 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -388px -2px;
-    transform: rotateY(180deg);
   }
   20 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=2'); */
     background-image: url("/images/space.gif");
 
     background-position: -2px -2px;
-    transform: rotateY(0deg);
   }
   33 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -388px -2px;
-    transform: rotateY(180deg);
   }
   40 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=3'); */
     background-image: url("/images/space.gif");
 
     background-position: -2px -2px;
-    transform: rotateY(0deg);
   }
   53 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -388px -2px;
-    transform: rotateY(180deg);
   }
   60 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=4'); */
     background-image: url("/images/space.gif");
 
     background-position: -2px -2px;
-    transform: rotateY(0deg);
   }
   73 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -388px -2px;
-    transform: rotateY(180deg);
   }
   80 {
+    transform: rotateY(0deg);
     /* background-image: url('https://picsum.photos/420/300?random=5'); */
     background-image: url("/images/space.gif");
 
     background-position: -2px -2px;
-    transform: rotateY(0deg);
   }
   93 {
+    transform: rotateY(180deg);
     /* background-image: url('https://picsum.photos/420/300?random=1'); */
     background-image: url("/images/space.gif");
 
     background-position: -388px -2px;
-    transform: rotateY(180deg);
   }
 }

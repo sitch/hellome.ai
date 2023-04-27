@@ -1,6 +1,7 @@
-import { PDFCreatetagsInputObjectSchema } from './PDFCreatetagsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PDFCreatetagsInputObjectSchema } from "./PDFCreatetagsInput.schema"
 
 const Schema: z.ZodType<Prisma.PDFUncheckedCreateWithoutEditionInput> = z
   .object({

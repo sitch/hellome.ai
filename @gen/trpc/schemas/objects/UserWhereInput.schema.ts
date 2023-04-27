@@ -1,8 +1,9 @@
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { EditionListRelationFilterObjectSchema } from './EditionListRelationFilter.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { DateTimeFilterObjectSchema } from "./DateTimeFilter.schema"
+import { EditionListRelationFilterObjectSchema } from "./EditionListRelationFilter.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
 
 const Schema: z.ZodType<Prisma.UserWhereInput> = z
   .object({

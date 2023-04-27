@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { PageArtwork } from '@prisma/client'
+import React from "react"
+import { PageArtwork } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface PageArtworkIndexProps {
   pageartworks: PageArtwork[]
@@ -10,8 +11,8 @@ export default function PageArtworkIndex({
   pageartworks,
 }: PageArtworkIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/pageartworks/${id}`, { method: 'DELETE' }).then(() => {
-      alert('PageArtwork deleted')
+    fetch(`/api/pageartworks/${id}`, { method: "DELETE" }).then(() => {
+      alert("PageArtwork deleted")
       location.reload()
     })
   }

@@ -1,13 +1,14 @@
-import { PhotoCreateOrConnectWithoutConceptsInputObjectSchema } from './PhotoCreateOrConnectWithoutConceptsInput.schema'
-import { PhotoCreateWithoutConceptsInputObjectSchema } from './PhotoCreateWithoutConceptsInput.schema'
-import { PhotoScalarWhereInputObjectSchema } from './PhotoScalarWhereInput.schema'
-import { PhotoUncheckedCreateWithoutConceptsInputObjectSchema } from './PhotoUncheckedCreateWithoutConceptsInput.schema'
-import { PhotoUpdateManyWithWhereWithoutConceptsInputObjectSchema } from './PhotoUpdateManyWithWhereWithoutConceptsInput.schema'
-import { PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema } from './PhotoUpdateWithWhereUniqueWithoutConceptsInput.schema'
-import { PhotoUpsertWithWhereUniqueWithoutConceptsInputObjectSchema } from './PhotoUpsertWithWhereUniqueWithoutConceptsInput.schema'
-import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PhotoCreateOrConnectWithoutConceptsInputObjectSchema } from "./PhotoCreateOrConnectWithoutConceptsInput.schema"
+import { PhotoCreateWithoutConceptsInputObjectSchema } from "./PhotoCreateWithoutConceptsInput.schema"
+import { PhotoScalarWhereInputObjectSchema } from "./PhotoScalarWhereInput.schema"
+import { PhotoUncheckedCreateWithoutConceptsInputObjectSchema } from "./PhotoUncheckedCreateWithoutConceptsInput.schema"
+import { PhotoUpdateManyWithWhereWithoutConceptsInputObjectSchema } from "./PhotoUpdateManyWithWhereWithoutConceptsInput.schema"
+import { PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema } from "./PhotoUpdateWithWhereUniqueWithoutConceptsInput.schema"
+import { PhotoUpsertWithWhereUniqueWithoutConceptsInputObjectSchema } from "./PhotoUpsertWithWhereUniqueWithoutConceptsInput.schema"
+import { PhotoWhereUniqueInputObjectSchema } from "./PhotoWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PhotoUpdateManyWithoutConceptsNestedInput> = z
   .object({

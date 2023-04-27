@@ -1,10 +1,11 @@
-import { TranslatorCountAggregateInputObjectSchema } from './objects/TranslatorCountAggregateInput.schema'
-import { TranslatorMaxAggregateInputObjectSchema } from './objects/TranslatorMaxAggregateInput.schema'
-import { TranslatorMinAggregateInputObjectSchema } from './objects/TranslatorMinAggregateInput.schema'
-import { TranslatorOrderByWithRelationInputObjectSchema } from './objects/TranslatorOrderByWithRelationInput.schema'
-import { TranslatorWhereInputObjectSchema } from './objects/TranslatorWhereInput.schema'
-import { TranslatorWhereUniqueInputObjectSchema } from './objects/TranslatorWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { TranslatorCountAggregateInputObjectSchema } from "./objects/TranslatorCountAggregateInput.schema"
+import { TranslatorMaxAggregateInputObjectSchema } from "./objects/TranslatorMaxAggregateInput.schema"
+import { TranslatorMinAggregateInputObjectSchema } from "./objects/TranslatorMinAggregateInput.schema"
+import { TranslatorOrderByWithRelationInputObjectSchema } from "./objects/TranslatorOrderByWithRelationInput.schema"
+import { TranslatorWhereInputObjectSchema } from "./objects/TranslatorWhereInput.schema"
+import { TranslatorWhereUniqueInputObjectSchema } from "./objects/TranslatorWhereUniqueInput.schema"
 
 export const TranslatorAggregateSchema = z.object({
   orderBy: z

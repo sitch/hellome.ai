@@ -1,10 +1,11 @@
-import { StoryCountAggregateInputObjectSchema } from './objects/StoryCountAggregateInput.schema'
-import { StoryMaxAggregateInputObjectSchema } from './objects/StoryMaxAggregateInput.schema'
-import { StoryMinAggregateInputObjectSchema } from './objects/StoryMinAggregateInput.schema'
-import { StoryOrderByWithRelationInputObjectSchema } from './objects/StoryOrderByWithRelationInput.schema'
-import { StoryWhereInputObjectSchema } from './objects/StoryWhereInput.schema'
-import { StoryWhereUniqueInputObjectSchema } from './objects/StoryWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { StoryCountAggregateInputObjectSchema } from "./objects/StoryCountAggregateInput.schema"
+import { StoryMaxAggregateInputObjectSchema } from "./objects/StoryMaxAggregateInput.schema"
+import { StoryMinAggregateInputObjectSchema } from "./objects/StoryMinAggregateInput.schema"
+import { StoryOrderByWithRelationInputObjectSchema } from "./objects/StoryOrderByWithRelationInput.schema"
+import { StoryWhereInputObjectSchema } from "./objects/StoryWhereInput.schema"
+import { StoryWhereUniqueInputObjectSchema } from "./objects/StoryWhereUniqueInput.schema"
 
 export const StoryAggregateSchema = z.object({
   orderBy: z

@@ -1,31 +1,31 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PredictionCreate() {
   const [formState, setFormState] = useState({
-    uuid: '',
-    input: '',
-    output: '',
-    status: '',
-    created_at: '',
-    started_at: '',
-    completed_at: '',
-    version: '',
-    metrics: '',
-    error: '',
-    logs: '',
+    uuid: "",
+    input: "",
+    output: "",
+    status: "",
+    created_at: "",
+    started_at: "",
+    completed_at: "",
+    version: "",
+    metrics: "",
+    error: "",
+    logs: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/predictions', {
-      method: 'POST',
+    fetch("/api/predictions", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Prediction created!')
-        router.push('/predictions')
+        alert("Prediction created!")
+        router.push("/predictions")
       }
     })
   }

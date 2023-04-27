@@ -1,9 +1,10 @@
-import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { ArtistCountOrderByAggregateInputObjectSchema } from './ArtistCountOrderByAggregateInput.schema'
-import { ArtistMaxOrderByAggregateInputObjectSchema } from './ArtistMaxOrderByAggregateInput.schema'
-import { ArtistMinOrderByAggregateInputObjectSchema } from './ArtistMinOrderByAggregateInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { SortOrderSchema } from "../enums/SortOrder.schema"
+import { ArtistCountOrderByAggregateInputObjectSchema } from "./ArtistCountOrderByAggregateInput.schema"
+import { ArtistMaxOrderByAggregateInputObjectSchema } from "./ArtistMaxOrderByAggregateInput.schema"
+import { ArtistMinOrderByAggregateInputObjectSchema } from "./ArtistMinOrderByAggregateInput.schema"
 
 const Schema: z.ZodType<Prisma.ArtistOrderByWithAggregationInput> = z
   .object({

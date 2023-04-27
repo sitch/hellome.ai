@@ -1,6 +1,7 @@
-import { ConceptTypeSchema } from '../enums/ConceptType.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptTypeSchema } from "../enums/ConceptType.schema"
 
 const Schema: z.ZodType<Prisma.EnumConceptTypeFieldUpdateOperationsInput> = z
   .object({

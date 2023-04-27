@@ -1,7 +1,8 @@
-import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import { NestedStringFilterObjectSchema } from './NestedStringFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { NestedIntFilterObjectSchema } from "./NestedIntFilter.schema"
+import { NestedStringFilterObjectSchema } from "./NestedStringFilter.schema"
 
 const Schema: z.ZodType<Prisma.NestedStringWithAggregatesFilter> = z
   .object({

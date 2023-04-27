@@ -81,24 +81,24 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
 
 .book {
   position: relative;
+  transform: scale(1.2);
   perspective: 630px;
   perspective-origin: center 50px;
-  transform: scale(1.2);
   filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.25));
 }
 
 .page {
-  width: 210px;
-  height: 300px;
-  background-color: #bbb;
   position: absolute;
   top: 0px;
   right: 50%;
   transform-origin: 100% 100%;
-  border: solid $borderColor 2px;
-  background-size: 420px 300px;
-  background-position: center;
   transform-style: preserve-3d;
+  border: solid $borderColor 2px;
+  background-position: center;
+  background-size: 420px 300px;
+  background-color: #bbb;
+  width: 210px;
+  height: 300px;
 
   &:nth-child(1) {
     transform: rotateX($bookAngle) rotateY(3deg);
@@ -109,8 +109,8 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
   &:nth-child(3) {
     transform: rotateX($bookAngle) rotateY(6deg);
     animation: nextPage $speed * 5 infinite $speed * -4.8 steps(1);
-    background-size: 420px 300px;
     background-position: -2px -2px;
+    background-size: 420px 300px;
   }
 
   &:nth-child(4) {
@@ -124,17 +124,17 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
     overflow: hidden;
 
     &::after {
-      content: "";
-      width: 210px;
-      height: 300px;
       position: absolute;
       top: 0px;
       right: 0%;
-      transform-origin: center;
       transform: rotateY(180deg);
+      transform-origin: center;
       animation: nextPage $speed * 5 $speed * -4 infinite steps(1);
-      background-size: 420px 300px;
       background-position: 100% -2px;
+      background-size: 420px 300px;
+      width: 210px;
+      height: 300px;
+      content: "";
     }
   }
 
@@ -148,25 +148,25 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
 }
 
 .gap {
-  width: 10px;
-  height: 300px;
-  background: none;
-  transform: rotateX($bookAngle);
-  transform-origin: bottom;
   position: absolute;
   top: 0px;
   left: calc(50% - 5px);
+  transform: rotateX($bookAngle);
+  transform-origin: bottom;
+  background: none;
+  width: 10px;
+  height: 300px;
 
   &::after {
-    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 50%);
+    border-radius: 50%;
     background-color: $borderColor;
     width: 10px;
     height: 5px;
-    border-radius: 50%;
+    content: "";
   }
 }
 
@@ -176,28 +176,28 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
 }
 
 .flip {
-  width: 32px;
-  height: 300px;
   position: absolute;
   top: 0px;
-  transform-origin: 100% 100%;
   right: 100%;
-  border: solid $borderColor;
-  border-width: 2px 0px;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
   perspective: 4200px;
   perspective-origin: center;
-  transform-style: preserve-3d;
+  border: solid $borderColor;
+  border-width: 2px 0px;
   background-size: 420px 300px;
+  width: 32px;
+  height: 300px;
 
   &::after {
-    content: "";
     position: absolute;
     top: 0px;
     right: 0%;
-    width: 100%;
-    height: 100%;
     transform-origin: center;
     background-size: 420px 300px;
+    width: 100%;
+    height: 100%;
+    content: "";
   }
 
   &.flip1 {
@@ -211,8 +211,8 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
   }
 
   &:not(.flip1) {
-    right: calc(100% - 2px);
     top: -2px;
+    right: calc(100% - 2px);
     transform-origin: right;
     animation: flip2 $speed ease-in-out infinite;
   }
@@ -224,8 +224,8 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
   }
 
   &.flip7 {
-    width: 30px;
     border-width: 2px 0px 2px 2px;
+    width: 30px;
     &::after {
       animation: nextFlip7 $speed * 5 $speed * -4 infinite steps(1);
     }
@@ -256,14 +256,14 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
 @keyframes nextFlip1 {
   @for $i from 0 through 4 {
     #{$i * 20}% {
+      transform: rotateY(0deg);
       background-image: nth($images, ($i + 1));
       background-position: -178px -2px;
-      transform: rotateY(0deg);
     }
     #{10+($i * 20)}% {
+      transform: rotateY(180deg);
       background-image: nth($images, ($i + 2));
       background-position: -210px -2px;
-      transform: rotateY(180deg);
     }
   }
 }
@@ -272,14 +272,14 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
   @keyframes nextFlip#{$i} {
     @for $j from 0 through 4 {
       #{$j * 20}% {
+        transform: rotateY(0deg);
         background-image: nth($images, ($j + 1));
         background-position: #{-148 + (($i - 2) * 30)}px -2px;
-        transform: rotateY(0deg);
       }
       #{((10 + ($j * 20)) + (($i - 1) * 0.5))}% {
+        transform: rotateY(180deg);
         background-image: nth($images, ($j + 2));
         background-position: #{-238 - (($i - 2) * 30)}px -2px;
-        transform: rotateY(180deg);
       }
     }
   }
@@ -288,26 +288,26 @@ $images: url("/images/space.gif"), url("/images/space.gif"),
 @keyframes nextFlip7 {
   @for $i from 0 through 4 {
     #{$i * 20}% {
+      transform: rotateY(0deg);
       background-image: nth($images, ($i + 1));
       background-position: -2px -2px;
-      transform: rotateY(0deg);
     }
     #{13+($i * 20)}% {
+      transform: rotateY(180deg);
       background-image: nth($images, ($i + 2));
       background-position: -388px -2px;
-      transform: rotateY(180deg);
     }
   }
 }
 
 .twitterLink {
   position: fixed;
-  bottom: 0.5em;
   right: 0.5em;
+  bottom: 0.5em;
   & img {
-    width: 2em;
     filter: grayscale(100%);
     transition: filter 0.25s;
+    width: 2em;
     &:hover {
       filter: grayscale(0%);
     }

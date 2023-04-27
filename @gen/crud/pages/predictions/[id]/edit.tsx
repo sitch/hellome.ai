@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PredictionEdit({ prediction }) {
   const [formState, setFormState] = useState(prediction)
@@ -8,11 +8,11 @@ export default function PredictionEdit({ prediction }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/predictions/${prediction.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Prediction updated!')
+        alert("Prediction updated!")
         router.push(`/predictions/${prediction.id}`)
       }
     })

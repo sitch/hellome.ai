@@ -1,6 +1,7 @@
-import { EditionUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './EditionUncheckedCreateNestedManyWithoutUserInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { EditionUncheckedCreateNestedManyWithoutUserInputObjectSchema } from "./EditionUncheckedCreateNestedManyWithoutUserInput.schema"
 
 const Schema: z.ZodType<Prisma.UserUncheckedCreateInput> = z
   .object({

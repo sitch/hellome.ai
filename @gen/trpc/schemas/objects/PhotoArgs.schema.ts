@@ -1,7 +1,8 @@
-import { PhotoIncludeObjectSchema } from './PhotoInclude.schema'
-import { PhotoSelectObjectSchema } from './PhotoSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PhotoIncludeObjectSchema } from "./PhotoInclude.schema"
+import { PhotoSelectObjectSchema } from "./PhotoSelect.schema"
 
 const Schema: z.ZodType<Prisma.PhotoArgs> = z
   .object({

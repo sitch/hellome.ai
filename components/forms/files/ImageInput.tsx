@@ -2,7 +2,13 @@
 // import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
 // import FilePondPluginFileRename from 'filepond-plugin-file-rename'
 
-import { useState } from "react"
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  isValidElement,
+  useState,
+} from "react"
 import { FilePondFile, FilePondInitialFile } from "filepond"
 import FilePondPluginFileEncode from "filepond-plugin-file-encode"
 import FilePondPluginFileMetadata from "filepond-plugin-file-metadata"
@@ -13,13 +19,16 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview"
 import FilePondPluginImageValidateSize from "filepond-plugin-image-validate-size"
 import { useTranslation } from "next-i18next"
 import { useS3Upload } from "next-s3-upload"
+import { renderToString } from "react-dom/server"
 import { FilePond, FilePondProps, registerPlugin } from "react-filepond"
 
 import { labels } from "./filepond.config"
 // Import FilePond styles
 // import 'filepond/dist/filepond.css'
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"
-import { random } from "lodash"
+import { isString, random } from "lodash"
+
+import { LabelIdle } from "./LabelIdle"
 
 // import 'filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css'
 // import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.css'
@@ -51,12 +60,13 @@ const BYPASS_SERVER: FilePondProps["server"] = {
   },
 }
 
-type Props<T> = Omit<FilePondProps, "credits" | "onupdatefiles"> & {
+type Props<T = object> = Omit<FilePondProps, "credits" | "onupdatefiles "> & {
+  label?: JSX.Element
   mode?: typeof process.env.NODE_ENV
   // Add types here
   value?: T[] | undefined
   // cast: (values: T[]) => FilePondProps['files']
-  cast: (
+  cast?: (
     file: FilePondFile,
     metadata: FilePondInitialFile["options"]["metadata"]
   ) => T
@@ -65,9 +75,10 @@ type Props<T> = Omit<FilePondProps, "credits" | "onupdatefiles"> & {
 
 export function ImageInput<T>({
   mode = "production",
-  value = [],
-  cast,
+  label,
+  // cast,
   onChange,
+  value = [],
   ...filePondProps
 }: Props<T>) {
   const { t } = useTranslation("filepond")
@@ -75,6 +86,46 @@ export function ImageInput<T>({
 
   const [imageUrl, setImageUrl] = useState<string>()
   const { files: s3Files, uploadToS3 } = useS3Upload()
+
+  const cast = (
+    file: FilePondFile,
+    metadata: FilePondInitialFile["options"]["metadata"]
+  ): T => {
+    const meta = file.getMetadata() as Record<string, string | number>
+    const status = file.status
+
+    console.log("file", status, { file, meta })
+
+    return {
+      // TODO: REMOVE ID
+      id: file.serverId,
+      fileId: file.serverId,
+      height: metadata?.height as number,
+      width: metadata?.width as number,
+      createdAt: new Date(),
+      tags: [],
+      pageArtworks: [],
+      concepts: [],
+      file: {
+        // TODO: REMOVE ID
+        id: file.serverId,
+        createdAt: new Date(),
+        signature: "signature",
+        path: "path",
+        // updatedAt: new Date().toString(),
+        //
+        //
+
+        resourceType: "image",
+        privacy: "private",
+        filename: file.filename,
+        size: file.fileSize,
+        ext: file.fileExtension,
+        mime: metadata?.mime ?? file.fileType,
+        metadata,
+      },
+    } as T
+  }
 
   const server: FilePondProps["server"] = {
     // timeout: process.env.NEXT_PUBLIC_API_IMAGE_UPLOAD_TIMEOUT ?? 10000,
@@ -152,6 +203,7 @@ export function ImageInput<T>({
         }}
         {...labels(t)}
         {...filePondProps}
+        labelIdle={renderToString(label ?? <LabelIdle />)}
       />
     </>
   )

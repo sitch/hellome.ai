@@ -1,9 +1,10 @@
-import { AuthorCreateWithoutStoriesInputObjectSchema } from './AuthorCreateWithoutStoriesInput.schema'
-import { AuthorUncheckedCreateWithoutStoriesInputObjectSchema } from './AuthorUncheckedCreateWithoutStoriesInput.schema'
-import { AuthorUncheckedUpdateWithoutStoriesInputObjectSchema } from './AuthorUncheckedUpdateWithoutStoriesInput.schema'
-import { AuthorUpdateWithoutStoriesInputObjectSchema } from './AuthorUpdateWithoutStoriesInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { AuthorCreateWithoutStoriesInputObjectSchema } from "./AuthorCreateWithoutStoriesInput.schema"
+import { AuthorUncheckedCreateWithoutStoriesInputObjectSchema } from "./AuthorUncheckedCreateWithoutStoriesInput.schema"
+import { AuthorUncheckedUpdateWithoutStoriesInputObjectSchema } from "./AuthorUncheckedUpdateWithoutStoriesInput.schema"
+import { AuthorUpdateWithoutStoriesInputObjectSchema } from "./AuthorUpdateWithoutStoriesInput.schema"
 
 const Schema: z.ZodType<Prisma.AuthorUpsertWithoutStoriesInput> = z
   .object({

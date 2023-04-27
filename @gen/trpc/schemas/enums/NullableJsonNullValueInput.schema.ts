@@ -1,3 +1,3 @@
-import { z } from 'zod'
+import { z } from "zod"
 
-export const NullableJsonNullValueInputSchema = z.enum(['DbNull', 'JsonNull'])
+export const NullableJsonNullValueInputSchema = z.enum(["DbNull", "JsonNull"])

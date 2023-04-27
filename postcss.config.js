@@ -1,3 +1,18 @@
+/**
+ * @typedef {import('postcss').ProcessOptions} ProcessOptions
+ */
+
+/**
+ * TODO: replace with property options type
+ *
+ * @typedef PostcssLoaderOptions
+ * @property {object | string[]} [plugins]
+ * @property {string} [parser]
+ */
+
+/**
+ * @type {PostcssLoaderOptions}
+ */
 module.exports = {
   plugins: [
     "postcss-easings",
@@ -5,18 +20,6 @@ module.exports = {
     "tailwindcss",
     "autoprefixer",
     "postcss-flexbugs-fixes",
-
-    [
-      "@fullhuman/postcss-purgecss",
-      {
-        content: [
-          "./pages/**/*.{js,jsx,ts,tsx}",
-          "./components/**/*.{js,jsx,ts,tsx}",
-        ],
-        defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-      },
-    ],
-
     [
       "postcss-preset-env",
       {

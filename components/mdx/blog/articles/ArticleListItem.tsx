@@ -32,7 +32,7 @@ export const ArticleListItem = ({
     //     - animate-background https://github.com/markmead/hyperui/blob/main/tailwind.preset.js
     // -->
 
-    <article className="m-12 animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-[length:400%_400%] p-0.5 shadow-xl transition [animation-duration:_6s] hover:shadow-sm">
+    <article className="animate-background m-12 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-[length:400%_400%] p-0.5 shadow-xl transition [animation-duration:_6s] hover:shadow-sm">
       <div className="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
         <time dateTime="2022-10-10" className="block text-xs text-gray-500">
           10th Oct 2022

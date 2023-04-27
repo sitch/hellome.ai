@@ -1,6 +1,7 @@
-import { AuthorCountOutputTypeSelectObjectSchema } from './AuthorCountOutputTypeSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { AuthorCountOutputTypeSelectObjectSchema } from "./AuthorCountOutputTypeSelect.schema"
 
 const Schema: z.ZodType<Prisma.AuthorCountOutputTypeArgs> = z
   .object({

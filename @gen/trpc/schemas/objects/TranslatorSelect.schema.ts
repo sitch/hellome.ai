@@ -1,7 +1,8 @@
-import { PageTextFindManySchema } from '../findManyPageText.schema'
-import { TranslatorCountOutputTypeArgsObjectSchema } from './TranslatorCountOutputTypeArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextFindManySchema } from "../findManyPageText.schema"
+import { TranslatorCountOutputTypeArgsObjectSchema } from "./TranslatorCountOutputTypeArgs.schema"
 
 const Schema: z.ZodType<Prisma.TranslatorSelect> = z
   .object({

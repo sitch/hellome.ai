@@ -1,9 +1,10 @@
-import { PageCreateOrConnectWithoutTextsInputObjectSchema } from './PageCreateOrConnectWithoutTextsInput.schema'
-import { PageCreateWithoutTextsInputObjectSchema } from './PageCreateWithoutTextsInput.schema'
-import { PageUncheckedCreateWithoutTextsInputObjectSchema } from './PageUncheckedCreateWithoutTextsInput.schema'
-import { PageWhereUniqueInputObjectSchema } from './PageWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageCreateOrConnectWithoutTextsInputObjectSchema } from "./PageCreateOrConnectWithoutTextsInput.schema"
+import { PageCreateWithoutTextsInputObjectSchema } from "./PageCreateWithoutTextsInput.schema"
+import { PageUncheckedCreateWithoutTextsInputObjectSchema } from "./PageUncheckedCreateWithoutTextsInput.schema"
+import { PageWhereUniqueInputObjectSchema } from "./PageWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PageCreateNestedOneWithoutTextsInput> = z
   .object({

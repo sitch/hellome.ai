@@ -1,7 +1,8 @@
-import { AuthorIncludeObjectSchema } from './objects/AuthorInclude.schema'
-import { AuthorSelectObjectSchema } from './objects/AuthorSelect.schema'
-import { AuthorWhereUniqueInputObjectSchema } from './objects/AuthorWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { AuthorIncludeObjectSchema } from "./objects/AuthorInclude.schema"
+import { AuthorSelectObjectSchema } from "./objects/AuthorSelect.schema"
+import { AuthorWhereUniqueInputObjectSchema } from "./objects/AuthorWhereUniqueInput.schema"
 
 export const AuthorFindUniqueSchema = z.object({
   select: AuthorSelectObjectSchema.optional(),

@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PageTextEdit({ pagetext }) {
   const [formState, setFormState] = useState(pagetext)
@@ -8,11 +8,11 @@ export default function PageTextEdit({ pagetext }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/pagetexts/${pagetext.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('PageText updated!')
+        alert("PageText updated!")
         router.push(`/pagetexts/${pagetext.id}`)
       }
     })

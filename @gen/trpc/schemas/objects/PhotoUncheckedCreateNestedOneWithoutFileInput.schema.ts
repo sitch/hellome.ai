@@ -1,9 +1,10 @@
-import { PhotoCreateOrConnectWithoutFileInputObjectSchema } from './PhotoCreateOrConnectWithoutFileInput.schema'
-import { PhotoCreateWithoutFileInputObjectSchema } from './PhotoCreateWithoutFileInput.schema'
-import { PhotoUncheckedCreateWithoutFileInputObjectSchema } from './PhotoUncheckedCreateWithoutFileInput.schema'
-import { PhotoWhereUniqueInputObjectSchema } from './PhotoWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PhotoCreateOrConnectWithoutFileInputObjectSchema } from "./PhotoCreateOrConnectWithoutFileInput.schema"
+import { PhotoCreateWithoutFileInputObjectSchema } from "./PhotoCreateWithoutFileInput.schema"
+import { PhotoUncheckedCreateWithoutFileInputObjectSchema } from "./PhotoUncheckedCreateWithoutFileInput.schema"
+import { PhotoWhereUniqueInputObjectSchema } from "./PhotoWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PhotoUncheckedCreateNestedOneWithoutFileInput> =
   z

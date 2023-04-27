@@ -1,8 +1,9 @@
-import { PageArtworkScalarWhereInputObjectSchema } from './PageArtworkScalarWhereInput.schema'
-import { PageArtworkUncheckedUpdateManyWithoutPageArtworksInputObjectSchema } from './PageArtworkUncheckedUpdateManyWithoutPageArtworksInput.schema'
-import { PageArtworkUpdateManyMutationInputObjectSchema } from './PageArtworkUpdateManyMutationInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkScalarWhereInputObjectSchema } from "./PageArtworkScalarWhereInput.schema"
+import { PageArtworkUncheckedUpdateManyWithoutPageArtworksInputObjectSchema } from "./PageArtworkUncheckedUpdateManyWithoutPageArtworksInput.schema"
+import { PageArtworkUpdateManyMutationInputObjectSchema } from "./PageArtworkUpdateManyMutationInput.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkUpdateManyWithWhereWithoutArtistInput> =
   z

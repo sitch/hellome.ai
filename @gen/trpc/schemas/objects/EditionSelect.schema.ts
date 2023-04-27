@@ -1,7 +1,8 @@
-import { PDFArgsObjectSchema } from './PDFArgs.schema'
-import { UserArgsObjectSchema } from './UserArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PDFArgsObjectSchema } from "./PDFArgs.schema"
+import { UserArgsObjectSchema } from "./UserArgs.schema"
 
 const Schema: z.ZodType<Prisma.EditionSelect> = z
   .object({

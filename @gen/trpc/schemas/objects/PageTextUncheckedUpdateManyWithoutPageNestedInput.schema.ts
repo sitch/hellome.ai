@@ -1,14 +1,15 @@
-import { PageTextCreateManyPageInputEnvelopeObjectSchema } from './PageTextCreateManyPageInputEnvelope.schema'
-import { PageTextCreateOrConnectWithoutPageInputObjectSchema } from './PageTextCreateOrConnectWithoutPageInput.schema'
-import { PageTextCreateWithoutPageInputObjectSchema } from './PageTextCreateWithoutPageInput.schema'
-import { PageTextScalarWhereInputObjectSchema } from './PageTextScalarWhereInput.schema'
-import { PageTextUncheckedCreateWithoutPageInputObjectSchema } from './PageTextUncheckedCreateWithoutPageInput.schema'
-import { PageTextUpdateManyWithWhereWithoutPageInputObjectSchema } from './PageTextUpdateManyWithWhereWithoutPageInput.schema'
-import { PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema } from './PageTextUpdateWithWhereUniqueWithoutPageInput.schema'
-import { PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema } from './PageTextUpsertWithWhereUniqueWithoutPageInput.schema'
-import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextCreateManyPageInputEnvelopeObjectSchema } from "./PageTextCreateManyPageInputEnvelope.schema"
+import { PageTextCreateOrConnectWithoutPageInputObjectSchema } from "./PageTextCreateOrConnectWithoutPageInput.schema"
+import { PageTextCreateWithoutPageInputObjectSchema } from "./PageTextCreateWithoutPageInput.schema"
+import { PageTextScalarWhereInputObjectSchema } from "./PageTextScalarWhereInput.schema"
+import { PageTextUncheckedCreateWithoutPageInputObjectSchema } from "./PageTextUncheckedCreateWithoutPageInput.schema"
+import { PageTextUpdateManyWithWhereWithoutPageInputObjectSchema } from "./PageTextUpdateManyWithWhereWithoutPageInput.schema"
+import { PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema } from "./PageTextUpdateWithWhereUniqueWithoutPageInput.schema"
+import { PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema } from "./PageTextUpsertWithWhereUniqueWithoutPageInput.schema"
+import { PageTextWhereUniqueInputObjectSchema } from "./PageTextWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutPageNestedInput> =
   z

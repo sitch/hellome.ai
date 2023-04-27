@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { CloudFile } from '@prisma/client'
+import React from "react"
+import { CloudFile } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface CloudFileIndexProps {
   cloudfiles: CloudFile[]
@@ -8,8 +9,8 @@ interface CloudFileIndexProps {
 
 export default function CloudFileIndex({ cloudfiles }: CloudFileIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/cloudfiles/${id}`, { method: 'DELETE' }).then(() => {
-      alert('CloudFile deleted')
+    fetch(`/api/cloudfiles/${id}`, { method: "DELETE" }).then(() => {
+      alert("CloudFile deleted")
       location.reload()
     })
   }

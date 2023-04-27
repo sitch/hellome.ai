@@ -1,1 +1,40 @@
-{}
+{
+  "header": {
+    "themeToggle": {
+      "label": "Toggle Theme"
+    },
+    "links": {
+      "blog": {
+        "label": "Blog",
+        "description": "Blog Articles",
+        "href": "/blog"
+      }
+    }
+  },
+  "nav": {
+    "title": "HelloMe.ai",
+    "description": "Personalized children's books using AI",
+    "sections": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Concepts",
+        "href": "/app/concepts/train"
+      }
+    ],
+    "links": {
+      "blog": {
+        "label": "Blog",
+        "description": "Blog Articles",
+        "href": "/blog"
+      }
+    }
+  },
+  "alert": {
+    "destructive": {
+      "title": "Error"
+    }
+  }
+}

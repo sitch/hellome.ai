@@ -1,7 +1,8 @@
-import { PageArtworkUncheckedCreateNestedManyWithoutStoryInputObjectSchema } from './PageArtworkUncheckedCreateNestedManyWithoutStoryInput.schema'
-import { PageTextUncheckedCreateNestedManyWithoutStoryInputObjectSchema } from './PageTextUncheckedCreateNestedManyWithoutStoryInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkUncheckedCreateNestedManyWithoutStoryInputObjectSchema } from "./PageArtworkUncheckedCreateNestedManyWithoutStoryInput.schema"
+import { PageTextUncheckedCreateNestedManyWithoutStoryInputObjectSchema } from "./PageTextUncheckedCreateNestedManyWithoutStoryInput.schema"
 
 const Schema: z.ZodType<Prisma.StoryUncheckedCreateWithoutPagesInput> = z
   .object({

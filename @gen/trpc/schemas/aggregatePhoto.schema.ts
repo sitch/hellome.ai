@@ -1,12 +1,13 @@
-import { PhotoAvgAggregateInputObjectSchema } from './objects/PhotoAvgAggregateInput.schema'
-import { PhotoCountAggregateInputObjectSchema } from './objects/PhotoCountAggregateInput.schema'
-import { PhotoMaxAggregateInputObjectSchema } from './objects/PhotoMaxAggregateInput.schema'
-import { PhotoMinAggregateInputObjectSchema } from './objects/PhotoMinAggregateInput.schema'
-import { PhotoOrderByWithRelationInputObjectSchema } from './objects/PhotoOrderByWithRelationInput.schema'
-import { PhotoSumAggregateInputObjectSchema } from './objects/PhotoSumAggregateInput.schema'
-import { PhotoWhereInputObjectSchema } from './objects/PhotoWhereInput.schema'
-import { PhotoWhereUniqueInputObjectSchema } from './objects/PhotoWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PhotoAvgAggregateInputObjectSchema } from "./objects/PhotoAvgAggregateInput.schema"
+import { PhotoCountAggregateInputObjectSchema } from "./objects/PhotoCountAggregateInput.schema"
+import { PhotoMaxAggregateInputObjectSchema } from "./objects/PhotoMaxAggregateInput.schema"
+import { PhotoMinAggregateInputObjectSchema } from "./objects/PhotoMinAggregateInput.schema"
+import { PhotoOrderByWithRelationInputObjectSchema } from "./objects/PhotoOrderByWithRelationInput.schema"
+import { PhotoSumAggregateInputObjectSchema } from "./objects/PhotoSumAggregateInput.schema"
+import { PhotoWhereInputObjectSchema } from "./objects/PhotoWhereInput.schema"
+import { PhotoWhereUniqueInputObjectSchema } from "./objects/PhotoWhereUniqueInput.schema"
 
 export const PhotoAggregateSchema = z.object({
   orderBy: z

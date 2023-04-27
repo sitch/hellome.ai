@@ -1,13 +1,14 @@
-import { ConceptCreateOrConnectWithoutPhotosInputObjectSchema } from './ConceptCreateOrConnectWithoutPhotosInput.schema'
-import { ConceptCreateWithoutPhotosInputObjectSchema } from './ConceptCreateWithoutPhotosInput.schema'
-import { ConceptScalarWhereInputObjectSchema } from './ConceptScalarWhereInput.schema'
-import { ConceptUncheckedCreateWithoutPhotosInputObjectSchema } from './ConceptUncheckedCreateWithoutPhotosInput.schema'
-import { ConceptUpdateManyWithWhereWithoutPhotosInputObjectSchema } from './ConceptUpdateManyWithWhereWithoutPhotosInput.schema'
-import { ConceptUpdateWithWhereUniqueWithoutPhotosInputObjectSchema } from './ConceptUpdateWithWhereUniqueWithoutPhotosInput.schema'
-import { ConceptUpsertWithWhereUniqueWithoutPhotosInputObjectSchema } from './ConceptUpsertWithWhereUniqueWithoutPhotosInput.schema'
-import { ConceptWhereUniqueInputObjectSchema } from './ConceptWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptCreateOrConnectWithoutPhotosInputObjectSchema } from "./ConceptCreateOrConnectWithoutPhotosInput.schema"
+import { ConceptCreateWithoutPhotosInputObjectSchema } from "./ConceptCreateWithoutPhotosInput.schema"
+import { ConceptScalarWhereInputObjectSchema } from "./ConceptScalarWhereInput.schema"
+import { ConceptUncheckedCreateWithoutPhotosInputObjectSchema } from "./ConceptUncheckedCreateWithoutPhotosInput.schema"
+import { ConceptUpdateManyWithWhereWithoutPhotosInputObjectSchema } from "./ConceptUpdateManyWithWhereWithoutPhotosInput.schema"
+import { ConceptUpdateWithWhereUniqueWithoutPhotosInputObjectSchema } from "./ConceptUpdateWithWhereUniqueWithoutPhotosInput.schema"
+import { ConceptUpsertWithWhereUniqueWithoutPhotosInputObjectSchema } from "./ConceptUpsertWithWhereUniqueWithoutPhotosInput.schema"
+import { ConceptWhereUniqueInputObjectSchema } from "./ConceptWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.ConceptUpdateManyWithoutPhotosNestedInput> = z
   .object({

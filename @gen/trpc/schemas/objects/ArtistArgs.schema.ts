@@ -1,7 +1,8 @@
-import { ArtistIncludeObjectSchema } from './ArtistInclude.schema'
-import { ArtistSelectObjectSchema } from './ArtistSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ArtistIncludeObjectSchema } from "./ArtistInclude.schema"
+import { ArtistSelectObjectSchema } from "./ArtistSelect.schema"
 
 const Schema: z.ZodType<Prisma.ArtistArgs> = z
   .object({

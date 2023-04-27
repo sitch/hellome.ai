@@ -2,8 +2,8 @@
 /* @import url('/fonts/Humanist522.woff'); */
 
 @font-face {
-  font-family: "Humanist 522";
   src: url("/fonts/Humanist522.woff") format("woff");
+  font-family: "Humanist 522";
 }
 
 .brandNameHelloPart {

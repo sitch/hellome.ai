@@ -1,25 +1,25 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function ConceptCreate() {
   const [formState, setFormState] = useState({
-    name: '',
-    type: '',
-    description: '',
-    createdAt: '',
-    updatedAt: '',
+    name: "",
+    type: "",
+    description: "",
+    createdAt: "",
+    updatedAt: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/concepts', {
-      method: 'POST',
+    fetch("/api/concepts", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Concept created!')
-        router.push('/concepts')
+        alert("Concept created!")
+        router.push("/concepts")
       }
     })
   }

@@ -78,22 +78,22 @@
 
 html,
 body {
-  height: 100%;
-  box-sizing: border-box;
-  touch-action: manipulation;
-  font-family: var(--font-sans);
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
   background-color: var(--primary);
-  color: var(--text-primary);
+  height: 100%;
   overscroll-behavior-x: none;
+  touch-action: manipulation;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
 }
 
 body {
   position: relative;
-  min-height: 100%;
   margin: 0;
+  min-height: 100%;
 }
 
 a {
@@ -102,8 +102,8 @@ a {
 
 .animated {
   animation-duration: 1s;
-  animation-fill-mode: both;
   -webkit-animation-duration: 1s;
+  animation-fill-mode: both;
   -webkit-animation-fill-mode: both;
 }
 

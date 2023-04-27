@@ -1,9 +1,10 @@
-import { PDFCreateOrConnectWithoutFileInputObjectSchema } from './PDFCreateOrConnectWithoutFileInput.schema'
-import { PDFCreateWithoutFileInputObjectSchema } from './PDFCreateWithoutFileInput.schema'
-import { PDFUncheckedCreateWithoutFileInputObjectSchema } from './PDFUncheckedCreateWithoutFileInput.schema'
-import { PDFWhereUniqueInputObjectSchema } from './PDFWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PDFCreateOrConnectWithoutFileInputObjectSchema } from "./PDFCreateOrConnectWithoutFileInput.schema"
+import { PDFCreateWithoutFileInputObjectSchema } from "./PDFCreateWithoutFileInput.schema"
+import { PDFUncheckedCreateWithoutFileInputObjectSchema } from "./PDFUncheckedCreateWithoutFileInput.schema"
+import { PDFWhereUniqueInputObjectSchema } from "./PDFWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PDFUncheckedCreateNestedOneWithoutFileInput> = z
   .object({

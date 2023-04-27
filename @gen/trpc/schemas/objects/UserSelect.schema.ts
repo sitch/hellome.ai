@@ -1,7 +1,8 @@
-import { EditionFindManySchema } from '../findManyEdition.schema'
-import { UserCountOutputTypeArgsObjectSchema } from './UserCountOutputTypeArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { EditionFindManySchema } from "../findManyEdition.schema"
+import { UserCountOutputTypeArgsObjectSchema } from "./UserCountOutputTypeArgs.schema"
 
 const Schema: z.ZodType<Prisma.UserSelect> = z
   .object({

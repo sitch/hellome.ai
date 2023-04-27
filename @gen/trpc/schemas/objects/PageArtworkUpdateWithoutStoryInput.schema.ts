@@ -1,12 +1,13 @@
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { ArtistUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema } from './ArtistUpdateOneRequiredWithoutPageArtworksNestedInput.schema'
-import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from './EnumPageStatusFieldUpdateOperationsInput.schema'
-import { PageUpdateOneRequiredWithoutArtworksNestedInputObjectSchema } from './PageUpdateOneRequiredWithoutArtworksNestedInput.schema'
-import { PhotoUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema } from './PhotoUpdateOneRequiredWithoutPageArtworksNestedInput.schema'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageStatusSchema } from "../enums/PageStatus.schema"
+import { ArtistUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema } from "./ArtistUpdateOneRequiredWithoutPageArtworksNestedInput.schema"
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from "./DateTimeFieldUpdateOperationsInput.schema"
+import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from "./EnumPageStatusFieldUpdateOperationsInput.schema"
+import { PageUpdateOneRequiredWithoutArtworksNestedInputObjectSchema } from "./PageUpdateOneRequiredWithoutArtworksNestedInput.schema"
+import { PhotoUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema } from "./PhotoUpdateOneRequiredWithoutPageArtworksNestedInput.schema"
+import { StringFieldUpdateOperationsInputObjectSchema } from "./StringFieldUpdateOperationsInput.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkUpdateWithoutStoryInput> = z
   .object({

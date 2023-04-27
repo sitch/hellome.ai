@@ -1,8 +1,9 @@
-import { PageTextListRelationFilterObjectSchema } from './PageTextListRelationFilter.schema'
-import { StoryListRelationFilterObjectSchema } from './StoryListRelationFilter.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextListRelationFilterObjectSchema } from "./PageTextListRelationFilter.schema"
+import { StoryListRelationFilterObjectSchema } from "./StoryListRelationFilter.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
 
 const Schema: z.ZodType<Prisma.AuthorWhereInput> = z
   .object({

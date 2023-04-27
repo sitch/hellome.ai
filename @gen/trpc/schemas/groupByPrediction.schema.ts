@@ -1,8 +1,9 @@
-import { PredictionScalarFieldEnumSchema } from './enums/PredictionScalarFieldEnum.schema'
-import { PredictionOrderByWithAggregationInputObjectSchema } from './objects/PredictionOrderByWithAggregationInput.schema'
-import { PredictionScalarWhereWithAggregatesInputObjectSchema } from './objects/PredictionScalarWhereWithAggregatesInput.schema'
-import { PredictionWhereInputObjectSchema } from './objects/PredictionWhereInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PredictionScalarFieldEnumSchema } from "./enums/PredictionScalarFieldEnum.schema"
+import { PredictionOrderByWithAggregationInputObjectSchema } from "./objects/PredictionOrderByWithAggregationInput.schema"
+import { PredictionScalarWhereWithAggregatesInputObjectSchema } from "./objects/PredictionScalarWhereWithAggregatesInput.schema"
+import { PredictionWhereInputObjectSchema } from "./objects/PredictionWhereInput.schema"
 
 export const PredictionGroupBySchema = z.object({
   where: PredictionWhereInputObjectSchema.optional(),

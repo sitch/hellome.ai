@@ -1,6 +1,7 @@
-import { PhotoCreatetagsInputObjectSchema } from './PhotoCreatetagsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PhotoCreatetagsInputObjectSchema } from "./PhotoCreatetagsInput.schema"
 
 const Schema: z.ZodType<Prisma.PhotoCreateManyInput> = z
   .object({

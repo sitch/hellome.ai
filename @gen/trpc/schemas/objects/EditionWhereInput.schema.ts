@@ -1,11 +1,12 @@
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { PDFRelationFilterObjectSchema } from './PDFRelationFilter.schema'
-import { PDFWhereInputObjectSchema } from './PDFWhereInput.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { UserRelationFilterObjectSchema } from './UserRelationFilter.schema'
-import { UserWhereInputObjectSchema } from './UserWhereInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { DateTimeFilterObjectSchema } from "./DateTimeFilter.schema"
+import { PDFRelationFilterObjectSchema } from "./PDFRelationFilter.schema"
+import { PDFWhereInputObjectSchema } from "./PDFWhereInput.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
+import { UserRelationFilterObjectSchema } from "./UserRelationFilter.schema"
+import { UserWhereInputObjectSchema } from "./UserWhereInput.schema"
 
 const Schema: z.ZodType<Prisma.EditionWhereInput> = z
   .object({

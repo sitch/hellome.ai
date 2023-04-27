@@ -1,10 +1,11 @@
-import { PhotoScalarFieldEnumSchema } from './enums/PhotoScalarFieldEnum.schema'
-import { PhotoIncludeObjectSchema } from './objects/PhotoInclude.schema'
-import { PhotoOrderByWithRelationInputObjectSchema } from './objects/PhotoOrderByWithRelationInput.schema'
-import { PhotoSelectObjectSchema } from './objects/PhotoSelect.schema'
-import { PhotoWhereInputObjectSchema } from './objects/PhotoWhereInput.schema'
-import { PhotoWhereUniqueInputObjectSchema } from './objects/PhotoWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PhotoScalarFieldEnumSchema } from "./enums/PhotoScalarFieldEnum.schema"
+import { PhotoIncludeObjectSchema } from "./objects/PhotoInclude.schema"
+import { PhotoOrderByWithRelationInputObjectSchema } from "./objects/PhotoOrderByWithRelationInput.schema"
+import { PhotoSelectObjectSchema } from "./objects/PhotoSelect.schema"
+import { PhotoWhereInputObjectSchema } from "./objects/PhotoWhereInput.schema"
+import { PhotoWhereUniqueInputObjectSchema } from "./objects/PhotoWhereUniqueInput.schema"
 
 export const PhotoFindManySchema = z.object({
   select: z.lazy(() => PhotoSelectObjectSchema.optional()),

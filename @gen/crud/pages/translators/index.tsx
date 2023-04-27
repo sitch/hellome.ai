@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Translator } from '@prisma/client'
+import React from "react"
+import { Translator } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface TranslatorIndexProps {
   translators: Translator[]
@@ -8,8 +9,8 @@ interface TranslatorIndexProps {
 
 export default function TranslatorIndex({ translators }: TranslatorIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/translators/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Translator deleted')
+    fetch(`/api/translators/${id}`, { method: "DELETE" }).then(() => {
+      alert("Translator deleted")
       location.reload()
     })
   }

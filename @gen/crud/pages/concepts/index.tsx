@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Concept } from '@prisma/client'
+import React from "react"
+import { Concept } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface ConceptIndexProps {
   concepts: Concept[]
@@ -8,8 +9,8 @@ interface ConceptIndexProps {
 
 export default function ConceptIndex({ concepts }: ConceptIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/concepts/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Concept deleted')
+    fetch(`/api/concepts/${id}`, { method: "DELETE" }).then(() => {
+      alert("Concept deleted")
       location.reload()
     })
   }

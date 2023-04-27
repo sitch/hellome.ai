@@ -1,7 +1,8 @@
-import { PhotoFindManySchema } from '../findManyPhoto.schema'
-import { ConceptCountOutputTypeArgsObjectSchema } from './ConceptCountOutputTypeArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PhotoFindManySchema } from "../findManyPhoto.schema"
+import { ConceptCountOutputTypeArgsObjectSchema } from "./ConceptCountOutputTypeArgs.schema"
 
 const Schema: z.ZodType<Prisma.ConceptInclude> = z
   .object({

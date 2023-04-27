@@ -1,6 +1,7 @@
-import { JsonNullValueFilterSchema } from '../enums/JsonNullValueFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { JsonNullValueFilterSchema } from "../enums/JsonNullValueFilter.schema"
 
 const literalSchema = z.union([z.string(), z.number(), z.boolean()])
 const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>

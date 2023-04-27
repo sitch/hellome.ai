@@ -1,7 +1,8 @@
-import { ConceptIncludeObjectSchema } from './ConceptInclude.schema'
-import { ConceptSelectObjectSchema } from './ConceptSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptIncludeObjectSchema } from "./ConceptInclude.schema"
+import { ConceptSelectObjectSchema } from "./ConceptSelect.schema"
 
 const Schema: z.ZodType<Prisma.ConceptArgs> = z
   .object({

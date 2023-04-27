@@ -1,8 +1,9 @@
-import { EditionScalarFieldEnumSchema } from './enums/EditionScalarFieldEnum.schema'
-import { EditionOrderByWithAggregationInputObjectSchema } from './objects/EditionOrderByWithAggregationInput.schema'
-import { EditionScalarWhereWithAggregatesInputObjectSchema } from './objects/EditionScalarWhereWithAggregatesInput.schema'
-import { EditionWhereInputObjectSchema } from './objects/EditionWhereInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { EditionScalarFieldEnumSchema } from "./enums/EditionScalarFieldEnum.schema"
+import { EditionOrderByWithAggregationInputObjectSchema } from "./objects/EditionOrderByWithAggregationInput.schema"
+import { EditionScalarWhereWithAggregatesInputObjectSchema } from "./objects/EditionScalarWhereWithAggregatesInput.schema"
+import { EditionWhereInputObjectSchema } from "./objects/EditionWhereInput.schema"
 
 export const EditionGroupBySchema = z.object({
   where: EditionWhereInputObjectSchema.optional(),

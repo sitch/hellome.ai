@@ -1,6 +1,7 @@
-import { CloudFileUpdateManyMutationInputObjectSchema } from './objects/CloudFileUpdateManyMutationInput.schema'
-import { CloudFileWhereInputObjectSchema } from './objects/CloudFileWhereInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { CloudFileUpdateManyMutationInputObjectSchema } from "./objects/CloudFileUpdateManyMutationInput.schema"
+import { CloudFileWhereInputObjectSchema } from "./objects/CloudFileWhereInput.schema"
 
 export const CloudFileUpdateManySchema = z.object({
   data: CloudFileUpdateManyMutationInputObjectSchema,

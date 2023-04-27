@@ -4,14 +4,14 @@
 } */
 
 #all {
-  width: 680px;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
+  width: 680px;
 }
 
 #page-flip {
-  background-image: url(https://cssdeck.com/uploads/media/items/6/6h4pDpK.jpg);
   position: absolute;
+  background-image: url(https://cssdeck.com/uploads/media/items/6/6h4pDpK.jpg);
   padding: 40px 40px 40px 340px;
   width: 300px;
   height: 400px;
@@ -20,11 +20,11 @@
 
 #r1 {
   position: absolute;
-  z-index: 2;
-  -webkit-transform-origin: 1315px 500px;
   -webkit-transform: translate(-1030px, -500px) rotate(-32deg);
-  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+  -webkit-transform-origin: 1315px 500px;
+  z-index: 2;
   -webkit-transition-duration: 1s;
+  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
 }
 
 #p1 {
@@ -34,18 +34,16 @@
 }
 
 #p1 > div {
-  -webkit-transform-origin: 285px 0;
   -webkit-transform: translate(1030px, 500px) rotate(32deg);
-  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+  -webkit-transform-origin: 285px 0;
   -webkit-transition-duration: 1s;
+  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+  background-image: url(https://cssdeck.com/uploads/media/items/8/87WOlJH.jpg);
   width: 285px;
   height: 388px;
-  background-image: url(https://cssdeck.com/uploads/media/items/8/87WOlJH.jpg);
 }
 
 #p1 > div > div {
-  width: 10px;
-  height: 388px;
   background: -webkit-gradient(
     linear,
     left top,
@@ -53,43 +51,45 @@
     from(rgba(0, 0, 0, 0.25)),
     to(rgba(0, 0, 0, 0))
   );
+  width: 10px;
+  height: 388px;
 }
 
 #p2 > div {
-  width: 285px;
-  height: 388px;
-  -webkit-box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
   position: absolute;
   z-index: 1;
+  -webkit-box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
   background-image: url(https://cssdeck.com/uploads/media/items/4/4FpEEbu.jpg);
+  width: 285px;
+  height: 388px;
 }
 
 #r3 {
-  -webkit-transform-origin: 1315px 500px;
-  -webkit-transform: translate(-1030px, -500px) rotate(-32deg);
-  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
-  -webkit-transition-duration: 1s;
   position: absolute;
+  -webkit-transform: translate(-1030px, -500px) rotate(-32deg);
+  -webkit-transform-origin: 1315px 500px;
   z-index: 2;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
 }
 
 #s3 {
-  -webkit-transform-origin: 70px 500px;
-  -webkit-transform: translate(215px, -500px) rotate(-32deg) translate(40px, 0);
-  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
-  -webkit-transition-duration: 1s;
   position: absolute;
+  -webkit-transform: translate(215px, -500px) rotate(-32deg) translate(40px, 0);
+  -webkit-transform-origin: 70px 500px;
   z-index: 1;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
 }
 
 #page-flip:hover #s3 {
-  -webkit-transform-origin: 325px 500px;
   -webkit-transform: translate(-40px, -500px) rotate(0deg) translate(40px, 0);
+  -webkit-transform-origin: 325px 500px;
 }
 
 #sp3 {
-  width: 25px;
-  height: 1000px;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-property: width;
   background: -webkit-gradient(
     linear,
     left top,
@@ -97,8 +97,8 @@
     from(rgba(0, 0, 0, 0.25)),
     to(rgba(0, 0, 0, 0))
   );
-  -webkit-transition-property: width;
-  -webkit-transition-duration: 1s;
+  width: 25px;
+  height: 1000px;
   overflow: hidden;
 }
 
@@ -107,24 +107,22 @@
 }
 
 .s {
+  position: absolute;
+  z-index: 3;
   width: 285px;
   height: 388px;
-  position: absolute;
   overflow: hidden;
-  z-index: 3;
 }
 
 #s2 {
-  -webkit-transform-origin: 45px 500px;
-  -webkit-transform: translate(240px, -500px) rotate(-32deg);
-  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
-  -webkit-transition-duration: 1s;
   position: absolute;
+  -webkit-transform: translate(240px, -500px) rotate(-32deg);
+  -webkit-transform-origin: 45px 500px;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
 }
 
 #sp2 {
-  width: 15px;
-  height: 1000px;
   background: -webkit-gradient(
     linear,
     right top,
@@ -132,6 +130,8 @@
     from(rgba(0, 0, 0, 0.18)),
     to(rgba(0, 0, 0, 0))
   );
+  width: 15px;
+  height: 1000px;
   overflow: hidden;
 }
 
@@ -145,8 +145,8 @@
 }
 
 #page-flip:hover #s2 {
-  -webkit-transform-origin: 300px 500px;
   -webkit-transform: translate(-15px, -500px) rotate(0deg);
+  -webkit-transform-origin: 300px 500px;
 }
 
 #p3 {
@@ -156,21 +156,19 @@
 }
 
 #p3 > div {
-  -webkit-transform-origin: 0 0;
   -webkit-transform: translate(1255px, 500px) rotate(-32deg);
-  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+  -webkit-transform-origin: 0 0;
   -webkit-transition-duration: 1s;
+  -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
   -webkit-box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
+  background-image: url(https://cssdeck.com/uploads/media/items/6/6S8oF28.jpg);
   width: 285px;
   height: 388px;
-  background-image: url(https://cssdeck.com/uploads/media/items/6/6S8oF28.jpg);
   /* background-image: url('/static/images/sitchenko-infant-drawing-bw.png'); */
   overflow: hidden;
 }
 
 #p3 > div > div {
-  width: 9px;
-  height: 500px;
   float: right;
   background: -webkit-gradient(
     linear,
@@ -179,36 +177,38 @@
     from(rgba(0, 0, 0, 0)),
     to(rgba(0, 0, 0, 0.2))
   );
+  width: 9px;
+  height: 500px;
 }
 
 #page-flip:hover #r1 {
-  -webkit-transform-origin: 1570px 500px;
   -webkit-transform: translate(-1285px, -500px) rotate(0deg);
+  -webkit-transform-origin: 1570px 500px;
 }
 
 #page-flip:hover #p1 > div {
-  -webkit-transform-origin: 285px 0;
   -webkit-transform: translate(1285px, 500px) rotate(0deg);
+  -webkit-transform-origin: 285px 0;
 }
 
 #page-flip:hover #r3 {
-  -webkit-transform-origin: 1570px 500px;
   -webkit-transform: translate(-1285px, -500px) rotate(0deg);
+  -webkit-transform-origin: 1570px 500px;
 }
 
 #page-flip:hover #p3 > div {
-  -webkit-transform-origin: 0 0;
   -webkit-transform: translate(1000px, 500px) rotate(0deg);
+  -webkit-transform-origin: 0 0;
 }
 
 a.link {
   display: block;
   position: absolute;
+  z-index: 3;
+  -webkit-transition-duration: 0.01s;
+  -webkit-transition-property: margin;
   margin: -20000px 0 0 0;
   padding: 1px;
-  z-index: 3;
-  -webkit-transition-property: margin;
-  -webkit-transition-duration: 0.01s;
 }
 
 #rightPageTopLink {
@@ -217,8 +217,8 @@ a.link {
 }
 
 a.link:hover {
-  padding: 0;
   border: 1px dotted #92c7c1;
+  padding: 0;
 }
 
 #page-flip:hover #rightPageTopLink {

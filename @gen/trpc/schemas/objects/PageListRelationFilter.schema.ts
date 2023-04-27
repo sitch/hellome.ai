@@ -1,6 +1,7 @@
-import { PageWhereInputObjectSchema } from './PageWhereInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageWhereInputObjectSchema } from "./PageWhereInput.schema"
 
 const Schema: z.ZodType<Prisma.PageListRelationFilter> = z
   .object({

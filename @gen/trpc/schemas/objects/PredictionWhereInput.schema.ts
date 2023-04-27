@@ -1,9 +1,10 @@
-import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema'
-import { JsonNullableFilterObjectSchema } from './JsonNullableFilter.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { DateTimeNullableFilterObjectSchema } from "./DateTimeNullableFilter.schema"
+import { JsonNullableFilterObjectSchema } from "./JsonNullableFilter.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
+import { StringNullableFilterObjectSchema } from "./StringNullableFilter.schema"
 
 const Schema: z.ZodType<Prisma.PredictionWhereInput> = z
   .object({

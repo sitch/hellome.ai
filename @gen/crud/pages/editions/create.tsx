@@ -1,24 +1,24 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function EditionCreate() {
   const [formState, setFormState] = useState({
-    createdAt: '',
-    updatedAt: '',
-    userId: '',
-    pdfId: '',
+    createdAt: "",
+    updatedAt: "",
+    userId: "",
+    pdfId: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/editions', {
-      method: 'POST',
+    fetch("/api/editions", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Edition created!')
-        router.push('/editions')
+        alert("Edition created!")
+        router.push("/editions")
       }
     })
   }

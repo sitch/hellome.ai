@@ -1,10 +1,11 @@
-import { CloudFileScalarFieldEnumSchema } from './enums/CloudFileScalarFieldEnum.schema'
-import { CloudFileIncludeObjectSchema } from './objects/CloudFileInclude.schema'
-import { CloudFileOrderByWithRelationInputObjectSchema } from './objects/CloudFileOrderByWithRelationInput.schema'
-import { CloudFileSelectObjectSchema } from './objects/CloudFileSelect.schema'
-import { CloudFileWhereInputObjectSchema } from './objects/CloudFileWhereInput.schema'
-import { CloudFileWhereUniqueInputObjectSchema } from './objects/CloudFileWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { CloudFileScalarFieldEnumSchema } from "./enums/CloudFileScalarFieldEnum.schema"
+import { CloudFileIncludeObjectSchema } from "./objects/CloudFileInclude.schema"
+import { CloudFileOrderByWithRelationInputObjectSchema } from "./objects/CloudFileOrderByWithRelationInput.schema"
+import { CloudFileSelectObjectSchema } from "./objects/CloudFileSelect.schema"
+import { CloudFileWhereInputObjectSchema } from "./objects/CloudFileWhereInput.schema"
+import { CloudFileWhereUniqueInputObjectSchema } from "./objects/CloudFileWhereUniqueInput.schema"
 
 export const CloudFileFindManySchema = z.object({
   select: z.lazy(() => CloudFileSelectObjectSchema.optional()),

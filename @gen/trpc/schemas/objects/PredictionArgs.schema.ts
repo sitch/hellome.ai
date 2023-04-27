@@ -1,6 +1,7 @@
-import { PredictionSelectObjectSchema } from './PredictionSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PredictionSelectObjectSchema } from "./PredictionSelect.schema"
 
 const Schema: z.ZodType<Prisma.PredictionArgs> = z
   .object({

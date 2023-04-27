@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { Translator } from '@prisma/client'
+import React from "react"
+import { Translator } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface TranslatorShowProps {
   translator: Translator

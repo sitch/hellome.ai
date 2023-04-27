@@ -1,11 +1,12 @@
-import { PageFindManySchema } from '../findManyPage.schema'
-import { PageArtworkFindManySchema } from '../findManyPageArtwork.schema'
-import { PageTextFindManySchema } from '../findManyPageText.schema'
-import { ArtistArgsObjectSchema } from './ArtistArgs.schema'
-import { AuthorArgsObjectSchema } from './AuthorArgs.schema'
-import { StoryCountOutputTypeArgsObjectSchema } from './StoryCountOutputTypeArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageFindManySchema } from "../findManyPage.schema"
+import { PageArtworkFindManySchema } from "../findManyPageArtwork.schema"
+import { PageTextFindManySchema } from "../findManyPageText.schema"
+import { ArtistArgsObjectSchema } from "./ArtistArgs.schema"
+import { AuthorArgsObjectSchema } from "./AuthorArgs.schema"
+import { StoryCountOutputTypeArgsObjectSchema } from "./StoryCountOutputTypeArgs.schema"
 
 const Schema: z.ZodType<Prisma.StorySelect> = z
   .object({

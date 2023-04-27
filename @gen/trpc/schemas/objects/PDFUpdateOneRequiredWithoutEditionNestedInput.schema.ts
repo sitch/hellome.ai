@@ -1,12 +1,13 @@
-import { PDFCreateOrConnectWithoutEditionInputObjectSchema } from './PDFCreateOrConnectWithoutEditionInput.schema'
-import { PDFCreateWithoutEditionInputObjectSchema } from './PDFCreateWithoutEditionInput.schema'
-import { PDFUncheckedCreateWithoutEditionInputObjectSchema } from './PDFUncheckedCreateWithoutEditionInput.schema'
-import { PDFUncheckedUpdateWithoutEditionInputObjectSchema } from './PDFUncheckedUpdateWithoutEditionInput.schema'
-import { PDFUpdateWithoutEditionInputObjectSchema } from './PDFUpdateWithoutEditionInput.schema'
-import { PDFUpsertWithoutEditionInputObjectSchema } from './PDFUpsertWithoutEditionInput.schema'
-import { PDFWhereUniqueInputObjectSchema } from './PDFWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PDFCreateOrConnectWithoutEditionInputObjectSchema } from "./PDFCreateOrConnectWithoutEditionInput.schema"
+import { PDFCreateWithoutEditionInputObjectSchema } from "./PDFCreateWithoutEditionInput.schema"
+import { PDFUncheckedCreateWithoutEditionInputObjectSchema } from "./PDFUncheckedCreateWithoutEditionInput.schema"
+import { PDFUncheckedUpdateWithoutEditionInputObjectSchema } from "./PDFUncheckedUpdateWithoutEditionInput.schema"
+import { PDFUpdateWithoutEditionInputObjectSchema } from "./PDFUpdateWithoutEditionInput.schema"
+import { PDFUpsertWithoutEditionInputObjectSchema } from "./PDFUpsertWithoutEditionInput.schema"
+import { PDFWhereUniqueInputObjectSchema } from "./PDFWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PDFUpdateOneRequiredWithoutEditionNestedInput> =
   z

@@ -1,14 +1,15 @@
-import { LocaleSchema } from '../enums/Locale.schema'
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregatesFilter.schema'
-import { EnumLocaleWithAggregatesFilterObjectSchema } from './EnumLocaleWithAggregatesFilter.schema'
-import { EnumPageStatusWithAggregatesFilterObjectSchema } from './EnumPageStatusWithAggregatesFilter.schema'
-import { EnumPageTextTypeWithAggregatesFilterObjectSchema } from './EnumPageTextTypeWithAggregatesFilter.schema'
-import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema'
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { LocaleSchema } from "../enums/Locale.schema"
+import { PageStatusSchema } from "../enums/PageStatus.schema"
+import { PageTextTypeSchema } from "../enums/PageTextType.schema"
+import { DateTimeWithAggregatesFilterObjectSchema } from "./DateTimeWithAggregatesFilter.schema"
+import { EnumLocaleWithAggregatesFilterObjectSchema } from "./EnumLocaleWithAggregatesFilter.schema"
+import { EnumPageStatusWithAggregatesFilterObjectSchema } from "./EnumPageStatusWithAggregatesFilter.schema"
+import { EnumPageTextTypeWithAggregatesFilterObjectSchema } from "./EnumPageTextTypeWithAggregatesFilter.schema"
+import { StringNullableWithAggregatesFilterObjectSchema } from "./StringNullableWithAggregatesFilter.schema"
+import { StringWithAggregatesFilterObjectSchema } from "./StringWithAggregatesFilter.schema"
 
 const Schema: z.ZodType<Prisma.PageTextScalarWhereWithAggregatesInput> = z
   .object({

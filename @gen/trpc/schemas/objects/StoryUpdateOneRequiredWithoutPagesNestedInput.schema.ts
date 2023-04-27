@@ -1,12 +1,13 @@
-import { StoryCreateOrConnectWithoutPagesInputObjectSchema } from './StoryCreateOrConnectWithoutPagesInput.schema'
-import { StoryCreateWithoutPagesInputObjectSchema } from './StoryCreateWithoutPagesInput.schema'
-import { StoryUncheckedCreateWithoutPagesInputObjectSchema } from './StoryUncheckedCreateWithoutPagesInput.schema'
-import { StoryUncheckedUpdateWithoutPagesInputObjectSchema } from './StoryUncheckedUpdateWithoutPagesInput.schema'
-import { StoryUpdateWithoutPagesInputObjectSchema } from './StoryUpdateWithoutPagesInput.schema'
-import { StoryUpsertWithoutPagesInputObjectSchema } from './StoryUpsertWithoutPagesInput.schema'
-import { StoryWhereUniqueInputObjectSchema } from './StoryWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { StoryCreateOrConnectWithoutPagesInputObjectSchema } from "./StoryCreateOrConnectWithoutPagesInput.schema"
+import { StoryCreateWithoutPagesInputObjectSchema } from "./StoryCreateWithoutPagesInput.schema"
+import { StoryUncheckedCreateWithoutPagesInputObjectSchema } from "./StoryUncheckedCreateWithoutPagesInput.schema"
+import { StoryUncheckedUpdateWithoutPagesInputObjectSchema } from "./StoryUncheckedUpdateWithoutPagesInput.schema"
+import { StoryUpdateWithoutPagesInputObjectSchema } from "./StoryUpdateWithoutPagesInput.schema"
+import { StoryUpsertWithoutPagesInputObjectSchema } from "./StoryUpsertWithoutPagesInput.schema"
+import { StoryWhereUniqueInputObjectSchema } from "./StoryWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.StoryUpdateOneRequiredWithoutPagesNestedInput> =
   z

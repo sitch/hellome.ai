@@ -1,9 +1,10 @@
-import { UserCreateOrConnectWithoutEditionInputObjectSchema } from './UserCreateOrConnectWithoutEditionInput.schema'
-import { UserCreateWithoutEditionInputObjectSchema } from './UserCreateWithoutEditionInput.schema'
-import { UserUncheckedCreateWithoutEditionInputObjectSchema } from './UserUncheckedCreateWithoutEditionInput.schema'
-import { UserWhereUniqueInputObjectSchema } from './UserWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { UserCreateOrConnectWithoutEditionInputObjectSchema } from "./UserCreateOrConnectWithoutEditionInput.schema"
+import { UserCreateWithoutEditionInputObjectSchema } from "./UserCreateWithoutEditionInput.schema"
+import { UserUncheckedCreateWithoutEditionInputObjectSchema } from "./UserUncheckedCreateWithoutEditionInput.schema"
+import { UserWhereUniqueInputObjectSchema } from "./UserWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.UserCreateNestedOneWithoutEditionInput> = z
   .object({

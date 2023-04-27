@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function AuthorCreate() {
   const [formState, setFormState] = useState({})
@@ -7,13 +7,13 @@ export default function AuthorCreate() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/authors', {
-      method: 'POST',
+    fetch("/api/authors", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Author created!')
-        router.push('/authors')
+        alert("Author created!")
+        router.push("/authors")
       }
     })
   }

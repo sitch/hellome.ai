@@ -1,9 +1,10 @@
-import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema'
-import { JsonNullableWithAggregatesFilterObjectSchema } from './JsonNullableWithAggregatesFilter.schema'
-import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema'
-import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { DateTimeNullableWithAggregatesFilterObjectSchema } from "./DateTimeNullableWithAggregatesFilter.schema"
+import { JsonNullableWithAggregatesFilterObjectSchema } from "./JsonNullableWithAggregatesFilter.schema"
+import { StringNullableWithAggregatesFilterObjectSchema } from "./StringNullableWithAggregatesFilter.schema"
+import { StringWithAggregatesFilterObjectSchema } from "./StringWithAggregatesFilter.schema"
 
 const Schema: z.ZodType<Prisma.PredictionScalarWhereWithAggregatesInput> = z
   .object({

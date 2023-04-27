@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import { Trans, useTranslation } from "next-i18next"
-import { Camera } from "react-camera-pro"
+// import { Camera } from "react-camera-pro"
 import GridLayout from "react-grid-layout"
 import { Controller, SubmitErrorHandler, SubmitHandler } from "react-hook-form"
 import Webcam from "react-webcam"

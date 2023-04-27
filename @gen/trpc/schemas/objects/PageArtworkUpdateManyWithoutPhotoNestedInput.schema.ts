@@ -1,14 +1,15 @@
-import { PageArtworkCreateManyPhotoInputEnvelopeObjectSchema } from './PageArtworkCreateManyPhotoInputEnvelope.schema'
-import { PageArtworkCreateOrConnectWithoutPhotoInputObjectSchema } from './PageArtworkCreateOrConnectWithoutPhotoInput.schema'
-import { PageArtworkCreateWithoutPhotoInputObjectSchema } from './PageArtworkCreateWithoutPhotoInput.schema'
-import { PageArtworkScalarWhereInputObjectSchema } from './PageArtworkScalarWhereInput.schema'
-import { PageArtworkUncheckedCreateWithoutPhotoInputObjectSchema } from './PageArtworkUncheckedCreateWithoutPhotoInput.schema'
-import { PageArtworkUpdateManyWithWhereWithoutPhotoInputObjectSchema } from './PageArtworkUpdateManyWithWhereWithoutPhotoInput.schema'
-import { PageArtworkUpdateWithWhereUniqueWithoutPhotoInputObjectSchema } from './PageArtworkUpdateWithWhereUniqueWithoutPhotoInput.schema'
-import { PageArtworkUpsertWithWhereUniqueWithoutPhotoInputObjectSchema } from './PageArtworkUpsertWithWhereUniqueWithoutPhotoInput.schema'
-import { PageArtworkWhereUniqueInputObjectSchema } from './PageArtworkWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkCreateManyPhotoInputEnvelopeObjectSchema } from "./PageArtworkCreateManyPhotoInputEnvelope.schema"
+import { PageArtworkCreateOrConnectWithoutPhotoInputObjectSchema } from "./PageArtworkCreateOrConnectWithoutPhotoInput.schema"
+import { PageArtworkCreateWithoutPhotoInputObjectSchema } from "./PageArtworkCreateWithoutPhotoInput.schema"
+import { PageArtworkScalarWhereInputObjectSchema } from "./PageArtworkScalarWhereInput.schema"
+import { PageArtworkUncheckedCreateWithoutPhotoInputObjectSchema } from "./PageArtworkUncheckedCreateWithoutPhotoInput.schema"
+import { PageArtworkUpdateManyWithWhereWithoutPhotoInputObjectSchema } from "./PageArtworkUpdateManyWithWhereWithoutPhotoInput.schema"
+import { PageArtworkUpdateWithWhereUniqueWithoutPhotoInputObjectSchema } from "./PageArtworkUpdateWithWhereUniqueWithoutPhotoInput.schema"
+import { PageArtworkUpsertWithWhereUniqueWithoutPhotoInputObjectSchema } from "./PageArtworkUpsertWithWhereUniqueWithoutPhotoInput.schema"
+import { PageArtworkWhereUniqueInputObjectSchema } from "./PageArtworkWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkUpdateManyWithoutPhotoNestedInput> = z
   .object({

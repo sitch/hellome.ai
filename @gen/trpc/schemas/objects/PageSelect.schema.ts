@@ -1,9 +1,10 @@
-import { PageArtworkFindManySchema } from '../findManyPageArtwork.schema'
-import { PageTextFindManySchema } from '../findManyPageText.schema'
-import { PageCountOutputTypeArgsObjectSchema } from './PageCountOutputTypeArgs.schema'
-import { StoryArgsObjectSchema } from './StoryArgs.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkFindManySchema } from "../findManyPageArtwork.schema"
+import { PageTextFindManySchema } from "../findManyPageText.schema"
+import { PageCountOutputTypeArgsObjectSchema } from "./PageCountOutputTypeArgs.schema"
+import { StoryArgsObjectSchema } from "./StoryArgs.schema"
 
 const Schema: z.ZodType<Prisma.PageSelect> = z
   .object({

@@ -1,8 +1,9 @@
-import { ConceptUncheckedUpdateWithoutPhotosInputObjectSchema } from './ConceptUncheckedUpdateWithoutPhotosInput.schema'
-import { ConceptUpdateWithoutPhotosInputObjectSchema } from './ConceptUpdateWithoutPhotosInput.schema'
-import { ConceptWhereUniqueInputObjectSchema } from './ConceptWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptUncheckedUpdateWithoutPhotosInputObjectSchema } from "./ConceptUncheckedUpdateWithoutPhotosInput.schema"
+import { ConceptUpdateWithoutPhotosInputObjectSchema } from "./ConceptUpdateWithoutPhotosInput.schema"
+import { ConceptWhereUniqueInputObjectSchema } from "./ConceptWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.ConceptUpdateWithWhereUniqueWithoutPhotosInput> =
   z

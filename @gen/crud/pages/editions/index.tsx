@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Edition } from '@prisma/client'
+import React from "react"
+import { Edition } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface EditionIndexProps {
   editions: Edition[]
@@ -8,8 +9,8 @@ interface EditionIndexProps {
 
 export default function EditionIndex({ editions }: EditionIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/editions/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Edition deleted')
+    fetch(`/api/editions/${id}`, { method: "DELETE" }).then(() => {
+      alert("Edition deleted")
       location.reload()
     })
   }

@@ -1,5 +1,6 @@
-import { CloudFileCreateManyInputObjectSchema } from './objects/CloudFileCreateManyInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { CloudFileCreateManyInputObjectSchema } from "./objects/CloudFileCreateManyInput.schema"
 
 export const CloudFileCreateManySchema = z.object({
   data: z.union([

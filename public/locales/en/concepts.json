@@ -1,6 +1,7 @@
 {
   "form": {
-    "h1": "Concept Training",
+    "heading": "Concept Training",
+    "description": "Concept Training",
     "schema": {
       "type": {
         "label": "Type",

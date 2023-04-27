@@ -1,14 +1,15 @@
-import { PageTextCreateManyTranslatorInputEnvelopeObjectSchema } from './PageTextCreateManyTranslatorInputEnvelope.schema'
-import { PageTextCreateOrConnectWithoutTranslatorInputObjectSchema } from './PageTextCreateOrConnectWithoutTranslatorInput.schema'
-import { PageTextCreateWithoutTranslatorInputObjectSchema } from './PageTextCreateWithoutTranslatorInput.schema'
-import { PageTextScalarWhereInputObjectSchema } from './PageTextScalarWhereInput.schema'
-import { PageTextUncheckedCreateWithoutTranslatorInputObjectSchema } from './PageTextUncheckedCreateWithoutTranslatorInput.schema'
-import { PageTextUpdateManyWithWhereWithoutTranslatorInputObjectSchema } from './PageTextUpdateManyWithWhereWithoutTranslatorInput.schema'
-import { PageTextUpdateWithWhereUniqueWithoutTranslatorInputObjectSchema } from './PageTextUpdateWithWhereUniqueWithoutTranslatorInput.schema'
-import { PageTextUpsertWithWhereUniqueWithoutTranslatorInputObjectSchema } from './PageTextUpsertWithWhereUniqueWithoutTranslatorInput.schema'
-import { PageTextWhereUniqueInputObjectSchema } from './PageTextWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextCreateManyTranslatorInputEnvelopeObjectSchema } from "./PageTextCreateManyTranslatorInputEnvelope.schema"
+import { PageTextCreateOrConnectWithoutTranslatorInputObjectSchema } from "./PageTextCreateOrConnectWithoutTranslatorInput.schema"
+import { PageTextCreateWithoutTranslatorInputObjectSchema } from "./PageTextCreateWithoutTranslatorInput.schema"
+import { PageTextScalarWhereInputObjectSchema } from "./PageTextScalarWhereInput.schema"
+import { PageTextUncheckedCreateWithoutTranslatorInputObjectSchema } from "./PageTextUncheckedCreateWithoutTranslatorInput.schema"
+import { PageTextUpdateManyWithWhereWithoutTranslatorInputObjectSchema } from "./PageTextUpdateManyWithWhereWithoutTranslatorInput.schema"
+import { PageTextUpdateWithWhereUniqueWithoutTranslatorInputObjectSchema } from "./PageTextUpdateWithWhereUniqueWithoutTranslatorInput.schema"
+import { PageTextUpsertWithWhereUniqueWithoutTranslatorInputObjectSchema } from "./PageTextUpsertWithWhereUniqueWithoutTranslatorInput.schema"
+import { PageTextWhereUniqueInputObjectSchema } from "./PageTextWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutTranslatorNestedInput> =
   z

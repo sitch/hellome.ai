@@ -32,15 +32,15 @@
 
 /* the text color of the drop label*/
 .filepond--drop-label {
-  color: #555 !important;
   /* background-color: #3d369773; */
   /* background-color: rgb(var(--secondary-2)); */
 
   border-width: 2px !important;
-  border-radius: 1rem !important;
   border-style: dashed !important;
   border-color: #cbd5e1 !important;
+  border-radius: 1rem !important;
   background-color: #f8fafc !important;
+  color: #555 !important;
 }
 
 /* SUCCESS COLOR */

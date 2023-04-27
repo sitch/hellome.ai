@@ -1,9 +1,10 @@
-import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
-import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
-import { JsonNullValueInputSchema } from '../enums/JsonNullValueInput.schema'
-import { PDFUncheckedCreateNestedOneWithoutFileInputObjectSchema } from './PDFUncheckedCreateNestedOneWithoutFileInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { FilePrivacySchema } from "../enums/FilePrivacy.schema"
+import { FileResourceTypeSchema } from "../enums/FileResourceType.schema"
+import { JsonNullValueInputSchema } from "../enums/JsonNullValueInput.schema"
+import { PDFUncheckedCreateNestedOneWithoutFileInputObjectSchema } from "./PDFUncheckedCreateNestedOneWithoutFileInput.schema"
 
 const literalSchema = z.union([z.string(), z.number(), z.boolean()])
 const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>

@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PDFEdit({ pdf }) {
   const [formState, setFormState] = useState(pdf)
@@ -8,11 +8,11 @@ export default function PDFEdit({ pdf }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/pdfs/${pdf.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('PDF updated!')
+        alert("PDF updated!")
         router.push(`/pdfs/${pdf.id}`)
       }
     })

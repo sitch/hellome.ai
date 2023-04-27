@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function UserEdit({ user }) {
   const [formState, setFormState] = useState(user)
@@ -8,11 +8,11 @@ export default function UserEdit({ user }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/users/${user.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('User updated!')
+        alert("User updated!")
         router.push(`/users/${user.id}`)
       }
     })

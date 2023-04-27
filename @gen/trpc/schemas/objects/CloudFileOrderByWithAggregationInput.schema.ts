@@ -1,11 +1,12 @@
-import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { CloudFileAvgOrderByAggregateInputObjectSchema } from './CloudFileAvgOrderByAggregateInput.schema'
-import { CloudFileCountOrderByAggregateInputObjectSchema } from './CloudFileCountOrderByAggregateInput.schema'
-import { CloudFileMaxOrderByAggregateInputObjectSchema } from './CloudFileMaxOrderByAggregateInput.schema'
-import { CloudFileMinOrderByAggregateInputObjectSchema } from './CloudFileMinOrderByAggregateInput.schema'
-import { CloudFileSumOrderByAggregateInputObjectSchema } from './CloudFileSumOrderByAggregateInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { SortOrderSchema } from "../enums/SortOrder.schema"
+import { CloudFileAvgOrderByAggregateInputObjectSchema } from "./CloudFileAvgOrderByAggregateInput.schema"
+import { CloudFileCountOrderByAggregateInputObjectSchema } from "./CloudFileCountOrderByAggregateInput.schema"
+import { CloudFileMaxOrderByAggregateInputObjectSchema } from "./CloudFileMaxOrderByAggregateInput.schema"
+import { CloudFileMinOrderByAggregateInputObjectSchema } from "./CloudFileMinOrderByAggregateInput.schema"
+import { CloudFileSumOrderByAggregateInputObjectSchema } from "./CloudFileSumOrderByAggregateInput.schema"
 
 const Schema: z.ZodType<Prisma.CloudFileOrderByWithAggregationInput> = z
   .object({

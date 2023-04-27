@@ -1,10 +1,11 @@
-import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { EditionUpdateOneWithoutPdfNestedInputObjectSchema } from './EditionUpdateOneWithoutPdfNestedInput.schema'
-import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema'
-import { PDFUpdatetagsInputObjectSchema } from './PDFUpdatetagsInput.schema'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from "./DateTimeFieldUpdateOperationsInput.schema"
+import { EditionUpdateOneWithoutPdfNestedInputObjectSchema } from "./EditionUpdateOneWithoutPdfNestedInput.schema"
+import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
+import { PDFUpdatetagsInputObjectSchema } from "./PDFUpdatetagsInput.schema"
+import { StringFieldUpdateOperationsInputObjectSchema } from "./StringFieldUpdateOperationsInput.schema"
 
 const Schema: z.ZodType<Prisma.PDFUpdateWithoutFileInput> = z
   .object({

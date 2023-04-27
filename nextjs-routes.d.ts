@@ -13,7 +13,6 @@ declare module "nextjs-routes" {
   export type Route =
     | StaticRoute<"/404">
     | StaticRoute<"/_dev_/500">
-    | StaticRoute<"/_dev_/_error">
     | StaticRoute<"/_dev_/_offline">
     | StaticRoute<"/_dev_/landing">
     | StaticRoute<"/_dev_/upload">

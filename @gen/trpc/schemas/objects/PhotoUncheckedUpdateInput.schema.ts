@@ -1,11 +1,12 @@
-import { ConceptUncheckedUpdateManyWithoutPhotosNestedInputObjectSchema } from './ConceptUncheckedUpdateManyWithoutPhotosNestedInput.schema'
-import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema'
-import { PageArtworkUncheckedUpdateManyWithoutPhotoNestedInputObjectSchema } from './PageArtworkUncheckedUpdateManyWithoutPhotoNestedInput.schema'
-import { PhotoUpdatetagsInputObjectSchema } from './PhotoUpdatetagsInput.schema'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptUncheckedUpdateManyWithoutPhotosNestedInputObjectSchema } from "./ConceptUncheckedUpdateManyWithoutPhotosNestedInput.schema"
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from "./DateTimeFieldUpdateOperationsInput.schema"
+import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
+import { PageArtworkUncheckedUpdateManyWithoutPhotoNestedInputObjectSchema } from "./PageArtworkUncheckedUpdateManyWithoutPhotoNestedInput.schema"
+import { PhotoUpdatetagsInputObjectSchema } from "./PhotoUpdatetagsInput.schema"
+import { StringFieldUpdateOperationsInputObjectSchema } from "./StringFieldUpdateOperationsInput.schema"
 
 const Schema: z.ZodType<Prisma.PhotoUncheckedUpdateInput> = z
   .object({

@@ -1,6 +1,7 @@
-import { PageCountOutputTypeSelectObjectSchema } from './PageCountOutputTypeSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageCountOutputTypeSelectObjectSchema } from "./PageCountOutputTypeSelect.schema"
 
 const Schema: z.ZodType<Prisma.PageCountOutputTypeArgs> = z
   .object({

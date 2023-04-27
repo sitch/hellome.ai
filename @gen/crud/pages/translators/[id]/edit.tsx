@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function TranslatorEdit({ translator }) {
   const [formState, setFormState] = useState(translator)
@@ -8,11 +8,11 @@ export default function TranslatorEdit({ translator }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     fetch(`/api/translators/${translator.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('Translator updated!')
+        alert("Translator updated!")
         router.push(`/translators/${translator.id}`)
       }
     })

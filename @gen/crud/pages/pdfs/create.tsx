@@ -1,26 +1,26 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PDFCreate() {
   const [formState, setFormState] = useState({
-    height: '',
-    width: '',
-    pages: '',
-    tags: '',
-    createdAt: '',
-    fileId: '',
+    height: "",
+    width: "",
+    pages: "",
+    tags: "",
+    createdAt: "",
+    fileId: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/pdfs', {
-      method: 'POST',
+    fetch("/api/pdfs", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('PDF created!')
-        router.push('/pdfs')
+        alert("PDF created!")
+        router.push("/pdfs")
       }
     })
   }

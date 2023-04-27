@@ -1,14 +1,15 @@
-import { LocaleSchema } from '../enums/Locale.schema'
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
-import { EnumLocaleFieldUpdateOperationsInputObjectSchema } from './EnumLocaleFieldUpdateOperationsInput.schema'
-import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from './EnumPageStatusFieldUpdateOperationsInput.schema'
-import { EnumPageTextTypeFieldUpdateOperationsInputObjectSchema } from './EnumPageTextTypeFieldUpdateOperationsInput.schema'
-import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { LocaleSchema } from "../enums/Locale.schema"
+import { PageStatusSchema } from "../enums/PageStatus.schema"
+import { PageTextTypeSchema } from "../enums/PageTextType.schema"
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from "./DateTimeFieldUpdateOperationsInput.schema"
+import { EnumLocaleFieldUpdateOperationsInputObjectSchema } from "./EnumLocaleFieldUpdateOperationsInput.schema"
+import { EnumPageStatusFieldUpdateOperationsInputObjectSchema } from "./EnumPageStatusFieldUpdateOperationsInput.schema"
+import { EnumPageTextTypeFieldUpdateOperationsInputObjectSchema } from "./EnumPageTextTypeFieldUpdateOperationsInput.schema"
+import { NullableStringFieldUpdateOperationsInputObjectSchema } from "./NullableStringFieldUpdateOperationsInput.schema"
+import { StringFieldUpdateOperationsInputObjectSchema } from "./StringFieldUpdateOperationsInput.schema"
 
 const Schema: z.ZodType<Prisma.PageTextUncheckedUpdateWithoutTranslatorInput> =
   z

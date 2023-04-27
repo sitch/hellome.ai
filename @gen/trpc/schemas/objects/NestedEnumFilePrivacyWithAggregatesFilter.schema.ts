@@ -1,8 +1,9 @@
-import { FilePrivacySchema } from '../enums/FilePrivacy.schema'
-import { NestedEnumFilePrivacyFilterObjectSchema } from './NestedEnumFilePrivacyFilter.schema'
-import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { FilePrivacySchema } from "../enums/FilePrivacy.schema"
+import { NestedEnumFilePrivacyFilterObjectSchema } from "./NestedEnumFilePrivacyFilter.schema"
+import { NestedIntFilterObjectSchema } from "./NestedIntFilter.schema"
 
 const Schema: z.ZodType<Prisma.NestedEnumFilePrivacyWithAggregatesFilter> = z
   .object({

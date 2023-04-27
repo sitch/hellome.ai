@@ -1,10 +1,11 @@
-import { TranslatorScalarFieldEnumSchema } from './enums/TranslatorScalarFieldEnum.schema'
-import { TranslatorIncludeObjectSchema } from './objects/TranslatorInclude.schema'
-import { TranslatorOrderByWithRelationInputObjectSchema } from './objects/TranslatorOrderByWithRelationInput.schema'
-import { TranslatorSelectObjectSchema } from './objects/TranslatorSelect.schema'
-import { TranslatorWhereInputObjectSchema } from './objects/TranslatorWhereInput.schema'
-import { TranslatorWhereUniqueInputObjectSchema } from './objects/TranslatorWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { TranslatorScalarFieldEnumSchema } from "./enums/TranslatorScalarFieldEnum.schema"
+import { TranslatorIncludeObjectSchema } from "./objects/TranslatorInclude.schema"
+import { TranslatorOrderByWithRelationInputObjectSchema } from "./objects/TranslatorOrderByWithRelationInput.schema"
+import { TranslatorSelectObjectSchema } from "./objects/TranslatorSelect.schema"
+import { TranslatorWhereInputObjectSchema } from "./objects/TranslatorWhereInput.schema"
+import { TranslatorWhereUniqueInputObjectSchema } from "./objects/TranslatorWhereUniqueInput.schema"
 
 export const TranslatorFindManySchema = z.object({
   select: z.lazy(() => TranslatorSelectObjectSchema.optional()),

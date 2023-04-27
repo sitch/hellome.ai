@@ -1,7 +1,8 @@
-import { NestedDateTimeFilterObjectSchema } from './NestedDateTimeFilter.schema'
-import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { NestedDateTimeFilterObjectSchema } from "./NestedDateTimeFilter.schema"
+import { NestedIntFilterObjectSchema } from "./NestedIntFilter.schema"
 
 const Schema: z.ZodType<Prisma.NestedDateTimeWithAggregatesFilter> = z
   .object({

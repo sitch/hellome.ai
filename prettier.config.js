@@ -1,12 +1,16 @@
-/** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
+/**
+ * @type {import("prettier-plugin-organize-attributes").PrettierConfig}
+ */
 const sortImports = {
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "",
+    "^@/gen/(.*)$",
     "^types$",
     "^@/types/(.*)$",
+    "",
     "^@/config/(.*)$",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",
@@ -18,7 +22,6 @@ const sortImports = {
     "^@/emails/(.*)$",
     "^@/client/(.*)$",
     "^@/server/(.*)$",
-    "^@/gen/(.*)$",
     "^@/(.*)$",
     "",
     "^[./]",
@@ -31,8 +34,27 @@ const sortImports = {
   importOrderCombineTypeAndValueImports: true,
 }
 
-/** @type {import('prettier').Config} */
+/**
+ * @type {import("@ianvs/prettier-plugin-sort-imports").PluginConfig}
+ */
+const organizeAttributes = {
+  attributeGroups: [
+    "^id$",
+    "^name$",
+    "^class$",
+    //  "^(id|name)$",
+    "$DEFAULT",
+    "^aria-",
+  ],
+}
+
+/**
+ * @type {import('prettier').Config}
+ */
 module.exports = {
+  ...sortImports,
+  ...organizeAttributes,
+
   endOfLine: "lf",
   semi: false,
   useTabs: false,
@@ -41,10 +63,11 @@ module.exports = {
   tabWidth: 2,
   trailingComma: "es5",
 
-  // pluginSearchDirs: false,
+  pluginSearchDirs: false,
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-css-order",
+    "prettier-plugin-tailwindcss", // MUST come last
   ],
-  ...sortImports,
 }

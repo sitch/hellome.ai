@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../../lib/prisma'
-import { Artist } from '@prisma/client'
+import React from "react"
+import { Artist } from "@prisma/client"
+
+import { prisma } from "../../../lib/prisma"
 
 interface ArtistShowProps {
   artist: Artist

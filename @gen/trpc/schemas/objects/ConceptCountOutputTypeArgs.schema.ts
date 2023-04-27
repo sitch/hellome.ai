@@ -1,6 +1,7 @@
-import { ConceptCountOutputTypeSelectObjectSchema } from './ConceptCountOutputTypeSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ConceptCountOutputTypeSelectObjectSchema } from "./ConceptCountOutputTypeSelect.schema"
 
 const Schema: z.ZodType<Prisma.ConceptCountOutputTypeArgs> = z
   .object({

@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Page } from '@prisma/client'
+import React from "react"
+import { Page } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface PageIndexProps {
   pages: Page[]
@@ -8,8 +9,8 @@ interface PageIndexProps {
 
 export default function PageIndex({ pages }: PageIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/pages/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Page deleted')
+    fetch(`/api/pages/${id}`, { method: "DELETE" }).then(() => {
+      alert("Page deleted")
       location.reload()
     })
   }

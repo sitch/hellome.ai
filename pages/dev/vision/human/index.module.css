@@ -3,10 +3,10 @@
 } */
 .footer {
   display: flex;
-  padding: 1rem;
-  border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  border-top: 1px solid #eaeaea;
+  padding: 1rem;
 }
 .webcam {
   display: none;
@@ -19,9 +19,9 @@
   position: absolute;
   top: 12px;
   right: 20px;
+  box-shadow: 2px 2px black;
   background-color: grey;
   padding: 8px;
-  box-shadow: 2px 2px black;
   font-family: monospace;
 }
 .log {
@@ -31,8 +31,8 @@
 .performance {
   position: absolute;
   bottom: 0;
-  width: 100%;
   padding: 8px;
+  width: 100%;
   font-size: 0.8rem;
   font-family: monospace;
 }

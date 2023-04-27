@@ -1,6 +1,7 @@
-import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageTextTypeSchema } from "../enums/PageTextType.schema"
 
 const Schema: z.ZodType<Prisma.EnumPageTextTypeFieldUpdateOperationsInput> = z
   .object({

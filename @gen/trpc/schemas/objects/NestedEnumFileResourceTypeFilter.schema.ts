@@ -1,6 +1,7 @@
-import { FileResourceTypeSchema } from '../enums/FileResourceType.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { FileResourceTypeSchema } from "../enums/FileResourceType.schema"
 
 const Schema: z.ZodType<Prisma.NestedEnumFileResourceTypeFilter> = z
   .object({

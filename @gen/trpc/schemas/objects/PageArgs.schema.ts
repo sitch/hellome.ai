@@ -1,7 +1,8 @@
-import { PageIncludeObjectSchema } from './PageInclude.schema'
-import { PageSelectObjectSchema } from './PageSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageIncludeObjectSchema } from "./PageInclude.schema"
+import { PageSelectObjectSchema } from "./PageSelect.schema"
 
 const Schema: z.ZodType<Prisma.PageArgs> = z
   .object({

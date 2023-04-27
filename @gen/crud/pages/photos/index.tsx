@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Photo } from '@prisma/client'
+import React from "react"
+import { Photo } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface PhotoIndexProps {
   photos: Photo[]
@@ -8,8 +9,8 @@ interface PhotoIndexProps {
 
 export default function PhotoIndex({ photos }: PhotoIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/photos/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Photo deleted')
+    fetch(`/api/photos/${id}`, { method: "DELETE" }).then(() => {
+      alert("Photo deleted")
       location.reload()
     })
   }

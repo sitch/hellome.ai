@@ -1,11 +1,12 @@
-import { SortOrderSchema } from '../enums/SortOrder.schema'
-import { PhotoAvgOrderByAggregateInputObjectSchema } from './PhotoAvgOrderByAggregateInput.schema'
-import { PhotoCountOrderByAggregateInputObjectSchema } from './PhotoCountOrderByAggregateInput.schema'
-import { PhotoMaxOrderByAggregateInputObjectSchema } from './PhotoMaxOrderByAggregateInput.schema'
-import { PhotoMinOrderByAggregateInputObjectSchema } from './PhotoMinOrderByAggregateInput.schema'
-import { PhotoSumOrderByAggregateInputObjectSchema } from './PhotoSumOrderByAggregateInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { SortOrderSchema } from "../enums/SortOrder.schema"
+import { PhotoAvgOrderByAggregateInputObjectSchema } from "./PhotoAvgOrderByAggregateInput.schema"
+import { PhotoCountOrderByAggregateInputObjectSchema } from "./PhotoCountOrderByAggregateInput.schema"
+import { PhotoMaxOrderByAggregateInputObjectSchema } from "./PhotoMaxOrderByAggregateInput.schema"
+import { PhotoMinOrderByAggregateInputObjectSchema } from "./PhotoMinOrderByAggregateInput.schema"
+import { PhotoSumOrderByAggregateInputObjectSchema } from "./PhotoSumOrderByAggregateInput.schema"
 
 const Schema: z.ZodType<Prisma.PhotoOrderByWithAggregationInput> = z
   .object({

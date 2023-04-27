@@ -1,8 +1,9 @@
-import { PageArtworkUncheckedUpdateWithoutPageInputObjectSchema } from './PageArtworkUncheckedUpdateWithoutPageInput.schema'
-import { PageArtworkUpdateWithoutPageInputObjectSchema } from './PageArtworkUpdateWithoutPageInput.schema'
-import { PageArtworkWhereUniqueInputObjectSchema } from './PageArtworkWhereUniqueInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkUncheckedUpdateWithoutPageInputObjectSchema } from "./PageArtworkUncheckedUpdateWithoutPageInput.schema"
+import { PageArtworkUpdateWithoutPageInputObjectSchema } from "./PageArtworkUpdateWithoutPageInput.schema"
+import { PageArtworkWhereUniqueInputObjectSchema } from "./PageArtworkWhereUniqueInput.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkUpdateWithWhereUniqueWithoutPageInput> =
   z

@@ -1,3 +1,3 @@
-import { z } from 'zod'
+import { z } from "zod"
 
-export const PageStatusSchema = z.enum(['DRAFT', 'PUBLISHED'])
+export const PageStatusSchema = z.enum(["DRAFT", "PUBLISHED"])

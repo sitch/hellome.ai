@@ -1,9 +1,10 @@
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { EnumPageStatusFilterObjectSchema } from './EnumPageStatusFilter.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageStatusSchema } from "../enums/PageStatus.schema"
+import { DateTimeFilterObjectSchema } from "./DateTimeFilter.schema"
+import { EnumPageStatusFilterObjectSchema } from "./EnumPageStatusFilter.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkScalarWhereInput> = z
   .object({

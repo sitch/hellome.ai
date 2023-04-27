@@ -1,7 +1,8 @@
-import { UserIncludeObjectSchema } from './objects/UserInclude.schema'
-import { UserSelectObjectSchema } from './objects/UserSelect.schema'
-import { UserWhereUniqueInputObjectSchema } from './objects/UserWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { UserIncludeObjectSchema } from "./objects/UserInclude.schema"
+import { UserSelectObjectSchema } from "./objects/UserSelect.schema"
+import { UserWhereUniqueInputObjectSchema } from "./objects/UserWhereUniqueInput.schema"
 
 export const UserFindUniqueSchema = z.object({
   select: UserSelectObjectSchema.optional(),

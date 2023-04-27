@@ -1,6 +1,7 @@
-import { StoryCreateManyAuthorInputObjectSchema } from './StoryCreateManyAuthorInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { StoryCreateManyAuthorInputObjectSchema } from "./StoryCreateManyAuthorInput.schema"
 
 const Schema: z.ZodType<Prisma.StoryCreateManyAuthorInputEnvelope> = z
   .object({

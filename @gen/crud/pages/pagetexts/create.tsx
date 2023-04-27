@@ -1,30 +1,30 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PageTextCreate() {
   const [formState, setFormState] = useState({
-    status: '',
-    locale: '',
-    text: '',
-    type: '',
-    createdAt: '',
-    updatedAt: '',
-    pageId: '',
-    storyId: '',
-    authorId: '',
-    translatorId: '',
+    status: "",
+    locale: "",
+    text: "",
+    type: "",
+    createdAt: "",
+    updatedAt: "",
+    pageId: "",
+    storyId: "",
+    authorId: "",
+    translatorId: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/pagetexts', {
-      method: 'POST',
+    fetch("/api/pagetexts", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('PageText created!')
-        router.push('/pagetexts')
+        alert("PageText created!")
+        router.push("/pagetexts")
       }
     })
   }

@@ -1,7 +1,8 @@
-import { PageArtworkIncludeObjectSchema } from './PageArtworkInclude.schema'
-import { PageArtworkSelectObjectSchema } from './PageArtworkSelect.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageArtworkIncludeObjectSchema } from "./PageArtworkInclude.schema"
+import { PageArtworkSelectObjectSchema } from "./PageArtworkSelect.schema"
 
 const Schema: z.ZodType<Prisma.PageArtworkArgs> = z
   .object({

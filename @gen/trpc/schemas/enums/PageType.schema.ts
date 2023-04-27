@@ -1,3 +1,3 @@
-import { z } from 'zod'
+import { z } from "zod"
 
-export const PageTypeSchema = z.enum(['FrontCover', 'Body', 'BackCover'])
+export const PageTypeSchema = z.enum(["FrontCover", "Body", "BackCover"])

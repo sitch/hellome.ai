@@ -1,27 +1,27 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function PageArtworkCreate() {
   const [formState, setFormState] = useState({
-    status: '',
-    createdAt: '',
-    updatedAt: '',
-    pageId: '',
-    storyId: '',
-    artistId: '',
-    photoId: '',
+    status: "",
+    createdAt: "",
+    updatedAt: "",
+    pageId: "",
+    storyId: "",
+    artistId: "",
+    photoId: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/pageartworks', {
-      method: 'POST',
+    fetch("/api/pageartworks", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('PageArtwork created!')
-        router.push('/pageartworks')
+        alert("PageArtwork created!")
+        router.push("/pageartworks")
       }
     })
   }

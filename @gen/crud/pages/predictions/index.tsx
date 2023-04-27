@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Prediction } from '@prisma/client'
+import React from "react"
+import { Prediction } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface PredictionIndexProps {
   predictions: Prediction[]
@@ -8,8 +9,8 @@ interface PredictionIndexProps {
 
 export default function PredictionIndex({ predictions }: PredictionIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/predictions/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Prediction deleted')
+    fetch(`/api/predictions/${id}`, { method: "DELETE" }).then(() => {
+      alert("Prediction deleted")
       location.reload()
     })
   }

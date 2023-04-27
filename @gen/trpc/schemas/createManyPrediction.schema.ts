@@ -1,5 +1,6 @@
-import { PredictionCreateManyInputObjectSchema } from './objects/PredictionCreateManyInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PredictionCreateManyInputObjectSchema } from "./objects/PredictionCreateManyInput.schema"
 
 export const PredictionCreateManySchema = z.object({
   data: z.union([

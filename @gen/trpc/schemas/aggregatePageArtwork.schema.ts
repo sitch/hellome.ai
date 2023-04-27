@@ -1,10 +1,11 @@
-import { PageArtworkCountAggregateInputObjectSchema } from './objects/PageArtworkCountAggregateInput.schema'
-import { PageArtworkMaxAggregateInputObjectSchema } from './objects/PageArtworkMaxAggregateInput.schema'
-import { PageArtworkMinAggregateInputObjectSchema } from './objects/PageArtworkMinAggregateInput.schema'
-import { PageArtworkOrderByWithRelationInputObjectSchema } from './objects/PageArtworkOrderByWithRelationInput.schema'
-import { PageArtworkWhereInputObjectSchema } from './objects/PageArtworkWhereInput.schema'
-import { PageArtworkWhereUniqueInputObjectSchema } from './objects/PageArtworkWhereUniqueInput.schema'
-import { z } from 'zod'
+import { z } from "zod"
+
+import { PageArtworkCountAggregateInputObjectSchema } from "./objects/PageArtworkCountAggregateInput.schema"
+import { PageArtworkMaxAggregateInputObjectSchema } from "./objects/PageArtworkMaxAggregateInput.schema"
+import { PageArtworkMinAggregateInputObjectSchema } from "./objects/PageArtworkMinAggregateInput.schema"
+import { PageArtworkOrderByWithRelationInputObjectSchema } from "./objects/PageArtworkOrderByWithRelationInput.schema"
+import { PageArtworkWhereInputObjectSchema } from "./objects/PageArtworkWhereInput.schema"
+import { PageArtworkWhereUniqueInputObjectSchema } from "./objects/PageArtworkWhereUniqueInput.schema"
 
 export const PageArtworkAggregateSchema = z.object({
   orderBy: z

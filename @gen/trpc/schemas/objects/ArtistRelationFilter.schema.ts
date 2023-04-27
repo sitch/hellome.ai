@@ -1,6 +1,7 @@
-import { ArtistWhereInputObjectSchema } from './ArtistWhereInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { ArtistWhereInputObjectSchema } from "./ArtistWhereInput.schema"
 
 const Schema: z.ZodType<Prisma.ArtistRelationFilter> = z
   .object({

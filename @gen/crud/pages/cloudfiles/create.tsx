@@ -1,30 +1,30 @@
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { FormEvent, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function CloudFileCreate() {
   const [formState, setFormState] = useState({
-    resourceType: '',
-    filename: '',
-    size: '',
-    ext: '',
-    mime: '',
-    metadata: '',
-    path: '',
-    signature: '',
-    privacy: '',
-    createdAt: '',
+    resourceType: "",
+    filename: "",
+    size: "",
+    ext: "",
+    mime: "",
+    metadata: "",
+    path: "",
+    signature: "",
+    privacy: "",
+    createdAt: "",
   })
   const router = useRouter()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    fetch('/api/cloudfiles', {
-      method: 'POST',
+    fetch("/api/cloudfiles", {
+      method: "POST",
       body: JSON.stringify(formState),
     }).then((res) => {
       if (res.ok) {
-        alert('CloudFile created!')
-        router.push('/cloudfiles')
+        alert("CloudFile created!")
+        router.push("/cloudfiles")
       }
     })
   }

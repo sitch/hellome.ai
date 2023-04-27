@@ -1,6 +1,7 @@
-import React from 'react'
-import { prisma } from '../../lib/prisma'
-import { Story } from '@prisma/client'
+import React from "react"
+import { Story } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 
 interface StoryIndexProps {
   storys: Story[]
@@ -8,8 +9,8 @@ interface StoryIndexProps {
 
 export default function StoryIndex({ storys }: StoryIndexProps) {
   function handleDelete(id: string) {
-    fetch(`/api/storys/${id}`, { method: 'DELETE' }).then(() => {
-      alert('Story deleted')
+    fetch(`/api/storys/${id}`, { method: "DELETE" }).then(() => {
+      alert("Story deleted")
       location.reload()
     })
   }

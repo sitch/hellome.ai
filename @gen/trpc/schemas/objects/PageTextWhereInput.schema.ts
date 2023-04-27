@@ -1,22 +1,23 @@
-import { LocaleSchema } from '../enums/Locale.schema'
-import { PageStatusSchema } from '../enums/PageStatus.schema'
-import { PageTextTypeSchema } from '../enums/PageTextType.schema'
-import { AuthorRelationFilterObjectSchema } from './AuthorRelationFilter.schema'
-import { AuthorWhereInputObjectSchema } from './AuthorWhereInput.schema'
-import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema'
-import { EnumLocaleFilterObjectSchema } from './EnumLocaleFilter.schema'
-import { EnumPageStatusFilterObjectSchema } from './EnumPageStatusFilter.schema'
-import { EnumPageTextTypeFilterObjectSchema } from './EnumPageTextTypeFilter.schema'
-import { PageRelationFilterObjectSchema } from './PageRelationFilter.schema'
-import { PageWhereInputObjectSchema } from './PageWhereInput.schema'
-import { StoryRelationFilterObjectSchema } from './StoryRelationFilter.schema'
-import { StoryWhereInputObjectSchema } from './StoryWhereInput.schema'
-import { StringFilterObjectSchema } from './StringFilter.schema'
-import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema'
-import { TranslatorRelationFilterObjectSchema } from './TranslatorRelationFilter.schema'
-import { TranslatorWhereInputObjectSchema } from './TranslatorWhereInput.schema'
-import type { Prisma } from '@prisma/client'
-import { z } from 'zod'
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { LocaleSchema } from "../enums/Locale.schema"
+import { PageStatusSchema } from "../enums/PageStatus.schema"
+import { PageTextTypeSchema } from "../enums/PageTextType.schema"
+import { AuthorRelationFilterObjectSchema } from "./AuthorRelationFilter.schema"
+import { AuthorWhereInputObjectSchema } from "./AuthorWhereInput.schema"
+import { DateTimeFilterObjectSchema } from "./DateTimeFilter.schema"
+import { EnumLocaleFilterObjectSchema } from "./EnumLocaleFilter.schema"
+import { EnumPageStatusFilterObjectSchema } from "./EnumPageStatusFilter.schema"
+import { EnumPageTextTypeFilterObjectSchema } from "./EnumPageTextTypeFilter.schema"
+import { PageRelationFilterObjectSchema } from "./PageRelationFilter.schema"
+import { PageWhereInputObjectSchema } from "./PageWhereInput.schema"
+import { StoryRelationFilterObjectSchema } from "./StoryRelationFilter.schema"
+import { StoryWhereInputObjectSchema } from "./StoryWhereInput.schema"
+import { StringFilterObjectSchema } from "./StringFilter.schema"
+import { StringNullableFilterObjectSchema } from "./StringNullableFilter.schema"
+import { TranslatorRelationFilterObjectSchema } from "./TranslatorRelationFilter.schema"
+import { TranslatorWhereInputObjectSchema } from "./TranslatorWhereInput.schema"
 
 const Schema: z.ZodType<Prisma.PageTextWhereInput> = z
   .object({
