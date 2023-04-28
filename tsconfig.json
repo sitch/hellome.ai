@@ -40,6 +40,9 @@
     "node_modules",
     "cypress/**/*",
     "cypress.config.ts",
+    "@gen/trpc/routers/*.ts",
+    "@gen/trpc/schemas/*.ts",
+    "@gen/lulu/**/*",
     "@gen/crud/**/*"
   ]
 }

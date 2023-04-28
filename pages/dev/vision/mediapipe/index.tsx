@@ -11,14 +11,14 @@ const FaceFilter = dynamic(
   () => import("@/components/vision/mediapipe/FaceFilter"),
   {
     ssr: false,
-  }
+  },
 )
 
 const AlterBackground = dynamic(
   () => import("@/components/vision/mediapipe/AlterBackground"),
   {
     ssr: false,
-  }
+  },
 )
 
 export default function Index() {

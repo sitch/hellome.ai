@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+
 import Status from "http-status-codes"
 
 import { BaseApiResponse, EmailResponse } from "@/lib/api"
 import { within } from "@/lib/api/within"
 import { EmailPayload, castMailData } from "@/lib/mailer"
+
 import sendMail, { transport, verifyTransport } from "@/emails"
 import vercel from "@/vercel.json"
 
@@ -13,7 +15,7 @@ const MAX_DURATION_MS =
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<EmailResponse | BaseApiResponse>
+  res: NextApiResponse<EmailResponse | BaseApiResponse>,
 ) {
   if (req.method !== "POST") {
     return res

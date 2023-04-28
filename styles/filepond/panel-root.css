@@ -1,0 +1,4 @@
+.filepond--panel-root {
+    border-radius: var(--radius);
+    background-color: hsl(var(--background));
+}

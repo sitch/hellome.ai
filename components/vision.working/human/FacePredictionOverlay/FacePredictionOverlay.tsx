@@ -1,4 +1,5 @@
 import { Component } from "react"
+
 import type { FaceResult, Human, Result } from "@vladmandic/human"
 import { isEqual, remove } from "lodash"
 
@@ -48,11 +49,11 @@ class FacePredictionOverlay extends Component<
     // bind elements
     this.video =
       (document.getElementById(
-        this.props.inputId
+        this.props.inputId,
       ) as HTMLVideoElement | null) ?? document.createElement("video")
     this.canvas =
       (document.getElementById(
-        this.props.outputId
+        this.props.outputId,
       ) as HTMLCanvasElement | null) ?? document.createElement("canvas")
 
     // human is loaded as dynamic import in component constructor and then sets ready state
@@ -60,7 +61,7 @@ class FacePredictionOverlay extends Component<
       this.human = new H.default(config) as Human
 
       log(
-        `human version:${this.human.version}| tfjs version:${this.human.tf.version["tfjs-core"]}`
+        `human version:${this.human.version}| tfjs version:${this.human.tf.version["tfjs-core"]}`,
       )
       log(`platform:${this.human.env.platform}| agent:${this.human.env.agent}`)
 
@@ -70,13 +71,13 @@ class FacePredictionOverlay extends Component<
         log(
           `backend:${this.human!.tf.getBackend()}| available:${
             this.human!.env.backends
-          }`
+          }`,
         )
 
         log(
           `loaded models: ${
             Object.values(this.human!.models).filter(Boolean).length
-          }`
+          }`,
         )
 
         // warmup function to initialize backend for future faster detection
@@ -145,7 +146,7 @@ class FacePredictionOverlay extends Component<
 
   async #handleError(
     error: any,
-    { face, vector }: { face?: FaceResult; vector?: ManifoldVector }
+    { face, vector }: { face?: FaceResult; vector?: ManifoldVector },
   ) {
     // console.log({face,vector})
     // !!face && console.error('face')

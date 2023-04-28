@@ -1,35 +1,20 @@
-// Base
-// import "@/styles/global/main.css"
-// import "@/styles/global/chrome-bug.css"
-// import "@/styles/global/dark-mode.css"
-// import "@/styles/global/filepond.css"
-
-// NEW
 import "@/styles/globals.css"
-import "@/styles/global/filepond.css"
-import "@/styles/global/chrome-bug.css"
-import "@/styles/global/filepond.css"
-//
-//
-
-// Icons
-import "@fortawesome/fontawesome-svg-core/styles.css"
+import "@/styles/chrome-bug.css"
+import "@/styles/filepond.css"
 import { useEffect } from "react"
 import type { AppProps, NextWebVitalsMetric } from "next/app"
 import Head from "next/head"
-import { config } from "@fortawesome/fontawesome-svg-core"
-import { Analytics } from "@vercel/analytics/react"
 import { appWithTranslation } from "next-i18next"
-import { GoogleAnalytics, event, pageView } from "nextjs-google-analytics"
 
+import { Analytics } from "@vercel/analytics/react"
+import { GoogleAnalytics, event } from "nextjs-google-analytics"
+
+import { fontSans } from "@/lib/fonts"
 import { trpc } from "@/utils/trpc"
+
 import { DefaultWebsiteSEO } from "@/components/seo/DefaultWebsiteSEO"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-
-// Tell Font Awesome to skip adding the CSS automatically
-// since it's already imported above
-config.autoAddCss = false
 
 export function reportWebVitals({
   id,
@@ -46,45 +31,30 @@ export function reportWebVitals({
 }
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  // // Theme
-  // const { activeTheme, inactiveTheme } = useThemeDetector()
-  // useEffect(() => {
-  //   document.documentElement.classList?.add(activeTheme)
-  //   document.documentElement.classList?.remove(inactiveTheme)
-  // }, [activeTheme, inactiveTheme])
-
-  // // Analytics
-  // const router = useRouter()
-  // useEffect(() => {
-  //   const handleRouteChange = (url: string) => {
-  //     pageView({
-  //       location: url,
-  //       // title: "",
-  //       // path: "",
-  //       // sendPageView: true,
-  //       // userId: "",
-  //     })
-  //   }
-  //   router.events.on('routeChangeComplete', handleRouteChange)
-  //   return () => {
-  //     router.events.off('routeChangeComplete', handleRouteChange)
-  //   }
-  // }, [router.events])
-
-  // Apply loading class
   useEffect(() => {
+    // Remove `loading` class when `document` is available.
     document.body.classList.remove("loading")
   }, [])
 
   return (
     <>
       <DefaultWebsiteSEO />
-
       <Head>
-        {/* <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
-        /> */}
+        {/* Start Font Fix */}
+        {/* See: https://levelup.gitconnected.com/how-to-make-next-js-13s-optimized-fonts-work-with-tailwind-css-c3c5e57d38aa */}
+        <style
+          // eslint-disable-next-line react/no-unknown-property
+          jsx
+          // eslint-disable-next-line react/no-unknown-property
+          global
+        >
+          {`
+            :root {
+              --font-sans: ${fontSans.style.fontFamily};
+            }
+          `}
+        </style>
+        {/* End Font Fix */}
       </Head>
       {process.env.NODE_ENV !== "production" && (
         <GoogleAnalytics trackPageViews />
@@ -96,7 +66,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <TailwindIndicator />
       </ThemeProvider>
 
-      {/* <Analytics mode="production" /> */}
+      <Analytics mode="production" />
     </>
   )
 }

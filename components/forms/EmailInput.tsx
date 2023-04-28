@@ -1,4 +1,5 @@
 import { useCallback, useRef } from "react"
+
 import classNames from "classnames"
 
 import emailStyles from "@/components/forms/EmailInput.module.css"
@@ -6,7 +7,7 @@ import emailStyles from "@/components/forms/EmailInput.module.css"
 const regex = new RegExp(
   '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|' +
     '(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])' +
-    "|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"
+    "|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$",
 )
 
 // document.querySelectorAll('.email-input').forEach(container => {

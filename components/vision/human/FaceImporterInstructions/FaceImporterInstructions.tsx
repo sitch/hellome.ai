@@ -5,7 +5,7 @@ export type FaceImporterInstructionsProps = {
 }
 
 export default function FaceImporterInstructions(
-  props: FaceImporterInstructionsProps
+  props: FaceImporterInstructionsProps,
 ) {
   return <div>Instructions</div>
 }

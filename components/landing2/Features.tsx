@@ -1,24 +1,8 @@
 import { ReactNode } from "react"
 import Link from "next/link"
-import {
-  faFingerprint,
-  faHandsHoldingChild,
-  faHandshakeSimple,
-  faHeart,
-  faLock,
-  faPalette,
-  faPenNib,
-  faPersonBooth,
-  faPersonCircleQuestion,
-  faRobot,
-  faTruckFast,
-  // faPen,
-  // faUsersViewfinder,
-} from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useTranslation } from "next-i18next"
 
-import { ZapIcon } from "./icons"
+import { Fingerprint, Lock, Palette, Pen, Zap } from "lucide-react"
 
 export type FeatureProps = {
   icon?: ReactNode
@@ -33,7 +17,7 @@ export const Feature = ({
   title,
   description,
   action = { label: "Learn More" },
-  icon = <ZapIcon />,
+  icon = <Zap />,
 }: FeatureProps) => (
   <div className="flex max-w-md flex-col sm:mx-auto sm:flex-row">
     <div className="mr-4">
@@ -70,39 +54,19 @@ export const Features = () =>
     const features = [
       {
         ...t("features.Feature1", { returnObjects: true }),
-        icon: (
-          <FontAwesomeIcon
-            // size="lg"
-            icon={faFingerprint}
-          />
-        ),
+        icon: <Fingerprint />,
       },
       {
         ...t("features.Feature2", { returnObjects: true }),
-        icon: (
-          <FontAwesomeIcon
-            // size="lg"
-            icon={faLock}
-          />
-        ),
+        icon: <Lock />,
       },
       {
         ...t("features.Feature3", { returnObjects: true }),
-        icon: (
-          <FontAwesomeIcon
-            // size="lg"
-            icon={faPalette}
-          />
-        ),
+        icon: <Palette />,
       },
       {
         ...t("features.Feature4", { returnObjects: true }),
-        icon: (
-          <FontAwesomeIcon
-            // size="lg"
-            icon={faPenNib}
-          />
-        ),
+        icon: <Pen />,
       },
     ]
     return (

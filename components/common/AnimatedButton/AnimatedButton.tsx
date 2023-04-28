@@ -1,36 +1,38 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
 
+import { LucideIcon } from "lucide-react"
+
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+
+import { Button, ButtonProps, iconVariants } from "@/components/ui/button"
 import Loader from "@/components/loader"
 
-export type AnimatedButtonProps = {
+export type AnimatedButtonProps = ButtonProps & {
   wide?: boolean
   loading?: boolean
-  caret?: "left" | "right" | undefined
-} & DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->
+}
 
 export default function AnimatedButton({
+  icon: Icon,
   wide = false,
   loading = false,
   disabled,
-  caret = undefined,
   children,
-  className,
+  // className,
+  size,
   ...props
 }: AnimatedButtonProps) {
   return (
     <>
-      <button
+      <Button
+        size={size}
+        transition={false}
         // variant="outline"
         className={cn(
-          className ?? "",
+          // className ?? "",
           wide ? "w-full" : "",
           "group",
-          "animate-button bg-gradient-to-r from-emerald-400 via-indigo-400 to-rose-400 transition-all ease-in",
+          "animate-bg-wave bg-gradient-to-r from-emerald-400 via-indigo-400 to-rose-400 transition-all ease-in-out",
           "rounded-lg",
           "shadow-indigo shadow-lg hover:shadow-blue-700/50",
           "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
@@ -39,7 +41,7 @@ export default function AnimatedButton({
           "disabled:pointer-events-none disabled:opacity-50",
           "h-auto w-auto",
           // "relative inline-flex items-center justify-center",
-          "mb-1 mr-1 p-0.5"
+          "mb-1 mr-1 p-0.5",
         )}
         disabled={!!loading || disabled}
         {...props}
@@ -49,58 +51,36 @@ export default function AnimatedButton({
             "font-semibold",
             "text-gray-900 dark:text-white",
             "bg-white dark:bg-gray-900",
-            "group-hover:bg-white/5 group-hover:text-white",
-            "dark:group-hover:bg-gray-900/5 dark:group-hover:text-gray-900",
+            "group-hover:bg-white/30 group-hover:text-white",
+            "dark:group-hover:bg-gray-900/30 dark:group-hover:text-gray-900",
             "transition-all duration-2.2s ease-in",
             "inline-flex h-full w-full",
             "relative",
             loading ? "px-2 py-3" : "px-6 py-3",
             loading ? "cursor-wait" : "",
             disabled ? "cursor-not-allowed" : "",
-            "rounded-md"
+            "rounded-md",
           )}
         >
           {loading ? (
             <Loader />
           ) : (
             <>
-              {caret == "left" && (
-                <svg
-                  className="mr-2 inline h-2.5 w-2.5 rotate-180"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              )}
+              {Icon ? (
+                <Icon
+                  size={iconVariants.size[size ?? "default"]}
+                  className={cn(
+                    iconVariants.className[size ?? "default"],
+
+                    disabled ? "" : "",
+                  )}
+                />
+              ) : null}
               {children}
-              {caret == "right" && (
-                <svg
-                  className="mr-2 inline h-2.5 w-2.5 "
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              )}
             </>
           )}
         </span>
-      </button>
+      </Button>
     </>
   )
 }

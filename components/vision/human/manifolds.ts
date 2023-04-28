@@ -63,14 +63,14 @@ export function castManifoldVectors<T, V>({
 export function findNearestManifoldVector(
   coordinates: ManifoldCoordinates,
   vectors: ManifoldVector<Result, FaceResult>[],
-  face: UsableFaceResult
+  face: UsableFaceResult,
 ): ManifoldVector<Result, FaceResult> | undefined {
   if (vectors.length === 0 || !withinConfidenceBounds(face, coordinates)) {
     return undefined
   }
 
   const toleratedVectors = vectors.filter((vector) =>
-    withinToleranceBounds(face, vector)
+    withinToleranceBounds(face, vector),
   )
 
   if (toleratedVectors.length === 0) {

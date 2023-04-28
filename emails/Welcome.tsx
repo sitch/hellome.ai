@@ -1,4 +1,5 @@
 import React from "react"
+
 import { MjmlColumn, MjmlSection, MjmlSpacer, MjmlWrapper } from "mjml-react"
 
 import BaseLayout from "./components/BaseLayout"

@@ -1,4 +1,5 @@
 import React from "react"
+
 import { EMAIL_PREFERENCES_URL } from "mailing-core"
 import {
   MjmlColumn,

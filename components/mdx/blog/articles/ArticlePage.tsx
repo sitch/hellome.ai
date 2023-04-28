@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 
 import { Article } from "@/lib/mdx/types"
+
 import ArticleHeader from "@/components/mdx/blog/articles/ArticleHeader"
 
 type ArticleProps = {

@@ -1,5 +1,6 @@
 import { useRef } from "react"
 import { useTranslation } from "next-i18next"
+
 import { Controller, SubmitErrorHandler, SubmitHandler } from "react-hook-form"
 import Webcam from "react-webcam"
 import z from "zod"
@@ -8,6 +9,7 @@ import { makeZodI18nMap } from "zod-i18n-map"
 import { useZodForm } from "@/lib/hooks/useZodForm"
 import { cn } from "@/lib/utils"
 import { trpc } from "@/utils/trpc"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { AlertDestructive } from "@/components/ui/kit/AlertDestructive"
@@ -15,11 +17,13 @@ import { AlertFormField } from "@/components/ui/kit/AlertFormField"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
-import Canvas from "@/components/canvas"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { ImageInput } from "@/components/forms/files/ImageInput"
+import { SketchCanvas } from "@/components/sketch/SketchCanvas"
+// import Canvas from "@/components/replicate/canvas"
 import InitWebcam from "@/components/vision/InitWebcam"
+
 import {
   CloudFileSchema,
   ConceptSchema,
@@ -236,7 +240,7 @@ export function ConceptForm(_props: Props) {
                                 "rounded-lg",
                                 "w-full p-5",
                                 "cursor-pointer",
-                                "inline-flex items-center justify-between"
+                                "inline-flex items-center justify-between",
                               )}
                             >
                               <div className="block">
@@ -245,7 +249,7 @@ export function ConceptForm(_props: Props) {
                                 </div>
                                 <div className="w-full sm:font-light">
                                   {t(
-                                    `form.schema.type.enum.${type}.description`
+                                    `form.schema.type.enum.${type}.description`,
                                   )}
                                 </div>
                               </div>
@@ -288,15 +292,15 @@ export function ConceptForm(_props: Props) {
                       {t("form.schema.photos.label")}
                     </Label>
                     <div className="mt-2">
-                      <Canvas
-                        startingPaths={[]}
-                        scribbleExists={false}
-                        onScribble={(scribble: string | null): void => {
-                          // throw new Error('Function not implemented.')
-                        }}
-                        setScribbleExists={(exists: boolean): void => {
-                          // throw new Error('Function not implemented.')
-                        }}
+                      <SketchCanvas
+                      // startingPaths={[]}
+                      // scribbleExists={false}
+                      // onScribble={(scribble: string | null): void => {
+                      //   // throw new Error('Function not implemented.')
+                      // }}
+                      // setScribbleExists={(exists: boolean): void => {
+                      //   // throw new Error('Function not implemented.')
+                      // }}
                       />
                     </div>
                   </div>

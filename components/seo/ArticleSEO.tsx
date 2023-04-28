@@ -1,8 +1,10 @@
-import { uniq } from "lodash"
 import { DefaultSeoProps, NextSeo } from "next-seo"
 import { OpenGraph } from "next-seo/lib/types"
 
+import { uniq } from "lodash"
+
 import { Article, LocaleCode } from "@/lib/mdx/types"
+
 import { site } from "@/data/siteConfig"
 
 export const defaults: DefaultSeoProps = {
@@ -33,7 +35,7 @@ const openGraphForArticle = (article: Article): OpenGraph => {
 
   const url = urlForArticle(article)
   const authors = (article.authors ?? []).map(
-    ({ handle }) => `${site.url}/authors/${handle}`
+    ({ handle }) => `${site.url}/authors/${handle}`,
   )
 
   const sectionTags = section

@@ -7,7 +7,7 @@ import { upsertPrediction } from "@/lib/replicate/db"
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   console.log("received webhook for prediction: ", req.body.id)
   await upsertPrediction(req.body)

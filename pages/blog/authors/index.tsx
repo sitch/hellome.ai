@@ -5,10 +5,12 @@ import { NextSeo } from "next-seo"
 
 import { processMDXAuthors } from "@/lib/mdx"
 import { Author } from "@/lib/mdx/types"
+
 import Hero from "@/components/mdx/Hero"
 import Layout from "@/components/mdx/Layout"
 import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"
 import { AuthorsPage } from "@/components/mdx/blog/authors/AuthorsPage"
+
 import { site } from "@/data/siteConfig"
 import i18NextConfig from "@/next-i18next.config"
 

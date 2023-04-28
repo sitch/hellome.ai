@@ -1,8 +1,10 @@
 import { Component, RefObject } from "react"
+
 import type { FaceResult, Human, Result } from "@vladmandic/human"
 import { isEqual, remove } from "lodash"
 
 import { config } from "@/lib/human/config"
+
 import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
 import { log, status } from "@/components/vision/logging"
 
@@ -69,7 +71,7 @@ class FacePredictionOverlay extends Component<
       this.human = new H.default(config) as Human
 
       log(
-        `human version:${this.human.version}| tfjs version:${this.human.tf.version["tfjs-core"]}`
+        `human version:${this.human.version}| tfjs version:${this.human.tf.version["tfjs-core"]}`,
       )
       log(`platform:${this.human.env.platform}| agent:${this.human.env.agent}`)
 
@@ -79,13 +81,13 @@ class FacePredictionOverlay extends Component<
         log(
           `backend:${this.human!.tf.getBackend()}| available:${
             this.human!.env.backends
-          }`
+          }`,
         )
 
         log(
           `loaded models: ${
             Object.values(this.human!.models).filter(Boolean).length
-          }`
+          }`,
         )
 
         // warmup function to initialize backend for future faster detection
@@ -142,7 +144,7 @@ class FacePredictionOverlay extends Component<
       const nextAnalysis = await runFaceAnalysis(
         this.human,
         result,
-        this.state.analysis
+        this.state.analysis,
       )
 
       // update state
@@ -173,7 +175,7 @@ class FacePredictionOverlay extends Component<
     }: {
       face?: FaceResult | undefined | null
       vector?: ManifoldVector<Result, FaceResult>
-    }
+    },
   ) {
     if (error) {
       console.log({ face, vector })

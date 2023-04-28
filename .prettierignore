@@ -3,3 +3,6 @@ node_modules
 public
 openapi.lulu.yml
 @gen/
+styles/global/filepond-orig.css
+styles/filepond.css
+styles/filepond/*.css

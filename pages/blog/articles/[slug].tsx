@@ -10,10 +10,12 @@ import {
   AuthorSource,
   castArticle,
 } from "@/lib/mdx/types"
+
 import Layout from "@/components/mdx/Layout"
 import ArticlePage from "@/components/mdx/blog/articles/ArticlePage"
 import { ArticleSEO } from "@/components/seo/ArticleSEO"
 import { DefaultArticleSEO } from "@/components/seo/DefaultArticleSEO"
+
 import i18NextConfig from "@/next-i18next.config"
 
 type Props = MDXPageProps<ArticleSource> & {
@@ -53,7 +55,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const mdx = await processMDXPage<ArticleSource>("blog/articles", slug)
   const { data } = await processMDXPage<AuthorSource>(
     "blog/authors",
-    mdx.data.authorHandle
+    mdx.data.authorHandle,
   )
   return {
     props: {

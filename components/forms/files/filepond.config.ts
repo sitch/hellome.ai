@@ -1,5 +1,6 @@
-import { FilePondOptions } from "filepond"
 import { TFunction } from "next-i18next"
+
+import { FilePondOptions } from "filepond"
 
 export const labels = (t: TFunction): Partial<FilePondOptions> => ({
   labelMaxFileSize: t("labelMaxFileSize"),
@@ -34,28 +35,28 @@ export const labels = (t: TFunction): Partial<FilePondOptions> => ({
   labelFileTypeNotAllowed: t("labelFileTypeNotAllowed"),
   imageValidateSizeLabelFormatError: t("imageValidateSizeLabelFormatError"),
   imageValidateSizeLabelImageSizeTooSmall: t(
-    "imageValidateSizeLabelImageSizeTooSmall"
+    "imageValidateSizeLabelImageSizeTooSmall",
   ),
   imageValidateSizeLabelImageSizeTooBig: t(
-    "imageValidateSizeLabelImageSizeTooBig"
+    "imageValidateSizeLabelImageSizeTooBig",
   ),
   imageValidateSizeLabelExpectedMinSize: t(
-    "imageValidateSizeLabelExpectedMinSize"
+    "imageValidateSizeLabelExpectedMinSize",
   ),
   imageValidateSizeLabelExpectedMaxSize: t(
-    "imageValidateSizeLabelExpectedMaxSize"
+    "imageValidateSizeLabelExpectedMaxSize",
   ),
   imageValidateSizeLabelImageResolutionTooLow: t(
-    "imageValidateSizeLabelImageResolutionTooLow"
+    "imageValidateSizeLabelImageResolutionTooLow",
   ),
   imageValidateSizeLabelImageResolutionTooHigh: t(
-    "imageValidateSizeLabelImageResolutionTooHigh"
+    "imageValidateSizeLabelImageResolutionTooHigh",
   ),
   imageValidateSizeLabelExpectedMinResolution: t(
-    "imageValidateSizeLabelExpectedMinResolution"
+    "imageValidateSizeLabelExpectedMinResolution",
   ),
   imageValidateSizeLabelExpectedMaxResolution: t(
-    "imageValidateSizeLabelExpectedMaxResolution"
+    "imageValidateSizeLabelExpectedMaxResolution",
   ),
   labelFileLoadError: (_error) => t("labelFileLoadError"),
   labelFileRemoveError: (_error) => t("labelFileRemoveError"),

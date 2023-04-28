@@ -36,5 +36,13 @@
     "destructive": {
       "title": "Error"
     }
+  },
+  "404": {
+    "title": "Uh-oh!",
+    "description": "We can't find that page.",
+    "link": {
+      "label": "Home",
+      "href": "/"
+    }
   }
 }

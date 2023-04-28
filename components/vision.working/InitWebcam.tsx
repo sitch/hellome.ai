@@ -70,7 +70,7 @@ class InitWebcam extends Component<InitWebcamProps, InitWebcamState> {
           settings: this.settings,
           constraints: this.constraints,
           capabilities: this.capabilities,
-        }
+        },
       )
     return null
   }

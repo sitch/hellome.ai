@@ -1,5 +1,6 @@
 import { useRef } from "react"
 import { Trans, useTranslation } from "next-i18next"
+
 // import { Camera } from "react-camera-pro"
 import GridLayout from "react-grid-layout"
 import { Controller, SubmitErrorHandler, SubmitHandler } from "react-hook-form"
@@ -9,7 +10,9 @@ import { makeZodI18nMap } from "zod-i18n-map"
 
 import { useZodForm } from "@/lib/hooks/useZodForm"
 import { trpc } from "@/utils/trpc"
+
 import { ImageInput } from "@/components/forms/files/ImageInput"
+
 import {
   CloudFileSchema,
   ConceptSchema,
@@ -17,8 +20,8 @@ import {
   PhotoSchema,
 } from "@/@gen/zod"
 
-import Canvas from "../canvas"
 import AnimatedButton from "../common/AnimatedButton/AnimatedButton"
+import Canvas from "../replicate/canvas"
 import InitWebcam from "../vision/InitWebcam"
 
 // See: https://zod.dev/?id=recursive-types

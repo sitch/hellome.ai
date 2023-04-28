@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+
 import { Camera } from "@mediapipe/camera_utils"
 import {
   SelfieSegmentation,
@@ -43,7 +44,7 @@ export const AlterBackground = () => {
       0,
       0,
       canvasElement.width,
-      canvasElement.height
+      canvasElement.height,
     )
 
     canvasCtx!.globalCompositeOperation =
@@ -54,7 +55,7 @@ export const AlterBackground = () => {
       0,
       0,
       canvasElement.width,
-      canvasElement.height
+      canvasElement.height,
     )
 
     canvasCtx!.globalCompositeOperation = "destination-atop"
@@ -65,7 +66,7 @@ export const AlterBackground = () => {
         0,
         canvasElement.width,
         canvasElement.height,
-        15
+        15,
       )
     } else {
       canvasCtx!.filter = isVirtualBgRef.current ? "none" : "blur(15px)"
@@ -75,7 +76,7 @@ export const AlterBackground = () => {
       0,
       0,
       canvasElement.width,
-      canvasElement.height
+      canvasElement.height,
     )
 
     canvasCtx!.restore()
@@ -183,7 +184,7 @@ export const AlterBackground = () => {
   }, [isVirtualBg])
 
   const handleOptionChange: React.ChangeEventHandler<HTMLInputElement> = (
-    e
+    e,
   ) => {
     switch (e.target.value) {
       case "blur":
@@ -214,11 +215,11 @@ export const AlterBackground = () => {
     const options = getRecordingOptions(true)
     mediaRecorderRef.current = new MediaRecorder(
       stream,
-      options as MediaRecorderOptions
+      options as MediaRecorderOptions,
     )
     mediaRecorderRef.current!.addEventListener(
       "dataavailable",
-      handleDataAvailable
+      handleDataAvailable,
     )
     mediaRecorderRef.current!.start()
     setRecording(true)
@@ -242,7 +243,7 @@ export const AlterBackground = () => {
 
     mediaRecorderRef.current!.removeEventListener(
       "dataavailable",
-      handleDataAvailable
+      handleDataAvailable,
     )
   }
 

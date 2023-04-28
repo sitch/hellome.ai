@@ -24,7 +24,7 @@ export type FaceAnalysisResult = {
 export async function runFaceAnalysis(
   human: Human | undefined,
   result: Result,
-  prevAnalysis: FaceAnalysis
+  prevAnalysis: FaceAnalysis,
 ): Promise<FaceAnalysisResult> {
   if (!isUsable(prevAnalysis.coordinates, result)) {
     return {
@@ -40,7 +40,7 @@ export async function runFaceAnalysis(
   const prevVector = findNearestManifoldVector(
     prevAnalysis.coordinates,
     prevAnalysis.vectors,
-    face
+    face,
   )
   // let imageData: ImageData
 

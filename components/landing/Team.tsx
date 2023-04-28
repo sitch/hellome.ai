@@ -1,5 +1,4 @@
-// import { span
-// ICON=IonIcon } from '@ionic/react'
+import { Dribbble, Twitter } from "lucide-react"
 
 export default function Team() {
   return (
@@ -26,10 +25,8 @@ export default function Team() {
                   <ul className="flex space-x-5">
                     <li>
                       <a href="#" className="text-gray-400 hover:text-gray-500">
-                        <span
-                          // ICON=IonIcon
-                          // icon="logo-dribbble"
-                          // name="logo-dribbble"
+                        <Dribbble
+                          name="logo-dribbble"
                           role="img"
                           className="md hydrated"
                           aria-label="logo dribbble"
@@ -39,10 +36,8 @@ export default function Team() {
                     <li>
                       <a href="#" className="text-gray-400 hover:text-gray-500">
                         <span className="sr-only">Twitter</span>
-                        <span
-                          // ICON=IonIcon
-                          // icon="logo-twitter"
-                          // name="logo-twitter"
+                        <Twitter
+                          name="logo-twitter"
                           role="img"
                           className="md hydrated"
                           aria-label="logo twitter"
@@ -74,10 +69,8 @@ export default function Team() {
                   <ul className="flex space-x-5">
                     <li>
                       <a href="#" className="text-gray-400 hover:text-gray-500">
-                        <span
-                          // ICON=IonIcon
-                          // icon="logo-dribbble"
-                          // name="logo-dribbble"
+                        <Dribbble
+                          name="logo-dribbble"
                           role="img"
                           className="md hydrated"
                           aria-label="logo dribbble"
@@ -87,10 +80,8 @@ export default function Team() {
                     <li>
                       <a href="#" className="text-gray-400 hover:text-gray-500">
                         <span className="sr-only">Twitter</span>
-                        <span
-                          // ICON=IonIcon
-                          // icon="logo-twitter"
-                          // name="logo-twitter"
+                        <Twitter
+                          name="logo-twitter"
                           role="img"
                           className="md hydrated"
                           aria-label="logo twitter"
@@ -124,10 +115,8 @@ export default function Team() {
                   <ul className="flex space-x-5">
                     <li>
                       <a href="#" className="text-gray-400 hover:text-gray-500">
-                        <span
-                          // ICON=IonIcon
-                          // icon="logo-dribbble"
-                          // name="logo-dribbble"
+                        <Dribbble
+                          name="logo-dribbble"
                           role="img"
                           className="md hydrated"
                           aria-label="logo dribbble"
@@ -137,10 +126,8 @@ export default function Team() {
                     <li>
                       <a href="#" className="text-gray-400 hover:text-gray-500">
                         <span className="sr-only">Twitter</span>
-                        <span
-                          // ICON=IonIcon
-                          // icon="logo-twitter"
-                          // name="logo-twitter"
+                        <Twitter
+                          name="logo-twitter"
                           role="img"
                           className="md hydrated"
                           aria-label="logo twitter"

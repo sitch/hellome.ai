@@ -1,4 +1,5 @@
 import { NextApiResponse } from "next"
+
 import Status from "http-status-codes"
 
 import { BaseApiResponse } from "@/lib/api"
@@ -6,7 +7,7 @@ import { BaseApiResponse } from "@/lib/api"
 export async function within<T, K extends BaseApiResponse>(
   fn: () => Promise<T>,
   res: NextApiResponse<K | BaseApiResponse>,
-  duration_ms: number
+  duration_ms: number,
 ) {
   const id = setTimeout(() => {
     const message = "There was an error with the upstream service!"

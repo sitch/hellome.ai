@@ -1,4 +1,5 @@
 import React from "react"
+
 import { MjmlColumn, MjmlGroup, MjmlSection, MjmlWrapper } from "mjml-react"
 
 import { colors, fontSize, fontWeight, lineHeight } from "../theme"

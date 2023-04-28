@@ -73,16 +73,16 @@ export function getDocumentHeight($document: Document) {
   return Math.max(
     Math.max(
       $document.body.scrollHeight,
-      $document.documentElement.scrollHeight
+      $document.documentElement.scrollHeight,
     ),
     Math.max(
       $document.body.offsetHeight,
-      $document.documentElement.offsetHeight
+      $document.documentElement.offsetHeight,
     ),
     Math.max(
       $document.body.clientHeight,
-      $document.documentElement.clientHeight
-    )
+      $document.documentElement.clientHeight,
+    ),
   )
 }
 

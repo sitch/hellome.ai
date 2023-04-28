@@ -1,3 +1,4 @@
+const plugin = require("tailwindcss/plugin")
 const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /**
@@ -7,19 +8,29 @@ module.exports = {
   presets: [require("./tailwind.blog.preset.js")],
   darkMode: ["class"],
   content: [
-    // "./node_modules/flowbite/**/*.js",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    // "./public/**/*.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+
+    // TODO: remove
+    // "./node_modules/flowbite/**/*.js",
   ],
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
+    require("tailwindcss-animate"),
+
+    plugin(({ addVariant }) => {
+      addVariant("radix-side-top", '&[data-side="top"]')
+      addVariant("radix-side-bottom", '&[data-side="bottom"]')
+    }),
+
+    // TODO: remove
     // require("@headlessui/tailwindcss"),
     // require("@downwindcss/easings"),
     // require("flowbite/plugin"),
     // require("flowbite-typography"),
-    require("tailwindcss-animate"),
   ],
   theme: {
     container: {
@@ -32,7 +43,11 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+
+        // display: ["var(--font-sf)", "system-ui", "sans-serif"],
+        // default: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
+
       borderRadius: {
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
@@ -41,12 +56,27 @@ module.exports = {
       animationDuration: {
         "2.2s": "2.2s",
       },
+      transitionDuration: {
+        220: "220ms",
+      },
       animation: {
+        // Accordion
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        button: "button 2.2s ease infinite",
+
+        // AnimatedButton
+        "bg-wave": "bg-wave 2.2s ease infinite",
+
+        // Fade up and down
+        "fade-up": "fade-up 0.5s",
+        "fade-down": "fade-down 0.5s",
+
+        // Tooltip
+        "slide-up-fade": "slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "slide-down-fade": "slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
       },
       keyframes: {
+        // Accordion
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -55,7 +85,9 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
-        button: {
+
+        // AnimatedButton
+        "bg-wave": {
           "0%, 100%": {
             "background-size": "200% 200%",
             "background-position": "left center",
@@ -65,7 +97,46 @@ module.exports = {
             "background-position": "right center",
           },
         },
+
+        // Fade up and down
+        "fade-up": {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(10px)",
+          },
+          "80%": {
+            opacity: 0.6,
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0px)",
+          },
+        },
+        "fade-down": {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(-10px)",
+          },
+          "80%": {
+            opacity: 0.6,
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0px)",
+          },
+        },
+
+        // Tooltip
+        "slide-up-fade": {
+          "0%": { opacity: 0, transform: "translateY(6px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        "slide-down-fade": {
+          "0%": { opacity: 0, transform: "translateY(-6px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
       },
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -100,6 +171,12 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      cursor: {
+        "dark-pen":
+          "url(/static/cursors/pen-cursor-dark-36x36.png) 0 28, crosshair",
+        "light-pen":
+          "url(/static/cursors/pen-cursor-light-36x36.png) 0 28, crosshair",
       },
     },
   },

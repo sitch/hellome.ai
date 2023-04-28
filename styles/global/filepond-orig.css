@@ -6,101 +6,102 @@
 
 /* eslint-disable */
 .filepond--assistant {
-  clip: rect(1px, 1px, 1px, 1px);
   position: absolute;
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
-  border: 0;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
   white-space: nowrap;
 }
 /* Hard to override styles */
 .filepond--browser.filepond--browser {
   /* is positioned absolute so it is focusable for form validation errors */
   position: absolute;
-  top: 1.75em;
+  margin: 0;
+  padding: 0;
 
   /* is positioned ~behind drop label */
   left: 1em;
+  top: 1.75em;
+  width: calc(100% - 2em);
 
   /* hide visually */
   opacity: 0;
-  margin: 0;
-  padding: 0;
-  width: calc(100% - 2em);
   font-size: 0; /* removes text cursor in Internet Explorer 11 */
 }
 .filepond--data {
   position: absolute;
-  visibility: hidden;
-  contain: strict;
-  margin: 0;
-  border: none;
-  padding: 0;
   width: 0;
   height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  visibility: hidden;
   pointer-events: none;
+  contain: strict;
 }
 .filepond--drip {
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  overflow: hidden;
   opacity: 0.1;
+
+  /* can't interact with this element */
+  pointer-events: none;
 
   /* inherit border radius from parent (needed for drip-blob cut of) */
   border-radius: 0.5em;
 
   /* this seems to prevent Chrome from redrawing this layer constantly */
   background: rgba(0, 0, 0, 0.01);
-  overflow: hidden;
-
-  /* can't interact with this element */
-  pointer-events: none;
 }
 .filepond--drip-blob {
   position: absolute;
-  top: 0;
-  left: 0;
   -webkit-transform-origin: center center;
   transform-origin: center center;
+  top: 0;
+  left: 0;
+  width: 8em;
+  height: 8em;
+  margin-left: -4em;
+  margin-top: -4em;
+  background: #292625;
+  border-radius: 50%;
 
   /* will be animated */
   will-change: transform, opacity;
-  margin-top: -4em;
-  margin-left: -4em;
-  border-radius: 50%;
-  background: #292625;
-  width: 8em;
-  height: 8em;
 }
 .filepond--drop-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 0;
+  color: #4f4f4f;
+
   /* center contents */
   display: flex;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
   justify-content: center;
   align-items: center;
 
-  /* will be animated */
-  will-change: transform, opacity;
-  margin: 0;
-
   /* fixes IE11 centering problems (is overruled by label min-height) */
   height: 0px;
-  color: #4f4f4f;
 
   /* dont allow selection */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  /* will be animated */
+  will-change: transform, opacity;
 }
 /* Hard to override styles on purpose */
 .filepond--drop-label.filepond--drop-label label {
@@ -110,49 +111,50 @@
 }
 .filepond--drop-label label {
   cursor: default;
-  font-weight: normal;
   font-size: 0.875em;
-  line-height: 1.5;
+  font-weight: normal;
   text-align: center;
+  line-height: 1.5;
 }
 .filepond--label-action {
-  -webkit-text-decoration-skip: ink;
-  cursor: pointer;
   text-decoration: underline;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
   -webkit-text-decoration-color: #a7a4a4;
   text-decoration-color: #a7a4a4;
-  text-decoration-skip-ink: auto;
+  cursor: pointer;
 }
 .filepond--root[data-disabled] .filepond--drop-label label {
   opacity: 0.5;
 }
 /* Hard to override styles */
 .filepond--file-action-button.filepond--file-action-button {
-  will-change: transform, opacity;
-
-  margin: 0;
-  outline: none;
-  border: none;
-  padding: 0;
+  font-size: 1em;
   width: 1.625em;
   height: 1.625em;
-  font-size: 1em;
-  line-height: inherit;
 
   font-family: inherit;
+  line-height: inherit;
+
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+
+  will-change: transform, opacity;
 
   /* hidden label */
 }
 .filepond--file-action-button.filepond--file-action-button span {
-  clip: rect(1px, 1px, 1px, 1px);
   position: absolute;
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
-  border: 0;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
   white-space: nowrap;
 }
 .filepond--file-action-button.filepond--file-action-button {
@@ -167,86 +169,86 @@
 }
 .filepond--file-action-button.filepond--file-action-button::after {
   position: absolute;
-  top: -0.75em;
-  right: -0.75em;
-  bottom: -0.75em;
   left: -0.75em;
-  content: "";
+  right: -0.75em;
+  top: -0.75em;
+  bottom: -0.75em;
+  content: '';
 }
 /* Soft styles */
 .filepond--file-action-button {
-  transition: box-shadow 0.25s ease-in;
   /* use default arrow cursor */
   cursor: auto;
+
+  /* reset default button styles */
+  color: #fff;
+
+  /* set default look n feel */
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: none;
 
   /* we animate box shadow on focus */
   /* it's only slightly slower than animating */
   /* a pseudo-element with transforms and renders */
   /* a lot better on chrome */
   box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-
-  /* set default look n feel */
-  border-radius: 50%;
-  background-image: none;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  /* reset default button styles */
-  color: #fff;
+  transition: box-shadow 0.25s ease-in;
 }
 .filepond--file-action-button:hover,
 .filepond--file-action-button:focus {
   box-shadow: 0 0 0 0.125em rgba(255, 255, 255, 0.9);
 }
 .filepond--file-action-button[disabled] {
-  background-color: rgba(0, 0, 0, 0.25);
   color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 .filepond--file-action-button[hidden] {
   display: none;
 }
 /* edit button */
 .filepond--action-edit-item.filepond--action-edit-item {
-  padding: 0.1875em;
   width: 2em;
   height: 2em;
+  padding: 0.1875em;
 }
-.filepond--action-edit-item.filepond--action-edit-item[data-align*="center"] {
+.filepond--action-edit-item.filepond--action-edit-item[data-align*='center'] {
   margin-left: -0.1875em;
 }
-.filepond--action-edit-item.filepond--action-edit-item[data-align*="bottom"] {
+.filepond--action-edit-item.filepond--action-edit-item[data-align*='bottom'] {
   margin-bottom: -0.1875em;
 }
 .filepond--action-edit-item-alt {
-  position: absolute;
-  margin: 0 0 0 0.25em;
-  outline: none;
   border: none;
-  background: transparent;
-  padding: 0;
-  pointer-events: all;
-  color: inherit;
   line-height: inherit;
+  background: transparent;
   font-family: inherit;
+  color: inherit;
+  outline: none;
+  padding: 0;
+  margin: 0 0 0 0.25em;
+  pointer-events: all;
+  position: absolute;
 }
 .filepond--action-edit-item-alt svg {
   width: 1.3125em;
   height: 1.3125em;
 }
 .filepond--action-edit-item-alt span {
-  opacity: 0;
   font-size: 0;
+  opacity: 0;
 }
 .filepond--file-info {
-  display: flex;
   position: static;
-  flex: 1;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex: 1;
+  margin: 0 0.5em 0 0;
+  min-width: 0;
 
   /* will be animated */
   will-change: transform, opacity;
-  margin: 0 0.5em 0 0;
-  min-width: 0;
 
   /* can't do anything with this info */
   pointer-events: none;
@@ -264,37 +266,38 @@
   /* we don't want to have these overrules so these selectors are a bit more specific */
 }
 .filepond--file-info .filepond--file-info-main {
-  width: 100%;
-  overflow: hidden;
   font-size: 0.75em;
   line-height: 1.2;
 
   /* we want ellipsis if this bar gets too wide */
   text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
+  width: 100%;
 }
 .filepond--file-info .filepond--file-info-sub {
+  font-size: 0.625em;
   opacity: 0.5;
   transition: opacity 0.25s ease-in-out;
-  font-size: 0.625em;
   white-space: nowrap;
 }
 .filepond--file-info .filepond--file-info-sub:empty {
   display: none;
 }
 .filepond--file-status {
-  display: flex;
   position: static;
-  flex-grow: 0;
-  flex-shrink: 0;
+  display: flex;
   flex-direction: column;
   align-items: flex-end;
-
-  /* will be animated */
-  will-change: transform, opacity;
+  flex-grow: 0;
+  flex-shrink: 0;
 
   margin: 0;
   min-width: 2.25em;
+  text-align: right;
+
+  /* will be animated */
+  will-change: transform, opacity;
 
   /* can't do anything with this info */
   pointer-events: none;
@@ -302,7 +305,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  text-align: right;
 
   /* no margins on children */
 }
@@ -318,14 +320,14 @@
   line-height: 1.2;
 }
 .filepond--file-status .filepond--file-status-sub {
+  font-size: 0.625em;
   opacity: 0.5;
   transition: opacity 0.25s ease-in-out;
-  font-size: 0.625em;
 }
 /* Hard to override styles */
 .filepond--file-wrapper.filepond--file-wrapper {
-  margin: 0;
   border: none;
+  margin: 0;
   padding: 0;
   min-width: 0;
   height: 100%;
@@ -333,41 +335,41 @@
   /* hide legend for visual users */
 }
 .filepond--file-wrapper.filepond--file-wrapper > legend {
-  clip: rect(1px, 1px, 1px, 1px);
   position: absolute;
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
-  border: 0;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
   white-space: nowrap;
 }
 .filepond--file {
-  display: flex;
   position: static;
+  display: flex;
+  height: 100%;
   align-items: flex-start;
-  border-radius: 0.5em;
 
   padding: 0.5625em 0.5625em;
-  height: 100%;
 
   color: #fff;
+  border-radius: 0.5em;
 
   /* control positions */
 }
 .filepond--file .filepond--file-status {
-  margin-right: 2.25em;
   margin-left: auto;
+  margin-right: 2.25em;
 }
 .filepond--file .filepond--processing-complete-indicator {
-  z-index: 3;
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  z-index: 3;
 }
 .filepond--file .filepond--processing-complete-indicator,
 .filepond--file .filepond--progress-indicator,
@@ -377,79 +379,77 @@
 .filepond--file {
   /* .filepond--file-action-button */
 }
-.filepond--file [data-align*="left"] {
+.filepond--file [data-align*='left'] {
   left: 0.5625em;
 }
-.filepond--file [data-align*="right"] {
+.filepond--file [data-align*='right'] {
   right: 0.5625em;
 }
-.filepond--file [data-align*="center"] {
+.filepond--file [data-align*='center'] {
   left: calc(50% - 0.8125em); /* .8125 is half of button width */
 }
-.filepond--file [data-align*="bottom"] {
+.filepond--file [data-align*='bottom'] {
   bottom: 1.125em;
 }
-.filepond--file [data-align="center"] {
+.filepond--file [data-align='center'] {
   top: calc(50% - 0.8125em);
 }
 .filepond--file .filepond--progress-indicator {
   margin-top: 0.1875em;
 }
-.filepond--file .filepond--progress-indicator[data-align*="right"] {
+.filepond--file .filepond--progress-indicator[data-align*='right'] {
   margin-right: 0.1875em;
 }
-.filepond--file .filepond--progress-indicator[data-align*="left"] {
+.filepond--file .filepond--progress-indicator[data-align*='left'] {
   margin-left: 0.1875em;
 }
 /* make sure text does not overlap */
-[data-filepond-item-state="cancelled"] .filepond--file-info,
-[data-filepond-item-state*="invalid"] .filepond--file-info,
-[data-filepond-item-state*="error"] .filepond--file-info {
+[data-filepond-item-state='cancelled'] .filepond--file-info,
+[data-filepond-item-state*='invalid'] .filepond--file-info,
+[data-filepond-item-state*='error'] .filepond--file-info {
   margin-right: 2.25em;
 }
-[data-filepond-item-state~="processing"] .filepond--file-status-sub {
+[data-filepond-item-state~='processing'] .filepond--file-status-sub {
   opacity: 0;
 }
-[data-filepond-item-state~="processing"]
+[data-filepond-item-state~='processing']
   .filepond--action-abort-item-processing
   ~ .filepond--file-status
   .filepond--file-status-sub {
   opacity: 0.5;
 }
-[data-filepond-item-state="processing-error"] .filepond--file-status-sub {
+[data-filepond-item-state='processing-error'] .filepond--file-status-sub {
   opacity: 0;
 }
-[data-filepond-item-state="processing-error"]
+[data-filepond-item-state='processing-error']
   .filepond--action-retry-item-processing
   ~ .filepond--file-status
   .filepond--file-status-sub {
   opacity: 0.5;
 }
-[data-filepond-item-state="processing-complete"] {
+[data-filepond-item-state='processing-complete'] {
   /* busy state */
 }
-[data-filepond-item-state="processing-complete"]
-  .filepond--action-revert-item-processing
-  svg {
+[data-filepond-item-state='processing-complete'] .filepond--action-revert-item-processing svg {
   -webkit-animation: fall 0.5s 0.125s linear both;
   animation: fall 0.5s 0.125s linear both;
 }
-[data-filepond-item-state="processing-complete"] {
+[data-filepond-item-state='processing-complete'] {
   /* hide details by default, only show when can revert */
 }
-[data-filepond-item-state="processing-complete"] .filepond--file-status-sub {
+[data-filepond-item-state='processing-complete'] .filepond--file-status-sub {
   opacity: 0.5;
 }
-[data-filepond-item-state="processing-complete"]
-  .filepond--processing-complete-indicator:not([style*="hidden"])
+[data-filepond-item-state='processing-complete']
+  .filepond--processing-complete-indicator:not([style*='hidden'])
   ~ .filepond--file-status
   .filepond--file-status-sub {
   opacity: 0;
 }
-[data-filepond-item-state="processing-complete"] .filepond--file-info-sub {
+[data-filepond-item-state='processing-complete'] .filepond--file-info-sub {
   opacity: 0;
 }
-[data-filepond-item-state="processing-complete"]
+[data-filepond-item-state='processing-complete']
   .filepond--action-revert-item-processing
   ~ .filepond--file-info
   .filepond--file-info-sub {
@@ -457,15 +457,15 @@
 }
 /* file state can be invalid or error, both are visually similar but */
 /* having them as separate states might be useful */
-[data-filepond-item-state*="invalid"] .filepond--panel,
-[data-filepond-item-state*="invalid"] .filepond--file-wrapper,
-[data-filepond-item-state*="error"] .filepond--panel,
-[data-filepond-item-state*="error"] .filepond--file-wrapper {
+[data-filepond-item-state*='invalid'] .filepond--panel,
+[data-filepond-item-state*='invalid'] .filepond--file-wrapper,
+[data-filepond-item-state*='error'] .filepond--panel,
+[data-filepond-item-state*='error'] .filepond--file-wrapper {
   -webkit-animation: shake 0.65s linear both;
   animation: shake 0.65s linear both;
 }
 /* spins progress indicator when file is marked as busy */
-[data-filepond-item-state*="busy"] .filepond--progress-indicator svg {
+[data-filepond-item-state*='busy'] .filepond--progress-indicator svg {
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
 }
@@ -474,139 +474,139 @@
 */
 @-webkit-keyframes spin {
   0% {
-    -webkit-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
+      -webkit-transform: rotateZ(0deg);
+      transform: rotateZ(0deg);
   }
 
   100% {
-    -webkit-transform: rotateZ(360deg);
-    transform: rotateZ(360deg);
+      -webkit-transform: rotateZ(360deg);
+      transform: rotateZ(360deg);
   }
 }
 @keyframes spin {
   0% {
-    -webkit-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
+      -webkit-transform: rotateZ(0deg);
+      transform: rotateZ(0deg);
   }
 
   100% {
-    -webkit-transform: rotateZ(360deg);
-    transform: rotateZ(360deg);
+      -webkit-transform: rotateZ(360deg);
+      transform: rotateZ(360deg);
   }
 }
 @-webkit-keyframes shake {
   10%,
   90% {
-    -webkit-transform: translateX(-0.0625em);
-    transform: translateX(-0.0625em);
+      -webkit-transform: translateX(-0.0625em);
+      transform: translateX(-0.0625em);
   }
 
   20%,
   80% {
-    -webkit-transform: translateX(0.125em);
-    transform: translateX(0.125em);
+      -webkit-transform: translateX(0.125em);
+      transform: translateX(0.125em);
   }
 
   30%,
   50%,
   70% {
-    -webkit-transform: translateX(-0.25em);
-    transform: translateX(-0.25em);
+      -webkit-transform: translateX(-0.25em);
+      transform: translateX(-0.25em);
   }
 
   40%,
   60% {
-    -webkit-transform: translateX(0.25em);
-    transform: translateX(0.25em);
+      -webkit-transform: translateX(0.25em);
+      transform: translateX(0.25em);
   }
 }
 @keyframes shake {
   10%,
   90% {
-    -webkit-transform: translateX(-0.0625em);
-    transform: translateX(-0.0625em);
+      -webkit-transform: translateX(-0.0625em);
+      transform: translateX(-0.0625em);
   }
 
   20%,
   80% {
-    -webkit-transform: translateX(0.125em);
-    transform: translateX(0.125em);
+      -webkit-transform: translateX(0.125em);
+      transform: translateX(0.125em);
   }
 
   30%,
   50%,
   70% {
-    -webkit-transform: translateX(-0.25em);
-    transform: translateX(-0.25em);
+      -webkit-transform: translateX(-0.25em);
+      transform: translateX(-0.25em);
   }
 
   40%,
   60% {
-    -webkit-transform: translateX(0.25em);
-    transform: translateX(0.25em);
+      -webkit-transform: translateX(0.25em);
+      transform: translateX(0.25em);
   }
 }
 @-webkit-keyframes fall {
   0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    opacity: 0;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
+      opacity: 0;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
   }
 
   70% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-    opacity: 1;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
+      opacity: 1;
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+      -webkit-animation-timing-function: ease-in-out;
+      animation-timing-function: ease-in-out;
   }
 
   100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
   }
 }
 @keyframes fall {
   0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    opacity: 0;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
+      opacity: 0;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
   }
 
   70% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-    opacity: 1;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
+      opacity: 1;
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+      -webkit-animation-timing-function: ease-in-out;
+      animation-timing-function: ease-in-out;
   }
 
   100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
   }
 }
 /* ignore all other interaction elements while dragging a file */
-.filepond--hopper[data-hopper-state="drag-over"] > * {
+.filepond--hopper[data-hopper-state='drag-over'] > * {
   pointer-events: none;
 }
 /* capture all hit tests using a hidden layer, this speeds up the event flow */
-.filepond--hopper[data-hopper-state="drag-over"]::after {
+.filepond--hopper[data-hopper-state='drag-over']::after {
+  content: '';
   position: absolute;
+  left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
   z-index: 100;
-  content: "";
 }
 .filepond--progress-indicator {
   z-index: 103;
@@ -623,14 +623,14 @@
 .filepond--item {
   position: absolute;
   top: 0;
-  right: 0;
   left: 0;
+  right: 0;
   z-index: 1;
 
-  will-change: transform, opacity;
+  padding: 0;
   margin: 0.25em;
 
-  padding: 0;
+  will-change: transform, opacity;
 
   /* item children order */
 }
@@ -656,56 +656,52 @@
   transition: box-shadow 0.125s ease-in-out;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
-.filepond--item[data-drag-state="drag"] {
+.filepond--item[data-drag-state='drag'] {
   cursor: -webkit-grabbing;
   cursor: grabbing;
 }
-.filepond--item[data-drag-state="drag"] > .filepond--panel {
+.filepond--item[data-drag-state='drag'] > .filepond--panel {
   box-shadow: 0 0.125em 0.3125em rgba(0, 0, 0, 0.325);
 }
-.filepond--item[data-drag-state]:not([data-drag-state="idle"]) {
+.filepond--item[data-drag-state]:not([data-drag-state='idle']) {
   z-index: 2;
 }
 /* states */
 .filepond--item-panel {
   background-color: #64605e;
 }
-[data-filepond-item-state="processing-complete"] .filepond--item-panel {
+[data-filepond-item-state='processing-complete'] .filepond--item-panel {
   background-color: #369763;
 }
-[data-filepond-item-state*="invalid"] .filepond--item-panel,
-[data-filepond-item-state*="error"] .filepond--item-panel {
+[data-filepond-item-state*='invalid'] .filepond--item-panel,
+[data-filepond-item-state*='error'] .filepond--item-panel {
   background-color: #c44e47;
 }
 /* style of item panel */
 .filepond--item-panel {
-  transition: background-color 0.25s;
   border-radius: 0.5em;
+  transition: background-color 0.25s;
 }
 /* normal mode */
 .filepond--list-scroller {
   position: absolute;
   top: 0;
-  right: 0;
   left: 0;
-  will-change: transform;
+  right: 0;
   margin: 0;
+  will-change: transform;
 }
 /* scroll mode */
-.filepond--list-scroller[data-state="overflow"] .filepond--list {
-  right: 0;
+.filepond--list-scroller[data-state='overflow'] .filepond--list {
   bottom: 0;
+  right: 0;
 }
-.filepond--list-scroller[data-state="overflow"] {
-  -webkit-overflow-scrolling: touch;
-  -webkit-mask: linear-gradient(
-    to bottom,
-    #000 calc(100% - 0.5em),
-    transparent 100%
-  );
-  mask: linear-gradient(to bottom, #000 calc(100% - 0.5em), transparent 100%);
-  overflow-x: hidden;
+.filepond--list-scroller[data-state='overflow'] {
   overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-mask: linear-gradient(to bottom, #000 calc(100% - 0.5em), transparent 100%);
+  mask: linear-gradient(to bottom, #000 calc(100% - 0.5em), transparent 100%);
 }
 /* style scrollbar */
 .filepond--list-scroller::-webkit-scrollbar {
@@ -718,115 +714,112 @@
   height: 0;
 }
 .filepond--list-scroller::-webkit-scrollbar-thumb {
-  border: 0.3125em solid transparent;
-  border-radius: 99999px;
-  background-clip: content-box;
   background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 99999px;
+  border: 0.3125em solid transparent;
+  background-clip: content-box;
 }
 /* hard to overide styles on purpose */
 .filepond--list.filepond--list {
   position: absolute;
   top: 0;
-
-  /* prevents endless paint calls on filepond--list-scroller */
-  will-change: transform;
   margin: 0;
   padding: 0;
   list-style-type: none;
+
+  /* prevents endless paint calls on filepond--list-scroller */
+  will-change: transform;
 }
 /* used for padding so allowed to be restyled */
 .filepond--list {
-  right: 0.75em;
   left: 0.75em;
+  right: 0.75em;
 }
-.filepond--root[data-style-panel-layout~="integrated"] {
-  margin: 0;
+.filepond--root[data-style-panel-layout~='integrated'] {
   width: 100%;
-  max-width: none;
   height: 100%;
+  max-width: none;
+  margin: 0;
 }
-.filepond--root[data-style-panel-layout~="circle"] .filepond--panel-root,
-.filepond--root[data-style-panel-layout~="integrated"] .filepond--panel-root {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--panel-root,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--panel-root {
   border-radius: 0;
 }
-.filepond--root[data-style-panel-layout~="circle"] .filepond--panel-root > *,
-.filepond--root[data-style-panel-layout~="integrated"]
-  .filepond--panel-root
-  > * {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--panel-root > *,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--panel-root > * {
   display: none;
 }
-.filepond--root[data-style-panel-layout~="circle"] .filepond--drop-label,
-.filepond--root[data-style-panel-layout~="integrated"] .filepond--drop-label {
-  display: flex;
+.filepond--root[data-style-panel-layout~='circle'] .filepond--drop-label,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--drop-label {
   bottom: 0;
+  height: auto;
+  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 7;
-  height: auto;
 }
-.filepond--root[data-style-panel-layout~="circle"],
-.filepond--root[data-style-panel-layout~="integrated"] {
+.filepond--root[data-style-panel-layout~='circle'],
+.filepond--root[data-style-panel-layout~='integrated'] {
   /* we're only loading one item, this makes the intro animation a bit nicer */
 }
-.filepond--root[data-style-panel-layout~="circle"] .filepond--item-panel,
-.filepond--root[data-style-panel-layout~="integrated"] .filepond--item-panel {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--item-panel,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--item-panel {
   display: none;
 }
-.filepond--root[data-style-panel-layout~="compact"] .filepond--list-scroller,
-.filepond--root[data-style-panel-layout~="integrated"]
-  .filepond--list-scroller {
+.filepond--root[data-style-panel-layout~='compact'] .filepond--list-scroller,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--list-scroller {
+  overflow: hidden;
+  height: 100%;
   margin-top: 0;
   margin-bottom: 0;
-  height: 100%;
-  overflow: hidden;
 }
-.filepond--root[data-style-panel-layout~="compact"] .filepond--list,
-.filepond--root[data-style-panel-layout~="integrated"] .filepond--list {
-  right: 0;
+.filepond--root[data-style-panel-layout~='compact'] .filepond--list,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--list {
   left: 0;
+  right: 0;
   height: 100%;
 }
-.filepond--root[data-style-panel-layout~="compact"] .filepond--item,
-.filepond--root[data-style-panel-layout~="integrated"] .filepond--item {
+.filepond--root[data-style-panel-layout~='compact'] .filepond--item,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--item {
   margin: 0;
 }
-.filepond--root[data-style-panel-layout~="compact"] .filepond--file-wrapper,
-.filepond--root[data-style-panel-layout~="integrated"] .filepond--file-wrapper {
+.filepond--root[data-style-panel-layout~='compact'] .filepond--file-wrapper,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--file-wrapper {
   height: 100%;
 }
-.filepond--root[data-style-panel-layout~="compact"] .filepond--drop-label,
-.filepond--root[data-style-panel-layout~="integrated"] .filepond--drop-label {
+.filepond--root[data-style-panel-layout~='compact'] .filepond--drop-label,
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--drop-label {
   z-index: 7;
 }
-.filepond--root[data-style-panel-layout~="circle"] {
+.filepond--root[data-style-panel-layout~='circle'] {
   border-radius: 99999rem;
   overflow: hidden;
 }
-.filepond--root[data-style-panel-layout~="circle"] > .filepond--panel {
+.filepond--root[data-style-panel-layout~='circle'] > .filepond--panel {
   border-radius: inherit;
 }
-.filepond--root[data-style-panel-layout~="circle"] > .filepond--panel > * {
+.filepond--root[data-style-panel-layout~='circle'] > .filepond--panel > * {
   display: none;
 }
-.filepond--root[data-style-panel-layout~="circle"] {
+.filepond--root[data-style-panel-layout~='circle'] {
   /* circle cuts of this info, so best to hide it */
 }
-.filepond--root[data-style-panel-layout~="circle"] .filepond--file-info {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--file-info {
   display: none;
 }
-.filepond--root[data-style-panel-layout~="circle"] .filepond--file-status {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--file-status {
   display: none;
 }
-.filepond--root[data-style-panel-layout~="circle"] .filepond--action-edit-item {
-  visibility: visible !important;
+.filepond--root[data-style-panel-layout~='circle'] .filepond--action-edit-item {
   opacity: 1 !important;
+  visibility: visible !important;
 }
 /* dirfty way to fix circular overflow issue on safari 11+ */
 @media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
-    .filepond--root[data-style-panel-layout~="circle"] {
-      will-change: transform;
-    }
+      .filepond--root[data-style-panel-layout~='circle'] {
+          will-change: transform;
+      }
   }
 }
 .filepond--panel-root {
@@ -835,9 +828,9 @@
 }
 .filepond--panel {
   position: absolute;
+  left: 0;
   top: 0;
   right: 0;
-  left: 0;
   margin: 0;
 
   /* defaults to 100% height (fixed height mode) this fixes problem with panel height in IE11 */
@@ -846,30 +839,30 @@
   /* no interaction possible with panel */
   pointer-events: none;
 }
-.filepond-panel:not([data-scalable="false"]) {
+.filepond-panel:not([data-scalable='false']) {
   height: auto !important;
 }
-.filepond--panel[data-scalable="false"] > div {
+.filepond--panel[data-scalable='false'] > div {
   display: none;
 }
-.filepond--panel[data-scalable="true"] {
+.filepond--panel[data-scalable='true'] {
   /* this seems to fix Chrome performance issues */
   /* - when box-shadow is enabled */
   /* - when multiple ponds are active on the same page */
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  border: none !important;
 
   /* prevent borders and backgrounds */
   background-color: transparent !important;
+  border: none !important;
 }
 .filepond--panel-top,
 .filepond--panel-bottom,
 .filepond--panel-center {
   position: absolute;
+  left: 0;
   top: 0;
   right: 0;
-  left: 0;
   margin: 0;
   padding: 0;
 }
@@ -878,54 +871,54 @@
   height: 0.5em;
 }
 .filepond--panel-top {
-  border-bottom: none !important;
-  border-bottom-right-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom: none !important;
 
   /* fixes tiny transparant line between top and center panel */
 }
 .filepond--panel-top::after {
+  content: '';
   position: absolute;
+  height: 2px;
+  left: 0;
   right: 0;
   bottom: -1px;
-  left: 0;
   background-color: inherit;
-  height: 2px;
-  content: "";
 }
 .filepond--panel-center,
 .filepond--panel-bottom {
-  -webkit-transform: translate3d(0, 0.5em, 0);
-  transform: translate3d(0, 0.5em, 0);
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
+  will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  will-change: transform;
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+  -webkit-transform: translate3d(0, 0.5em, 0);
+  transform: translate3d(0, 0.5em, 0);
 }
 .filepond--panel-bottom {
-  border-top: none !important;
-  border-top-right-radius: 0 !important;
   border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-top: none !important;
 
   /* fixes tiny transparant line between bottom and center of panel */
 }
 .filepond--panel-bottom::before {
+  content: '';
   position: absolute;
-  top: -1px;
-  right: 0;
-  left: 0;
-  background-color: inherit;
   height: 2px;
-  content: "";
+  left: 0;
+  right: 0;
+  top: -1px;
+  background-color: inherit;
 }
 .filepond--panel-center {
-  border-top: none !important;
-  border-bottom: none !important;
-  border-radius: 0 !important;
   /* the center panel is scaled using scale3d to fit the correct height */
   /* we use 100px instead of 1px as scaling 1px to a huge height is really laggy on chrome */
   height: 100px !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-radius: 0 !important;
 
   /* hide if not transformed, prevents a little flash when the panel is at 100px height while attached for first time */
 }
@@ -934,25 +927,25 @@
 }
 .filepond--progress-indicator {
   position: static;
+  width: 1.25em;
+  height: 1.25em;
 
-  /* will be animated */
-  will-change: transform, opacity;
+  color: #fff;
 
   /* can't have margins */
   margin: 0;
-  width: 1.25em;
-  height: 1.25em;
 
   /* no interaction possible with progress indicator */
   pointer-events: none;
 
-  color: #fff;
+  /* will be animated */
+  will-change: transform, opacity;
 }
 .filepond--progress-indicator svg {
-  vertical-align: top;
-  transform-box: fill-box; /* should center the animation correctly when zoomed in */
   width: 100%;
   height: 100%;
+  vertical-align: top;
+  transform-box: fill-box; /* should center the animation correctly when zoomed in */
 }
 .filepond--progress-indicator path {
   fill: none;
@@ -974,17 +967,10 @@
   z-index: 1;
 }
 .filepond--root {
-  position: relative;
   /* layout*/
   box-sizing: border-box;
-
-  /* optimize rendering */
-  /* https://developer.mozilla.org/en-US/docs/Web/CSS/contain */
-  contain: layout style size;
+  position: relative;
   margin-bottom: 1em;
-
-  /* will increase font weight a bit on Safari */
-  font-weight: 450;
 
   /* base font size for whole component */
   font-size: 1rem;
@@ -993,17 +979,24 @@
   line-height: normal;
 
   /* up uses default system font family */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
-  /* text direction is ltr for now */
-  direction: ltr;
+  /* will increase font weight a bit on Safari */
+  font-weight: 450;
 
   /* default text alignment */
   text-align: left;
 
   /* better text rendering on Safari */
   text-rendering: optimizeLegibility;
+
+  /* text direction is ltr for now */
+  direction: ltr;
+
+  /* optimize rendering */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/contain */
+  contain: layout style size;
 
   /* correct box sizing, line-height and positioning on child elements */
 }
@@ -1039,13 +1032,13 @@
 .filepond--root .filepond--credits {
   position: absolute;
   right: 0;
-  bottom: -14px;
   opacity: 0.175;
-  z-index: 3;
-  color: inherit;
-  font-size: 11px;
   line-height: 0.85;
+  font-size: 11px;
+  color: inherit;
   text-decoration: none;
+  z-index: 3;
+  bottom: -14px;
 }
 .filepond--root .filepond--credits[style] {
   top: 0;

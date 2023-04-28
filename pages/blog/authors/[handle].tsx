@@ -10,9 +10,11 @@ import {
   processMDXPage,
 } from "@/lib/mdx"
 import { Author, AuthorSource, castAuthor } from "@/lib/mdx/types"
+
 import Layout from "@/components/mdx/Layout"
 import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"
 import { DefaultAuthorSEO } from "@/components/seo/DefaultAuthorSEO"
+
 // import { AuthorSEO } from '@/components/seo/AuthorSEO'
 import i18NextConfig from "@/next-i18next.config"
 
@@ -58,7 +60,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
       ...mdx,
       author: castAuthor(
         { ...mdx.data, handle },
-        articles.filter(({ authorHandle }) => authorHandle === mdx.data.handle)
+        articles.filter(({ authorHandle }) => authorHandle === mdx.data.handle),
       ),
     },
   }

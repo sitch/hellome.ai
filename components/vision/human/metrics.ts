@@ -9,14 +9,14 @@ import type {
 
 export function confidenceMetric(
   face: UsableFaceResult,
-  _vector?: ManifoldVector<Result, FaceResult>
+  _vector?: ManifoldVector<Result, FaceResult>,
 ): number {
   return face.score * face.faceScore * face.boxScore
 }
 
 export function distanceMetric(
   face: UsableFaceResult,
-  vector: ManifoldVector<Result, FaceResult>
+  vector: ManifoldVector<Result, FaceResult>,
 ): number {
   const vector1 = [vector.origin.x, vector.origin.y, vector.origin.z]
   const vector2 = [
@@ -29,14 +29,14 @@ export function distanceMetric(
 
 export function withinConfidenceBounds(
   face: UsableFaceResult,
-  coordinates: ManifoldCoordinates
+  coordinates: ManifoldCoordinates,
 ): boolean {
   return confidenceMetric(face) >= coordinates.confidence.min.face
 }
 
 export function withinToleranceBounds(
   face: UsableFaceResult,
-  vector: ManifoldVector<Result, FaceResult>
+  vector: ManifoldVector<Result, FaceResult>,
 ): boolean {
   const { origin, tolerance } = vector
   // const [x, y, width, height] = face.box
@@ -55,7 +55,7 @@ export function withinToleranceBounds(
 
 export function scoreFaceResult(
   face: UsableFaceResult,
-  vector: ManifoldVector<Result, FaceResult>
+  vector: ManifoldVector<Result, FaceResult>,
 ): number {
   // throw new Error('Function not implemented.')
 

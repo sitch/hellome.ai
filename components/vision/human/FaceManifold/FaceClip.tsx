@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+
 import { FaceResult, Human, Tensor } from "@vladmandic/human"
 
 export type FaceClipProps = {
@@ -9,7 +10,7 @@ export type FaceClipProps = {
   // canvas?: HTMLCanvasElement
   onError: <T>(
     error: unknown,
-    face?: FaceResult | null | undefined
+    face?: FaceResult | null | undefined,
   ) => Promise<T | void>
 }
 

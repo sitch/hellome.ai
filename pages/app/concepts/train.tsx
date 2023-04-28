@@ -1,18 +1,21 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 // import { Layout } from '@/components/common'
 // import MediaPipeDemo from '@/components/vision/mediapipe/MediapipeDemo'
 // import  FaceFilter  from '@/components/vision/FaceFilter'
+
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import dynamic from "next/dynamic"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+
 // import { useS3Upload } from 'next-s3-upload'
 
 import human from "@vladmandic/human"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 // import { UserForm } from '@/components/forms/UserForm'
 import { PageLayout } from "@/components/ui/Layout/Layout"
 import { MainLayout } from "@/components/app/Layout"
-import Canvas from "@/components/canvas"
 import { ConceptForm } from "@/components/forms/ConceptForm"
+import Canvas from "@/components/replicate/canvas"
+
 import { I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
 
@@ -21,14 +24,14 @@ const FaceFilter = dynamic(
   () => import("@/components/vision/mediapipe/FaceFilter"),
   {
     ssr: false,
-  }
+  },
 )
 
 const AlterBackground = dynamic(
   () => import("@/components/vision/mediapipe/AlterBackground"),
   {
     ssr: false,
-  }
+  },
 )
 
 const ns: (keyof I18nNamespaces)[] = [
@@ -50,7 +53,7 @@ type Props = {
 }
 
 const Train = (
-  _props: InferGetServerSidePropsType<typeof getServerSideProps>
+  _props: InferGetServerSidePropsType<typeof getServerSideProps>,
 ) => {
   // const { t } = useTranslation(ns)
 

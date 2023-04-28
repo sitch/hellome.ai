@@ -4,6 +4,7 @@ import Head from "next/head"
 import Link from "next/link"
 
 import BrandLogo from "@/components/ui/BrandLogo/BrandLogo"
+
 import styles from "@/styles/Home.module.css"
 
 // Avoids "document not found" issue
@@ -12,7 +13,7 @@ const RequestAccessModal = dynamic(
   {
     ssr: false,
     // suspense: true,
-  }
+  },
 )
 
 const font = Inter({ subsets: ["latin"] })

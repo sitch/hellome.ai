@@ -2,6 +2,7 @@ import Link, { LinkProps } from "next/link"
 import { useTranslation } from "next-i18next"
 
 import { cn } from "@/lib/utils"
+
 import { Icons } from "@/components/icons"
 
 export type NavItem = {
@@ -33,7 +34,7 @@ export function MainNav({ items = [] }: MainNavProps) {
               href={item.href}
               className={cn(
                 "flex items-center text-lg font-semibold text-muted-foreground sm:text-sm",
-                item.disabled && "cursor-not-allowed opacity-80"
+                item.disabled && "cursor-not-allowed opacity-80",
               )}
             >
               {item.label}

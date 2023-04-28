@@ -26,7 +26,7 @@ describe("<Home /> (light-mode)", () => {
       cy.getByData("brand-logo-hello").should(
         "have.css",
         "color",
-        "rgb(0, 0, 0)"
+        "rgb(0, 0, 0)",
       )
     })
   })

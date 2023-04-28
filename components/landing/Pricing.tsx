@@ -135,13 +135,13 @@ export function Pricing() {
             period={t("plans.books.subscriptions.developmental.monthly.period")}
             features={t(
               "plans.books.subscriptions.developmental.monthly.features",
-              { returnObjects: true }
+              { returnObjects: true },
             )}
             action={t(
               "plans.books.subscriptions.developmental.monthly.action",
               {
                 returnObjects: true,
-              }
+              },
             )}
           />
           <PriceCard
@@ -150,7 +150,7 @@ export function Pricing() {
             period={t("plans.books.subscriptions.developmental.yearly.period")}
             features={t(
               "plans.books.subscriptions.developmental.yearly.features",
-              { returnObjects: true }
+              { returnObjects: true },
             )}
             action={t("plans.books.subscriptions.developmental.yearly.action", {
               returnObjects: true,

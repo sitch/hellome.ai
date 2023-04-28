@@ -15,6 +15,7 @@
  */
 module.exports = {
   plugins: [
+    "postcss-import",
     "postcss-easings",
     "tailwindcss/nesting",
     "tailwindcss",

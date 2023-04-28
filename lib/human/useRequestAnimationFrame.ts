@@ -1,4 +1,5 @@
 import { useLayoutEffect, useState } from "react"
+
 import { now } from "lodash"
 
 import { calculateAvgResponseMs, calculateFPS } from "@/lib/human/utils"
@@ -10,13 +11,13 @@ export type UseRequestAnimationFrameOptions = {
 }
 
 export type UseRequestAnimationFrameCallback = (
-  time: DOMHighResTimeStamp
+  time: DOMHighResTimeStamp,
 ) => Promise<void>
 
 // Based on: https://blog.jakuba.net/request-animation-frame-and-use-effect-vs-use-layout-effect/
 export default function useRequestAnimationFrame(
   callback: UseRequestAnimationFrameCallback,
-  options?: UseRequestAnimationFrameOptions
+  options?: UseRequestAnimationFrameOptions,
 ) {
   const [counter, setCounter] = useState<number>(0)
   const [timestamp, setTimestamp] = useState<number>(() => now())

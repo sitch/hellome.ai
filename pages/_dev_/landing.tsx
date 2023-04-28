@@ -1,24 +1,13 @@
+// import { Reviews } from '@/components/landing/Reviews'
+// import { Subscribe } from '@/components/landing/Subscribe'
+
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import Head from "next/head"
-import {
-  faFingerprint,
-  faHandsHoldingChild,
-  faHandshakeSimple,
-  faHeart,
-  faLock,
-  faPalette,
-  faPenNib,
-  faPersonBooth,
-  faPersonCircleQuestion,
-  faRobot,
-  faTruckFast,
-  // faPen,
-  // faUsersViewfinder,
-} from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { NextSeo } from "next-seo"
+
+import { Bot, HelpCircle, ScanFace, Truck } from "lucide-react"
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 
@@ -30,11 +19,10 @@ import Header from "@/components/landing/Header"
 import { Hero } from "@/components/landing/Hero"
 import { HowDoesItWork } from "@/components/landing/HowDoesItWork"
 import { Pricing } from "@/components/landing/Pricing"
-// import { Reviews } from '@/components/landing/Reviews'
-// import { Subscribe } from '@/components/landing/Subscribe'
-import styles from "@/styles/Home.module.css"
+
 import { I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
+import styles from "@/styles/Home.module.css"
 
 // Import Swiper styles
 import "swiper/css"
@@ -68,7 +56,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 })
 
 const Landing = (
-  _props: InferGetServerSidePropsType<typeof getServerSideProps>
+  _props: InferGetServerSidePropsType<typeof getServerSideProps>,
 ) => {
   const { t } = useTranslation(ns)
 
@@ -740,15 +728,15 @@ const Landing = (
           steps={[
             {
               ...t("onboarding:steps.Step1", { returnObjects: true }),
-              icon: <FontAwesomeIcon icon={faPersonBooth} />,
+              icon: <ScanFace />,
             },
             {
               ...t("onboarding:steps.Step2", { returnObjects: true }),
-              icon: <FontAwesomeIcon icon={faRobot} />,
+              icon: <Bot />,
             },
             {
               ...t("onboarding:steps.Step3", { returnObjects: true }),
-              icon: <FontAwesomeIcon icon={faTruckFast} />,
+              icon: <Truck />,
             },
           ]}
         />
@@ -756,7 +744,7 @@ const Landing = (
         {/* <Pricing /> */}
         {/* <Reviews /> */}
         <FAQ
-          icon={<FontAwesomeIcon icon={faPersonCircleQuestion} />}
+          icon={<HelpCircle />}
           title={t("faq:title")}
           description={t("faq:description")}
           links={t("faq:links", { returnObjects: true })}

@@ -1,4 +1,5 @@
 import { LinkProps } from "next/link"
+
 import { Locale, Query, Route, StaticRoute } from "nextjs-routes"
 
 import { site } from "@/data/siteConfig"
@@ -64,7 +65,7 @@ export type Author = AuthorSource & {
 
 export const castAuthor = (
   author: AuthorSource,
-  articles?: ArticleSource[]
+  articles?: ArticleSource[],
 ): Author => {
   const name = author.name.trim()
   const nameParts = author.name.trim().split(/\s+/)
@@ -114,7 +115,7 @@ export type Article = ArticleSource & {
 
 export const castArticle = (
   article: ArticleSource,
-  authors?: AuthorSource[]
+  authors?: AuthorSource[],
 ): Article => {
   return {
     ...article,

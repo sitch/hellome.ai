@@ -62,7 +62,7 @@ declare global {
                 Cypress.Withinable &
                 Cypress.Shadow
             >
-          | undefined
+          | undefined,
       ): Chainable<JQuery<HTMLElement>>
     }
   }

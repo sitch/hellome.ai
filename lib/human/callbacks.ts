@@ -8,7 +8,7 @@ export type DetectLoopResult = {
 
 export async function detectLoop(
   human: Human,
-  video: HTMLVideoElement
+  video: HTMLVideoElement,
 ): Promise<DetectLoopResult> {
   const result = await human.detect(video)
   const memory = human.tf.memory() as MemoryInfo
@@ -26,7 +26,7 @@ export type DrawLoopResult = {
 export async function drawLoop(
   human: Human,
   video: HTMLVideoElement,
-  canvas: HTMLCanvasElement
+  canvas: HTMLCanvasElement,
 ): Promise<DrawLoopResult> {
   const drawOptions: Partial<DrawOptions> = {
     bodyLabels: `person confidence [score] and ${human.result.body[0]?.keypoints.length} keypoints`,

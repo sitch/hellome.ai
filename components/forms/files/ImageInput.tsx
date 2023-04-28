@@ -1,14 +1,8 @@
-// import FilePondPluginImageEdit from 'filepond-plugin-image-edit'
-// import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
-// import FilePondPluginFileRename from 'filepond-plugin-file-rename'
+import { useState } from "react"
+import { renderToString } from "react-dom/server"
+import { useTranslation } from "next-i18next"
+import { useS3Upload } from "next-s3-upload"
 
-import {
-  JSXElementConstructor,
-  ReactElement,
-  ReactNode,
-  isValidElement,
-  useState,
-} from "react"
 import { FilePondFile, FilePondInitialFile } from "filepond"
 import FilePondPluginFileEncode from "filepond-plugin-file-encode"
 import FilePondPluginFileMetadata from "filepond-plugin-file-metadata"
@@ -17,21 +11,18 @@ import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type"
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation"
 import FilePondPluginImagePreview from "filepond-plugin-image-preview"
 import FilePondPluginImageValidateSize from "filepond-plugin-image-validate-size"
-import { useTranslation } from "next-i18next"
-import { useS3Upload } from "next-s3-upload"
-import { renderToString } from "react-dom/server"
 import { FilePond, FilePondProps, registerPlugin } from "react-filepond"
 
-import { labels } from "./filepond.config"
-// Import FilePond styles
-// import 'filepond/dist/filepond.css'
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"
-import { isString, random } from "lodash"
+// import {imageSize} from 'image-size'
+
+import { cn } from "@/lib/utils"
 
 import { LabelIdle } from "./LabelIdle"
+import { labels } from "./filepond.config"
+import { fileToBase64, imageValidateSizeMeasure } from "./utils"
 
-// import 'filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css'
-// import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.css'
+// import "filepond/dist/filepond.css"
+// import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"
 
 registerPlugin(
   FilePondPluginFileEncode,
@@ -40,17 +31,13 @@ registerPlugin(
   FilePondPluginFileValidateType,
   FilePondPluginImageExifOrientation,
   FilePondPluginImagePreview,
-  FilePondPluginImageValidateSize
-  // FilePondPluginImageEdit,
-  // FilePondPluginFilePoster,
-  // FilePondPluginFileRename,
+  FilePondPluginImageValidateSize,
 )
 
 const BYPASS_SERVER: FilePondProps["server"] = {
   process: (fieldName, file, metadata, load) => {
     setTimeout(() => {
       load(`${Date.now()}`)
-      // }, random(500, 2500))
     }, 1500)
   },
   load: (source, load) => {
@@ -68,7 +55,7 @@ type Props<T = object> = Omit<FilePondProps, "credits" | "onupdatefiles "> & {
   // cast: (values: T[]) => FilePondProps['files']
   cast?: (
     file: FilePondFile,
-    metadata: FilePondInitialFile["options"]["metadata"]
+    metadata: FilePondInitialFile["options"]["metadata"],
   ) => T
   onChange?: (values: T[]) => void
 }
@@ -78,6 +65,7 @@ export function ImageInput<T>({
   label,
   // cast,
   onChange,
+  className,
   value = [],
   ...filePondProps
 }: Props<T>) {
@@ -89,7 +77,7 @@ export function ImageInput<T>({
 
   const cast = (
     file: FilePondFile,
-    metadata: FilePondInitialFile["options"]["metadata"]
+    metadata: FilePondInitialFile["options"]["metadata"],
   ): T => {
     const meta = file.getMetadata() as Record<string, string | number>
     const status = file.status
@@ -139,7 +127,7 @@ export function ImageInput<T>({
       progress,
       abort,
       transfer,
-      options
+      options,
     ) => {
       console.log({ fieldName, file, metadata, options })
       uploadToS3(file as File)
@@ -184,6 +172,7 @@ export function ImageInput<T>({
         allowProcess={false}
         allowReorder={true}
         allowReplace={true}
+        imageValidateSizeMeasure={imageValidateSizeMeasure}
         dropOnPage={true}
         dropOnElement={false}
         dropValidation={false}
@@ -204,6 +193,7 @@ export function ImageInput<T>({
         {...labels(t)}
         {...filePondProps}
         labelIdle={renderToString(label ?? <LabelIdle />)}
+        className={cn("group", className)}
       />
     </>
   )

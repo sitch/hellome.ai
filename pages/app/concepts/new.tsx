@@ -2,6 +2,7 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { PageLayout } from "@/components/ui/Layout/Layout"
+
 import { I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
 
@@ -26,7 +27,7 @@ type Props = {
 }
 
 const Page = (
-  _props: InferGetServerSidePropsType<typeof getServerSideProps>
+  _props: InferGetServerSidePropsType<typeof getServerSideProps>,
 ) => {
   // const { t } = useTranslation(ns)
 

@@ -84,9 +84,9 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-inline' 'unsafe-eval' data: recaptcha.net;
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob:;
-  font-src 'self';  
+  font-src 'self';
   connect-src 'self' ws: recaptcha.net;
-  worker-src 'self';  
+  worker-src 'self';
   child-src 'self';
 `
 // font-src * 'unsafe-inline' data: blob:;
@@ -118,11 +118,6 @@ const nextConfig = {
     },
     ["date-fns"]: {
       transform: "date-fns/{{member}}",
-      preventFullImport: true,
-    },
-    ["@fortawesome/free-solid-svg-icons"]: {
-      transform: "@fortawesome/free-solid-svg-icons/{{member}}",
-      skipDefaultConversion: true,
       preventFullImport: true,
     },
   },

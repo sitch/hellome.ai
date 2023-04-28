@@ -19,7 +19,7 @@ module.exports = {
     plugin(({ matchUtilities, theme }) => {
       matchUtilities(
         { "text-shadow": (textShadow) => ({ textShadow }) },
-        { values: theme("textShadow") }
+        { values: theme("textShadow") },
       )
     }),
   ],

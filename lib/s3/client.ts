@@ -29,7 +29,7 @@ export async function uploadFile(input: Omit<PutObjectCommandInput, "Bucket">) {
     new GetObjectCommand({ Key: input.Key, Bucket }),
     {
       expiresIn: 15 * 60,
-    }
+    },
   )
 
   console.log("GetObjectCommand", url)

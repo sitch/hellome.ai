@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from "react"
+
 import { useMount } from "react-use"
 
 type InitWebcamProps = {
@@ -34,7 +35,7 @@ export default function InitWebcam({
     () =>
       videoRef?.current ??
       (document.getElementById(elementId) as HTMLVideoElement),
-    [videoRef, elementId]
+    [videoRef, elementId],
   )
 
   const [ready, setReady] = useState<boolean>(false)
@@ -87,7 +88,7 @@ export default function InitWebcam({
             settings,
             constraints,
             capabilities,
-          }
+          },
         )
       })
   }, [

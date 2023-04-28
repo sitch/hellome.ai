@@ -25,7 +25,7 @@ const AnimatedText = ({
       "translate-y-0 opacity-100": !hide,
       "translate-y-full opacity-0": hide,
     },
-    className
+    className,
   )
   return (
     <span className={rootClassName}>

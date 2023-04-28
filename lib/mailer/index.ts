@@ -1,4 +1,5 @@
 import type { NextApiRequest } from "next"
+
 import { ComponentMail } from "mailing-core"
 import requestIp from "request-ip"
 
@@ -19,7 +20,7 @@ export type CastMailData = {
 
 export function castMailData(
   req: NextApiRequest,
-  { firstName, lastName, email, message }: EmailPayload
+  { firstName, lastName, email, message }: EmailPayload,
 ): CastMailData {
   const ok = (email?.length ?? -1) > 3
   const error = ok ? "invalid email" : undefined

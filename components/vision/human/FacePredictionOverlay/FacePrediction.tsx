@@ -1,4 +1,5 @@
 import { RefObject, useState } from "react"
+
 import { MemoryInfo } from "@tensorflow/tfjs-core"
 import Human, { Result } from "@vladmandic/human"
 import { useMount } from "react-use"
@@ -54,7 +55,7 @@ export default function FacePrediction({
 
   const [paused, setPaused] = useState(false)
   const [memory, setMemory] = useState<MemoryInfo>(
-    () => human.tf.memory() as MemoryInfo
+    () => human.tf.memory() as MemoryInfo,
   )
   const [performance, setPerformance] = useState<Result["performance"]>()
   const [analysis, setAnalysis] = useState<FaceAnalysis>(defaultFaceAnalysis)
@@ -86,7 +87,7 @@ export default function FacePrediction({
       const { analysis: nextAnalysis, disposeResults } = await runFaceAnalysis(
         human,
         result,
-        analysis
+        analysis,
       )
 
       // update state
@@ -94,7 +95,7 @@ export default function FacePrediction({
       // dispose results
       disposeResults.forEach(disposeResult)
     },
-    { fps: { max: 1 } }
+    { fps: { max: 1 } },
   )
 
   // Draw Loop
@@ -105,7 +106,7 @@ export default function FacePrediction({
         setPerformance(interpolated.performance)
       }
     },
-    { fps: { max: 30 } }
+    { fps: { max: 30 } },
   )
 
   return (

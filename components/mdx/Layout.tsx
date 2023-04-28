@@ -1,15 +1,17 @@
 import { JSXElementConstructor, ReactNode, Suspense } from "react"
 import Link, { LinkProps } from "next/link"
-import { MDXProvider } from "@mdx-js/react"
-import type { MDXComponents } from "mdx/types"
 // import Footer from './Footer'
 import { useTranslation } from "next-i18next"
 import { DefaultSeo } from "next-seo"
+
+import { MDXProvider } from "@mdx-js/react"
+import type { MDXComponents } from "mdx/types"
 import { route } from "nextjs-routes"
 
 import { Footer } from "@/components/landing/Footer"
 // import Header from './Header'
 import Header from "@/components/landing/Header"
+
 import styles from "@/styles/Layout.module.css"
 
 import { DateTimes, Heading, Lists, Media, Typography } from "./ui"

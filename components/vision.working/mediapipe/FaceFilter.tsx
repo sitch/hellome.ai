@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react"
+
 import { Camera } from "@mediapipe/camera_utils"
 import { FaceMesh, ResultsListener } from "@mediapipe/face_mesh"
 import Webcam from "react-webcam"
@@ -23,17 +24,17 @@ const FaceFilter = () => {
       0,
       0,
       canvasElement!.width,
-      canvasElement!.height
+      canvasElement!.height,
     )
     if (results.multiFaceLandmarks.length > 0) {
       const keypoints = results.multiFaceLandmarks[0]
 
       const maskWidth = Math.abs(
-        keypoints[234].x * videoWidth - keypoints[454].x * videoWidth
+        keypoints[234].x * videoWidth - keypoints[454].x * videoWidth,
       )
       const maskHeight =
         Math.abs(
-          keypoints[234].y * videoHeight - keypoints[152].y * videoHeight
+          keypoints[234].y * videoHeight - keypoints[152].y * videoHeight,
         ) + 10
       filterImgRef.current!.width = maskWidth
       filterImgRef.current!.height = maskHeight
@@ -43,7 +44,7 @@ const FaceFilter = () => {
         keypoints[234].x * videoWidth,
         keypoints[234].y * videoHeight - 10,
         maskWidth,
-        maskHeight
+        maskHeight,
       )
     }
   }

@@ -1,6 +1,7 @@
 import { FaceLandmark, Human, Point, Result } from "@vladmandic/human"
 
 import { config } from "@/lib/human/config"
+
 import { UsableFaceResult } from "@/components/vision/human/manifolds"
 
 export { DEFAULT_COORDINATES } from "@/components/vision/human/defaults"

@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 
 import { Author } from "@/lib/mdx/types"
+
 import * as Media from "@/components/mdx/ui/Media"
 
 import { ArticleListItem } from "../articles/ArticleListItem"

@@ -22,7 +22,7 @@ export type FaceAnalysisResult = {
 
 export function runFaceAnalysis(
   result: Result,
-  prevAnalysis: FaceAnalysis
+  prevAnalysis: FaceAnalysis,
 ): FaceAnalysisResult {
   if (!isUsable(prevAnalysis.coordinates, result)) {
     return {
@@ -38,7 +38,7 @@ export function runFaceAnalysis(
   const prevVector = findNearestManifoldVector(
     prevAnalysis.coordinates,
     prevAnalysis.vectors,
-    face
+    face,
   )
   const index = indexOf(prevAnalysis.vectors, prevVector)
 

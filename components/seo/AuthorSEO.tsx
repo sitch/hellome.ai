@@ -2,6 +2,7 @@ import { DefaultSeoProps, NextSeo } from "next-seo"
 import { OpenGraph } from "next-seo/lib/types"
 
 import { Author, LocaleCode } from "@/lib/mdx/types"
+
 import { site } from "@/data/siteConfig"
 
 export const defaults: DefaultSeoProps = {

@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react"
+
 import { Prediction } from "@prisma/client"
 import Loader from "components/loader"
 import copy from "copy-to-clipboard"

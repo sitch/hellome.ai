@@ -19,7 +19,7 @@ export type FaceManifoldProps = {
     }: {
       face?: FaceResult | undefined | null
       vector?: ManifoldVector<Result, FaceResult>
-    }
+    },
   ) => Promise<T | void>
 }
 
@@ -28,12 +28,12 @@ export function FaceManifold({ human, analysis, onError }: FaceManifoldProps) {
 
   if (columns < MIN_GRID_COLUMNS) {
     console.error(
-      `Too few columns. Desired: ${columns}, Maximum: ${MIN_GRID_COLUMNS}`
+      `Too few columns. Desired: ${columns}, Maximum: ${MIN_GRID_COLUMNS}`,
     )
   }
   if (columns > MAX_GRID_COLUMNS) {
     console.error(
-      `Too many columns. Desired: ${columns}, Maximum: ${MAX_GRID_COLUMNS}`
+      `Too many columns. Desired: ${columns}, Maximum: ${MAX_GRID_COLUMNS}`,
     )
   }
 

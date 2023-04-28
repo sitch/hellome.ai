@@ -1,4 +1,5 @@
 import React from "react"
+
 import { HrefProps, MjmlText } from "mjml-react"
 
 import { colors } from "../theme"
@@ -25,7 +26,7 @@ const getHrefPropsFromProps = (props: LinkProps): HrefProps => {
       href: props.href,
       rel: props.rel,
       target: props.target,
-    })
+    }),
   )
 }
 
@@ -43,7 +44,7 @@ const getStylePropsFromProps = (props: LinkProps): StyleProps => {
       textTransform:
         props.textTransform as React.CSSProperties["textTransform"],
       align: props.align,
-    })
+    }),
   )
 }
 

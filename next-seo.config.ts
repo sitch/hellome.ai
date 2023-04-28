@@ -69,8 +69,9 @@
 //   ],
 // })
 
-import { uniq } from "lodash"
 import { DefaultSeoProps, NextSeoProps } from "next-seo"
+
+import { uniq } from "lodash"
 
 import { site, social } from "@/data/siteConfig"
 

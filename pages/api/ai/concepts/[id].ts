@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server"
+
 import Replicate from "replicate"
 
 import packageData from "@/package.json"

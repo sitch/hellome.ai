@@ -2,6 +2,7 @@
 
 /* eslint-disable react/prop-types */
 import * as React from "react"
+
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
 import { Circle } from "lucide-react"
 
@@ -17,7 +18,7 @@ const RadioGroup = React.forwardRef<
         "grid gap-2",
         "cursor-pointer",
 
-        className
+        className,
       )}
       {...props}
       ref={ref}
@@ -32,17 +33,18 @@ const RadioGroupItem = React.forwardRef<
 >(
   (
     { className, children, ...props }: RadioGroupPrimitive.RadioGroupItemProps,
-    ref
+    ref,
   ) => {
     return (
       <RadioGroupPrimitive.Item
         ref={ref}
         className={cn(
+          "transition-all duration-220 ease-in-out",
           "h-4 w-4 rounded-full border border-input ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           "bg-white dark:bg-black",
           "cursor-pointer",
 
-          className
+          className,
         )}
         {...props}
       >
@@ -51,7 +53,7 @@ const RadioGroupItem = React.forwardRef<
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
     )
-  }
+  },
 )
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
 

@@ -1,5 +1,5 @@
 export const getRecordingOptions = (
-  forMediarecorder = false
+  forMediarecorder = false,
 ): MediaRecorderOptions | BlobPropertyBag => {
   const options = { mimeType: "video/webm" }
   if (typeof MediaRecorder.isTypeSupported === "function") {

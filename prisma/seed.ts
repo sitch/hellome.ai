@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import { PrismaClient, type Prisma } from "@prisma/client"
 
 const prisma = new PrismaClient({
@@ -37,7 +36,7 @@ async function main() {
     stories.map(async (data) => {
       const story = await prisma.story.create({ data })
       console.info(`Created story with id: ${story.id}`)
-    })
+    }),
   )
 
   console.info("Seeding finished.")

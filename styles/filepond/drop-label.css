@@ -1,0 +1,64 @@
+.filepond--drop-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    /* color: hsl(var(--primary)); */
+
+    /* center contents */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* fixes IE11 centering problems (is overruled by label min-height) */
+    /* height: 0px; */
+
+    /* dont allow selection */
+    user-select: none;
+
+    /* will be animated */
+    will-change: transform, opacity;
+
+    /*=========== ADDED ===========*/
+
+    @apply h-auto rounded-xl;
+    /* @apply transition-all duration-2.2s ease-in-out border-dashed border-2 hover:border-gray-400 rounded-xl bg-accent hover:bg-accent/80 dark:hover:border-gray-600 text-input h-auto cursor-pointer animate-bg-wave hover:bg-gradient-to-r from-emerald-400/10 via-indigo-400/10 to-rose-400/10; */
+}
+
+/* Hard to override styles on purpose */
+.filepond--drop-label.filepond--drop-label label {
+    display: block;
+    margin: 0;
+    /* padding: 0.5em; /* use padding instead of margin so click area is not impacted */
+
+    /*=========== ADDED ===========*/
+    @apply p-0;
+}
+
+.filepond--drop-label label {
+
+    /* cursor: default; */
+    font-size: 0.875em;
+    font-weight: normal;
+    text-align: center;
+    line-height: 1.5;
+
+    /*=========== ADDED ===========*/
+    @apply  cursor-pointer w-full;
+}
+
+.filepond--label-action {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    text-decoration-color: #a7a4a4;
+
+    /*=========== ADDED ===========*/
+    @apply  cursor-pointer;
+}
+
+.filepond--root[data-disabled] {
+    & .filepond--drop-label label {
+        opacity: 0.5;
+    }
+}

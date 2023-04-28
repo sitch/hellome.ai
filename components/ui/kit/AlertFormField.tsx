@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
-import { AlertCircle } from "lucide-react"
 import { useTranslation } from "next-i18next"
+
+import { AlertCircle } from "lucide-react"
 import { FieldError } from "react-hook-form"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"

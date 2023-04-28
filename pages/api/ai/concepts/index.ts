@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { NextResponse } from "next/server"
+
 import Replicate from "replicate"
 
 import packageData from "@/package.json"
@@ -22,11 +23,11 @@ const WEBHOOK_HOST = process.env.VERCEL_URL
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (!process.env.REPLICATE_API_TOKEN) {
     throw new Error(
-      "The REPLICATE_API_TOKEN environment variable is not set. See README.md for instructions on how to set it."
+      "The REPLICATE_API_TOKEN environment variable is not set. See README.md for instructions on how to set it.",
     )
   }
 

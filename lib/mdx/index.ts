@@ -1,10 +1,11 @@
 import fs from "fs"
 import path from "path"
+import { MDXRemoteSerializeResult } from "next-mdx-remote/dist/types"
+import { serialize } from "next-mdx-remote/serialize"
+
 import { globSync } from "glob"
 import matter from "gray-matter"
 import { castArray } from "lodash"
-import { MDXRemoteSerializeResult } from "next-mdx-remote/dist/types"
-import { serialize } from "next-mdx-remote/serialize"
 
 import { serializeOptions } from "./config"
 import {
@@ -49,7 +50,7 @@ type ProcessResult<T = Data> = {
 
 export async function processMDXPage<T>(
   section: Section,
-  slug: Slug | Slug[]
+  slug: Slug | Slug[],
 ): Promise<ProcessResult<T>> {
   const slugs = castArray(slug)
   const dirs = slugs.slice(0, -1)
@@ -100,7 +101,7 @@ export async function processMDXAuthors(section: Section): Promise<Author[]> {
 
   return authorSources.map((data) => {
     const articles = articleSources.filter(
-      ({ authorHandle }) => authorHandle === data.handle
+      ({ authorHandle }) => authorHandle === data.handle,
     )
     return castAuthor(data, articles)
   })
@@ -112,7 +113,7 @@ export async function processMDXArticles(section: Section): Promise<Article[]> {
 
   return articleSources.map((data) => {
     const authors = authorSources.filter(
-      ({ handle }) => handle === data.authorHandle
+      ({ handle }) => handle === data.authorHandle,
     )
 
     return castArticle(data, authors)

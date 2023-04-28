@@ -1,30 +1,34 @@
 /**
- * @type {import("prettier-plugin-organize-attributes").PrettierConfig}
+ * @type {import("@ianvs/prettier-plugin-sort-imports").PluginConfig}
  */
 const sortImports = {
   importOrder: [
-    "^(react/(.*)$)|^(react$)",
+    "^(react/(.*)$)|^(react$)|^(react-dom(.*)$)",
     "^(next/(.*)$)|^(next$)",
-    "<THIRD_PARTY_MODULES>",
+    "^next-(.*)$",
     "",
-    "^@/gen/(.*)$",
-    "^types$",
-    "^@/types/(.*)$",
+    "<THIRD_PARTY_MODULES>",
     "",
     "^@/config/(.*)$",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",
     "^@/utils/(.*)$",
-    "^@/components/ui/(.*)$",
-    "^@/components/(.*)$",
-    "^@/styles/(.*)$",
     "^@/app/(.*)$",
     "^@/emails/(.*)$",
     "^@/client/(.*)$",
     "^@/server/(.*)$",
+    "",
+    "^@/components/ui/(.*)$",
+    "^@/components/(.*)$",
+    "",
+    "^@/gen/(.*)$",
+    "^types$",
+    "^@/types/(.*)$",
+    "",
     "^@/(.*)$",
     "",
     "^[./]",
+    "",
   ],
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
@@ -35,7 +39,7 @@ const sortImports = {
 }
 
 /**
- * @type {import("@ianvs/prettier-plugin-sort-imports").PluginConfig}
+ * @type {import("prettier-plugin-organize-attributes").PrettierConfig}
  */
 const organizeAttributes = {
   attributeGroups: [
@@ -61,7 +65,7 @@ module.exports = {
   singleQuote: false,
   printWidth: 80,
   tabWidth: 2,
-  trailingComma: "es5",
+  trailingComma: "all",
 
   pluginSearchDirs: false,
   plugins: [

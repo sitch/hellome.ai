@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 import Link from "next/link"
 
 import { Book } from "@/components/books/Book/Book"
+
 import bookCover from "@/public/static/images/sitchenko-infant-drawing-bw.png"
 
 import { ArrowRightIcon, DotTextureIcon } from "./icons"

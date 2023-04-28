@@ -5,8 +5,10 @@ import { MDXRemote } from "next-mdx-remote"
 import { NextSeo } from "next-seo"
 
 import { Data, MDXPageProps, listEntries, processMDXPage } from "@/lib/mdx"
+
 import Layout from "@/components/mdx/Layout"
 import { Heading, Typography } from "@/components/mdx/ui"
+
 import { site } from "@/data/siteConfig"
 import i18NextConfig from "@/next-i18next.config"
 import { castArticleSEOProps } from "@/next-seo.config"

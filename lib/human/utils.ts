@@ -22,7 +22,7 @@ export function calculateFPS({ prev, next }: TimestampMeasure) {
 
 export function calculateAvgResponseMs(
   { prev, next }: TimestampMeasure,
-  counter: number
+  counter: number,
 ) {
   return Math.round((1000 * (prev - next)) / counter) / 1000
 }

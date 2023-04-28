@@ -1,5 +1,6 @@
 import { ChangeEventHandler, ReactNode, useCallback, useState } from "react"
 import { useRouter } from "next/router"
+
 import { Locale } from "nextjs-routes"
 import { setCookie } from "nookies"
 
@@ -17,7 +18,7 @@ export const FormLayout = ({ children }: Props) => {
         router.reload()
       })
     },
-    [router]
+    [router],
   )
 
   return <>{children}</>

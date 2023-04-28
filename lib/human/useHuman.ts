@@ -28,6 +28,7 @@
 // }
 
 import { RefObject, useLayoutEffect, useState } from "react"
+
 import { DrawOptions, Human } from "@vladmandic/human"
 import { human } from "__tests__/components/vision/human/fixtures"
 import { useTimeoutFn } from "react-use"
@@ -98,7 +99,7 @@ export function useHuman({ human, videoRef, canvasRef }: UseHumanProps) {
       timestamp: 0,
       timestampStart: 0,
       avgDurationMs: 0,
-    })
+    }),
   )
 
   const [drawPerformance, setDrawPerformance] = useState<RenderPerformance>(
@@ -108,7 +109,7 @@ export function useHuman({ human, videoRef, canvasRef }: UseHumanProps) {
       timestamp: 0,
       timestampStart: 0,
       avgDurationMs: 0,
-    })
+    }),
   )
 
   const [frameCount, setFrameCount] = useState<number>(0)
@@ -118,7 +119,7 @@ export function useHuman({ human, videoRef, canvasRef }: UseHumanProps) {
   const [avgRefreshMs, setAvgRefreshMs] = useState<number>(0)
 
   const [timestampDetect, setTimestampDetect] = useState<number>(() =>
-    human.now()
+    human.now(),
   )
   // const [timestamp, setTimestamp] = useState<number>(() => human.now())
   const [paused, setPaused] = useState<boolean>(false)
@@ -138,11 +139,11 @@ export function useHuman({ human, videoRef, canvasRef }: UseHumanProps) {
 
         const fps =
           Math.round(
-            (1000 * 1000) / (timestamp - detectPerformance.timestamp)
+            (1000 * 1000) / (timestamp - detectPerformance.timestamp),
           ) / 1000
         const avgDurationMs =
           Math.round(
-            (1000 * (timestamp - detectPerformance.timestampStart)) / frames
+            (1000 * (timestamp - detectPerformance.timestampStart)) / frames,
           ) / 1000
 
         setDetectPerformance({
@@ -180,7 +181,7 @@ export function useHuman({ human, videoRef, canvasRef }: UseHumanProps) {
       const processed = await human.image(videoRef.current!) // get current video frame, but enhanced with human.filters
       human.draw.canvas(
         processed.canvas as HTMLCanvasElement,
-        canvasRef.current!
+        canvasRef.current!,
       )
 
       const opt: Partial<DrawOptions> = {
@@ -198,7 +199,7 @@ export function useHuman({ human, videoRef, canvasRef }: UseHumanProps) {
         1000
       const avgDurationMs =
         Math.round(
-          (1000 * (timestamp - drawPerformance.timestampStart)) / frames
+          (1000 * (timestamp - drawPerformance.timestampStart)) / frames,
         ) / 1000
 
       setDrawPerformance({

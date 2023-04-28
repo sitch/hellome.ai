@@ -2,6 +2,7 @@
 // See: https://github.com/vercel/next.js/issues/43769#issuecomment-1371647893
 
 import { createContext } from "react"
+
 import { render, screen } from "@testing-library/react"
 
 import Index from "@/pages/index"

@@ -8,19 +8,20 @@
 // //   }),
 // // });
 
-import { t } from "@gen/trpc/routers/helpers/createRouter"
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server"
 
 import { conceptRouter } from "@/server/routers/concept.router"
 // import { conceptsRouter } from '@gen/trpc/routers/Concept.router'
 import connectDB from "@/server/utils/prisma"
 
+import { t } from "@/@gen/trpc/routers/helpers/createRouter"
+
 // Connect to Prisma
 connectDB()
 
 export const appRouter = t.mergeRouters(
   // conceptsRouter
-  conceptRouter
+  conceptRouter,
   // usersRouter,
 )
 

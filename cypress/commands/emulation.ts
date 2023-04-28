@@ -43,6 +43,6 @@ export function disableAnimationStyles() {
           animation: none !important;
         }
       </style>
-    `)
+    `),
   )
 }

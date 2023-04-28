@@ -4,7 +4,7 @@ import { ManifoldCoordinates } from "./manifolds"
 
 export function validateResult(
   coordinates: ManifoldCoordinates,
-  result: Result
+  result: Result,
 ): boolean {
   if (result.face.length === 0) {
     // console.warn(`Found no faces`, result)
@@ -19,7 +19,7 @@ export function validateResult(
 
 export function isUsable(
   coordinates: ManifoldCoordinates,
-  result: Result
+  result: Result,
 ): boolean {
   if (result.face.length === 0) {
     // console.warn(`Found no faces`, result)

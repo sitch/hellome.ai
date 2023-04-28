@@ -16,7 +16,7 @@ type Data = {
 // returns { temporaryUrl: "..." }
 export default async function handler(
   req: NextApiRequest & Props,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data>,
 ) {
   const key = req.query.key
   const temporaryUrl = await generateTemporaryUrl(key)
