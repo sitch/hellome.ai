@@ -9,14 +9,21 @@ export const fileToBase64 = (file: File) =>
     reader.onerror = reject
   })
 
-export const imageValidateSizeMeasure: Required<
-  FilePondProps["imageValidateSizeMeasure"]
-> = async (file: File): Promise<{ width: number; height: number }> => {
+type Dimensions = {
+  width: number
+  height: number
+}
+
+type ValidateSize = Required<FilePondProps["imageValidateSizeMeasure"]>
+
+export const imageValidateSizeMeasure: ValidateSize = async (
+  file: File,
+): Promise<Dimensions> => {
   console.log({ file })
 
   const base64Image = await fileToBase64(file)
 
-  const dimensions = imageInfo(base64Image)
+  const dimensions = imageInfo(base64Image) as Dimensions
 
   console.log({ base64Image })
   console.log({ dimensions })
