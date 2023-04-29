@@ -26,6 +26,10 @@
 - `ts-node`
 - `eslint`
 - `prettier`
+- `cspell`
+
+### Libraries
+
 - `markdown`
 - `tailwindcss`
 - `react`
@@ -34,7 +38,6 @@
 - `jest`
 - `mdx`
 - `prisma`
-- `cspell`
 
 ### Install asdf
 
