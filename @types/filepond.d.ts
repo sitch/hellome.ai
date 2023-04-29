@@ -1,8 +1,8 @@
 declare module "filepond" {
-  import type * as Filepond from "filepond/types/index.d"
+  import type * as FilePond from "filepond/types/index.d"
   export type * from "filepond/types/index.d"
 
-  export interface FilePondOptions extends Filepond.FilePondOptions {
+  export interface FilePondOptions extends FilePond.FilePondOptions {
     /**
      * Source: "filepond-plugin-image-overlay"
      * Source: "filepond-plugin-image-pdf-overlay"

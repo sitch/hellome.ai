@@ -4,10 +4,8 @@ import { useTranslation } from "next-i18next"
 import { Controller, SubmitErrorHandler, SubmitHandler } from "react-hook-form"
 import Webcam from "react-webcam"
 import z from "zod"
-import { makeZodI18nMap } from "zod-i18n-map"
 
 import { useZodForm } from "@/lib/hooks/useZodForm"
-import { cn } from "@/lib/utils"
 import { trpc } from "@/utils/trpc"
 
 import { Button } from "@/components/ui/button"
@@ -17,12 +15,12 @@ import { AlertFormField } from "@/components/ui/kit/AlertFormField"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
+// import Canvas from "@/components/replicate/canvas"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import { ImageInput } from "@/components/filepond/ImageInput"
+import { ConceptCard } from "@/components/forms/ConceptCard"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
-// import Canvas from "@/components/replicate/canvas"
-import InitWebcam from "@/components/vision/InitWebcam"
 
 import {
   CloudFileSchema,
@@ -34,20 +32,24 @@ import {
 //============================================================================
 // Schema
 //============================================================================
-const formSchema = ConceptSchema.extend({
-  photos: PhotoSchema.omit({
-    id: true,
-    fileId: true,
-    createdAt: true,
-  })
-    .extend({
-      file: CloudFileSchema.omit({
-        id: true,
-        createdAt: true,
-      }),
-    })
-    .array(),
+
+const PhotoFormSchema = PhotoSchema.omit({
+  id: true,
+  fileId: true,
+  createdAt: true,
 })
+
+const CloudFileFormSchema = CloudFileSchema.omit({
+  id: true,
+  createdAt: true,
+})
+
+const formSchema = ConceptSchema.extend({
+  photos: PhotoFormSchema.extend({
+    file: CloudFileFormSchema,
+  }).array(),
+})
+
 export type FormSchemaType = z.infer<typeof formSchema>
 
 //============================================================================
@@ -85,6 +87,9 @@ export function ConceptForm(_props: Props) {
     },
   } = useZodForm({
     schema: formSchema,
+    defaultValues: {
+      type: "person",
+    },
   })
 
   //============================================================================
@@ -154,66 +159,109 @@ export function ConceptForm(_props: Props) {
       <form onSubmit={handleSubmit(onSubmit, onErrors)}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
+            {/* <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
               {t("form.heading")}
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
               {t("form.description")}
-            </p>
+            </p> */}
+
+            <div
+              className="flex-space flex gap-6"
+              // className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+            >
+              <ConceptCard
+                wide={false}
+                title={t("form.heading")}
+                description={t("form.description")}
+                showFooter={true}
+              >
+                {/* NAME */}
+                {/************* concept.name *************/}
+                <div className="sm:col-span-4">
+                  <Label htmlFor="name">{t("form.schema.name.label")}</Label>
+                  <div className="mt-2">
+                    <Input
+                      id="name"
+                      type="text"
+                      autoComplete="off"
+                      placeholder="Concept name"
+                      disabled={disabled}
+                      aria-invalid={errors.name ? "true" : "false"}
+                      {...register("name")}
+                    />
+                    <AlertFormField error={errors.name} />
+                  </div>
+                  {/* TYPE */}
+                  {/************* concept.type *************/}
+                  <div className="col-span-full">
+                    <Label htmlFor="type">{t("form.schema.type.label")}</Label>
+                    <div className="mt-2">
+                      <Controller
+                        name="type"
+                        control={control}
+                        render={({ field: { onChange, ...field } }) => (
+                          <RadioGroup
+                            id="type"
+                            disabled={field.value !== "person" || disabled}
+                            aria-invalid={
+                              field.value !== "person" || errors.name
+                                ? "true"
+                                : "false"
+                            }
+                            onValueChange={
+                              field.value === "person" ? undefined : onChange
+                            }
+                            {...field}
+                          >
+                            {ConceptTypeSchema.options.map((type) => (
+                              <div
+                                key={type}
+                                className="flex items-center space-x-2"
+                              >
+                                <RadioGroupItem
+                                  id={`type-${type}`}
+                                  value={type}
+                                />
+                                <Label type="radio" htmlFor={`type-${type}`}>
+                                  {type}
+                                </Label>
+                              </div>
+                            ))}
+                          </RadioGroup>
+                        )}
+                      />
+                      <AlertFormField error={errors.type} />
+                    </div>
+                  </div>
+                </div>
+              </ConceptCard>
+
+              <ConceptCard
+                wide={false}
+                title={
+                  <Label htmlFor="photos">
+                    {t("form.schema.photos.label")}
+                  </Label>
+                }
+              >
+                <Webcam
+                  audio={false}
+                  // height={720}
+                  // width={1280}
+                  screenshotFormat="image/jpeg"
+                  videoConstraints={{
+                    width: 1280,
+                    height: 720,
+                    facingMode: "user",
+                  }}
+                />
+              </ConceptCard>
+            </div>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              {/************* concept.name *************/}
-              <div className="sm:col-span-4">
-                <Label htmlFor="name">{t("form.schema.name.label")}</Label>
-                <div className="mt-2">
-                  <Input
-                    id="name"
-                    type="text"
-                    autoComplete="off"
-                    placeholder="Concept name"
-                    disabled={disabled}
-                    aria-invalid={errors.name ? "true" : "false"}
-                    {...register("name")}
-                  />
-                  <AlertFormField error={errors.name} />
-                </div>
-              </div>
-
               {/************* concept.type *************/}
-              <div className="col-span-full">
-                <Label htmlFor="type">{t("form.schema.type.label")}</Label>
-                <div className="mt-2">
-                  <Controller
-                    name="type"
-                    control={control}
-                    render={({ field: { onChange, ...field } }) => (
-                      <RadioGroup
-                        id="type"
-                        disabled={disabled}
-                        aria-invalid={errors.name ? "true" : "false"}
-                        onValueChange={onChange}
-                        {...field}
-                      >
-                        {ConceptTypeSchema.options.map((type) => (
-                          <div
-                            key={type}
-                            className="flex items-center space-x-2"
-                          >
-                            <RadioGroupItem id={`type-${type}`} value={type} />
-                            <Label type="radio" htmlFor={`type-${type}`}>
-                              {type}
-                            </Label>
-                          </div>
-                        ))}
-                      </RadioGroup>
-                    )}
-                  />
-                  <AlertFormField error={errors.type} />
-                </div>
-              </div>
-
-              {/************* concept.type *************/}
-              <div className="col-span-full">
+              {/* <div className="col-span-full">
                 <Label htmlFor="type">{t("form.schema.type.label")}</Label>
                 <div className="mt-2">
                   <Controller
@@ -267,72 +315,58 @@ export function ConceptForm(_props: Props) {
 
                   <AlertFormField error={errors.type} />
                 </div>
-              </div>
+              </div> */}
 
-              {/************* concept.description *************/}
-              <div className="sm:col-span-4">
-                <Label htmlFor="description">
-                  {t("form.schema.description.label")}
-                </Label>
-                <div className="mt-2">
-                  <Textarea
-                    id="description"
-                    placeholder={t("form.schema.description.placeholder")}
-                    rows={5}
-                    disabled={disabled}
-                    aria-invalid={errors.description ? "true" : "false"}
-                    {...register("description")}
-                  />
-                  <AlertFormField error={errors.description} />
-                </div>
+              <div className="col-span-full">
+                <div className="bg-green grid w-full gap-6 p-0 md:grid-cols-2"></div>
               </div>
 
               <div className="col-span-full">
                 <div className="bg-green grid w-full gap-6 p-0 md:grid-cols-2">
-                  {/************* concept.photos (canvas) *************/}
-                  <div
-                  // className="col-span-full"
+                  <ConceptCard
+                    title={
+                      <Label htmlFor="photos">
+                        {t("form.schema.photos.label")}
+                      </Label>
+                    }
                   >
-                    <Label htmlFor="photos">
-                      {t("form.schema.photos.label")}
-                    </Label>
-                    <div className="mt-2">
-                      <SketchCanvas
-                      // startingPaths={[]}
-                      // scribbleExists={false}
-                      // onScribble={(scribble: string | null): void => {
-                      //   // throw new Error('Function not implemented.')
-                      // }}
-                      // setScribbleExists={(exists: boolean): void => {
-                      //   // throw new Error('Function not implemented.')
-                      // }}
-                      />
-                    </div>
-                  </div>
+                    <SketchCanvas
+                    // startingPaths={[]}
+                    // scribbleExists={false}
+                    // onScribble={(scribble: string | null): void => {
+                    //   // throw new Error('Function not implemented.')
+                    // }}
+                    // setScribbleExists={(exists: boolean): void => {
+                    //   // throw new Error('Function not implemented.')
+                    // }}
+                    />
+                  </ConceptCard>
 
-                  {/************* concept.photos (webcam) *************/}
-                  <div
-                  //  className="col-span-full"
+                  <ConceptCard
+                    title={
+                      <Label htmlFor="description">
+                        {t("form.schema.description.label")}
+                      </Label>
+                    }
+                    showFooter={true}
+                    wide={true}
                   >
-                    <Label htmlFor="photos">
-                      {t("form.schema.photos.label")}
-                    </Label>
-                    <div className="mt-2">
-                      <Webcam
-                        audio={false}
-                        // height={720}
-                        // width={1280}
-                        screenshotFormat="image/jpeg"
-                        videoConstraints={{
-                          width: 1280,
-                          height: 720,
-                          facingMode: "user",
-                        }}
-                      />
-                    </div>
-                  </div>
+                    <Textarea
+                      id="description"
+                      placeholder={t("form.schema.description.placeholder")}
+                      cols={35}
+                      className="h-full"
+                      rows={35}
+                      disabled={disabled}
+                      aria-invalid={errors.description ? "true" : "false"}
+                      {...register("description")}
+                    />
+                    <AlertFormField error={errors.description} />
+                  </ConceptCard>
                 </div>
               </div>
+
+              <div className="col-span-full"></div>
 
               {/************* concept.photos (image upload) *************/}
               <div className="col-span-full">
@@ -362,9 +396,10 @@ export function ConceptForm(_props: Props) {
 
                 <AlertFormField message={errors.photos?.message} />
               </div>
-
-              {/************* end *************/}
             </div>
+            {/************* end *************/}
+
+            {/************* end *************/}
           </div>
 
           {/************* mutation error *************/}

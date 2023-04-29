@@ -11,7 +11,6 @@ import { Trash, Undo, Upload } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 
 export type Scribble = string
 
@@ -43,6 +42,11 @@ export function SketchCanvas({
 
   const canvasRef = useRef<ReactSketchCanvasRef>(null)
   const [touched, setTouched] = useState<boolean>(false)
+
+  const [styles, setStyles] = useState<Partial<ReactSketchCanvasProps>>({
+    strokeWidth: 3,
+    strokeColor: "blue",
+  })
 
   //============================================================================
   // Callbacks
@@ -86,6 +90,11 @@ export function SketchCanvas({
     canvasRef.current!.resetCanvas()
   }
 
+  const handleStyle = () => {
+    const styles = {}
+    setStyles(styles)
+  }
+
   //============================================================================
   // Effects
   //============================================================================
@@ -120,11 +129,12 @@ export function SketchCanvas({
         // svgStyle={{
         //   borderRadius: "var(--radius)"
         //  }}
-        strokeWidth={4}
-        strokeColor="red"
+        // strokeWidth={4}
+        // strokeColor="red"
         onChange={onChange}
         withTimestamp={true}
         {...props}
+        {...styles}
       />
 
       {/* Controls */}
@@ -132,6 +142,7 @@ export function SketchCanvas({
         <Button
           icon={Upload}
           size="sm"
+          type="button"
           variant="secondary"
           disabled={!touched}
           onClick={handleUpload}
@@ -143,6 +154,7 @@ export function SketchCanvas({
           <Button
             icon={Undo}
             size="sm"
+            type="button"
             variant="control"
             disabled={!touched}
             onClick={handleUndo}
@@ -152,6 +164,7 @@ export function SketchCanvas({
           <Button
             icon={Trash}
             size="sm"
+            type="button"
             variant="control"
             disabled={!touched}
             onClick={handleReset}

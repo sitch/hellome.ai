@@ -1,15 +1,13 @@
-import { TFunction } from "next-i18next"
-
 import { FilePondOptions } from "filepond"
 
 export const defaults: Record<string, Partial<FilePondOptions>> = {
-  FilepondPluginFileValidateSize: {
+  FilePondPluginFileValidateSize: {
     allowFileSizeValidation: true,
     minFileSize: "1KB",
     maxFileSize: "10MB",
     maxTotalFileSize: "100MB",
   },
-  FilepondPluginFileValidateType: {
+  FilePondPluginFileValidateType: {
     allowFileTypeValidation: true,
     acceptedFileTypes: [
       // 'image/*',
@@ -52,36 +50,6 @@ export const defaults: Record<string, Partial<FilePondOptions>> = {
     // imagePreviewMarkupShow: true,
     // imagePreviewMarkupFilter: (_markupItem) => true,
     // imagePreviewFilterItem: (_fileItem) => true,
-  },
-  FilePondPluginImageEdit: {
-    // // default crop aspect ratio
-    // imageCropAspectRatio: 1,
-    // // resize to width of 200
-    // imageResizeTargetWidth: 200,
-    // // open editor on image drop
-    // imageEditInstantEdit: true,
-    // // configure Doka
-    // imageEditEditor: Doka.create({
-    //     // Doka.js options here ...
-    //     cropAspectRatioOptions: [
-    //         {
-    //             label: 'Free',
-    //             value: null,
-    //         },
-    //         {
-    //             label: 'Portrait',
-    //             value: 1.25,
-    //         },
-    //         {
-    //             label: 'Square',
-    //             value: 1,
-    //         },
-    //         {
-    //             label: 'Landscape',
-    //             value: 0.75,
-    //         },
-    //     ],
-    // }),
   },
   FilePondPluginImageValidateSize: {
     allowImageValidateSize: true,

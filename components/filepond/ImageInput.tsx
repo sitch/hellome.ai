@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next"
 
 import { FilePond, FilePondProps, registerPlugin } from "react-filepond"
 import { FilePondFile } from "filepond"
-import FilepondPluginDragReorder from "filepond-plugin-drag-reorder"
+import FilePondPluginDragReorder from "filepond-plugin-drag-reorder"
 import FilePondPluginFileEncode from "filepond-plugin-file-encode"
 import FilePondPluginFileMetadata from "filepond-plugin-file-metadata"
 import FilePondPluginFileValidateDuration from "filepond-plugin-file-validate-duration"
@@ -26,11 +26,11 @@ import { cn } from "@/lib/utils"
 
 import { LabelIdle } from "@/components/filepond/LabelIdle"
 import { labels } from "@/components/filepond/filepond.i18n"
-import { useFilepondServer } from "@/components/filepond/filepond.server"
+import { useFilePondServer } from "@/components/filepond/filepond.server"
 import { imageValidateSizeMeasure } from "@/components/filepond/utils"
 
 registerPlugin(
-  FilepondPluginDragReorder,
+  FilePondPluginDragReorder,
   FilePondPluginFileEncode,
   FilePondPluginFileMetadata,
   FilePondPluginFileValidateDuration,
@@ -73,7 +73,7 @@ export function ImageInput<T>({
   value = [],
   ...filePondProps
 }: Props<T>) {
-  const { files, onupdatefiles, server } = useFilepondServer()
+  const { server, files, callbacks } = useFilePondServer()
   const translation = useTranslation("filepond")
 
   return (
@@ -85,9 +85,27 @@ export function ImageInput<T>({
         //======================================================================
         allowFileEncode={true}
         //======================================================================
-        // Uploads
+        // Core
         //======================================================================
+        allowBrowse={true}
         allowMultiple={true}
+        allowPaste={true}
+        allowProcess={false}
+        allowReorder={true}
+        allowReplace={true}
+        allowRevert={false}
+        checkValidity={false}
+        storeAsFile={false}
+        maxParallelUploads={2}
+        itemInsertLocation="after"
+        //======================================================================
+        // Core - Drag & Drop
+        //======================================================================
+        allowDrop={true}
+        dropOnPage={true}
+        dropOnElement={false}
+        dropValidation={false}
+        ignoredFiles={[".ds_store", "thumbs.db", "desktop.ini"]}
         //======================================================================
         // Previews - Image
         //======================================================================
@@ -98,16 +116,6 @@ export function ImageInput<T>({
         //======================================================================
         allowAudioPreview={true}
         allowVideoPreview={true}
-        //======================================================================
-        // Drag & Drop
-        //======================================================================
-        allowDrop={true}
-        allowReorder={true}
-        allowReplace={true}
-        dropOnPage={true}
-        dropOnElement={false}
-        dropValidation={false}
-        itemInsertLocation="after"
         //======================================================================
         // Toolbar - GetFile
         //======================================================================
@@ -135,7 +143,6 @@ export function ImageInput<T>({
           "image/tiff": ".tiff",
           "image/webp": ".webp",
         }}
-        ignoredFiles={[".ds_store", "thumbs.db", "desktop.ini"]}
         //======================================================================
         // Validation - File Size
         //======================================================================
@@ -164,13 +171,15 @@ export function ImageInput<T>({
         // Server
         //======================================================================
         files={files}
-        onupdatefiles={onupdatefiles}
         server={server}
         instantUpload={true}
-        maxParallelUploads={2}
-        // TODO: disable on max in put?
-        allowProcess={false}
         //======================================================================
+        // chunkUploads={true}
+        // chunkForce={true}
+        // chunkSize={50000}
+        // chunkSize={5000000}
+        // chunkRetryDelays={[500, 1000, 3000]}
+        {...callbacks}
         // Props
         //======================================================================
         {...filePondProps}

@@ -1,3 +1,17 @@
+// PATCH
+// ?patch=<id>
+
+import { NextApiResponse } from "next"
+import { FormNextApiRequest, getConfig, withFileUpload } from "next-multiparty"
+
+async function handler(req: FormNextApiRequest, res: NextApiResponse) {
+  res.json({ file: req.file, fields: req.fields })
+}
+
+export default withFileUpload(handler)
+
+export const config = getConfig()
+
 // import { NextApiRequest, NextApiResponse } from "next";
 // import multiparty from "multiparty";
 

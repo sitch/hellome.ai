@@ -26,7 +26,12 @@ declare module "nextjs-routes" {
     | StaticRoute<"/api/print/job">
     | StaticRoute<"/api/s3-upload">
     | DynamicRoute<"/api/trpc/[trpc]", { "trpc": string }>
-    | StaticRoute<"/api/uploads">
+    | StaticRoute<"/api/uploads/fetch">
+    | DynamicRoute<"/api/uploads/load/[...key]", { "key": string[] }>
+    | StaticRoute<"/api/uploads/patch">
+    | StaticRoute<"/api/uploads/process">
+    | StaticRoute<"/api/uploads/restore">
+    | StaticRoute<"/api/uploads/revert">
     | StaticRoute<"/app/concepts">
     | StaticRoute<"/app/concepts/new">
     | StaticRoute<"/app/concepts/train">

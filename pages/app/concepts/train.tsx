@@ -8,13 +8,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 // import { useS3Upload } from 'next-s3-upload'
 
-import human from "@vladmandic/human"
-
 // import { UserForm } from '@/components/forms/UserForm'
-import { PageLayout } from "@/components/ui/Layout/Layout"
 import { MainLayout } from "@/components/app/Layout"
 import { ConceptForm } from "@/components/forms/ConceptForm"
-import Canvas from "@/components/replicate/canvas"
 
 import { I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
@@ -159,8 +155,8 @@ const Train = (
     <>
       <MainLayout>
         <div className="bg-gray-50 dark:bg-gray-900">
-          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-            <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-16 lg:px-8">
+            <div className="mx-auto max-w-full">
               <ConceptForm />
             </div>
           </div>

@@ -72,5 +72,6 @@ export default async function handler(
     res.status(Status.CREATED).json({ status: "OK" })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   await within<void, EmailResponse>(handleSubmission, res, MAX_DURATION_MS)
 }
