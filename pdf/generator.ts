@@ -47,7 +47,7 @@ export const generate = async ({ name }: GenerateProps) => {
     // window.open(URL.createObjectURL(blob))
 
     // Node.js
-    const filename = path.join(__dirname, `./out/test.pdf`)
+    const filename = path.join(__dirname, `../out/test.pdf`)
     writeFileSync(filename, pdf)
 
     return {

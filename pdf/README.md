@@ -17,3 +17,23 @@
 | `yarn test`          | Run `jest` tests                                                                  |
 | `yarn cy.run`        | Run cypress and make sure the dev server is running with `yarn dev`               |
 | `yarn cy.open`       | Run cypress in visual mode and make sure the dev server is running with `yarn dev |
+
+## Workflow
+
+### Install asdf
+
+- `asdf plugin add nodejs`
+- `asdf plugin add yarn`
+- `asdf install nodejs 18.14.0`
+- `asdf install yarn 1.22.19`
+- `asdf install`
+- `yarn` Install packages
+
+### Install VSCode Extensions
+
+- `tomoki1207.pdf`
+
+### Run
+
+- Open terminal panel `Ctrl + \``
+- `yarn test.watch __tests__/pdf`
