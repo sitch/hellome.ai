@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hellome.ai
+
+# Sitemaps
+Sitemap: https://hellome.ai/sitemap.xml
