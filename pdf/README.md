@@ -20,6 +20,22 @@
 
 ## Workflow
 
+### Tools 
+
+- `yarn`
+- `ts-node`
+- `eslint`
+- `prettier`
+- `markdown`
+- `tailwindcss`
+- `react`
+- `cypress`
+- `next.js`
+- `jest`
+- `mdx`
+- `prisma`
+- `cspell`
+
 ### Install asdf
 
 - `asdf plugin add nodejs`
