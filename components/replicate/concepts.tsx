@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { Fragment, useEffect, useRef, useState } from "react"
 
 import { Prediction } from "@prisma/client"

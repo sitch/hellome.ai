@@ -9,7 +9,7 @@ export type FaceClipProps = {
   name: string
   face?: FaceResult | null | undefined
   canvas?: HTMLCanvasElement
-  onError: <T>(error: unknown, face: FaceResult) => Promise<T | void>
+  onError: (error: unknown, face: FaceResult) => Promise<void>
 }
 
 class FaceClip extends React.Component<FaceClipProps> {

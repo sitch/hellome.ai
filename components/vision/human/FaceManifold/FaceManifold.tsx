@@ -11,7 +11,7 @@ const MAX_GRID_COLUMNS = 12
 export type FaceManifoldProps = {
   human: Human
   analysis: FaceAnalysis
-  onError?: <T>(
+  onError?: (
     error: unknown,
     {
       face,
@@ -20,7 +20,7 @@ export type FaceManifoldProps = {
       face?: FaceResult | undefined | null
       vector?: ManifoldVector<Result, FaceResult>
     },
-  ) => Promise<T | void>
+  ) => Promise<void>
 }
 
 export function FaceManifold({ human, analysis, onError }: FaceManifoldProps) {

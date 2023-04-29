@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { JSXElementConstructor, ReactNode, Suspense } from "react"
 import Link, { LinkProps } from "next/link"
 // import Footer from './Footer'

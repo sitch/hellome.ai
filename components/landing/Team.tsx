@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Dribbble, Twitter } from "lucide-react"
 
 export default function Team() {

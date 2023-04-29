@@ -8,10 +8,10 @@ export type FaceClipProps = {
   face?: FaceResult | null | undefined
   imageData: ImageData | null | undefined
   // canvas?: HTMLCanvasElement
-  onError: <T>(
+  onError: (
     error: unknown,
     face?: FaceResult | null | undefined,
-  ) => Promise<T | void>
+  ) => Promise<void>
 }
 
 export default function FaceClip({
