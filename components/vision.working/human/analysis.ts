@@ -6,9 +6,9 @@ import {
   ManifoldVector,
   UsableFaceResult,
   findNearestManifoldVector,
-} from "./manifolds"
-import { scoreFaceResult } from "./metrics"
-import { isUsable } from "./validations"
+} from "@/components/vision.working/human/manifolds"
+import { scoreFaceResult } from "@/components/vision.working/human/metrics"
+import { isUsable } from "@/components/vision.working/human/validations"
 
 export type FaceAnalysis = {
   coordinates: ManifoldCoordinates

@@ -12,7 +12,8 @@ const Schema: z.ZodType<Prisma.ArtistUncheckedCreateInput> = z
       .optional(),
     pageArtworks: z
       .lazy(
-        () => PageArtworkUncheckedCreateNestedManyWithoutArtistInputObjectSchema
+        () =>
+          PageArtworkUncheckedCreateNestedManyWithoutArtistInputObjectSchema,
       )
       .optional(),
   })

@@ -5,13 +5,15 @@ import { isEqual, remove } from "lodash"
 
 import { config } from "@/lib/human/config"
 
+import FaceImporterInstructions from "@/components/vision/human/FaceImporterInstructions/FaceImporterInstructions"
+import { FaceManifold } from "@/components/vision/human/FaceManifold/FaceManifold"
+import {
+  runFaceAnalysis,
+  type FaceAnalysis,
+} from "@/components/vision/human/analysis"
 import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
+import { ManifoldVector } from "@/components/vision/human/manifolds"
 import { log, status } from "@/components/vision/logging"
-
-import FaceImporterInstructions from "../FaceImporterInstructions/FaceImporterInstructions"
-import { FaceManifold } from "../FaceManifold/FaceManifold"
-import { runFaceAnalysis, type FaceAnalysis } from "../analysis"
-import { ManifoldVector } from "../manifolds"
 
 type FacePredictionOverlayProps = {
   inputId: string // video

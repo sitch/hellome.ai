@@ -17,11 +17,11 @@ const Schema: z.ZodType<Prisma.PageTextCreateNestedManyWithoutTranslatorInput> =
             .lazy(() => PageTextCreateWithoutTranslatorInputObjectSchema)
             .array(),
           z.lazy(
-            () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema
+            () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema
+              () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema,
             )
             .array(),
         ])
@@ -29,11 +29,11 @@ const Schema: z.ZodType<Prisma.PageTextCreateNestedManyWithoutTranslatorInput> =
       connectOrCreate: z
         .union([
           z.lazy(
-            () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema
+            () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema
+              () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema,
             )
             .array(),
         ])

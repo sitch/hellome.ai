@@ -1,5 +1,5 @@
-import imageInfo from "base64image-dimensions"
 import { FilePondProps } from "react-filepond"
+import imageInfo from "base64image-dimensions"
 
 export const fileToBase64 = (file: File) =>
   new Promise((resolve, reject) => {
@@ -14,21 +14,21 @@ type Dimensions = {
   height: number
 }
 
-type ValidateSize = Required<FilePondProps["imageValidateSizeMeasure"]>
+type ValidateSize = NonNullable<FilePondProps["imageValidateSizeMeasure"]>
 
 export const imageValidateSizeMeasure: ValidateSize = async (
-  file: File,
+  file,
 ): Promise<Dimensions> => {
   console.log({ file })
 
-  const base64Image = await fileToBase64(file)
+  const base64Image = await fileToBase64(file as unknown as File)
 
   const dimensions = imageInfo(base64Image) as Dimensions
 
   console.log({ base64Image })
   console.log({ dimensions })
 
-  debugger
+  // debugger
 
   return dimensions
 }

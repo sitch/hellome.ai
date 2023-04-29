@@ -9,7 +9,7 @@ const Schema: z.ZodType<Prisma.TranslatorUncheckedCreateInput> = z
     pageTexts: z
       .lazy(
         () =>
-          PageTextUncheckedCreateNestedManyWithoutTranslatorInputObjectSchema
+          PageTextUncheckedCreateNestedManyWithoutTranslatorInputObjectSchema,
       )
       .optional(),
   })

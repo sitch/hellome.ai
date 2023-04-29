@@ -1,4 +1,5 @@
 import React from "react"
+
 import { Concept } from "@prisma/client"
 
 import { prisma } from "../../../lib/prisma"

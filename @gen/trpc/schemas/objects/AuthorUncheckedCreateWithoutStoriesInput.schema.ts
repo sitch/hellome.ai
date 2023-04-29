@@ -8,7 +8,7 @@ const Schema: z.ZodType<Prisma.AuthorUncheckedCreateWithoutStoriesInput> = z
     id: z.string().optional(),
     pageTexts: z
       .lazy(
-        () => PageTextUncheckedCreateNestedManyWithoutAuthorInputObjectSchema
+        () => PageTextUncheckedCreateNestedManyWithoutAuthorInputObjectSchema,
       )
       .optional(),
   })

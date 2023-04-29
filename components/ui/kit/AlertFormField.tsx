@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
 import { useTranslation } from "next-i18next"
 
-import { AlertCircle } from "lucide-react"
 import { FieldError } from "react-hook-form"
+import { AlertCircle } from "lucide-react"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
@@ -16,7 +16,7 @@ type Props = {
 export function AlertFormField({ title, message, error, children }: Props) {
   const { t } = useTranslation()
 
-  if (!message || !error?.message) {
+  if (!error?.message && !message) {
     return null
   }
 
@@ -28,7 +28,7 @@ export function AlertFormField({ title, message, error, children }: Props) {
     <Alert variant="destructive" className="mt-4">
       <AlertCircle className="h-4 w-4" />
       {/* <AlertTitle>{title ?? t("alert.destructive.title")}</AlertTitle> */}
-      <AlertTitle>{message ?? error.message}</AlertTitle>
+      <AlertTitle>{message ?? error?.message}</AlertTitle>
     </Alert>
   )
 }

@@ -47,7 +47,7 @@ const Schema: z.ZodType<Prisma.PhotoUncheckedUpdateWithoutConceptsInput> = z
       .optional(),
     pageArtworks: z
       .lazy(
-        () => PageArtworkUncheckedUpdateManyWithoutPhotoNestedInputObjectSchema
+        () => PageArtworkUncheckedUpdateManyWithoutPhotoNestedInputObjectSchema,
       )
       .optional(),
   })

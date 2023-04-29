@@ -2,7 +2,7 @@
 
 import classnames from "classnames"
 
-import styles from "./AnimatedBook.module.scss"
+import styles from "@/components/books/AnimatedBook/AnimatedBook.module.scss"
 
 // Source: https://codemyui.com/pure-css-page-turning-animation-for-images/
 // Codepen: https://codepen.io/amit_sheen/pen/WNweryv

@@ -34,11 +34,11 @@ const Schema: z.ZodType<Prisma.PageArtworkUpdateManyWithoutPhotoNestedInput> = z
     upsert: z
       .union([
         z.lazy(
-          () => PageArtworkUpsertWithWhereUniqueWithoutPhotoInputObjectSchema
+          () => PageArtworkUpsertWithWhereUniqueWithoutPhotoInputObjectSchema,
         ),
         z
           .lazy(
-            () => PageArtworkUpsertWithWhereUniqueWithoutPhotoInputObjectSchema
+            () => PageArtworkUpsertWithWhereUniqueWithoutPhotoInputObjectSchema,
           )
           .array(),
       ])
@@ -73,11 +73,11 @@ const Schema: z.ZodType<Prisma.PageArtworkUpdateManyWithoutPhotoNestedInput> = z
     update: z
       .union([
         z.lazy(
-          () => PageArtworkUpdateWithWhereUniqueWithoutPhotoInputObjectSchema
+          () => PageArtworkUpdateWithWhereUniqueWithoutPhotoInputObjectSchema,
         ),
         z
           .lazy(
-            () => PageArtworkUpdateWithWhereUniqueWithoutPhotoInputObjectSchema
+            () => PageArtworkUpdateWithWhereUniqueWithoutPhotoInputObjectSchema,
           )
           .array(),
       ])
@@ -85,11 +85,11 @@ const Schema: z.ZodType<Prisma.PageArtworkUpdateManyWithoutPhotoNestedInput> = z
     updateMany: z
       .union([
         z.lazy(
-          () => PageArtworkUpdateManyWithWhereWithoutPhotoInputObjectSchema
+          () => PageArtworkUpdateManyWithWhereWithoutPhotoInputObjectSchema,
         ),
         z
           .lazy(
-            () => PageArtworkUpdateManyWithWhereWithoutPhotoInputObjectSchema
+            () => PageArtworkUpdateManyWithWhereWithoutPhotoInputObjectSchema,
           )
           .array(),
       ])

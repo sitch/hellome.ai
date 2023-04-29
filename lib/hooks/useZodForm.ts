@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from "next-i18next"
 
-import { zodResolver } from "@hookform/resolvers/zod"
 import { UseFormProps, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import z from "zod"
 import { makeZodI18nMap } from "zod-i18n-map"
 

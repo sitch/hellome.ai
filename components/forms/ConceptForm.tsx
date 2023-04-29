@@ -18,8 +18,8 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+import { ImageInput } from "@/components/filepond/ImageInput"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
-import { ImageInput } from "@/components/forms/files/ImageInput"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
 // import Canvas from "@/components/replicate/canvas"
 import InitWebcam from "@/components/vision/InitWebcam"
@@ -35,13 +35,20 @@ import {
 // Schema
 //============================================================================
 const formSchema = ConceptSchema.extend({
-  photos: PhotoSchema.omit({ fileId: true })
+  photos: PhotoSchema.omit({
+    id: true,
+    fileId: true,
+    createdAt: true,
+  })
     .extend({
-      file: CloudFileSchema,
+      file: CloudFileSchema.omit({
+        id: true,
+        createdAt: true,
+      }),
     })
     .array(),
 })
-type FormSchemaType = z.infer<typeof formSchema>
+export type FormSchemaType = z.infer<typeof formSchema>
 
 //============================================================================
 // Props
@@ -231,9 +238,7 @@ export function ConceptForm(_props: Props) {
                                   ? "bg-orange-50 dark:bg-orange-50"
                                   : type === "place"
                                   ? "bg-green-50 dark:bg-green-50"
-                                  : type === "thing"
-                                  ? "bg-yellow-50 dark:bg-yellow-50"
-                                  : "",
+                                  : "bg-yellow-50 dark:bg-yellow-50",
                                 // "hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 ",
                                 "border border-gray-800 peer-checked:border-blue-600 dark:border-gray-700",
                                 "text-gray-500 hover:text-gray-600 peer-checked:text-blue-600  dark:text-gray-400 dark:hover:text-gray-300 dark:peer-checked:text-blue-500",

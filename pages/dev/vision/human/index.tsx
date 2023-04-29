@@ -4,7 +4,7 @@ import Head from "next/head"
 import InitWebcam from "@/components/vision/InitWebcam"
 import FacePredictionOverlay from "@/components/vision/human/FacePredictionOverlay/FacePredictionOverlay"
 
-import styles from "./index.module.css"
+import styles from "@/pages/dev/vision/human/index.module.css"
 
 // import { Layout } from '@/components/common'
 

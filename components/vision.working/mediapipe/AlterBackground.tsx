@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react"
 
+import { isIOS, isMacOs } from "react-device-detect"
+import Webcam from "react-webcam"
 import { Camera } from "@mediapipe/camera_utils"
 import {
   SelfieSegmentation,
   type ResultsListener,
 } from "@mediapipe/selfie_segmentation"
-import { isIOS, isMacOs } from "react-device-detect"
-import Webcam from "react-webcam"
 import * as StackBlur from "stackblur-canvas"
 
-import { getRecordingOptions } from "./utils"
+import { getRecordingOptions } from "@/components/vision.working/mediapipe/utils"
 
 export const AlterBackground = () => {
   const selfieSegmentationRef = useRef<SelfieSegmentation | null>(null)
@@ -169,7 +169,8 @@ export const AlterBackground = () => {
   }
 
   const cleanUpFunc = () => {
-    selfieSegmentationRef && selfieSegmentationRef.current!.close()
+    // selfieSegmentationRef && selfieSegmentationRef.current!.close()
+    selfieSegmentationRef.current!.close()
   }
 
   useEffect(() => {
@@ -230,7 +231,7 @@ export const AlterBackground = () => {
   }
 
   const stopStreaming = () => {
-    if (mediaRecorderRef?.current?.state === "recording") {
+    if (mediaRecorderRef.current?.state === "recording") {
       const portal = document.getElementById("fk-dialog")
       if (portal) {
         portal.style.top = "99px"
@@ -293,6 +294,7 @@ export const AlterBackground = () => {
             {isRecording ? "Stop" : "Start"} Recording
           </button>
         ) : (
+          // eslint-disable-next-line jsx-a11y/media-has-caption
           <video
             src={blobURL}
             controls

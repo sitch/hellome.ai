@@ -35,11 +35,11 @@ const Schema: z.ZodType<Prisma.EditionUncheckedUpdateManyWithoutUserNestedInput>
       upsert: z
         .union([
           z.lazy(
-            () => EditionUpsertWithWhereUniqueWithoutUserInputObjectSchema
+            () => EditionUpsertWithWhereUniqueWithoutUserInputObjectSchema,
           ),
           z
             .lazy(
-              () => EditionUpsertWithWhereUniqueWithoutUserInputObjectSchema
+              () => EditionUpsertWithWhereUniqueWithoutUserInputObjectSchema,
             )
             .array(),
         ])
@@ -74,11 +74,11 @@ const Schema: z.ZodType<Prisma.EditionUncheckedUpdateManyWithoutUserNestedInput>
       update: z
         .union([
           z.lazy(
-            () => EditionUpdateWithWhereUniqueWithoutUserInputObjectSchema
+            () => EditionUpdateWithWhereUniqueWithoutUserInputObjectSchema,
           ),
           z
             .lazy(
-              () => EditionUpdateWithWhereUniqueWithoutUserInputObjectSchema
+              () => EditionUpdateWithWhereUniqueWithoutUserInputObjectSchema,
             )
             .array(),
         ])

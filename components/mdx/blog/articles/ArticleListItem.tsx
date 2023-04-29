@@ -137,11 +137,11 @@ export const ArticleListItem = ({
               {commentCount}
             </span>
 
-            {/* 
+            {/*
         <a className="inline-flex items-center">
           <img alt="blog" src="https://dummyimage.com/103x103" className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
           <span className="flex-grow flex flex-col pl-4">
-            <span className="title-font font-medium text-gray-900">Alper Kamu</span>
+            <span className="title-font font-medium text-gray-900">First Name</span>
             <span className="text-gray-400 text-xs tracking-widest mt-0.5">DESIGNER</span>
           </span>
         </a>

@@ -1,7 +1,7 @@
 import { Result } from "@vladmandic/human"
 import { inRange } from "lodash"
 
-import { FaceAnalysis } from "../analysis"
+import { FaceAnalysis } from "@/components/vision/human/analysis"
 
 export type DialogType =
   | "FaceDirection"

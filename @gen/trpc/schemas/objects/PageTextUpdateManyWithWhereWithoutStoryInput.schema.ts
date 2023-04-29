@@ -11,7 +11,7 @@ const Schema: z.ZodType<Prisma.PageTextUpdateManyWithWhereWithoutStoryInput> = z
     data: z.union([
       z.lazy(() => PageTextUpdateManyMutationInputObjectSchema),
       z.lazy(
-        () => PageTextUncheckedUpdateManyWithoutPageTextsInputObjectSchema
+        () => PageTextUncheckedUpdateManyWithoutPageTextsInputObjectSchema,
       ),
     ]),
   })

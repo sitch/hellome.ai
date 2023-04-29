@@ -4,7 +4,7 @@ import { prisma } from "../../../lib/prisma"
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { method } = req
   const id = req.query.id as string

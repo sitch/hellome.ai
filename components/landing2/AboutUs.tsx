@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import Link from "next/link"
 
-import { DotTextureIcon, ZapIcon } from "./icons"
+import { DotTextureIcon, ZapIcon } from "@/components/landing2/icons"
 
 export type AboutUsValueProps = {
   icon?: ReactNode

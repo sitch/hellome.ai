@@ -1,18 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 
-import { Trash, Undo, Upload } from "lucide-react"
 import {
   CanvasPath,
   ReactSketchCanvas,
   ReactSketchCanvasProps,
   ReactSketchCanvasRef,
 } from "react-sketch-canvas"
+import { Trash, Undo, Upload } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-
-import AnimatedButton from "../common/AnimatedButton/AnimatedButton"
+import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 
 export type Scribble = string
 
@@ -113,12 +112,14 @@ export function SketchCanvas({
         ref={canvasRef}
         className={cn(
           "aspect-square w-full",
-          "rounded",
+          "overflow-hidden rounded",
           "border border-primary",
           "cursor-dark-pen dark:cursor-light-pen",
-          className,
+          // className,
         )}
-        svgStyle={{ borderRadius: "var(--radius)" }}
+        // svgStyle={{
+        //   borderRadius: "var(--radius)"
+        //  }}
         strokeWidth={4}
         strokeColor="red"
         onChange={onChange}

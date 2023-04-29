@@ -3,9 +3,8 @@
 import classnames from "classnames"
 import cn from "clsx"
 
+import s from "@/components/ui/BrandLogo/BrandLogo.module.css"
 import AnimatedText from "@/components/common/AnimatedText/AnimatedText"
-
-import s from "./BrandLogo.module.css"
 
 type BrandLogoProps = {
   size?: string

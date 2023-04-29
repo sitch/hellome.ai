@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import React, { useEffect, useRef } from "react"
 
+import Webcam from "react-webcam"
 import { Camera } from "@mediapipe/camera_utils"
 import { FaceMesh, ResultsListener } from "@mediapipe/face_mesh"
-import Webcam from "react-webcam"
 
 const FaceFilter = () => {
   const faceMeshRef = useRef<FaceMesh | null>(null)

@@ -11,10 +11,15 @@ import { route } from "nextjs-routes"
 import { Footer } from "@/components/landing/Footer"
 // import Header from './Header'
 import Header from "@/components/landing/Header"
+import {
+  DateTimes,
+  Heading,
+  Lists,
+  Media,
+  Typography,
+} from "@/components/mdx/ui"
 
 import styles from "@/styles/Layout.module.css"
-
-import { DateTimes, Heading, Lists, Media, Typography } from "./ui"
 
 const Hero = () => (
   <section className="relative">

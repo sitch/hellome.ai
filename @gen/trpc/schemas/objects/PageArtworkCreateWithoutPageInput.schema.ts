@@ -13,13 +13,13 @@ const Schema: z.ZodType<Prisma.PageArtworkCreateWithoutPageInput> = z
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
     story: z.lazy(
-      () => StoryCreateNestedOneWithoutPageArtworksInputObjectSchema
+      () => StoryCreateNestedOneWithoutPageArtworksInputObjectSchema,
     ),
     artist: z.lazy(
-      () => ArtistCreateNestedOneWithoutPageArtworksInputObjectSchema
+      () => ArtistCreateNestedOneWithoutPageArtworksInputObjectSchema,
     ),
     photo: z.lazy(
-      () => PhotoCreateNestedOneWithoutPageArtworksInputObjectSchema
+      () => PhotoCreateNestedOneWithoutPageArtworksInputObjectSchema,
     ),
   })
   .strict()

@@ -4,7 +4,7 @@ import {
   distanceMetric,
   withinConfidenceBounds,
   withinToleranceBounds,
-} from "./metrics"
+} from "@/components/vision/human/metrics"
 
 export type UsableFaceResult = FaceResult & {
   rotation: NonNullable<FaceResult["rotation"]>

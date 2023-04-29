@@ -7,7 +7,7 @@ import { globSync } from "glob"
 import matter from "gray-matter"
 import { castArray } from "lodash"
 
-import { serializeOptions } from "./config"
+import { serializeOptions } from "@/lib/mdx/config"
 import {
   Article,
   ArticleSource,
@@ -17,7 +17,7 @@ import {
   Slug,
   castArticle,
   castAuthor,
-} from "./types"
+} from "@/lib/mdx/types"
 
 export type MDXPageProps<T = {}> = {
   // content: MDXRemoteProps

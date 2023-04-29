@@ -2,10 +2,10 @@ import { ReactNode } from "react"
 import Link, { LinkProps } from "next/link"
 import { useTranslation } from "next-i18next"
 
+import { LogoIcon } from "@/components/landing/icons"
+
 import { business, social } from "@/data/siteConfig"
 import pkg from "@/package.json"
-
-import { LogoIcon } from "./icons"
 
 function SocialFooter() {
   const year = new Date().getFullYear()

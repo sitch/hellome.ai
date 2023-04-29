@@ -13,12 +13,12 @@ const Schema: z.ZodType<Prisma.StoryUncheckedCreateWithoutPagesInput> = z
     authorId: z.string().optional().nullable(),
     pageArtworks: z
       .lazy(
-        () => PageArtworkUncheckedCreateNestedManyWithoutStoryInputObjectSchema
+        () => PageArtworkUncheckedCreateNestedManyWithoutStoryInputObjectSchema,
       )
       .optional(),
     pageTexts: z
       .lazy(
-        () => PageTextUncheckedCreateNestedManyWithoutStoryInputObjectSchema
+        () => PageTextUncheckedCreateNestedManyWithoutStoryInputObjectSchema,
       )
       .optional(),
   })

@@ -4,7 +4,7 @@
 
 import dynamic from "next/dynamic"
 
-import styles from "./index.module.css"
+import styles from "@/pages/dev/vision/mediapipe/index.module.css"
 
 // See: https://github.com/google/mediapipe/issues/2546
 const FaceFilter = dynamic(

@@ -7,6 +7,7 @@ const sortImports = {
     "^(next/(.*)$)|^(next$)",
     "^next-(.*)$",
     "",
+    "^react-(.*)$",
     "<THIRD_PARTY_MODULES>",
     "",
     "^@/config/(.*)$",
@@ -67,11 +68,11 @@ module.exports = {
   tabWidth: 2,
   trailingComma: "all",
 
-  pluginSearchDirs: false,
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-organize-attributes",
     "prettier-plugin-css-order",
     "prettier-plugin-tailwindcss", // MUST come last
   ],
+  pluginSearchDirs: false, // Needed for `prettier-plugin-tailwindcss`
 }

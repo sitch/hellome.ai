@@ -1,5 +1,8 @@
-import { FaceAnalysis } from "./analysis"
-import { ManifoldCoordinates, castManifoldVectors } from "./manifolds"
+import { FaceAnalysis } from "@/components/vision/human/analysis"
+import {
+  ManifoldCoordinates,
+  castManifoldVectors,
+} from "@/components/vision/human/manifolds"
 
 export const DEFAULT_COORDINATES: ManifoldCoordinates = {
   axis: {

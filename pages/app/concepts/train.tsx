@@ -79,7 +79,7 @@ const Train = (
   //                      href="../figma.html"
   //                    >
   //                      <p className="mr-2 inline-block text-sm text-white">
-  //                        Preline UI Figma is live.
+  //                         UI Figma is live.
   //                      </p>
   //                      <span className="inline-flex items-center justify-center gap-x-2 rounded-full bg-white/[.075] px-3 py-2 text-sm font-semibold text-white group-hover:bg-white/[.1]">
   //                        <svg
@@ -111,8 +111,8 @@ const Train = (
   //
   //                  <div className="mx-auto max-w-3xl text-center">
   //                    <p className="text-lg text-gray-400">
-  //                      Preline is a large open-source project, crafted with
-  //                      Tailwind CSS framework by Hmlstream.
+  //                      Pre-line is a large open-source project, crafted with
+  //                      Tailwind CSS framework by .
   //                    </p>
   //                  </div>
   //

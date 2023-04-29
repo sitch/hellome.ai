@@ -1,6 +1,6 @@
-import classnames from "classnames"
+/* eslint-disable jsx-a11y/anchor-has-content */
 
-import styles from "./PageFlipBook.module.css"
+import styles from "@/components/books/PageFlipBook/PageFlipBook.module.css"
 
 // Source: https://cssdeck.com/labs/pure-css3-page-flip-effect
 export function PageFlipBook() {

@@ -11,7 +11,10 @@ import { makeZodI18nMap } from "zod-i18n-map"
 import { useZodForm } from "@/lib/hooks/useZodForm"
 import { trpc } from "@/utils/trpc"
 
-import { ImageInput } from "@/components/forms/files/ImageInput"
+import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+import { ImageInput } from "@/components/filepond/ImageInput"
+import Canvas from "@/components/replicate/canvas"
+import InitWebcam from "@/components/vision/InitWebcam"
 
 import {
   CloudFileSchema,
@@ -19,10 +22,6 @@ import {
   ConceptTypeSchema,
   PhotoSchema,
 } from "@/@gen/zod"
-
-import AnimatedButton from "../common/AnimatedButton/AnimatedButton"
-import Canvas from "../replicate/canvas"
-import InitWebcam from "../vision/InitWebcam"
 
 // See: https://zod.dev/?id=recursive-types
 // const formSchema = ConceptCreateInputSchema
@@ -249,9 +248,7 @@ export const ConceptForm = () => {
                               ? "bg-orange-50"
                               : type === "place"
                               ? "bg-green-50"
-                              : type === "thing"
-                              ? "bg-yellow-50"
-                              : ""
+                              : "bg-yellow-50"
                           } inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-800  p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-blue-500`}
                         >
                           <div className="block">
@@ -416,45 +413,45 @@ export const ConceptForm = () => {
                         imageValidateSizeMinWidth={512}
                         imageValidateSizeMinHeight={512}
                         required={true}
-                        cast={(file, metadata): object => {
-                          const meta = file.getMetadata() as Record<
-                            string,
-                            string | number
-                          >
-                          const status = file.status
+                        // cast={(file, metadata): object => {
+                        //   const meta = file.getMetadata() as Record<
+                        //     string,
+                        //     string | number
+                        //   >
+                        //   const status = file.status
 
-                          console.log("file", status, { file, meta })
+                        //   console.log("file", status, { file, meta })
 
-                          return {
-                            // TODO: REMOVE ID
-                            id: file.serverId,
-                            fileId: file.serverId,
-                            height: metadata?.height as number,
-                            width: metadata?.width as number,
-                            createdAt: new Date(),
-                            tags: [],
-                            pageArtworks: [],
-                            concepts: [],
-                            file: {
-                              // TODO: REMOVE ID
-                              id: file.serverId,
-                              createdAt: new Date(),
-                              signature: "signature",
-                              path: "path",
-                              // updatedAt: new Date().toString(),
-                              //
-                              //
+                        //   return {
+                        //     // TODO: REMOVE ID
+                        //     id: file.serverId,
+                        //     fileId: file.serverId,
+                        //     height: metadata?.height as number,
+                        //     width: metadata?.width as number,
+                        //     createdAt: new Date(),
+                        //     tags: [],
+                        //     pageArtworks: [],
+                        //     concepts: [],
+                        //     file: {
+                        //       // TODO: REMOVE ID
+                        //       id: file.serverId,
+                        //       createdAt: new Date(),
+                        //       signature: "signature",
+                        //       path: "path",
+                        //       // updatedAt: new Date().toString(),
+                        //       //
+                        //       //
 
-                              resourceType: "image",
-                              privacy: "private",
-                              filename: file.filename,
-                              size: file.fileSize,
-                              ext: file.fileExtension,
-                              mime: metadata?.mime ?? file.fileType,
-                              metadata,
-                            },
-                          }
-                        }}
+                        //       resourceType: "image",
+                        //       privacy: "private",
+                        //       filename: file.filename,
+                        //       size: file.fileSize,
+                        //       ext: file.fileExtension,
+                        //       mime: metadata?.mime ?? file.fileType,
+                        //       metadata,
+                        //     },
+                        //   }
+                        // }}
                         // value={value}
                         // onChange={onChange}
                       />

@@ -21,7 +21,7 @@ const Schema: z.ZodType<Prisma.EnumFileResourceTypeWithAggregatesFilter> = z
       .union([
         z.lazy(() => FileResourceTypeSchema),
         z.lazy(
-          () => NestedEnumFileResourceTypeWithAggregatesFilterObjectSchema
+          () => NestedEnumFileResourceTypeWithAggregatesFilterObjectSchema,
         ),
       ])
       .optional(),

@@ -29,9 +29,9 @@
 
 import { RefObject, useLayoutEffect, useState } from "react"
 
+import { useTimeoutFn } from "react-use"
 import { DrawOptions, Human } from "@vladmandic/human"
 import { human } from "__tests__/components/vision/human/fixtures"
-import { useTimeoutFn } from "react-use"
 
 // Estimates 30fps = 1000ms / 30 == ~33.3
 export const DRAW_LOOP_INTERVAL_MS = 30

@@ -3,8 +3,7 @@ import { useTranslation } from "next-i18next"
 
 import BrandLogo from "@/components/ui/BrandLogo/BrandLogo"
 import { AnimatedBook } from "@/components/books/AnimatedBook/AnimatedBook"
-
-import { DotTextureIcon } from "./icons"
+import { DotTextureIcon } from "@/components/landing2/icons"
 
 export function MottoTags() {
   return (

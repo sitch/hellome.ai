@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { DotTextureIcon } from "./icons"
+import { DotTextureIcon } from "@/components/landing/icons"
 
 const content = {
   // heading: "Create AI Personalized Children's Books",

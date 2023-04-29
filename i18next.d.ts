@@ -33,6 +33,8 @@ interface I18nNamespaces {
   zod: typeof zod
 }
 
+export type I18nNamespace = keyof I18nNamespaces
+
 declare module "i18next" {
   interface CustomTypeOptions {
     defaultNS: "common"

@@ -35,7 +35,7 @@ const Page: NextPage<Props> = ({ authors }: Props) => {
           setSearchValue([value, value.toLowerCase()])
         }
         value={searchValue[0]}
-        autoFocus
+        // autoFocus={true}
         placeholder="Search blogs"
       />
     ),

@@ -91,7 +91,8 @@ export const ArticleSEO = ({ article }: ArticleSEOProps) => {
   } = article
 
   const themeColor = section
-    ? site.sections[section].theme.color ?? site.theme.color
+    ? // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      site.sections[section].theme.color ?? site.theme.color
     : site.theme.color
 
   const canonical = urlForArticle(article, locale)

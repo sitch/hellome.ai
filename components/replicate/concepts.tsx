@@ -49,7 +49,7 @@ export default function Predictions({ predictions, submissionCount }: Props) {
 }
 
 type PredictionItemProps = {
-  prediction: Prediction & {
+  prediction?: Prediction & {
     input: {
       image: string
       prompt: string
@@ -69,7 +69,7 @@ export function PredictionItem({
     const url =
       window.location.origin +
       "/scribbles/" +
-      (prediction.uuid || prediction.id) // if the prediction is from the Replicate API it'll have `id`. If it's from the SQL database, it'll have `uuid`
+      (prediction!.uuid || prediction!.id) // if the prediction is from the Replicate API it'll have `id`. If it's from the SQL database, it'll have `uuid`
     copy(url)
     setLinkCopied(true)
   }

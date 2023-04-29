@@ -13,7 +13,7 @@ const Schema: z.ZodType<Prisma.PageArtworkUpdateManyWithWhereWithoutStoryInput> 
         z.lazy(() => PageArtworkUpdateManyMutationInputObjectSchema),
         z.lazy(
           () =>
-            PageArtworkUncheckedUpdateManyWithoutPageArtworksInputObjectSchema
+            PageArtworkUncheckedUpdateManyWithoutPageArtworksInputObjectSchema,
         ),
       ]),
     })

@@ -15,11 +15,11 @@ const Schema: z.ZodType<Prisma.PageArtworkCreateNestedManyWithoutArtistInput> =
           z.lazy(() => PageArtworkCreateWithoutArtistInputObjectSchema),
           z.lazy(() => PageArtworkCreateWithoutArtistInputObjectSchema).array(),
           z.lazy(
-            () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema
+            () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema
+              () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema,
             )
             .array(),
         ])
@@ -27,11 +27,11 @@ const Schema: z.ZodType<Prisma.PageArtworkCreateNestedManyWithoutArtistInput> =
       connectOrCreate: z
         .union([
           z.lazy(
-            () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema
+            () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema
+              () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema,
             )
             .array(),
         ])

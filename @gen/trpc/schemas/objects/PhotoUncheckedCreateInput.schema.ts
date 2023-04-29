@@ -20,12 +20,12 @@ const Schema: z.ZodType<Prisma.PhotoUncheckedCreateInput> = z
     fileId: z.string(),
     pageArtworks: z
       .lazy(
-        () => PageArtworkUncheckedCreateNestedManyWithoutPhotoInputObjectSchema
+        () => PageArtworkUncheckedCreateNestedManyWithoutPhotoInputObjectSchema,
       )
       .optional(),
     concepts: z
       .lazy(
-        () => ConceptUncheckedCreateNestedManyWithoutPhotosInputObjectSchema
+        () => ConceptUncheckedCreateNestedManyWithoutPhotosInputObjectSchema,
       )
       .optional(),
   })

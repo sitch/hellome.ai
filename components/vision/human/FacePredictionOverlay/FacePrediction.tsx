@@ -1,17 +1,20 @@
 import { RefObject, useState } from "react"
 
+import { useMount } from "react-use"
 import { MemoryInfo } from "@tensorflow/tfjs-core"
 import Human, { Result } from "@vladmandic/human"
-import { useMount } from "react-use"
 
 import { detectLoop, drawLoop } from "@/lib/human/callbacks"
 import useRequestAnimationFrame from "@/lib/human/useRequestAnimationFrame"
 import { disposeResult } from "@/lib/human/utils"
 
-import FaceImporterInstructions from "../FaceImporterInstructions/FaceImporterInstructions"
-import { FaceManifold } from "../FaceManifold/FaceManifold"
-import { FaceAnalysis, runFaceAnalysis } from "../analysis"
-import { defaultFaceAnalysis } from "../defaults"
+import FaceImporterInstructions from "@/components/vision/human/FaceImporterInstructions/FaceImporterInstructions"
+import { FaceManifold } from "@/components/vision/human/FaceManifold/FaceManifold"
+import {
+  FaceAnalysis,
+  runFaceAnalysis,
+} from "@/components/vision/human/analysis"
+import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
 
 export type PerformanceMetricsProps = {
   memory: MemoryInfo

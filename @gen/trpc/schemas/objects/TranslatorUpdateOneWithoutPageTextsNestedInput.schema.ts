@@ -16,7 +16,7 @@ const Schema: z.ZodType<Prisma.TranslatorUpdateOneWithoutPageTextsNestedInput> =
         .union([
           z.lazy(() => TranslatorCreateWithoutPageTextsInputObjectSchema),
           z.lazy(
-            () => TranslatorUncheckedCreateWithoutPageTextsInputObjectSchema
+            () => TranslatorUncheckedCreateWithoutPageTextsInputObjectSchema,
           ),
         ])
         .optional(),
@@ -33,7 +33,7 @@ const Schema: z.ZodType<Prisma.TranslatorUpdateOneWithoutPageTextsNestedInput> =
         .union([
           z.lazy(() => TranslatorUpdateWithoutPageTextsInputObjectSchema),
           z.lazy(
-            () => TranslatorUncheckedUpdateWithoutPageTextsInputObjectSchema
+            () => TranslatorUncheckedUpdateWithoutPageTextsInputObjectSchema,
           ),
         ])
         .optional(),

@@ -12,7 +12,7 @@ const Schema: z.ZodType<Prisma.PageTextUpdateManyWithWhereWithoutTranslatorInput
       data: z.union([
         z.lazy(() => PageTextUpdateManyMutationInputObjectSchema),
         z.lazy(
-          () => PageTextUncheckedUpdateManyWithoutPageTextsInputObjectSchema
+          () => PageTextUncheckedUpdateManyWithoutPageTextsInputObjectSchema,
         ),
       ]),
     })

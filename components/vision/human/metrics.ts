@@ -5,7 +5,7 @@ import type {
   ManifoldCoordinates,
   ManifoldVector,
   UsableFaceResult,
-} from "./manifolds"
+} from "@/components/vision/human/manifolds"
 
 export function confidenceMetric(
   face: UsableFaceResult,

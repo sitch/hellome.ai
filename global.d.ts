@@ -32,8 +32,3 @@ declare namespace NodeJS {
     REPLICATE_API_TOKEN: string
   }
 }
-
-// Declarations for modules without types
-declare module "flowbite/plugin"
-declare module "flowbite-typography"
-declare module "next-compose-plugins"

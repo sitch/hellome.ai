@@ -1,6 +1,6 @@
 import cn from "clsx"
 
-import styles from "./AnimatedText.module.css"
+import styles from "@/components/common/AnimatedText/AnimatedText.module.css"
 
 export type AnimatedTextTheme = "space"
 

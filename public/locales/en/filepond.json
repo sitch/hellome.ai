@@ -1,4 +1,9 @@
 {
+  "LabelIdle": {
+    "upload": "Upload a file",
+    "dragDrop": "or drag and drop",
+    "filetypes": "PNG, JPG, GIF up to 10MB"
+  },
   "labelMaxFileSize": "Maximum file size is {filesize}",
   "labelMaxFileSizeExceeded": "File is too large",
   "labelMaxTotalFileSize": "Maximum total file size is {filesize}",
@@ -41,5 +46,12 @@
   "imageValidateSizeLabelImageResolutionTooLow": "Resolution is too low",
   "imageValidateSizeLabelImageResolutionTooHigh": "Resolution is too high",
   "imageValidateSizeLabelExpectedMinResolution": "Minimum resolution is {minResolution}",
-  "imageValidateSizeLabelExpectedMaxResolution": "Maximum resolution is {maxResolution}"
+  "imageValidateSizeLabelExpectedMaxResolution": "Maximum resolution is {maxResolution}",
+  "labelButtonDownloadItem": "Download file",
+  "labelButtonImageOverlay": "Open image in overlay",
+  "labelButtonManageMetadata": "Edit metadata",
+  "labelMinFileDurationExceeded": "File is too short",
+  "labelMinFileDuration": "Minimum file duration is {minDuration}",
+  "labelMaxFileDurationExceeded": "File is too long",
+  "labelMaxFileDuration": "Maximum file duration is {maxDuration}"
 }

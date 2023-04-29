@@ -3,14 +3,16 @@ import { Component } from "react"
 import type { FaceResult, Human, Result } from "@vladmandic/human"
 import { isEqual, remove } from "lodash"
 
+import FaceImporterInstructions from "@/components/vision.working/human/FaceImporterInstructions/FaceImporterInstructions"
+import { FaceManifold } from "@/components/vision.working/human/FaceManifold/FaceManifold"
+import { config } from "@/components/vision.working/human/FacePredictionOverlay/config"
+import {
+  runFaceAnalysis,
+  type FaceAnalysis,
+} from "@/components/vision.working/human/analysis"
 import { defaultFaceAnalysis } from "@/components/vision.working/human/config"
+import { ManifoldVector } from "@/components/vision.working/human/manifolds"
 import { log, status } from "@/components/vision/logging"
-
-import FaceImporterInstructions from "../FaceImporterInstructions/FaceImporterInstructions"
-import { FaceManifold } from "../FaceManifold/FaceManifold"
-import { runFaceAnalysis, type FaceAnalysis } from "../analysis"
-import { ManifoldVector } from "../manifolds"
-import { config } from "./config"
 
 type FacePredictionOverlayProps = {
   inputId: string // video

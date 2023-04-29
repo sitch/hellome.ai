@@ -12,7 +12,7 @@ const Schema: z.ZodType<Prisma.TranslatorCreateOrConnectWithoutPageTextsInput> =
       create: z.union([
         z.lazy(() => TranslatorCreateWithoutPageTextsInputObjectSchema),
         z.lazy(
-          () => TranslatorUncheckedCreateWithoutPageTextsInputObjectSchema
+          () => TranslatorUncheckedCreateWithoutPageTextsInputObjectSchema,
         ),
       ]),
     })

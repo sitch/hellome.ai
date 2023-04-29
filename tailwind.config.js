@@ -48,11 +48,11 @@ module.exports = {
         // default: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
 
-      borderRadius: {
-        lg: `var(--radius)`,
-        md: `calc(var(--radius) - 2px)`,
-        sm: "calc(var(--radius) - 4px)",
-      },
+      // borderRadius: {
+      //   lg: `var(--radius)`,
+      //   md: `calc(var(--radius) - 2px)`,
+      //   sm: "calc(var(--radius) - 4px)",
+      // },
       animationDuration: {
         "2.2s": "2.2s",
       },
@@ -65,7 +65,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
 
         // AnimatedButton
-        "bg-wave": "bg-wave 2.2s ease infinite",
+        "bg-wave": "bg-wave 2.2s ease-in-out infinite",
 
         // Fade up and down
         "fade-up": "fade-up 0.5s",

@@ -17,7 +17,7 @@ const Schema: z.ZodType<Prisma.PageUncheckedCreateInput> = z
     storyId: z.string(),
     artworks: z
       .lazy(
-        () => PageArtworkUncheckedCreateNestedManyWithoutPageInputObjectSchema
+        () => PageArtworkUncheckedCreateNestedManyWithoutPageInputObjectSchema,
       )
       .optional(),
     texts: z

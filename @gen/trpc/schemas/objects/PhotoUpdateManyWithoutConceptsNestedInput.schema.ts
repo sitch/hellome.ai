@@ -33,11 +33,11 @@ const Schema: z.ZodType<Prisma.PhotoUpdateManyWithoutConceptsNestedInput> = z
     upsert: z
       .union([
         z.lazy(
-          () => PhotoUpsertWithWhereUniqueWithoutConceptsInputObjectSchema
+          () => PhotoUpsertWithWhereUniqueWithoutConceptsInputObjectSchema,
         ),
         z
           .lazy(
-            () => PhotoUpsertWithWhereUniqueWithoutConceptsInputObjectSchema
+            () => PhotoUpsertWithWhereUniqueWithoutConceptsInputObjectSchema,
           )
           .array(),
       ])
@@ -69,11 +69,11 @@ const Schema: z.ZodType<Prisma.PhotoUpdateManyWithoutConceptsNestedInput> = z
     update: z
       .union([
         z.lazy(
-          () => PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema
+          () => PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema,
         ),
         z
           .lazy(
-            () => PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema
+            () => PhotoUpdateWithWhereUniqueWithoutConceptsInputObjectSchema,
           )
           .array(),
       ])

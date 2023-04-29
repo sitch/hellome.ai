@@ -40,12 +40,12 @@ const Schema: z.ZodType<Prisma.PageArtworkUpdateWithoutStoryInput> = z
       .optional(),
     artist: z
       .lazy(
-        () => ArtistUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema
+        () => ArtistUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema,
       )
       .optional(),
     photo: z
       .lazy(
-        () => PhotoUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema
+        () => PhotoUpdateOneRequiredWithoutPageArtworksNestedInputObjectSchema,
       )
       .optional(),
   })

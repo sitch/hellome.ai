@@ -9,7 +9,7 @@ const Schema: z.ZodType<Prisma.ArtistUncheckedCreateWithoutPageArtworksInput> =
       id: z.string().optional(),
       stories: z
         .lazy(
-          () => StoryUncheckedCreateNestedManyWithoutArtistInputObjectSchema
+          () => StoryUncheckedCreateNestedManyWithoutArtistInputObjectSchema,
         )
         .optional(),
     })

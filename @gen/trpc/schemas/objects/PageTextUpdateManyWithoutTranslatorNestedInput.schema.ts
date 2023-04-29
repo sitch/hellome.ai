@@ -21,11 +21,11 @@ const Schema: z.ZodType<Prisma.PageTextUpdateManyWithoutTranslatorNestedInput> =
             .lazy(() => PageTextCreateWithoutTranslatorInputObjectSchema)
             .array(),
           z.lazy(
-            () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema
+            () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema
+              () => PageTextUncheckedCreateWithoutTranslatorInputObjectSchema,
             )
             .array(),
         ])
@@ -33,11 +33,11 @@ const Schema: z.ZodType<Prisma.PageTextUpdateManyWithoutTranslatorNestedInput> =
       connectOrCreate: z
         .union([
           z.lazy(
-            () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema
+            () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema
+              () => PageTextCreateOrConnectWithoutTranslatorInputObjectSchema,
             )
             .array(),
         ])
@@ -46,12 +46,12 @@ const Schema: z.ZodType<Prisma.PageTextUpdateManyWithoutTranslatorNestedInput> =
         .union([
           z.lazy(
             () =>
-              PageTextUpsertWithWhereUniqueWithoutTranslatorInputObjectSchema
+              PageTextUpsertWithWhereUniqueWithoutTranslatorInputObjectSchema,
           ),
           z
             .lazy(
               () =>
-                PageTextUpsertWithWhereUniqueWithoutTranslatorInputObjectSchema
+                PageTextUpsertWithWhereUniqueWithoutTranslatorInputObjectSchema,
             )
             .array(),
         ])
@@ -87,12 +87,12 @@ const Schema: z.ZodType<Prisma.PageTextUpdateManyWithoutTranslatorNestedInput> =
         .union([
           z.lazy(
             () =>
-              PageTextUpdateWithWhereUniqueWithoutTranslatorInputObjectSchema
+              PageTextUpdateWithWhereUniqueWithoutTranslatorInputObjectSchema,
           ),
           z
             .lazy(
               () =>
-                PageTextUpdateWithWhereUniqueWithoutTranslatorInputObjectSchema
+                PageTextUpdateWithWhereUniqueWithoutTranslatorInputObjectSchema,
             )
             .array(),
         ])
@@ -100,12 +100,12 @@ const Schema: z.ZodType<Prisma.PageTextUpdateManyWithoutTranslatorNestedInput> =
       updateMany: z
         .union([
           z.lazy(
-            () => PageTextUpdateManyWithWhereWithoutTranslatorInputObjectSchema
+            () => PageTextUpdateManyWithWhereWithoutTranslatorInputObjectSchema,
           ),
           z
             .lazy(
               () =>
-                PageTextUpdateManyWithWhereWithoutTranslatorInputObjectSchema
+                PageTextUpdateManyWithWhereWithoutTranslatorInputObjectSchema,
             )
             .array(),
         ])

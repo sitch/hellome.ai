@@ -2,15 +2,42 @@
 
 @import "globals.css";
 @import "filepond/styles.css";
+
+/* Toolbar */
+@import "filepond-plugin-get-file/dist/filepond-plugin-get-file.min.css";
+@import "filepond-plugin-manage-metadata/dist/filepond-plugin-manage-metadata.min.css";
+
+/* Image */
 @import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
 
-/* ========================================================================= */
-/* START OVERRIDES */
-/* ========================================================================= */
+/* Image - SVG fix */
+/* TODO: Not used */
+/* @import "filepond-plugin-fetch-svg-preview/dist/filepond-plugin-fetch-svg-preview.min.css"; */
+
+/* Video */
+@import "filepond-plugin-media-preview/dist/filepond-plugin-media-preview.min.css";
+
+/* PDF */
+@import "filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css";
+
+
+/* Overlay */
+@import "filepond-plugin-image-overlay/dist/filepond-plugin-image-overlay.min.css";
+
+.filepond--fullsize-overlay {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  /* top: 0 !important; */
+  height: 100vh !important;
+  width: 100vw !important;
+  position: fixed !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  overflow: hidden !important;
+  z-index: 9999 !important;
+
+}
 
 
 
-/* ========================================================================= */
-/* END OVERRIDES */
-/* ========================================================================= */
 

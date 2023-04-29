@@ -1,4 +1,5 @@
 import React from "react"
+
 import { Artist } from "@prisma/client"
 
 import { prisma } from "../../lib/prisma"

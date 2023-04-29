@@ -2,10 +2,9 @@ import { ReactNode } from "react"
 import Link from "next/link"
 
 import { Book } from "@/components/books/Book/Book"
+import { ArrowRightIcon, DotTextureIcon } from "@/components/landing2/icons"
 
 import bookCover from "@/public/static/images/sitchenko-infant-drawing-bw.png"
-
-import { ArrowRightIcon, DotTextureIcon } from "./icons"
 
 export type StepProps = {
   title: string

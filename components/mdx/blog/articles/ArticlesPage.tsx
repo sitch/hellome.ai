@@ -3,8 +3,8 @@ import { useTranslation } from "next-i18next"
 
 import { Article, Author } from "@/lib/mdx/types"
 
-import { ArticleListItem } from "./ArticleListItem"
-import { TopArticles } from "./TopArticles"
+import { ArticleListItem } from "@/components/mdx/blog/articles/ArticleListItem"
+import { TopArticles } from "@/components/mdx/blog/articles/TopArticles"
 
 export type ArticlesPageProps = {
   articles: Article[]

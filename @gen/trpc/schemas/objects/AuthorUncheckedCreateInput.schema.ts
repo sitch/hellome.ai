@@ -12,7 +12,7 @@ const Schema: z.ZodType<Prisma.AuthorUncheckedCreateInput> = z
       .optional(),
     pageTexts: z
       .lazy(
-        () => PageTextUncheckedCreateNestedManyWithoutAuthorInputObjectSchema
+        () => PageTextUncheckedCreateNestedManyWithoutAuthorInputObjectSchema,
       )
       .optional(),
   })

@@ -13,7 +13,7 @@ const Schema: z.ZodType<Prisma.ArtistCreateNestedOneWithoutPageArtworksInput> =
         .union([
           z.lazy(() => ArtistCreateWithoutPageArtworksInputObjectSchema),
           z.lazy(
-            () => ArtistUncheckedCreateWithoutPageArtworksInputObjectSchema
+            () => ArtistUncheckedCreateWithoutPageArtworksInputObjectSchema,
           ),
         ])
         .optional(),

@@ -3,7 +3,7 @@ import Link, { LinkProps } from "next/link"
 
 import { route } from "nextjs-routes"
 
-import { DotTextureIcon, ZapIcon } from "./icons"
+import { DotTextureIcon, ZapIcon } from "@/components/landing2/icons"
 
 type AnsweredQuestionProps = {
   question: string

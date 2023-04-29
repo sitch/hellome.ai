@@ -16,7 +16,7 @@ const Schema: z.ZodType<Prisma.StoryUpdateOneRequiredWithoutPageArtworksNestedIn
         .union([
           z.lazy(() => StoryCreateWithoutPageArtworksInputObjectSchema),
           z.lazy(
-            () => StoryUncheckedCreateWithoutPageArtworksInputObjectSchema
+            () => StoryUncheckedCreateWithoutPageArtworksInputObjectSchema,
           ),
         ])
         .optional(),
@@ -31,7 +31,7 @@ const Schema: z.ZodType<Prisma.StoryUpdateOneRequiredWithoutPageArtworksNestedIn
         .union([
           z.lazy(() => StoryUpdateWithoutPageArtworksInputObjectSchema),
           z.lazy(
-            () => StoryUncheckedUpdateWithoutPageArtworksInputObjectSchema
+            () => StoryUncheckedUpdateWithoutPageArtworksInputObjectSchema,
           ),
         ])
         .optional(),

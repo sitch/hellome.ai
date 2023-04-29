@@ -35,7 +35,7 @@ export default function Home() {
     // track submissions so we can show a spinner while waiting for the next prediction to be created
     setSubmissionCount(submissionCount + 1)
 
-    const target = e.target as EventTarget & { prompt: { value: string } }
+    const target = e.target as EventTarget & { prompt: { value?: string } }
 
     const prompt = (target.prompt.value ?? "")
       .split(/\s+/)

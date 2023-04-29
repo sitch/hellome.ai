@@ -11,7 +11,7 @@
       "rootDir": ["./"]
     }
   },
-  "plugins": ["@typescript-eslint", "tailwindcss"],
+  "plugins": ["@typescript-eslint", "@limegrass/import-alias", "tailwindcss"],
   "extends": [
     "next",
     "next/core-web-vitals",
@@ -24,27 +24,22 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "react/no-unescaped-entities": "off",
-    "react/react-in-jsx-scope": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
-    // Disable
-    "jsx-a11y/anchor-has-content": "off",
+    //==========================================================================
+    //
+    // TODO: Remove these rules
+    //==========================================================================
     "jsx-a11y/anchor-is-valid": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/media-has-caption": "off",
-    "jsx-a11y/no-autofocus": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
     "tailwindcss/no-custom-classname": "off",
-    "@typescript-eslint/no-unnecessary-condition": "off",
     "@typescript-eslint/no-invalid-void-type": [
       "warn",
       {
         "allowInGenericTypeArguments": true
       }
     ],
-    "@typescript-eslint/no-unused-vars": "off"
-    // Restore
+    //==========================================================================
+    // TODO: In progress rules
+    //==========================================================================
+    "@typescript-eslint/no-unused-vars": "off",
     // "@typescript-eslint/no-unused-vars": [
     //   "warn",
     //   {
@@ -52,15 +47,24 @@
     //     "varsIgnorePattern": "^_",
     //     "caughtErrorsIgnorePattern": "^_"
     //   }
-    // ]
+    // ],
+    //==========================================================================
+    // Valid rules
+    //==========================================================================
+    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+    "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off"
   },
-
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": "./tsconfig.json"
+      },
+      "rules": {
+        "@limegrass/import-alias/import-alias": "error"
       }
     },
     {

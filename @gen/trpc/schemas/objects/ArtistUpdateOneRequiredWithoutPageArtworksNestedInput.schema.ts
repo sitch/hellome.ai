@@ -16,7 +16,7 @@ const Schema: z.ZodType<Prisma.ArtistUpdateOneRequiredWithoutPageArtworksNestedI
         .union([
           z.lazy(() => ArtistCreateWithoutPageArtworksInputObjectSchema),
           z.lazy(
-            () => ArtistUncheckedCreateWithoutPageArtworksInputObjectSchema
+            () => ArtistUncheckedCreateWithoutPageArtworksInputObjectSchema,
           ),
         ])
         .optional(),
@@ -31,7 +31,7 @@ const Schema: z.ZodType<Prisma.ArtistUpdateOneRequiredWithoutPageArtworksNestedI
         .union([
           z.lazy(() => ArtistUpdateWithoutPageArtworksInputObjectSchema),
           z.lazy(
-            () => ArtistUncheckedUpdateWithoutPageArtworksInputObjectSchema
+            () => ArtistUncheckedUpdateWithoutPageArtworksInputObjectSchema,
           ),
         ])
         .optional(),

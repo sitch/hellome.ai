@@ -17,7 +17,7 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
     literalSchema,
     z.array(jsonSchema.nullable()),
     z.record(jsonSchema.nullable()),
-  ])
+  ]),
 )
 
 const Schema: z.ZodType<Prisma.CloudFileUpdateWithoutPhotoInput> = z
@@ -32,7 +32,7 @@ const Schema: z.ZodType<Prisma.CloudFileUpdateWithoutPhotoInput> = z
       .union([
         z.lazy(() => FileResourceTypeSchema),
         z.lazy(
-          () => EnumFileResourceTypeFieldUpdateOperationsInputObjectSchema
+          () => EnumFileResourceTypeFieldUpdateOperationsInputObjectSchema,
         ),
       ])
       .optional(),

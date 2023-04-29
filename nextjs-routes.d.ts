@@ -26,6 +26,7 @@ declare module "nextjs-routes" {
     | StaticRoute<"/api/print/job">
     | StaticRoute<"/api/s3-upload">
     | DynamicRoute<"/api/trpc/[trpc]", { "trpc": string }>
+    | StaticRoute<"/api/uploads">
     | StaticRoute<"/app/concepts">
     | StaticRoute<"/app/concepts/new">
     | StaticRoute<"/app/concepts/train">

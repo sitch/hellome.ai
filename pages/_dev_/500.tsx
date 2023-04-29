@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Error500() {
   return (
     <div className="flex min-h-screen bg-black">
@@ -12,12 +14,12 @@ export default function Error500() {
               </p>
             </div>
             <div className="mt-10 flex gap-3">
-              <a
+              <Link
                 className="inline-flex w-full items-center justify-center rounded-full border-2 border-black bg-black px-6 py-2.5 text-center text-sm text-white duration-200 hover:border-black hover:bg-transparent hover:text-black focus:outline-none focus-visible:outline-black focus-visible:ring-black lg:w-auto"
-                href="#"
+                href="/"
               >
                 Go Home
-              </a>
+              </Link>
               {/* <a
                 className="inline-flex items-center text-sm font-semibold leading-6 text-gray-900"
                 href="#"

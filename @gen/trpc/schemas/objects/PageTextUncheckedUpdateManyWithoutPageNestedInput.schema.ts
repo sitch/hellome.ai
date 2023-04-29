@@ -35,11 +35,11 @@ const Schema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutPageNestedInput
       upsert: z
         .union([
           z.lazy(
-            () => PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema
+            () => PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema
+              () => PageTextUpsertWithWhereUniqueWithoutPageInputObjectSchema,
             )
             .array(),
         ])
@@ -74,11 +74,11 @@ const Schema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutPageNestedInput
       update: z
         .union([
           z.lazy(
-            () => PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema
+            () => PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema
+              () => PageTextUpdateWithWhereUniqueWithoutPageInputObjectSchema,
             )
             .array(),
         ])

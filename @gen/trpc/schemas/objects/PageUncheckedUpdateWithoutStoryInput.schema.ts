@@ -51,7 +51,7 @@ const Schema: z.ZodType<Prisma.PageUncheckedUpdateWithoutStoryInput> = z
       .optional(),
     artworks: z
       .lazy(
-        () => PageArtworkUncheckedUpdateManyWithoutPageNestedInputObjectSchema
+        () => PageArtworkUncheckedUpdateManyWithoutPageNestedInputObjectSchema,
       )
       .optional(),
     texts: z

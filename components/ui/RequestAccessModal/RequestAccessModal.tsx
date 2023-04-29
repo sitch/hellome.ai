@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-no-comment-textnodes */
+
 // import { Modal } from 'flowbite-react'
 
 import React, { MouseEvent, ReactNode, useState } from "react"
@@ -5,8 +9,7 @@ import Link from "next/link"
 
 import AccessTokenForm from "@/components/ui/RequestAccessModal/AccessTokenForm"
 import EmailForm from "@/components/ui/RequestAccessModal/EmailForm"
-
-import styles from "./RequestAccessModal.module.css"
+import styles from "@/components/ui/RequestAccessModal/RequestAccessModal.module.css"
 
 const privacyPolicy = (
   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
@@ -52,7 +55,7 @@ export default function RequestAccessModal({
     <>
       {/* Toggle Modal */}
       <a className={className} onClick={onClick} data-cy="invite-modal:button">
-        {children}
+        {children!}
       </a>
     </>
 

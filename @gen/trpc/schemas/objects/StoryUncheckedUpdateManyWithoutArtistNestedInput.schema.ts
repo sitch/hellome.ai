@@ -35,11 +35,11 @@ const Schema: z.ZodType<Prisma.StoryUncheckedUpdateManyWithoutArtistNestedInput>
       upsert: z
         .union([
           z.lazy(
-            () => StoryUpsertWithWhereUniqueWithoutArtistInputObjectSchema
+            () => StoryUpsertWithWhereUniqueWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
-              () => StoryUpsertWithWhereUniqueWithoutArtistInputObjectSchema
+              () => StoryUpsertWithWhereUniqueWithoutArtistInputObjectSchema,
             )
             .array(),
         ])
@@ -74,11 +74,11 @@ const Schema: z.ZodType<Prisma.StoryUncheckedUpdateManyWithoutArtistNestedInput>
       update: z
         .union([
           z.lazy(
-            () => StoryUpdateWithWhereUniqueWithoutArtistInputObjectSchema
+            () => StoryUpdateWithWhereUniqueWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
-              () => StoryUpdateWithWhereUniqueWithoutArtistInputObjectSchema
+              () => StoryUpdateWithWhereUniqueWithoutArtistInputObjectSchema,
             )
             .array(),
         ])

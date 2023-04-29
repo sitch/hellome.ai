@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState } from "react"
 
+import { SubmitHandler, useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
 import classNames from "classnames"
 import { isEmpty } from "lodash"
-import { SubmitHandler, useForm } from "react-hook-form"
 import Reaptcha from "reaptcha"
 
+import EmailSuccess from "@/components/ui/RequestAccessModal/EmailSuccess"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import EmailInput from "@/components/forms/EmailInput"
 import emailStyles from "@/components/forms/EmailInput.module.css"
 import PasswordInput from "@/components/forms/PasswordInput"
 import styles from "@/components/forms/forms.module.css"
-
-import EmailSuccess from "./EmailSuccess"
 
 // *****************************************************************************
 // ReCaptcha

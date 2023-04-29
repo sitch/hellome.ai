@@ -14,7 +14,7 @@ const Schema: z.ZodType<Prisma.ConceptUncheckedCreateInput> = z
     updatedAt: z.date().optional(),
     photos: z
       .lazy(
-        () => PhotoUncheckedCreateNestedManyWithoutConceptsInputObjectSchema
+        () => PhotoUncheckedCreateNestedManyWithoutConceptsInputObjectSchema,
       )
       .optional(),
   })

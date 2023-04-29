@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef } from "react"
 
-import { Trash as TrashIcon, Undo as UndoIcon } from "lucide-react"
 import {
   CanvasPath,
   ReactSketchCanvas,
   ReactSketchCanvasRef,
 } from "react-sketch-canvas"
+import { Trash as TrashIcon, Undo as UndoIcon } from "lucide-react"
 
 type Value = string
 

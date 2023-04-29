@@ -19,11 +19,11 @@ const Schema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutArtistNested
           z.lazy(() => PageArtworkCreateWithoutArtistInputObjectSchema),
           z.lazy(() => PageArtworkCreateWithoutArtistInputObjectSchema).array(),
           z.lazy(
-            () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema
+            () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema
+              () => PageArtworkUncheckedCreateWithoutArtistInputObjectSchema,
             )
             .array(),
         ])
@@ -31,11 +31,11 @@ const Schema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutArtistNested
       connectOrCreate: z
         .union([
           z.lazy(
-            () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema
+            () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema
+              () => PageArtworkCreateOrConnectWithoutArtistInputObjectSchema,
             )
             .array(),
         ])
@@ -43,12 +43,13 @@ const Schema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutArtistNested
       upsert: z
         .union([
           z.lazy(
-            () => PageArtworkUpsertWithWhereUniqueWithoutArtistInputObjectSchema
+            () =>
+              PageArtworkUpsertWithWhereUniqueWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
               () =>
-                PageArtworkUpsertWithWhereUniqueWithoutArtistInputObjectSchema
+                PageArtworkUpsertWithWhereUniqueWithoutArtistInputObjectSchema,
             )
             .array(),
         ])
@@ -83,12 +84,13 @@ const Schema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutArtistNested
       update: z
         .union([
           z.lazy(
-            () => PageArtworkUpdateWithWhereUniqueWithoutArtistInputObjectSchema
+            () =>
+              PageArtworkUpdateWithWhereUniqueWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
               () =>
-                PageArtworkUpdateWithWhereUniqueWithoutArtistInputObjectSchema
+                PageArtworkUpdateWithWhereUniqueWithoutArtistInputObjectSchema,
             )
             .array(),
         ])
@@ -96,11 +98,12 @@ const Schema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutArtistNested
       updateMany: z
         .union([
           z.lazy(
-            () => PageArtworkUpdateManyWithWhereWithoutArtistInputObjectSchema
+            () => PageArtworkUpdateManyWithWhereWithoutArtistInputObjectSchema,
           ),
           z
             .lazy(
-              () => PageArtworkUpdateManyWithWhereWithoutArtistInputObjectSchema
+              () =>
+                PageArtworkUpdateManyWithWhereWithoutArtistInputObjectSchema,
             )
             .array(),
         ])

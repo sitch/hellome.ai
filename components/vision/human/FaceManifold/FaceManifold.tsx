@@ -1,9 +1,9 @@
 import { FaceResult, Human, Result } from "@vladmandic/human"
 import clsx from "clsx"
 
-import type { FaceAnalysis } from "../analysis"
-import { ManifoldVector } from "../manifolds"
-import FaceClip from "./FaceClip"
+import FaceClip from "@/components/vision/human/FaceManifold/FaceClip"
+import type { FaceAnalysis } from "@/components/vision/human/analysis"
+import { ManifoldVector } from "@/components/vision/human/manifolds"
 
 const MIN_GRID_COLUMNS = 1
 const MAX_GRID_COLUMNS = 12

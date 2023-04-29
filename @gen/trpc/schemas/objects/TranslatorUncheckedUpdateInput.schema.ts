@@ -15,7 +15,7 @@ const Schema: z.ZodType<Prisma.TranslatorUncheckedUpdateInput> = z
     pageTexts: z
       .lazy(
         () =>
-          PageTextUncheckedUpdateManyWithoutTranslatorNestedInputObjectSchema
+          PageTextUncheckedUpdateManyWithoutTranslatorNestedInputObjectSchema,
       )
       .optional(),
   })

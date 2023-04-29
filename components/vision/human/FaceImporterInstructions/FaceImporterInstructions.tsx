@@ -1,4 +1,4 @@
-import { FaceAnalysis } from "../analysis"
+import { FaceAnalysis } from "@/components/vision/human/analysis"
 
 export type FaceImporterInstructionsProps = {
   analysis: FaceAnalysis

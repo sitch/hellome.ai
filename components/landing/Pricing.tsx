@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
 
-import { DotTextureIcon, FeatureCheckIcon } from "./icons"
+import { DotTextureIcon, FeatureCheckIcon } from "@/components/landing/icons"
 
 export type PricingHeaderProps = {
   title: string
