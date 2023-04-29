@@ -1,10 +1,10 @@
 import { Template, generate as pdfGenerator } from '@pdfme/generator'
-// import { Template, Designer, Form, Viewer } from '@pdfme/ui';
-
+import { exec } from 'child_process'
 import { BLANK_PDF } from '@pdfme/generator'
 import { writeFileSync } from 'fs'
 import path from 'path'
 // import { Template, BLANK_PDF } from '@pdfme/ui'; <- Template types and BLANK_PDF can also be imported from @pdfme/ui.
+// import { Template, Designer, Form, Viewer } from '@pdfme/ui';
 
 const template: Template = {
   basePdf: BLANK_PDF,
@@ -49,6 +49,8 @@ export const generate = async ({ name }: GenerateProps) => {
     // Node.js
     const filename = path.join(__dirname, `../out/test.pdf`)
     writeFileSync(filename, pdf)
+
+    // exec('open ../out/test.pdf')
 
     return {
       ok: true,

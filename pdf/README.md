@@ -20,7 +20,7 @@
 
 ## Workflow
 
-### Tools 
+### Tools
 
 - `yarn`
 - `ts-node`
