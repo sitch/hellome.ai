@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { generate } from '@/pdf/generator'
 
 // Run `yarn test`
@@ -12,11 +16,11 @@ describe('generator', () => {
       name: 'test',
     }
 
-    const pdf = generate(context)
+    const pdf = await generate(context)
 
     expect(pdf).toEqual({
-      dimensions: '8x8',
-      name: context.name,
+      ok: true,
+      filename: pdf.filename,
     })
   })
 })
