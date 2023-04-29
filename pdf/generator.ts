@@ -12,13 +12,13 @@ const template: Template = {
     {
       a: {
         type: 'text',
-        position: { x: 0, y: 0 },
-        width: 10,
+        position: { x: 1, y: 30 },
+        width: 100,
         height: 10,
       },
       b: {
         type: 'text',
-        position: { x: 10, y: 10 },
+        position: { x: 33, y: 10 },
         width: 10,
         height: 10,
       },
