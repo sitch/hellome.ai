@@ -76,7 +76,7 @@ export default function LearnMore() {
             >
               Get started
               <svg
-                className="ml-2 -mr-1 h-5 w-5"
+                className="-mr-1 ml-2 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@ export default function LearnMore() {
 
       <section className="h-72 bg-gradient-to-b from-purple-600 to-blue-600">
         {/* <section className="bg-white dark:bg-gray-900"> */}
-        <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="max-w-screen-md">
             <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Let's find more that brings us together.
@@ -120,7 +120,7 @@ export default function LearnMore() {
               family as well as discovering new ones is easy with features like
               Groups, Watch and Marketplace.
             </p>
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
               <a
                 href="#"
                 className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-center text-base font-medium text-white focus:ring-4"
@@ -132,7 +132,7 @@ export default function LearnMore() {
                 className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               >
                 <svg
-                  className="mr-2 -ml-1 h-5 w-5"
+                  className="-ml-1 mr-2 h-5 w-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +149,7 @@ export default function LearnMore() {
       {/* cta */}
 
       <section className="bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-screen-xl items-center gap-8 py-8 px-4 sm:py-16 md:grid md:grid-cols-2 lg:px-6 xl:gap-16">
+        <div className="mx-auto max-w-screen-xl items-center gap-8 px-4 py-8 sm:py-16 md:grid md:grid-cols-2 lg:px-6 xl:gap-16">
           <img
             className="w-full dark:hidden"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup.svg"
@@ -175,7 +175,7 @@ export default function LearnMore() {
             >
               Get started
               <svg
-                className="ml-2 -mr-1 h-5 w-5"
+                className="-mr-1 ml-2 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +194,7 @@ export default function LearnMore() {
       {/* cta */}
 
       <section className="bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-sm text-center">
             <h2 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
               Start your free trial today
@@ -204,7 +204,7 @@ export default function LearnMore() {
             </p>
             <a
               href="#"
-              className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mr-2 mb-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4"
+              className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mb-2 mr-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4"
             >
               Free trial for 30 days
             </a>
@@ -214,7 +214,7 @@ export default function LearnMore() {
 
       {/* hyper-color */}
 
-      <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
         <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
           sup
         </div>
@@ -265,7 +265,7 @@ export default function LearnMore() {
       {/* feature */}
 
       <section className="bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="mb-8 max-w-screen-md lg:mb-16">
             <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Designed for business teams like yours

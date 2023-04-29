@@ -12,13 +12,13 @@
     Noto Color Emoji;
 
   h1 {
-    @apply mt-8 mb-8 text-center text-3xl font-semibold;
+    @apply mb-8 mt-8 text-center text-3xl font-semibold;
   }
   h2 {
-    @apply mt-6 mb-6 text-center text-2xl font-semibold;
+    @apply mb-6 mt-6 text-center text-2xl font-semibold;
   }
   h3 {
-    @apply mt-4 mb-4 text-center text-xl font-semibold;
+    @apply mb-4 mt-4 text-center text-xl font-semibold;
   }
 
   /* p {
@@ -30,7 +30,7 @@
   }
 }
 .heading {
-  @apply relative mx-auto max-w-[37.5rem] pt-20 pb-24 text-center;
+  @apply relative mx-auto max-w-[37.5rem] pb-24 pt-20 text-center;
 }
 
 .primaryHeading {
