@@ -61,6 +61,11 @@
   ],
   "words": [
     "oninit",
+    "NEXTAUTH",
+    "Serverside",
+    "runtimes",
+    "typeerrors",
+    "CLIENTVAR",
     "onwarning",
     "onerror",
     "onaddfilestart",

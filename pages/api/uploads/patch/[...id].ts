@@ -1,9 +1,15 @@
-// PATCH
-// ?patch=<id>
-
 import { NextApiResponse } from "next"
 import { FormNextApiRequest, getConfig, withFileUpload } from "next-multiparty"
 
+const methods = ["PATCH"]
+
+/**
+ * Patch
+ *
+ * @methods GET
+ * @default "<SERVER>/?patch=<id>"
+ * @link https://pqina.nl/filepond/docs/api/server/#patch
+ */
 async function handler(req: FormNextApiRequest, res: NextApiResponse) {
   res.json({ file: req.file, fields: req.fields })
 }

@@ -1,10 +1,11 @@
-const plugin = require("tailwindcss/plugin")
+import { type Config } from "tailwindcss"
+import plugin from "tailwindcss/plugin"
 
 /**
  * Source: https://github.com/markmead/hyperui/blob/main/tailwind/blogs.config.ts
  * @type {import('tailwindcss').Config}
  **/
-module.exports = {
+const config: Config = {
   darkMode: "class",
   content: ["./**/*.mdx", "./public/blogs/*.html"],
   theme: {
@@ -24,3 +25,5 @@ module.exports = {
     }),
   ],
 }
+
+export default config

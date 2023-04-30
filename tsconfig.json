@@ -6,6 +6,7 @@
     "module": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "checkJs": true,
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
@@ -29,11 +30,13 @@
     "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": [
-    "next-env.d.ts",
+    ".next/types/**/*.ts",
     "node_modules/@replicate/types-openapi/generated/types.d.ts",
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
+    "**/*.cjs",
+    "**/*.mjs",
     "**/*.js"
   ],
   "exclude": [

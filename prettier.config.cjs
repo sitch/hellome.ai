@@ -40,7 +40,7 @@ const sortImports = {
 }
 
 /**
- * @type {import("prettier-plugin-organize-attributes").PrettierConfig}
+ * @type {Partial<import("prettier-plugin-organize-attributes").PrettierPluginOrganizeAttributesParserOptions>}
  */
 const organizeAttributes = {
   attributeGroups: [
@@ -56,7 +56,7 @@ const organizeAttributes = {
 /**
  * @type {import('prettier').Config}
  */
-module.exports = {
+const config = {
   ...sortImports,
   ...organizeAttributes,
 
@@ -69,10 +69,12 @@ module.exports = {
   trailingComma: "all",
 
   plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-organize-attributes",
-    "prettier-plugin-css-order",
-    "prettier-plugin-tailwindcss", // MUST come last
+    require.resolve("@ianvs/prettier-plugin-sort-imports"),
+    require.resolve("prettier-plugin-organize-attributes"),
+    require.resolve("prettier-plugin-css-order"),
+    require.resolve("prettier-plugin-tailwindcss"), // MUST come last
   ],
   pluginSearchDirs: false, // Needed for `prettier-plugin-tailwindcss`
 }
+
+module.exports = config

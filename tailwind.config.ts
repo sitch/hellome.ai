@@ -1,11 +1,11 @@
-const plugin = require("tailwindcss/plugin")
-const { fontFamily } = require("tailwindcss/defaultTheme")
+import { type Config } from "tailwindcss"
+import { fontFamily } from "tailwindcss/defaultTheme"
+import plugin from "tailwindcss/plugin"
 
-/**
- * @type {import('tailwindcss').Config}
- **/
-module.exports = {
-  presets: [require("./tailwind.blog.preset.js")],
+import tailwindBlogPreset from "./tailwind.blog.preset"
+
+const config: Config = {
+  presets: [tailwindBlogPreset],
   darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -27,10 +27,10 @@ module.exports = {
     }),
 
     // TODO: remove
-    // require("@headlessui/tailwindcss"),
-    // require("@downwindcss/easings"),
-    // require("flowbite/plugin"),
-    // require("flowbite-typography"),
+    // import "@headlessui/tailwindcss",
+    // import "@downwindcss/easings",
+    // import "flowbite/plugin",
+    // import "flowbite-typography",
   ],
   theme: {
     container: {
@@ -78,12 +78,12 @@ module.exports = {
       keyframes: {
         // Accordion
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          to: { height: "0" },
         },
 
         // AnimatedButton
@@ -101,39 +101,39 @@ module.exports = {
         // Fade up and down
         "fade-up": {
           "0%": {
-            opacity: 0,
+            opacity: "0",
             transform: "translateY(10px)",
           },
           "80%": {
-            opacity: 0.6,
+            opacity: "0.6",
           },
           "100%": {
-            opacity: 1,
+            opacity: "1",
             transform: "translateY(0px)",
           },
         },
         "fade-down": {
           "0%": {
-            opacity: 0,
+            opacity: "0",
             transform: "translateY(-10px)",
           },
           "80%": {
-            opacity: 0.6,
+            opacity: "0.6",
           },
           "100%": {
-            opacity: 1,
+            opacity: "1",
             transform: "translateY(0px)",
           },
         },
 
         // Tooltip
         "slide-up-fade": {
-          "0%": { opacity: 0, transform: "translateY(6px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
+          "0%": { opacity: "0", transform: "translateY(6px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "slide-down-fade": {
-          "0%": { opacity: 0, transform: "translateY(-6px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
+          "0%": { opacity: "0", transform: "translateY(-6px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
 
@@ -181,3 +181,5 @@ module.exports = {
     },
   },
 }
+
+export default config

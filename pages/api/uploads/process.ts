@@ -1,9 +1,18 @@
-// POST
-// pages/api/uploads/process.ts
-
 import { APIRoute } from "next-s3-upload"
 
-// AWS s3
+const methods = ["POST"]
+
+//
+/**
+ * Process
+ *
+ * AWS S3 Route
+ *
+ * @methods POST
+ * @default "<SERVER>/"
+ * @link https://pqina.nl/filepond/docs/api/server/#process
+ */
+
 export default APIRoute.configure({
   accessKeyId: process.env.S3_UPLOAD_KEY,
   secretAccessKey: process.env.S3_UPLOAD_SECRET,

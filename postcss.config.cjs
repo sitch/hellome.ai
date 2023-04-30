@@ -13,7 +13,7 @@
 /**
  * @type {PostcssLoaderOptions}
  */
-module.exports = {
+const config = {
   plugins: [
     "postcss-import",
     "postcss-easings",
@@ -36,3 +36,5 @@ module.exports = {
     ],
   ],
 }
+
+module.exports = config
