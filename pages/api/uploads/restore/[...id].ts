@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next"
+import { type NextApiRequest, type NextApiResponse } from "next"
 
-import { FilePondId } from "@/lib/uploader/types"
+import { type FilePondId } from "@/lib/uploader/types"
 
 const methods = ["GET"]
 

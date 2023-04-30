@@ -1,21 +1,22 @@
 import {
   GetObjectCommand,
   PutObjectCommand,
-  PutObjectCommandInput,
   S3,
+  type PutObjectCommandInput,
 } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
-import { RequestPresigningArguments } from "@aws-sdk/types"
 
-const Bucket = process.env.DIGITAL_OCEAN_SPACES_BUCKET
+import { env } from "@/config/env.mjs"
+
+const Bucket = env.DIGITAL_OCEAN_SPACES_BUCKET
 
 const s3Client = new S3({
   forcePathStyle: false,
-  endpoint: process.env.DIGITAL_OCEAN_SPACES_ENDPOINT,
+  endpoint: env.DIGITAL_OCEAN_SPACES_ENDPOINT,
   region: "us-east-1",
   credentials: {
-    accessKeyId: process.env.DIGITAL_OCEAN_SPACES_KEY,
-    secretAccessKey: process.env.DIGITAL_OCEAN_SPACES_SECRET,
+    accessKeyId: env.DIGITAL_OCEAN_SPACES_KEY,
+    secretAccessKey: env.DIGITAL_OCEAN_SPACES_SECRET,
   },
 })
 

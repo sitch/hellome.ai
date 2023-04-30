@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next"
+import { type NextApiRequest, type NextApiResponse } from "next"
 import { generateTemporaryUrl } from "next-s3-upload"
 
 type Props = {

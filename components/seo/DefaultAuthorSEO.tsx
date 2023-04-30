@@ -1,4 +1,4 @@
-import { DefaultSeo, DefaultSeoProps } from "next-seo"
+import { DefaultSeo, type DefaultSeoProps } from "next-seo"
 
 import { site } from "@/data/siteConfig"
 

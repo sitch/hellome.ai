@@ -67,12 +67,11 @@ const config = {
   printWidth: 80,
   tabWidth: 2,
   trailingComma: "all",
-
   plugins: [
-    require.resolve("@ianvs/prettier-plugin-sort-imports"),
-    require.resolve("prettier-plugin-organize-attributes"),
-    require.resolve("prettier-plugin-css-order"),
-    require.resolve("prettier-plugin-tailwindcss"), // MUST come last
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-css-order",
+    // "prettier-plugin-tailwindcss", // MUST come last
   ],
   pluginSearchDirs: false, // Needed for `prettier-plugin-tailwindcss`
 }

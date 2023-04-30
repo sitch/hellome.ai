@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
+import { type ReactNode } from "react"
 
-import { Author } from "@/lib/mdx/types"
+import { type Author } from "@/lib/mdx/types"
 
 import { ArticleListItem } from "@/components/mdx/blog/articles/ArticleListItem"
 import * as Media from "@/components/mdx/ui/Media"

@@ -10,7 +10,7 @@ export const DEFAULT_INITIAL_NAME = "Me"
 let names: string[] | undefined = undefined
 
 const getRandomName = (): string => {
-  return sample(names!)!
+  return sample(names)!
 }
 
 export type UseRandomNameProps = {

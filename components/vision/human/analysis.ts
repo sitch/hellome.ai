@@ -2,11 +2,11 @@ import type { FaceResult, Human, Result } from "@vladmandic/human"
 import { indexOf, isEqual } from "lodash"
 
 import {
-  ManifoldCoordinates,
-  ManifoldVector,
-  ManifoldVectorCandidate,
-  UsableFaceResult,
   findNearestManifoldVector,
+  type ManifoldCoordinates,
+  type ManifoldVector,
+  type ManifoldVectorCandidate,
+  type UsableFaceResult,
 } from "@/components/vision/human/manifolds"
 import { scoreFaceResult } from "@/components/vision/human/metrics"
 import { isUsable } from "@/components/vision/human/validations"

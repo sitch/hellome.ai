@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { type ReactNode } from "react"
 import Link from "next/link"
 
 import { DotTextureIcon, ZapIcon } from "@/components/landing/icons"

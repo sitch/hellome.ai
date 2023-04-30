@@ -2,11 +2,12 @@ import type { NextApiRequest, NextApiResponse } from "next"
 
 import Status from "http-status-codes"
 
-import { BaseApiResponse, EmailResponse } from "@/lib/api"
+import { env } from "@/config/env.mjs"
+import { type BaseApiResponse, type EmailResponse } from "@/lib/api"
 import { within } from "@/lib/api/within"
-import { EmailPayload, castMailData } from "@/lib/mailer"
+import { castMailData, type EmailPayload } from "@/lib/mailer"
 
-import sendMail, { transport, verifyTransport } from "@/emails"
+import { transport, verifyTransport } from "@/emails"
 import vercel from "@/vercel.json"
 
 const MAX_DURATION_MS =
@@ -23,10 +24,7 @@ export default async function handler(
       .json({ status: "request_error", error: "bad method" })
   }
 
-  if (
-    process.env.NODE_ENV !== "production" ||
-    process.env.MAILER_DISABLED === "true"
-  ) {
+  if (process.env.NODE_ENV !== "production" || env.MAILER_DISABLED === "true") {
     return res.status(Status.CREATED).json({ status: "OK" })
   }
 

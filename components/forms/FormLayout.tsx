@@ -1,7 +1,12 @@
-import { ChangeEventHandler, ReactNode, useCallback, useState } from "react"
+import {
+  useCallback,
+  useState,
+  type ChangeEventHandler,
+  type ReactNode,
+} from "react"
 import { useRouter } from "next/router"
 
-import { Locale } from "nextjs-routes"
+import { type Locale } from "nextjs-routes"
 import { setCookie } from "nookies"
 
 type Props = {

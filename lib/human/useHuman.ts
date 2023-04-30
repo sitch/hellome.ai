@@ -27,10 +27,10 @@
 //   requestAnimationFrame(drawVideo) // run draw loop
 // }
 
-import { RefObject, useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState, type RefObject } from "react"
 
 import { useTimeoutFn } from "react-use"
-import { DrawOptions, Human } from "@vladmandic/human"
+import { type DrawOptions, type Human } from "@vladmandic/human"
 import { human } from "__tests__/components/vision/human/fixtures"
 
 // Estimates 30fps = 1000ms / 30 == ~33.3

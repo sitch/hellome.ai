@@ -1,8 +1,8 @@
 import { renderToString } from "react-dom/server"
 import { useTranslation } from "next-i18next"
 
-import { FilePond, FilePondProps, registerPlugin } from "react-filepond"
-import { FilePondFile } from "filepond"
+import { FilePond, registerPlugin, type FilePondProps } from "react-filepond"
+import { type FilePondFile } from "filepond"
 import FilePondPluginDragReorder from "filepond-plugin-drag-reorder"
 import FilePondPluginFileEncode from "filepond-plugin-file-encode"
 import FilePondPluginFileMetadata from "filepond-plugin-file-metadata"
@@ -18,6 +18,7 @@ import FilePondPluginManageMetadata from "filepond-plugin-manage-metadata"
 import FilePondPluginMediaPreview from "filepond-plugin-media-preview"
 import FilePondPluginPdfPreview from "filepond-plugin-pdf-preview"
 
+import { type env } from "@/config/env.mjs"
 // import FilePondPluginFetchSVGPreview from "filepond-plugin-fetch-svg-preview"
 // import FilePondPluginImagePdfOverlay from "filepond-plugin-image-pdf-overlay"
 // import FilePondPluginPdfConvert from "filepond-plugin-pdf-convert"
@@ -57,7 +58,7 @@ type ExcludeProps =
 
 type Props<T = object> = Omit<FilePondProps, ExcludeProps> & {
   label?: JSX.Element
-  mode?: typeof process.env.NODE_ENV
+  mode?: typeof env.NODE_ENV
   value?: T[] | undefined
   onChange?: (values: T[]) => void
 }

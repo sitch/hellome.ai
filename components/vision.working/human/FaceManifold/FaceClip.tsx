@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { FaceResult, Human } from "@vladmandic/human"
+import { type FaceResult, type Human } from "@vladmandic/human"
 
 import { ManifoldVector } from "@/components/vision.working/human/manifolds"
 

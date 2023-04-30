@@ -1,4 +1,5 @@
 // import request from 'request'
+// import { env } from "@/config/env.mjs";
 
 // const payload = {
 //   contact_email: 'test@test.com',
@@ -59,8 +60,8 @@
 // import { LuluService } from '@ntegral/lulu'
 
 // const lulu = new LuluService({
-//   client_key: process.env.LULU_CLIENT_KEY,
-//   client_secret: process.env.LULU_CLIENT_SECRET,
+//   client_key: env.LULU_CLIENT_KEY,
+//   client_secret: env.LULU_CLIENT_SECRET,
 //   environment: 'development',
 // })
 

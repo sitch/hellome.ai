@@ -1,4 +1,4 @@
-import { FilePondProps } from "react-filepond"
+import { type FilePondProps } from "react-filepond"
 import imageInfo from "base64image-dimensions"
 
 export const fileToBase64 = (file: File) =>

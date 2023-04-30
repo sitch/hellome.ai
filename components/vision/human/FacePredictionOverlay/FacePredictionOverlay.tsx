@@ -1,4 +1,4 @@
-import { Component, RefObject } from "react"
+import { Component, type RefObject } from "react"
 
 import type { FaceResult, Human, Result } from "@vladmandic/human"
 import { isEqual, remove } from "lodash"
@@ -12,7 +12,7 @@ import {
   type FaceAnalysis,
 } from "@/components/vision/human/analysis"
 import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
-import { ManifoldVector } from "@/components/vision/human/manifolds"
+import { type ManifoldVector } from "@/components/vision/human/manifolds"
 import { log, status } from "@/components/vision/logging"
 
 type FacePredictionOverlayProps = {
@@ -39,8 +39,8 @@ class FacePredictionOverlay extends Component<
   human: Human | undefined = undefined
   video: HTMLVideoElement | undefined | null = undefined
   canvas: HTMLCanvasElement | undefined | null = undefined
-  timestamp: number = 0
-  fps: number = 0
+  timestamp = 0
+  fps = 0
 
   constructor(props: FacePredictionOverlayProps) {
     super(props)
@@ -70,7 +70,7 @@ class FacePredictionOverlay extends Component<
 
     // human is loaded as dynamic import in component constructor and then sets ready state
     import("@vladmandic/human").then((H) => {
-      this.human = new H.default(config) as Human
+      this.human = new H.default(config)
 
       log(
         `human version:${this.human.version}| tfjs version:${this.human.tf.version["tfjs-core"]}`,

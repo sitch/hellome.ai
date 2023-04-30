@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react"
 
 import Webcam from "react-webcam"
 import { Camera } from "@mediapipe/camera_utils"
-import { FaceMesh, ResultsListener } from "@mediapipe/face_mesh"
+import { FaceMesh, type ResultsListener } from "@mediapipe/face_mesh"
 
 const FaceFilter = () => {
   const faceMeshRef = useRef<FaceMesh | null>(null)
@@ -19,13 +19,13 @@ const FaceFilter = () => {
     canvasRef.current!.height = videoHeight
     const canvasElement = canvasRef.current!
     const canvasCtx = canvasElement.getContext("2d")
-    canvasCtx!.clearRect(0, 0, canvasElement!.width, canvasElement!.height)
+    canvasCtx!.clearRect(0, 0, canvasElement.width, canvasElement.height)
     canvasCtx!.drawImage(
       results.image,
       0,
       0,
-      canvasElement!.width,
-      canvasElement!.height,
+      canvasElement.width,
+      canvasElement.height,
     )
     if (results.multiFaceLandmarks.length > 0) {
       const keypoints = results.multiFaceLandmarks[0]
@@ -84,7 +84,7 @@ const FaceFilter = () => {
         const camera = new Camera(webcamRef.current!.video!, {
           onFrame: async () => {
             webcamRef.current! &&
-              (await faceMesh.send({ image: webcamRef.current!.video! }))
+              (await faceMesh.send({ image: webcamRef.current.video! }))
           },
           width: 640,
           height: 480,
@@ -96,7 +96,7 @@ const FaceFilter = () => {
   }, [])
 
   const cleanUpFunc = () => {
-    faceMeshRef.current! && faceMeshRef.current!.close()
+    faceMeshRef.current! && faceMeshRef.current.close()
   }
 
   useEffect(() => {

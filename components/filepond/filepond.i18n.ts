@@ -1,5 +1,5 @@
-import { UseTranslationResponse } from "react-i18next"
-import { FilePondOptions } from "filepond"
+import { type UseTranslationResponse } from "react-i18next"
+import { type FilePondOptions } from "filepond"
 
 export const labels = ({
   t,

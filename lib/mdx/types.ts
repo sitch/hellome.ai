@@ -1,8 +1,8 @@
-import { LinkProps } from "next/link"
+import { type LinkProps } from "next/link"
 
-import { Locale, Query, Route, StaticRoute } from "nextjs-routes"
+import { Locale, Route, type Query, type StaticRoute } from "nextjs-routes"
 
-import { site } from "@/data/siteConfig"
+import { type site } from "@/data/siteConfig"
 
 export type Slug = string
 export type Handle = string

@@ -1,7 +1,7 @@
-import { DefaultSeoProps, NextSeo } from "next-seo"
-import { OpenGraph } from "next-seo/lib/types"
+import { NextSeo, type DefaultSeoProps } from "next-seo"
+import { type OpenGraph } from "next-seo/lib/types"
 
-import { Author, LocaleCode } from "@/lib/mdx/types"
+import { type Author, type LocaleCode } from "@/lib/mdx/types"
 
 import { site } from "@/data/siteConfig"
 

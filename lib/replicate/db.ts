@@ -1,6 +1,6 @@
-import { Prediction, Prisma } from "@prisma/client"
+import { type Prediction, type Prisma } from "@prisma/client"
 
-import { prisma } from "@/server/utils/prisma"
+import { prisma } from "@/server/db"
 
 export async function upsertPrediction(predictionData: Prediction) {
   console.log("🤔 upsert prediction? ", predictionData.id)

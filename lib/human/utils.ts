@@ -1,4 +1,4 @@
-import { Result, Tensor } from "@vladmandic/human"
+import { type Result, type Tensor } from "@vladmandic/human"
 
 export function disposeTensor(tensor: Tensor | undefined | null) {
   if (!tensor || tensor.isDisposed) {

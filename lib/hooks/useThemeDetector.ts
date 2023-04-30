@@ -19,8 +19,14 @@ function getCurrentTheme(): ColorSchemeClass {
 }
 
 function userThemePreference(): ColorSchemeClass | undefined {
-  return localStorage.theme
+  const theme = localStorage.getItem("theme") ?? ""
+
+  if (theme === "dark" || theme === "light") {
+    return theme as ColorSchemeClass
+  }
+  return undefined
 }
+
 function browserThemePreference(): ColorSchemeClass {
   return darkThemeMediaQuery()?.matches ? "dark" : "light"
 }

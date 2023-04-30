@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction, useState } from "react"
+import { useState, type Dispatch, type SetStateAction } from "react"
 import { useS3Upload } from "next-s3-upload"
 
 import type { FilePondProps } from "react-filepond"
-import { FilePondCallbackProps } from "filepond"
+import { type FilePondCallbackProps } from "filepond"
 
 type FilePondFiles = FilePondProps["files"]
 type FilePondServer = FilePondProps["server"]
@@ -49,7 +49,7 @@ type FilePondServerProps = Pick<FilePondProps, "files" | "server"> & {
 export const production: ServerBuildFunction = ({
   nextS3Upload: { uploadToS3 },
 }) => ({
-  // timeout: process.env.NEXT_PUBLIC_API_IMAGE_UPLOAD_TIMEOUT ?? 10000,
+  // timeout: env.NEXT_PUBLIC_API_IMAGE_UPLOAD_TIMEOUT ?? 10000,
   // url: "/api/uploads",
   process: (
     fieldName,
@@ -139,7 +139,7 @@ export const useFilePondServer = (): FilePondServerProps => {
   }
 
   // const server =
-  //   process.env.NODE_ENV === "production"
+  //   env.NODE_ENV === "production"
   //     ? production(context)
   //     : bypass(context)
 
@@ -175,7 +175,7 @@ export const useFilePondServer = (): FilePondServerProps => {
 
         // const url = file.getFileEncodeDataURL()
         // console.info("onactivatefile", file, url, metadata)
-        debugger
+        // debugger
       },
       onreorderfiles: console.info.bind(null, "onreorderfiles"),
     },

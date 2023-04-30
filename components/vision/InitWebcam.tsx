@@ -1,10 +1,10 @@
 import {
   Component,
-  RefObject,
   useCallback,
   useLayoutEffect,
   useRef,
   useState,
+  type RefObject,
 } from "react"
 
 import { useMount } from "react-use"

@@ -1,6 +1,6 @@
-import { Result } from "@vladmandic/human"
+import { type Result } from "@vladmandic/human"
 
-import { ManifoldCoordinates } from "@/components/vision/human/manifolds"
+import { type ManifoldCoordinates } from "@/components/vision/human/manifolds"
 
 export function validateResult(
   coordinates: ManifoldCoordinates,

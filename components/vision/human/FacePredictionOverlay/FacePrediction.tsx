@@ -1,8 +1,9 @@
-import { RefObject, useState } from "react"
+import { useState, type RefObject } from "react"
 
 import { useMount } from "react-use"
-import { MemoryInfo } from "@tensorflow/tfjs-core"
-import Human, { Result } from "@vladmandic/human"
+import { type MemoryInfo } from "@tensorflow/tfjs-core"
+import { type Result } from "@vladmandic/human"
+import type Human from "@vladmandic/human"
 
 import { detectLoop, drawLoop } from "@/lib/human/callbacks"
 import useRequestAnimationFrame from "@/lib/human/useRequestAnimationFrame"
@@ -11,8 +12,8 @@ import { disposeResult } from "@/lib/human/utils"
 import FaceImporterInstructions from "@/components/vision/human/FaceImporterInstructions/FaceImporterInstructions"
 import { FaceManifold } from "@/components/vision/human/FaceManifold/FaceManifold"
 import {
-  FaceAnalysis,
   runFaceAnalysis,
+  type FaceAnalysis,
 } from "@/components/vision/human/analysis"
 import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
 

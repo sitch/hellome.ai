@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-import { FaceResult, Human, Tensor } from "@vladmandic/human"
+import { Tensor, type FaceResult, type Human } from "@vladmandic/human"
 
 export type FaceClipProps = {
   human: Human | undefined

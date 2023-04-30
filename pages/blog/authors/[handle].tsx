@@ -1,15 +1,15 @@
-import { ParsedUrlQuery } from "querystring"
-import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { type ParsedUrlQuery } from "querystring"
+import { type GetStaticPaths, type GetStaticProps, type NextPage } from "next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { MDXRemote } from "next-mdx-remote"
 
 import {
-  MDXPageProps,
   listArticleSources,
   listEntries,
   processMDXPage,
+  type MDXPageProps,
 } from "@/lib/mdx"
-import { Author, AuthorSource, castAuthor } from "@/lib/mdx/types"
+import { castAuthor, type Author, type AuthorSource } from "@/lib/mdx/types"
 
 import Layout from "@/components/mdx/Layout"
 import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"

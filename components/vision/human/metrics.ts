@@ -1,4 +1,4 @@
-import { FaceResult, Result } from "@vladmandic/human"
+import { type FaceResult, type Result } from "@vladmandic/human"
 import { distance } from "ml-distance"
 
 import type {

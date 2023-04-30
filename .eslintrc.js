@@ -17,17 +17,32 @@ module.exports = {
       rootDir: ["./"],
     },
   },
+  parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint", "@limegrass/import-alias", "tailwindcss"],
+  // extends: [
+  //   "next",
+  //   "next/core-web-vitals",
+  //   "eslint:recommended",
+  //   // "plugin:@typescript-eslint/recommended",
+  //   "plugin:@typescript-eslint/strict",
+  //   "plugin:jsx-a11y/recommended",
+  //   "plugin:react/recommended",
+  //   "plugin:react-hooks/recommended",
+  //   "plugin:tailwindcss/recommended",
+  //   "plugin:prettier/recommended",
+  // ],
   extends: [
     "next",
-    "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:@typescript-eslint/strict",
-    "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:tailwindcss/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
+    // "plugin:@typescript-eslint/eslint-recommended",
+    // "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/strict",
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended",
   ],
   rules: {
     //==========================================================================
@@ -61,11 +76,21 @@ module.exports = {
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
+    "@typescript-eslint/consistent-type-imports": [
+      "warn",
+      {
+        prefer: "type-imports",
+        fixStyle: "inline-type-imports",
+      },
+    ],
   },
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
       parser: "@typescript-eslint/parser",
+      extends: [
+        // "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      ],
       parserOptions: {
         project: "./tsconfig.json",
       },

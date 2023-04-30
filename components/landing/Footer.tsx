@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
-import Link, { LinkProps } from "next/link"
+import { type ReactNode } from "react"
+import Link, { type LinkProps } from "next/link"
 import { useTranslation } from "next-i18next"
 
 import { LogoIcon } from "@/components/landing/icons"

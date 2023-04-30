@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { MDXRemoteSerializeResult } from "next-mdx-remote/dist/types"
+import { type MDXRemoteSerializeResult } from "next-mdx-remote/dist/types"
 import { serialize } from "next-mdx-remote/serialize"
 
 import { globSync } from "glob"
@@ -9,14 +9,14 @@ import { castArray } from "lodash"
 
 import { serializeOptions } from "@/lib/mdx/config"
 import {
-  Article,
-  ArticleSource,
-  Author,
-  AuthorSource,
-  Section,
-  Slug,
   castArticle,
   castAuthor,
+  type Article,
+  type ArticleSource,
+  type Author,
+  type AuthorSource,
+  type Section,
+  type Slug,
 } from "@/lib/mdx/types"
 
 export type MDXPageProps<T = {}> = {

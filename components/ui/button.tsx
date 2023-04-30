@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import { VariantProps, cva } from "class-variance-authority"
-import { LucideIcon } from "lucide-react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { type LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -78,7 +78,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(
           buttonVariants({ variant, size, className }),
-          transition ? "transition-all duration-220 ease-in-out" : "",
+          transition ? "duration-220 transition-all ease-in-out" : "",
           disabled ? "" : "",
         )}
         ref={ref}

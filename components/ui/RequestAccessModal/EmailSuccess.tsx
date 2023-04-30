@@ -1,4 +1,4 @@
-import { EmailFormData } from "@/components/ui/RequestAccessModal/EmailForm"
+import { type EmailFormData } from "@/components/ui/RequestAccessModal/EmailForm"
 
 export type EmailSuccessProps = {
   data: EmailFormData

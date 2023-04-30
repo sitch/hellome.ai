@@ -1,6 +1,6 @@
-import "@/styles/globals.css"
 import "@/styles/chrome-bug.css"
 import "@/styles/filepond.css"
+import "@/styles/globals.css"
 import { useEffect } from "react"
 import type { AppProps, NextWebVitalsMetric } from "next/app"
 import Head from "next/head"
@@ -9,8 +9,9 @@ import { appWithTranslation } from "next-i18next"
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics, event } from "nextjs-google-analytics"
 
+import { env } from "@/config/env.mjs"
 import { fontSans } from "@/lib/fonts"
-import { trpc } from "@/utils/trpc"
+import { api } from "@/utils/api"
 
 import { DefaultWebsiteSEO } from "@/components/seo/DefaultWebsiteSEO"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
@@ -74,4 +75,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 /**
  * @link https://github.com/i18next/next-i18next#unserializable-configs
  */
-export default trpc.withTRPC(appWithTranslation(MyApp))
+export default api.withTRPC(appWithTranslation(MyApp))

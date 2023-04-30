@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef } from "react"
 
 import {
-  CanvasPath,
   ReactSketchCanvas,
-  ReactSketchCanvasRef,
+  type CanvasPath,
+  type ReactSketchCanvasRef,
 } from "react-sketch-canvas"
 import { Trash as TrashIcon, Undo as UndoIcon } from "lucide-react"
 
@@ -79,7 +79,7 @@ export default function Canvas({
       />
 
       {scribbleExists && (
-        <div className="text-left animate-in fade-in duration-700">
+        <div className="animate-in fade-in text-left duration-700">
           <button className="lil-button" onClick={undo}>
             <UndoIcon className="icon" />
             Undo

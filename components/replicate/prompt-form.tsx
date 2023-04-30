@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useState } from "react"
+import { useEffect, useState, type FormEventHandler } from "react"
 
 type Props = {
   initialPrompt?: string

@@ -7,17 +7,17 @@
  */
 import "i18next"
 // import all namespaces (for the default language, only)
-import common from "@/public/locales/en/common.json"
-import company from "@/public/locales/en/company.json"
-import concepts from "@/public/locales/en/concepts.json"
-import faq from "@/public/locales/en/faq.json"
-import filepond from "@/public/locales/en/filepond.json"
-import footer from "@/public/locales/en/footer.json"
-import landing from "@/public/locales/en/landing.json"
-import onboarding from "@/public/locales/en/onboarding.json"
-import pricing from "@/public/locales/en/pricing.json"
-import product from "@/public/locales/en/product.json"
-import zod from "@/public/locales/en/zod.json"
+import type common from "@/public/locales/en/common.json"
+import type company from "@/public/locales/en/company.json"
+import type concepts from "@/public/locales/en/concepts.json"
+import type faq from "@/public/locales/en/faq.json"
+import type filepond from "@/public/locales/en/filepond.json"
+import type footer from "@/public/locales/en/footer.json"
+import type landing from "@/public/locales/en/landing.json"
+import type onboarding from "@/public/locales/en/onboarding.json"
+import type pricing from "@/public/locales/en/pricing.json"
+import type product from "@/public/locales/en/product.json"
+import type zod from "@/public/locales/en/zod.json"
 
 interface I18nNamespaces {
   common: typeof common

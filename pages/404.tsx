@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
-import { I18nNamespaces } from "i18next"
+import { type I18nNamespaces } from "i18next"
 import { Home } from "lucide-react"
 
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"

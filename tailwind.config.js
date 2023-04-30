@@ -1,10 +1,11 @@
-import { type Config } from "tailwindcss"
 import { fontFamily } from "tailwindcss/defaultTheme"
 import plugin from "tailwindcss/plugin"
 
+// eslint-disable-next-line @limegrass/import-alias/import-alias
 import tailwindBlogPreset from "./tailwind.blog.preset"
 
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+const config = {
   presets: [tailwindBlogPreset],
   darkMode: ["class"],
   content: [
@@ -19,6 +20,7 @@ const config: Config = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
+    // @ts-ignore
     require("tailwindcss-animate"),
 
     plugin(({ addVariant }) => {

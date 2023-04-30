@@ -1,9 +1,13 @@
 import { useRef } from "react"
 import { useTranslation } from "next-i18next"
 
-import { Controller, SubmitErrorHandler, SubmitHandler } from "react-hook-form"
+import {
+  Controller,
+  type SubmitErrorHandler,
+  type SubmitHandler,
+} from "react-hook-form"
 import Webcam from "react-webcam"
-import z from "zod"
+import type z from "zod"
 
 import { useZodForm } from "@/lib/hooks/useZodForm"
 import { trpc } from "@/utils/trpc"
@@ -116,7 +120,8 @@ export function ConceptForm(_props: Props) {
   //============================================================================
   // Callbacks
   //============================================================================
-  const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     console.info("onSubmit", { values: getValues(), data })
 
     const args = {
@@ -138,7 +143,8 @@ export function ConceptForm(_props: Props) {
     console.info("onSuccess", { values: getValues(), data, args })
   }
 
-  const onErrors: SubmitErrorHandler<FormSchemaType> = (data) => {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  const onErrors: SubmitErrorHandler<FormSchemaType> = async (data) => {
     console.error("onErrors", { values: getValues(), data })
   }
 

@@ -1,9 +1,9 @@
 // import { withImageProxy } from '@blazity/next-image-proxy'
 // export default withImageProxy({ whitelistedPatterns: [/^https?:\/\/(.*).hellome.ai/] })
 
-import { NextApiRequest, NextApiResponse } from "next"
+import { type NextApiRequest, type NextApiResponse } from "next"
 
-import { UploaderSignedUrl } from "@/lib/uploader/types"
+import { type UploaderSignedUrl } from "@/lib/uploader/types"
 
 const methods = ["GET", "HEAD"]
 

@@ -1,8 +1,8 @@
 import { Trans, useTranslation } from "next-i18next"
 
-import { UseFormProps, useForm } from "react-hook-form"
+import { useForm, type UseFormProps } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import z from "zod"
+import type z from "zod"
 import { makeZodI18nMap } from "zod-i18n-map"
 
 export function useZodForm<TSchema extends z.ZodType>(

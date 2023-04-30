@@ -2,7 +2,7 @@
 // import { Label } from 'flowbite-react/lib/esm/components/Label'
 // import { TextInput } from 'flowbite-react/lib/esm/components/TextInput'
 
-import React, { MouseEvent, useState } from "react"
+import React, { useState, type MouseEvent } from "react"
 
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import styles from "@/components/forms/forms.module.css"

@@ -12,7 +12,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { MainLayout } from "@/components/app/Layout"
 import { ConceptForm } from "@/components/forms/ConceptForm"
 
-import { I18nNamespaces } from "@/i18next.d"
+import { type I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
 
 // See: https://github.com/google/mediapipe/issues/2546

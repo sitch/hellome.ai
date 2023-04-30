@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { type ReactNode } from "react"
 import { useTranslation } from "next-i18next"
 
 import { AlertCircle } from "lucide-react"

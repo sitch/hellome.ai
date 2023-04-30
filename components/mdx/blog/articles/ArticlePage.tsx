@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
+import { type ReactNode } from "react"
 
-import { Article } from "@/lib/mdx/types"
+import { type Article } from "@/lib/mdx/types"
 
 import ArticleHeader from "@/components/mdx/blog/articles/ArticleHeader"
 

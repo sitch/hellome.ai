@@ -1,7 +1,7 @@
-import { Result } from "@vladmandic/human"
+import { type Result } from "@vladmandic/human"
 import { inRange } from "lodash"
 
-import { FaceAnalysis } from "@/components/vision.working/human/analysis"
+import { type FaceAnalysis } from "@/components/vision.working/human/analysis"
 
 export type DialogType =
   | "FaceDirection"

@@ -1,9 +1,8 @@
-import { ListObjectsCommand, PutObjectCommand, S3 } from "@aws-sdk/client-s3"
+import { S3 } from "@aws-sdk/client-s3"
 import dataUriToBuffer from "data-uri-to-buffer"
 
+import { env } from "@/config/env.mjs"
 import { uploadFile } from "@/lib/s3/client"
-
-import packageData from "@/package.json"
 
 // import { PutObjectCommand } from "@aws-sdk/client-s3";
 // import * as Upload from 'upload-js-full'
@@ -16,24 +15,24 @@ import packageData from "@/package.json"
 
 // const spaces = new Spaces({
 //   endpoint: "https://spaces-hellome-production.nyc3.digitaloceanspaces.com",
-//   endpoint: process.env.DO_SPACES_ENDPOINT, // under settings of bucket in digital ocean
-//   accessKey: process.env.DO_SPACES_KEY, // in GLOBAL settings of digital ocean
-//   secret: process.env.DO_SPACES_SECRET, // in GLOBAL settings of digital ocean
+//   endpoint: env.DO_SPACES_ENDPOINT, // under settings of bucket in digital ocean
+//   accessKey: env.DO_SPACES_KEY, // in GLOBAL settings of digital ocean
+//   secret: env.DO_SPACES_SECRET, // in GLOBAL settings of digital ocean
 //   bucket: `test`,
 // });
 
 const s3Client = new S3({
   forcePathStyle: false, // Configures to use subdomain/virtual calling format.
   endpoint: "https://nyc3.digitaloceanspaces.com",
-  // endpoint: process.env.DIGITAL_OCEAN_SPACES_ENDPOINT,
+  // endpoint: env.DIGITAL_OCEAN_SPACES_ENDPOINT,
   region: "us-east-1",
   credentials: {
-    accessKeyId: process.env.DIGITAL_OCEAN_SPACES_KEY,
-    secretAccessKey: process.env.DIGITAL_OCEAN_SPACES_SECRET,
+    accessKeyId: env.DIGITAL_OCEAN_SPACES_KEY,
+    secretAccessKey: env.DIGITAL_OCEAN_SPACES_SECRET,
 
-    //   // endpoint: process.env.DIGITAL_OCEAN_SPACES_ENDPOINT, // under settings of bucket in digital ocean
-    //   accessKey: process.env.DIGITAL_OCEAN_SPACES_KEY, // in GLOBAL settings of digital ocean
-    //   secret: process.env.DIGITAL_OCEAN_SPACES_SECRET, // in GLOBAL settings of digital ocean
+    //   // endpoint: env.DIGITAL_OCEAN_SPACES_ENDPOINT, // under settings of bucket in digital ocean
+    //   accessKey: env.DIGITAL_OCEAN_SPACES_KEY, // in GLOBAL settings of digital ocean
+    //   secret: env.DIGITAL_OCEAN_SPACES_SECRET, // in GLOBAL settings of digital ocean
   },
 })
 

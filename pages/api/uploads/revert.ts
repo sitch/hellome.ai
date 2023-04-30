@@ -6,7 +6,7 @@
  * @link https://pqina.nl/filepond/docs/api/server/#revert
  */
 
-import { NextApiRequest, NextApiResponse } from "next"
+import { type NextApiRequest, type NextApiResponse } from "next"
 
 const methods = ["DELETE"]
 

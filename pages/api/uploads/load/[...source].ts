@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next"
+import { type NextApiRequest, type NextApiResponse } from "next"
 import { generateTemporaryUrl } from "next-s3-upload"
 
 import {
-  FilePondSource,
-  ResponseFailed,
-  UploaderSignedUrl,
+  type FilePondSource,
+  type ResponseFailed,
+  type UploaderSignedUrl,
 } from "@/lib/uploader/types"
 
 const methods = ["GET"]

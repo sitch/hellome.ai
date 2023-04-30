@@ -1,7 +1,7 @@
-import { ReactNode } from "react"
+import { type ReactNode } from "react"
 import { useTranslation } from "next-i18next"
 
-import { FieldError } from "react-hook-form"
+import { type FieldError } from "react-hook-form"
 import { AlertCircle } from "lucide-react"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -9,7 +9,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 type Props = {
   title?: ReactNode
   children?: ReactNode
-  message?: String | undefined | null
+  message?: string | undefined | null
   error?: FieldError
 }
 

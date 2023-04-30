@@ -1,9 +1,9 @@
-import { UseTranslationResponse } from "react-i18next"
+import { type UseTranslationResponse } from "react-i18next"
 import { UploadCloud } from "lucide-react"
 
 export const LabelIdle = ({ t }: UseTranslationResponse<"filepond">) => {
   return (
-    <div className="group:duration-700 group:ease-in-out flex h-auto w-full animate-bg-wave cursor-pointer justify-center rounded-xl border-2 border-dashed bg-accent from-emerald-400/10 via-indigo-400/10 to-rose-400/10 px-6 py-10 text-input transition-all duration-2.2s ease-in-out hover:border-gray-400 hover:bg-accent/80 hover:bg-gradient-to-r dark:hover:border-gray-600">
+    <div className="group:duration-700 group:ease-in-out animate-bg-wave bg-accent text-input duration-2.2s hover:bg-accent/80 flex h-auto w-full cursor-pointer justify-center rounded-xl border-2 border-dashed from-emerald-400/10 via-indigo-400/10 to-rose-400/10 px-6 py-10 transition-all ease-in-out hover:border-gray-400 hover:bg-gradient-to-r dark:hover:border-gray-600">
       <div className="text-center">
         <UploadCloud
           aria-hidden="true"

@@ -1,8 +1,8 @@
-import { NextApiResponse } from "next"
+import { type NextApiResponse } from "next"
 
 import Status from "http-status-codes"
 
-import { BaseApiResponse } from "@/lib/api"
+import { type BaseApiResponse } from "@/lib/api"
 
 export async function within<T, K extends BaseApiResponse>(
   fn: () => Promise<T>,

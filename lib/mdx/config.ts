@@ -1,4 +1,4 @@
-import { SerializeOptions } from "next-mdx-remote/dist/types"
+import { type SerializeOptions } from "next-mdx-remote/dist/types"
 
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeCodeTitles from "rehype-code-titles"

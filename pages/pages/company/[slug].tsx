@@ -1,10 +1,15 @@
-import { ParsedUrlQuery } from "querystring"
-import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { type ParsedUrlQuery } from "querystring"
+import { type GetStaticPaths, type GetStaticProps, type NextPage } from "next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { MDXRemote } from "next-mdx-remote"
 import { NextSeo } from "next-seo"
 
-import { Data, MDXPageProps, listEntries, processMDXPage } from "@/lib/mdx"
+import {
+  listEntries,
+  processMDXPage,
+  type Data,
+  type MDXPageProps,
+} from "@/lib/mdx"
 
 import Layout from "@/components/mdx/Layout"
 import { Heading, Typography } from "@/components/mdx/ui"
@@ -34,7 +39,7 @@ const Page: NextPage<Props> = ({ source, data }: Props) => {
           </Typography.Paragraph>
         </div>
 
-        <div className="prose prose-sm prose-slate mx-auto max-w-[40rem] prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
+        <div className="prose prose-sm prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600 mx-auto max-w-[40rem]">
           <MDXRemote {...source} />
         </div>
       </div>

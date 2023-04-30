@@ -1,6 +1,5 @@
 // 20230429182728
 // https://raw.githubusercontent.com/t3-oss/create-t3-app/next/.vscode/settings.json
-
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
@@ -29,5 +28,8 @@
   "mdx.experimentalLanguageServer": true,
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   }
 }

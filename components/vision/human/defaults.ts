@@ -1,7 +1,7 @@
-import { FaceAnalysis } from "@/components/vision/human/analysis"
+import { type FaceAnalysis } from "@/components/vision/human/analysis"
 import {
-  ManifoldCoordinates,
   castManifoldVectors,
+  type ManifoldCoordinates,
 } from "@/components/vision/human/manifolds"
 
 export const DEFAULT_COORDINATES: ManifoldCoordinates = {

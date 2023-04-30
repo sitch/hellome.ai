@@ -1,6 +1,6 @@
 import type { NextApiRequest } from "next"
 
-import { ComponentMail } from "mailing-core"
+import { type ComponentMail } from "mailing-core"
 import requestIp from "request-ip"
 
 // import sendMail, { transport, verifyTransport } from '@/emails'
@@ -37,7 +37,7 @@ export function castMailData(
   }
 
   const meta = `
-  ua:     ${req.headers["user-agent"]}
+  ua:     ${req.headers["user-agent"] ?? ""}
   ip:     ${detectedIp}
   vercel: ${JSON.stringify(vercelGeo)}
   `
@@ -63,7 +63,7 @@ export function castMailData(
       <tr>
         <td><b>Email</b></td>
         <td>${email}</td>
-      </tr>    
+      </tr>
       <tr>
         <td><b>User Agent</b></td>
         <td>${req.headers["user-agent"]}</td>
@@ -75,8 +75,8 @@ export function castMailData(
       <tr>
         <td><b>Vercel</b></td>
         <td>${JSON.stringify(vercelGeo)}</td>
-      </tr>            
-    </table>    
+      </tr>
+    </table>
     `,
   }
 

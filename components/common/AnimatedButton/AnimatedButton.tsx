@@ -4,7 +4,7 @@ import { LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-import { Button, ButtonProps, iconVariants } from "@/components/ui/button"
+import { Button, iconVariants, type ButtonProps } from "@/components/ui/button"
 import Loader from "@/components/loader"
 
 export type AnimatedButtonProps = ButtonProps & {
@@ -53,7 +53,7 @@ export default function AnimatedButton({
             "bg-white dark:bg-gray-900",
             "group-hover:bg-white/30 group-hover:text-white",
             "dark:group-hover:bg-gray-900/30 dark:group-hover:text-gray-900",
-            "transition-all duration-2.2s ease-in",
+            "duration-2.2s transition-all ease-in",
             "inline-flex h-full w-full",
             "relative",
             loading ? "px-2 py-3" : "px-6 py-3",

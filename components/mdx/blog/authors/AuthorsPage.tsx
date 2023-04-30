@@ -1,6 +1,6 @@
 import { useTranslation } from "next-i18next"
 
-import { Author } from "@/lib/mdx/types"
+import { type Author } from "@/lib/mdx/types"
 
 import { AuthorCard } from "@/components/mdx/blog/authors/AuthorCard"
 

@@ -1,4 +1,4 @@
-import { FilePondOptions } from "filepond"
+import { type FilePondOptions } from "filepond"
 
 export const defaults: Record<string, Partial<FilePondOptions>> = {
   FilePondPluginFileValidateSize: {

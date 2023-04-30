@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { GetStaticProps, NextPage } from "next"
+import { type GetStaticProps, type NextPage } from "next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { NextSeo } from "next-seo"
 
 import { processMDXAuthors } from "@/lib/mdx"
-import { Author } from "@/lib/mdx/types"
+import { type Author } from "@/lib/mdx/types"
 
 import Hero from "@/components/mdx/Hero"
 import Layout from "@/components/mdx/Layout"

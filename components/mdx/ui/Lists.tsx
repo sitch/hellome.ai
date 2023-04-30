@@ -1,4 +1,8 @@
-import { DetailedHTMLProps, LiHTMLAttributes, OlHTMLAttributes } from "react"
+import {
+  type DetailedHTMLProps,
+  type LiHTMLAttributes,
+  type OlHTMLAttributes,
+} from "react"
 
 export type OrderedListProps = DetailedHTMLProps<
   OlHTMLAttributes<HTMLOListElement>,

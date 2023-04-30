@@ -1,4 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react"
+import {
+  type DetailedHTMLProps,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react"
 import Link from "next/link"
 
 type HeadingLinkProps = {

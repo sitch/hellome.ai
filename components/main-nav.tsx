@@ -1,4 +1,4 @@
-import Link, { LinkProps } from "next/link"
+import Link, { type LinkProps } from "next/link"
 import { useTranslation } from "next-i18next"
 
 import { cn } from "@/lib/utils"
@@ -33,7 +33,7 @@ export function MainNav({ items = [] }: MainNavProps) {
               key={index}
               href={item.href}
               className={cn(
-                "flex items-center text-lg font-semibold text-muted-foreground sm:text-sm",
+                "text-muted-foreground flex items-center text-lg font-semibold sm:text-sm",
                 item.disabled && "cursor-not-allowed opacity-80",
               )}
             >

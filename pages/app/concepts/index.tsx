@@ -1,9 +1,8 @@
-import { FormEventHandler, useState } from "react"
-import Head from "next/head"
-import Script from "next/script"
+import { useState, type FormEventHandler } from "react"
 
 import naughtyWords from "naughty-words"
 
+import { env } from "@/config/env.mjs"
 import seeds from "@/lib/replicate/seeds"
 import sleep from "@/lib/replicate/sleep"
 import uploadFile from "@/lib/replicate/upload"
@@ -15,8 +14,8 @@ import PromptForm from "@/components/replicate/prompt-form"
 
 import pkg from "@/package.json"
 
-const HOST = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+const HOST = env.VERCEL_URL
+  ? `https://${env.VERCEL_URL}`
   : "http://localhost:3000"
 
 export default function Home() {

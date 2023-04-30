@@ -1,6 +1,6 @@
-import { ParsedUrlQuery } from "querystring"
+import { type ParsedUrlQuery } from "querystring"
 import { useEffect } from "react"
-import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { type GetStaticPaths, type GetStaticProps, type NextPage } from "next"
 import { useRouter } from "next/router"
 
 const redirects = {

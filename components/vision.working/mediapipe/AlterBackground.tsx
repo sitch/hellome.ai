@@ -31,7 +31,7 @@ export const AlterBackground = () => {
 
     canvasRef.current!.width = videoWidth
     canvasRef.current!.height = videoHeight
-    const canvasElement = canvasRef.current! as HTMLCanvasElement
+    const canvasElement = canvasRef.current!
     const canvasCtx = canvasElement.getContext("2d")
 
     canvasCtx!.save()
@@ -113,7 +113,7 @@ export const AlterBackground = () => {
           onFrame: async () => {
             webcamRef.current &&
               (await selfieSegmentation.send({
-                image: webcamRef.current!.video!,
+                image: webcamRef.current.video!,
               }))
           },
           width: 640,
@@ -210,19 +210,19 @@ export const AlterBackground = () => {
   const startRecording = () => {
     canvasStreamRef.current = canvasRef.current!.captureStream()
     const stream = new MediaStream([
-      ...canvasStreamRef.current!.getTracks(),
-      ...(audioStreamRef.current ? audioStreamRef.current!.getTracks() : []),
+      ...canvasStreamRef.current.getTracks(),
+      ...(audioStreamRef.current ? audioStreamRef.current.getTracks() : []),
     ])
     const options = getRecordingOptions(true)
     mediaRecorderRef.current = new MediaRecorder(
       stream,
       options as MediaRecorderOptions,
     )
-    mediaRecorderRef.current!.addEventListener(
+    mediaRecorderRef.current.addEventListener(
       "dataavailable",
       handleDataAvailable,
     )
-    mediaRecorderRef.current!.start()
+    mediaRecorderRef.current.start()
     setRecording(true)
   }
 

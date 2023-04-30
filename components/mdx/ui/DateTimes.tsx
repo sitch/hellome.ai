@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, TimeHTMLAttributes } from "react"
+import { type DetailedHTMLProps, type TimeHTMLAttributes } from "react"
 
 import { format } from "date-fns"
 

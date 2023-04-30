@@ -1,5 +1,9 @@
-import { NextApiResponse } from "next"
-import { FormNextApiRequest, getConfig, withFileUpload } from "next-multiparty"
+import { type NextApiResponse } from "next"
+import {
+  getConfig,
+  withFileUpload,
+  type FormNextApiRequest,
+} from "next-multiparty"
 
 const methods = ["PATCH"]
 

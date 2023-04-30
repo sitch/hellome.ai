@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { type ReactNode } from "react"
 import Link from "next/link"
 
 import { Book } from "@/components/books/Book/Book"

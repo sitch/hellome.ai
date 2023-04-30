@@ -1,6 +1,6 @@
-import { FilePondFile, FilePondInitialFile } from "filepond"
+import { type FilePondFile, type FilePondInitialFile } from "filepond"
 
-import { FormSchemaType } from "@/components/forms/ConceptForm"
+import { type FormSchemaType } from "@/components/forms/ConceptForm"
 
 type ImageInput = FormSchemaType["photos"][number]
 

@@ -1,4 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes, ImgHTMLAttributes } from "react"
+import {
+  type DetailedHTMLProps,
+  type HTMLAttributes,
+  type ImgHTMLAttributes,
+} from "react"
 import Image from "next/image"
 
 type ImgProps = DetailedHTMLProps<

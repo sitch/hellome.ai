@@ -1,9 +1,9 @@
-import { DefaultSeoProps, NextSeo } from "next-seo"
-import { OpenGraph } from "next-seo/lib/types"
+import { NextSeo, type DefaultSeoProps } from "next-seo"
+import { type OpenGraph } from "next-seo/lib/types"
 
 import { uniq } from "lodash"
 
-import { Article, LocaleCode } from "@/lib/mdx/types"
+import { type Article, type LocaleCode } from "@/lib/mdx/types"
 
 import { site } from "@/data/siteConfig"
 

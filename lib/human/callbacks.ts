@@ -1,5 +1,5 @@
-import { MemoryInfo } from "@tensorflow/tfjs"
-import { DrawOptions, Human, Result } from "@vladmandic/human"
+import { type MemoryInfo } from "@tensorflow/tfjs"
+import { type DrawOptions, type Human, type Result } from "@vladmandic/human"
 
 export type DetectLoopResult = {
   result: Result

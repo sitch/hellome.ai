@@ -1,4 +1,4 @@
-import { JSXElementConstructor, useEffect, useState } from "react"
+import { useEffect, useState, type JSXElementConstructor } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -94,7 +94,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                   <li>
                     <a
                       href="./solution.html"
-                      className="dark:hover:text-primaryLight block transition hover:text-primary md:px-4"
+                      className="dark:hover:text-primaryLight hover:text-primary block transition md:px-4"
                     >
                       <span>Solution</span>
                     </a>
@@ -102,7 +102,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                   <li>
                     <a
                       href="./customers.html"
-                      className="dark:hover:text-primaryLight block transition hover:text-primary md:px-4"
+                      className="dark:hover:text-primaryLight hover:text-primary block transition md:px-4"
                     >
                       <span>Customers</span>
                     </a>
@@ -110,7 +110,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                   <li>
                     <a
                       href="./pricing.html"
-                      className="dark:hover:text-primaryLight block transition hover:text-primary md:px-4"
+                      className="dark:hover:text-primaryLight hover:text-primary block transition md:px-4"
                     >
                       <span>Pricing</span>
                     </a>
@@ -118,7 +118,7 @@ const Header = ({ HeroComp }: HeaderProps) => {
                   <li>
                     <a
                       href="./blog.html"
-                      className="dark:hover:text-primaryLight block transition hover:text-primary md:px-4"
+                      className="dark:hover:text-primaryLight hover:text-primary block transition md:px-4"
                     >
                       <span>Blog</span>
                     </a>
@@ -126,19 +126,19 @@ const Header = ({ HeroComp }: HeaderProps) => {
                   <li>
                     <a
                       href="./about.html"
-                      className="dark:hover:text-primaryLight block transition hover:text-primary md:px-4"
+                      className="dark:hover:text-primaryLight hover:text-primary block transition md:px-4"
                     >
                       <span>Company</span>
                     </a>
                   </li>
                 </ul>
               </div>
-              <div className="-ml-1 mt-12 flex w-full flex-col space-y-2 border-primary/10 dark:border-gray-700 sm:flex-row md:w-max lg:mr-6 lg:mt-0 lg:space-y-0 lg:border-l lg:pl-6">
+              <div className="border-primary/10 -ml-1 mt-12 flex w-full flex-col space-y-2 dark:border-gray-700 sm:flex-row md:w-max lg:mr-6 lg:mt-0 lg:space-y-0 lg:border-l lg:pl-6">
                 <a
                   href="./contact.html"
-                  className="dark:before:bg-primaryLight relative ml-auto flex h-9 w-full items-center justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 sm:px-4 lg:before:border lg:before:border-gray-200 lg:before:bg-gray-100 lg:dark:before:bg-gray-800"
+                  className="dark:before:bg-primaryLight before:bg-primary relative ml-auto flex h-9 w-full items-center justify-center before:absolute before:inset-0 before:rounded-full before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 sm:px-4 lg:before:border lg:before:border-gray-200 lg:before:bg-gray-100 lg:dark:before:bg-gray-800"
                 >
-                  <span className="relative text-sm font-semibold text-white dark:text-gray-900 lg:text-primary lg:dark:text-white">
+                  <span className="lg:text-primary relative text-sm font-semibold text-white dark:text-gray-900 lg:dark:text-white">
                     Get started
                   </span>
                 </a>

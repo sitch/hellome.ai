@@ -4,7 +4,7 @@
 
 // import { Modal } from 'flowbite-react'
 
-import React, { MouseEvent, ReactNode, useState } from "react"
+import React, { useState, type MouseEvent, type ReactNode } from "react"
 import Link from "next/link"
 
 import AccessTokenForm from "@/components/ui/RequestAccessModal/AccessTokenForm"

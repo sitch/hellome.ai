@@ -1,4 +1,4 @@
-import { Article } from "@/lib/mdx/types"
+import { type Article } from "@/lib/mdx/types"
 
 import { ArticleCard } from "@/components/mdx/blog/articles/ArticleCard"
 

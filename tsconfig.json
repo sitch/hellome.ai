@@ -37,15 +37,16 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "**/*.js"
+    "**/*.js",
+    ".prettierrc.js"
   ],
   "exclude": [
     "node_modules",
-    "cypress/**/*",
-    "cypress.config.ts",
-    "@gen/trpc/routers/*.ts",
-    "@gen/trpc/schemas/*.ts",
-    "@gen/lulu/**/*",
-    "@gen/crud/**/*"
+    "@__OLD__",
+    "@gen/trpc",
+    "@gen/lulu",
+    "@gen/crud",
+    "cypress",
+    "cypress.config.ts"
   ]
 }

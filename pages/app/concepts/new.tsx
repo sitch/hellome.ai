@@ -3,7 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { PageLayout } from "@/components/ui/Layout/Layout"
 
-import { I18nNamespaces } from "@/i18next.d"
+import { type I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
 
 // import { useS3Upload } from 'next-s3-upload'

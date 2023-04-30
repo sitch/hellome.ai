@@ -1,4 +1,11 @@
-import { shieldedProcedure, t } from "@/@gen/trpc/routers/helpers/createRouter"
+// import { shieldedProcedure, t } from "@/@gen/trpc/routers/helpers/createRouter"
+
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "@/server/api/trpc"
+
 import { ConceptAggregateSchema } from "@/@gen/trpc/schemas/aggregateConcept.schema"
 import { ConceptCreateManySchema } from "@/@gen/trpc/schemas/createManyConcept.schema"
 import { ConceptCreateOneSchema } from "@/@gen/trpc/schemas/createOneConcept.schema"
@@ -13,13 +20,13 @@ import { ConceptUpdateOneSchema } from "@/@gen/trpc/schemas/updateOneConcept.sch
 import { ConceptUpsertSchema } from "@/@gen/trpc/schemas/upsertOneConcept.schema"
 import { ConceptCreateArgsSchema, ConceptCreateInputSchema } from "@/@gen/zod"
 
-export const conceptRouter = t.router({
-  createOneConcept: shieldedProcedure
+export const conceptRouter = createTRPCRouter({
+  createOne: publicProcedure
     // .input(ConceptCreateInputSchema)
     .input(ConceptCreateArgsSchema)
     .mutation(async ({ ctx, input }) => {
-      const createOneConcept = await ctx.prisma.concept.create(input)
-      return createOneConcept
+      const result = await ctx.prisma.concept.create(input)
+      return result
     }),
 
   // aggregateConcept: shieldedProcedure

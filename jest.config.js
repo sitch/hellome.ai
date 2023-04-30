@@ -1,12 +1,12 @@
 // Setup env files
 // const dotenv = require('dotenv')
-// dotenv.config({ path: '.env.template', override: true })
+// dotenv.config({ path: '.env.example', override: true })
 // dotenv.config({ path: '.env', override: true })
 // dotenv.config({ path: '.env.local', override: true })
 // dotenv.config({ path: '.env.test', override: true })
 
 // const nextJest = require("next/jest")
-const nextJest = require("next/dist/build/jest/jest").default;
+const nextJest = require("next/dist/build/jest/jest").default
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment

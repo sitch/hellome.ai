@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
 
-import { Article, Author } from "@/lib/mdx/types"
+import { Author, type Article } from "@/lib/mdx/types"
 
 import { ArticleListItem } from "@/components/mdx/blog/articles/ArticleListItem"
 import { TopArticles } from "@/components/mdx/blog/articles/TopArticles"
