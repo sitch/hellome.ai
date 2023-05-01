@@ -2,7 +2,7 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import("./config/env.mjs")
+require.resolve("./config/env.mjs")
 
 /**
  * @type {import('next-pwa').PWAConfig}
@@ -18,21 +18,17 @@ const pwaConfig = {
   //   // video: ...,
   // },
 }
-const i18nextConfig = await import("./next-i18next.config.js")
+const i18nextConfig = require("./next-i18next.config")
 
 const analyzeConfig = {
   enabled: process.env.ANALYZE === "true",
   openAnalyzer: true,
 }
 
-const nextPWA = await import("next-pwa")
-const nextRoutes = await import("nextjs-routes/config")
-const nextAnalyzer = await import("@next/bundle-analyzer")
-
-const withPWA = nextPWA.default(pwaConfig)
-const withRoutes = nextRoutes.default()
-const withBundleAnalyzer = nextAnalyzer.default(analyzeConfig)
-// const { withSentryConfig } = import('@sentry/nextjs')
+const withPWA = require("next-pwa")(pwaConfig)
+const withRoutes = require("nextjs-routes/config")()
+const withBundleAnalyzer = require("@next/bundle-analyzer")(analyzeConfig)
+// const { withSentryConfig } = require('@sentry/nextjs')
 
 // // You might need to insert additional domains in script-src if you are using external services
 // const ContentSecurityPolicy = `
@@ -218,4 +214,4 @@ const userSentryOptions = {
 //   userSentryOptions
 // )
 
-export default withBundleAnalyzer(withPWA(withRoutes(nextConfig)))
+module.exports = withBundleAnalyzer(withPWA(withRoutes(nextConfig)))

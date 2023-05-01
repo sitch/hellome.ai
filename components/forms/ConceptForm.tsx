@@ -10,7 +10,7 @@ import Webcam from "react-webcam"
 import type z from "zod"
 
 import { useZodForm } from "@/lib/hooks/useZodForm"
-import { trpc } from "@/utils/trpc"
+import { api } from "@/utils/api"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -37,24 +37,32 @@ import {
 // Schema
 //============================================================================
 
+const CloudFileFormSchema = CloudFileSchema.omit({
+  id: true,
+  createdAt: true,
+  // updatedAt: true,
+})
 const PhotoFormSchema = PhotoSchema.omit({
   id: true,
   fileId: true,
   createdAt: true,
+  // updatedAt: true,
+}).extend({
+  file: CloudFileFormSchema,
 })
 
-const CloudFileFormSchema = CloudFileSchema.omit({
+const ConceptFormSchema = ConceptSchema.omit({
   id: true,
   createdAt: true,
+  updatedAt: true,
+}).extend({
+  photos: PhotoFormSchema.array(),
 })
 
-const formSchema = ConceptSchema.extend({
-  photos: PhotoFormSchema.extend({
-    file: CloudFileFormSchema,
-  }).array(),
-})
+const formSchema = ConceptFormSchema
 
 export type FormSchemaType = z.infer<typeof formSchema>
+export type FormPhotoType = z.infer<typeof PhotoFormSchema>
 
 //============================================================================
 // Props
@@ -93,6 +101,7 @@ export function ConceptForm(_props: Props) {
     schema: formSchema,
     defaultValues: {
       type: "person",
+      photos: [],
     },
   })
 
@@ -106,7 +115,7 @@ export function ConceptForm(_props: Props) {
   // Hooks (mutation)
   //============================================================================
 
-  const createConcept = trpc.createOneConcept.useMutation()
+  const createConcept = api.concept.createOne.useMutation()
 
   //============================================================================
   // States
@@ -209,15 +218,9 @@ export function ConceptForm(_props: Props) {
                         render={({ field: { onChange, ...field } }) => (
                           <RadioGroup
                             id="type"
-                            disabled={field.value !== "person" || disabled}
-                            aria-invalid={
-                              field.value !== "person" || errors.name
-                                ? "true"
-                                : "false"
-                            }
-                            onValueChange={
-                              field.value === "person" ? undefined : onChange
-                            }
+                            disabled={disabled}
+                            aria-invalid={errors.name ? "true" : "false"}
+                            onValueChange={onChange}
                             {...field}
                           >
                             {ConceptTypeSchema.options.map((type) => (

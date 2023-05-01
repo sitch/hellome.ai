@@ -13,7 +13,7 @@ import type z from "zod"
 import { makeZodI18nMap } from "zod-i18n-map"
 
 import { useZodForm } from "@/lib/hooks/useZodForm"
-import { trpc } from "@/utils/trpc"
+import { api } from "@/utils/api"
 
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import { ImageInput } from "@/components/filepond/ImageInput"
@@ -50,7 +50,7 @@ const formSchema = ConceptSchema.extend({
 type FormSchemaType = z.infer<typeof formSchema>
 
 export const ConceptForm = () => {
-  const createConcept = trpc.createOneConcept.useMutation()
+  const createConcept = api.concept.createOne.useMutation()
 
   const { t } = useTranslation("concepts")
   // z.setErrorMap(makeZodI18nMap({ t, handlePath: { ns: ['common', 'zod'] } }))
