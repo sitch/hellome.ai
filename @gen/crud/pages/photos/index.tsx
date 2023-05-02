@@ -30,6 +30,7 @@ export default function PhotoIndex({ photos }: PhotoIndexProps) {
           <div className="cell">Width</div>
           <div className="cell">Tags</div>
           <div className="cell">CreatedAt</div>
+          <div className="cell">UpdatedAt</div>
           <div className="cell">FileId</div>
           <div className="cell">Actions</div>
         </div>
@@ -46,6 +47,9 @@ export default function PhotoIndex({ photos }: PhotoIndexProps) {
             </div>
             <div className="cell" data-title="createdAt">
               {photo.createdAt}
+            </div>
+            <div className="cell" data-title="updatedAt">
+              {photo.updatedAt}
             </div>
             <div className="cell" data-title="fileId">
               {photo.fileId}

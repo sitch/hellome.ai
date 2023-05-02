@@ -8,6 +8,7 @@ const Schema: z.ZodType<Prisma.PhotoCountAggregateInputType> = z
     width: z.literal(true).optional(),
     tags: z.literal(true).optional(),
     createdAt: z.literal(true).optional(),
+    updatedAt: z.literal(true).optional(),
     fileId: z.literal(true).optional(),
     _all: z.literal(true).optional(),
   })

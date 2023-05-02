@@ -100,30 +100,47 @@ enum FilePrivacy {
   private
 }
 
+enum CloudFileRegion {
+  USEast1 @map("us-east-1")
+}
+
 model CloudFile {
   id String @id @default(cuid())
 
-  resourceType FileResourceType @map("resource_type")
+  /// File name
   filename     String
-  size         Int /// Filesize in bytes @zod.number.positive()
-  ext          String /// File extension
-  mime         String /// File MIME type
+  /// Filename without extension
+  stem         String
+  /// File extension
+  /// @zod.string.min(1).max(5)
+  extension    String
+  /// Filesize in bytes
+  /// @zod.number.positive()
+  size         Int
+  /// File MIME type
+  mime         String
+  /// Generic version of MIME
+  resourceType FileResourceType @map("resource_type")
   /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
   /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
-  metadata     Json
+  metadata     Json?
 
   // Cloud
-  path      String      @unique /// Path on blob store
-  signature String      @unique /// Signature on blob store
-  privacy   FilePrivacy @default(private) /// Privacy on blob store
+  key       String /// S3 Key
+  bucket    String /// S3 Bucket
+  region    CloudFileRegion // S3 Region
+  publicUrl String?         @unique() /// @zod.string.url()
+  privacy   FilePrivacy     @default(private) /// Privacy on blob store
 
   createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   photo Photo? // @ ignore
   pdf   PDF? // @ ignore
 
   // TODO: Add permissions
 
+  @@unique([region, bucket, key])
   @@map("cloud_files")
 }
 
@@ -136,8 +153,9 @@ model Photo {
 
   height    Int      @db.SmallInt /// @zod.number.positive()
   width     Int      @db.SmallInt /// @zod.number.positive()
-  tags      String[]
+  tags      String[] @default([])
   createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   // Web
   // etag String @unique /// Generate via: md5($file.content)-$id
@@ -182,8 +200,8 @@ model User {
   /// @zod.string.email().min(3).max(160)
   email     String   @unique
   // email     String   @unique @db.Citext()
-  updatedAt DateTime @updatedAt @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   // concepts     Concept[]
   Edition Edition[]

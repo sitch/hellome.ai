@@ -26,6 +26,7 @@ const analyzeConfig = {
 }
 
 const withPWA = require("next-pwa")(pwaConfig)
+// @ts-ignore
 const withRoutes = require("nextjs-routes/config")()
 const withBundleAnalyzer = require("@next/bundle-analyzer")(analyzeConfig)
 // const { withSentryConfig } = require('@sentry/nextjs')

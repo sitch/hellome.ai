@@ -1,0 +1,56 @@
+const nextFiles = files.map(file => {
+
+  const meta = metas.find(({key}) => key === file.serverId) ?? {url: undefined, bucket: undefined}
+
+  file.setMetadata('url', meta.url)
+  file.setMetadata('bucket', meta.bucket)
+return file
+})
+
+debugger
+
+
+
+
+
+        // Promise.all(files.map(cast)).then((files) => {
+        //   onChange(files)
+        // })
+
+
+
+
+        const { url, bucket, key } = response
+
+        metadata.key = key
+        metadata.bucket = bucket
+        metadata.url = url
+
+        const respMeta = {
+          url,
+          key,
+          bucket,
+        }
+
+        setMetas(uniq([...metas, respMeta]))        
+
+
+
+
+
+
+
+
+              // onpreparefile: (file, output) => {
+      //   console.info("onactivatefile", file, output)
+
+      //   // debugger
+      //   if (isPlainObject(output)) {
+      //     Object.keys(output).forEach((key) => {
+      //       file.setMetadata(key, output[key])
+      //     })
+      //   } else {
+      //     // debugger
+      //     console.log("just file")
+      //   }
+      // },

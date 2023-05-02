@@ -28,6 +28,9 @@ export default function PhotoShow({ photo }: PhotoShowProps) {
           <strong>CreatedAt:</strong> {photo.createdAt}
         </p>
         <p>
+          <strong>UpdatedAt:</strong> {photo.updatedAt}
+        </p>
+        <p>
           <strong>FileId:</strong> {photo.fileId}
         </p>
       </div>

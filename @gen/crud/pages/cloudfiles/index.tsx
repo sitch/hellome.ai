@@ -26,49 +26,65 @@ export default function CloudFileIndex({ cloudfiles }: CloudFileIndexProps) {
       </header>
       <div className="table">
         <div className="row header">
-          <div className="cell">ResourceType</div>
           <div className="cell">Filename</div>
+          <div className="cell">Stem</div>
+          <div className="cell">Extension</div>
           <div className="cell">Size</div>
-          <div className="cell">Ext</div>
           <div className="cell">Mime</div>
+          <div className="cell">ResourceType</div>
           <div className="cell">Metadata</div>
-          <div className="cell">Path</div>
-          <div className="cell">Signature</div>
+          <div className="cell">Key</div>
+          <div className="cell">Bucket</div>
+          <div className="cell">Region</div>
+          <div className="cell">PublicUrl</div>
           <div className="cell">Privacy</div>
           <div className="cell">CreatedAt</div>
+          <div className="cell">UpdatedAt</div>
           <div className="cell">Actions</div>
         </div>
         {cloudfiles.map((cloudfile) => (
           <div className="row" key={cloudfile.id}>
-            <div className="cell" data-title="resourceType">
-              {cloudfile.resourceType}
-            </div>
             <div className="cell" data-title="filename">
               {cloudfile.filename}
+            </div>
+            <div className="cell" data-title="stem">
+              {cloudfile.stem}
+            </div>
+            <div className="cell" data-title="extension">
+              {cloudfile.extension}
             </div>
             <div className="cell" data-title="size">
               {cloudfile.size}
             </div>
-            <div className="cell" data-title="ext">
-              {cloudfile.ext}
-            </div>
             <div className="cell" data-title="mime">
               {cloudfile.mime}
+            </div>
+            <div className="cell" data-title="resourceType">
+              {cloudfile.resourceType}
             </div>
             <div className="cell" data-title="metadata">
               {cloudfile.metadata}
             </div>
-            <div className="cell" data-title="path">
-              {cloudfile.path}
+            <div className="cell" data-title="key">
+              {cloudfile.key}
             </div>
-            <div className="cell" data-title="signature">
-              {cloudfile.signature}
+            <div className="cell" data-title="bucket">
+              {cloudfile.bucket}
+            </div>
+            <div className="cell" data-title="region">
+              {cloudfile.region}
+            </div>
+            <div className="cell" data-title="publicUrl">
+              {cloudfile.publicUrl}
             </div>
             <div className="cell" data-title="privacy">
               {cloudfile.privacy}
             </div>
             <div className="cell" data-title="createdAt">
               {cloudfile.createdAt}
+            </div>
+            <div className="cell" data-title="updatedAt">
+              {cloudfile.updatedAt}
             </div>
             <div className="cell actions" data-title="actions">
               <div className="action-buttons">

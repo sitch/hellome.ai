@@ -6,5 +6,6 @@ export const PhotoScalarFieldEnumSchema = z.enum([
   "width",
   "tags",
   "createdAt",
+  "updatedAt",
   "fileId",
 ])

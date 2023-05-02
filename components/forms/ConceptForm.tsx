@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useTranslation } from "next-i18next"
 
 import {
@@ -7,7 +7,8 @@ import {
   type SubmitHandler,
 } from "react-hook-form"
 import Webcam from "react-webcam"
-import type z from "zod"
+import { type FilePondFile } from "filepond"
+import z from "zod"
 
 import { useZodForm } from "@/lib/hooks/useZodForm"
 import { api } from "@/utils/api"
@@ -21,7 +22,16 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 // import Canvas from "@/components/replicate/canvas"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
-import { ImageInput } from "@/components/filepond/ImageInput"
+import { FileInput } from "@/components/filepond/FileInput"
+import {
+  CreatePhotoSchema,
+  castCloudFileCreateWithoutPhotoInput,
+  castPhotoCreateInput,
+} from "@/components/filepond/schema"
+import {
+  initialFilePondStatus,
+  type FilePondStatus,
+} from "@/components/filepond/status"
 import { ConceptCard } from "@/components/forms/ConceptCard"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
@@ -37,32 +47,19 @@ import {
 // Schema
 //============================================================================
 
-const CloudFileFormSchema = CloudFileSchema.omit({
-  id: true,
-  createdAt: true,
-  // updatedAt: true,
-})
-const PhotoFormSchema = PhotoSchema.omit({
-  id: true,
-  fileId: true,
-  createdAt: true,
-  // updatedAt: true,
-}).extend({
-  file: CloudFileFormSchema,
-})
-
 const ConceptFormSchema = ConceptSchema.omit({
   id: true,
   createdAt: true,
   updatedAt: true,
 }).extend({
-  photos: PhotoFormSchema.array(),
+  files: z.custom<FilePondFile>().array(),
+  photos: CreatePhotoSchema.array(),
 })
 
 const formSchema = ConceptFormSchema
-
 export type FormSchemaType = z.infer<typeof formSchema>
-export type FormPhotoType = z.infer<typeof PhotoFormSchema>
+
+// export type FormPhotoType = z.infer<typeof CreatePhotoSchema>
 
 //============================================================================
 // Props
@@ -84,6 +81,8 @@ export function ConceptForm(_props: Props) {
   // Hooks (form)
   //============================================================================
 
+  // const [photos, setPhotos] = useState<FormPhotoType[]>([])
+
   const {
     getValues,
     control,
@@ -100,10 +99,16 @@ export function ConceptForm(_props: Props) {
   } = useZodForm({
     schema: formSchema,
     defaultValues: {
+      name: "test",
+      description: "sample...",
       type: "person",
       photos: [],
     },
   })
+
+  const [filePondStatus, setFilePondStatus] = useState<FilePondStatus>(
+    initialFilePondStatus,
+  )
 
   //============================================================================
   // Hooks (Camera)
@@ -120,29 +125,33 @@ export function ConceptForm(_props: Props) {
   //============================================================================
   // States
   //============================================================================
-  const valid = isValid
+  const valid = isValid && filePondStatus.valid
   const submitting = isSubmitting || createConcept.isLoading
-  const loading = isValidating || isLoading || submitting
-  const disabled = isValidating || isLoading || submitting
+  const loading =
+    isValidating ||
+    isLoading ||
+    submitting ||
+    filePondStatus.loading ||
+    filePondStatus.processing ||
+    !filePondStatus.complete
+  const disabled =
+    isValidating || isLoading || submitting || filePondStatus.disabled
   const success = isSubmitSuccessful && createConcept.isSuccess
 
   //============================================================================
   // Callbacks
   //============================================================================
-  // eslint-disable-next-line @typescript-eslint/require-await
-  const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
+  const onSubmit: SubmitHandler<FormSchemaType> = async ({
+    files = [],
+    ...data
+  }) => {
     console.info("onSubmit", { values: getValues(), data })
 
     const args = {
       data: {
         ...data,
         photos: {
-          create: data.photos.map(({ file, ...photo }) => ({
-            ...photo,
-            file: {
-              create: file,
-            },
-          })),
+          create: await Promise.all(files.map(castPhotoCreateInput)),
         },
       },
       include: { photos: true },
@@ -152,8 +161,7 @@ export function ConceptForm(_props: Props) {
     console.info("onSuccess", { values: getValues(), data, args })
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  const onErrors: SubmitErrorHandler<FormSchemaType> = async (data) => {
+  const onErrors: SubmitErrorHandler<FormSchemaType> = (data) => {
     console.error("onErrors", { values: getValues(), data })
   }
 
@@ -191,7 +199,6 @@ export function ConceptForm(_props: Props) {
                 description={t("form.description")}
                 showFooter={true}
               >
-                {/* NAME */}
                 {/************* concept.name *************/}
                 <div className="sm:col-span-4">
                   <Label htmlFor="name">{t("form.schema.name.label")}</Label>
@@ -202,12 +209,11 @@ export function ConceptForm(_props: Props) {
                       autoComplete="off"
                       placeholder="Concept name"
                       disabled={disabled}
-                      aria-invalid={errors.name ? "true" : "false"}
+                      aria-invalid={Boolean(errors.name)}
                       {...register("name")}
                     />
                     <AlertFormField error={errors.name} />
                   </div>
-                  {/* TYPE */}
                   {/************* concept.type *************/}
                   <div className="col-span-full">
                     <Label htmlFor="type">{t("form.schema.type.label")}</Label>
@@ -219,7 +225,7 @@ export function ConceptForm(_props: Props) {
                           <RadioGroup
                             id="type"
                             disabled={disabled}
-                            aria-invalid={errors.name ? "true" : "false"}
+                            aria-invalid={Boolean(errors.type)}
                             onValueChange={onChange}
                             {...field}
                           >
@@ -249,12 +255,13 @@ export function ConceptForm(_props: Props) {
               <ConceptCard
                 wide={false}
                 title={
-                  <Label htmlFor="photos">
+                  <Label htmlFor="webcam">
                     {t("form.schema.photos.label")}
                   </Label>
                 }
               >
                 <Webcam
+                  id="webcam"
                   audio={false}
                   // height={720}
                   // width={1280}
@@ -327,28 +334,28 @@ export function ConceptForm(_props: Props) {
               </div> */}
 
               <div className="col-span-full">
-                <div className="bg-green grid w-full gap-6 p-0 md:grid-cols-2"></div>
-              </div>
-
-              <div className="col-span-full">
                 <div className="bg-green grid w-full gap-6 p-0 md:grid-cols-2">
                   <ConceptCard
                     title={
-                      <Label htmlFor="photos">
+                      <Label htmlFor="sketch">
                         {t("form.schema.photos.label")}
                       </Label>
                     }
                   >
                     <SketchCanvas
-                    // startingPaths={[]}
-                    // scribbleExists={false}
-                    // onScribble={(scribble: string | null): void => {
-                    //   // throw new Error('Function not implemented.')
-                    // }}
-                    // setScribbleExists={(exists: boolean): void => {
-                    //   // throw new Error('Function not implemented.')
-                    // }}
+                      id="sketch"
+                      // startingPaths={[]}
+                      // scribbleExists={false}
+                      // onScribble={(scribble: string | null): void => {
+                      //   // throw new Error('Function not implemented.')
+                      // }}
+                      // setScribbleExists={(exists: boolean): void => {
+                      //   // throw new Error('Function not implemented.')
+                      // }}
+                      // aria-invalid={Boolean(errors.sketch)}
                     />
+
+                    {/* <AlertFormField error={errors.sketch} /> */}
                   </ConceptCard>
 
                   <ConceptCard
@@ -367,7 +374,7 @@ export function ConceptForm(_props: Props) {
                       className="h-full"
                       rows={35}
                       disabled={disabled}
-                      aria-invalid={errors.description ? "true" : "false"}
+                      aria-invalid={Boolean(errors.description)}
                       {...register("description")}
                     />
                     <AlertFormField error={errors.description} />
@@ -379,31 +386,31 @@ export function ConceptForm(_props: Props) {
 
               {/************* concept.photos (image upload) *************/}
               <div className="col-span-full">
-                <Label htmlFor="photos">{t("form.schema.photos.label")}</Label>
+                <Label htmlFor="files">{t("form.schema.photos.label")}</Label>
                 <div className="mt-2">
                   <Controller
-                    name="photos"
+                    name="files"
                     control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <ImageInput
-                        id="photos"
-                        name="photos"
-                        acceptedFileTypes={["image/png", "image/jpeg"]}
-                        maxFiles={30}
-                        minFileSize={"1KB"}
-                        maxFileSize={"12MB"}
-                        maxTotalFileSize={"360MB"}
-                        imageValidateSizeMinWidth={512}
-                        imageValidateSizeMinHeight={512}
-                        required={true}
-                        // value={value}
-                        // onChange={onChange}
+                    render={({
+                      field: {
+                        // onChange,
+                        ref,
+                        ...formProps
+                      },
+                    }) => (
+                      <FileInput
+                        id="files"
+                        // required={true}
+                        {...formProps}
+                        onStatusChange={setFilePondStatus}
+                        aria-invalid={Boolean(errors.files)}
                       />
                     )}
                   />
                 </div>
 
-                <AlertFormField message={errors.photos?.message} />
+                <AlertFormField message={errors.files?.message} />
+                {/* <AlertFormField message={errors.photos?.message} /> */}
               </div>
             </div>
             {/************* end *************/}

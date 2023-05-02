@@ -13,6 +13,7 @@ const Schema: z.ZodType<Prisma.PhotoSelect> = z
     width: z.boolean().optional(),
     tags: z.boolean().optional(),
     createdAt: z.boolean().optional(),
+    updatedAt: z.boolean().optional(),
     fileId: z.boolean().optional(),
     file: z
       .union([z.boolean(), z.lazy(() => CloudFileArgsObjectSchema)])

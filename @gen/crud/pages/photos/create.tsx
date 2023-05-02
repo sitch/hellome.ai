@@ -7,6 +7,7 @@ export default function PhotoCreate() {
     width: "",
     tags: "",
     createdAt: "",
+    updatedAt: "",
     fileId: "",
   })
   const router = useRouter()
@@ -71,6 +72,17 @@ export default function PhotoCreate() {
             value={formState.createdAt}
             onChange={(e) =>
               setFormState({ ...formState, createdAt: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="updatedAt">UpdatedAt:</label>
+          <input
+            type="text"
+            id="updatedAt"
+            value={formState.updatedAt}
+            onChange={(e) =>
+              setFormState({ ...formState, updatedAt: e.target.value })
             }
           />
         </div>

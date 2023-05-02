@@ -22,10 +22,10 @@ export default function UserShow({ user }: UserShowProps) {
           <strong>Email:</strong> {user.email}
         </p>
         <p>
-          <strong>UpdatedAt:</strong> {user.updatedAt}
+          <strong>CreatedAt:</strong> {user.createdAt}
         </p>
         <p>
-          <strong>CreatedAt:</strong> {user.createdAt}
+          <strong>UpdatedAt:</strong> {user.updatedAt}
         </p>
       </div>
       <footer>

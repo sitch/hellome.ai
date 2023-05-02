@@ -1,9 +1,10 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
+import { CloudFileRegionSchema } from "../enums/CloudFileRegion.schema"
 import { FilePrivacySchema } from "../enums/FilePrivacy.schema"
 import { FileResourceTypeSchema } from "../enums/FileResourceType.schema"
-import { JsonNullValueInputSchema } from "../enums/JsonNullValueInput.schema"
+import { NullableJsonNullValueInputSchema } from "../enums/NullableJsonNullValueInput.schema"
 import { PDFUncheckedCreateNestedOneWithoutFileInputObjectSchema } from "./PDFUncheckedCreateNestedOneWithoutFileInput.schema"
 import { PhotoUncheckedCreateNestedOneWithoutFileInputObjectSchema } from "./PhotoUncheckedCreateNestedOneWithoutFileInput.schema"
 
@@ -19,16 +20,22 @@ const jsonSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
 const Schema: z.ZodType<Prisma.CloudFileUncheckedCreateInput> = z
   .object({
     id: z.string().optional(),
-    resourceType: z.lazy(() => FileResourceTypeSchema),
     filename: z.string(),
+    stem: z.string(),
+    extension: z.string(),
     size: z.number(),
-    ext: z.string(),
     mime: z.string(),
-    metadata: z.union([z.lazy(() => JsonNullValueInputSchema), jsonSchema]),
-    path: z.string(),
-    signature: z.string(),
+    resourceType: z.lazy(() => FileResourceTypeSchema),
+    metadata: z
+      .union([z.lazy(() => NullableJsonNullValueInputSchema), jsonSchema])
+      .optional(),
+    key: z.string(),
+    bucket: z.string(),
+    region: z.lazy(() => CloudFileRegionSchema),
+    publicUrl: z.string().optional().nullable(),
     privacy: z.lazy(() => FilePrivacySchema).optional(),
     createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
     photo: z
       .lazy(() => PhotoUncheckedCreateNestedOneWithoutFileInputObjectSchema)
       .optional(),

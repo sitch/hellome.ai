@@ -2,14 +2,18 @@ import { z } from "zod"
 
 export const CloudFileScalarFieldEnumSchema = z.enum([
   "id",
-  "resourceType",
   "filename",
+  "stem",
+  "extension",
   "size",
-  "ext",
   "mime",
+  "resourceType",
   "metadata",
-  "path",
-  "signature",
+  "key",
+  "bucket",
+  "region",
+  "publicUrl",
   "privacy",
   "createdAt",
+  "updatedAt",
 ])

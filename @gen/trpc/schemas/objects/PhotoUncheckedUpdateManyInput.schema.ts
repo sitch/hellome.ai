@@ -38,6 +38,12 @@ const Schema: z.ZodType<Prisma.PhotoUncheckedUpdateManyInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    updatedAt: z
+      .union([
+        z.date(),
+        z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
     fileId: z
       .union([
         z.string(),

@@ -37,6 +37,9 @@ const Schema: z.ZodType<Prisma.PhotoScalarWhereWithAggregatesInput> = z
     createdAt: z
       .union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema), z.date()])
       .optional(),
+    updatedAt: z
+      .union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema), z.date()])
+      .optional(),
     fileId: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),

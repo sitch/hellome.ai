@@ -16,34 +16,46 @@ export default function CloudFileShow({ cloudfile }: CloudFileShowProps) {
       </header>
       <div className="card">
         <p>
-          <strong>ResourceType:</strong> {cloudfile.resourceType}
+          <strong>Filename:</strong> {cloudfile.filename}
         </p>
         <p>
-          <strong>Filename:</strong> {cloudfile.filename}
+          <strong>Stem:</strong> {cloudfile.stem}
+        </p>
+        <p>
+          <strong>Extension:</strong> {cloudfile.extension}
         </p>
         <p>
           <strong>Size:</strong> {cloudfile.size}
         </p>
         <p>
-          <strong>Ext:</strong> {cloudfile.ext}
+          <strong>Mime:</strong> {cloudfile.mime}
         </p>
         <p>
-          <strong>Mime:</strong> {cloudfile.mime}
+          <strong>ResourceType:</strong> {cloudfile.resourceType}
         </p>
         <p>
           <strong>Metadata:</strong> {cloudfile.metadata}
         </p>
         <p>
-          <strong>Path:</strong> {cloudfile.path}
+          <strong>Key:</strong> {cloudfile.key}
         </p>
         <p>
-          <strong>Signature:</strong> {cloudfile.signature}
+          <strong>Bucket:</strong> {cloudfile.bucket}
+        </p>
+        <p>
+          <strong>Region:</strong> {cloudfile.region}
+        </p>
+        <p>
+          <strong>PublicUrl:</strong> {cloudfile.publicUrl}
         </p>
         <p>
           <strong>Privacy:</strong> {cloudfile.privacy}
         </p>
         <p>
           <strong>CreatedAt:</strong> {cloudfile.createdAt}
+        </p>
+        <p>
+          <strong>UpdatedAt:</strong> {cloudfile.updatedAt}
         </p>
       </div>
       <footer>

@@ -40,6 +40,12 @@ const Schema: z.ZodType<Prisma.PhotoUpdateWithoutFileInput> = z
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    updatedAt: z
+      .union([
+        z.date(),
+        z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
     pageArtworks: z
       .lazy(() => PageArtworkUpdateManyWithoutPhotoNestedInputObjectSchema)
       .optional(),

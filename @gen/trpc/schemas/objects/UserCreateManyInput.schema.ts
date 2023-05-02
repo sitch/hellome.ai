@@ -6,8 +6,8 @@ const Schema: z.ZodType<Prisma.UserCreateManyInput> = z
     id: z.string().optional(),
     name: z.string(),
     email: z.string(),
-    updatedAt: z.date().optional(),
     createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
   })
   .strict()
 

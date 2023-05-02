@@ -28,8 +28,8 @@ export default function UserIndex({ users }: UserIndexProps) {
         <div className="row header">
           <div className="cell">Name</div>
           <div className="cell">Email</div>
-          <div className="cell">UpdatedAt</div>
           <div className="cell">CreatedAt</div>
+          <div className="cell">UpdatedAt</div>
           <div className="cell">Actions</div>
         </div>
         {users.map((user) => (
@@ -40,11 +40,11 @@ export default function UserIndex({ users }: UserIndexProps) {
             <div className="cell" data-title="email">
               {user.email}
             </div>
-            <div className="cell" data-title="updatedAt">
-              {user.updatedAt}
-            </div>
             <div className="cell" data-title="createdAt">
               {user.createdAt}
+            </div>
+            <div className="cell" data-title="updatedAt">
+              {user.updatedAt}
             </div>
             <div className="cell actions" data-title="actions">
               <div className="action-buttons">

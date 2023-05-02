@@ -7,6 +7,7 @@ const Schema: z.ZodType<Prisma.PhotoMaxAggregateInputType> = z
     height: z.literal(true).optional(),
     width: z.literal(true).optional(),
     createdAt: z.literal(true).optional(),
+    updatedAt: z.literal(true).optional(),
     fileId: z.literal(true).optional(),
   })
   .strict()

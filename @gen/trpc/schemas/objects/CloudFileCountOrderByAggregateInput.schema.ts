@@ -6,16 +6,20 @@ import { SortOrderSchema } from "../enums/SortOrder.schema"
 const Schema: z.ZodType<Prisma.CloudFileCountOrderByAggregateInput> = z
   .object({
     id: z.lazy(() => SortOrderSchema).optional(),
-    resourceType: z.lazy(() => SortOrderSchema).optional(),
     filename: z.lazy(() => SortOrderSchema).optional(),
+    stem: z.lazy(() => SortOrderSchema).optional(),
+    extension: z.lazy(() => SortOrderSchema).optional(),
     size: z.lazy(() => SortOrderSchema).optional(),
-    ext: z.lazy(() => SortOrderSchema).optional(),
     mime: z.lazy(() => SortOrderSchema).optional(),
+    resourceType: z.lazy(() => SortOrderSchema).optional(),
     metadata: z.lazy(() => SortOrderSchema).optional(),
-    path: z.lazy(() => SortOrderSchema).optional(),
-    signature: z.lazy(() => SortOrderSchema).optional(),
+    key: z.lazy(() => SortOrderSchema).optional(),
+    bucket: z.lazy(() => SortOrderSchema).optional(),
+    region: z.lazy(() => SortOrderSchema).optional(),
+    publicUrl: z.lazy(() => SortOrderSchema).optional(),
     privacy: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),
+    updatedAt: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict()
 

@@ -13,6 +13,7 @@ const Schema: z.ZodType<Prisma.PhotoOrderByWithRelationInput> = z
     width: z.lazy(() => SortOrderSchema).optional(),
     tags: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),
+    updatedAt: z.lazy(() => SortOrderSchema).optional(),
     fileId: z.lazy(() => SortOrderSchema).optional(),
     file: z
       .lazy(() => CloudFileOrderByWithRelationInputObjectSchema)

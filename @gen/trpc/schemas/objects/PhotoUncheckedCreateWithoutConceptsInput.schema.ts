@@ -16,6 +16,7 @@ const Schema: z.ZodType<Prisma.PhotoUncheckedCreateWithoutConceptsInput> = z
       ])
       .optional(),
     createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
     fileId: z.string(),
     pageArtworks: z
       .lazy(

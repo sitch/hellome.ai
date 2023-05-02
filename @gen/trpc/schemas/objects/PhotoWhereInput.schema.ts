@@ -41,6 +41,9 @@ const Schema: z.ZodType<Prisma.PhotoWhereInput> = z
     createdAt: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
       .optional(),
+    updatedAt: z
+      .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
+      .optional(),
     fileId: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),

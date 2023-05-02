@@ -9,6 +9,7 @@ const Schema: z.ZodType<Prisma.PhotoMinOrderByAggregateInput> = z
     height: z.lazy(() => SortOrderSchema).optional(),
     width: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),
+    updatedAt: z.lazy(() => SortOrderSchema).optional(),
     fileId: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict()

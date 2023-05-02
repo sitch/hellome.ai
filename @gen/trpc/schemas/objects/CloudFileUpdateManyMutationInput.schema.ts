@@ -1,13 +1,16 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
+import { CloudFileRegionSchema } from "../enums/CloudFileRegion.schema"
 import { FilePrivacySchema } from "../enums/FilePrivacy.schema"
 import { FileResourceTypeSchema } from "../enums/FileResourceType.schema"
-import { JsonNullValueInputSchema } from "../enums/JsonNullValueInput.schema"
+import { NullableJsonNullValueInputSchema } from "../enums/NullableJsonNullValueInput.schema"
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from "./DateTimeFieldUpdateOperationsInput.schema"
+import { EnumCloudFileRegionFieldUpdateOperationsInputObjectSchema } from "./EnumCloudFileRegionFieldUpdateOperationsInput.schema"
 import { EnumFilePrivacyFieldUpdateOperationsInputObjectSchema } from "./EnumFilePrivacyFieldUpdateOperationsInput.schema"
 import { EnumFileResourceTypeFieldUpdateOperationsInputObjectSchema } from "./EnumFileResourceTypeFieldUpdateOperationsInput.schema"
 import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
+import { NullableStringFieldUpdateOperationsInputObjectSchema } from "./NullableStringFieldUpdateOperationsInput.schema"
 import { StringFieldUpdateOperationsInputObjectSchema } from "./StringFieldUpdateOperationsInput.schema"
 
 const literalSchema = z.union([z.string(), z.number(), z.boolean()])
@@ -27,15 +30,19 @@ const Schema: z.ZodType<Prisma.CloudFileUpdateManyMutationInput> = z
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    resourceType: z
+    filename: z
       .union([
-        z.lazy(() => FileResourceTypeSchema),
-        z.lazy(
-          () => EnumFileResourceTypeFieldUpdateOperationsInputObjectSchema,
-        ),
+        z.string(),
+        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    filename: z
+    stem: z
+      .union([
+        z.string(),
+        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    extension: z
       .union([
         z.string(),
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
@@ -47,33 +54,48 @@ const Schema: z.ZodType<Prisma.CloudFileUpdateManyMutationInput> = z
         z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    ext: z
-      .union([
-        z.string(),
-        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
-      ])
-      .optional(),
     mime: z
       .union([
         z.string(),
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    resourceType: z
+      .union([
+        z.lazy(() => FileResourceTypeSchema),
+        z.lazy(
+          () => EnumFileResourceTypeFieldUpdateOperationsInputObjectSchema,
+        ),
+      ])
+      .optional(),
     metadata: z
-      .union([z.lazy(() => JsonNullValueInputSchema), jsonSchema])
+      .union([z.lazy(() => NullableJsonNullValueInputSchema), jsonSchema])
       .optional(),
-    path: z
+    key: z
       .union([
         z.string(),
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    signature: z
+    bucket: z
       .union([
         z.string(),
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
+    region: z
+      .union([
+        z.lazy(() => CloudFileRegionSchema),
+        z.lazy(() => EnumCloudFileRegionFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    publicUrl: z
+      .union([
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional()
+      .nullable(),
     privacy: z
       .union([
         z.lazy(() => FilePrivacySchema),
@@ -81,6 +103,12 @@ const Schema: z.ZodType<Prisma.CloudFileUpdateManyMutationInput> = z
       ])
       .optional(),
     createdAt: z
+      .union([
+        z.date(),
+        z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    updatedAt: z
       .union([
         z.date(),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),

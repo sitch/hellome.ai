@@ -15,6 +15,7 @@ const Schema: z.ZodType<Prisma.PhotoCreateManyInput> = z
       ])
       .optional(),
     createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
     fileId: z.string(),
   })
   .strict()

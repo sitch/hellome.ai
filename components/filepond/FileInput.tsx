@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { renderToString } from "react-dom/server"
 import { useTranslation } from "next-i18next"
 
@@ -26,7 +27,11 @@ import { cn } from "@/lib/utils"
 
 import { LabelIdle } from "@/components/filepond/LabelIdle"
 import { labels } from "@/components/filepond/filepond.i18n"
-import { useFilePondServer } from "@/components/filepond/filepond.server"
+import {
+  useFilePondStatus,
+  type FilePondStatus,
+} from "@/components/filepond/status"
+import { useFilePondServer } from "@/components/filepond/useFilePondServer"
 import { imageValidateSizeMeasure } from "@/components/filepond/utils"
 
 registerPlugin(
@@ -44,6 +49,9 @@ registerPlugin(
   FilePondPluginManageMetadata,
   FilePondPluginMediaPreview,
   FilePondPluginPdfPreview,
+  // FilePondPluginFetchSVGPreview,
+  // FilePondPluginImagePdfOverlay,
+  // FilePondPluginPdfConvert,
 )
 
 type ExcludeProps =
@@ -55,31 +63,84 @@ type ExcludeProps =
   | "imageValidateSizeMeasure"
   | "maxParallelUploads"
 
-type Props<T = object> = Omit<FilePondProps, ExcludeProps> & {
-  label?: JSX.Element
-  mode?: typeof process.env.NODE_ENV
-  value?: T[] | undefined
-  onChange?: (values: T[]) => void
+type FileInputFormProps = {
+  // ref?: Ref<FilePond>
+  min?: string | number | undefined
+  max?: string | number | undefined
+  onBlur?: () => void
+  onChange?: (values: FilePondFile[]) => void
+  value?: FilePondFile[]
 }
 
-const defaultMetadataObject = {}
+type FileInputProps = Omit<FilePondProps, ExcludeProps> &
+  FileInputFormProps & {
+    label?: JSX.Element
+    onStatusChange?: (status: FilePondStatus) => void
+  }
 
-export function ImageInput<T>({
-  mode = "production",
-  label,
-  // cast,
-  onChange,
+export function FileInput({
   className,
+  label,
+  // ref: formRef,
+  onChange,
+  onBlur,
+  min,
+  max,
   value = [],
+  onStatusChange,
   ...filePondProps
-}: Props<T>) {
-  const { server, files, callbacks } = useFilePondServer()
+}: FileInputProps) {
+  //   export enum Status {
+  //     EMPTY = 0,
+  //     IDLE = 1,
+  //     ERROR = 2,
+  //     BUSY = 3,
+  //     READY = 4
+  // }
+
+  const ref = useRef<FilePond>(null)
+  const { server, files, callbacks } = useFilePondServer({
+    ref,
+    value,
+    onBlur,
+    onChange,
+  })
+
+  const status = useFilePondStatus({
+    // files,
+    // TODO: fix
+    files: value,
+    onStatusChange,
+  })
+
   const translation = useTranslation("filepond")
+
+  // // https://stackoverflow.com/questions/60476155/is-it-safe-to-use-ref-current-as-useeffects-dependency-when-ref-points-to-a-dom
+  // const [filePondStatus, setFilePondStatus] = useState();
+
+  // const handleStatusRef = useCallback((node: Ref<FilePond>) => {
+  //   if(node?.current) {
+  //     setFilePondStatus(node.current.status);
+  //   }
+  // }, []);
+
+  // ref.current.status
 
   return (
     <>
-      {/* <LabelIdle {...translation} /> */}
+      <pre>{JSON.stringify(status)}</pre>
       <FilePond
+        // ref={handleStatusRef}
+        ref={ref}
+        // acceptedFileTypes={["image/png", "image/jpeg"]}
+        // maxFiles={30}
+        // minFileSize={"1KB"}
+        // maxFileSize={"12MB"}
+        // maxTotalFileSize={"360MB"}
+        // imageValidateSizeMinWidth={512}
+        // imageValidateSizeMinHeight={512}
+        // allowFileSizeValidation={false}
+
         //======================================================================
         // File Encoding (Base 64)
         //======================================================================
@@ -98,6 +159,11 @@ export function ImageInput<T>({
         storeAsFile={false}
         maxParallelUploads={2}
         itemInsertLocation="after"
+        fileSizeBase={1024}
+        //======================================================================
+        // Input
+        //======================================================================
+        // captureMethod="camera"
         //======================================================================
         // Core - Drag & Drop
         //======================================================================
@@ -123,12 +189,12 @@ export function ImageInput<T>({
         //======================================================================
         // Toolbar - Metadata
         //======================================================================
-        fileMetadataObject={defaultMetadataObject}
+        // fileMetadataObject={defaultMetadataObject}
         allowFileMetadata={true}
-        enableManageMetadata={true}
-        onManageMetadata={(item: FilePondFile) =>
-          console.log("onManageMetadata hook called", item)
-        }
+        enableManageMetadata={false}
+        // onManageMetadata={(item: FilePondFile) =>
+        //   console.log("onManageMetadata", item)
+        // }
         //======================================================================
         // Validation - File Types
         //======================================================================

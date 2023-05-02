@@ -18,6 +18,7 @@ const Schema: z.ZodType<Prisma.PhotoCreateInput> = z
       ])
       .optional(),
     createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
     file: z.lazy(() => CloudFileCreateNestedOneWithoutPhotoInputObjectSchema),
     pageArtworks: z
       .lazy(() => PageArtworkCreateNestedManyWithoutPhotoInputObjectSchema)

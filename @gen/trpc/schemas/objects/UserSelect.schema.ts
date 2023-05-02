@@ -9,8 +9,8 @@ const Schema: z.ZodType<Prisma.UserSelect> = z
     id: z.boolean().optional(),
     name: z.boolean().optional(),
     email: z.boolean().optional(),
-    updatedAt: z.boolean().optional(),
     createdAt: z.boolean().optional(),
+    updatedAt: z.boolean().optional(),
     Edition: z
       .union([z.boolean(), z.lazy(() => EditionFindManySchema)])
       .optional(),

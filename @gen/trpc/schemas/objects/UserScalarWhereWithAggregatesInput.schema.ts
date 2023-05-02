@@ -31,10 +31,10 @@ const Schema: z.ZodType<Prisma.UserScalarWhereWithAggregatesInput> = z
     email: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
-    updatedAt: z
+    createdAt: z
       .union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema), z.date()])
       .optional(),
-    createdAt: z
+    updatedAt: z
       .union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema), z.date()])
       .optional(),
   })

@@ -32,10 +32,10 @@ const Schema: z.ZodType<Prisma.UserWhereInput> = z
     email: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
-    updatedAt: z
+    createdAt: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
       .optional(),
-    createdAt: z
+    updatedAt: z
       .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
       .optional(),
     Edition: z.lazy(() => EditionListRelationFilterObjectSchema).optional(),

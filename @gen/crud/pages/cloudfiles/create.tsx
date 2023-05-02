@@ -3,16 +3,20 @@ import { useRouter } from "next/router"
 
 export default function CloudFileCreate() {
   const [formState, setFormState] = useState({
-    resourceType: "",
     filename: "",
+    stem: "",
+    extension: "",
     size: "",
-    ext: "",
     mime: "",
+    resourceType: "",
     metadata: "",
-    path: "",
-    signature: "",
+    key: "",
+    bucket: "",
+    region: "",
+    publicUrl: "",
     privacy: "",
     createdAt: "",
+    updatedAt: "",
   })
   const router = useRouter()
 
@@ -36,17 +40,6 @@ export default function CloudFileCreate() {
       </header>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="resourceType">ResourceType:</label>
-          <input
-            type="text"
-            id="resourceType"
-            value={formState.resourceType}
-            onChange={(e) =>
-              setFormState({ ...formState, resourceType: e.target.value })
-            }
-          />
-        </div>
-        <div>
           <label htmlFor="filename">Filename:</label>
           <input
             type="text"
@@ -54,6 +47,28 @@ export default function CloudFileCreate() {
             value={formState.filename}
             onChange={(e) =>
               setFormState({ ...formState, filename: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="stem">Stem:</label>
+          <input
+            type="text"
+            id="stem"
+            value={formState.stem}
+            onChange={(e) =>
+              setFormState({ ...formState, stem: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="extension">Extension:</label>
+          <input
+            type="text"
+            id="extension"
+            value={formState.extension}
+            onChange={(e) =>
+              setFormState({ ...formState, extension: e.target.value })
             }
           />
         </div>
@@ -69,17 +84,6 @@ export default function CloudFileCreate() {
           />
         </div>
         <div>
-          <label htmlFor="ext">Ext:</label>
-          <input
-            type="text"
-            id="ext"
-            value={formState.ext}
-            onChange={(e) =>
-              setFormState({ ...formState, ext: e.target.value })
-            }
-          />
-        </div>
-        <div>
           <label htmlFor="mime">Mime:</label>
           <input
             type="text"
@@ -87,6 +91,17 @@ export default function CloudFileCreate() {
             value={formState.mime}
             onChange={(e) =>
               setFormState({ ...formState, mime: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="resourceType">ResourceType:</label>
+          <input
+            type="text"
+            id="resourceType"
+            value={formState.resourceType}
+            onChange={(e) =>
+              setFormState({ ...formState, resourceType: e.target.value })
             }
           />
         </div>
@@ -102,24 +117,46 @@ export default function CloudFileCreate() {
           />
         </div>
         <div>
-          <label htmlFor="path">Path:</label>
+          <label htmlFor="key">Key:</label>
           <input
             type="text"
-            id="path"
-            value={formState.path}
+            id="key"
+            value={formState.key}
             onChange={(e) =>
-              setFormState({ ...formState, path: e.target.value })
+              setFormState({ ...formState, key: e.target.value })
             }
           />
         </div>
         <div>
-          <label htmlFor="signature">Signature:</label>
+          <label htmlFor="bucket">Bucket:</label>
           <input
             type="text"
-            id="signature"
-            value={formState.signature}
+            id="bucket"
+            value={formState.bucket}
             onChange={(e) =>
-              setFormState({ ...formState, signature: e.target.value })
+              setFormState({ ...formState, bucket: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="region">Region:</label>
+          <input
+            type="text"
+            id="region"
+            value={formState.region}
+            onChange={(e) =>
+              setFormState({ ...formState, region: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="publicUrl">PublicUrl:</label>
+          <input
+            type="text"
+            id="publicUrl"
+            value={formState.publicUrl}
+            onChange={(e) =>
+              setFormState({ ...formState, publicUrl: e.target.value })
             }
           />
         </div>
@@ -142,6 +179,17 @@ export default function CloudFileCreate() {
             value={formState.createdAt}
             onChange={(e) =>
               setFormState({ ...formState, createdAt: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="updatedAt">UpdatedAt:</label>
+          <input
+            type="text"
+            id="updatedAt"
+            value={formState.updatedAt}
+            onChange={(e) =>
+              setFormState({ ...formState, updatedAt: e.target.value })
             }
           />
         </div>

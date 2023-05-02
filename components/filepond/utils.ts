@@ -33,7 +33,12 @@ export const imageValidateSizeMeasure: ValidateSize = async (
   return dimensions
 }
 
-export const getImageSize = (file: File) =>
+type ImageDimensions = {
+  height: number
+  width: number
+}
+
+export const getImageSize = (file: File): Promise<ImageDimensions> =>
   new Promise((resolve, reject) => {
     const image = document.createElement("img")
     image.src = URL.createObjectURL(file)

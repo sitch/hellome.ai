@@ -5,8 +5,8 @@ export default function UserCreate() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
-    updatedAt: "",
     createdAt: "",
+    updatedAt: "",
   })
   const router = useRouter()
 
@@ -52,17 +52,6 @@ export default function UserCreate() {
           />
         </div>
         <div>
-          <label htmlFor="updatedAt">UpdatedAt:</label>
-          <input
-            type="text"
-            id="updatedAt"
-            value={formState.updatedAt}
-            onChange={(e) =>
-              setFormState({ ...formState, updatedAt: e.target.value })
-            }
-          />
-        </div>
-        <div>
           <label htmlFor="createdAt">CreatedAt:</label>
           <input
             type="text"
@@ -70,6 +59,17 @@ export default function UserCreate() {
             value={formState.createdAt}
             onChange={(e) =>
               setFormState({ ...formState, createdAt: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="updatedAt">UpdatedAt:</label>
+          <input
+            type="text"
+            id="updatedAt"
+            value={formState.updatedAt}
+            onChange={(e) =>
+              setFormState({ ...formState, updatedAt: e.target.value })
             }
           />
         </div>

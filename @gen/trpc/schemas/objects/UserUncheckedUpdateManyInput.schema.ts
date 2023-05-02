@@ -24,13 +24,13 @@ const Schema: z.ZodType<Prisma.UserUncheckedUpdateManyInput> = z
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    updatedAt: z
+    createdAt: z
       .union([
         z.date(),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    createdAt: z
+    updatedAt: z
       .union([
         z.date(),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
