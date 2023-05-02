@@ -91,7 +91,7 @@ export const useFilePondServer = ({
 
     console.warn("onChange", { files, metas, nextFiles })
 
-    debugger
+    // debugger
 
     onChange?.(nextFiles)
   }, [onChange, files, metas])
@@ -147,7 +147,7 @@ export const useFilePondServer = ({
       onprocessfile: (error, file) => {
         console.info("onprocessfile", error, file)
 
-        debugger
+        // debugger
       },
       onupdatefiles: (files) => {
         console.info("onupdatefiles", { metas, files })
