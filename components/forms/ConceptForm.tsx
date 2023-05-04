@@ -439,8 +439,8 @@ export function ConceptForm(_props: Props) {
                         mode="production"
                         // mode="bypass"
                         id="files"
-                        // pondRef={pondRef}
-                        ref={ref}
+                        pondRef={pondRef}
+                        // ref={ref}
                         //
                         //
                         //

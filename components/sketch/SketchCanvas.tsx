@@ -11,6 +11,7 @@ import { Plus, Trash, Undo } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
+import { getDataURIFileSize } from "@/components/filepond/utils"
 import { type AddFileCallback } from "@/components/forms/ConceptForm"
 import { EmptyBanner } from "@/components/sketch/EmptyBanner"
 import {
@@ -97,17 +98,16 @@ export function SketchCanvas({
 
     const filename = `scribble_${Date.now()}.png`
     const dataURI = await canvasRef.current!.exportImage("png")
-    // const filesize = getDataURIFileSize(dataURI)
+    const filesize = getDataURIFileSize(dataURI)
 
     const options = {
       type: "input" as const,
       file: {
         type: "image/png",
         name: filename,
-        // size: filesize,
+        size: filesize,
       },
-      // metadata: {
-      // }
+      metadata: {},
     }
 
     onUpload(dataURI, options)
