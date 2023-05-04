@@ -109,11 +109,6 @@ export const getDataURIFileSize = (dataURI: string): number => {
 // });
 
 export function renameFile(originalFile: File, updatedFileName: string) {
-  // return new File([originalFile], updatedFileName, {
-  //     type: originalFile.type,
-  //     lastModified: originalFile.lastModified,
-  // });
-
   Object.defineProperty(originalFile, "name", {
     writable: true,
     value: updatedFileName,

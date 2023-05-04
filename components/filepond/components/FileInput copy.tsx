@@ -92,7 +92,7 @@ export const FileInput = ({
   pondRef,
   value = [],
   mode,
-  // onStatusChange,
+  onStatusChange,
   ...filePondProps
 }: FileInputProps) => {
   //======================================================================
@@ -106,10 +106,10 @@ export const FileInput = ({
     onChange,
   })
   // const { status } = useFilePondStatus({
-  // useFilePondStatus({
-  //   files,
-  //   onStatusChange,
-  // })
+  useFilePondStatus({
+    files,
+    onStatusChange,
+  })
 
   //======================================================================
   // Main
@@ -217,13 +217,12 @@ export const FileInput = ({
       //======================================================================
       // Server
       //======================================================================
-      {...callbacks}
-      files={files.map(({ file }) => file)}
-      // files={[
-      //   ...files.map((file) => {
-      //     return file.file
-      //   }),
-      // ]}
+      // {...callbacks}
+      files={[
+        ...files.map((file) => {
+          return file.file
+        }),
+      ]}
       server={server}
       instantUpload={true}
       //======================================================================

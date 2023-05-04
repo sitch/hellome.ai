@@ -1,4 +1,10 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
+import {
+  useCallback,
+  useEffect,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react"
 
 import { FileStatus, type FilePondFile } from "filepond"
 
@@ -97,7 +103,7 @@ export function useFilePondStatus({
 }: UseFilePondStatusProps): UseFilePondStatusHook {
   const [status, setStatus] = useState<FilePondStatus>(verifyStatus(files))
 
-  useEffect(() => {
+  const handleStatus = useCallback(() => {
     const nextStatus = verifyStatus(files)
 
     if (status !== nextStatus) {
@@ -105,6 +111,12 @@ export function useFilePondStatus({
       onStatusChange?.(nextStatus)
     }
   }, [status, files, onStatusChange])
+
+  useEffect(handleStatus, [handleStatus])
+
+  useEffect(() => {
+    onStatusChange?.(status)
+  }, [status, onStatusChange])
 
   return { status, setStatus }
 }

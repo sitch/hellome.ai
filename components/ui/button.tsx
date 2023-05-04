@@ -82,6 +82,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           disabled ? "" : "",
         )}
         ref={ref}
+        type={type}
         {...props}
       >
         {Icon ? (

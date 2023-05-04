@@ -1,12 +1,13 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useTranslation } from "next-i18next"
 
-import { type FilePond } from "react-filepond"
+import { FilePond } from "react-filepond"
 import {
   Controller,
   type SubmitErrorHandler,
   type SubmitHandler,
 } from "react-hook-form"
+import { mergeRefs } from "react-merge-refs"
 import Webcam from "react-webcam"
 import { type FilePondFile } from "filepond"
 import z from "zod"
@@ -23,23 +24,28 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 // import Canvas from "@/components/replicate/canvas"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
-import { FileInput } from "@/components/filepond/FileInput"
 import {
   CreatePhotoSchema,
   castPhotoCreateInput,
 } from "@/components/filepond/schema"
-import {
-  initialFilePondStatus,
-  type FilePondStatus,
-} from "@/components/filepond/useFilePondStatus"
+import { useFilePondUploader } from "@/components/filepond/useFilePondUploader"
 import { ConceptCard } from "@/components/forms/ConceptCard"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
 
 import { ConceptSchema, ConceptTypeSchema } from "@/@gen/zod"
+import { FileInput } from "../filepond/FileInput"
+
+//============================================================================
+// Types
+//============================================================================
 
 type AddFileCallbackArgs = Required<Parameters<FilePond["addFile"]>>
 export type AddFileCallback = (...args: AddFileCallbackArgs) => void
+
+//============================================================================
+// Constants
+//============================================================================
 
 const ID_SUBMIT_BUTTON = "ID_SUBMIT_BUTTON"
 
@@ -115,9 +121,13 @@ export function ConceptForm(_props: Props) {
     },
   })
 
-  const [filePondStatus, setFilePondStatus] = useState<FilePondStatus>(
-    initialFilePondStatus,
-  )
+  const {
+    ref: pondRef,
+    status: filePondStatus,
+    props: filePondInputProps,
+  } = useFilePondUploader({
+    initialFiles: [],
+  })
 
   //============================================================================
   // Hooks (Camera)
@@ -134,7 +144,8 @@ export function ConceptForm(_props: Props) {
   //============================================================================
   // States
   //============================================================================
-  const valid = isValid && filePondStatus.valid
+
+  // const valid = isValid && filePondStatus.valid
   const submitting = isSubmitting || createConcept.isLoading
   const loading =
     isValidating || isLoading || submitting || filePondStatus.loading
@@ -147,13 +158,12 @@ export function ConceptForm(_props: Props) {
   //============================================================================
   const onSubmit: SubmitHandler<FormSchemaType> = async (
     { files = [], ...data },
-    event,
+    e,
   ) => {
-    if (event?.nativeEvent.submitter?.id !== ID_SUBMIT_BUTTON) {
+    // Needed to prevent random buttons from firing form
+    if ((e?.nativeEvent as SubmitEvent).submitter?.id !== ID_SUBMIT_BUTTON) {
       return
     }
-
-    console.info("onSubmit", { values: getValues(), data })
 
     const args = {
       data: {
@@ -177,37 +187,11 @@ export function ConceptForm(_props: Props) {
     console.log("onCancel", { values: getValues() })
   }
 
-  const pondRef = useRef<FilePond>(null)
-
-  // const addFile: FilePond["addFile"] = (source, options) => {
-  //   // pond.addFile('data:text/plain;base64,...');
-
-  //   // const options = {
-  //   //   // file: {}
-  //   // }
-
-  //   pondRef.current?.addFile(source, options)
-
-  //   // const file: FilePondInitialFile = {
-  //   //   source:
-  //   //     "next-s3-uploads/9a043b34-51d7-4c90-bcf2-e2a694406610/IMG_5999.jpeg",
-  //   //   options: {
-  //   //     type: "local",
-
-  //   //   //   file?: {
-  //   //   //     name?: string;
-  //   //   //     size?: number;
-  //   //   //     type?: string;
-  //   //   // };
-  //   //   /** File initial metadata. */
-  //   //   // metadata?: { [key: string]: any };
-  //   //   },
-  //   // }
-  // }
-
-  const handleScribbleUpload: AddFileCallback = (data, options) => {
+  const handleScribbleUpload: AddFileCallback = (data, _options) => {
+    // Options isn't processed correctly as per the FilePond docs
+    // Should be:
+    //   pondRef.current?.addFile(data, options)
     pondRef.current?.addFile(data)
-    // pondRef.current?.addFile(data, options)
   }
 
   //============================================================================
@@ -434,8 +418,49 @@ export function ConceptForm(_props: Props) {
                   <Controller
                     name="files"
                     control={control}
-                    render={({ field: { ref, ...formProps } }) => (
+                    render={({ field: { ref, 
+                      // onChange, 
+                      // onBlur,
+                       ...formProps } }) => (
                       <FileInput
+                        mode="production"
+                        // mode="bypass"
+                        id="files"
+                        // pondRef={mergeRefs([ref, pondRef])}
+                        pondRef={pondRef}
+                        //
+                        //
+                        //
+                        acceptedFileTypes={["image/png", "image/jpeg"]}
+                        maxFiles={30}
+                        // minFileSize={"1KB"}
+                        // maxFileSize={"20MB"}
+                        // maxTotalFileSize={"360MB"}
+                        // imageValidateSizeMinWidth={512}
+                        // imageValidateSizeMinHeight={512}
+                        // allowFileSizeValidation={false}
+                        //
+                        //
+                        //
+                        // onStatusChange={setFilePondStatus}
+                        // onBlur={() => {}}
+                        // onChange={() => {}}
+
+                        aria-invalid={Boolean(errors.files)}
+                        {...formProps}
+                      />
+
+                      // <FilePond
+                      //   {...filePondInputProps}
+                      //   {...formProps}
+                      //   // ref={ref}
+                      //   // ref={pondRef}
+                      //   ref={mergeRefs([ref, pondRef])}
+                      // />
+                    )}
+                  />
+
+                  {/* <FileInput
                         mode="production"
                         // mode="bypass"
                         id="files"
@@ -455,12 +480,14 @@ export function ConceptForm(_props: Props) {
                         //
                         //
                         //
-                        onStatusChange={setFilePondStatus}
+                        // onStatusChange={setFilePondStatus}
                         aria-invalid={Boolean(errors.files)}
-                        {...formProps}
-                      />
-                    )}
-                  />
+                        // {...formProps}
+
+                        {...filePondInputProps}
+                      /> */}
+
+                  {/* <FilePond {...filePondInputProps} /> ref={pondRef} */}
                 </div>
 
                 <AlertFormField message={errors.files?.message} />
@@ -493,6 +520,7 @@ export function ConceptForm(_props: Props) {
             type="submit"
             loading={loading}
             disabled={disabled}
+            onSubmit={handleSubmit(onSubmit, onErrors)}
           >
             Save
           </AnimatedButton>

@@ -85,7 +85,7 @@ export const production: ServerBuildFunction = ({
         renameFile(file as File, filename)
       }
     }
-    const controller = new AbortController()
+    // const controller = new AbortController()
 
     console.warn("process.uploadToS3.request", file)
 
@@ -132,6 +132,6 @@ export const production: ServerBuildFunction = ({
   },
   load: "/api/uploads/load/",
   fetch: "/api/uploads/fetch",
-  restore: "/api/uploads/restore",
-  revert: "/api/uploads/revert",
+  // restore: "/api/uploads/restore",
+  // revert: "/api/uploads/revert",
 })

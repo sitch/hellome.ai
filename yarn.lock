@@ -13781,10 +13781,10 @@ magic-string@^0.27.0:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.13"
 
-mailing-core@^0.9.14:
-  version "0.9.14"
-  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-0.9.14.tgz#2e2a16a706fdff706effe927f3c05e9aa610cb26"
-  integrity sha512-ueCvsDRV6ZMvfaV1h69vewApkIt/gKGtZCPGnJJHIdZ0iHa2WNcHYmtiYIdrCB5ZJEpDkYtsK0xO1UQgrxoBTQ==
+mailing-core@^0.9.15:
+  version "0.9.15"
+  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-0.9.15.tgz#2fb50744ba99f252e84b40d13e7899fb5307c803"
+  integrity sha512-FUq49MKft1U0EVPBMy+judvHRj07N+Rmcvw6Fnt+9INx81S8VYVsmiyDBkrh5DtAaqElSRNckJ3YCY28yuAtzg==
   dependencies:
     chalk "^4.1.2"
     fs-extra "^10.1.0"
@@ -13795,10 +13795,10 @@ mailing-core@^0.9.14:
     open "^8.4.0"
     posthog-node "^2.0.2"
 
-mailing@^0.9.14:
-  version "0.9.14"
-  resolved "https://registry.yarnpkg.com/mailing/-/mailing-0.9.14.tgz#10286b80e461d4b6f60094de8a816ac790a9fffe"
-  integrity sha512-O0AjbtCu2CtZMUVLPMyOt8GezVpuOQedEr47toPGPDmDas6B3L03J6/8kI3K7AbKK+KK3ahi0Nj6KQ67hv0Tjg==
+mailing@^0.9.15:
+  version "0.9.15"
+  resolved "https://registry.yarnpkg.com/mailing/-/mailing-0.9.15.tgz#f6a2ff71bc1709dd67a858f7aa0cbc4c76e57df2"
+  integrity sha512-YF9SnyGqrdOXBpeqSmyTmxcYxHMKCnVPAYHJ2wbgVL4pik4H+0aqyblw8rPJzlEAoSaGd4UQitCk+Lc/wM8PoA==
   dependencies:
     "@babel/parser" "^7.18.11"
     "@prisma/client" "^4.4.0"
@@ -13829,7 +13829,7 @@ mailing@^0.9.14:
     html-minifier-terser "^7.0.0"
     iron-session "^6.2.1"
     lodash "^4.17.21"
-    mailing-core "^0.9.14"
+    mailing-core "^0.9.15"
     mjml "^4.12.0"
     mjml-react "^2.0.7"
     node-fetch "^2.6.7"
@@ -17716,6 +17716,11 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-merge-refs@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-2.0.1.tgz#a1f8c2dadefa635333e9b91ec59f30b65228b006"
+  integrity sha512-pywF6oouJWuqL26xV3OruRSIqai31R9SdJX/I3gP2q8jLxUnA1IwXcLW8werUHLZOrp4N7YOeQNZrh/BKrHI4A==
 
 react-reconciler@^0.26.1:
   version "0.26.2"
