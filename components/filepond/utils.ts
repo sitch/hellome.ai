@@ -85,10 +85,6 @@ export const getDataURIFileSize = (dataURI: string): number => {
   return filesize
 }
 
-
-
-
-
 //**dataURL to blob**
 // function dataURLtoBlob(dataurl) {
 //   var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -112,18 +108,14 @@ export const getDataURIFileSize = (dataURI: string): number => {
 //   console.log(dataurl);
 // });
 
-
-
 export function renameFile(originalFile: File, updatedFileName: string) {
   // return new File([originalFile], updatedFileName, {
   //     type: originalFile.type,
   //     lastModified: originalFile.lastModified,
   // });
 
-
-  Object.defineProperty(originalFile, 'name', {
+  Object.defineProperty(originalFile, "name", {
     writable: true,
-    value: updatedFileName
-  });
-
+    value: updatedFileName,
+  })
 }
