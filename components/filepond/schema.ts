@@ -36,8 +36,6 @@ export function castCloudFileCreateWithoutPhotoInput(
 ): Prisma.CloudFileCreateWithoutPhotoInput {
   const { key, bucket, url: publicUrl, ...metadata } = file.getMetadata()
 
-  const region = file.getMetadata("region")
-
   return {
     filename: file.filename,
     stem: file.filenameWithoutExtension,
@@ -48,11 +46,11 @@ export function castCloudFileCreateWithoutPhotoInput(
 
     key,
     bucket,
-    region,
     publicUrl,
 
     // TODO: These should be specified somehow
     // defaults
+    region: "USEast1",
     resourceType: "image",
     privacy: "private",
   }

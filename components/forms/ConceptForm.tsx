@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import { useTranslation } from "next-i18next"
 
-import { FilePond } from "react-filepond"
+import { type FilePond } from "react-filepond"
 import {
   Controller,
   type SubmitErrorHandler,
@@ -24,6 +24,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 // import Canvas from "@/components/replicate/canvas"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+import { FileInput } from "@/components/filepond/FileInput"
 import {
   CreatePhotoSchema,
   castPhotoCreateInput,
@@ -32,9 +33,9 @@ import { useFilePondUploader } from "@/components/filepond/useFilePondUploader"
 import { ConceptCard } from "@/components/forms/ConceptCard"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
+import { validateResult } from "@/components/vision/human/validations"
 
 import { ConceptSchema, ConceptTypeSchema } from "@/@gen/zod"
-import { FileInput } from "../filepond/FileInput"
 
 //============================================================================
 // Types
@@ -174,7 +175,9 @@ export function ConceptForm(_props: Props) {
       },
       include: { photos: true },
     }
+
     console.info("onMutate", { values: getValues(), data, args })
+
     createConcept.mutate(args)
     console.info("onSuccess", { values: getValues(), data, args })
   }
@@ -418,16 +421,12 @@ export function ConceptForm(_props: Props) {
                   <Controller
                     name="files"
                     control={control}
-                    render={({ field: { ref, 
-                      // onChange, 
-                      // onBlur,
-                       ...formProps } }) => (
+                    render={({ field: { ref, ...formProps } }) => (
                       <FileInput
                         mode="production"
                         // mode="bypass"
                         id="files"
-                        // pondRef={mergeRefs([ref, pondRef])}
-                        pondRef={pondRef}
+                        pondRef={mergeRefs([ref, pondRef])}
                         //
                         //
                         //
@@ -443,8 +442,6 @@ export function ConceptForm(_props: Props) {
                         //
                         //
                         // onStatusChange={setFilePondStatus}
-                        // onBlur={() => {}}
-                        // onChange={() => {}}
 
                         aria-invalid={Boolean(errors.files)}
                         {...formProps}

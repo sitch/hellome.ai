@@ -1,4 +1,4 @@
-import { type RefObject } from "react"
+import { type LegacyRef, type RefObject } from "react"
 import { renderToString } from "react-dom/server"
 import { useTranslation } from "next-i18next"
 
@@ -77,7 +77,7 @@ type FileInputFormProps = {
 type FileInputProps = Omit<FilePondProps, ExcludeProps> &
   FileInputFormProps & {
     mode: ServerMode
-    pondRef?: RefObject<FilePond>
+    pondRef?: LegacyRef<FilePond>
     label?: JSX.Element
     onStatusChange?: (status: FilePondStatus) => void
   }

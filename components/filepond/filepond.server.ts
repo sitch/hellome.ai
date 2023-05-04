@@ -1,7 +1,6 @@
 import { type useS3Upload } from "next-s3-upload"
 
 import { type FilePondProps } from "react-filepond"
-import { type FilePondCallbackProps } from "filepond"
 import { uniq } from "lodash"
 
 import { renameFile } from "@/components/filepond/utils"
@@ -23,25 +22,6 @@ export type ServerBuildFunction = (
 //======================================================================
 // Debug
 //======================================================================
-
-export const debugCallbackProps: FilePondCallbackProps = {
-  oninit: console.info.bind(null, "oninit"),
-  onwarning: console.warn.bind(null, "onwarning"),
-  onerror: console.error.bind(null, "onerror"),
-  onaddfilestart: console.info.bind(null, "onaddfilestart"),
-  onaddfileprogress: console.info.bind(null, "onaddfileprogress"),
-  onaddfile: console.info.bind(null, "onaddfile"),
-  onprocessfilestart: console.info.bind(null, "onprocessfilestart"),
-  onprocessfileprogress: console.info.bind(null, "onprocessfileprogress"),
-  onprocessfileabort: console.info.bind(null, "onprocessfileabort"),
-  onprocessfilerevert: console.info.bind(null, "onprocessfilerevert"),
-  onprocessfile: console.info.bind(null, "onprocessfile"),
-  onremovefile: console.info.bind(null, "onremovefile"),
-  onpreparefile: console.info.bind(null, "onpreparefile"),
-  onupdatefiles: console.info.bind(null, "onupdatefiles"),
-  onactivatefile: console.info.bind(null, "onactivatefile"),
-  onreorderfiles: console.info.bind(null, "onreorderfiles"),
-}
 
 export const bypass: ServerBuildFunction = () => ({
   process: (_fieldName, _file, _metadata, load) => {
@@ -66,7 +46,6 @@ export const production: ServerBuildFunction = ({
   metas,
   setMetas,
 }) => ({
-  // url: "/api/uploads/",
   process: (
     _fieldName,
     file,
@@ -85,7 +64,7 @@ export const production: ServerBuildFunction = ({
         renameFile(file as File, filename)
       }
     }
-    // const controller = new AbortController()
+    const controller = new AbortController()
 
     console.warn("process.uploadToS3.request", file)
 
@@ -99,7 +78,7 @@ export const production: ServerBuildFunction = ({
         request: {
           url: "/api/uploads/process",
           // headers: {
-          // 'Authorization': 'Basic AUTH_TOKEN_HERE'
+          //   "Authorization": `Basic ${AUTH_TOKEN_HERE}`,
           // },
         },
       },
@@ -111,27 +90,23 @@ export const production: ServerBuildFunction = ({
           metadata,
           response,
         })
-
         setMetas(uniq([...metas, response]))
 
-        // return response
         const serverId = response.key
-        load(serverId)
-
-        // return serverId
+        return serverId
       })
-      // .then(load)
+      .then(load)
       .catch(error)
 
     return {
       abort: () => {
-        // controller.abort()
+        controller.abort()
         abort()
       },
     }
   },
   load: "/api/uploads/load/",
-  fetch: "/api/uploads/fetch",
+  // fetch: "/api/uploads/fetch",
   // restore: "/api/uploads/restore",
   // revert: "/api/uploads/revert",
 })

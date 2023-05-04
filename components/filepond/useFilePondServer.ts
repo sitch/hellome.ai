@@ -18,6 +18,7 @@ type FilePondServerProps = Pick<
   "server"
 > & {
   files: FilePondFile[]
+  metas: UploadS3ProcessResp[]
   callbacks: FilePondCallbackProps
 }
 
@@ -35,32 +36,13 @@ export const useFilePondServer = ({
   mode,
   value = [],
   // ref,
-  onBlur,
+  // onBlur,
   onChange,
 }: UseFilePondServerOptions): FilePondServerProps => {
   const nextS3Upload = useS3Upload()
 
   const [files, setFiles] = useState<FilePondFile[]>(value)
-  // const [pondFiles, setPondFiles] = useState<FilePondFile[]>(value)
   const [metas, setMetas] = useState<UploadS3ProcessResp[]>([])
-
-  const handleChange = useCallback(() => {
-    const nextFiles = files.map((file) => {
-      const meta = metas.find(({ key }) => key === file.serverId)
-
-      if (meta) {
-        file.setMetadata("url", meta.url)
-        file.setMetadata("bucket", meta.bucket)
-      }
-      return file
-    })
-
-    console.warn("useFilePondServer.handleChange", { files, metas, nextFiles })
-
-    // onChange?.(nextFiles)
-  }, [files, metas])
-
-  // useEffect(handleChange, [handleChange])
 
   const context: ServerBuildContext = {
     nextS3Upload,
@@ -73,7 +55,7 @@ export const useFilePondServer = ({
   return {
     server,
     files,
-    // files: pondFiles,
+    metas,
     callbacks: {
       // FilePond instance has been created and is ready.
       oninit: () => {
@@ -131,25 +113,41 @@ export const useFilePondServer = ({
       // If no error, Processing of a file has been completed
       onprocessfile: (error, file) => {
         console.warn("onprocessfile", error, file)
-        maybeReplaceByAndDispatch(files, file, { id: file.id }, setFiles)
+        // maybeReplaceByAndDispatch(files, file, { id: file.id }, setFiles)
+
+        const meta = metas.find(({ key }) => key === file.serverId)
+
+        if (meta) {
+          const silent = true
+          file.setMetadata("key", meta.key, silent)
+          file.setMetadata("url", meta.url, silent)
+          file.setMetadata("bucket", meta.bucket, silent)
+        }
       },
       // Called when all files in the list have been processed
       onprocessfiles: () => {
+        // debugger
         console.warn("onprocessfiles", files)
+
         // setFiles([...files])
         setFiles(files)
+        onChange?.(files)
+
+        // mergeFileMeta()
+        // setFiles([...files])
+        // setFiles(files)
         // setPondFiles([...files])
         // onBlur?.()
       },
       // File has been removed.
-      // onremovefile: (error, file) => {
-      //   console.warn("onremovefile", error, file)
-      //   // maybeReplaceByAndDispatch(files, file, { id: file.id }, setFiles)
-      // },
-      // // File has been transformed by the transform plugin or another plugin subscribing to the prepare_output filter. It receives the file item and the output data.
-      // onpreparefile: (file, output) => {
-      //   console.info("onpreparefile", file, output)
-      // },
+      onremovefile: (error, file) => {
+        console.warn("onremovefile", error, file)
+        // maybeReplaceByAndDispatch(files, file, { id: file.id }, setFiles)
+      },
+      // File has been transformed by the transform plugin or another plugin subscribing to the prepare_output filter. It receives the file item and the output data.
+      onpreparefile: (file, output) => {
+        console.info("onpreparefile", file, output)
+      },
       // A file has been added or removed, receives a list of file items
       onupdatefiles: (files) => {
         console.warn("onupdatefiles", files)
@@ -157,6 +155,7 @@ export const useFilePondServer = ({
         setFiles(files)
         // setPondFiles([...files])
         // setPondFiles(files)
+        // onChange?.()
         // onBlur?.()
       },
       // Called when a file is clicked or tapped
@@ -171,3 +170,22 @@ export const useFilePondServer = ({
     },
   }
 }
+
+// export const debugCallbackProps: FilePondCallbackProps = {
+//   oninit: console.info.bind(null, "oninit"),
+//   onwarning: console.warn.bind(null, "onwarning"),
+//   onerror: console.error.bind(null, "onerror"),
+//   onaddfilestart: console.info.bind(null, "onaddfilestart"),
+//   onaddfileprogress: console.info.bind(null, "onaddfileprogress"),
+//   onaddfile: console.info.bind(null, "onaddfile"),
+//   onprocessfilestart: console.info.bind(null, "onprocessfilestart"),
+//   onprocessfileprogress: console.info.bind(null, "onprocessfileprogress"),
+//   onprocessfileabort: console.info.bind(null, "onprocessfileabort"),
+//   onprocessfilerevert: console.info.bind(null, "onprocessfilerevert"),
+//   onprocessfile: console.info.bind(null, "onprocessfile"),
+//   onremovefile: console.info.bind(null, "onremovefile"),
+//   onpreparefile: console.info.bind(null, "onpreparefile"),
+//   onupdatefiles: console.info.bind(null, "onupdatefiles"),
+//   onactivatefile: console.info.bind(null, "onactivatefile"),
+//   onreorderfiles: console.info.bind(null, "onreorderfiles"),
+// }
