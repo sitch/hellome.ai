@@ -42,8 +42,8 @@ generator erd_simple {
 }
 
 generator zod {
-  provider = "zod-prisma-types"
-  output   = "../@gen/zod" // default is ./generated/zod
+  provider                 = "zod-prisma-types"
+  output                   = "../@gen/zod" // default is ./generated/zod
   // useMultipleFiles                 = true  // default is false
   // createInputTypes                 = false // default is true
   // createModelTypes                 = false // default is true
@@ -56,7 +56,7 @@ generator zod {
   // createPartialTypes               = true  // default is false
   // useDefaultValidators             = false // default is true
   // coerceDate                       = false // default is true
-  // writeNullishInModelTypes         = true  // default is false
+  writeNullishInModelTypes = true // default is false
 }
 
 generator trpc {

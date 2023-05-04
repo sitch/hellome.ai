@@ -2,3 +2,5 @@
 styles/global/filepond-orig.css
 styles/filepond.css
 styles/filepond/*.css
+public/sw.js
+public/workbox-*.js

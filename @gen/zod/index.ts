@@ -164,7 +164,7 @@ export const CloudFileSchema = z.object({
   /**
    * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
    */
-  metadata: z.record(z.union([z.string(), z.number()])).nullable(),
+  metadata: z.record(z.union([z.string(), z.number()])).nullish(),
   /**
    * S3 Key
    */
@@ -173,7 +173,7 @@ export const CloudFileSchema = z.object({
    * S3 Bucket
    */
   bucket: z.string(),
-  publicUrl: z.string().url().nullable(),
+  publicUrl: z.string().url().nullish(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 })
@@ -264,8 +264,8 @@ export const StorySchema = z.object({
   id: z.string().cuid(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
-  artistId: z.string().cuid().nullable(),
-  authorId: z.string().cuid().nullable(),
+  artistId: z.string().cuid().nullish(),
+  authorId: z.string().cuid().nullish(),
 })
 
 export type Story = z.infer<typeof StorySchema>
@@ -301,8 +301,8 @@ export const PageTextSchema = z.object({
   updatedAt: z.coerce.date(),
   pageId: z.string().cuid(),
   storyId: z.string().cuid(),
-  authorId: z.string().cuid().nullable(),
-  translatorId: z.string().cuid().nullable(),
+  authorId: z.string().cuid().nullish(),
+  translatorId: z.string().cuid().nullish(),
 })
 
 export type PageText = z.infer<typeof PageTextSchema>
@@ -348,7 +348,7 @@ export const ConceptSchema = z.object({
    * .max(100
    */
   name: z.string().min(1),
-  description: z.string().nullable(),
+  description: z.string().nullish(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 })
@@ -364,14 +364,14 @@ export const PredictionSchema = z.object({
   uuid: z.string(),
   input: NullableJsonValue.optional(),
   output: NullableJsonValue.optional(),
-  status: z.string().nullable(),
-  created_at: z.coerce.date().nullable(),
-  started_at: z.coerce.date().nullable(),
-  completed_at: z.coerce.date().nullable(),
-  version: z.string().nullable(),
+  status: z.string().nullish(),
+  created_at: z.coerce.date().nullish(),
+  started_at: z.coerce.date().nullish(),
+  completed_at: z.coerce.date().nullish(),
+  version: z.string().nullish(),
   metrics: NullableJsonValue.optional(),
-  error: z.string().nullable(),
-  logs: z.string().nullable(),
+  error: z.string().nullish(),
+  logs: z.string().nullish(),
 })
 
 export type Prediction = z.infer<typeof PredictionSchema>
