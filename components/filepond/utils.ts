@@ -1,5 +1,6 @@
 import { type FilePondProps } from "react-filepond"
 import imageInfo from "base64image-dimensions"
+import { findIndex, type ListIterateeCustom } from "lodash"
 
 export const fileToBase64 = (file: File) =>
   new Promise((resolve, reject) => {
@@ -57,3 +58,29 @@ export const getImageSize = (file: File): Promise<ImageDimensions> =>
       }
     }, 1)
   })
+
+export const maybeReplaceByAndDispatch = <T extends { status: number }>(
+  arr: T[],
+  val: T,
+  predicate: ListIterateeCustom<T, boolean>,
+  fn: (arr: T[]) => void,
+) => {
+  const index = findIndex(arr, predicate)
+  if (index >= 0) {
+    const prev = arr[index]
+
+    if (prev.status !== val.status) {
+      // const next = [...slice(arr, 0, index), val, ...slice(arr, index + 1)]
+
+      arr[index] = val
+      fn(arr)
+    }
+  }
+}
+
+export const getDataURIFileSize = (dataURI: string): number => {
+  const base64str = dataURI.split("base64,")[1] //remove the image type metadata.
+  const imageFile = Buffer.from(base64str, "base64")
+  const filesize = imageFile.length
+  return filesize
+}

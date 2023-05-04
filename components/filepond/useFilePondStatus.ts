@@ -1,30 +1,30 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 
 import { FileStatus, type FilePondFile } from "filepond"
 
 export const initialFilePondStatus: FilePondStatus = {
   disabled: false,
   valid: true,
-  ready: true,
   loading: false,
-  uploading: false,
-  processing: false,
-  complete: true,
+  // ready: true,
+  // uploading: false,
+  // processing: false,
+  // complete: true,
   hasError: false,
-  errors: [],
+  // errors: [],
 }
 
 export type FilePondStatus = {
   valid: boolean
   loading: boolean
-  processing: boolean
   disabled: boolean
 
-  ready: boolean
-  uploading: boolean
-  complete: boolean
+  // processing: boolean
+  // ready: boolean
+  // uploading: boolean
+  // complete: boolean
   hasError: boolean
-  errors: string[]
+  // errors: string[]
 }
 
 //   export enum FileStatus {
@@ -59,26 +59,25 @@ export function verifyStatus(files: FilePondFile[]): FilePondStatus {
     ].includes(status),
   )
 
-  const complete = files.every(({ status }) =>
+  const valid = files.every(({ status }) =>
     [FileStatus.PROCESSING_COMPLETE].includes(status),
   )
 
-  const disabled = loading || processing || hasError || !complete
+  const disabled = loading || processing || hasError || !valid
 
-  const valid = true
   const ready = false
   const uploading = false
 
   return {
     disabled,
-    loading,
+    loading: processing || loading,
     valid,
-    processing,
-    complete,
-    ready,
-    uploading,
+    // processing,
+    // complete,
+    // ready,
+    // uploading,
     hasError,
-    errors: [],
+    // errors: [],
   }
 }
 
@@ -87,17 +86,25 @@ export type UseFilePondStatusProps = {
   onStatusChange?: (status: FilePondStatus) => void
 }
 
+export type UseFilePondStatusHook = {
+  status: FilePondStatus
+  setStatus: Dispatch<SetStateAction<FilePondStatus>>
+}
+
 export function useFilePondStatus({
   files,
   onStatusChange,
-}: UseFilePondStatusProps): FilePondStatus {
+}: UseFilePondStatusProps): UseFilePondStatusHook {
   const [status, setStatus] = useState<FilePondStatus>(verifyStatus(files))
 
   useEffect(() => {
-    const next = verifyStatus(files)
-    setStatus(next)
-    onStatusChange?.(next)
-  }, [files, onStatusChange])
+    const nextStatus = verifyStatus(files)
 
-  return status
+    if (status !== nextStatus) {
+      setStatus(nextStatus)
+      onStatusChange?.(nextStatus)
+    }
+  }, [status, files, onStatusChange])
+
+  return { status, setStatus }
 }

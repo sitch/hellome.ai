@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { useTranslation } from "next-i18next"
 
+import { type FilePond } from "react-filepond"
 import {
   Controller,
   type SubmitErrorHandler,
@@ -25,23 +26,22 @@ import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import { FileInput } from "@/components/filepond/FileInput"
 import {
   CreatePhotoSchema,
-  castCloudFileCreateWithoutPhotoInput,
   castPhotoCreateInput,
 } from "@/components/filepond/schema"
 import {
   initialFilePondStatus,
   type FilePondStatus,
-} from "@/components/filepond/status"
+} from "@/components/filepond/useFilePondStatus"
 import { ConceptCard } from "@/components/forms/ConceptCard"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
 
-import {
-  CloudFileSchema,
-  ConceptSchema,
-  ConceptTypeSchema,
-  PhotoSchema,
-} from "@/@gen/zod"
+import { ConceptSchema, ConceptTypeSchema } from "@/@gen/zod"
+
+type AddFileCallbackArgs = Required<Parameters<FilePond["addFile"]>>
+export type AddFileCallback = (...args: AddFileCallbackArgs) => void
+
+const ID_SUBMIT_BUTTON = "ID_SUBMIT_BUTTON"
 
 //============================================================================
 // Schema
@@ -102,6 +102,15 @@ export function ConceptForm(_props: Props) {
       name: "test",
       description: "sample...",
       type: "person",
+      files: [
+        // {
+        //   source:
+        //     "next-s3-uploads/9a043b34-51d7-4c90-bcf2-e2a694406610/IMG_5999.jpeg",
+        //   options: {
+        //     type: "local",
+        //   },
+        // },
+      ],
       photos: [],
     },
   })
@@ -128,12 +137,7 @@ export function ConceptForm(_props: Props) {
   const valid = isValid && filePondStatus.valid
   const submitting = isSubmitting || createConcept.isLoading
   const loading =
-    isValidating ||
-    isLoading ||
-    submitting ||
-    filePondStatus.loading ||
-    filePondStatus.processing ||
-    !filePondStatus.complete
+    isValidating || isLoading || submitting || filePondStatus.loading
   const disabled =
     isValidating || isLoading || submitting || filePondStatus.disabled
   const success = isSubmitSuccessful && createConcept.isSuccess
@@ -141,10 +145,14 @@ export function ConceptForm(_props: Props) {
   //============================================================================
   // Callbacks
   //============================================================================
-  const onSubmit: SubmitHandler<FormSchemaType> = async ({
-    files = [],
-    ...data
-  }) => {
+  const onSubmit: SubmitHandler<FormSchemaType> = async (
+    { files = [], ...data },
+    event,
+  ) => {
+    if (event?.nativeEvent.submitter?.id !== ID_SUBMIT_BUTTON) {
+      return
+    }
+
     console.info("onSubmit", { values: getValues(), data })
 
     const args = {
@@ -167,6 +175,39 @@ export function ConceptForm(_props: Props) {
 
   const onCancel = () => {
     console.log("onCancel", { values: getValues() })
+  }
+
+  const pondRef = useRef<FilePond>(null)
+
+  // const addFile: FilePond["addFile"] = (source, options) => {
+  //   // pond.addFile('data:text/plain;base64,...');
+
+  //   // const options = {
+  //   //   // file: {}
+  //   // }
+
+  //   pondRef.current?.addFile(source, options)
+
+  //   // const file: FilePondInitialFile = {
+  //   //   source:
+  //   //     "next-s3-uploads/9a043b34-51d7-4c90-bcf2-e2a694406610/IMG_5999.jpeg",
+  //   //   options: {
+  //   //     type: "local",
+
+  //   //   //   file?: {
+  //   //   //     name?: string;
+  //   //   //     size?: number;
+  //   //   //     type?: string;
+  //   //   // };
+  //   //   /** File initial metadata. */
+  //   //   // metadata?: { [key: string]: any };
+  //   //   },
+  //   // }
+  // }
+
+  const handleScribbleUpload: AddFileCallback = (data, options) => {
+    pondRef.current?.addFile(data)
+    // pondRef.current?.addFile(data, options)
   }
 
   //============================================================================
@@ -353,6 +394,8 @@ export function ConceptForm(_props: Props) {
                       //   // throw new Error('Function not implemented.')
                       // }}
                       // aria-invalid={Boolean(errors.sketch)}
+
+                      onUpload={handleScribbleUpload}
                     />
 
                     {/* <AlertFormField error={errors.sketch} /> */}
@@ -391,19 +434,30 @@ export function ConceptForm(_props: Props) {
                   <Controller
                     name="files"
                     control={control}
-                    render={({
-                      field: {
-                        // onChange,
-                        ref,
-                        ...formProps
-                      },
-                    }) => (
+                    render={({ field: { ref, ...formProps } }) => (
                       <FileInput
+                        mode="production"
+                        // mode="bypass"
                         id="files"
-                        // required={true}
-                        {...formProps}
+                        // pondRef={pondRef}
+                        ref={ref}
+                        //
+                        //
+                        //
+                        acceptedFileTypes={["image/png", "image/jpeg"]}
+                        maxFiles={30}
+                        // minFileSize={"1KB"}
+                        // maxFileSize={"20MB"}
+                        // maxTotalFileSize={"360MB"}
+                        // imageValidateSizeMinWidth={512}
+                        // imageValidateSizeMinHeight={512}
+                        // allowFileSizeValidation={false}
+                        //
+                        //
+                        //
                         onStatusChange={setFilePondStatus}
                         aria-invalid={Boolean(errors.files)}
+                        {...formProps}
                       />
                     )}
                   />
@@ -434,7 +488,12 @@ export function ConceptForm(_props: Props) {
           >
             Cancel
           </Button>
-          <AnimatedButton type="submit" loading={loading} disabled={disabled}>
+          <AnimatedButton
+            id={ID_SUBMIT_BUTTON}
+            type="submit"
+            loading={loading}
+            disabled={disabled}
+          >
             Save
           </AnimatedButton>
         </div>

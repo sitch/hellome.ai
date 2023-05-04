@@ -1,4 +1,9 @@
 {
+  "scribble": {
+    "EmptyBanner": {
+      "description": "Scribble here"
+    }
+  },
   "LabelIdle": {
     "upload": "Upload a file",
     "dragDrop": "or drag and drop",

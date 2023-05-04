@@ -6,33 +6,36 @@ import {
   type ReactSketchCanvasProps,
   type ReactSketchCanvasRef,
 } from "react-sketch-canvas"
-import { Trash, Undo, Upload } from "lucide-react"
+import { Plus, Trash, Undo } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
+import { type AddFileCallback } from "@/components/forms/ConceptForm"
+import { EmptyBanner } from "@/components/sketch/EmptyBanner"
+import {
+  SketchPalette,
+  type SketchPaletteStyleProps,
+} from "@/components/sketch/SketchPalette"
+
+const INITIAL_STYLE = {
+  strokeWidth: 3,
+  strokeColor: "blue",
+}
 
 export type Scribble = string
-
-function EmptyBanner() {
-  return (
-    <div>
-      <div className="pointer-events-none absolute grid h-full w-full place-items-center p-3 text-xl">
-        <span className="opacity-40">Draw something here.</span>
-      </div>
-    </div>
-  )
-}
 
 type Props = ReactSketchCanvasProps & {
   startingPaths?: CanvasPath[]
   onScribble?: (scribble: string | null) => void
+  onUpload?: AddFileCallback
   setTouched?: (exists: boolean) => void
 }
 
 export function SketchCanvas({
   startingPaths = [],
   onScribble = () => {},
+  onUpload,
   className,
   ...props
 }: Props) {
@@ -42,11 +45,7 @@ export function SketchCanvas({
 
   const canvasRef = useRef<ReactSketchCanvasRef>(null)
   const [touched, setTouched] = useState<boolean>(false)
-
-  const [styles, setStyles] = useState<Partial<ReactSketchCanvasProps>>({
-    strokeWidth: 3,
-    strokeColor: "blue",
-  })
+  const [styles, setStyles] = useState<SketchPaletteStyleProps>(INITIAL_STYLE)
 
   //============================================================================
   // Callbacks
@@ -67,19 +66,16 @@ export function SketchCanvas({
   }, [onScribble, setTouched])
 
   const loadStartingPaths = useCallback(async () => {
-    await canvasRef.current!.loadPaths(startingPaths)
-    setTouched(true)
-    onChange()
+    if (startingPaths.length > 0) {
+      await canvasRef.current!.loadPaths(startingPaths)
+      setTouched(true)
+      onChange()
+    }
   }, [onChange, setTouched, startingPaths])
 
   //============================================================================
   // Handlers
   //============================================================================
-
-  const handleUpload = () => {
-    setTouched(false)
-    canvasRef.current!.resetCanvas()
-  }
 
   const handleUndo = () => {
     canvasRef.current!.undo()
@@ -90,9 +86,32 @@ export function SketchCanvas({
     canvasRef.current!.resetCanvas()
   }
 
-  const handleStyle = () => {
-    const styles = {}
+  const handleStyle = (styles: SketchPaletteStyleProps) => {
     setStyles(styles)
+  }
+
+  const handleUpload = async () => {
+    if (!onUpload) {
+      return
+    }
+
+    const filename = `scribble_${Date.now()}.png`
+    const dataURI = await canvasRef.current!.exportImage("png")
+    // const filesize = getDataURIFileSize(dataURI)
+
+    const options = {
+      type: "input" as const,
+      file: {
+        type: "image/png",
+        name: filename,
+        // size: filesize,
+      },
+      // metadata: {
+      // }
+    }
+
+    onUpload(dataURI, options)
+    handleReset()
   }
 
   //============================================================================
@@ -124,30 +143,31 @@ export function SketchCanvas({
           "overflow-hidden rounded",
           "border-primary border",
           "cursor-dark-pen dark:cursor-light-pen",
-          // className,
+          className,
         )}
-        // svgStyle={{
-        //   borderRadius: "var(--radius)"
-        //  }}
-        // strokeWidth={4}
-        // strokeColor="red"
         onChange={onChange}
         withTimestamp={true}
         {...props}
         {...styles}
       />
 
+      <SketchPalette
+        // orientation="horizontal"
+        orientation="vertical"
+        onChange={handleStyle}
+      />
+
       {/* Controls */}
       <div className="animate-in fade-in my-2 flex justify-between text-left duration-500">
         <Button
-          icon={Upload}
+          icon={Plus}
           size="sm"
           type="button"
           variant="secondary"
           disabled={!touched}
           onClick={handleUpload}
         >
-          Upload
+          Add
         </Button>
 
         <div>

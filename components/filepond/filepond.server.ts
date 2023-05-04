@@ -64,6 +64,7 @@ export const production: ServerBuildFunction = ({
   metas,
   setMetas,
 }) => ({
+  // url: "/api/uploads/",
   process: (
     _fieldName,
     file,
@@ -75,8 +76,9 @@ export const production: ServerBuildFunction = ({
     _transfer,
     _options,
   ) => {
-    const controller = new AbortController()
+    // const controller = new AbortController()
 
+    console.warn("process.uploadToS3.request", file)
     uploadToS3(file as File, {
       // TODO: submit PR
       // This function is entered if the user has tapped the cancel button
@@ -94,7 +96,7 @@ export const production: ServerBuildFunction = ({
     })
       // .then(load)
       .then((response) => {
-        console.log("process.uploadToS3.success", {
+        console.warn("process.uploadToS3.success", {
           file,
           metadata,
           response,
@@ -104,16 +106,16 @@ export const production: ServerBuildFunction = ({
 
         // return response
         const serverId = response.key
-        // load(serverId)
+        load(serverId)
 
-        return serverId
+        // return serverId
       })
-      .then(load)
+      // .then(load)
       .catch(error)
 
     return {
       abort: () => {
-        controller.abort()
+        // controller.abort()
         abort()
       },
     }

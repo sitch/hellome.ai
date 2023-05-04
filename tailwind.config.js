@@ -4,6 +4,8 @@ import plugin from "tailwindcss/plugin"
 // eslint-disable-next-line @limegrass/import-alias/import-alias
 import tailwindBlogPreset from "./tailwind.blog.preset"
 
+const colors = require("tailwindcss/colors")
+
 /** @type {import('tailwindcss').Config} */
 const config = {
   presets: [tailwindBlogPreset],
@@ -140,6 +142,7 @@ const config = {
       },
 
       colors: {
+        ...colors,
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

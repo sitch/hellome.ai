@@ -72,3 +72,5 @@ export const labels = ({
   labelMaxFileDurationExceeded: t("labelMaxFileDurationExceeded"),
   labelMaxFileDuration: t("labelMaxFileDuration"),
 })
+
+export const mimeMap = {}

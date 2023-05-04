@@ -1,5 +1,5 @@
 import { type Prisma } from "@prisma/client"
-import { type FilePondFile } from "filepond"
+import { type FilePondFile, type FilePondInitialFile } from "filepond"
 import { type z } from "zod"
 
 import { getImageSize } from "@/components/filepond/utils"
@@ -66,9 +66,19 @@ export async function castPhotoCreateInput(
   return {
     height,
     width,
-    tags: ["training"],
+    tags: ["concept:training"],
     file: {
       create: castCloudFileCreateWithoutPhotoInput(file),
+    },
+  }
+}
+
+// https://github.com/pqina/filepond/issues/192
+export const castInitialFile = (url: string): FilePondInitialFile => {
+  return {
+    source: url,
+    options: {
+      type: "local",
     },
   }
 }

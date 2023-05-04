@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { type RefObject } from "react"
 import { renderToString } from "react-dom/server"
 import { useTranslation } from "next-i18next"
 
@@ -28,10 +28,13 @@ import { cn } from "@/lib/utils"
 import { LabelIdle } from "@/components/filepond/LabelIdle"
 import { labels } from "@/components/filepond/filepond.i18n"
 import {
+  useFilePondServer,
+  type ServerMode,
+} from "@/components/filepond/useFilePondServer"
+import {
   useFilePondStatus,
   type FilePondStatus,
-} from "@/components/filepond/status"
-import { useFilePondServer } from "@/components/filepond/useFilePondServer"
+} from "@/components/filepond/useFilePondStatus"
 import { imageValidateSizeMeasure } from "@/components/filepond/utils"
 
 registerPlugin(
@@ -64,7 +67,6 @@ type ExcludeProps =
   | "maxParallelUploads"
 
 type FileInputFormProps = {
-  // ref?: Ref<FilePond>
   min?: string | number | undefined
   max?: string | number | undefined
   onBlur?: () => void
@@ -74,184 +76,164 @@ type FileInputFormProps = {
 
 type FileInputProps = Omit<FilePondProps, ExcludeProps> &
   FileInputFormProps & {
+    mode: ServerMode
+    pondRef?: RefObject<FilePond>
     label?: JSX.Element
     onStatusChange?: (status: FilePondStatus) => void
   }
 
-export function FileInput({
+export const FileInput = ({
   className,
   label,
-  // ref: formRef,
   onChange,
   onBlur,
   min,
   max,
+  pondRef,
   value = [],
+  mode,
   onStatusChange,
   ...filePondProps
-}: FileInputProps) {
-  //   export enum Status {
-  //     EMPTY = 0,
-  //     IDLE = 1,
-  //     ERROR = 2,
-  //     BUSY = 3,
-  //     READY = 4
-  // }
-
-  const ref = useRef<FilePond>(null)
+}: FileInputProps) => {
+  //======================================================================
+  // Hooks
+  //======================================================================
+  const translation = useTranslation("filepond")
   const { server, files, callbacks } = useFilePondServer({
-    ref,
+    mode,
     value,
     onBlur,
     onChange,
   })
-
-  const status = useFilePondStatus({
-    // files,
-    // TODO: fix
-    files: value,
+  // const { status } = useFilePondStatus({
+  useFilePondStatus({
+    files,
     onStatusChange,
   })
 
-  const translation = useTranslation("filepond")
-
-  // // https://stackoverflow.com/questions/60476155/is-it-safe-to-use-ref-current-as-useeffects-dependency-when-ref-points-to-a-dom
-  // const [filePondStatus, setFilePondStatus] = useState();
-
-  // const handleStatusRef = useCallback((node: Ref<FilePond>) => {
-  //   if(node?.current) {
-  //     setFilePondStatus(node.current.status);
-  //   }
-  // }, []);
-
-  // ref.current.status
+  //======================================================================
+  // Main
+  //======================================================================
 
   return (
-    <>
-      <pre>{JSON.stringify(status)}</pre>
-      <FilePond
-        // ref={handleStatusRef}
-        ref={ref}
-        // acceptedFileTypes={["image/png", "image/jpeg"]}
-        // maxFiles={30}
-        // minFileSize={"1KB"}
-        // maxFileSize={"12MB"}
-        // maxTotalFileSize={"360MB"}
-        // imageValidateSizeMinWidth={512}
-        // imageValidateSizeMinHeight={512}
-        // allowFileSizeValidation={false}
-
-        //======================================================================
-        // File Encoding (Base 64)
-        //======================================================================
-        allowFileEncode={true}
-        //======================================================================
-        // Core
-        //======================================================================
-        allowBrowse={true}
-        allowMultiple={true}
-        allowPaste={true}
-        allowProcess={false}
-        allowReorder={true}
-        allowReplace={true}
-        allowRevert={false}
-        checkValidity={false}
-        storeAsFile={false}
-        maxParallelUploads={2}
-        itemInsertLocation="after"
-        fileSizeBase={1024}
-        //======================================================================
-        // Input
-        //======================================================================
-        // captureMethod="camera"
-        //======================================================================
-        // Core - Drag & Drop
-        //======================================================================
-        allowDrop={true}
-        dropOnPage={true}
-        dropOnElement={false}
-        dropValidation={false}
-        ignoredFiles={[".ds_store", "thumbs.db", "desktop.ini"]}
-        //======================================================================
-        // Previews - Image
-        //======================================================================
-        allowImagePreview={true}
-        allowImageExifOrientation={true}
-        //======================================================================
-        // Previews - Media
-        //======================================================================
-        allowAudioPreview={true}
-        allowVideoPreview={true}
-        //======================================================================
-        // Toolbar - GetFile
-        //======================================================================
-        allowDownloadByUrl={false}
-        //======================================================================
-        // Toolbar - Metadata
-        //======================================================================
-        // fileMetadataObject={defaultMetadataObject}
-        allowFileMetadata={true}
-        enableManageMetadata={false}
-        // onManageMetadata={(item: FilePondFile) =>
-        //   console.log("onManageMetadata", item)
-        // }
-        //======================================================================
-        // Validation - File Types
-        //======================================================================
-        allowFileTypeValidation={true}
-        acceptedFileTypes={["image/*"]}
-        fileValidateTypeLabelExpectedTypesMap={{
-          "image/bmp": ".bmp",
-          "image/gif": ".gif",
-          "image/jpeg": ".jpg",
-          "image/png": ".png",
-          "image/svg+xml": ".svg",
-          "image/tiff": ".tiff",
-          "image/webp": ".webp",
-        }}
-        //======================================================================
-        // Validation - File Size
-        //======================================================================
-        allowFileSizeValidation={true}
-        //======================================================================
-        // Validation - Image Size
-        //======================================================================
-        allowImageValidateSize={true}
-        imageValidateSizeMeasure={imageValidateSizeMeasure}
-        //======================================================================
-        // Validation - Media Duration
-        //======================================================================
-        allowFileDurationValidation={true}
-        //======================================================================
-        // PDF
-        //======================================================================
-        // allowPdfPreview={true}
-        // pdfPreviewHeight={320}
-        // pdfComponentExtraParams={"toolbar=0&view=fit&page=1"}
-        //======================================================================
-        // i18n
-        //======================================================================
-        {...labels(translation)}
-        labelIdle={renderToString(label ?? <LabelIdle {...translation} />)}
-        //======================================================================
-        // Server
-        //======================================================================
-        files={files}
-        server={server}
-        instantUpload={true}
-        //======================================================================
-        // chunkUploads={true}
-        // chunkForce={true}
-        // chunkSize={50000}
-        // chunkSize={5000000}
-        // chunkRetryDelays={[500, 1000, 3000]}
-        {...callbacks}
-        // Props
-        //======================================================================
-        {...filePondProps}
-        className={cn("group", className)}
-        credits={false}
-      />
-    </>
+    <FilePond
+      ref={pondRef}
+      //======================================================================
+      // File Encoding (Base 64)
+      //======================================================================
+      allowFileEncode={true}
+      //======================================================================
+      // Core
+      //======================================================================
+      allowBrowse={true}
+      allowMultiple={true}
+      allowPaste={true}
+      allowProcess={false}
+      allowReorder={true}
+      allowReplace={true}
+      allowRevert={false}
+      checkValidity={false}
+      storeAsFile={false}
+      maxParallelUploads={2}
+      itemInsertLocation="after"
+      fileSizeBase={1024}
+      //======================================================================
+      // Input
+      //======================================================================
+      // captureMethod="camera"
+      //======================================================================
+      // Core - Drag & Drop
+      //======================================================================
+      allowDrop={true}
+      dropOnPage={true}
+      dropOnElement={false}
+      dropValidation={false}
+      ignoredFiles={[".ds_store", "thumbs.db", "desktop.ini"]}
+      //======================================================================
+      // Previews - Image
+      //======================================================================
+      allowImagePreview={true}
+      allowImageExifOrientation={true}
+      //======================================================================
+      // Previews - Media
+      //======================================================================
+      allowAudioPreview={true}
+      allowVideoPreview={true}
+      //======================================================================
+      // Toolbar - GetFile
+      //======================================================================
+      allowDownloadByUrl={false}
+      //======================================================================
+      // Toolbar - Metadata
+      //======================================================================
+      // fileMetadataObject={defaultMetadataObject}
+      allowFileMetadata={true}
+      enableManageMetadata={false}
+      // onManageMetadata={(item: FilePondFile) =>
+      //   console.log("onManageMetadata", item)
+      // }
+      //======================================================================
+      // Validation - File Types
+      //======================================================================
+      allowFileTypeValidation={true}
+      acceptedFileTypes={["image/*"]}
+      fileValidateTypeLabelExpectedTypesMap={{
+        "image/bmp": ".bmp",
+        "image/gif": ".gif",
+        "image/jpeg": ".jpg",
+        "image/png": ".png",
+        "image/svg+xml": ".svg",
+        "image/tiff": ".tiff",
+        "image/webp": ".webp",
+      }}
+      //======================================================================
+      // Validation - File Size
+      //======================================================================
+      allowFileSizeValidation={false}
+      //======================================================================
+      // Validation - Image Size
+      //======================================================================
+      allowImageValidateSize={false}
+      imageValidateSizeMeasure={imageValidateSizeMeasure}
+      //======================================================================
+      // Validation - Media Duration
+      //======================================================================
+      allowFileDurationValidation={true}
+      //======================================================================
+      // PDF
+      //======================================================================
+      // allowPdfPreview={true}
+      // pdfPreviewHeight={320}
+      // pdfComponentExtraParams={"toolbar=0&view=fit&page=1"}
+      //======================================================================
+      // i18n
+      //======================================================================
+      {...labels(translation)}
+      labelIdle={renderToString(label ?? <LabelIdle {...translation} />)}
+      //======================================================================
+      // Props
+      //======================================================================
+      {...filePondProps}
+      //======================================================================
+      // Server
+      //======================================================================
+      // {...callbacks}
+      files={[
+        ...files.map((file) => {
+          return file.file
+        }),
+      ]}
+      server={server}
+      instantUpload={true}
+      //======================================================================
+      chunkUploads={false}
+      chunkForce={false}
+      // chunkSize={50000}
+      // chunkSize={5000000}
+      // chunkRetryDelays={[500, 1000, 3000]}
+      //======================================================================
+      className={cn("group", className)}
+      credits={false}
+    />
   )
 }

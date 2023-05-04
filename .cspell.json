@@ -179,6 +179,7 @@
     "oncelogger",
     "onerror",
     "oninit",
+    "oninitfile",
     "onpreparefile",
     "onprocessfile",
     "onprocessfileabort",
