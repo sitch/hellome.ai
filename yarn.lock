@@ -4082,7 +4082,7 @@
     chalk "4.1.2"
     cross-spawn "7.0.3"
 
-"@prisma/generator-helper@4.13.0", "@prisma/generator-helper@^4.11.0", "@prisma/generator-helper@^4.12.0", "@prisma/generator-helper@^4.8.0":
+"@prisma/generator-helper@4.13.0", "@prisma/generator-helper@^4.12.0", "@prisma/generator-helper@^4.13.0", "@prisma/generator-helper@^4.8.0":
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-4.13.0.tgz#4a665bba70681509003f0a8b34607835e80664c7"
   integrity sha512-Zx9rtbsEIU/9DKnGRvmjLdyeyhzeeXNFp1alkRh1w//rQ5jTcobiay/jU4Qo+EQOs2bnWEfUeiBoOjfaysdLNg==
@@ -6150,10 +6150,10 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@18.2.2":
-  version "18.2.2"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.2.tgz#2b6b1831d9c805b3790b6613becb5c8d2f3be479"
-  integrity sha512-4GZH3GLuqdZbDvOW5Pqqe7jgsDrKwkJfZMZLwFcgoz3CVDSvnMeG/Ihe44IbZ5Mqhh1fyTh5e44z6pNjIzzV8g==
+"@types/react@18.2.3":
+  version "18.2.3"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.3.tgz#509ad6c4c77378e686f9bb6e0f8756936392f0e8"
+  integrity sha512-myU58XyFvSCcF9stRlhYnPbHZu9md7VZNsLukY6D68JHzIHLvqxvutD5luAJLnrUKMswvAgGwdSlEUKKSD+9Fw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -21792,12 +21792,12 @@ zod-i18n-map@^2.11.0:
   resolved "https://registry.yarnpkg.com/zod-i18n-map/-/zod-i18n-map-2.11.0.tgz#b80c58bb7c38f0162e636cd84bfa64e51939fee3"
   integrity sha512-oZ/8OEHRViQrEMrZdwMpoefP15dfAutdly4YmPafS6VJs2AVBA1flRvtjirxlIGizgzdkbt/k3nDvBOBGn6R8Q==
 
-zod-prisma-types@^2.5.6:
-  version "2.5.6"
-  resolved "https://registry.yarnpkg.com/zod-prisma-types/-/zod-prisma-types-2.5.6.tgz#09c0c8e3021a9f5804dd28b4ef3cb1a50b08ddba"
-  integrity sha512-Cck7hzz15t4+ADmoZWa475fPiDxxd1/hve+vfS85BsEVr3u8y3zphKi/5/yhkT/mKuJhiMkIfc4VJLrJt/cTpw==
+zod-prisma-types@^2.5.9:
+  version "2.5.9"
+  resolved "https://registry.yarnpkg.com/zod-prisma-types/-/zod-prisma-types-2.5.9.tgz#9eea055586eb631d79637ad0686dbb087cc0a980"
+  integrity sha512-jSOCBwSbsUsmHhEtPLIzJYZ2y+zNPIdQtgMWFwA419k0igsvMjakvC3RVvHTNZQ7a63WAzvhV/QQM5at/vX5Ng==
   dependencies:
-    "@prisma/generator-helper" "^4.11.0"
+    "@prisma/generator-helper" "^4.13.0"
     code-block-writer "^11.0.3"
     lodash "^4.17.21"
     zod "^3.21.1"

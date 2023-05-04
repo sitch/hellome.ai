@@ -4747,9 +4747,9 @@ export const NestedDateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.
 }).strict();
 
 export const PhotoCreateWithoutFileInputSchema: z.ZodType<Prisma.PhotoCreateWithoutFileInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
   tags: z.union([ z.lazy(() => PhotoCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -4758,9 +4758,9 @@ export const PhotoCreateWithoutFileInputSchema: z.ZodType<Prisma.PhotoCreateWith
 }).strict();
 
 export const PhotoUncheckedCreateWithoutFileInputSchema: z.ZodType<Prisma.PhotoUncheckedCreateWithoutFileInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
   tags: z.union([ z.lazy(() => PhotoCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -4774,20 +4774,20 @@ export const PhotoCreateOrConnectWithoutFileInputSchema: z.ZodType<Prisma.PhotoC
 }).strict();
 
 export const PDFCreateWithoutFileInputSchema: z.ZodType<Prisma.PDFCreateWithoutFileInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
-  pages: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
+  pages: z.number().positive(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   edition: z.lazy(() => EditionCreateNestedOneWithoutPdfInputSchema).optional()
 }).strict();
 
 export const PDFUncheckedCreateWithoutFileInputSchema: z.ZodType<Prisma.PDFUncheckedCreateWithoutFileInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
-  pages: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
+  pages: z.number().positive(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   edition: z.lazy(() => EditionUncheckedCreateNestedOneWithoutPdfInputSchema).optional()
@@ -4804,9 +4804,9 @@ export const PhotoUpsertWithoutFileInputSchema: z.ZodType<Prisma.PhotoUpsertWith
 }).strict();
 
 export const PhotoUpdateWithoutFileInputSchema: z.ZodType<Prisma.PhotoUpdateWithoutFileInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PhotoUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -4815,9 +4815,9 @@ export const PhotoUpdateWithoutFileInputSchema: z.ZodType<Prisma.PhotoUpdateWith
 }).strict();
 
 export const PhotoUncheckedUpdateWithoutFileInputSchema: z.ZodType<Prisma.PhotoUncheckedUpdateWithoutFileInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PhotoUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -4831,38 +4831,38 @@ export const PDFUpsertWithoutFileInputSchema: z.ZodType<Prisma.PDFUpsertWithoutF
 }).strict();
 
 export const PDFUpdateWithoutFileInputSchema: z.ZodType<Prisma.PDFUpdateWithoutFileInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  pages: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pages: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   edition: z.lazy(() => EditionUpdateOneWithoutPdfNestedInputSchema).optional()
 }).strict();
 
 export const PDFUncheckedUpdateWithoutFileInputSchema: z.ZodType<Prisma.PDFUncheckedUpdateWithoutFileInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  pages: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pages: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   edition: z.lazy(() => EditionUncheckedUpdateOneWithoutPdfNestedInputSchema).optional()
 }).strict();
 
 export const CloudFileCreateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileCreateWithoutPhotoInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   filename: z.string(),
   stem: z.string(),
-  extension: z.string(),
-  size: z.number(),
+  extension: z.string().min(1).max(5),
+  size: z.number().positive(),
   mime: z.string(),
   resourceType: z.lazy(() => FileResourceTypeSchema),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.string(),
   bucket: z.string(),
   region: z.lazy(() => CloudFileRegionSchema),
-  publicUrl: z.string().optional().nullable(),
+  publicUrl: z.string().url().optional().nullable(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -4870,18 +4870,18 @@ export const CloudFileCreateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileC
 }).strict();
 
 export const CloudFileUncheckedCreateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileUncheckedCreateWithoutPhotoInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   filename: z.string(),
   stem: z.string(),
-  extension: z.string(),
-  size: z.number(),
+  extension: z.string().min(1).max(5),
+  size: z.number().positive(),
   mime: z.string(),
   resourceType: z.lazy(() => FileResourceTypeSchema),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.string(),
   bucket: z.string(),
   region: z.lazy(() => CloudFileRegionSchema),
-  publicUrl: z.string().optional().nullable(),
+  publicUrl: z.string().url().optional().nullable(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -4894,7 +4894,7 @@ export const CloudFileCreateOrConnectWithoutPhotoInputSchema: z.ZodType<Prisma.C
 }).strict();
 
 export const PageArtworkCreateWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtworkCreateWithoutPhotoInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -4904,13 +4904,13 @@ export const PageArtworkCreateWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtw
 }).strict();
 
 export const PageArtworkUncheckedCreateWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtworkUncheckedCreateWithoutPhotoInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pageId: z.string(),
-  storyId: z.string(),
-  artistId: z.string()
+  pageId: z.string().cuid(),
+  storyId: z.string().cuid(),
+  artistId: z.string().cuid()
 }).strict();
 
 export const PageArtworkCreateOrConnectWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtworkCreateOrConnectWithoutPhotoInput> = z.object({
@@ -4924,8 +4924,8 @@ export const PageArtworkCreateManyPhotoInputEnvelopeSchema: z.ZodType<Prisma.Pag
 }).strict();
 
 export const ConceptCreateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptCreateWithoutPhotosInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
+  id: z.string().cuid().optional(),
+  name: z.string().min(1),
   type: z.lazy(() => ConceptTypeSchema),
   description: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
@@ -4933,8 +4933,8 @@ export const ConceptCreateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptCrea
 }).strict();
 
 export const ConceptUncheckedCreateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateWithoutPhotosInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
+  id: z.string().cuid().optional(),
+  name: z.string().min(1),
   type: z.lazy(() => ConceptTypeSchema),
   description: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
@@ -4952,18 +4952,18 @@ export const CloudFileUpsertWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileU
 }).strict();
 
 export const CloudFileUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileUpdateWithoutPhotoInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   filename: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stem: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  extension: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  size: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  extension: z.union([ z.string().min(1).max(5),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   resourceType: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => EnumFileResourceTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   bucket: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   region: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => EnumCloudFileRegionFieldUpdateOperationsInputSchema) ]).optional(),
-  publicUrl: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  publicUrl: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -4971,18 +4971,18 @@ export const CloudFileUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileU
 }).strict();
 
 export const CloudFileUncheckedUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.CloudFileUncheckedUpdateWithoutPhotoInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   filename: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stem: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  extension: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  size: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  extension: z.union([ z.string().min(1).max(5),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   resourceType: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => EnumFileResourceTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   bucket: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   region: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => EnumCloudFileRegionFieldUpdateOperationsInputSchema) ]).optional(),
-  publicUrl: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  publicUrl: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -5048,18 +5048,18 @@ export const ConceptScalarWhereInputSchema: z.ZodType<Prisma.ConceptScalarWhereI
 }).strict();
 
 export const CloudFileCreateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileCreateWithoutPdfInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   filename: z.string(),
   stem: z.string(),
-  extension: z.string(),
-  size: z.number(),
+  extension: z.string().min(1).max(5),
+  size: z.number().positive(),
   mime: z.string(),
   resourceType: z.lazy(() => FileResourceTypeSchema),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.string(),
   bucket: z.string(),
   region: z.lazy(() => CloudFileRegionSchema),
-  publicUrl: z.string().optional().nullable(),
+  publicUrl: z.string().url().optional().nullable(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5067,18 +5067,18 @@ export const CloudFileCreateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileCre
 }).strict();
 
 export const CloudFileUncheckedCreateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUncheckedCreateWithoutPdfInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   filename: z.string(),
   stem: z.string(),
-  extension: z.string(),
-  size: z.number(),
+  extension: z.string().min(1).max(5),
+  size: z.number().positive(),
   mime: z.string(),
   resourceType: z.lazy(() => FileResourceTypeSchema),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.string(),
   bucket: z.string(),
   region: z.lazy(() => CloudFileRegionSchema),
-  publicUrl: z.string().optional().nullable(),
+  publicUrl: z.string().url().optional().nullable(),
   privacy: z.lazy(() => FilePrivacySchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5091,17 +5091,17 @@ export const CloudFileCreateOrConnectWithoutPdfInputSchema: z.ZodType<Prisma.Clo
 }).strict();
 
 export const EditionCreateWithoutPdfInputSchema: z.ZodType<Prisma.EditionCreateWithoutPdfInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   user: z.lazy(() => UserCreateNestedOneWithoutEditionInputSchema)
 }).strict();
 
 export const EditionUncheckedCreateWithoutPdfInputSchema: z.ZodType<Prisma.EditionUncheckedCreateWithoutPdfInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  userId: z.string()
+  userId: z.string().cuid()
 }).strict();
 
 export const EditionCreateOrConnectWithoutPdfInputSchema: z.ZodType<Prisma.EditionCreateOrConnectWithoutPdfInput> = z.object({
@@ -5115,18 +5115,18 @@ export const CloudFileUpsertWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUps
 }).strict();
 
 export const CloudFileUpdateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUpdateWithoutPdfInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   filename: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stem: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  extension: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  size: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  extension: z.union([ z.string().min(1).max(5),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   resourceType: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => EnumFileResourceTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   bucket: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   region: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => EnumCloudFileRegionFieldUpdateOperationsInputSchema) ]).optional(),
-  publicUrl: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  publicUrl: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -5134,18 +5134,18 @@ export const CloudFileUpdateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUpd
 }).strict();
 
 export const CloudFileUncheckedUpdateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileUncheckedUpdateWithoutPdfInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   filename: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stem: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  extension: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  size: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  extension: z.union([ z.string().min(1).max(5),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  size: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   mime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   resourceType: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => EnumFileResourceTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
+  metadata: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),z.record(z.union([z.string(), z.number()])) ]).optional(),
   key: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   bucket: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   region: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => EnumCloudFileRegionFieldUpdateOperationsInputSchema) ]).optional(),
-  publicUrl: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  publicUrl: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   privacy: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => EnumFilePrivacyFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -5158,31 +5158,31 @@ export const EditionUpsertWithoutPdfInputSchema: z.ZodType<Prisma.EditionUpsertW
 }).strict();
 
 export const EditionUpdateWithoutPdfInputSchema: z.ZodType<Prisma.EditionUpdateWithoutPdfInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   user: z.lazy(() => UserUpdateOneRequiredWithoutEditionNestedInputSchema).optional()
 }).strict();
 
 export const EditionUncheckedUpdateWithoutPdfInputSchema: z.ZodType<Prisma.EditionUncheckedUpdateWithoutPdfInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  userId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  userId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const EditionCreateWithoutUserInputSchema: z.ZodType<Prisma.EditionCreateWithoutUserInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   pdf: z.lazy(() => PDFCreateNestedOneWithoutEditionInputSchema)
 }).strict();
 
 export const EditionUncheckedCreateWithoutUserInputSchema: z.ZodType<Prisma.EditionUncheckedCreateWithoutUserInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pdfId: z.string()
+  pdfId: z.string().cuid()
 }).strict();
 
 export const EditionCreateOrConnectWithoutUserInputSchema: z.ZodType<Prisma.EditionCreateOrConnectWithoutUserInput> = z.object({
@@ -5223,7 +5223,7 @@ export const EditionScalarWhereInputSchema: z.ZodType<Prisma.EditionScalarWhereI
 }).strict();
 
 export const StoryCreateWithoutAuthorInputSchema: z.ZodType<Prisma.StoryCreateWithoutAuthorInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   artist: z.lazy(() => ArtistCreateNestedOneWithoutStoriesInputSchema).optional(),
@@ -5233,10 +5233,10 @@ export const StoryCreateWithoutAuthorInputSchema: z.ZodType<Prisma.StoryCreateWi
 }).strict();
 
 export const StoryUncheckedCreateWithoutAuthorInputSchema: z.ZodType<Prisma.StoryUncheckedCreateWithoutAuthorInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  artistId: z.string().optional().nullable(),
+  artistId: z.string().cuid().optional().nullable(),
   pages: z.lazy(() => PageUncheckedCreateNestedManyWithoutStoryInputSchema).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutStoryInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedCreateNestedManyWithoutStoryInputSchema).optional()
@@ -5253,10 +5253,10 @@ export const StoryCreateManyAuthorInputEnvelopeSchema: z.ZodType<Prisma.StoryCre
 }).strict();
 
 export const PageTextCreateWithoutAuthorInputSchema: z.ZodType<Prisma.PageTextCreateWithoutAuthorInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5266,16 +5266,16 @@ export const PageTextCreateWithoutAuthorInputSchema: z.ZodType<Prisma.PageTextCr
 }).strict();
 
 export const PageTextUncheckedCreateWithoutAuthorInputSchema: z.ZodType<Prisma.PageTextUncheckedCreateWithoutAuthorInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pageId: z.string(),
-  storyId: z.string(),
-  translatorId: z.string().optional().nullable()
+  pageId: z.string().cuid(),
+  storyId: z.string().cuid(),
+  translatorId: z.string().cuid().optional().nullable()
 }).strict();
 
 export const PageTextCreateOrConnectWithoutAuthorInputSchema: z.ZodType<Prisma.PageTextCreateOrConnectWithoutAuthorInput> = z.object({
@@ -5349,7 +5349,7 @@ export const PageTextScalarWhereInputSchema: z.ZodType<Prisma.PageTextScalarWher
 }).strict();
 
 export const StoryCreateWithoutArtistInputSchema: z.ZodType<Prisma.StoryCreateWithoutArtistInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   author: z.lazy(() => AuthorCreateNestedOneWithoutStoriesInputSchema).optional(),
@@ -5359,10 +5359,10 @@ export const StoryCreateWithoutArtistInputSchema: z.ZodType<Prisma.StoryCreateWi
 }).strict();
 
 export const StoryUncheckedCreateWithoutArtistInputSchema: z.ZodType<Prisma.StoryUncheckedCreateWithoutArtistInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  authorId: z.string().optional().nullable(),
+  authorId: z.string().cuid().optional().nullable(),
   pages: z.lazy(() => PageUncheckedCreateNestedManyWithoutStoryInputSchema).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutStoryInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedCreateNestedManyWithoutStoryInputSchema).optional()
@@ -5379,7 +5379,7 @@ export const StoryCreateManyArtistInputEnvelopeSchema: z.ZodType<Prisma.StoryCre
 }).strict();
 
 export const PageArtworkCreateWithoutArtistInputSchema: z.ZodType<Prisma.PageArtworkCreateWithoutArtistInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5389,13 +5389,13 @@ export const PageArtworkCreateWithoutArtistInputSchema: z.ZodType<Prisma.PageArt
 }).strict();
 
 export const PageArtworkUncheckedCreateWithoutArtistInputSchema: z.ZodType<Prisma.PageArtworkUncheckedCreateWithoutArtistInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pageId: z.string(),
-  storyId: z.string(),
-  photoId: z.string()
+  pageId: z.string().cuid(),
+  storyId: z.string().cuid(),
+  photoId: z.string().cuid()
 }).strict();
 
 export const PageArtworkCreateOrConnectWithoutArtistInputSchema: z.ZodType<Prisma.PageArtworkCreateOrConnectWithoutArtistInput> = z.object({
@@ -5441,10 +5441,10 @@ export const PageArtworkUpdateManyWithWhereWithoutArtistInputSchema: z.ZodType<P
 }).strict();
 
 export const PageTextCreateWithoutTranslatorInputSchema: z.ZodType<Prisma.PageTextCreateWithoutTranslatorInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5454,16 +5454,16 @@ export const PageTextCreateWithoutTranslatorInputSchema: z.ZodType<Prisma.PageTe
 }).strict();
 
 export const PageTextUncheckedCreateWithoutTranslatorInputSchema: z.ZodType<Prisma.PageTextUncheckedCreateWithoutTranslatorInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pageId: z.string(),
-  storyId: z.string(),
-  authorId: z.string().optional().nullable()
+  pageId: z.string().cuid(),
+  storyId: z.string().cuid(),
+  authorId: z.string().cuid().optional().nullable()
 }).strict();
 
 export const PageTextCreateOrConnectWithoutTranslatorInputSchema: z.ZodType<Prisma.PageTextCreateOrConnectWithoutTranslatorInput> = z.object({
@@ -5493,12 +5493,12 @@ export const PageTextUpdateManyWithWhereWithoutTranslatorInputSchema: z.ZodType<
 }).strict();
 
 export const ArtistCreateWithoutStoriesInputSchema: z.ZodType<Prisma.ArtistCreateWithoutStoriesInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   pageArtworks: z.lazy(() => PageArtworkCreateNestedManyWithoutArtistInputSchema).optional()
 }).strict();
 
 export const ArtistUncheckedCreateWithoutStoriesInputSchema: z.ZodType<Prisma.ArtistUncheckedCreateWithoutStoriesInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutArtistInputSchema).optional()
 }).strict();
 
@@ -5508,12 +5508,12 @@ export const ArtistCreateOrConnectWithoutStoriesInputSchema: z.ZodType<Prisma.Ar
 }).strict();
 
 export const AuthorCreateWithoutStoriesInputSchema: z.ZodType<Prisma.AuthorCreateWithoutStoriesInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   pageTexts: z.lazy(() => PageTextCreateNestedManyWithoutAuthorInputSchema).optional()
 }).strict();
 
 export const AuthorUncheckedCreateWithoutStoriesInputSchema: z.ZodType<Prisma.AuthorUncheckedCreateWithoutStoriesInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   pageTexts: z.lazy(() => PageTextUncheckedCreateNestedManyWithoutAuthorInputSchema).optional()
 }).strict();
 
@@ -5523,10 +5523,10 @@ export const AuthorCreateOrConnectWithoutStoriesInputSchema: z.ZodType<Prisma.Au
 }).strict();
 
 export const PageCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageCreateWithoutStoryInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   type: z.lazy(() => PageTypeSchema),
-  pageNumber: z.number(),
+  pageNumber: z.number().gte(1).lte(100),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   artworks: z.lazy(() => PageArtworkCreateNestedManyWithoutPageInputSchema).optional(),
@@ -5534,10 +5534,10 @@ export const PageCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageCreateWitho
 }).strict();
 
 export const PageUncheckedCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageUncheckedCreateWithoutStoryInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   type: z.lazy(() => PageTypeSchema),
-  pageNumber: z.number(),
+  pageNumber: z.number().gte(1).lte(100),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   artworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutPageInputSchema).optional(),
@@ -5555,7 +5555,7 @@ export const PageCreateManyStoryInputEnvelopeSchema: z.ZodType<Prisma.PageCreate
 }).strict();
 
 export const PageArtworkCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageArtworkCreateWithoutStoryInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5565,13 +5565,13 @@ export const PageArtworkCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageArtw
 }).strict();
 
 export const PageArtworkUncheckedCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageArtworkUncheckedCreateWithoutStoryInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pageId: z.string(),
-  artistId: z.string(),
-  photoId: z.string()
+  pageId: z.string().cuid(),
+  artistId: z.string().cuid(),
+  photoId: z.string().cuid()
 }).strict();
 
 export const PageArtworkCreateOrConnectWithoutStoryInputSchema: z.ZodType<Prisma.PageArtworkCreateOrConnectWithoutStoryInput> = z.object({
@@ -5585,10 +5585,10 @@ export const PageArtworkCreateManyStoryInputEnvelopeSchema: z.ZodType<Prisma.Pag
 }).strict();
 
 export const PageTextCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageTextCreateWithoutStoryInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5598,16 +5598,16 @@ export const PageTextCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageTextCre
 }).strict();
 
 export const PageTextUncheckedCreateWithoutStoryInputSchema: z.ZodType<Prisma.PageTextUncheckedCreateWithoutStoryInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  pageId: z.string(),
-  authorId: z.string().optional().nullable(),
-  translatorId: z.string().optional().nullable()
+  pageId: z.string().cuid(),
+  authorId: z.string().cuid().optional().nullable(),
+  translatorId: z.string().cuid().optional().nullable()
 }).strict();
 
 export const PageTextCreateOrConnectWithoutStoryInputSchema: z.ZodType<Prisma.PageTextCreateOrConnectWithoutStoryInput> = z.object({
@@ -5626,12 +5626,12 @@ export const ArtistUpsertWithoutStoriesInputSchema: z.ZodType<Prisma.ArtistUpser
 }).strict();
 
 export const ArtistUpdateWithoutStoriesInputSchema: z.ZodType<Prisma.ArtistUpdateWithoutStoriesInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   pageArtworks: z.lazy(() => PageArtworkUpdateManyWithoutArtistNestedInputSchema).optional()
 }).strict();
 
 export const ArtistUncheckedUpdateWithoutStoriesInputSchema: z.ZodType<Prisma.ArtistUncheckedUpdateWithoutStoriesInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutArtistNestedInputSchema).optional()
 }).strict();
 
@@ -5641,12 +5641,12 @@ export const AuthorUpsertWithoutStoriesInputSchema: z.ZodType<Prisma.AuthorUpser
 }).strict();
 
 export const AuthorUpdateWithoutStoriesInputSchema: z.ZodType<Prisma.AuthorUpdateWithoutStoriesInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   pageTexts: z.lazy(() => PageTextUpdateManyWithoutAuthorNestedInputSchema).optional()
 }).strict();
 
 export const AuthorUncheckedUpdateWithoutStoriesInputSchema: z.ZodType<Prisma.AuthorUncheckedUpdateWithoutStoriesInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedUpdateManyWithoutAuthorNestedInputSchema).optional()
 }).strict();
 
@@ -5712,10 +5712,10 @@ export const PageTextUpdateManyWithWhereWithoutStoryInputSchema: z.ZodType<Prism
 }).strict();
 
 export const PageCreateWithoutArtworksInputSchema: z.ZodType<Prisma.PageCreateWithoutArtworksInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   type: z.lazy(() => PageTypeSchema),
-  pageNumber: z.number(),
+  pageNumber: z.number().gte(1).lte(100),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   story: z.lazy(() => StoryCreateNestedOneWithoutPagesInputSchema),
@@ -5723,13 +5723,13 @@ export const PageCreateWithoutArtworksInputSchema: z.ZodType<Prisma.PageCreateWi
 }).strict();
 
 export const PageUncheckedCreateWithoutArtworksInputSchema: z.ZodType<Prisma.PageUncheckedCreateWithoutArtworksInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   type: z.lazy(() => PageTypeSchema),
-  pageNumber: z.number(),
+  pageNumber: z.number().gte(1).lte(100),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  storyId: z.string(),
+  storyId: z.string().cuid(),
   texts: z.lazy(() => PageTextUncheckedCreateNestedManyWithoutPageInputSchema).optional()
 }).strict();
 
@@ -5739,7 +5739,7 @@ export const PageCreateOrConnectWithoutArtworksInputSchema: z.ZodType<Prisma.Pag
 }).strict();
 
 export const StoryCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.StoryCreateWithoutPageArtworksInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   artist: z.lazy(() => ArtistCreateNestedOneWithoutStoriesInputSchema).optional(),
@@ -5749,11 +5749,11 @@ export const StoryCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.StoryCr
 }).strict();
 
 export const StoryUncheckedCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.StoryUncheckedCreateWithoutPageArtworksInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  artistId: z.string().optional().nullable(),
-  authorId: z.string().optional().nullable(),
+  artistId: z.string().cuid().optional().nullable(),
+  authorId: z.string().cuid().optional().nullable(),
   pages: z.lazy(() => PageUncheckedCreateNestedManyWithoutStoryInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedCreateNestedManyWithoutStoryInputSchema).optional()
 }).strict();
@@ -5764,12 +5764,12 @@ export const StoryCreateOrConnectWithoutPageArtworksInputSchema: z.ZodType<Prism
 }).strict();
 
 export const ArtistCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.ArtistCreateWithoutPageArtworksInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   stories: z.lazy(() => StoryCreateNestedManyWithoutArtistInputSchema).optional()
 }).strict();
 
 export const ArtistUncheckedCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.ArtistUncheckedCreateWithoutPageArtworksInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   stories: z.lazy(() => StoryUncheckedCreateNestedManyWithoutArtistInputSchema).optional()
 }).strict();
 
@@ -5779,9 +5779,9 @@ export const ArtistCreateOrConnectWithoutPageArtworksInputSchema: z.ZodType<Pris
 }).strict();
 
 export const PhotoCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.PhotoCreateWithoutPageArtworksInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
   tags: z.union([ z.lazy(() => PhotoCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -5790,13 +5790,13 @@ export const PhotoCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.PhotoCr
 }).strict();
 
 export const PhotoUncheckedCreateWithoutPageArtworksInputSchema: z.ZodType<Prisma.PhotoUncheckedCreateWithoutPageArtworksInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
   tags: z.union([ z.lazy(() => PhotoCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  fileId: z.string(),
+  fileId: z.string().cuid(),
   concepts: z.lazy(() => ConceptUncheckedCreateNestedManyWithoutPhotosInputSchema).optional()
 }).strict();
 
@@ -5811,10 +5811,10 @@ export const PageUpsertWithoutArtworksInputSchema: z.ZodType<Prisma.PageUpsertWi
 }).strict();
 
 export const PageUpdateWithoutArtworksInputSchema: z.ZodType<Prisma.PageUpdateWithoutArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => EnumPageTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageNumber: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pageNumber: z.union([ z.number().gte(1).lte(100),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   story: z.lazy(() => StoryUpdateOneRequiredWithoutPagesNestedInputSchema).optional(),
@@ -5822,13 +5822,13 @@ export const PageUpdateWithoutArtworksInputSchema: z.ZodType<Prisma.PageUpdateWi
 }).strict();
 
 export const PageUncheckedUpdateWithoutArtworksInputSchema: z.ZodType<Prisma.PageUncheckedUpdateWithoutArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => EnumPageTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageNumber: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pageNumber: z.union([ z.number().gte(1).lte(100),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   texts: z.lazy(() => PageTextUncheckedUpdateManyWithoutPageNestedInputSchema).optional()
 }).strict();
 
@@ -5838,7 +5838,7 @@ export const StoryUpsertWithoutPageArtworksInputSchema: z.ZodType<Prisma.StoryUp
 }).strict();
 
 export const StoryUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.StoryUpdateWithoutPageArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   artist: z.lazy(() => ArtistUpdateOneWithoutStoriesNestedInputSchema).optional(),
@@ -5848,11 +5848,11 @@ export const StoryUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.StoryUp
 }).strict();
 
 export const StoryUncheckedUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.StoryUncheckedUpdateWithoutPageArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  artistId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  authorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  artistId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  authorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   pages: z.lazy(() => PageUncheckedUpdateManyWithoutStoryNestedInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedUpdateManyWithoutStoryNestedInputSchema).optional()
 }).strict();
@@ -5863,12 +5863,12 @@ export const ArtistUpsertWithoutPageArtworksInputSchema: z.ZodType<Prisma.Artist
 }).strict();
 
 export const ArtistUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.ArtistUpdateWithoutPageArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stories: z.lazy(() => StoryUpdateManyWithoutArtistNestedInputSchema).optional()
 }).strict();
 
 export const ArtistUncheckedUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.ArtistUncheckedUpdateWithoutPageArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stories: z.lazy(() => StoryUncheckedUpdateManyWithoutArtistNestedInputSchema).optional()
 }).strict();
 
@@ -5878,9 +5878,9 @@ export const PhotoUpsertWithoutPageArtworksInputSchema: z.ZodType<Prisma.PhotoUp
 }).strict();
 
 export const PhotoUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.PhotoUpdateWithoutPageArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PhotoUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -5889,21 +5889,21 @@ export const PhotoUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.PhotoUp
 }).strict();
 
 export const PhotoUncheckedUpdateWithoutPageArtworksInputSchema: z.ZodType<Prisma.PhotoUncheckedUpdateWithoutPageArtworksInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PhotoUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  fileId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  fileId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   concepts: z.lazy(() => ConceptUncheckedUpdateManyWithoutPhotosNestedInputSchema).optional()
 }).strict();
 
 export const PageCreateWithoutTextsInputSchema: z.ZodType<Prisma.PageCreateWithoutTextsInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   type: z.lazy(() => PageTypeSchema),
-  pageNumber: z.number(),
+  pageNumber: z.number().gte(1).lte(100),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   story: z.lazy(() => StoryCreateNestedOneWithoutPagesInputSchema),
@@ -5911,13 +5911,13 @@ export const PageCreateWithoutTextsInputSchema: z.ZodType<Prisma.PageCreateWitho
 }).strict();
 
 export const PageUncheckedCreateWithoutTextsInputSchema: z.ZodType<Prisma.PageUncheckedCreateWithoutTextsInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   type: z.lazy(() => PageTypeSchema),
-  pageNumber: z.number(),
+  pageNumber: z.number().gte(1).lte(100),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  storyId: z.string(),
+  storyId: z.string().cuid(),
   artworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutPageInputSchema).optional()
 }).strict();
 
@@ -5927,7 +5927,7 @@ export const PageCreateOrConnectWithoutTextsInputSchema: z.ZodType<Prisma.PageCr
 }).strict();
 
 export const StoryCreateWithoutPageTextsInputSchema: z.ZodType<Prisma.StoryCreateWithoutPageTextsInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   artist: z.lazy(() => ArtistCreateNestedOneWithoutStoriesInputSchema).optional(),
@@ -5937,11 +5937,11 @@ export const StoryCreateWithoutPageTextsInputSchema: z.ZodType<Prisma.StoryCreat
 }).strict();
 
 export const StoryUncheckedCreateWithoutPageTextsInputSchema: z.ZodType<Prisma.StoryUncheckedCreateWithoutPageTextsInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  artistId: z.string().optional().nullable(),
-  authorId: z.string().optional().nullable(),
+  artistId: z.string().cuid().optional().nullable(),
+  authorId: z.string().cuid().optional().nullable(),
   pages: z.lazy(() => PageUncheckedCreateNestedManyWithoutStoryInputSchema).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutStoryInputSchema).optional()
 }).strict();
@@ -5952,12 +5952,12 @@ export const StoryCreateOrConnectWithoutPageTextsInputSchema: z.ZodType<Prisma.S
 }).strict();
 
 export const AuthorCreateWithoutPageTextsInputSchema: z.ZodType<Prisma.AuthorCreateWithoutPageTextsInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   stories: z.lazy(() => StoryCreateNestedManyWithoutAuthorInputSchema).optional()
 }).strict();
 
 export const AuthorUncheckedCreateWithoutPageTextsInputSchema: z.ZodType<Prisma.AuthorUncheckedCreateWithoutPageTextsInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   stories: z.lazy(() => StoryUncheckedCreateNestedManyWithoutAuthorInputSchema).optional()
 }).strict();
 
@@ -5967,11 +5967,11 @@ export const AuthorCreateOrConnectWithoutPageTextsInputSchema: z.ZodType<Prisma.
 }).strict();
 
 export const TranslatorCreateWithoutPageTextsInputSchema: z.ZodType<Prisma.TranslatorCreateWithoutPageTextsInput> = z.object({
-  id: z.string().optional()
+  id: z.string().cuid().optional()
 }).strict();
 
 export const TranslatorUncheckedCreateWithoutPageTextsInputSchema: z.ZodType<Prisma.TranslatorUncheckedCreateWithoutPageTextsInput> = z.object({
-  id: z.string().optional()
+  id: z.string().cuid().optional()
 }).strict();
 
 export const TranslatorCreateOrConnectWithoutPageTextsInputSchema: z.ZodType<Prisma.TranslatorCreateOrConnectWithoutPageTextsInput> = z.object({
@@ -5985,10 +5985,10 @@ export const PageUpsertWithoutTextsInputSchema: z.ZodType<Prisma.PageUpsertWitho
 }).strict();
 
 export const PageUpdateWithoutTextsInputSchema: z.ZodType<Prisma.PageUpdateWithoutTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => EnumPageTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageNumber: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pageNumber: z.union([ z.number().gte(1).lte(100),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   story: z.lazy(() => StoryUpdateOneRequiredWithoutPagesNestedInputSchema).optional(),
@@ -5996,13 +5996,13 @@ export const PageUpdateWithoutTextsInputSchema: z.ZodType<Prisma.PageUpdateWitho
 }).strict();
 
 export const PageUncheckedUpdateWithoutTextsInputSchema: z.ZodType<Prisma.PageUncheckedUpdateWithoutTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => EnumPageTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageNumber: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pageNumber: z.union([ z.number().gte(1).lte(100),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   artworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutPageNestedInputSchema).optional()
 }).strict();
 
@@ -6012,7 +6012,7 @@ export const StoryUpsertWithoutPageTextsInputSchema: z.ZodType<Prisma.StoryUpser
 }).strict();
 
 export const StoryUpdateWithoutPageTextsInputSchema: z.ZodType<Prisma.StoryUpdateWithoutPageTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   artist: z.lazy(() => ArtistUpdateOneWithoutStoriesNestedInputSchema).optional(),
@@ -6022,11 +6022,11 @@ export const StoryUpdateWithoutPageTextsInputSchema: z.ZodType<Prisma.StoryUpdat
 }).strict();
 
 export const StoryUncheckedUpdateWithoutPageTextsInputSchema: z.ZodType<Prisma.StoryUncheckedUpdateWithoutPageTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  artistId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  authorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  artistId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  authorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   pages: z.lazy(() => PageUncheckedUpdateManyWithoutStoryNestedInputSchema).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutStoryNestedInputSchema).optional()
 }).strict();
@@ -6037,12 +6037,12 @@ export const AuthorUpsertWithoutPageTextsInputSchema: z.ZodType<Prisma.AuthorUps
 }).strict();
 
 export const AuthorUpdateWithoutPageTextsInputSchema: z.ZodType<Prisma.AuthorUpdateWithoutPageTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stories: z.lazy(() => StoryUpdateManyWithoutAuthorNestedInputSchema).optional()
 }).strict();
 
 export const AuthorUncheckedUpdateWithoutPageTextsInputSchema: z.ZodType<Prisma.AuthorUncheckedUpdateWithoutPageTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   stories: z.lazy(() => StoryUncheckedUpdateManyWithoutAuthorNestedInputSchema).optional()
 }).strict();
 
@@ -6052,15 +6052,15 @@ export const TranslatorUpsertWithoutPageTextsInputSchema: z.ZodType<Prisma.Trans
 }).strict();
 
 export const TranslatorUpdateWithoutPageTextsInputSchema: z.ZodType<Prisma.TranslatorUpdateWithoutPageTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const TranslatorUncheckedUpdateWithoutPageTextsInputSchema: z.ZodType<Prisma.TranslatorUncheckedUpdateWithoutPageTextsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const StoryCreateWithoutPagesInputSchema: z.ZodType<Prisma.StoryCreateWithoutPagesInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   artist: z.lazy(() => ArtistCreateNestedOneWithoutStoriesInputSchema).optional(),
@@ -6070,11 +6070,11 @@ export const StoryCreateWithoutPagesInputSchema: z.ZodType<Prisma.StoryCreateWit
 }).strict();
 
 export const StoryUncheckedCreateWithoutPagesInputSchema: z.ZodType<Prisma.StoryUncheckedCreateWithoutPagesInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  artistId: z.string().optional().nullable(),
-  authorId: z.string().optional().nullable(),
+  artistId: z.string().cuid().optional().nullable(),
+  authorId: z.string().cuid().optional().nullable(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutStoryInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedCreateNestedManyWithoutStoryInputSchema).optional()
 }).strict();
@@ -6085,7 +6085,7 @@ export const StoryCreateOrConnectWithoutPagesInputSchema: z.ZodType<Prisma.Story
 }).strict();
 
 export const PageArtworkCreateWithoutPageInputSchema: z.ZodType<Prisma.PageArtworkCreateWithoutPageInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -6095,13 +6095,13 @@ export const PageArtworkCreateWithoutPageInputSchema: z.ZodType<Prisma.PageArtwo
 }).strict();
 
 export const PageArtworkUncheckedCreateWithoutPageInputSchema: z.ZodType<Prisma.PageArtworkUncheckedCreateWithoutPageInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  storyId: z.string(),
-  artistId: z.string(),
-  photoId: z.string()
+  storyId: z.string().cuid(),
+  artistId: z.string().cuid(),
+  photoId: z.string().cuid()
 }).strict();
 
 export const PageArtworkCreateOrConnectWithoutPageInputSchema: z.ZodType<Prisma.PageArtworkCreateOrConnectWithoutPageInput> = z.object({
@@ -6115,10 +6115,10 @@ export const PageArtworkCreateManyPageInputEnvelopeSchema: z.ZodType<Prisma.Page
 }).strict();
 
 export const PageTextCreateWithoutPageInputSchema: z.ZodType<Prisma.PageTextCreateWithoutPageInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -6128,16 +6128,16 @@ export const PageTextCreateWithoutPageInputSchema: z.ZodType<Prisma.PageTextCrea
 }).strict();
 
 export const PageTextUncheckedCreateWithoutPageInputSchema: z.ZodType<Prisma.PageTextUncheckedCreateWithoutPageInput> = z.object({
-  id: z.string().optional(),
+  id: z.string().cuid().optional(),
   status: z.lazy(() => PageStatusSchema).optional(),
   locale: z.lazy(() => LocaleSchema),
-  text: z.string(),
+  text: z.string().min(1).max(5000),
   type: z.lazy(() => PageTextTypeSchema),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  storyId: z.string(),
-  authorId: z.string().optional().nullable(),
-  translatorId: z.string().optional().nullable()
+  storyId: z.string().cuid(),
+  authorId: z.string().cuid().optional().nullable(),
+  translatorId: z.string().cuid().optional().nullable()
 }).strict();
 
 export const PageTextCreateOrConnectWithoutPageInputSchema: z.ZodType<Prisma.PageTextCreateOrConnectWithoutPageInput> = z.object({
@@ -6156,7 +6156,7 @@ export const StoryUpsertWithoutPagesInputSchema: z.ZodType<Prisma.StoryUpsertWit
 }).strict();
 
 export const StoryUpdateWithoutPagesInputSchema: z.ZodType<Prisma.StoryUpdateWithoutPagesInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   artist: z.lazy(() => ArtistUpdateOneWithoutStoriesNestedInputSchema).optional(),
@@ -6166,11 +6166,11 @@ export const StoryUpdateWithoutPagesInputSchema: z.ZodType<Prisma.StoryUpdateWit
 }).strict();
 
 export const StoryUncheckedUpdateWithoutPagesInputSchema: z.ZodType<Prisma.StoryUncheckedUpdateWithoutPagesInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  artistId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  authorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  artistId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  authorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutStoryNestedInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedUpdateManyWithoutStoryNestedInputSchema).optional()
 }).strict();
@@ -6208,17 +6208,17 @@ export const PageTextUpdateManyWithWhereWithoutPageInputSchema: z.ZodType<Prisma
 }).strict();
 
 export const UserCreateWithoutEditionInputSchema: z.ZodType<Prisma.UserCreateWithoutEditionInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  email: z.string(),
+  id: z.string().cuid().optional(),
+  name: z.string().min(1).max(160),
+  email: z.string().email().min(3).max(160),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional()
 }).strict();
 
 export const UserUncheckedCreateWithoutEditionInputSchema: z.ZodType<Prisma.UserUncheckedCreateWithoutEditionInput> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  email: z.string(),
+  id: z.string().cuid().optional(),
+  name: z.string().min(1).max(160),
+  email: z.string().email().min(3).max(160),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional()
 }).strict();
@@ -6229,23 +6229,23 @@ export const UserCreateOrConnectWithoutEditionInputSchema: z.ZodType<Prisma.User
 }).strict();
 
 export const PDFCreateWithoutEditionInputSchema: z.ZodType<Prisma.PDFCreateWithoutEditionInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
-  pages: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
+  pages: z.number().positive(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   file: z.lazy(() => CloudFileCreateNestedOneWithoutPdfInputSchema)
 }).strict();
 
 export const PDFUncheckedCreateWithoutEditionInputSchema: z.ZodType<Prisma.PDFUncheckedCreateWithoutEditionInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
-  pages: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
+  pages: z.number().positive(),
   tags: z.union([ z.lazy(() => PDFCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  fileId: z.string()
+  fileId: z.string().cuid()
 }).strict();
 
 export const PDFCreateOrConnectWithoutEditionInputSchema: z.ZodType<Prisma.PDFCreateOrConnectWithoutEditionInput> = z.object({
@@ -6259,17 +6259,17 @@ export const UserUpsertWithoutEditionInputSchema: z.ZodType<Prisma.UserUpsertWit
 }).strict();
 
 export const UserUpdateWithoutEditionInputSchema: z.ZodType<Prisma.UserUpdateWithoutEditionInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  email: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(160),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  email: z.union([ z.string().email().min(3).max(160),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const UserUncheckedUpdateWithoutEditionInputSchema: z.ZodType<Prisma.UserUncheckedUpdateWithoutEditionInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  email: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(160),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  email: z.union([ z.string().email().min(3).max(160),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
@@ -6280,29 +6280,29 @@ export const PDFUpsertWithoutEditionInputSchema: z.ZodType<Prisma.PDFUpsertWitho
 }).strict();
 
 export const PDFUpdateWithoutEditionInputSchema: z.ZodType<Prisma.PDFUpdateWithoutEditionInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  pages: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pages: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   file: z.lazy(() => CloudFileUpdateOneRequiredWithoutPdfNestedInputSchema).optional()
 }).strict();
 
 export const PDFUncheckedUpdateWithoutEditionInputSchema: z.ZodType<Prisma.PDFUncheckedUpdateWithoutEditionInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  pages: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pages: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PDFUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  fileId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  fileId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const PhotoCreateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreateWithoutConceptsInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
   tags: z.union([ z.lazy(() => PhotoCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -6311,13 +6311,13 @@ export const PhotoCreateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreate
 }).strict();
 
 export const PhotoUncheckedCreateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoUncheckedCreateWithoutConceptsInput> = z.object({
-  id: z.string().optional(),
-  height: z.number(),
-  width: z.number(),
+  id: z.string().cuid().optional(),
+  height: z.number().positive(),
+  width: z.number().positive(),
   tags: z.union([ z.lazy(() => PhotoCreatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  fileId: z.string(),
+  fileId: z.string().cuid(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedCreateNestedManyWithoutPhotoInputSchema).optional()
 }).strict();
 
@@ -6366,7 +6366,7 @@ export const PageArtworkCreateManyPhotoInputSchema: z.ZodType<Prisma.PageArtwork
 }).strict();
 
 export const PageArtworkUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtworkUpdateWithoutPhotoInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6376,13 +6376,13 @@ export const PageArtworkUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtw
 }).strict();
 
 export const PageArtworkUncheckedUpdateWithoutPhotoInputSchema: z.ZodType<Prisma.PageArtworkUncheckedUpdateWithoutPhotoInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  artistId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  pageId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  artistId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const PageArtworkUncheckedUpdateManyWithoutPageArtworksInputSchema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutPageArtworksInput> = z.object({
@@ -6396,8 +6396,8 @@ export const PageArtworkUncheckedUpdateManyWithoutPageArtworksInputSchema: z.Zod
 }).strict();
 
 export const ConceptUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUpdateWithoutPhotosInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6405,8 +6405,8 @@ export const ConceptUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUpda
 }).strict();
 
 export const ConceptUncheckedUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateWithoutPhotosInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6430,17 +6430,17 @@ export const EditionCreateManyUserInputSchema: z.ZodType<Prisma.EditionCreateMan
 }).strict();
 
 export const EditionUpdateWithoutUserInputSchema: z.ZodType<Prisma.EditionUpdateWithoutUserInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   pdf: z.lazy(() => PDFUpdateOneRequiredWithoutEditionNestedInputSchema).optional()
 }).strict();
 
 export const EditionUncheckedUpdateWithoutUserInputSchema: z.ZodType<Prisma.EditionUncheckedUpdateWithoutUserInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pdfId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  pdfId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const EditionUncheckedUpdateManyWithoutEditionInputSchema: z.ZodType<Prisma.EditionUncheckedUpdateManyWithoutEditionInput> = z.object({
@@ -6471,7 +6471,7 @@ export const PageTextCreateManyAuthorInputSchema: z.ZodType<Prisma.PageTextCreat
 }).strict();
 
 export const StoryUpdateWithoutAuthorInputSchema: z.ZodType<Prisma.StoryUpdateWithoutAuthorInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   artist: z.lazy(() => ArtistUpdateOneWithoutStoriesNestedInputSchema).optional(),
@@ -6481,10 +6481,10 @@ export const StoryUpdateWithoutAuthorInputSchema: z.ZodType<Prisma.StoryUpdateWi
 }).strict();
 
 export const StoryUncheckedUpdateWithoutAuthorInputSchema: z.ZodType<Prisma.StoryUncheckedUpdateWithoutAuthorInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  artistId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  artistId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   pages: z.lazy(() => PageUncheckedUpdateManyWithoutStoryNestedInputSchema).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutStoryNestedInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedUpdateManyWithoutStoryNestedInputSchema).optional()
@@ -6498,10 +6498,10 @@ export const StoryUncheckedUpdateManyWithoutStoriesInputSchema: z.ZodType<Prisma
 }).strict();
 
 export const PageTextUpdateWithoutAuthorInputSchema: z.ZodType<Prisma.PageTextUpdateWithoutAuthorInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6511,16 +6511,16 @@ export const PageTextUpdateWithoutAuthorInputSchema: z.ZodType<Prisma.PageTextUp
 }).strict();
 
 export const PageTextUncheckedUpdateWithoutAuthorInputSchema: z.ZodType<Prisma.PageTextUncheckedUpdateWithoutAuthorInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  translatorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  pageId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  translatorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const PageTextUncheckedUpdateManyWithoutPageTextsInputSchema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutPageTextsInput> = z.object({
@@ -6554,7 +6554,7 @@ export const PageArtworkCreateManyArtistInputSchema: z.ZodType<Prisma.PageArtwor
 }).strict();
 
 export const StoryUpdateWithoutArtistInputSchema: z.ZodType<Prisma.StoryUpdateWithoutArtistInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   author: z.lazy(() => AuthorUpdateOneWithoutStoriesNestedInputSchema).optional(),
@@ -6564,17 +6564,17 @@ export const StoryUpdateWithoutArtistInputSchema: z.ZodType<Prisma.StoryUpdateWi
 }).strict();
 
 export const StoryUncheckedUpdateWithoutArtistInputSchema: z.ZodType<Prisma.StoryUncheckedUpdateWithoutArtistInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  authorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  authorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   pages: z.lazy(() => PageUncheckedUpdateManyWithoutStoryNestedInputSchema).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutStoryNestedInputSchema).optional(),
   pageTexts: z.lazy(() => PageTextUncheckedUpdateManyWithoutStoryNestedInputSchema).optional()
 }).strict();
 
 export const PageArtworkUpdateWithoutArtistInputSchema: z.ZodType<Prisma.PageArtworkUpdateWithoutArtistInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6584,13 +6584,13 @@ export const PageArtworkUpdateWithoutArtistInputSchema: z.ZodType<Prisma.PageArt
 }).strict();
 
 export const PageArtworkUncheckedUpdateWithoutArtistInputSchema: z.ZodType<Prisma.PageArtworkUncheckedUpdateWithoutArtistInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  photoId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  pageId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  photoId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const PageTextCreateManyTranslatorInputSchema: z.ZodType<Prisma.PageTextCreateManyTranslatorInput> = z.object({
@@ -6607,10 +6607,10 @@ export const PageTextCreateManyTranslatorInputSchema: z.ZodType<Prisma.PageTextC
 }).strict();
 
 export const PageTextUpdateWithoutTranslatorInputSchema: z.ZodType<Prisma.PageTextUpdateWithoutTranslatorInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6620,16 +6620,16 @@ export const PageTextUpdateWithoutTranslatorInputSchema: z.ZodType<Prisma.PageTe
 }).strict();
 
 export const PageTextUncheckedUpdateWithoutTranslatorInputSchema: z.ZodType<Prisma.PageTextUncheckedUpdateWithoutTranslatorInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  authorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  pageId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  authorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const PageCreateManyStoryInputSchema: z.ZodType<Prisma.PageCreateManyStoryInput> = z.object({
@@ -6665,10 +6665,10 @@ export const PageTextCreateManyStoryInputSchema: z.ZodType<Prisma.PageTextCreate
 }).strict();
 
 export const PageUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageUpdateWithoutStoryInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => EnumPageTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageNumber: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pageNumber: z.union([ z.number().gte(1).lte(100),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   artworks: z.lazy(() => PageArtworkUpdateManyWithoutPageNestedInputSchema).optional(),
@@ -6676,10 +6676,10 @@ export const PageUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageUpdateWitho
 }).strict();
 
 export const PageUncheckedUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageUncheckedUpdateWithoutStoryInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => EnumPageTypeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageNumber: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pageNumber: z.union([ z.number().gte(1).lte(100),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   artworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutPageNestedInputSchema).optional(),
@@ -6696,7 +6696,7 @@ export const PageUncheckedUpdateManyWithoutPagesInputSchema: z.ZodType<Prisma.Pa
 }).strict();
 
 export const PageArtworkUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageArtworkUpdateWithoutStoryInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6706,20 +6706,20 @@ export const PageArtworkUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageArtw
 }).strict();
 
 export const PageArtworkUncheckedUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageArtworkUncheckedUpdateWithoutStoryInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  artistId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  photoId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  pageId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  artistId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  photoId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const PageTextUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageTextUpdateWithoutStoryInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6729,16 +6729,16 @@ export const PageTextUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageTextUpd
 }).strict();
 
 export const PageTextUncheckedUpdateWithoutStoryInputSchema: z.ZodType<Prisma.PageTextUncheckedUpdateWithoutStoryInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  pageId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  authorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  translatorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  pageId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  authorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  translatorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const PageArtworkCreateManyPageInputSchema: z.ZodType<Prisma.PageArtworkCreateManyPageInput> = z.object({
@@ -6765,7 +6765,7 @@ export const PageTextCreateManyPageInputSchema: z.ZodType<Prisma.PageTextCreateM
 }).strict();
 
 export const PageArtworkUpdateWithoutPageInputSchema: z.ZodType<Prisma.PageArtworkUpdateWithoutPageInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6775,13 +6775,13 @@ export const PageArtworkUpdateWithoutPageInputSchema: z.ZodType<Prisma.PageArtwo
 }).strict();
 
 export const PageArtworkUncheckedUpdateWithoutPageInputSchema: z.ZodType<Prisma.PageArtworkUncheckedUpdateWithoutPageInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  artistId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  photoId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  artistId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  photoId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const PageArtworkUncheckedUpdateManyWithoutArtworksInputSchema: z.ZodType<Prisma.PageArtworkUncheckedUpdateManyWithoutArtworksInput> = z.object({
@@ -6795,10 +6795,10 @@ export const PageArtworkUncheckedUpdateManyWithoutArtworksInputSchema: z.ZodType
 }).strict();
 
 export const PageTextUpdateWithoutPageInputSchema: z.ZodType<Prisma.PageTextUpdateWithoutPageInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6808,16 +6808,16 @@ export const PageTextUpdateWithoutPageInputSchema: z.ZodType<Prisma.PageTextUpda
 }).strict();
 
 export const PageTextUncheckedUpdateWithoutPageInputSchema: z.ZodType<Prisma.PageTextUncheckedUpdateWithoutPageInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   status: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => EnumPageStatusFieldUpdateOperationsInputSchema) ]).optional(),
   locale: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => EnumLocaleFieldUpdateOperationsInputSchema) ]).optional(),
-  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string().min(1).max(5000),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => EnumPageTextTypeFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  storyId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  authorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  translatorId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  storyId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  authorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  translatorId: z.union([ z.string().cuid(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const PageTextUncheckedUpdateManyWithoutTextsInputSchema: z.ZodType<Prisma.PageTextUncheckedUpdateManyWithoutTextsInput> = z.object({
@@ -6834,9 +6834,9 @@ export const PageTextUncheckedUpdateManyWithoutTextsInputSchema: z.ZodType<Prism
 }).strict();
 
 export const PhotoUpdateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoUpdateWithoutConceptsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PhotoUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
@@ -6845,13 +6845,13 @@ export const PhotoUpdateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoUpdate
 }).strict();
 
 export const PhotoUncheckedUpdateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoUncheckedUpdateWithoutConceptsInput> = z.object({
-  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  height: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
-  width: z.union([ z.number(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  height: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  width: z.union([ z.number().positive(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   tags: z.union([ z.lazy(() => PhotoUpdatetagsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
-  fileId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  fileId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   pageArtworks: z.lazy(() => PageArtworkUncheckedUpdateManyWithoutPhotoNestedInputSchema).optional()
 }).strict();
 
