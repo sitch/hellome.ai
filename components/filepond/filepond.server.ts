@@ -4,6 +4,8 @@ import { type FilePondProps } from "react-filepond"
 import { type FilePondCallbackProps } from "filepond"
 import { uniq } from "lodash"
 
+import { renameFile } from "@/components/filepond/utils"
+
 export type UploadS3ProcessResp = Awaited<
   ReturnType<ReturnType<typeof useS3Upload>["uploadToS3"]>
 >
@@ -76,9 +78,17 @@ export const production: ServerBuildFunction = ({
     _transfer,
     _options,
   ) => {
-    // const controller = new AbortController()
+    if (!file.name.includes(".")) {
+      if (file.type === "image/png") {
+        const filename = `${file.name}.png`
+        console.warn("process.uploadToS3.renaming", file, filename)
+        renameFile(file as File, filename)
+      }
+    }
+    const controller = new AbortController()
 
     console.warn("process.uploadToS3.request", file)
+
     uploadToS3(file as File, {
       // TODO: submit PR
       // This function is entered if the user has tapped the cancel button
