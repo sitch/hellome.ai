@@ -241,10 +241,6 @@
   "resolutions": {
     "zod": "3.21.1"
   },
-  "_____resolutions": {
-    "react-hook-form": "7.16.1",
-    "zod": "3.21.1"
-  },
   "dependencies.to.remove": {
     "@downwindcss/easings": "^1.0.4",
     "@fontsource/inter": "^4.5.15",
