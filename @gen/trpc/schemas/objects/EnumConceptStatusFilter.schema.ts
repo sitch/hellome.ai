@@ -8,12 +8,16 @@ const Schema: z.ZodType<Prisma.EnumConceptStatusFilter> = z
   .object({
     equals: z.lazy(() => ConceptStatusSchema).optional(),
     in: z
-      .lazy(() => ConceptStatusSchema)
-      .array()
+      .union([
+        z.lazy(() => ConceptStatusSchema).array(),
+        z.lazy(() => ConceptStatusSchema),
+      ])
       .optional(),
     notIn: z
-      .lazy(() => ConceptStatusSchema)
-      .array()
+      .union([
+        z.lazy(() => ConceptStatusSchema).array(),
+        z.lazy(() => ConceptStatusSchema),
+      ])
       .optional(),
     not: z
       .union([

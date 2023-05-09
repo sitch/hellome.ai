@@ -15,6 +15,7 @@ const config = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-select/dist/index.esm.js",
 
     // TODO: remove
     // "./node_modules/flowbite/**/*.js",
@@ -25,13 +26,14 @@ const config = {
     // @ts-ignore
     require("tailwindcss-animate"),
 
+    require("@headlessui/tailwindcss"),
+
     plugin(({ addVariant }) => {
       addVariant("radix-side-top", '&[data-side="top"]')
       addVariant("radix-side-bottom", '&[data-side="bottom"]')
     }),
 
     // TODO: remove
-    // import "@headlessui/tailwindcss",
     // import "@downwindcss/easings",
     // import "flowbite/plugin",
     // import "flowbite-typography",

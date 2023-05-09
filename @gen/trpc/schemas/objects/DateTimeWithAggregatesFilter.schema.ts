@@ -8,8 +8,8 @@ import { NestedIntFilterObjectSchema } from "./NestedIntFilter.schema"
 const Schema: z.ZodType<Prisma.DateTimeWithAggregatesFilter> = z
   .object({
     equals: z.date().optional(),
-    in: z.date().array().optional(),
-    notIn: z.date().array().optional(),
+    in: z.union([z.date().array(), z.date()]).optional(),
+    notIn: z.union([z.date().array(), z.date()]).optional(),
     lt: z.date().optional(),
     lte: z.date().optional(),
     gt: z.date().optional(),

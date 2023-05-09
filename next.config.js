@@ -1,3 +1,13 @@
+// /**
+//  * @link https://github.com/pixelass/pwa-template/blob/main/next.config.mjs
+//  * @param {((config?: object) => import('next').NextConfig)[]} plugins
+//  * @param {import('next').NextConfig} config
+//  * @returns {import('next').NextConfig}
+//  */
+// function withPlugins(plugins, config) {
+//   return plugins.reduce((prev, next) => next(prev), config)
+// }
+
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.

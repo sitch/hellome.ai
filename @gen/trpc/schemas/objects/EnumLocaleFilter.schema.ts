@@ -8,12 +8,10 @@ const Schema: z.ZodType<Prisma.EnumLocaleFilter> = z
   .object({
     equals: z.lazy(() => LocaleSchema).optional(),
     in: z
-      .lazy(() => LocaleSchema)
-      .array()
+      .union([z.lazy(() => LocaleSchema).array(), z.lazy(() => LocaleSchema)])
       .optional(),
     notIn: z
-      .lazy(() => LocaleSchema)
-      .array()
+      .union([z.lazy(() => LocaleSchema).array(), z.lazy(() => LocaleSchema)])
       .optional(),
     not: z
       .union([

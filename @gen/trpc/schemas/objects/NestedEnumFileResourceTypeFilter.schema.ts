@@ -7,12 +7,16 @@ const Schema: z.ZodType<Prisma.NestedEnumFileResourceTypeFilter> = z
   .object({
     equals: z.lazy(() => FileResourceTypeSchema).optional(),
     in: z
-      .lazy(() => FileResourceTypeSchema)
-      .array()
+      .union([
+        z.lazy(() => FileResourceTypeSchema).array(),
+        z.lazy(() => FileResourceTypeSchema),
+      ])
       .optional(),
     notIn: z
-      .lazy(() => FileResourceTypeSchema)
-      .array()
+      .union([
+        z.lazy(() => FileResourceTypeSchema).array(),
+        z.lazy(() => FileResourceTypeSchema),
+      ])
       .optional(),
     not: z
       .union([
