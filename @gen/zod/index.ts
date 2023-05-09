@@ -54,7 +54,9 @@ export const AuthorScalarFieldEnumSchema = z.enum(['id']);
 
 export const CloudFileScalarFieldEnumSchema = z.enum(['id','filename','stem','extension','size','mime','resourceType','metadata','key','bucket','region','publicUrl','privacy','createdAt','updatedAt']);
 
-export const ConceptScalarFieldEnumSchema = z.enum(['id','name','type','description','createdAt','updatedAt']);
+export const ConceptScalarFieldEnumSchema = z.enum(['id','name','type','status','description','prompt','identifier','classNoun','negativePrompt','instancePrompt','classPrompt','positivePrompts','negativePrompts','createdAt','updatedAt','dreamboothTrainingId','dreamboothModelURI']);
+
+export const DreamBoothTrainingScalarFieldEnumSchema = z.enum(['id','createdAt','instance_prompt','class_prompt','instance_data','class_data','num_class_images','save_sample_prompt','save_sample_negative_prompt','n_save_sample','save_guidance_scale','save_infer_steps','pad_tokens','with_prior_preservation','prior_loss_weight','seed','resolution','center_crop','train_text_encoder','train_batch_size','sample_batch_size','num_train_epochs','max_train_steps','gradient_accumulation_steps','gradient_checkpointing','learning_rate','scale_lr','lr_scheduler','lr_warmup_steps','use_8bit_adam','adam_beta1','adam_beta2','adam_weight_decay','adam_epsilon','max_grad_norm']);
 
 export const EditionScalarFieldEnumSchema = z.enum(['id','createdAt','updatedAt','userId','pdfId']);
 
@@ -121,6 +123,14 @@ export type PageTextTypeType = `${z.infer<typeof PageTextTypeSchema>}`
 export const ConceptTypeSchema = z.enum(['person','place','thing']);
 
 export type ConceptTypeType = `${z.infer<typeof ConceptTypeSchema>}`
+
+export const ConceptStatusSchema = z.enum(['CREATED','TRAINING','TRAINED']);
+
+export type ConceptStatusType = `${z.infer<typeof ConceptStatusSchema>}`
+
+export const LRSchedulerSchema = z.enum(['linear','cosine','cosine_with_restarts','polynomial','constant','constant_with_warmup']);
+
+export type LRSchedulerType = `${z.infer<typeof LRSchedulerSchema>}`
 
 /////////////////////////////////////////
 // MODELS
@@ -343,14 +353,28 @@ export type Edition = z.infer<typeof EditionSchema>
 
 export const ConceptSchema = z.object({
   type: ConceptTypeSchema,
+  status: ConceptStatusSchema,
   id: z.string().cuid(),
-  /**
-   * .max(100
-   */
-  name: z.string().min(1),
+  name: z.string().min(1).max(100),
   description: z.string().nullish(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  /**
+   * The prompt you use to describe your training images, in the format: `a [identifier] [class noun]`, where the `[identifier]` should be a rare token. Relatively short sequences with 1-3 letters work the best (e.g. `sks`, `xjy`). `[class noun]` is a coarse class descriptor of the subject (e.g. cat, dog, watch, etc.). For example, your `instance_prompt` can be `a sks dog`, or with some extra description `a photo of a sks dog`. The trained model will learn to bind a unique identifier with your specific subject in the `instance_data`.
+   */
+  instancePrompt: z.string(),
+  /**
+   * The prompt or description of the coarse class of your training images, in the format of `a [class noun]`, optionally with some extra description. `class_prompt` is used to alleviate overfitting to your customized images (the trained model should still keep the learnt prior so that it can still generate different dogs when the `[identifier]` is not in the prompt). Corresponding to the examples of the `instant_prompt` above, the `class_prompt` can be `a dog` or `a photo of a dog`.
+   */
+  classPrompt: z.string(),
+  positivePrompts: z.string().array(),
+  negativePrompts: z.string().array(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
+  dreamboothTrainingId: z.string().nullish(),
+  dreamboothModelURI: z.string().url().nullish(),
 })
 
 export type Concept = z.infer<typeof ConceptSchema>
@@ -375,6 +399,162 @@ export const PredictionSchema = z.object({
 })
 
 export type Prediction = z.infer<typeof PredictionSchema>
+
+/////////////////////////////////////////
+// DREAM BOOTH TRAINING SCHEMA
+/////////////////////////////////////////
+
+/**
+ * There are a few inputs you should know about when training with this model:
+ * 
+ * - `instance_data`   (required) - A ZIP file containing your training images (JPG, PNG, etc. size not restricted). These images contain your "subject" that you want the trained model to embed in the output domain for later generating customized scenes beyond the training images. For best results, use images without noise or unrelated object in the background.
+ * - `instance_prompt` (required) - This is the prompt you use to describe your training images, in the format: `a [identifier] [class noun]`, where the `[identifier]` should be a rare-token - it is found that relatively short sequences with 1-3 letters work the best (e.g. `sks`, `xjy`). `[class noun]` is a coarse class descriptor of the subject (e.g. cat, dog, watch, etc.). For example, your `instance_prompt` can be: `a sks dog`, or with some extra description `a photo of a xjy dog`. The trained model will learn to bind a unique identifier with your specific subject in the `instance_data`.
+ * - `class_prompt`    (required) - This is the prompt or description of the coarse class of your training images, in the format of `a [class noun]` (or with some extra description).  `class_prompt` is used to alleviate overfitting to your customized images (the trained model should still keep the learnt prior so that it can still generate different dogs when the `[identifier]` is not in the prompt). Corresponding to the examples of the `instant_prompt` above, the `class_prompt` can be `a dog` or `a photo of a dog`.
+ * - `class_data`      (optional) - This corresponds to `class_prompt` above, also with the purpose to keep the generalizability of the model. By default, the pretrained stable-diffusion model will generate N (determined by the `num_class_images` you set) images based on the `class_prompt` provided above. But to save time or to to have your preferred specific set of `class_data`, you can also provide them in a ZIP file.
+ * 
+ * You may also want to change `num_class_images` and the `max_train_steps` settings, to trade-off speed and quality.
+ * 
+ * `seed` is randomly initialized to 1337, feel free to change it!
+ * 
+ */
+export const DreamBoothTrainingSchema = z.object({
+  /**
+   * The scheduler type to use
+   */
+  lr_scheduler: LRSchedulerSchema,
+  id: z.string().cuid(),
+  createdAt: z.coerce.date(),
+  /**
+   * The prompt you use to describe your training images, in the format: `a [identifier] [class noun]`, where the `[identifier]` should be a rare token. Relatively short sequences with 1-3 letters work the best (e.g. `sks`, `xjy`). `[class noun]` is a coarse class descriptor of the subject (e.g. cat, dog, watch, etc.). For example, your `instance_prompt` can be `a sks dog`, or with some extra description `a photo of a sks dog`. The trained model will learn to bind a unique identifier with your specific subject in the `instance_data`.
+   */
+  instance_prompt: z.string(),
+  /**
+   * The prompt or description of the coarse class of your training images, in the format of `a [class noun]`, optionally with some extra description. `class_prompt` is used to alleviate overfitting to your customized images (the trained model should still keep the learnt prior so that it can still generate different dogs when the `[identifier]` is not in the prompt). Corresponding to the examples of the `instant_prompt` above, the `class_prompt` can be `a dog` or `a photo of a dog`.
+   */
+  class_prompt: z.string(),
+  /**
+   * A ZIP file containing your training images (JPG, PNG, etc. size not restricted). These images contain your 'subject' that you want the trained model to embed in the output domain for later generating customized scenes beyond the training images. For best results, use images without noise or unrelated objects in the background.
+   */
+  instance_data: z.string(),
+  /**
+   * An optional ZIP file containing the training data of class images. This corresponds to `class_prompt` above, also with the purpose of keeping the model generalizable. By default, the pretrained stable-diffusion model will generate N images (determined by the `num_class_images` you set) based on the `class_prompt` provided. But to save time or to have your preferred specific set of `class_data`, you can also provide them in a ZIP file.
+   */
+  class_data: z.string(),
+  /**
+   * Minimal class images for prior preservation loss. If not enough images are provided in class_data, additional images will be sampled with class_prompt.
+   */
+  num_class_images: z.number().int(),
+  /**
+   * The prompt used to generate sample outputs to save.
+   */
+  save_sample_prompt: z.string().nullish(),
+  /**
+   * The negative prompt used to generate sample outputs to save.
+   */
+  save_sample_negative_prompt: z.string().nullish(),
+  /**
+   * The number of samples to save.
+   */
+  n_save_sample: z.number().int(),
+  /**
+   * CFG for save sample.
+   */
+  save_guidance_scale: z.number(),
+  /**
+   * The number of inference steps for save sample.
+   */
+  save_infer_steps: z.number().int(),
+  /**
+   * Flag to pad tokens to length 77.
+   */
+  pad_tokens: z.boolean(),
+  /**
+   * Flag to add prior preservation loss.
+   */
+  with_prior_preservation: z.boolean(),
+  /**
+   * Weight of prior preservation loss.
+   */
+  prior_loss_weight: z.number(),
+  /**
+   * A seed for reproducible training
+   */
+  seed: z.number().int(),
+  /**
+   * The resolution for input images. All the images in the train/validation dataset will be resized to this resolution.
+   */
+  resolution: z.number().int(),
+  /**
+   * Whether to center crop images before resizing to resolution
+   */
+  center_crop: z.boolean(),
+  /**
+   * Whether to train the text encoder
+   */
+  train_text_encoder: z.boolean(),
+  /**
+   * Batch size (per device) for the training dataloader.
+   */
+  train_batch_size: z.number().int(),
+  /**
+   * Batch size (per device) for sampling images.
+   */
+  sample_batch_size: z.number().int(),
+  /**
+   * Number of training epochs
+   */
+  num_train_epochs: z.number().int(),
+  /**
+   * Total number of training steps to perform.  If provided, overrides num_train_epochs.
+   */
+  max_train_steps: z.number().int(),
+  /**
+   * Number of updates steps to accumulate before performing a backward/update pass.
+   */
+  gradient_accumulation_steps: z.number().int(),
+  /**
+   * Whether or not to use gradient checkpointing to save memory at the expense of slower backward pass.
+   */
+  gradient_checkpointing: z.boolean(),
+  /**
+   * Initial learning rate (after the potential warmup period) to use.
+   */
+  learning_rate: z.number(),
+  /**
+   * Scale the learning rate by the number of GPUs, gradient accumulation steps, and batch size.
+   */
+  scale_lr: z.boolean(),
+  /**
+   * Number of steps for the warmup in the lr scheduler.
+   */
+  lr_warmup_steps: z.number().int(),
+  /**
+   * Whether or not to use 8-bit Adam from bitsandbytes.
+   */
+  use_8bit_adam: z.boolean(),
+  /**
+   * The beta1 parameter for the Adam optimizer.
+   */
+  adam_beta1: z.number(),
+  /**
+   * The beta2 parameter for the Adam optimizer.
+   */
+  adam_beta2: z.number(),
+  /**
+   * Weight decay to use
+   */
+  adam_weight_decay: z.number(),
+  /**
+   * Epsilon value for the Adam optimizer
+   */
+  adam_epsilon: z.number(),
+  /**
+   * Max gradient norm.
+   */
+  max_grad_norm: z.number(),
+})
+
+export type DreamBoothTraining = z.infer<typeof DreamBoothTrainingSchema>
 
 /////////////////////////////////////////
 // SELECT & INCLUDE
@@ -763,6 +943,7 @@ export const EditionSelectSchema: z.ZodType<Prisma.EditionSelect> = z.object({
 //------------------------------------------------------
 
 export const ConceptIncludeSchema: z.ZodType<Prisma.ConceptInclude> = z.object({
+  dreamboothTraining: z.union([z.boolean(),z.lazy(() => DreamBoothTrainingArgsSchema)]).optional(),
   photos: z.union([z.boolean(),z.lazy(() => PhotoFindManyArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => ConceptCountOutputTypeArgsSchema)]).optional(),
 }).strict()
@@ -784,9 +965,21 @@ export const ConceptSelectSchema: z.ZodType<Prisma.ConceptSelect> = z.object({
   id: z.boolean().optional(),
   name: z.boolean().optional(),
   type: z.boolean().optional(),
+  status: z.boolean().optional(),
   description: z.boolean().optional(),
+  prompt: z.boolean().optional(),
+  identifier: z.boolean().optional(),
+  classNoun: z.boolean().optional(),
+  negativePrompt: z.boolean().optional(),
+  instancePrompt: z.boolean().optional(),
+  classPrompt: z.boolean().optional(),
+  positivePrompts: z.boolean().optional(),
+  negativePrompts: z.boolean().optional(),
   createdAt: z.boolean().optional(),
   updatedAt: z.boolean().optional(),
+  dreamboothTrainingId: z.boolean().optional(),
+  dreamboothModelURI: z.boolean().optional(),
+  dreamboothTraining: z.union([z.boolean(),z.lazy(() => DreamBoothTrainingArgsSchema)]).optional(),
   photos: z.union([z.boolean(),z.lazy(() => PhotoFindManyArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => ConceptCountOutputTypeArgsSchema)]).optional(),
 }).strict()
@@ -807,6 +1000,67 @@ export const PredictionSelectSchema: z.ZodType<Prisma.PredictionSelect> = z.obje
   metrics: z.boolean().optional(),
   error: z.boolean().optional(),
   logs: z.boolean().optional(),
+}).strict()
+
+// DREAM BOOTH TRAINING
+//------------------------------------------------------
+
+export const DreamBoothTrainingIncludeSchema: z.ZodType<Prisma.DreamBoothTrainingInclude> = z.object({
+  Concept: z.union([z.boolean(),z.lazy(() => ConceptFindManyArgsSchema)]).optional(),
+  _count: z.union([z.boolean(),z.lazy(() => DreamBoothTrainingCountOutputTypeArgsSchema)]).optional(),
+}).strict()
+
+export const DreamBoothTrainingArgsSchema: z.ZodType<Prisma.DreamBoothTrainingArgs> = z.object({
+  select: z.lazy(() => DreamBoothTrainingSelectSchema).optional(),
+  include: z.lazy(() => DreamBoothTrainingIncludeSchema).optional(),
+}).strict();
+
+export const DreamBoothTrainingCountOutputTypeArgsSchema: z.ZodType<Prisma.DreamBoothTrainingCountOutputTypeArgs> = z.object({
+  select: z.lazy(() => DreamBoothTrainingCountOutputTypeSelectSchema).nullish(),
+}).strict();
+
+export const DreamBoothTrainingCountOutputTypeSelectSchema: z.ZodType<Prisma.DreamBoothTrainingCountOutputTypeSelect> = z.object({
+  Concept: z.boolean().optional(),
+}).strict();
+
+export const DreamBoothTrainingSelectSchema: z.ZodType<Prisma.DreamBoothTrainingSelect> = z.object({
+  id: z.boolean().optional(),
+  createdAt: z.boolean().optional(),
+  instance_prompt: z.boolean().optional(),
+  class_prompt: z.boolean().optional(),
+  instance_data: z.boolean().optional(),
+  class_data: z.boolean().optional(),
+  num_class_images: z.boolean().optional(),
+  save_sample_prompt: z.boolean().optional(),
+  save_sample_negative_prompt: z.boolean().optional(),
+  n_save_sample: z.boolean().optional(),
+  save_guidance_scale: z.boolean().optional(),
+  save_infer_steps: z.boolean().optional(),
+  pad_tokens: z.boolean().optional(),
+  with_prior_preservation: z.boolean().optional(),
+  prior_loss_weight: z.boolean().optional(),
+  seed: z.boolean().optional(),
+  resolution: z.boolean().optional(),
+  center_crop: z.boolean().optional(),
+  train_text_encoder: z.boolean().optional(),
+  train_batch_size: z.boolean().optional(),
+  sample_batch_size: z.boolean().optional(),
+  num_train_epochs: z.boolean().optional(),
+  max_train_steps: z.boolean().optional(),
+  gradient_accumulation_steps: z.boolean().optional(),
+  gradient_checkpointing: z.boolean().optional(),
+  learning_rate: z.boolean().optional(),
+  scale_lr: z.boolean().optional(),
+  lr_scheduler: z.boolean().optional(),
+  lr_warmup_steps: z.boolean().optional(),
+  use_8bit_adam: z.boolean().optional(),
+  adam_beta1: z.boolean().optional(),
+  adam_beta2: z.boolean().optional(),
+  adam_weight_decay: z.boolean().optional(),
+  adam_epsilon: z.boolean().optional(),
+  max_grad_norm: z.boolean().optional(),
+  Concept: z.union([z.boolean(),z.lazy(() => ConceptFindManyArgsSchema)]).optional(),
+  _count: z.union([z.boolean(),z.lazy(() => DreamBoothTrainingCountOutputTypeArgsSchema)]).optional(),
 }).strict()
 
 
@@ -1490,9 +1744,21 @@ export const ConceptWhereInputSchema: z.ZodType<Prisma.ConceptWhereInput> = z.ob
   id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   name: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   type: z.union([ z.lazy(() => EnumConceptTypeFilterSchema),z.lazy(() => ConceptTypeSchema) ]).optional(),
+  status: z.union([ z.lazy(() => EnumConceptStatusFilterSchema),z.lazy(() => ConceptStatusSchema) ]).optional(),
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  prompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  identifier: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  classNoun: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  negativePrompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  instancePrompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  classPrompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  positivePrompts: z.lazy(() => StringNullableListFilterSchema).optional(),
+  negativePrompts: z.lazy(() => StringNullableListFilterSchema).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
+  dreamboothTrainingId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  dreamboothModelURI: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  dreamboothTraining: z.union([ z.lazy(() => DreamBoothTrainingRelationFilterSchema),z.lazy(() => DreamBoothTrainingWhereInputSchema) ]).optional().nullable(),
   photos: z.lazy(() => PhotoListRelationFilterSchema).optional()
 }).strict();
 
@@ -1500,9 +1766,21 @@ export const ConceptOrderByWithRelationInputSchema: z.ZodType<Prisma.ConceptOrde
   id: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
   type: z.lazy(() => SortOrderSchema).optional(),
+  status: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
+  prompt: z.lazy(() => SortOrderSchema).optional(),
+  identifier: z.lazy(() => SortOrderSchema).optional(),
+  classNoun: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompt: z.lazy(() => SortOrderSchema).optional(),
+  instancePrompt: z.lazy(() => SortOrderSchema).optional(),
+  classPrompt: z.lazy(() => SortOrderSchema).optional(),
+  positivePrompts: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompts: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothTrainingId: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothModelURI: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothTraining: z.lazy(() => DreamBoothTrainingOrderByWithRelationInputSchema).optional(),
   photos: z.lazy(() => PhotoOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
@@ -1514,9 +1792,20 @@ export const ConceptOrderByWithAggregationInputSchema: z.ZodType<Prisma.ConceptO
   id: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
   type: z.lazy(() => SortOrderSchema).optional(),
+  status: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
+  prompt: z.lazy(() => SortOrderSchema).optional(),
+  identifier: z.lazy(() => SortOrderSchema).optional(),
+  classNoun: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompt: z.lazy(() => SortOrderSchema).optional(),
+  instancePrompt: z.lazy(() => SortOrderSchema).optional(),
+  classPrompt: z.lazy(() => SortOrderSchema).optional(),
+  positivePrompts: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompts: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothTrainingId: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothModelURI: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => ConceptCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => ConceptMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => ConceptMinOrderByAggregateInputSchema).optional()
@@ -1529,9 +1818,20 @@ export const ConceptScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.Conce
   id: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
   name: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
   type: z.union([ z.lazy(() => EnumConceptTypeWithAggregatesFilterSchema),z.lazy(() => ConceptTypeSchema) ]).optional(),
+  status: z.union([ z.lazy(() => EnumConceptStatusWithAggregatesFilterSchema),z.lazy(() => ConceptStatusSchema) ]).optional(),
   description: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
+  prompt: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  identifier: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  classNoun: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  negativePrompt: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  instancePrompt: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  classPrompt: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  positivePrompts: z.lazy(() => StringNullableListFilterSchema).optional(),
+  negativePrompts: z.lazy(() => StringNullableListFilterSchema).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
+  dreamboothTrainingId: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
+  dreamboothModelURI: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
 }).strict();
 
 export const PredictionWhereInputSchema: z.ZodType<Prisma.PredictionWhereInput> = z.object({
@@ -1606,6 +1906,175 @@ export const PredictionScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.Pr
   metrics: z.lazy(() => JsonNullableWithAggregatesFilterSchema).optional(),
   error: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
   logs: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
+}).strict();
+
+export const DreamBoothTrainingWhereInputSchema: z.ZodType<Prisma.DreamBoothTrainingWhereInput> = z.object({
+  AND: z.union([ z.lazy(() => DreamBoothTrainingWhereInputSchema),z.lazy(() => DreamBoothTrainingWhereInputSchema).array() ]).optional(),
+  OR: z.lazy(() => DreamBoothTrainingWhereInputSchema).array().optional(),
+  NOT: z.union([ z.lazy(() => DreamBoothTrainingWhereInputSchema),z.lazy(() => DreamBoothTrainingWhereInputSchema).array() ]).optional(),
+  id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
+  instance_prompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  class_prompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  instance_data: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  class_data: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  num_class_images: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  save_sample_prompt: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  n_save_sample: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  save_guidance_scale: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  save_infer_steps: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  pad_tokens: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  with_prior_preservation: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  prior_loss_weight: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  seed: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  resolution: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  center_crop: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  train_text_encoder: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  train_batch_size: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  sample_batch_size: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  num_train_epochs: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  max_train_steps: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  gradient_accumulation_steps: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  gradient_checkpointing: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  learning_rate: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  scale_lr: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => EnumLRSchedulerFilterSchema),z.lazy(() => LRSchedulerSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  use_8bit_adam: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  adam_beta1: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  adam_beta2: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  adam_weight_decay: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  adam_epsilon: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  max_grad_norm: z.union([ z.lazy(() => FloatFilterSchema),z.number() ]).optional(),
+  Concept: z.lazy(() => ConceptListRelationFilterSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingOrderByWithRelationInputSchema: z.ZodType<Prisma.DreamBoothTrainingOrderByWithRelationInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  instance_prompt: z.lazy(() => SortOrderSchema).optional(),
+  class_prompt: z.lazy(() => SortOrderSchema).optional(),
+  instance_data: z.lazy(() => SortOrderSchema).optional(),
+  class_data: z.lazy(() => SortOrderSchema).optional(),
+  num_class_images: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_prompt: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_negative_prompt: z.lazy(() => SortOrderSchema).optional(),
+  n_save_sample: z.lazy(() => SortOrderSchema).optional(),
+  save_guidance_scale: z.lazy(() => SortOrderSchema).optional(),
+  save_infer_steps: z.lazy(() => SortOrderSchema).optional(),
+  pad_tokens: z.lazy(() => SortOrderSchema).optional(),
+  with_prior_preservation: z.lazy(() => SortOrderSchema).optional(),
+  prior_loss_weight: z.lazy(() => SortOrderSchema).optional(),
+  seed: z.lazy(() => SortOrderSchema).optional(),
+  resolution: z.lazy(() => SortOrderSchema).optional(),
+  center_crop: z.lazy(() => SortOrderSchema).optional(),
+  train_text_encoder: z.lazy(() => SortOrderSchema).optional(),
+  train_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  sample_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  num_train_epochs: z.lazy(() => SortOrderSchema).optional(),
+  max_train_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_accumulation_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_checkpointing: z.lazy(() => SortOrderSchema).optional(),
+  learning_rate: z.lazy(() => SortOrderSchema).optional(),
+  scale_lr: z.lazy(() => SortOrderSchema).optional(),
+  lr_scheduler: z.lazy(() => SortOrderSchema).optional(),
+  lr_warmup_steps: z.lazy(() => SortOrderSchema).optional(),
+  use_8bit_adam: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta1: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta2: z.lazy(() => SortOrderSchema).optional(),
+  adam_weight_decay: z.lazy(() => SortOrderSchema).optional(),
+  adam_epsilon: z.lazy(() => SortOrderSchema).optional(),
+  max_grad_norm: z.lazy(() => SortOrderSchema).optional(),
+  Concept: z.lazy(() => ConceptOrderByRelationAggregateInputSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingWhereUniqueInputSchema: z.ZodType<Prisma.DreamBoothTrainingWhereUniqueInput> = z.object({
+  id: z.string().cuid().optional()
+}).strict();
+
+export const DreamBoothTrainingOrderByWithAggregationInputSchema: z.ZodType<Prisma.DreamBoothTrainingOrderByWithAggregationInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  instance_prompt: z.lazy(() => SortOrderSchema).optional(),
+  class_prompt: z.lazy(() => SortOrderSchema).optional(),
+  instance_data: z.lazy(() => SortOrderSchema).optional(),
+  class_data: z.lazy(() => SortOrderSchema).optional(),
+  num_class_images: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_prompt: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_negative_prompt: z.lazy(() => SortOrderSchema).optional(),
+  n_save_sample: z.lazy(() => SortOrderSchema).optional(),
+  save_guidance_scale: z.lazy(() => SortOrderSchema).optional(),
+  save_infer_steps: z.lazy(() => SortOrderSchema).optional(),
+  pad_tokens: z.lazy(() => SortOrderSchema).optional(),
+  with_prior_preservation: z.lazy(() => SortOrderSchema).optional(),
+  prior_loss_weight: z.lazy(() => SortOrderSchema).optional(),
+  seed: z.lazy(() => SortOrderSchema).optional(),
+  resolution: z.lazy(() => SortOrderSchema).optional(),
+  center_crop: z.lazy(() => SortOrderSchema).optional(),
+  train_text_encoder: z.lazy(() => SortOrderSchema).optional(),
+  train_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  sample_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  num_train_epochs: z.lazy(() => SortOrderSchema).optional(),
+  max_train_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_accumulation_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_checkpointing: z.lazy(() => SortOrderSchema).optional(),
+  learning_rate: z.lazy(() => SortOrderSchema).optional(),
+  scale_lr: z.lazy(() => SortOrderSchema).optional(),
+  lr_scheduler: z.lazy(() => SortOrderSchema).optional(),
+  lr_warmup_steps: z.lazy(() => SortOrderSchema).optional(),
+  use_8bit_adam: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta1: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta2: z.lazy(() => SortOrderSchema).optional(),
+  adam_weight_decay: z.lazy(() => SortOrderSchema).optional(),
+  adam_epsilon: z.lazy(() => SortOrderSchema).optional(),
+  max_grad_norm: z.lazy(() => SortOrderSchema).optional(),
+  _count: z.lazy(() => DreamBoothTrainingCountOrderByAggregateInputSchema).optional(),
+  _avg: z.lazy(() => DreamBoothTrainingAvgOrderByAggregateInputSchema).optional(),
+  _max: z.lazy(() => DreamBoothTrainingMaxOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => DreamBoothTrainingMinOrderByAggregateInputSchema).optional(),
+  _sum: z.lazy(() => DreamBoothTrainingSumOrderByAggregateInputSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.DreamBoothTrainingScalarWhereWithAggregatesInput> = z.object({
+  AND: z.union([ z.lazy(() => DreamBoothTrainingScalarWhereWithAggregatesInputSchema),z.lazy(() => DreamBoothTrainingScalarWhereWithAggregatesInputSchema).array() ]).optional(),
+  OR: z.lazy(() => DreamBoothTrainingScalarWhereWithAggregatesInputSchema).array().optional(),
+  NOT: z.union([ z.lazy(() => DreamBoothTrainingScalarWhereWithAggregatesInputSchema),z.lazy(() => DreamBoothTrainingScalarWhereWithAggregatesInputSchema).array() ]).optional(),
+  id: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  createdAt: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
+  instance_prompt: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  class_prompt: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  instance_data: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  class_data: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  num_class_images: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  save_sample_prompt: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
+  n_save_sample: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  save_guidance_scale: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
+  save_infer_steps: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  pad_tokens: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
+  with_prior_preservation: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
+  prior_loss_weight: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
+  seed: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  resolution: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  center_crop: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
+  train_text_encoder: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
+  train_batch_size: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  sample_batch_size: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  num_train_epochs: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  max_train_steps: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  gradient_accumulation_steps: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  gradient_checkpointing: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
+  learning_rate: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
+  scale_lr: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => EnumLRSchedulerWithAggregatesFilterSchema),z.lazy(() => LRSchedulerSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
+  use_8bit_adam: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
+  adam_beta1: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
+  adam_beta2: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
+  adam_weight_decay: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
+  adam_epsilon: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
+  max_grad_norm: z.union([ z.lazy(() => FloatWithAggregatesFilterSchema),z.number() ]).optional(),
 }).strict();
 
 export const CloudFileCreateInputSchema: z.ZodType<Prisma.CloudFileCreateInput> = z.object({
@@ -2422,69 +2891,145 @@ export const EditionUncheckedUpdateManyInputSchema: z.ZodType<Prisma.EditionUnch
 
 export const ConceptCreateInputSchema: z.ZodType<Prisma.ConceptCreateInput> = z.object({
   id: z.string().cuid().optional(),
-  name: z.string().min(1),
+  name: z.string().min(1).max(100),
   type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
   description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
+  dreamboothModelURI: z.string().url().optional().nullable(),
+  dreamboothTraining: z.lazy(() => DreamBoothTrainingCreateNestedOneWithoutConceptInputSchema).optional(),
   photos: z.lazy(() => PhotoCreateNestedManyWithoutConceptsInputSchema).optional()
 }).strict();
 
 export const ConceptUncheckedCreateInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateInput> = z.object({
   id: z.string().cuid().optional(),
-  name: z.string().min(1),
+  name: z.string().min(1).max(100),
   type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
   description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
+  dreamboothTrainingId: z.string().optional().nullable(),
+  dreamboothModelURI: z.string().url().optional().nullable(),
   photos: z.lazy(() => PhotoUncheckedCreateNestedManyWithoutConceptsInputSchema).optional()
 }).strict();
 
 export const ConceptUpdateInputSchema: z.ZodType<Prisma.ConceptUpdateInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  dreamboothTraining: z.lazy(() => DreamBoothTrainingUpdateOneWithoutConceptNestedInputSchema).optional(),
   photos: z.lazy(() => PhotoUpdateManyWithoutConceptsNestedInputSchema).optional()
 }).strict();
 
 export const ConceptUncheckedUpdateInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothTrainingId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   photos: z.lazy(() => PhotoUncheckedUpdateManyWithoutConceptsNestedInputSchema).optional()
 }).strict();
 
 export const ConceptCreateManyInputSchema: z.ZodType<Prisma.ConceptCreateManyInput> = z.object({
   id: z.string().cuid().optional(),
-  name: z.string().min(1),
+  name: z.string().min(1).max(100),
   type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
   description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional()
+  updatedAt: z.coerce.date().optional(),
+  dreamboothTrainingId: z.string().optional().nullable(),
+  dreamboothModelURI: z.string().url().optional().nullable()
 }).strict();
 
 export const ConceptUpdateManyMutationInputSchema: z.ZodType<Prisma.ConceptUpdateManyMutationInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const ConceptUncheckedUpdateManyInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateManyInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothTrainingId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const PredictionCreateInputSchema: z.ZodType<Prisma.PredictionCreateInput> = z.object({
@@ -2590,6 +3135,276 @@ export const PredictionUncheckedUpdateManyInputSchema: z.ZodType<Prisma.Predicti
   metrics: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
   error: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   logs: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+}).strict();
+
+export const DreamBoothTrainingCreateInputSchema: z.ZodType<Prisma.DreamBoothTrainingCreateInput> = z.object({
+  id: z.string().cuid().optional(),
+  createdAt: z.coerce.date().optional(),
+  instance_prompt: z.string(),
+  class_prompt: z.string(),
+  instance_data: z.string(),
+  class_data: z.string(),
+  num_class_images: z.number().int().optional(),
+  save_sample_prompt: z.string().optional().nullable(),
+  save_sample_negative_prompt: z.string().optional().nullable(),
+  n_save_sample: z.number().int().optional(),
+  save_guidance_scale: z.number().optional(),
+  save_infer_steps: z.number().int().optional(),
+  pad_tokens: z.boolean().optional(),
+  with_prior_preservation: z.boolean().optional(),
+  prior_loss_weight: z.number().optional(),
+  seed: z.number().int().optional(),
+  resolution: z.number().int().optional(),
+  center_crop: z.boolean().optional(),
+  train_text_encoder: z.boolean().optional(),
+  train_batch_size: z.number().int().optional(),
+  sample_batch_size: z.number().int().optional(),
+  num_train_epochs: z.number().int().optional(),
+  max_train_steps: z.number().int().optional(),
+  gradient_accumulation_steps: z.number().int().optional(),
+  gradient_checkpointing: z.boolean().optional(),
+  learning_rate: z.number().optional(),
+  scale_lr: z.boolean().optional(),
+  lr_scheduler: z.lazy(() => LRSchedulerSchema).optional(),
+  lr_warmup_steps: z.number().int().optional(),
+  use_8bit_adam: z.boolean().optional(),
+  adam_beta1: z.number().optional(),
+  adam_beta2: z.number().optional(),
+  adam_weight_decay: z.number().optional(),
+  adam_epsilon: z.number().optional(),
+  max_grad_norm: z.number().optional(),
+  Concept: z.lazy(() => ConceptCreateNestedManyWithoutDreamboothTrainingInputSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingUncheckedCreateInputSchema: z.ZodType<Prisma.DreamBoothTrainingUncheckedCreateInput> = z.object({
+  id: z.string().cuid().optional(),
+  createdAt: z.coerce.date().optional(),
+  instance_prompt: z.string(),
+  class_prompt: z.string(),
+  instance_data: z.string(),
+  class_data: z.string(),
+  num_class_images: z.number().int().optional(),
+  save_sample_prompt: z.string().optional().nullable(),
+  save_sample_negative_prompt: z.string().optional().nullable(),
+  n_save_sample: z.number().int().optional(),
+  save_guidance_scale: z.number().optional(),
+  save_infer_steps: z.number().int().optional(),
+  pad_tokens: z.boolean().optional(),
+  with_prior_preservation: z.boolean().optional(),
+  prior_loss_weight: z.number().optional(),
+  seed: z.number().int().optional(),
+  resolution: z.number().int().optional(),
+  center_crop: z.boolean().optional(),
+  train_text_encoder: z.boolean().optional(),
+  train_batch_size: z.number().int().optional(),
+  sample_batch_size: z.number().int().optional(),
+  num_train_epochs: z.number().int().optional(),
+  max_train_steps: z.number().int().optional(),
+  gradient_accumulation_steps: z.number().int().optional(),
+  gradient_checkpointing: z.boolean().optional(),
+  learning_rate: z.number().optional(),
+  scale_lr: z.boolean().optional(),
+  lr_scheduler: z.lazy(() => LRSchedulerSchema).optional(),
+  lr_warmup_steps: z.number().int().optional(),
+  use_8bit_adam: z.boolean().optional(),
+  adam_beta1: z.number().optional(),
+  adam_beta2: z.number().optional(),
+  adam_weight_decay: z.number().optional(),
+  adam_epsilon: z.number().optional(),
+  max_grad_norm: z.number().optional(),
+  Concept: z.lazy(() => ConceptUncheckedCreateNestedManyWithoutDreamboothTrainingInputSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingUpdateInputSchema: z.ZodType<Prisma.DreamBoothTrainingUpdateInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  num_class_images: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_sample_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  n_save_sample: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_guidance_scale: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  save_infer_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pad_tokens: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  with_prior_preservation: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  prior_loss_weight: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  seed: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  resolution: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  center_crop: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_text_encoder: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  sample_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  num_train_epochs: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  max_train_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_accumulation_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_checkpointing: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  learning_rate: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  scale_lr: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => EnumLRSchedulerFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  use_8bit_adam: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta1: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta2: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_weight_decay: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_epsilon: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  max_grad_norm: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  Concept: z.lazy(() => ConceptUpdateManyWithoutDreamboothTrainingNestedInputSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingUncheckedUpdateInputSchema: z.ZodType<Prisma.DreamBoothTrainingUncheckedUpdateInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  num_class_images: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_sample_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  n_save_sample: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_guidance_scale: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  save_infer_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pad_tokens: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  with_prior_preservation: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  prior_loss_weight: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  seed: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  resolution: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  center_crop: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_text_encoder: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  sample_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  num_train_epochs: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  max_train_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_accumulation_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_checkpointing: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  learning_rate: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  scale_lr: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => EnumLRSchedulerFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  use_8bit_adam: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta1: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta2: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_weight_decay: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_epsilon: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  max_grad_norm: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  Concept: z.lazy(() => ConceptUncheckedUpdateManyWithoutDreamboothTrainingNestedInputSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingCreateManyInputSchema: z.ZodType<Prisma.DreamBoothTrainingCreateManyInput> = z.object({
+  id: z.string().cuid().optional(),
+  createdAt: z.coerce.date().optional(),
+  instance_prompt: z.string(),
+  class_prompt: z.string(),
+  instance_data: z.string(),
+  class_data: z.string(),
+  num_class_images: z.number().int().optional(),
+  save_sample_prompt: z.string().optional().nullable(),
+  save_sample_negative_prompt: z.string().optional().nullable(),
+  n_save_sample: z.number().int().optional(),
+  save_guidance_scale: z.number().optional(),
+  save_infer_steps: z.number().int().optional(),
+  pad_tokens: z.boolean().optional(),
+  with_prior_preservation: z.boolean().optional(),
+  prior_loss_weight: z.number().optional(),
+  seed: z.number().int().optional(),
+  resolution: z.number().int().optional(),
+  center_crop: z.boolean().optional(),
+  train_text_encoder: z.boolean().optional(),
+  train_batch_size: z.number().int().optional(),
+  sample_batch_size: z.number().int().optional(),
+  num_train_epochs: z.number().int().optional(),
+  max_train_steps: z.number().int().optional(),
+  gradient_accumulation_steps: z.number().int().optional(),
+  gradient_checkpointing: z.boolean().optional(),
+  learning_rate: z.number().optional(),
+  scale_lr: z.boolean().optional(),
+  lr_scheduler: z.lazy(() => LRSchedulerSchema).optional(),
+  lr_warmup_steps: z.number().int().optional(),
+  use_8bit_adam: z.boolean().optional(),
+  adam_beta1: z.number().optional(),
+  adam_beta2: z.number().optional(),
+  adam_weight_decay: z.number().optional(),
+  adam_epsilon: z.number().optional(),
+  max_grad_norm: z.number().optional()
+}).strict();
+
+export const DreamBoothTrainingUpdateManyMutationInputSchema: z.ZodType<Prisma.DreamBoothTrainingUpdateManyMutationInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  num_class_images: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_sample_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  n_save_sample: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_guidance_scale: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  save_infer_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pad_tokens: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  with_prior_preservation: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  prior_loss_weight: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  seed: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  resolution: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  center_crop: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_text_encoder: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  sample_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  num_train_epochs: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  max_train_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_accumulation_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_checkpointing: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  learning_rate: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  scale_lr: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => EnumLRSchedulerFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  use_8bit_adam: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta1: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta2: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_weight_decay: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_epsilon: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  max_grad_norm: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export const DreamBoothTrainingUncheckedUpdateManyInputSchema: z.ZodType<Prisma.DreamBoothTrainingUncheckedUpdateManyInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  num_class_images: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_sample_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  n_save_sample: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_guidance_scale: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  save_infer_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pad_tokens: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  with_prior_preservation: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  prior_loss_weight: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  seed: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  resolution: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  center_crop: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_text_encoder: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  sample_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  num_train_epochs: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  max_train_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_accumulation_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_checkpointing: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  learning_rate: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  scale_lr: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => EnumLRSchedulerFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  use_8bit_adam: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta1: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta2: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_weight_decay: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_epsilon: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  max_grad_norm: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const StringFilterSchema: z.ZodType<Prisma.StringFilter> = z.object({
@@ -3354,6 +4169,18 @@ export const EnumConceptTypeFilterSchema: z.ZodType<Prisma.EnumConceptTypeFilter
   not: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => NestedEnumConceptTypeFilterSchema) ]).optional(),
 }).strict();
 
+export const EnumConceptStatusFilterSchema: z.ZodType<Prisma.EnumConceptStatusFilter> = z.object({
+  equals: z.lazy(() => ConceptStatusSchema).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
+  not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusFilterSchema) ]).optional(),
+}).strict();
+
+export const DreamBoothTrainingRelationFilterSchema: z.ZodType<Prisma.DreamBoothTrainingRelationFilter> = z.object({
+  is: z.lazy(() => DreamBoothTrainingWhereInputSchema).optional().nullable(),
+  isNot: z.lazy(() => DreamBoothTrainingWhereInputSchema).optional().nullable()
+}).strict();
+
 export const PhotoListRelationFilterSchema: z.ZodType<Prisma.PhotoListRelationFilter> = z.object({
   every: z.lazy(() => PhotoWhereInputSchema).optional(),
   some: z.lazy(() => PhotoWhereInputSchema).optional(),
@@ -3368,27 +4195,56 @@ export const ConceptCountOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptCo
   id: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
   type: z.lazy(() => SortOrderSchema).optional(),
+  status: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
+  prompt: z.lazy(() => SortOrderSchema).optional(),
+  identifier: z.lazy(() => SortOrderSchema).optional(),
+  classNoun: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompt: z.lazy(() => SortOrderSchema).optional(),
+  instancePrompt: z.lazy(() => SortOrderSchema).optional(),
+  classPrompt: z.lazy(() => SortOrderSchema).optional(),
+  positivePrompts: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompts: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional()
+  updatedAt: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothTrainingId: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothModelURI: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export const ConceptMaxOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptMaxOrderByAggregateInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
   type: z.lazy(() => SortOrderSchema).optional(),
+  status: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
+  prompt: z.lazy(() => SortOrderSchema).optional(),
+  identifier: z.lazy(() => SortOrderSchema).optional(),
+  classNoun: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompt: z.lazy(() => SortOrderSchema).optional(),
+  instancePrompt: z.lazy(() => SortOrderSchema).optional(),
+  classPrompt: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional()
+  updatedAt: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothTrainingId: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothModelURI: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export const ConceptMinOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptMinOrderByAggregateInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
   type: z.lazy(() => SortOrderSchema).optional(),
+  status: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
+  prompt: z.lazy(() => SortOrderSchema).optional(),
+  identifier: z.lazy(() => SortOrderSchema).optional(),
+  classNoun: z.lazy(() => SortOrderSchema).optional(),
+  negativePrompt: z.lazy(() => SortOrderSchema).optional(),
+  instancePrompt: z.lazy(() => SortOrderSchema).optional(),
+  classPrompt: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional()
+  updatedAt: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothTrainingId: z.lazy(() => SortOrderSchema).optional(),
+  dreamboothModelURI: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export const EnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumConceptTypeWithAggregatesFilter> = z.object({
@@ -3399,6 +4255,16 @@ export const EnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumCon
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumConceptTypeFilterSchema).optional(),
   _max: z.lazy(() => NestedEnumConceptTypeFilterSchema).optional()
+}).strict();
+
+export const EnumConceptStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumConceptStatusWithAggregatesFilter> = z.object({
+  equals: z.lazy(() => ConceptStatusSchema).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
+  not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedEnumConceptStatusFilterSchema).optional(),
+  _max: z.lazy(() => NestedEnumConceptStatusFilterSchema).optional()
 }).strict();
 
 export const DateTimeNullableFilterSchema: z.ZodType<Prisma.DateTimeNullableFilter> = z.object({
@@ -3463,6 +4329,221 @@ export const DateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.DateTi
   _count: z.lazy(() => NestedIntNullableFilterSchema).optional(),
   _min: z.lazy(() => NestedDateTimeNullableFilterSchema).optional(),
   _max: z.lazy(() => NestedDateTimeNullableFilterSchema).optional()
+}).strict();
+
+export const FloatFilterSchema: z.ZodType<Prisma.FloatFilter> = z.object({
+  equals: z.number().optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
+  lt: z.number().optional(),
+  lte: z.number().optional(),
+  gt: z.number().optional(),
+  gte: z.number().optional(),
+  not: z.union([ z.number(),z.lazy(() => NestedFloatFilterSchema) ]).optional(),
+}).strict();
+
+export const BoolFilterSchema: z.ZodType<Prisma.BoolFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolFilterSchema) ]).optional(),
+}).strict();
+
+export const EnumLRSchedulerFilterSchema: z.ZodType<Prisma.EnumLRSchedulerFilter> = z.object({
+  equals: z.lazy(() => LRSchedulerSchema).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
+  not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerFilterSchema) ]).optional(),
+}).strict();
+
+export const DreamBoothTrainingCountOrderByAggregateInputSchema: z.ZodType<Prisma.DreamBoothTrainingCountOrderByAggregateInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  instance_prompt: z.lazy(() => SortOrderSchema).optional(),
+  class_prompt: z.lazy(() => SortOrderSchema).optional(),
+  instance_data: z.lazy(() => SortOrderSchema).optional(),
+  class_data: z.lazy(() => SortOrderSchema).optional(),
+  num_class_images: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_prompt: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_negative_prompt: z.lazy(() => SortOrderSchema).optional(),
+  n_save_sample: z.lazy(() => SortOrderSchema).optional(),
+  save_guidance_scale: z.lazy(() => SortOrderSchema).optional(),
+  save_infer_steps: z.lazy(() => SortOrderSchema).optional(),
+  pad_tokens: z.lazy(() => SortOrderSchema).optional(),
+  with_prior_preservation: z.lazy(() => SortOrderSchema).optional(),
+  prior_loss_weight: z.lazy(() => SortOrderSchema).optional(),
+  seed: z.lazy(() => SortOrderSchema).optional(),
+  resolution: z.lazy(() => SortOrderSchema).optional(),
+  center_crop: z.lazy(() => SortOrderSchema).optional(),
+  train_text_encoder: z.lazy(() => SortOrderSchema).optional(),
+  train_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  sample_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  num_train_epochs: z.lazy(() => SortOrderSchema).optional(),
+  max_train_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_accumulation_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_checkpointing: z.lazy(() => SortOrderSchema).optional(),
+  learning_rate: z.lazy(() => SortOrderSchema).optional(),
+  scale_lr: z.lazy(() => SortOrderSchema).optional(),
+  lr_scheduler: z.lazy(() => SortOrderSchema).optional(),
+  lr_warmup_steps: z.lazy(() => SortOrderSchema).optional(),
+  use_8bit_adam: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta1: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta2: z.lazy(() => SortOrderSchema).optional(),
+  adam_weight_decay: z.lazy(() => SortOrderSchema).optional(),
+  adam_epsilon: z.lazy(() => SortOrderSchema).optional(),
+  max_grad_norm: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingAvgOrderByAggregateInputSchema: z.ZodType<Prisma.DreamBoothTrainingAvgOrderByAggregateInput> = z.object({
+  num_class_images: z.lazy(() => SortOrderSchema).optional(),
+  n_save_sample: z.lazy(() => SortOrderSchema).optional(),
+  save_guidance_scale: z.lazy(() => SortOrderSchema).optional(),
+  save_infer_steps: z.lazy(() => SortOrderSchema).optional(),
+  prior_loss_weight: z.lazy(() => SortOrderSchema).optional(),
+  seed: z.lazy(() => SortOrderSchema).optional(),
+  resolution: z.lazy(() => SortOrderSchema).optional(),
+  train_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  sample_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  num_train_epochs: z.lazy(() => SortOrderSchema).optional(),
+  max_train_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_accumulation_steps: z.lazy(() => SortOrderSchema).optional(),
+  learning_rate: z.lazy(() => SortOrderSchema).optional(),
+  lr_warmup_steps: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta1: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta2: z.lazy(() => SortOrderSchema).optional(),
+  adam_weight_decay: z.lazy(() => SortOrderSchema).optional(),
+  adam_epsilon: z.lazy(() => SortOrderSchema).optional(),
+  max_grad_norm: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingMaxOrderByAggregateInputSchema: z.ZodType<Prisma.DreamBoothTrainingMaxOrderByAggregateInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  instance_prompt: z.lazy(() => SortOrderSchema).optional(),
+  class_prompt: z.lazy(() => SortOrderSchema).optional(),
+  instance_data: z.lazy(() => SortOrderSchema).optional(),
+  class_data: z.lazy(() => SortOrderSchema).optional(),
+  num_class_images: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_prompt: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_negative_prompt: z.lazy(() => SortOrderSchema).optional(),
+  n_save_sample: z.lazy(() => SortOrderSchema).optional(),
+  save_guidance_scale: z.lazy(() => SortOrderSchema).optional(),
+  save_infer_steps: z.lazy(() => SortOrderSchema).optional(),
+  pad_tokens: z.lazy(() => SortOrderSchema).optional(),
+  with_prior_preservation: z.lazy(() => SortOrderSchema).optional(),
+  prior_loss_weight: z.lazy(() => SortOrderSchema).optional(),
+  seed: z.lazy(() => SortOrderSchema).optional(),
+  resolution: z.lazy(() => SortOrderSchema).optional(),
+  center_crop: z.lazy(() => SortOrderSchema).optional(),
+  train_text_encoder: z.lazy(() => SortOrderSchema).optional(),
+  train_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  sample_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  num_train_epochs: z.lazy(() => SortOrderSchema).optional(),
+  max_train_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_accumulation_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_checkpointing: z.lazy(() => SortOrderSchema).optional(),
+  learning_rate: z.lazy(() => SortOrderSchema).optional(),
+  scale_lr: z.lazy(() => SortOrderSchema).optional(),
+  lr_scheduler: z.lazy(() => SortOrderSchema).optional(),
+  lr_warmup_steps: z.lazy(() => SortOrderSchema).optional(),
+  use_8bit_adam: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta1: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta2: z.lazy(() => SortOrderSchema).optional(),
+  adam_weight_decay: z.lazy(() => SortOrderSchema).optional(),
+  adam_epsilon: z.lazy(() => SortOrderSchema).optional(),
+  max_grad_norm: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingMinOrderByAggregateInputSchema: z.ZodType<Prisma.DreamBoothTrainingMinOrderByAggregateInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  instance_prompt: z.lazy(() => SortOrderSchema).optional(),
+  class_prompt: z.lazy(() => SortOrderSchema).optional(),
+  instance_data: z.lazy(() => SortOrderSchema).optional(),
+  class_data: z.lazy(() => SortOrderSchema).optional(),
+  num_class_images: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_prompt: z.lazy(() => SortOrderSchema).optional(),
+  save_sample_negative_prompt: z.lazy(() => SortOrderSchema).optional(),
+  n_save_sample: z.lazy(() => SortOrderSchema).optional(),
+  save_guidance_scale: z.lazy(() => SortOrderSchema).optional(),
+  save_infer_steps: z.lazy(() => SortOrderSchema).optional(),
+  pad_tokens: z.lazy(() => SortOrderSchema).optional(),
+  with_prior_preservation: z.lazy(() => SortOrderSchema).optional(),
+  prior_loss_weight: z.lazy(() => SortOrderSchema).optional(),
+  seed: z.lazy(() => SortOrderSchema).optional(),
+  resolution: z.lazy(() => SortOrderSchema).optional(),
+  center_crop: z.lazy(() => SortOrderSchema).optional(),
+  train_text_encoder: z.lazy(() => SortOrderSchema).optional(),
+  train_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  sample_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  num_train_epochs: z.lazy(() => SortOrderSchema).optional(),
+  max_train_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_accumulation_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_checkpointing: z.lazy(() => SortOrderSchema).optional(),
+  learning_rate: z.lazy(() => SortOrderSchema).optional(),
+  scale_lr: z.lazy(() => SortOrderSchema).optional(),
+  lr_scheduler: z.lazy(() => SortOrderSchema).optional(),
+  lr_warmup_steps: z.lazy(() => SortOrderSchema).optional(),
+  use_8bit_adam: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta1: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta2: z.lazy(() => SortOrderSchema).optional(),
+  adam_weight_decay: z.lazy(() => SortOrderSchema).optional(),
+  adam_epsilon: z.lazy(() => SortOrderSchema).optional(),
+  max_grad_norm: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const DreamBoothTrainingSumOrderByAggregateInputSchema: z.ZodType<Prisma.DreamBoothTrainingSumOrderByAggregateInput> = z.object({
+  num_class_images: z.lazy(() => SortOrderSchema).optional(),
+  n_save_sample: z.lazy(() => SortOrderSchema).optional(),
+  save_guidance_scale: z.lazy(() => SortOrderSchema).optional(),
+  save_infer_steps: z.lazy(() => SortOrderSchema).optional(),
+  prior_loss_weight: z.lazy(() => SortOrderSchema).optional(),
+  seed: z.lazy(() => SortOrderSchema).optional(),
+  resolution: z.lazy(() => SortOrderSchema).optional(),
+  train_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  sample_batch_size: z.lazy(() => SortOrderSchema).optional(),
+  num_train_epochs: z.lazy(() => SortOrderSchema).optional(),
+  max_train_steps: z.lazy(() => SortOrderSchema).optional(),
+  gradient_accumulation_steps: z.lazy(() => SortOrderSchema).optional(),
+  learning_rate: z.lazy(() => SortOrderSchema).optional(),
+  lr_warmup_steps: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta1: z.lazy(() => SortOrderSchema).optional(),
+  adam_beta2: z.lazy(() => SortOrderSchema).optional(),
+  adam_weight_decay: z.lazy(() => SortOrderSchema).optional(),
+  adam_epsilon: z.lazy(() => SortOrderSchema).optional(),
+  max_grad_norm: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const FloatWithAggregatesFilterSchema: z.ZodType<Prisma.FloatWithAggregatesFilter> = z.object({
+  equals: z.number().optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
+  lt: z.number().optional(),
+  lte: z.number().optional(),
+  gt: z.number().optional(),
+  gte: z.number().optional(),
+  not: z.union([ z.number(),z.lazy(() => NestedFloatWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _avg: z.lazy(() => NestedFloatFilterSchema).optional(),
+  _sum: z.lazy(() => NestedFloatFilterSchema).optional(),
+  _min: z.lazy(() => NestedFloatFilterSchema).optional(),
+  _max: z.lazy(() => NestedFloatFilterSchema).optional()
+}).strict();
+
+export const BoolWithAggregatesFilterSchema: z.ZodType<Prisma.BoolWithAggregatesFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedBoolFilterSchema).optional(),
+  _max: z.lazy(() => NestedBoolFilterSchema).optional()
+}).strict();
+
+export const EnumLRSchedulerWithAggregatesFilterSchema: z.ZodType<Prisma.EnumLRSchedulerWithAggregatesFilter> = z.object({
+  equals: z.lazy(() => LRSchedulerSchema).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
+  not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedEnumLRSchedulerFilterSchema).optional(),
+  _max: z.lazy(() => NestedEnumLRSchedulerFilterSchema).optional()
 }).strict();
 
 export const PhotoCreateNestedOneWithoutFileInputSchema: z.ZodType<Prisma.PhotoCreateNestedOneWithoutFileInput> = z.object({
@@ -4387,6 +5468,20 @@ export const PDFUpdateOneRequiredWithoutEditionNestedInputSchema: z.ZodType<Pris
   update: z.union([ z.lazy(() => PDFUpdateWithoutEditionInputSchema),z.lazy(() => PDFUncheckedUpdateWithoutEditionInputSchema) ]).optional(),
 }).strict();
 
+export const ConceptCreatepositivePromptsInputSchema: z.ZodType<Prisma.ConceptCreatepositivePromptsInput> = z.object({
+  set: z.string().array()
+}).strict();
+
+export const ConceptCreatenegativePromptsInputSchema: z.ZodType<Prisma.ConceptCreatenegativePromptsInput> = z.object({
+  set: z.string().array()
+}).strict();
+
+export const DreamBoothTrainingCreateNestedOneWithoutConceptInputSchema: z.ZodType<Prisma.DreamBoothTrainingCreateNestedOneWithoutConceptInput> = z.object({
+  create: z.union([ z.lazy(() => DreamBoothTrainingCreateWithoutConceptInputSchema),z.lazy(() => DreamBoothTrainingUncheckedCreateWithoutConceptInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => DreamBoothTrainingCreateOrConnectWithoutConceptInputSchema).optional(),
+  connect: z.lazy(() => DreamBoothTrainingWhereUniqueInputSchema).optional()
+}).strict();
+
 export const PhotoCreateNestedManyWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreateNestedManyWithoutConceptsInput> = z.object({
   create: z.union([ z.lazy(() => PhotoCreateWithoutConceptsInputSchema),z.lazy(() => PhotoCreateWithoutConceptsInputSchema).array(),z.lazy(() => PhotoUncheckedCreateWithoutConceptsInputSchema),z.lazy(() => PhotoUncheckedCreateWithoutConceptsInputSchema).array() ]).optional(),
   connectOrCreate: z.union([ z.lazy(() => PhotoCreateOrConnectWithoutConceptsInputSchema),z.lazy(() => PhotoCreateOrConnectWithoutConceptsInputSchema).array() ]).optional(),
@@ -4401,6 +5496,30 @@ export const PhotoUncheckedCreateNestedManyWithoutConceptsInputSchema: z.ZodType
 
 export const EnumConceptTypeFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumConceptTypeFieldUpdateOperationsInput> = z.object({
   set: z.lazy(() => ConceptTypeSchema).optional()
+}).strict();
+
+export const EnumConceptStatusFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumConceptStatusFieldUpdateOperationsInput> = z.object({
+  set: z.lazy(() => ConceptStatusSchema).optional()
+}).strict();
+
+export const ConceptUpdatepositivePromptsInputSchema: z.ZodType<Prisma.ConceptUpdatepositivePromptsInput> = z.object({
+  set: z.string().array().optional(),
+  push: z.union([ z.string(),z.string().array() ]).optional(),
+}).strict();
+
+export const ConceptUpdatenegativePromptsInputSchema: z.ZodType<Prisma.ConceptUpdatenegativePromptsInput> = z.object({
+  set: z.string().array().optional(),
+  push: z.union([ z.string(),z.string().array() ]).optional(),
+}).strict();
+
+export const DreamBoothTrainingUpdateOneWithoutConceptNestedInputSchema: z.ZodType<Prisma.DreamBoothTrainingUpdateOneWithoutConceptNestedInput> = z.object({
+  create: z.union([ z.lazy(() => DreamBoothTrainingCreateWithoutConceptInputSchema),z.lazy(() => DreamBoothTrainingUncheckedCreateWithoutConceptInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => DreamBoothTrainingCreateOrConnectWithoutConceptInputSchema).optional(),
+  upsert: z.lazy(() => DreamBoothTrainingUpsertWithoutConceptInputSchema).optional(),
+  disconnect: z.boolean().optional(),
+  delete: z.boolean().optional(),
+  connect: z.lazy(() => DreamBoothTrainingWhereUniqueInputSchema).optional(),
+  update: z.union([ z.lazy(() => DreamBoothTrainingUpdateWithoutConceptInputSchema),z.lazy(() => DreamBoothTrainingUncheckedUpdateWithoutConceptInputSchema) ]).optional(),
 }).strict();
 
 export const PhotoUpdateManyWithoutConceptsNestedInputSchema: z.ZodType<Prisma.PhotoUpdateManyWithoutConceptsNestedInput> = z.object({
@@ -4431,6 +5550,64 @@ export const PhotoUncheckedUpdateManyWithoutConceptsNestedInputSchema: z.ZodType
 
 export const NullableDateTimeFieldUpdateOperationsInputSchema: z.ZodType<Prisma.NullableDateTimeFieldUpdateOperationsInput> = z.object({
   set: z.coerce.date().optional().nullable()
+}).strict();
+
+export const ConceptCreateNestedManyWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptCreateNestedManyWithoutDreamboothTrainingInput> = z.object({
+  create: z.union([ z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema).array(),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => ConceptCreateManyDreamboothTrainingInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
+
+export const ConceptUncheckedCreateNestedManyWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateNestedManyWithoutDreamboothTrainingInput> = z.object({
+  create: z.union([ z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema).array(),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => ConceptCreateManyDreamboothTrainingInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
+
+export const FloatFieldUpdateOperationsInputSchema: z.ZodType<Prisma.FloatFieldUpdateOperationsInput> = z.object({
+  set: z.number().optional(),
+  increment: z.number().optional(),
+  decrement: z.number().optional(),
+  multiply: z.number().optional(),
+  divide: z.number().optional()
+}).strict();
+
+export const BoolFieldUpdateOperationsInputSchema: z.ZodType<Prisma.BoolFieldUpdateOperationsInput> = z.object({
+  set: z.boolean().optional()
+}).strict();
+
+export const EnumLRSchedulerFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumLRSchedulerFieldUpdateOperationsInput> = z.object({
+  set: z.lazy(() => LRSchedulerSchema).optional()
+}).strict();
+
+export const ConceptUpdateManyWithoutDreamboothTrainingNestedInputSchema: z.ZodType<Prisma.ConceptUpdateManyWithoutDreamboothTrainingNestedInput> = z.object({
+  create: z.union([ z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema).array(),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  upsert: z.union([ z.lazy(() => ConceptUpsertWithWhereUniqueWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUpsertWithWhereUniqueWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => ConceptCreateManyDreamboothTrainingInputEnvelopeSchema).optional(),
+  set: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  disconnect: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  delete: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  connect: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  update: z.union([ z.lazy(() => ConceptUpdateWithWhereUniqueWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUpdateWithWhereUniqueWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  updateMany: z.union([ z.lazy(() => ConceptUpdateManyWithWhereWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUpdateManyWithWhereWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  deleteMany: z.union([ z.lazy(() => ConceptScalarWhereInputSchema),z.lazy(() => ConceptScalarWhereInputSchema).array() ]).optional(),
+}).strict();
+
+export const ConceptUncheckedUpdateManyWithoutDreamboothTrainingNestedInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateManyWithoutDreamboothTrainingNestedInput> = z.object({
+  create: z.union([ z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema).array(),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  upsert: z.union([ z.lazy(() => ConceptUpsertWithWhereUniqueWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUpsertWithWhereUniqueWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => ConceptCreateManyDreamboothTrainingInputEnvelopeSchema).optional(),
+  set: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  disconnect: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  delete: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  connect: z.union([ z.lazy(() => ConceptWhereUniqueInputSchema),z.lazy(() => ConceptWhereUniqueInputSchema).array() ]).optional(),
+  update: z.union([ z.lazy(() => ConceptUpdateWithWhereUniqueWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUpdateWithWhereUniqueWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  updateMany: z.union([ z.lazy(() => ConceptUpdateManyWithWhereWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUpdateManyWithWhereWithoutDreamboothTrainingInputSchema).array() ]).optional(),
+  deleteMany: z.union([ z.lazy(() => ConceptScalarWhereInputSchema),z.lazy(() => ConceptScalarWhereInputSchema).array() ]).optional(),
 }).strict();
 
 export const NestedStringFilterSchema: z.ZodType<Prisma.NestedStringFilter> = z.object({
@@ -4711,6 +5888,13 @@ export const NestedEnumConceptTypeFilterSchema: z.ZodType<Prisma.NestedEnumConce
   not: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => NestedEnumConceptTypeFilterSchema) ]).optional(),
 }).strict();
 
+export const NestedEnumConceptStatusFilterSchema: z.ZodType<Prisma.NestedEnumConceptStatusFilter> = z.object({
+  equals: z.lazy(() => ConceptStatusSchema).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
+  not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusFilterSchema) ]).optional(),
+}).strict();
+
 export const NestedEnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumConceptTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => ConceptTypeSchema).optional(),
   in: z.lazy(() => ConceptTypeSchema).array().optional(),
@@ -4719,6 +5903,16 @@ export const NestedEnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.N
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumConceptTypeFilterSchema).optional(),
   _max: z.lazy(() => NestedEnumConceptTypeFilterSchema).optional()
+}).strict();
+
+export const NestedEnumConceptStatusWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumConceptStatusWithAggregatesFilter> = z.object({
+  equals: z.lazy(() => ConceptStatusSchema).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
+  not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedEnumConceptStatusFilterSchema).optional(),
+  _max: z.lazy(() => NestedEnumConceptStatusFilterSchema).optional()
 }).strict();
 
 export const NestedDateTimeNullableFilterSchema: z.ZodType<Prisma.NestedDateTimeNullableFilter> = z.object({
@@ -4744,6 +5938,52 @@ export const NestedDateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.
   _count: z.lazy(() => NestedIntNullableFilterSchema).optional(),
   _min: z.lazy(() => NestedDateTimeNullableFilterSchema).optional(),
   _max: z.lazy(() => NestedDateTimeNullableFilterSchema).optional()
+}).strict();
+
+export const NestedBoolFilterSchema: z.ZodType<Prisma.NestedBoolFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolFilterSchema) ]).optional(),
+}).strict();
+
+export const NestedEnumLRSchedulerFilterSchema: z.ZodType<Prisma.NestedEnumLRSchedulerFilter> = z.object({
+  equals: z.lazy(() => LRSchedulerSchema).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
+  not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerFilterSchema) ]).optional(),
+}).strict();
+
+export const NestedFloatWithAggregatesFilterSchema: z.ZodType<Prisma.NestedFloatWithAggregatesFilter> = z.object({
+  equals: z.number().optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
+  lt: z.number().optional(),
+  lte: z.number().optional(),
+  gt: z.number().optional(),
+  gte: z.number().optional(),
+  not: z.union([ z.number(),z.lazy(() => NestedFloatWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _avg: z.lazy(() => NestedFloatFilterSchema).optional(),
+  _sum: z.lazy(() => NestedFloatFilterSchema).optional(),
+  _min: z.lazy(() => NestedFloatFilterSchema).optional(),
+  _max: z.lazy(() => NestedFloatFilterSchema).optional()
+}).strict();
+
+export const NestedBoolWithAggregatesFilterSchema: z.ZodType<Prisma.NestedBoolWithAggregatesFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedBoolFilterSchema).optional(),
+  _max: z.lazy(() => NestedBoolFilterSchema).optional()
+}).strict();
+
+export const NestedEnumLRSchedulerWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumLRSchedulerWithAggregatesFilter> = z.object({
+  equals: z.lazy(() => LRSchedulerSchema).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
+  not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedEnumLRSchedulerFilterSchema).optional(),
+  _max: z.lazy(() => NestedEnumLRSchedulerFilterSchema).optional()
 }).strict();
 
 export const PhotoCreateWithoutFileInputSchema: z.ZodType<Prisma.PhotoCreateWithoutFileInput> = z.object({
@@ -4925,20 +6165,42 @@ export const PageArtworkCreateManyPhotoInputEnvelopeSchema: z.ZodType<Prisma.Pag
 
 export const ConceptCreateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptCreateWithoutPhotosInput> = z.object({
   id: z.string().cuid().optional(),
-  name: z.string().min(1),
+  name: z.string().min(1).max(100),
   type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
   description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional()
+  updatedAt: z.coerce.date().optional(),
+  dreamboothModelURI: z.string().url().optional().nullable(),
+  dreamboothTraining: z.lazy(() => DreamBoothTrainingCreateNestedOneWithoutConceptInputSchema).optional()
 }).strict();
 
 export const ConceptUncheckedCreateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateWithoutPhotosInput> = z.object({
   id: z.string().cuid().optional(),
-  name: z.string().min(1),
+  name: z.string().min(1).max(100),
   type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
   description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional()
+  updatedAt: z.coerce.date().optional(),
+  dreamboothTrainingId: z.string().optional().nullable(),
+  dreamboothModelURI: z.string().url().optional().nullable()
 }).strict();
 
 export const ConceptCreateOrConnectWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptCreateOrConnectWithoutPhotosInput> = z.object({
@@ -5042,9 +6304,20 @@ export const ConceptScalarWhereInputSchema: z.ZodType<Prisma.ConceptScalarWhereI
   id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   name: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   type: z.union([ z.lazy(() => EnumConceptTypeFilterSchema),z.lazy(() => ConceptTypeSchema) ]).optional(),
+  status: z.union([ z.lazy(() => EnumConceptStatusFilterSchema),z.lazy(() => ConceptStatusSchema) ]).optional(),
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  prompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  identifier: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  classNoun: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  negativePrompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  instancePrompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  classPrompt: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  positivePrompts: z.lazy(() => StringNullableListFilterSchema).optional(),
+  negativePrompts: z.lazy(() => StringNullableListFilterSchema).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
+  dreamboothTrainingId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  dreamboothModelURI: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
 }).strict();
 
 export const CloudFileCreateWithoutPdfInputSchema: z.ZodType<Prisma.CloudFileCreateWithoutPdfInput> = z.object({
@@ -6299,6 +7572,87 @@ export const PDFUncheckedUpdateWithoutEditionInputSchema: z.ZodType<Prisma.PDFUn
   fileId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
+export const DreamBoothTrainingCreateWithoutConceptInputSchema: z.ZodType<Prisma.DreamBoothTrainingCreateWithoutConceptInput> = z.object({
+  id: z.string().cuid().optional(),
+  createdAt: z.coerce.date().optional(),
+  instance_prompt: z.string(),
+  class_prompt: z.string(),
+  instance_data: z.string(),
+  class_data: z.string(),
+  num_class_images: z.number().int().optional(),
+  save_sample_prompt: z.string().optional().nullable(),
+  save_sample_negative_prompt: z.string().optional().nullable(),
+  n_save_sample: z.number().int().optional(),
+  save_guidance_scale: z.number().optional(),
+  save_infer_steps: z.number().int().optional(),
+  pad_tokens: z.boolean().optional(),
+  with_prior_preservation: z.boolean().optional(),
+  prior_loss_weight: z.number().optional(),
+  seed: z.number().int().optional(),
+  resolution: z.number().int().optional(),
+  center_crop: z.boolean().optional(),
+  train_text_encoder: z.boolean().optional(),
+  train_batch_size: z.number().int().optional(),
+  sample_batch_size: z.number().int().optional(),
+  num_train_epochs: z.number().int().optional(),
+  max_train_steps: z.number().int().optional(),
+  gradient_accumulation_steps: z.number().int().optional(),
+  gradient_checkpointing: z.boolean().optional(),
+  learning_rate: z.number().optional(),
+  scale_lr: z.boolean().optional(),
+  lr_scheduler: z.lazy(() => LRSchedulerSchema).optional(),
+  lr_warmup_steps: z.number().int().optional(),
+  use_8bit_adam: z.boolean().optional(),
+  adam_beta1: z.number().optional(),
+  adam_beta2: z.number().optional(),
+  adam_weight_decay: z.number().optional(),
+  adam_epsilon: z.number().optional(),
+  max_grad_norm: z.number().optional()
+}).strict();
+
+export const DreamBoothTrainingUncheckedCreateWithoutConceptInputSchema: z.ZodType<Prisma.DreamBoothTrainingUncheckedCreateWithoutConceptInput> = z.object({
+  id: z.string().cuid().optional(),
+  createdAt: z.coerce.date().optional(),
+  instance_prompt: z.string(),
+  class_prompt: z.string(),
+  instance_data: z.string(),
+  class_data: z.string(),
+  num_class_images: z.number().int().optional(),
+  save_sample_prompt: z.string().optional().nullable(),
+  save_sample_negative_prompt: z.string().optional().nullable(),
+  n_save_sample: z.number().int().optional(),
+  save_guidance_scale: z.number().optional(),
+  save_infer_steps: z.number().int().optional(),
+  pad_tokens: z.boolean().optional(),
+  with_prior_preservation: z.boolean().optional(),
+  prior_loss_weight: z.number().optional(),
+  seed: z.number().int().optional(),
+  resolution: z.number().int().optional(),
+  center_crop: z.boolean().optional(),
+  train_text_encoder: z.boolean().optional(),
+  train_batch_size: z.number().int().optional(),
+  sample_batch_size: z.number().int().optional(),
+  num_train_epochs: z.number().int().optional(),
+  max_train_steps: z.number().int().optional(),
+  gradient_accumulation_steps: z.number().int().optional(),
+  gradient_checkpointing: z.boolean().optional(),
+  learning_rate: z.number().optional(),
+  scale_lr: z.boolean().optional(),
+  lr_scheduler: z.lazy(() => LRSchedulerSchema).optional(),
+  lr_warmup_steps: z.number().int().optional(),
+  use_8bit_adam: z.boolean().optional(),
+  adam_beta1: z.number().optional(),
+  adam_beta2: z.number().optional(),
+  adam_weight_decay: z.number().optional(),
+  adam_epsilon: z.number().optional(),
+  max_grad_norm: z.number().optional()
+}).strict();
+
+export const DreamBoothTrainingCreateOrConnectWithoutConceptInputSchema: z.ZodType<Prisma.DreamBoothTrainingCreateOrConnectWithoutConceptInput> = z.object({
+  where: z.lazy(() => DreamBoothTrainingWhereUniqueInputSchema),
+  create: z.union([ z.lazy(() => DreamBoothTrainingCreateWithoutConceptInputSchema),z.lazy(() => DreamBoothTrainingUncheckedCreateWithoutConceptInputSchema) ]),
+}).strict();
+
 export const PhotoCreateWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreateWithoutConceptsInput> = z.object({
   id: z.string().cuid().optional(),
   height: z.number().positive(),
@@ -6324,6 +7678,87 @@ export const PhotoUncheckedCreateWithoutConceptsInputSchema: z.ZodType<Prisma.Ph
 export const PhotoCreateOrConnectWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoCreateOrConnectWithoutConceptsInput> = z.object({
   where: z.lazy(() => PhotoWhereUniqueInputSchema),
   create: z.union([ z.lazy(() => PhotoCreateWithoutConceptsInputSchema),z.lazy(() => PhotoUncheckedCreateWithoutConceptsInputSchema) ]),
+}).strict();
+
+export const DreamBoothTrainingUpsertWithoutConceptInputSchema: z.ZodType<Prisma.DreamBoothTrainingUpsertWithoutConceptInput> = z.object({
+  update: z.union([ z.lazy(() => DreamBoothTrainingUpdateWithoutConceptInputSchema),z.lazy(() => DreamBoothTrainingUncheckedUpdateWithoutConceptInputSchema) ]),
+  create: z.union([ z.lazy(() => DreamBoothTrainingCreateWithoutConceptInputSchema),z.lazy(() => DreamBoothTrainingUncheckedCreateWithoutConceptInputSchema) ]),
+}).strict();
+
+export const DreamBoothTrainingUpdateWithoutConceptInputSchema: z.ZodType<Prisma.DreamBoothTrainingUpdateWithoutConceptInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  num_class_images: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_sample_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  n_save_sample: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_guidance_scale: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  save_infer_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pad_tokens: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  with_prior_preservation: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  prior_loss_weight: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  seed: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  resolution: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  center_crop: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_text_encoder: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  sample_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  num_train_epochs: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  max_train_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_accumulation_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_checkpointing: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  learning_rate: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  scale_lr: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => EnumLRSchedulerFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  use_8bit_adam: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta1: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta2: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_weight_decay: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_epsilon: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  max_grad_norm: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export const DreamBoothTrainingUncheckedUpdateWithoutConceptInputSchema: z.ZodType<Prisma.DreamBoothTrainingUncheckedUpdateWithoutConceptInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instance_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  class_data: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  num_class_images: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_sample_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  save_sample_negative_prompt: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  n_save_sample: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  save_guidance_scale: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  save_infer_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  pad_tokens: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  with_prior_preservation: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  prior_loss_weight: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  seed: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  resolution: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  center_crop: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_text_encoder: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  train_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  sample_batch_size: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  num_train_epochs: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  max_train_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_accumulation_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  gradient_checkpointing: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  learning_rate: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  scale_lr: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_scheduler: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => EnumLRSchedulerFieldUpdateOperationsInputSchema) ]).optional(),
+  lr_warmup_steps: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
+  use_8bit_adam: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta1: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_beta2: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_weight_decay: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  adam_epsilon: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
+  max_grad_norm: z.union([ z.number(),z.lazy(() => FloatFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const PhotoUpsertWithWhereUniqueWithoutConceptsInputSchema: z.ZodType<Prisma.PhotoUpsertWithWhereUniqueWithoutConceptsInput> = z.object({
@@ -6353,6 +7788,72 @@ export const PhotoScalarWhereInputSchema: z.ZodType<Prisma.PhotoScalarWhereInput
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   fileId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+}).strict();
+
+export const ConceptCreateWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptCreateWithoutDreamboothTrainingInput> = z.object({
+  id: z.string().cuid().optional(),
+  name: z.string().min(1).max(100),
+  type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
+  description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
+  dreamboothModelURI: z.string().url().optional().nullable(),
+  photos: z.lazy(() => PhotoCreateNestedManyWithoutConceptsInputSchema).optional()
+}).strict();
+
+export const ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptUncheckedCreateWithoutDreamboothTrainingInput> = z.object({
+  id: z.string().cuid().optional(),
+  name: z.string().min(1).max(100),
+  type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
+  description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
+  dreamboothModelURI: z.string().url().optional().nullable(),
+  photos: z.lazy(() => PhotoUncheckedCreateNestedManyWithoutConceptsInputSchema).optional()
+}).strict();
+
+export const ConceptCreateOrConnectWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptCreateOrConnectWithoutDreamboothTrainingInput> = z.object({
+  where: z.lazy(() => ConceptWhereUniqueInputSchema),
+  create: z.union([ z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema) ]),
+}).strict();
+
+export const ConceptCreateManyDreamboothTrainingInputEnvelopeSchema: z.ZodType<Prisma.ConceptCreateManyDreamboothTrainingInputEnvelope> = z.object({
+  data: z.union([ z.lazy(() => ConceptCreateManyDreamboothTrainingInputSchema),z.lazy(() => ConceptCreateManyDreamboothTrainingInputSchema).array() ]),
+  skipDuplicates: z.boolean().optional()
+}).strict();
+
+export const ConceptUpsertWithWhereUniqueWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptUpsertWithWhereUniqueWithoutDreamboothTrainingInput> = z.object({
+  where: z.lazy(() => ConceptWhereUniqueInputSchema),
+  update: z.union([ z.lazy(() => ConceptUpdateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedUpdateWithoutDreamboothTrainingInputSchema) ]),
+  create: z.union([ z.lazy(() => ConceptCreateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedCreateWithoutDreamboothTrainingInputSchema) ]),
+}).strict();
+
+export const ConceptUpdateWithWhereUniqueWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptUpdateWithWhereUniqueWithoutDreamboothTrainingInput> = z.object({
+  where: z.lazy(() => ConceptWhereUniqueInputSchema),
+  data: z.union([ z.lazy(() => ConceptUpdateWithoutDreamboothTrainingInputSchema),z.lazy(() => ConceptUncheckedUpdateWithoutDreamboothTrainingInputSchema) ]),
+}).strict();
+
+export const ConceptUpdateManyWithWhereWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptUpdateManyWithWhereWithoutDreamboothTrainingInput> = z.object({
+  where: z.lazy(() => ConceptScalarWhereInputSchema),
+  data: z.union([ z.lazy(() => ConceptUpdateManyMutationInputSchema),z.lazy(() => ConceptUncheckedUpdateManyWithoutConceptInputSchema) ]),
 }).strict();
 
 export const PageArtworkCreateManyPhotoInputSchema: z.ZodType<Prisma.PageArtworkCreateManyPhotoInput> = z.object({
@@ -6397,29 +7898,62 @@ export const PageArtworkUncheckedUpdateManyWithoutPageArtworksInputSchema: z.Zod
 
 export const ConceptUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUpdateWithoutPhotosInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  dreamboothTraining: z.lazy(() => DreamBoothTrainingUpdateOneWithoutConceptNestedInputSchema).optional()
 }).strict();
 
 export const ConceptUncheckedUpdateWithoutPhotosInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateWithoutPhotosInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothTrainingId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const ConceptUncheckedUpdateManyWithoutConceptsInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateManyWithoutConceptsInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  name: z.union([ z.string().min(1),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothTrainingId: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 export const EditionCreateManyUserInputSchema: z.ZodType<Prisma.EditionCreateManyUserInput> = z.object({
@@ -6863,6 +8397,84 @@ export const PhotoUncheckedUpdateManyWithoutPhotosInputSchema: z.ZodType<Prisma.
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   fileId: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export const ConceptCreateManyDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptCreateManyDreamboothTrainingInput> = z.object({
+  id: z.string().cuid().optional(),
+  name: z.string().min(1).max(100),
+  type: z.lazy(() => ConceptTypeSchema),
+  status: z.lazy(() => ConceptStatusSchema).optional(),
+  description: z.string().optional().nullable(),
+  prompt: z.string(),
+  identifier: z.string(),
+  classNoun: z.string(),
+  negativePrompt: z.string(),
+  instancePrompt: z.string(),
+  classPrompt: z.string(),
+  positivePrompts: z.union([ z.lazy(() => ConceptCreatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptCreatenegativePromptsInputSchema),z.string().array() ]).optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
+  dreamboothModelURI: z.string().url().optional().nullable()
+}).strict();
+
+export const ConceptUpdateWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptUpdateWithoutDreamboothTrainingInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
+  description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  photos: z.lazy(() => PhotoUpdateManyWithoutConceptsNestedInputSchema).optional()
+}).strict();
+
+export const ConceptUncheckedUpdateWithoutDreamboothTrainingInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateWithoutDreamboothTrainingInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
+  description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  photos: z.lazy(() => PhotoUncheckedUpdateManyWithoutConceptsNestedInputSchema).optional()
+}).strict();
+
+export const ConceptUncheckedUpdateManyWithoutConceptInputSchema: z.ZodType<Prisma.ConceptUncheckedUpdateManyWithoutConceptInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string().min(1).max(100),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  type: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => EnumConceptTypeFieldUpdateOperationsInputSchema) ]).optional(),
+  status: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => EnumConceptStatusFieldUpdateOperationsInputSchema) ]).optional(),
+  description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  prompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  identifier: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classNoun: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  negativePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  instancePrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  classPrompt: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  positivePrompts: z.union([ z.lazy(() => ConceptUpdatepositivePromptsInputSchema),z.string().array() ]).optional(),
+  negativePrompts: z.union([ z.lazy(() => ConceptUpdatenegativePromptsInputSchema),z.string().array() ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  dreamboothModelURI: z.union([ z.string().url(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
 }).strict();
 
 /////////////////////////////////////////
@@ -7732,6 +9344,68 @@ export const PredictionFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.PredictionF
   where: PredictionWhereUniqueInputSchema,
 }).strict()
 
+export const DreamBoothTrainingFindFirstArgsSchema: z.ZodType<Prisma.DreamBoothTrainingFindFirstArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  where: DreamBoothTrainingWhereInputSchema.optional(),
+  orderBy: z.union([ DreamBoothTrainingOrderByWithRelationInputSchema.array(),DreamBoothTrainingOrderByWithRelationInputSchema ]).optional(),
+  cursor: DreamBoothTrainingWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+  distinct: DreamBoothTrainingScalarFieldEnumSchema.array().optional(),
+}).strict()
+
+export const DreamBoothTrainingFindFirstOrThrowArgsSchema: z.ZodType<Prisma.DreamBoothTrainingFindFirstOrThrowArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  where: DreamBoothTrainingWhereInputSchema.optional(),
+  orderBy: z.union([ DreamBoothTrainingOrderByWithRelationInputSchema.array(),DreamBoothTrainingOrderByWithRelationInputSchema ]).optional(),
+  cursor: DreamBoothTrainingWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+  distinct: DreamBoothTrainingScalarFieldEnumSchema.array().optional(),
+}).strict()
+
+export const DreamBoothTrainingFindManyArgsSchema: z.ZodType<Prisma.DreamBoothTrainingFindManyArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  where: DreamBoothTrainingWhereInputSchema.optional(),
+  orderBy: z.union([ DreamBoothTrainingOrderByWithRelationInputSchema.array(),DreamBoothTrainingOrderByWithRelationInputSchema ]).optional(),
+  cursor: DreamBoothTrainingWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+  distinct: DreamBoothTrainingScalarFieldEnumSchema.array().optional(),
+}).strict()
+
+export const DreamBoothTrainingAggregateArgsSchema: z.ZodType<Prisma.DreamBoothTrainingAggregateArgs> = z.object({
+  where: DreamBoothTrainingWhereInputSchema.optional(),
+  orderBy: z.union([ DreamBoothTrainingOrderByWithRelationInputSchema.array(),DreamBoothTrainingOrderByWithRelationInputSchema ]).optional(),
+  cursor: DreamBoothTrainingWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+}).strict()
+
+export const DreamBoothTrainingGroupByArgsSchema: z.ZodType<Prisma.DreamBoothTrainingGroupByArgs> = z.object({
+  where: DreamBoothTrainingWhereInputSchema.optional(),
+  orderBy: z.union([ DreamBoothTrainingOrderByWithAggregationInputSchema.array(),DreamBoothTrainingOrderByWithAggregationInputSchema ]).optional(),
+  by: DreamBoothTrainingScalarFieldEnumSchema.array(),
+  having: DreamBoothTrainingScalarWhereWithAggregatesInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+}).strict()
+
+export const DreamBoothTrainingFindUniqueArgsSchema: z.ZodType<Prisma.DreamBoothTrainingFindUniqueArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  where: DreamBoothTrainingWhereUniqueInputSchema,
+}).strict()
+
+export const DreamBoothTrainingFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.DreamBoothTrainingFindUniqueOrThrowArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  where: DreamBoothTrainingWhereUniqueInputSchema,
+}).strict()
+
 export const CloudFileCreateArgsSchema: z.ZodType<Prisma.CloudFileCreateArgs> = z.object({
   select: CloudFileSelectSchema.optional(),
   include: CloudFileIncludeSchema.optional(),
@@ -8300,4 +9974,45 @@ export const PredictionUpdateManyArgsSchema: z.ZodType<Prisma.PredictionUpdateMa
 
 export const PredictionDeleteManyArgsSchema: z.ZodType<Prisma.PredictionDeleteManyArgs> = z.object({
   where: PredictionWhereInputSchema.optional(),
+}).strict()
+
+export const DreamBoothTrainingCreateArgsSchema: z.ZodType<Prisma.DreamBoothTrainingCreateArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  data: z.union([ DreamBoothTrainingCreateInputSchema,DreamBoothTrainingUncheckedCreateInputSchema ]),
+}).strict()
+
+export const DreamBoothTrainingUpsertArgsSchema: z.ZodType<Prisma.DreamBoothTrainingUpsertArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  where: DreamBoothTrainingWhereUniqueInputSchema,
+  create: z.union([ DreamBoothTrainingCreateInputSchema,DreamBoothTrainingUncheckedCreateInputSchema ]),
+  update: z.union([ DreamBoothTrainingUpdateInputSchema,DreamBoothTrainingUncheckedUpdateInputSchema ]),
+}).strict()
+
+export const DreamBoothTrainingCreateManyArgsSchema: z.ZodType<Prisma.DreamBoothTrainingCreateManyArgs> = z.object({
+  data: z.union([ DreamBoothTrainingCreateManyInputSchema,DreamBoothTrainingCreateManyInputSchema.array() ]),
+  skipDuplicates: z.boolean().optional(),
+}).strict()
+
+export const DreamBoothTrainingDeleteArgsSchema: z.ZodType<Prisma.DreamBoothTrainingDeleteArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  where: DreamBoothTrainingWhereUniqueInputSchema,
+}).strict()
+
+export const DreamBoothTrainingUpdateArgsSchema: z.ZodType<Prisma.DreamBoothTrainingUpdateArgs> = z.object({
+  select: DreamBoothTrainingSelectSchema.optional(),
+  include: DreamBoothTrainingIncludeSchema.optional(),
+  data: z.union([ DreamBoothTrainingUpdateInputSchema,DreamBoothTrainingUncheckedUpdateInputSchema ]),
+  where: DreamBoothTrainingWhereUniqueInputSchema,
+}).strict()
+
+export const DreamBoothTrainingUpdateManyArgsSchema: z.ZodType<Prisma.DreamBoothTrainingUpdateManyArgs> = z.object({
+  data: z.union([ DreamBoothTrainingUpdateManyMutationInputSchema,DreamBoothTrainingUncheckedUpdateManyInputSchema ]),
+  where: DreamBoothTrainingWhereInputSchema.optional(),
+}).strict()
+
+export const DreamBoothTrainingDeleteManyArgsSchema: z.ZodType<Prisma.DreamBoothTrainingDeleteManyArgs> = z.object({
+  where: DreamBoothTrainingWhereInputSchema.optional(),
 }).strict()

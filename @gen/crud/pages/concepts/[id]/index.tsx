@@ -22,13 +22,46 @@ export default function ConceptShow({ concept }: ConceptShowProps) {
           <strong>Type:</strong> {concept.type}
         </p>
         <p>
+          <strong>Status:</strong> {concept.status}
+        </p>
+        <p>
           <strong>Description:</strong> {concept.description}
+        </p>
+        <p>
+          <strong>Prompt:</strong> {concept.prompt}
+        </p>
+        <p>
+          <strong>Identifier:</strong> {concept.identifier}
+        </p>
+        <p>
+          <strong>ClassNoun:</strong> {concept.classNoun}
+        </p>
+        <p>
+          <strong>NegativePrompt:</strong> {concept.negativePrompt}
+        </p>
+        <p>
+          <strong>InstancePrompt:</strong> {concept.instancePrompt}
+        </p>
+        <p>
+          <strong>ClassPrompt:</strong> {concept.classPrompt}
+        </p>
+        <p>
+          <strong>PositivePrompts:</strong> {concept.positivePrompts}
+        </p>
+        <p>
+          <strong>NegativePrompts:</strong> {concept.negativePrompts}
         </p>
         <p>
           <strong>CreatedAt:</strong> {concept.createdAt}
         </p>
         <p>
           <strong>UpdatedAt:</strong> {concept.updatedAt}
+        </p>
+        <p>
+          <strong>DreamboothTrainingId:</strong> {concept.dreamboothTrainingId}
+        </p>
+        <p>
+          <strong>DreamboothModelURI:</strong> {concept.dreamboothModelURI}
         </p>
       </div>
       <footer>

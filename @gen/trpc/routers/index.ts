@@ -13,6 +13,7 @@ import { pagesRouter } from "./Page.router";
 import { editionsRouter } from "./Edition.router";
 import { conceptsRouter } from "./Concept.router";
 import { predictionsRouter } from "./Prediction.router";
+import { dreamboothtrainingsRouter } from "./DreamBoothTraining.router";
 
 export const appRouter = t.router({
   cloudfile: cloudfilesRouter,
@@ -28,6 +29,7 @@ export const appRouter = t.router({
   page: pagesRouter,
   edition: editionsRouter,
   concept: conceptsRouter,
-  prediction: predictionsRouter
+  prediction: predictionsRouter,
+  dreamboothtraining: dreamboothtrainingsRouter
 })
 

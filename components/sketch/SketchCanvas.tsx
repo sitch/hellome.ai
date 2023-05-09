@@ -11,8 +11,8 @@ import { Plus, Trash, Undo } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
+import { type AddFileCallback } from "@/components/filepond/form.types"
 import { getDataURIFileSize } from "@/components/filepond/utils"
-import { type AddFileCallback } from "@/components/forms/ConceptForm"
 import { EmptyBanner } from "@/components/sketch/EmptyBanner"
 import {
   SketchPalette,

@@ -1,15 +1,16 @@
 import { useRef } from "react"
 import { useTranslation } from "next-i18next"
 
-import { type FilePond } from "react-filepond"
 import {
   Controller,
+  useFieldArray,
   type SubmitErrorHandler,
   type SubmitHandler,
 } from "react-hook-form"
 import { mergeRefs } from "react-merge-refs"
 import Webcam from "react-webcam"
 import { type FilePondFile } from "filepond"
+import { castArray } from "lodash"
 import z from "zod"
 
 import { useZodForm } from "@/lib/hooks/useZodForm"
@@ -20,11 +21,13 @@ import { Input } from "@/components/ui/input"
 import { AlertDestructive } from "@/components/ui/kit/AlertDestructive"
 import { AlertFormField } from "@/components/ui/kit/AlertFormField"
 import { Label } from "@/components/ui/label"
+import { MultiSelect } from "@/components/ui/multi-select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 // import Canvas from "@/components/replicate/canvas"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import { FileInput } from "@/components/filepond/FileInput"
+import { type AddFileCallback } from "@/components/filepond/form.types"
 import {
   CreatePhotoSchema,
   castPhotoCreateInput,
@@ -33,16 +36,8 @@ import { useFilePondUploader } from "@/components/filepond/useFilePondUploader"
 import { ConceptCard } from "@/components/forms/ConceptCard"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
-import { validateResult } from "@/components/vision/human/validations"
 
 import { ConceptSchema, ConceptTypeSchema } from "@/@gen/zod"
-
-//============================================================================
-// Types
-//============================================================================
-
-type AddFileCallbackArgs = Required<Parameters<FilePond["addFile"]>>
-export type AddFileCallback = (...args: AddFileCallbackArgs) => void
 
 //============================================================================
 // Constants
@@ -61,6 +56,21 @@ const ConceptFormSchema = ConceptSchema.omit({
 }).extend({
   files: z.custom<FilePondFile>().array(),
   photos: CreatePhotoSchema.array(),
+  tags: z
+    .object({
+      value: z.string(),
+    })
+    .array(),
+  positivePrompts: z
+    .object({
+      value: z.string(),
+    })
+    .array(),
+  negativePrompts: z
+    .object({
+      value: z.string(),
+    })
+    .array(),
 })
 
 const formSchema = ConceptFormSchema
@@ -92,6 +102,7 @@ export function ConceptForm(_props: Props) {
 
   const {
     getValues,
+    // getFields,
     control,
     register,
     handleSubmit,
@@ -119,7 +130,24 @@ export function ConceptForm(_props: Props) {
         // },
       ],
       photos: [],
+      // positivePrompts: [],
+      // negativePrompts: [],
     },
+  })
+
+  const positivePrompts = useFieldArray({
+    control,
+    name: "positivePrompts",
+  })
+
+  const negativePrompts = useFieldArray({
+    control,
+    name: "negativePrompts",
+  })
+
+  const tags = useFieldArray({
+    control,
+    name: "tags",
   })
 
   const {
@@ -169,6 +197,9 @@ export function ConceptForm(_props: Props) {
     const args = {
       data: {
         ...data,
+        negativePrompts: data.negativePrompts.map(({ value }) => value),
+        positivePrompts: data.positivePrompts.map(({ value }) => value),
+        tags: data.tags.map(({ value }) => value),
         photos: {
           create: await Promise.all(files.map(castPhotoCreateInput)),
         },
@@ -390,23 +421,84 @@ export function ConceptForm(_props: Props) {
 
                   <ConceptCard
                     title={
-                      <Label htmlFor="description">
-                        {t("form.schema.description.label")}
+                      <Label htmlFor="positivePrompts">
+                        {t("form.schema.positivePrompts.label")}
                       </Label>
                     }
                     showFooter={true}
                     wide={true}
                   >
-                    <Textarea
-                      id="description"
-                      placeholder={t("form.schema.description.placeholder")}
-                      cols={35}
-                      className="h-full"
-                      rows={35}
-                      disabled={disabled}
-                      aria-invalid={Boolean(errors.description)}
-                      {...register("description")}
+                    <Controller
+                      name="positivePrompts"
+                      control={control}
+                      render={({
+                        field: { onChange, onBlur, value = [], ref, ...field },
+                        formState,
+                      }) => (
+                        <MultiSelect
+                          id="positivePrompts"
+                          // {...register('positivePrompts')}
+
+                          {...field}
+                          onBlur={() => onBlur()}
+                          onChange={(value = []) => onChange(castArray(value))}
+                          value={value.map((option) => ({
+                            label: option.value,
+                            value: option.value,
+                          }))}
+                        ></MultiSelect>
+                      )}
                     />
+                  </ConceptCard>
+
+                  <ConceptCard
+                    title={
+                      <Label htmlFor="positivePrompts">
+                        {t("form.schema.positivePrompts.label")}
+                      </Label>
+                    }
+                    showFooter={true}
+                    wide={true}
+                  >
+                    {/************* concept.positivePrompts *************/}
+                    {/* {getFields('positivePrompts').map((field, index) => ( */}
+                    {positivePrompts.fields.map((field, index) => (
+                      // <div
+                      //   className="sm:col-span-4"
+                      //   key={field.id} // important to include key with field's id
+                      // >
+                      //   <Label htmlFor={`positivePrompts.${index}.value`}>
+                      //     {t("form.schema.positivePrompt.label")}
+                      //   </Label>
+                      //   <div className="mt-2">
+                      <Textarea
+                        key={field.id} // important to include key with field's id
+                        id={`positivePrompts.${index}.value`}
+                        autoComplete="off"
+                        placeholder={t(
+                          "form.schema.positivePrompt.placeholder",
+                        )}
+                        disabled={disabled}
+                        // className="h-full"
+                        // cols={35}
+                        // rows={35}
+                        aria-invalid={Boolean(
+                          errors.positivePrompts?.[index]?.value,
+                        )}
+                        {...register(`positivePrompts.${index}.value`)}
+                      />
+
+                      // {/* <AlertFormField error={errors.name} /> */}
+                      //   </div>
+                      // </div>
+                    ))}
+
+                    <Button
+                      onClick={() => positivePrompts.append([{ value: "" }])}
+                    >
+                      {t("form.schema.positivePrompts.append.label")}
+                    </Button>
+
                     <AlertFormField error={errors.description} />
                   </ConceptCard>
                 </div>

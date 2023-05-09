@@ -94,6 +94,12 @@ export default function Dashboard() {
             <a href="predictions">Predictions</a>
           </div>
         </div>
+
+        <div className="row">
+          <div className="cell" data-title="resource">
+            <a href="dreamboothtrainings">DreamBoothTrainings</a>
+          </div>
+        </div>
       </div>
     </>
   )

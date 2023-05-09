@@ -28,9 +28,20 @@ export default function ConceptIndex({ concepts }: ConceptIndexProps) {
         <div className="row header">
           <div className="cell">Name</div>
           <div className="cell">Type</div>
+          <div className="cell">Status</div>
           <div className="cell">Description</div>
+          <div className="cell">Prompt</div>
+          <div className="cell">Identifier</div>
+          <div className="cell">ClassNoun</div>
+          <div className="cell">NegativePrompt</div>
+          <div className="cell">InstancePrompt</div>
+          <div className="cell">ClassPrompt</div>
+          <div className="cell">PositivePrompts</div>
+          <div className="cell">NegativePrompts</div>
           <div className="cell">CreatedAt</div>
           <div className="cell">UpdatedAt</div>
+          <div className="cell">DreamboothTrainingId</div>
+          <div className="cell">DreamboothModelURI</div>
           <div className="cell">Actions</div>
         </div>
         {concepts.map((concept) => (
@@ -41,14 +52,47 @@ export default function ConceptIndex({ concepts }: ConceptIndexProps) {
             <div className="cell" data-title="type">
               {concept.type}
             </div>
+            <div className="cell" data-title="status">
+              {concept.status}
+            </div>
             <div className="cell" data-title="description">
               {concept.description}
+            </div>
+            <div className="cell" data-title="prompt">
+              {concept.prompt}
+            </div>
+            <div className="cell" data-title="identifier">
+              {concept.identifier}
+            </div>
+            <div className="cell" data-title="classNoun">
+              {concept.classNoun}
+            </div>
+            <div className="cell" data-title="negativePrompt">
+              {concept.negativePrompt}
+            </div>
+            <div className="cell" data-title="instancePrompt">
+              {concept.instancePrompt}
+            </div>
+            <div className="cell" data-title="classPrompt">
+              {concept.classPrompt}
+            </div>
+            <div className="cell" data-title="positivePrompts">
+              {concept.positivePrompts}
+            </div>
+            <div className="cell" data-title="negativePrompts">
+              {concept.negativePrompts}
             </div>
             <div className="cell" data-title="createdAt">
               {concept.createdAt}
             </div>
             <div className="cell" data-title="updatedAt">
               {concept.updatedAt}
+            </div>
+            <div className="cell" data-title="dreamboothTrainingId">
+              {concept.dreamboothTrainingId}
+            </div>
+            <div className="cell" data-title="dreamboothModelURI">
+              {concept.dreamboothModelURI}
             </div>
             <div className="cell actions" data-title="actions">
               <div className="action-buttons">
