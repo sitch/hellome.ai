@@ -7,16 +7,12 @@ const Schema: z.ZodType<Prisma.NestedEnumPageStatusFilter> = z
   .object({
     equals: z.lazy(() => PageStatusSchema).optional(),
     in: z
-      .union([
-        z.lazy(() => PageStatusSchema).array(),
-        z.lazy(() => PageStatusSchema),
-      ])
+      .lazy(() => PageStatusSchema)
+      .array()
       .optional(),
     notIn: z
-      .union([
-        z.lazy(() => PageStatusSchema).array(),
-        z.lazy(() => PageStatusSchema),
-      ])
+      .lazy(() => PageStatusSchema)
+      .array()
       .optional(),
     not: z
       .union([

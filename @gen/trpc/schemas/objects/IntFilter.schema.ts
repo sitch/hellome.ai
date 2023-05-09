@@ -6,8 +6,8 @@ import { NestedIntFilterObjectSchema } from "./NestedIntFilter.schema"
 const Schema: z.ZodType<Prisma.IntFilter> = z
   .object({
     equals: z.number().optional(),
-    in: z.union([z.number().array(), z.number()]).optional(),
-    notIn: z.union([z.number().array(), z.number()]).optional(),
+    in: z.number().array().optional(),
+    notIn: z.number().array().optional(),
     lt: z.number().optional(),
     lte: z.number().optional(),
     gt: z.number().optional(),

@@ -4,8 +4,8 @@ import { z } from "zod"
 const Schema: z.ZodType<Prisma.NestedDateTimeFilter> = z
   .object({
     equals: z.date().optional(),
-    in: z.union([z.date().array(), z.date()]).optional(),
-    notIn: z.union([z.date().array(), z.date()]).optional(),
+    in: z.date().array().optional(),
+    notIn: z.date().array().optional(),
     lt: z.date().optional(),
     lte: z.date().optional(),
     gt: z.date().optional(),

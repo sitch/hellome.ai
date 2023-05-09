@@ -4,8 +4,8 @@ import { z } from "zod"
 const Schema: z.ZodType<Prisma.NestedStringFilter> = z
   .object({
     equals: z.string().optional(),
-    in: z.union([z.string().array(), z.string()]).optional(),
-    notIn: z.union([z.string().array(), z.string()]).optional(),
+    in: z.string().array().optional(),
+    notIn: z.string().array().optional(),
     lt: z.string().optional(),
     lte: z.string().optional(),
     gt: z.string().optional(),

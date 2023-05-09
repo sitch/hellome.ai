@@ -3409,8 +3409,8 @@ export const DreamBoothTrainingUncheckedUpdateManyInputSchema: z.ZodType<Prisma.
 
 export const StringFilterSchema: z.ZodType<Prisma.StringFilter> = z.object({
   equals: z.string().optional(),
-  in: z.union([ z.string().array(),z.string() ]).optional(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional(),
+  in: z.string().array().optional(),
+  notIn: z.string().array().optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -3424,8 +3424,8 @@ export const StringFilterSchema: z.ZodType<Prisma.StringFilter> = z.object({
 
 export const IntFilterSchema: z.ZodType<Prisma.IntFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -3435,8 +3435,8 @@ export const IntFilterSchema: z.ZodType<Prisma.IntFilter> = z.object({
 
 export const EnumFileResourceTypeFilterSchema: z.ZodType<Prisma.EnumFileResourceTypeFilter> = z.object({
   equals: z.lazy(() => FileResourceTypeSchema).optional(),
-  in: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
+  in: z.lazy(() => FileResourceTypeSchema).array().optional(),
+  notIn: z.lazy(() => FileResourceTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => NestedEnumFileResourceTypeFilterSchema) ]).optional(),
 }).strict();
 
@@ -3458,15 +3458,15 @@ export const JsonNullableFilterSchema: z.ZodType<Prisma.JsonNullableFilter> = z.
 
 export const EnumCloudFileRegionFilterSchema: z.ZodType<Prisma.EnumCloudFileRegionFilter> = z.object({
   equals: z.lazy(() => CloudFileRegionSchema).optional(),
-  in: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
+  in: z.lazy(() => CloudFileRegionSchema).array().optional(),
+  notIn: z.lazy(() => CloudFileRegionSchema).array().optional(),
   not: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => NestedEnumCloudFileRegionFilterSchema) ]).optional(),
 }).strict();
 
 export const StringNullableFilterSchema: z.ZodType<Prisma.StringNullableFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  in: z.string().array().optional().nullable(),
+  notIn: z.string().array().optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -3480,15 +3480,15 @@ export const StringNullableFilterSchema: z.ZodType<Prisma.StringNullableFilter> 
 
 export const EnumFilePrivacyFilterSchema: z.ZodType<Prisma.EnumFilePrivacyFilter> = z.object({
   equals: z.lazy(() => FilePrivacySchema).optional(),
-  in: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
+  in: z.lazy(() => FilePrivacySchema).array().optional(),
+  notIn: z.lazy(() => FilePrivacySchema).array().optional(),
   not: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => NestedEnumFilePrivacyFilterSchema) ]).optional(),
 }).strict();
 
 export const DateTimeFilterSchema: z.ZodType<Prisma.DateTimeFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  in: z.coerce.date().array().optional(),
+  notIn: z.coerce.date().array().optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -3574,8 +3574,8 @@ export const CloudFileSumOrderByAggregateInputSchema: z.ZodType<Prisma.CloudFile
 
 export const StringWithAggregatesFilterSchema: z.ZodType<Prisma.StringWithAggregatesFilter> = z.object({
   equals: z.string().optional(),
-  in: z.union([ z.string().array(),z.string() ]).optional(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional(),
+  in: z.string().array().optional(),
+  notIn: z.string().array().optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -3592,8 +3592,8 @@ export const StringWithAggregatesFilterSchema: z.ZodType<Prisma.StringWithAggreg
 
 export const IntWithAggregatesFilterSchema: z.ZodType<Prisma.IntWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -3608,8 +3608,8 @@ export const IntWithAggregatesFilterSchema: z.ZodType<Prisma.IntWithAggregatesFi
 
 export const EnumFileResourceTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumFileResourceTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => FileResourceTypeSchema).optional(),
-  in: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
+  in: z.lazy(() => FileResourceTypeSchema).array().optional(),
+  notIn: z.lazy(() => FileResourceTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => NestedEnumFileResourceTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumFileResourceTypeFilterSchema).optional(),
@@ -3637,8 +3637,8 @@ export const JsonNullableWithAggregatesFilterSchema: z.ZodType<Prisma.JsonNullab
 
 export const EnumCloudFileRegionWithAggregatesFilterSchema: z.ZodType<Prisma.EnumCloudFileRegionWithAggregatesFilter> = z.object({
   equals: z.lazy(() => CloudFileRegionSchema).optional(),
-  in: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
+  in: z.lazy(() => CloudFileRegionSchema).array().optional(),
+  notIn: z.lazy(() => CloudFileRegionSchema).array().optional(),
   not: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => NestedEnumCloudFileRegionWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumCloudFileRegionFilterSchema).optional(),
@@ -3647,8 +3647,8 @@ export const EnumCloudFileRegionWithAggregatesFilterSchema: z.ZodType<Prisma.Enu
 
 export const StringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.StringNullableWithAggregatesFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  in: z.string().array().optional().nullable(),
+  notIn: z.string().array().optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -3665,8 +3665,8 @@ export const StringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.StringNu
 
 export const EnumFilePrivacyWithAggregatesFilterSchema: z.ZodType<Prisma.EnumFilePrivacyWithAggregatesFilter> = z.object({
   equals: z.lazy(() => FilePrivacySchema).optional(),
-  in: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
+  in: z.lazy(() => FilePrivacySchema).array().optional(),
+  notIn: z.lazy(() => FilePrivacySchema).array().optional(),
   not: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => NestedEnumFilePrivacyWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumFilePrivacyFilterSchema).optional(),
@@ -3675,8 +3675,8 @@ export const EnumFilePrivacyWithAggregatesFilterSchema: z.ZodType<Prisma.EnumFil
 
 export const DateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.DateTimeWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  in: z.coerce.date().array().optional(),
+  notIn: z.coerce.date().array().optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -3939,8 +3939,8 @@ export const StoryMinOrderByAggregateInputSchema: z.ZodType<Prisma.StoryMinOrder
 
 export const EnumPageStatusFilterSchema: z.ZodType<Prisma.EnumPageStatusFilter> = z.object({
   equals: z.lazy(() => PageStatusSchema).optional(),
-  in: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
+  in: z.lazy(() => PageStatusSchema).array().optional(),
+  notIn: z.lazy(() => PageStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => NestedEnumPageStatusFilterSchema) ]).optional(),
 }).strict();
 
@@ -3989,8 +3989,8 @@ export const PageArtworkMinOrderByAggregateInputSchema: z.ZodType<Prisma.PageArt
 
 export const EnumPageStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumPageStatusWithAggregatesFilter> = z.object({
   equals: z.lazy(() => PageStatusSchema).optional(),
-  in: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
+  in: z.lazy(() => PageStatusSchema).array().optional(),
+  notIn: z.lazy(() => PageStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => NestedEnumPageStatusWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumPageStatusFilterSchema).optional(),
@@ -3999,15 +3999,15 @@ export const EnumPageStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumPage
 
 export const EnumLocaleFilterSchema: z.ZodType<Prisma.EnumLocaleFilter> = z.object({
   equals: z.lazy(() => LocaleSchema).optional(),
-  in: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
+  in: z.lazy(() => LocaleSchema).array().optional(),
+  notIn: z.lazy(() => LocaleSchema).array().optional(),
   not: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => NestedEnumLocaleFilterSchema) ]).optional(),
 }).strict();
 
 export const EnumPageTextTypeFilterSchema: z.ZodType<Prisma.EnumPageTextTypeFilter> = z.object({
   equals: z.lazy(() => PageTextTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTextTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTextTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => NestedEnumPageTextTypeFilterSchema) ]).optional(),
 }).strict();
 
@@ -4060,8 +4060,8 @@ export const PageTextMinOrderByAggregateInputSchema: z.ZodType<Prisma.PageTextMi
 
 export const EnumLocaleWithAggregatesFilterSchema: z.ZodType<Prisma.EnumLocaleWithAggregatesFilter> = z.object({
   equals: z.lazy(() => LocaleSchema).optional(),
-  in: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
+  in: z.lazy(() => LocaleSchema).array().optional(),
+  notIn: z.lazy(() => LocaleSchema).array().optional(),
   not: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => NestedEnumLocaleWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumLocaleFilterSchema).optional(),
@@ -4070,8 +4070,8 @@ export const EnumLocaleWithAggregatesFilterSchema: z.ZodType<Prisma.EnumLocaleWi
 
 export const EnumPageTextTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumPageTextTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => PageTextTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTextTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTextTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => NestedEnumPageTextTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumPageTextTypeFilterSchema).optional(),
@@ -4080,8 +4080,8 @@ export const EnumPageTextTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumPa
 
 export const EnumPageTypeFilterSchema: z.ZodType<Prisma.EnumPageTypeFilter> = z.object({
   equals: z.lazy(() => PageTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => NestedEnumPageTypeFilterSchema) ]).optional(),
 }).strict();
 
@@ -4125,8 +4125,8 @@ export const PageSumOrderByAggregateInputSchema: z.ZodType<Prisma.PageSumOrderBy
 
 export const EnumPageTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumPageTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => PageTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => NestedEnumPageTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumPageTypeFilterSchema).optional(),
@@ -4164,15 +4164,15 @@ export const EditionMinOrderByAggregateInputSchema: z.ZodType<Prisma.EditionMinO
 
 export const EnumConceptTypeFilterSchema: z.ZodType<Prisma.EnumConceptTypeFilter> = z.object({
   equals: z.lazy(() => ConceptTypeSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
+  in: z.lazy(() => ConceptTypeSchema).array().optional(),
+  notIn: z.lazy(() => ConceptTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => NestedEnumConceptTypeFilterSchema) ]).optional(),
 }).strict();
 
 export const EnumConceptStatusFilterSchema: z.ZodType<Prisma.EnumConceptStatusFilter> = z.object({
   equals: z.lazy(() => ConceptStatusSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusFilterSchema) ]).optional(),
 }).strict();
 
@@ -4249,8 +4249,8 @@ export const ConceptMinOrderByAggregateInputSchema: z.ZodType<Prisma.ConceptMinO
 
 export const EnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumConceptTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => ConceptTypeSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
+  in: z.lazy(() => ConceptTypeSchema).array().optional(),
+  notIn: z.lazy(() => ConceptTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => NestedEnumConceptTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumConceptTypeFilterSchema).optional(),
@@ -4259,8 +4259,8 @@ export const EnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.EnumCon
 
 export const EnumConceptStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumConceptStatusWithAggregatesFilter> = z.object({
   equals: z.lazy(() => ConceptStatusSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumConceptStatusFilterSchema).optional(),
@@ -4269,8 +4269,8 @@ export const EnumConceptStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumC
 
 export const DateTimeNullableFilterSchema: z.ZodType<Prisma.DateTimeNullableFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  in: z.coerce.date().array().optional().nullable(),
+  notIn: z.coerce.date().array().optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -4319,8 +4319,8 @@ export const PredictionMinOrderByAggregateInputSchema: z.ZodType<Prisma.Predicti
 
 export const DateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.DateTimeNullableWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  in: z.coerce.date().array().optional().nullable(),
+  notIn: z.coerce.date().array().optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -4333,8 +4333,8 @@ export const DateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.DateTi
 
 export const FloatFilterSchema: z.ZodType<Prisma.FloatFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4349,8 +4349,8 @@ export const BoolFilterSchema: z.ZodType<Prisma.BoolFilter> = z.object({
 
 export const EnumLRSchedulerFilterSchema: z.ZodType<Prisma.EnumLRSchedulerFilter> = z.object({
   equals: z.lazy(() => LRSchedulerSchema).optional(),
-  in: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
   not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerFilterSchema) ]).optional(),
 }).strict();
 
@@ -4514,8 +4514,8 @@ export const DreamBoothTrainingSumOrderByAggregateInputSchema: z.ZodType<Prisma.
 
 export const FloatWithAggregatesFilterSchema: z.ZodType<Prisma.FloatWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4538,8 +4538,8 @@ export const BoolWithAggregatesFilterSchema: z.ZodType<Prisma.BoolWithAggregates
 
 export const EnumLRSchedulerWithAggregatesFilterSchema: z.ZodType<Prisma.EnumLRSchedulerWithAggregatesFilter> = z.object({
   equals: z.lazy(() => LRSchedulerSchema).optional(),
-  in: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
   not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumLRSchedulerFilterSchema).optional(),
@@ -5612,8 +5612,8 @@ export const ConceptUncheckedUpdateManyWithoutDreamboothTrainingNestedInputSchem
 
 export const NestedStringFilterSchema: z.ZodType<Prisma.NestedStringFilter> = z.object({
   equals: z.string().optional(),
-  in: z.union([ z.string().array(),z.string() ]).optional(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional(),
+  in: z.string().array().optional(),
+  notIn: z.string().array().optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -5626,8 +5626,8 @@ export const NestedStringFilterSchema: z.ZodType<Prisma.NestedStringFilter> = z.
 
 export const NestedIntFilterSchema: z.ZodType<Prisma.NestedIntFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -5637,22 +5637,22 @@ export const NestedIntFilterSchema: z.ZodType<Prisma.NestedIntFilter> = z.object
 
 export const NestedEnumFileResourceTypeFilterSchema: z.ZodType<Prisma.NestedEnumFileResourceTypeFilter> = z.object({
   equals: z.lazy(() => FileResourceTypeSchema).optional(),
-  in: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
+  in: z.lazy(() => FileResourceTypeSchema).array().optional(),
+  notIn: z.lazy(() => FileResourceTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => NestedEnumFileResourceTypeFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumCloudFileRegionFilterSchema: z.ZodType<Prisma.NestedEnumCloudFileRegionFilter> = z.object({
   equals: z.lazy(() => CloudFileRegionSchema).optional(),
-  in: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
+  in: z.lazy(() => CloudFileRegionSchema).array().optional(),
+  notIn: z.lazy(() => CloudFileRegionSchema).array().optional(),
   not: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => NestedEnumCloudFileRegionFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedStringNullableFilterSchema: z.ZodType<Prisma.NestedStringNullableFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  in: z.string().array().optional().nullable(),
+  notIn: z.string().array().optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -5665,15 +5665,15 @@ export const NestedStringNullableFilterSchema: z.ZodType<Prisma.NestedStringNull
 
 export const NestedEnumFilePrivacyFilterSchema: z.ZodType<Prisma.NestedEnumFilePrivacyFilter> = z.object({
   equals: z.lazy(() => FilePrivacySchema).optional(),
-  in: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
+  in: z.lazy(() => FilePrivacySchema).array().optional(),
+  notIn: z.lazy(() => FilePrivacySchema).array().optional(),
   not: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => NestedEnumFilePrivacyFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedDateTimeFilterSchema: z.ZodType<Prisma.NestedDateTimeFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  in: z.coerce.date().array().optional(),
+  notIn: z.coerce.date().array().optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -5683,8 +5683,8 @@ export const NestedDateTimeFilterSchema: z.ZodType<Prisma.NestedDateTimeFilter> 
 
 export const NestedStringWithAggregatesFilterSchema: z.ZodType<Prisma.NestedStringWithAggregatesFilter> = z.object({
   equals: z.string().optional(),
-  in: z.union([ z.string().array(),z.string() ]).optional(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional(),
+  in: z.string().array().optional(),
+  notIn: z.string().array().optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -5700,8 +5700,8 @@ export const NestedStringWithAggregatesFilterSchema: z.ZodType<Prisma.NestedStri
 
 export const NestedIntWithAggregatesFilterSchema: z.ZodType<Prisma.NestedIntWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -5716,8 +5716,8 @@ export const NestedIntWithAggregatesFilterSchema: z.ZodType<Prisma.NestedIntWith
 
 export const NestedFloatFilterSchema: z.ZodType<Prisma.NestedFloatFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -5727,8 +5727,8 @@ export const NestedFloatFilterSchema: z.ZodType<Prisma.NestedFloatFilter> = z.ob
 
 export const NestedEnumFileResourceTypeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumFileResourceTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => FileResourceTypeSchema).optional(),
-  in: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FileResourceTypeSchema).array(),z.lazy(() => FileResourceTypeSchema) ]).optional(),
+  in: z.lazy(() => FileResourceTypeSchema).array().optional(),
+  notIn: z.lazy(() => FileResourceTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => FileResourceTypeSchema),z.lazy(() => NestedEnumFileResourceTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumFileResourceTypeFilterSchema).optional(),
@@ -5737,8 +5737,8 @@ export const NestedEnumFileResourceTypeWithAggregatesFilterSchema: z.ZodType<Pri
 
 export const NestedIntNullableFilterSchema: z.ZodType<Prisma.NestedIntNullableFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  in: z.number().array().optional().nullable(),
+  notIn: z.number().array().optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -5764,8 +5764,8 @@ export const NestedJsonNullableFilterSchema: z.ZodType<Prisma.NestedJsonNullable
 
 export const NestedEnumCloudFileRegionWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumCloudFileRegionWithAggregatesFilter> = z.object({
   equals: z.lazy(() => CloudFileRegionSchema).optional(),
-  in: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => CloudFileRegionSchema).array(),z.lazy(() => CloudFileRegionSchema) ]).optional(),
+  in: z.lazy(() => CloudFileRegionSchema).array().optional(),
+  notIn: z.lazy(() => CloudFileRegionSchema).array().optional(),
   not: z.union([ z.lazy(() => CloudFileRegionSchema),z.lazy(() => NestedEnumCloudFileRegionWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumCloudFileRegionFilterSchema).optional(),
@@ -5774,8 +5774,8 @@ export const NestedEnumCloudFileRegionWithAggregatesFilterSchema: z.ZodType<Pris
 
 export const NestedStringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.NestedStringNullableWithAggregatesFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
-  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  in: z.string().array().optional().nullable(),
+  notIn: z.string().array().optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -5791,8 +5791,8 @@ export const NestedStringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.Ne
 
 export const NestedEnumFilePrivacyWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumFilePrivacyWithAggregatesFilter> = z.object({
   equals: z.lazy(() => FilePrivacySchema).optional(),
-  in: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => FilePrivacySchema).array(),z.lazy(() => FilePrivacySchema) ]).optional(),
+  in: z.lazy(() => FilePrivacySchema).array().optional(),
+  notIn: z.lazy(() => FilePrivacySchema).array().optional(),
   not: z.union([ z.lazy(() => FilePrivacySchema),z.lazy(() => NestedEnumFilePrivacyWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumFilePrivacyFilterSchema).optional(),
@@ -5801,8 +5801,8 @@ export const NestedEnumFilePrivacyWithAggregatesFilterSchema: z.ZodType<Prisma.N
 
 export const NestedDateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDateTimeWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  in: z.coerce.date().array().optional(),
+  notIn: z.coerce.date().array().optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -5815,15 +5815,15 @@ export const NestedDateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDa
 
 export const NestedEnumPageStatusFilterSchema: z.ZodType<Prisma.NestedEnumPageStatusFilter> = z.object({
   equals: z.lazy(() => PageStatusSchema).optional(),
-  in: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
+  in: z.lazy(() => PageStatusSchema).array().optional(),
+  notIn: z.lazy(() => PageStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => NestedEnumPageStatusFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumPageStatusWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumPageStatusWithAggregatesFilter> = z.object({
   equals: z.lazy(() => PageStatusSchema).optional(),
-  in: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageStatusSchema).array(),z.lazy(() => PageStatusSchema) ]).optional(),
+  in: z.lazy(() => PageStatusSchema).array().optional(),
+  notIn: z.lazy(() => PageStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => PageStatusSchema),z.lazy(() => NestedEnumPageStatusWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumPageStatusFilterSchema).optional(),
@@ -5832,22 +5832,22 @@ export const NestedEnumPageStatusWithAggregatesFilterSchema: z.ZodType<Prisma.Ne
 
 export const NestedEnumLocaleFilterSchema: z.ZodType<Prisma.NestedEnumLocaleFilter> = z.object({
   equals: z.lazy(() => LocaleSchema).optional(),
-  in: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
+  in: z.lazy(() => LocaleSchema).array().optional(),
+  notIn: z.lazy(() => LocaleSchema).array().optional(),
   not: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => NestedEnumLocaleFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumPageTextTypeFilterSchema: z.ZodType<Prisma.NestedEnumPageTextTypeFilter> = z.object({
   equals: z.lazy(() => PageTextTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTextTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTextTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => NestedEnumPageTextTypeFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumLocaleWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumLocaleWithAggregatesFilter> = z.object({
   equals: z.lazy(() => LocaleSchema).optional(),
-  in: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LocaleSchema).array(),z.lazy(() => LocaleSchema) ]).optional(),
+  in: z.lazy(() => LocaleSchema).array().optional(),
+  notIn: z.lazy(() => LocaleSchema).array().optional(),
   not: z.union([ z.lazy(() => LocaleSchema),z.lazy(() => NestedEnumLocaleWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumLocaleFilterSchema).optional(),
@@ -5856,8 +5856,8 @@ export const NestedEnumLocaleWithAggregatesFilterSchema: z.ZodType<Prisma.Nested
 
 export const NestedEnumPageTextTypeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumPageTextTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => PageTextTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTextTypeSchema).array(),z.lazy(() => PageTextTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTextTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTextTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTextTypeSchema),z.lazy(() => NestedEnumPageTextTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumPageTextTypeFilterSchema).optional(),
@@ -5866,15 +5866,15 @@ export const NestedEnumPageTextTypeWithAggregatesFilterSchema: z.ZodType<Prisma.
 
 export const NestedEnumPageTypeFilterSchema: z.ZodType<Prisma.NestedEnumPageTypeFilter> = z.object({
   equals: z.lazy(() => PageTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => NestedEnumPageTypeFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumPageTypeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumPageTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => PageTypeSchema).optional(),
-  in: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => PageTypeSchema).array(),z.lazy(() => PageTypeSchema) ]).optional(),
+  in: z.lazy(() => PageTypeSchema).array().optional(),
+  notIn: z.lazy(() => PageTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => PageTypeSchema),z.lazy(() => NestedEnumPageTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumPageTypeFilterSchema).optional(),
@@ -5883,22 +5883,22 @@ export const NestedEnumPageTypeWithAggregatesFilterSchema: z.ZodType<Prisma.Nest
 
 export const NestedEnumConceptTypeFilterSchema: z.ZodType<Prisma.NestedEnumConceptTypeFilter> = z.object({
   equals: z.lazy(() => ConceptTypeSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
+  in: z.lazy(() => ConceptTypeSchema).array().optional(),
+  notIn: z.lazy(() => ConceptTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => NestedEnumConceptTypeFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumConceptStatusFilterSchema: z.ZodType<Prisma.NestedEnumConceptStatusFilter> = z.object({
   equals: z.lazy(() => ConceptStatusSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumConceptTypeWithAggregatesFilter> = z.object({
   equals: z.lazy(() => ConceptTypeSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptTypeSchema).array(),z.lazy(() => ConceptTypeSchema) ]).optional(),
+  in: z.lazy(() => ConceptTypeSchema).array().optional(),
+  notIn: z.lazy(() => ConceptTypeSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptTypeSchema),z.lazy(() => NestedEnumConceptTypeWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumConceptTypeFilterSchema).optional(),
@@ -5907,8 +5907,8 @@ export const NestedEnumConceptTypeWithAggregatesFilterSchema: z.ZodType<Prisma.N
 
 export const NestedEnumConceptStatusWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumConceptStatusWithAggregatesFilter> = z.object({
   equals: z.lazy(() => ConceptStatusSchema).optional(),
-  in: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => ConceptStatusSchema).array(),z.lazy(() => ConceptStatusSchema) ]).optional(),
+  in: z.lazy(() => ConceptStatusSchema).array().optional(),
+  notIn: z.lazy(() => ConceptStatusSchema).array().optional(),
   not: z.union([ z.lazy(() => ConceptStatusSchema),z.lazy(() => NestedEnumConceptStatusWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumConceptStatusFilterSchema).optional(),
@@ -5917,8 +5917,8 @@ export const NestedEnumConceptStatusWithAggregatesFilterSchema: z.ZodType<Prisma
 
 export const NestedDateTimeNullableFilterSchema: z.ZodType<Prisma.NestedDateTimeNullableFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  in: z.coerce.date().array().optional().nullable(),
+  notIn: z.coerce.date().array().optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -5928,8 +5928,8 @@ export const NestedDateTimeNullableFilterSchema: z.ZodType<Prisma.NestedDateTime
 
 export const NestedDateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDateTimeNullableWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
-  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  in: z.coerce.date().array().optional().nullable(),
+  notIn: z.coerce.date().array().optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -5947,15 +5947,15 @@ export const NestedBoolFilterSchema: z.ZodType<Prisma.NestedBoolFilter> = z.obje
 
 export const NestedEnumLRSchedulerFilterSchema: z.ZodType<Prisma.NestedEnumLRSchedulerFilter> = z.object({
   equals: z.lazy(() => LRSchedulerSchema).optional(),
-  in: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
   not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedFloatWithAggregatesFilterSchema: z.ZodType<Prisma.NestedFloatWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.union([ z.number().array(),z.number() ]).optional(),
-  notIn: z.union([ z.number().array(),z.number() ]).optional(),
+  in: z.number().array().optional(),
+  notIn: z.number().array().optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -5978,8 +5978,8 @@ export const NestedBoolWithAggregatesFilterSchema: z.ZodType<Prisma.NestedBoolWi
 
 export const NestedEnumLRSchedulerWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumLRSchedulerWithAggregatesFilter> = z.object({
   equals: z.lazy(() => LRSchedulerSchema).optional(),
-  in: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
-  notIn: z.union([ z.lazy(() => LRSchedulerSchema).array(),z.lazy(() => LRSchedulerSchema) ]).optional(),
+  in: z.lazy(() => LRSchedulerSchema).array().optional(),
+  notIn: z.lazy(() => LRSchedulerSchema).array().optional(),
   not: z.union([ z.lazy(() => LRSchedulerSchema),z.lazy(() => NestedEnumLRSchedulerWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumLRSchedulerFilterSchema).optional(),

@@ -9,16 +9,12 @@ const Schema: z.ZodType<Prisma.NestedEnumConceptStatusWithAggregatesFilter> = z
   .object({
     equals: z.lazy(() => ConceptStatusSchema).optional(),
     in: z
-      .union([
-        z.lazy(() => ConceptStatusSchema).array(),
-        z.lazy(() => ConceptStatusSchema),
-      ])
+      .lazy(() => ConceptStatusSchema)
+      .array()
       .optional(),
     notIn: z
-      .union([
-        z.lazy(() => ConceptStatusSchema).array(),
-        z.lazy(() => ConceptStatusSchema),
-      ])
+      .lazy(() => ConceptStatusSchema)
+      .array()
       .optional(),
     not: z
       .union([

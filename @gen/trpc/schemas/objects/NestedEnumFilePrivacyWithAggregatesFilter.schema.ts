@@ -9,16 +9,12 @@ const Schema: z.ZodType<Prisma.NestedEnumFilePrivacyWithAggregatesFilter> = z
   .object({
     equals: z.lazy(() => FilePrivacySchema).optional(),
     in: z
-      .union([
-        z.lazy(() => FilePrivacySchema).array(),
-        z.lazy(() => FilePrivacySchema),
-      ])
+      .lazy(() => FilePrivacySchema)
+      .array()
       .optional(),
     notIn: z
-      .union([
-        z.lazy(() => FilePrivacySchema).array(),
-        z.lazy(() => FilePrivacySchema),
-      ])
+      .lazy(() => FilePrivacySchema)
+      .array()
       .optional(),
     not: z
       .union([

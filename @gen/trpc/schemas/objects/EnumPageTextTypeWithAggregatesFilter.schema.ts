@@ -10,16 +10,12 @@ const Schema: z.ZodType<Prisma.EnumPageTextTypeWithAggregatesFilter> = z
   .object({
     equals: z.lazy(() => PageTextTypeSchema).optional(),
     in: z
-      .union([
-        z.lazy(() => PageTextTypeSchema).array(),
-        z.lazy(() => PageTextTypeSchema),
-      ])
+      .lazy(() => PageTextTypeSchema)
+      .array()
       .optional(),
     notIn: z
-      .union([
-        z.lazy(() => PageTextTypeSchema).array(),
-        z.lazy(() => PageTextTypeSchema),
-      ])
+      .lazy(() => PageTextTypeSchema)
+      .array()
       .optional(),
     not: z
       .union([

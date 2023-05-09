@@ -10,16 +10,12 @@ const Schema: z.ZodType<Prisma.EnumCloudFileRegionWithAggregatesFilter> = z
   .object({
     equals: z.lazy(() => CloudFileRegionSchema).optional(),
     in: z
-      .union([
-        z.lazy(() => CloudFileRegionSchema).array(),
-        z.lazy(() => CloudFileRegionSchema),
-      ])
+      .lazy(() => CloudFileRegionSchema)
+      .array()
       .optional(),
     notIn: z
-      .union([
-        z.lazy(() => CloudFileRegionSchema).array(),
-        z.lazy(() => CloudFileRegionSchema),
-      ])
+      .lazy(() => CloudFileRegionSchema)
+      .array()
       .optional(),
     not: z
       .union([
