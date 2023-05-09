@@ -72,7 +72,7 @@
     "clean:node_modules": "rimraf node_modules",
     "clean:prettier": "rimraf .prettiercache",
     "clean:tsc": "rimraf tsconfig.tsbuildinfo out",
-    "clean:yarn": "rimraf yarn-error.log package-lock.json",
+    "clean:yarn": "rimraf .yarn yarn-error.log package-lock.json",
     "clean": "run-p --silent --print-name clean:** && yarn install",
     "routes.generate": "npx nextjs-routes",
     "gen": "run-p --print-label openapi.build db.build routes.generate",
