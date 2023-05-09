@@ -2,8 +2,10 @@
 
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc"
 
-import { ConceptUpdateOneSchema } from "@/@gen/trpc/schemas/updateOneConcept.schema"
-import { ConceptCreateArgsSchema } from "@/@gen/zod"
+// import { ConceptUpdateOneSchema } from "@/@gen/trpc/schemas/updateOneConcept.schema"
+import { ConceptCreateArgsSchema, ConceptUpdateArgsSchema } from "@/@gen/zod"
+
+ConceptCreateArgsSchema
 
 export const conceptRouter = createTRPCRouter({
   createOne: publicProcedure
@@ -14,7 +16,8 @@ export const conceptRouter = createTRPCRouter({
       return result
     }),
   updateOne: publicProcedure
-    .input(ConceptUpdateOneSchema)
+    // .input(ConceptUpdateOneSchema)
+    .input(ConceptUpdateArgsSchema)
     .mutation(async ({ ctx, input }) => {
       const updateOneConcept = await ctx.prisma.concept.update(input)
       return updateOneConcept

@@ -28,13 +28,14 @@
       "@/*": ["./*"],
       "#/*": ["./cypress/*"]
     },
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "types": ["node", "jest", "react", "@testing-library/jest-dom"]
   },
   "include": [
     ".next/types/**/*.ts",
     "next-env.d.ts",
+    "__tests__",
     "@gen/zod",
-    "@gen/trpc",
+    // "@gen/trpc",
     "@types",
     "bin",
     "components",
@@ -47,7 +48,6 @@
     "server",
     "utils",
     "*.ts",
-    "*.tsx",
     "*.js",
     "*.cjs",
     "*.mjs"
