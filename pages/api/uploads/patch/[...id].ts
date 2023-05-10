@@ -1,26 +1,26 @@
-import { type NextApiResponse } from "next"
-import {
-  getConfig,
-  withFileUpload,
-  type FormNextApiRequest,
-} from "next-multiparty"
+// import { type NextApiResponse } from "next"
+// import {
+//   getConfig,
+//   withFileUpload,
+//   type FormNextApiRequest,
+// } from "next-multiparty"
 
-const methods = ["PATCH"]
+// const methods = ["PATCH"]
 
-/**
- * Patch
- *
- * @methods GET
- * @default "<SERVER>/?patch=<id>"
- * @link https://pqina.nl/filepond/docs/api/server/#patch
- */
-async function handler(req: FormNextApiRequest, res: NextApiResponse) {
-  res.json({ file: req.file, fields: req.fields })
-}
+// /**
+//  * Patch
+//  *
+//  * @methods GET
+//  * @default "<SERVER>/?patch=<id>"
+//  * @link https://pqina.nl/filepond/docs/api/server/#patch
+//  */
+// async function handler(req: FormNextApiRequest, res: NextApiResponse) {
+//   res.json({ file: req.file, fields: req.fields })
+// }
 
-export default withFileUpload(handler)
+// export default withFileUpload(handler)
 
-export const config = getConfig()
+// export const config = getConfig()
 
 // import { NextApiRequest, NextApiResponse } from "next";
 // import multiparty from "multiparty";
@@ -44,3 +44,7 @@ export const config = getConfig()
 //     bodyParser: false,
 //   },
 // };
+
+export default function handler() {
+  throw new Error("not implemented")
+}

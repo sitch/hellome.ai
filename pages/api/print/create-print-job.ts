@@ -75,3 +75,5 @@
 // // }).catch((err) => {
 // //     console.log('error occurred', err);
 // // });
+
+export const TEMP = {}
