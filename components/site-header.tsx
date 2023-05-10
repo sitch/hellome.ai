@@ -1,8 +1,9 @@
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
 
+import { Newspaper } from "lucide-react"
+
 import { buttonVariants } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -26,7 +27,7 @@ export function SiteHeader() {
                   variant: "ghost",
                 })}
               >
-                <Icons.blog className="h-5 w-5" />
+                <Newspaper className="h-5 w-5" />
                 <span className="sr-only">{t("header.links.blog.label")}</span>
               </div>
             </Link>

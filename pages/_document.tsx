@@ -18,7 +18,10 @@ class MyDocument extends Document<NewRelicProps> {
       i18nextConfig.i18n.defaultLocale
 
     return (
-      <Html lang={lang}>
+      <Html
+        lang={lang}
+        // suppressHydrationWarning
+      >
         <Head>
           <meta charSet="UTF-8" />
           <meta name="application-name" content={site.name} />
@@ -51,10 +54,11 @@ class MyDocument extends Document<NewRelicProps> {
         </Head>
 
         <body
-          className={`loading ${cn(
+          className={cn(
+            "loading",
             "bg-background min-h-screen font-sans antialiased",
             fontSans.variable,
-          )}`}
+          )}
         >
           <Main />
           <NextScript />

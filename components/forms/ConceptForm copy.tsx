@@ -484,3 +484,5 @@
 //     </>
 //   )
 // }
+
+export const TEMP = {}

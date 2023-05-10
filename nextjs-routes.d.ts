@@ -37,6 +37,7 @@ declare module "nextjs-routes" {
     | StaticRoute<"/app/concepts">
     | StaticRoute<"/app/concepts/new">
     | StaticRoute<"/app/concepts/train">
+    | StaticRoute<"/app/studio">
     | DynamicRoute<"/blog/articles/[slug]", { "slug": string }>
     | StaticRoute<"/blog/articles">
     | DynamicRoute<"/blog/authors/[handle]", { "handle": string }>

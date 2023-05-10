@@ -9,7 +9,6 @@ import { appWithTranslation } from "next-i18next"
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics, event } from "nextjs-google-analytics"
 
-import { env } from "@/config/env.mjs"
 import { fontSans } from "@/lib/fonts"
 import { api } from "@/utils/api"
 
@@ -41,7 +40,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <DefaultWebsiteSEO />
       <Head>
-        {/* Start Font Fix */}
+        {/* FONT_FIX */}
         {/* See: https://levelup.gitconnected.com/how-to-make-next-js-13s-optimized-fonts-work-with-tailwind-css-c3c5e57d38aa */}
         <style
           // eslint-disable-next-line react/no-unknown-property
@@ -55,7 +54,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             }
           `}
         </style>
-        {/* End Font Fix */}
+        {/* FONT_FIX */}
       </Head>
       {process.env.NODE_ENV !== "production" && (
         <GoogleAnalytics trackPageViews />
