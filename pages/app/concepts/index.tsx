@@ -1,6 +1,7 @@
 import { useState, type FormEventHandler } from "react"
 
 import naughtyWords from "naughty-words"
+import pkg from "package.json"
 
 import { env } from "@/config/env.mjs"
 import seeds from "@/lib/replicate/seeds"
@@ -11,8 +12,6 @@ import Error from "@/components/common/error"
 import Canvas from "@/components/replicate/canvas"
 import Predictions from "@/components/replicate/concepts"
 import PromptForm from "@/components/replicate/prompt-form"
-
-import pkg from "@/package.json"
 
 const HOST = env.VERCEL_URL
   ? `https://${env.VERCEL_URL}`

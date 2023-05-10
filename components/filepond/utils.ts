@@ -2,7 +2,7 @@ import { type FilePondProps } from "react-filepond"
 import imageInfo from "base64image-dimensions"
 import { findIndex, type ListIterateeCustom } from "lodash"
 
-export const fileToBase64 = (file: File) =>
+export const fileToBase64 = (file: File | Blob) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
