@@ -128,7 +128,9 @@ const nextConfig = {
   // },
   modularizeImports: {
     lodash: {
-      transform: "lodash/fp/{{member}}",
+      // issue with fp: range
+      // transform: "lodash/fp/{{member}}",
+      transform: "lodash/{{member}}",
       preventFullImport: true,
     },
     ["date-fns"]: {
@@ -198,6 +200,7 @@ const nextConfig = {
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
 /**
+ * @link https://github.com/getsentry/sentry-webpack-plugin#options
  * @type {Partial<import('@sentry/nextjs').SentryWebpackPluginOptions>}
  **/
 const sentryWebpackPluginOptions = {
