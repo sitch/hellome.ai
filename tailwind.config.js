@@ -64,6 +64,7 @@ const config = {
       },
       transitionDuration: {
         220: "220ms",
+        280: "280ms",
       },
       animation: {
         // Accordion

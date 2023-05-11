@@ -24,10 +24,15 @@ export default function Edit({
 
   // const {concept} = useConcept({id})
 
+  const handleRefresh = () => {
+    // refetch()
+  }
+
   return (
     <>
-      <Layout>
+      <Layout onRefresh={handleRefresh}>
         <Page
+          type="edit"
           title={t("concepts:page.edit.title")}
           description={t("concepts:page.edit.description")}
           // loading={isLoading}

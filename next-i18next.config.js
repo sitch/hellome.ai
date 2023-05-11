@@ -4,15 +4,6 @@
  * @type {import('next-i18next').UserConfig}
  */
 module.exports = {
-  /**
-   * Debug
-   * @link https://www.i18next.com/overview/configuration-options#logging
-   */
-  debug: process.env.NODE_ENV === "development",
-
-  /**
-   * i18n
-   */
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -30,6 +21,11 @@ module.exports = {
       ? require("path").resolve("./public/locales")
       : "/locales",
 
+  /**
+   * Debug
+   * @link https://www.i18next.com/overview/configuration-options#logging
+   */
+  debug: process.env.NODE_ENV === "development",
   reloadOnPrerender: process.env.NODE_ENV === "development",
 
   /**

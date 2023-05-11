@@ -6,14 +6,13 @@ import Loader from "@/components/app/loader"
 export type AnimatedButtonProps = ButtonProps & {
   wide?: boolean
   loading?: boolean
-  shadow?: boolean
 }
 
 export default function AnimatedButton({
   icon: Icon,
   wide = false,
   loading = false,
-  shadow = true,
+  shadow = "default",
   disabled,
   children,
   className,
@@ -24,7 +23,7 @@ export default function AnimatedButton({
     <>
       <Button
         size={size}
-        transition={false}
+        transition="none"
         // variant="outline"
         className={cn(
           // className ?? "",
@@ -32,7 +31,9 @@ export default function AnimatedButton({
           "group",
           "animate-bg-wave bg-gradient-to-r from-emerald-400 via-indigo-400 to-rose-400 transition-all ease-in-out",
           "rounded-lg",
-          shadow ? "shadow-indigo shadow-lg hover:shadow-blue-700/50" : "",
+          shadow === "default"
+            ? "shadow-indigo shadow-lg hover:shadow-blue-700/50"
+            : "",
           "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
           "focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800",
           "text-sm font-medium text-gray-900",
@@ -66,14 +67,7 @@ export default function AnimatedButton({
           ) : (
             <>
               {Icon ? (
-                <Icon
-                  size={iconVariants.size[size ?? "default"]}
-                  className={cn(
-                    iconVariants.className[size ?? "default"],
-
-                    disabled ? "" : "",
-                  )}
-                />
+                <Icon className={cn(iconVariants({ size, edge: "start" }))} />
               ) : null}
               {children}
             </>

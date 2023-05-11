@@ -79,3 +79,10 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+html,
+body {
+  overscroll-behavior-x: none;
+  touch-action: manipulation;
+  text-rendering: optimizeLegibility;
+}

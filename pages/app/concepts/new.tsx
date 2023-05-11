@@ -2,7 +2,7 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
-import { XCircle } from "lucide-react"
+import { XIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Layout, Page } from "@/components/app"
@@ -41,10 +41,15 @@ export default function New(
 ) {
   const { t } = useTranslation(ns)
 
+  const handleRefresh = () => {
+    // refetch()
+  }
+
   return (
     <>
-      <Layout>
+      <Layout onRefresh={handleRefresh}>
         <Page
+          type="new"
           title={t("concepts:page.new.title")}
           description={t("concepts:page.new.description")}
           action={
@@ -52,7 +57,7 @@ export default function New(
               size="lg"
               variant="secondary"
               href="/app/concepts"
-              icon={XCircle}
+              icon={XIcon}
             >
               {t("actions.cancel.label")}
             </Button>

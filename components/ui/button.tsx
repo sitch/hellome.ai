@@ -6,114 +6,162 @@ import { type LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+export const iconVariants = cva("", {
+  variants: {
+    size: {
+      default: "h-5",
+      sm: "h-4",
+      lg: "h-6",
+    },
+    edge: {
+      start: "mr-1",
+      end: "ml-1",
+    },
+  },
+  compoundVariants: [
+    {
+      edge: "start",
+      size: ["sm"],
+      class: "mr-0.5",
+    },
+    {
+      edge: "end",
+      size: ["sm"],
+      class: "ml-0.5",
+    },
+    {
+      edge: "start",
+      size: ["lg"],
+      class: "mr-1.5",
+    },
+    {
+      edge: "end",
+      size: ["lg"],
+      class: "ml-1.5",
+    },
+  ],
+  defaultVariants: {
+    size: "default",
+    edge: "start",
+  },
+})
+
+export type IconVariantProps = VariantProps<typeof iconVariants>
+
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
+  cn(
+    "inline-flex items-center justify-center",
+    "text-sm font-medium",
+    "rounded-md",
+
+    // Ring
+    "focus-visible:ring-ring ring-offset-background focus-visible:outline-none focus-visible:ring-2  focus-visible:ring-offset-2",
+
+    // Disabled
+    "disabled:pointer-events-none disabled:opacity-50",
+  ),
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary-foreground/80 hover:text-secondary",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        control: "text-muted-foreground hover:text-accent-foreground ",
-        link: "underline-offset-4 hover:underline text-primary",
-
-        // primary: "bg-primary/80 text-primary-foreground hover:bg-primary/60",
-        //         accent:  "bg-accent text-accent-foreground hover:bg-accent/80",
-
+        default: ["text-primary-foreground", "bg-primary hover:bg-primary/90"],
+        destructive: [
+          "text-destructive-foreground",
+          "bg-destructive hover:bg-destructive/90",
+        ],
+        outline: [
+          "border border-input",
+          "hover:text-accent-foreground",
+          "hover:bg-accent",
+        ],
+        secondary: [
+          "text-secondary-foreground hover:text-secondary",
+          "bg-secondary hover:bg-secondary-foreground/80",
+        ],
+        ghost: ["hover:text-accent-foreground", "hover:bg-accent"],
+        control: ["text-muted-foreground hover:text-accent-foreground"],
+        link: ["text-primary", "underline-offset-4 hover:underline"],
         none: "",
       },
       size: {
         default: "h-10 py-2 px-4",
-        sm: "h-9 px-3 rounded-md",
-        lg: "h-11 px-8 rounded-md",
+        sm: "h-9 px-3",
+        lg: "h-11 px-8",
+      },
+      shadow: {
+        default: "shadow-md shadow-transparent hover:shadow-blue-700/50",
+        hover: "shadow-lg shadow-transparent hover:shadow-blue-700/50",
+        none: "",
+      },
+      transition: {
+        default: "duration-200 transition-all ease-in-out",
+        none: "",
       },
     },
     defaultVariants: {
-      variant: "default",
       size: "default",
+      shadow: "default",
+      variant: "default",
+      transition: "default",
     },
   },
 )
 
-export const iconVariants = {
-  size: {
-    sm: 14,
-    default: 18,
-    lg: 24,
-  },
-
-  className: {
-    sm: "mx-1",
-    default: "mx-2",
-    lg: "mx-3",
-  },
-}
-
-export type ButtonProps = {
-  icon?: LucideIcon
-  iconRight?: LucideIcon
-  transition?: boolean
-  href?: LinkProps["href"]
-} & React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants> & {
+    href?: LinkProps["href"]
+    icon?: LucideIcon
+    iconEdge?: IconVariantProps["edge"]
+  }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      transition = true,
       type = "button",
-      icon: IconLeft,
-      iconRight: IconRight,
+
+      className,
       disabled,
       children,
-      className,
-      variant,
+
+      // Button Variants
       size,
+      shadow,
+      variant,
+      transition,
+
+      // Icon
       href,
+      icon: Icon,
+      iconEdge = "start",
       ...props
     },
     ref,
   ) => {
-    const content = (
+    const iconContent = Icon && (
+      <Icon className={cn(iconVariants({ size, edge: iconEdge }))} />
+    )
+
+    const buttonContent = (
       <button
         className={cn(
-          buttonVariants({ variant, size, className }),
-          transition ? "duration-220 transition-all ease-in-out" : "",
-          disabled ? "" : "",
+          buttonVariants({ transition, shadow, variant, size, className }),
         )}
         ref={ref}
         type={type}
+        disabled={disabled}
+        aria-disabled={disabled}
         {...props}
       >
-        {IconLeft ? (
-          <IconLeft
-            size={iconVariants.size[size ?? "default"]}
-            className={cn(
-              iconVariants.className[size ?? "default"],
-              disabled ? "" : "",
-            )}
-          />
-        ) : null}
-        {children as React.ReactNode}
-
-        {IconRight ? (
-          <IconRight
-            size={iconVariants.size[size ?? "default"]}
-            className={cn(
-              iconVariants.className[size ?? "default"],
-              disabled ? "" : "",
-            )}
-          />
-        ) : null}
+        {iconEdge === "start" && iconContent}
+        {children}
+        {iconEdge === "end" && iconContent}
       </button>
     )
 
-    return href ? <Link href={href}>{content}</Link> : content
+    if (href) {
+      return <Link href={href}>{buttonContent}</Link>
+    }
+
+    return buttonContent
   },
 )
 Button.displayName = "Button"

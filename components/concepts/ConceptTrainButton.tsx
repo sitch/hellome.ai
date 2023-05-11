@@ -63,7 +63,7 @@ export function ConceptTrainButton({ concept }: ConceptTrainButtonProps) {
       // Row styling
       //==========================================================
       className="m-0"
-      shadow={false}
+      shadow="none"
     >
       {t("buttons.train.label")}
     </AnimatedButton>

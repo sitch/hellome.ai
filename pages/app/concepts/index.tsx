@@ -30,9 +30,13 @@ export default function Index(
   const [page, setPage] = useState<number>(0)
   const [totalPages, setTotalPages] = useState<number>(1)
 
-  const { data, isLoading, ...query } = api.concept.paginate.useQuery({
+  const { data, isLoading, refetch, ...query } = api.concept.paginate.useQuery({
     limit: 20,
   })
+
+  const handleRefresh = () => {
+    refetch()
+  }
 
   // useEffect(() => {
   //   query.refetch({cursor: page})
@@ -43,8 +47,9 @@ export default function Index(
 
   return (
     <>
-      <Layout>
+      <Layout onRefresh={handleRefresh}>
         <Page
+          type="index"
           title={t("concepts:page.index.title")}
           description={t("concepts:page.index.description")}
           loading={isLoading}
@@ -55,6 +60,7 @@ export default function Index(
               variant="secondary"
               href="/app/concepts/new"
               icon={Plus}
+              shadow="hover"
             >
               {t("actions.create.label")}
             </Button>

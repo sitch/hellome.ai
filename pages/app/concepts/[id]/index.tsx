@@ -24,9 +24,13 @@ export default function Show({
 
   // const {concept} = useConcept({id})
 
+  const handleRefresh = () => {
+    // refetch()
+  }
+
   return (
     <>
-      <Layout>
+      <Layout onRefresh={handleRefresh}>
         <Page
           title={t("concepts:page.show.title")}
           description={t("concepts:page.show.description")}
@@ -34,13 +38,13 @@ export default function Show({
           // skeleton={() => <DataTableSkeleton count={5} />}
           action={
             <Button
+              icon={Edit}
               size="lg"
               variant="secondary"
               href={{
                 pathname: "/app/concepts/[id]/edit",
                 query: { id },
               }}
-              icon={Edit}
             >
               {t("actions.edit.label")}
             </Button>
