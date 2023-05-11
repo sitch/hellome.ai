@@ -41,3 +41,16 @@ declare module "i18next" {
     resources: I18nNamespaces
   }
 }
+
+/**
+ * Bugfix for:
+ *
+ * TS2746: This JSX tag's 'children' prop expects a single child of type 'ReactI18NextChildren', but multiple children were provided.
+ *
+ * @link https://github.com/i18next/react-i18next/issues/1543
+ */
+declare module "react" {
+  interface HTMLAttributes<T> {
+    children?: ReactI18NextChild | ReactI18NextChild[]
+  }
+}

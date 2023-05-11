@@ -1,8 +1,6 @@
 import { useState, type ReactNode } from "react"
 import Link, { type LinkProps } from "next/link"
 
-import { route } from "nextjs-routes"
-
 import { DotTextureIcon, ZapIcon } from "@/components/landing/icons"
 
 type AnsweredQuestionProps = {
@@ -88,7 +86,7 @@ export const FAQ = ({
             <div className="mt-4 flex flex-col sm:text-center">
               {links.map(({ children, ...props }, index) => (
                 <Link key={index} {...props}>
-                  {children as ReactNode}
+                  {children}
                 </Link>
               ))}
             </div>

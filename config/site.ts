@@ -9,7 +9,7 @@ const mainNav: { title: string; href: LinkProps["href"] }[] = [
   },
   {
     title: "Concepts",
-    href: "/app/concepts/train",
+    href: "/app/concepts",
   },
 ]
 

@@ -1,24 +1,22 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
-
-import { LucideIcon } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
 import { Button, iconVariants, type ButtonProps } from "@/components/ui/button"
-import Loader from "@/components/loader"
+import Loader from "@/components/app/loader"
 
 export type AnimatedButtonProps = ButtonProps & {
   wide?: boolean
   loading?: boolean
+  shadow?: boolean
 }
 
 export default function AnimatedButton({
   icon: Icon,
   wide = false,
   loading = false,
+  shadow = true,
   disabled,
   children,
-  // className,
+  className,
   size,
   ...props
 }: AnimatedButtonProps) {
@@ -34,7 +32,7 @@ export default function AnimatedButton({
           "group",
           "animate-bg-wave bg-gradient-to-r from-emerald-400 via-indigo-400 to-rose-400 transition-all ease-in-out",
           "rounded-lg",
-          "shadow-indigo shadow-lg hover:shadow-blue-700/50",
+          shadow ? "shadow-indigo shadow-lg hover:shadow-blue-700/50" : "",
           "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
           "focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800",
           "text-sm font-medium text-gray-900",
@@ -42,6 +40,7 @@ export default function AnimatedButton({
           "h-auto w-auto",
           // "relative inline-flex items-center justify-center",
           "mb-1 mr-1 p-0.5",
+          className,
         )}
         disabled={!!loading || disabled}
         {...props}

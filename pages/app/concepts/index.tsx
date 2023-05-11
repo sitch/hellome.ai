@@ -1,138 +1,84 @@
-import { useState, type FormEventHandler } from "react"
+import { useState } from "react"
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
+import Link from "next/link"
+import { useTranslation } from "next-i18next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
-import naughtyWords from "naughty-words"
-import pkg from "package.json"
+import { api } from "@/utils/api"
 
-import { env } from "@/config/env.mjs"
-import seeds from "@/lib/replicate/seeds"
-import sleep from "@/lib/replicate/sleep"
-import uploadFile from "@/lib/replicate/upload"
+import { buttonVariants } from "@/components/ui/button"
+import { DataTable } from "@/components/ui/data-table"
+import Paginator from "@/components/ui/pagination"
+import { Layout, Page } from "@/components/app"
+import { DataTableSkeleton } from "@/components/app/data-table-skeleton"
+import { columns } from "@/components/concepts/columns"
 
-import Error from "@/components/common/error"
-import Canvas from "@/components/replicate/canvas"
-import Predictions from "@/components/replicate/concepts"
-import PromptForm from "@/components/replicate/prompt-form"
+import { type I18nNamespaces } from "@/i18next.d"
+import i18NextConfig from "@/next-i18next.config"
 
-const HOST = env.VERCEL_URL
-  ? `https://${env.VERCEL_URL}`
-  : "http://localhost:3000"
+const ns: (keyof I18nNamespaces)[] = ["common", "concepts", "zod", "filepond"]
 
-export default function Home() {
-  const [error, setError] = useState(null)
-  const [submissionCount, setSubmissionCount] = useState(0)
-  const [predictions, setPredictions] = useState({})
-  const [isProcessing, setIsProcessing] = useState(false)
-  const [scribbleExists, setScribbleExists] = useState(false)
-  const [seed] = useState(seeds[Math.floor(Math.random() * seeds.length)])
-  const [initialPrompt] = useState(seed.prompt)
-  const [scribble, setScribble] = useState<string | null>(null)
+type Props = {
+  // Add custom props here
+}
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault()
+export default function Index(
+  _props: InferGetServerSidePropsType<typeof getServerSideProps>,
+) {
+  const { t } = useTranslation(ns)
+  const [page, setPage] = useState<number>(0)
+  const [totalPages, setTotalPages] = useState<number>(1)
 
-    // track submissions so we can show a spinner while waiting for the next prediction to be created
-    setSubmissionCount(submissionCount + 1)
+  const { data, isLoading, ...query } = api.concept.paginate.useQuery({
+    limit: 20,
+  })
 
-    const target = e.target as EventTarget & { prompt: { value?: string } }
+  // useEffect(() => {
+  //   query.refetch({cursor: page})
+  // }, [page])
 
-    const prompt = (target.prompt.value ?? "")
-      .split(/\s+/)
-      .map((word: string) =>
-        naughtyWords.en.includes(word) ? "something" : word,
-      )
-      .join(" ")
-
-    setError(null)
-    setIsProcessing(true)
-
-    const fileUrl = scribble ? await uploadFile(scribble) : undefined
-
-    const body = {
-      prompt,
-      image: fileUrl,
-      structure: "scribble",
-    }
-
-    const response = await fetch("/api/ai/concepts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-    let prediction = await response.json()
-
-    setPredictions((predictions) => ({
-      ...predictions,
-      [prediction.id]: prediction,
-    }))
-
-    if (response.status !== 201) {
-      setError(prediction.detail)
-      return
-    }
-
-    while (
-      prediction.status !== "succeeded" &&
-      prediction.status !== "failed"
-    ) {
-      await sleep(500)
-      const response = await fetch("/api/ai/concepts/" + prediction.id)
-      prediction = await response.json()
-      setPredictions((predictions) => ({
-        ...predictions,
-        [prediction.id]: prediction,
-      }))
-      if (response.status !== 200) {
-        setError(prediction.detail)
-        return
-      }
-    }
-
-    setIsProcessing(false)
-  }
-
-  // const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-  // }
+  // const rows = data?.pages[page].items ?? []
+  const rows = data?.items ?? []
 
   return (
     <>
-      <main className="container mx-auto max-w-[1024px] p-5 ">
-        <div className="container mx-auto max-w-[512px]">
-          <hgroup>
-            <h1 className="m-4 text-center text-5xl font-bold">
-              {pkg.appName}
-            </h1>
-            <p className="m-4 text-center text-xl opacity-60">
-              {pkg.appSubtitle}
-            </p>
-          </hgroup>
+      <Layout>
+        <Page
+          title={t("concepts:page.index.title")}
+          description={t("concepts:page.index.description")}
+          loading={isLoading}
+          skeleton={() => <DataTableSkeleton count={5} />}
+          action={
+            <Link
+              className={buttonVariants({
+                size: "lg",
+                variant: "secondary",
+              })}
+              href="/app/concepts/new"
+            >
+              {t("actions.create.label")}
+            </Link>
+          }
+        >
+          <DataTable columns={columns} data={rows} />
 
-          <Canvas
-            startingPaths={seed.paths}
-            onScribble={setScribble}
-            scribbleExists={scribbleExists}
-            setScribbleExists={setScribbleExists}
+          <Paginator
+            currentPage={page}
+            setCurrentPage={(page) => setPage(page)}
+            totalPages={totalPages}
+            middlePagesSiblingCount={2}
+            edgePageCount={2}
           />
-
-          <PromptForm
-            initialPrompt={initialPrompt}
-            onSubmit={handleSubmit}
-            isProcessing={isProcessing}
-            scribbleExists={scribbleExists}
-          />
-
-          <Error error={error} />
-        </div>
-
-        <Predictions
-          predictions={predictions}
-          isProcessing={isProcessing}
-          submissionCount={submissionCount}
-        />
-      </main>
-
-      {/* <Script src="https://js.upload.io/upload-js-full/v1" /> */}
+        </Page>
+      </Layout>
     </>
   )
 }
+
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  locale = i18NextConfig.i18n.defaultLocale,
+}) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ns)),
+  },
+})

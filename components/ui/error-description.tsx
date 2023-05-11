@@ -1,8 +1,8 @@
-type Props = {
+type ErrorDescriptionProps = {
   error?: string | null | undefined
 }
 
-export default function ErrorMessage({ error }: Props) {
+export default function ErrorDescription({ error }: ErrorDescriptionProps) {
   if (!error) return null
 
   return (

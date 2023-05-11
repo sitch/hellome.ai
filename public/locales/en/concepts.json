@@ -1,4 +1,22 @@
 {
+  "page": {
+    "index": {
+      "title": "Concepts",
+      "description": "Listing of all concepts..."
+    },
+    "new": {
+      "title": "Create Concept",
+      "description": "Create a new concept..."
+    },
+    "edit": {
+      "title": "Edit Concept",
+      "description": "Edit an existing concept..."
+    },
+    "show": {
+      "title": "View Concept",
+      "description": "View an existing concept..."
+    }
+  },
   "buttons": {
     "train": {
       "label": "Train",

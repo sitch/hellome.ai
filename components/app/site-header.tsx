@@ -4,8 +4,8 @@ import { useTranslation } from "next-i18next"
 import { Newspaper } from "lucide-react"
 
 import { buttonVariants } from "@/components/ui/button"
-import { MainNav } from "@/components/main-nav"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { MainNav } from "@/components/app/main-nav"
+import { ThemeToggle } from "@/components/app/theme-toggle"
 
 export function SiteHeader() {
   const { t } = useTranslation()

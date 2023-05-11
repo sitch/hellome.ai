@@ -12,9 +12,10 @@ import { GoogleAnalytics, event } from "nextjs-google-analytics"
 import { fontSans } from "@/lib/fonts"
 import { api } from "@/utils/api"
 
+import { Toaster } from "@/components/ui/toaster"
+import { TailwindIndicator } from "@/components/app/tailwind-indicator"
+import { ThemeProvider } from "@/components/app/theme-provider"
 import { DefaultWebsiteSEO } from "@/components/seo/DefaultWebsiteSEO"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
 
 export function reportWebVitals({
   id,
@@ -64,6 +65,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
 
         <TailwindIndicator />
+        <Toaster />
       </ThemeProvider>
 
       <Analytics mode="production" />

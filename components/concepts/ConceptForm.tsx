@@ -26,6 +26,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 // import Canvas from "@/components/replicate/canvas"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+import { ConceptCard } from "@/components/concepts/ConceptCard"
 import { FileInput } from "@/components/filepond/FileInput"
 import { type AddFileCallback } from "@/components/filepond/form.types"
 import {
@@ -33,7 +34,6 @@ import {
   castPhotoCreateInput,
 } from "@/components/filepond/schema"
 import { useFilePondUploader } from "@/components/filepond/useFilePondUploader"
-import { ConceptCard } from "@/components/forms/ConceptCard"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"
 import { SketchCanvas } from "@/components/sketch/SketchCanvas"
 

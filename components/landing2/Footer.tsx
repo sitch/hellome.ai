@@ -1,4 +1,3 @@
-import { type ReactNode } from "react"
 import Link, { type LinkProps } from "next/link"
 import { useTranslation } from "next-i18next"
 
@@ -57,7 +56,7 @@ function FooterItemLink({ href, children, ...props }: LinkProps) {
         href={href}
         className="hover:text-deep-purple-accent-400 text-gray-600 transition-colors duration-300"
       >
-        {children as ReactNode}
+        {children}
       </Link>
     </li>
   )

@@ -7,6 +7,7 @@ import { Brain } from "lucide-react"
 
 import { api } from "@/utils/api"
 
+import { useToast } from "@/components/ui/use-toast"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 
 type ConceptTrainButtonProps = {
@@ -15,13 +16,23 @@ type ConceptTrainButtonProps = {
 
 export function ConceptTrainButton({ concept }: ConceptTrainButtonProps) {
   const router = useRouter()
+  const { toast } = useToast()
   const { t } = useTranslation("concepts")
   const { mutate, isLoading, isSuccess, isError, error } =
     api.concept.updateOne.useMutation()
 
-  const handleClick = () => {
-    console.log("click", concept)
+  useEffect(() => {
+    if (error) {
+      console.error("train.error", concept, error)
+      toast({
+        variant: "destructive",
+        title: "Training Error",
+        description: <pre>{JSON.stringify(error, null, 2)}</pre>,
+      })
+    }
+  }, [concept, error, toast])
 
+  const handleClick = () => {
     const args = {
       where: {
         id: concept.id,
@@ -40,14 +51,6 @@ export function ConceptTrainButton({ concept }: ConceptTrainButtonProps) {
     })
   }
 
-  useEffect(() => {
-    if (error) {
-      console.error("train.error", concept, error)
-      alert(error)
-      return
-    }
-  }, [concept, error])
-
   return (
     <AnimatedButton
       icon={Brain}
@@ -56,6 +59,11 @@ export function ConceptTrainButton({ concept }: ConceptTrainButtonProps) {
       disabled={isLoading || isSuccess || isError}
       onClick={handleClick}
       aria-label={t("buttons.train.aria-label")}
+      //==========================================================
+      // Row styling
+      //==========================================================
+      className="m-0"
+      shadow={false}
     >
       {t("buttons.train.label")}
     </AnimatedButton>
