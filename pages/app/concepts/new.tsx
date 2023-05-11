@@ -2,6 +2,9 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
+import { XCircle } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
 import { Layout, Page } from "@/components/app"
 import { ConceptForm } from "@/components/concepts/ConceptForm"
 
@@ -44,6 +47,16 @@ export default function New(
         <Page
           title={t("concepts:page.new.title")}
           description={t("concepts:page.new.description")}
+          action={
+            <Button
+              size="lg"
+              variant="secondary"
+              href="/app/concepts"
+              icon={XCircle}
+            >
+              {t("actions.cancel.label")}
+            </Button>
+          }
         >
           <ConceptForm />
         </Page>

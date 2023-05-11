@@ -3,7 +3,9 @@ import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { castArray } from "lodash"
+import { XCircle } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
 import { Layout, Page } from "@/components/app"
 
 import { type I18nNamespaces } from "@/i18next.d"
@@ -30,17 +32,16 @@ export default function Edit({
           description={t("concepts:page.edit.description")}
           // loading={isLoading}
           // skeleton={() => <DataTableSkeleton count={5} />}
-          // action={
-          //   <Link
-          //     className={buttonVariants({
-          //       size: "lg",
-          //       variant: "secondary",
-          //     })}
-          //     href="/app/concepts/new"
-          //   >
-          //     {t("actions.create.label")}
-          //   </Link>
-          // }
+          action={
+            <Button
+              size="lg"
+              variant="secondary"
+              href="/app/concepts"
+              icon={XCircle}
+            >
+              {t("actions.cancel.label")}
+            </Button>
+          }
         >
           Coming Soon...
         </Page>

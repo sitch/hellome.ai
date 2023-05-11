@@ -1,6 +1,21 @@
-@gen/**/*
-styles/global/filepond-orig.css
+# node
+node_modules
+
+# next
+# .next
+# public
+
+# next-pwa
+public/sw.js
+public/fallback-*.js
+public/workbox-*.js
+
+# Generated
+@gen
+
+# Filepond
 styles/filepond.css
 styles/filepond/*.css
-public/sw.js
-public/workbox-*.js
+
+# Temp
+@__OLD__

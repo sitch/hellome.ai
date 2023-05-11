@@ -10,12 +10,16 @@ const Schema: z.ZodType<Prisma.EnumLRSchedulerWithAggregatesFilter> = z
   .object({
     equals: z.lazy(() => LRSchedulerSchema).optional(),
     in: z
-      .lazy(() => LRSchedulerSchema)
-      .array()
+      .union([
+        z.lazy(() => LRSchedulerSchema).array(),
+        z.lazy(() => LRSchedulerSchema),
+      ])
       .optional(),
     notIn: z
-      .lazy(() => LRSchedulerSchema)
-      .array()
+      .union([
+        z.lazy(() => LRSchedulerSchema).array(),
+        z.lazy(() => LRSchedulerSchema),
+      ])
       .optional(),
     not: z
       .union([

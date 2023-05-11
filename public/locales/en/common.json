@@ -57,6 +57,12 @@
     },
     "delete": {
       "label": "Remove"
-    }
+    },
+    "cancel": {
+      "label": "Cancel"
+    },
+    "back": {
+      "label": "Back"
+    }    
   }
 }

@@ -9,8 +9,8 @@ import { NestedStringNullableWithAggregatesFilterObjectSchema } from "./NestedSt
 const Schema: z.ZodType<Prisma.StringNullableWithAggregatesFilter> = z
   .object({
     equals: z.string().optional().nullable(),
-    in: z.string().array().optional().nullable(),
-    notIn: z.string().array().optional().nullable(),
+    in: z.union([z.string().array(), z.string()]).optional().nullable(),
+    notIn: z.union([z.string().array(), z.string()]).optional().nullable(),
     lt: z.string().optional(),
     lte: z.string().optional(),
     gt: z.string().optional(),

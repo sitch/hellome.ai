@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link, { type LinkProps } from "next/link"
 
 import { cva, type VariantProps } from "class-variance-authority"
 import { type LucideIcon } from "lucide-react"
@@ -55,7 +56,9 @@ export const iconVariants = {
 
 export type ButtonProps = {
   icon?: LucideIcon
+  iconRight?: LucideIcon
   transition?: boolean
+  href?: LinkProps["href"]
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants>
 
@@ -64,17 +67,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       transition = true,
       type = "button",
-      icon: Icon,
+      icon: IconLeft,
+      iconRight: IconRight,
       disabled,
       children,
       className,
       variant,
       size,
+      href,
       ...props
     },
     ref,
   ) => {
-    return (
+    const content = (
       <button
         className={cn(
           buttonVariants({ variant, size, className }),
@@ -85,19 +90,30 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         {...props}
       >
-        {Icon ? (
-          <Icon
+        {IconLeft ? (
+          <IconLeft
             size={iconVariants.size[size ?? "default"]}
             className={cn(
               iconVariants.className[size ?? "default"],
-
               disabled ? "" : "",
             )}
           />
         ) : null}
         {children as React.ReactNode}
+
+        {IconRight ? (
+          <IconRight
+            size={iconVariants.size[size ?? "default"]}
+            className={cn(
+              iconVariants.className[size ?? "default"],
+              disabled ? "" : "",
+            )}
+          />
+        ) : null}
       </button>
     )
+
+    return href ? <Link href={href}>{content}</Link> : content
   },
 )
 Button.displayName = "Button"

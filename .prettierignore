@@ -1,8 +1,19 @@
+# node
 node_modules
+
+# next
 .next
 public
+
+# Generated
+@gen
+
+# Generated (lulu)
 openapi.lulu.yml
-@gen/
-styles/global/filepond-orig.css
+
+# Filepond
 styles/filepond.css
 styles/filepond/*.css
+
+# Temp
+@__OLD__

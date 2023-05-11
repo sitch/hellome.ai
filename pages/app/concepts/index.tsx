@@ -1,12 +1,13 @@
 import { useState } from "react"
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
-import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
+import { Plus } from "lucide-react"
+
 import { api } from "@/utils/api"
 
-import { buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import Paginator from "@/components/ui/pagination"
 import { Layout, Page } from "@/components/app"
@@ -49,15 +50,14 @@ export default function Index(
           loading={isLoading}
           skeleton={() => <DataTableSkeleton count={5} />}
           action={
-            <Link
-              className={buttonVariants({
-                size: "lg",
-                variant: "secondary",
-              })}
+            <Button
+              size="lg"
+              variant="secondary"
               href="/app/concepts/new"
+              icon={Plus}
             >
               {t("actions.create.label")}
-            </Link>
+            </Button>
           }
         >
           <DataTable

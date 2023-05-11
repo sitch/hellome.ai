@@ -1,11 +1,11 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
-import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { castArray } from "lodash"
+import { Edit } from "lucide-react"
 
-import { buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Layout, Page } from "@/components/app"
 
 import { type I18nNamespaces } from "@/i18next.d"
@@ -33,18 +33,17 @@ export default function Show({
           // loading={isLoading}
           // skeleton={() => <DataTableSkeleton count={5} />}
           action={
-            <Link
-              className={buttonVariants({
-                size: "lg",
-                variant: "secondary",
-              })}
+            <Button
+              size="lg"
+              variant="secondary"
               href={{
                 pathname: "/app/concepts/[id]/edit",
                 query: { id },
               }}
+              icon={Edit}
             >
               {t("actions.edit.label")}
-            </Link>
+            </Button>
           }
         >
           Coming Soon...

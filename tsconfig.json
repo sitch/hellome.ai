@@ -39,7 +39,7 @@
   },
   "include": [
     "next-env.d.ts",
-    // ".next/types/**/*.ts",
+    ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
@@ -53,7 +53,10 @@
     "@gen/trpc",
     "@gen/lulu",
     "@gen/crud",
+    "@__OLD__",
     "cypress",
-    "cypress.config.ts"
+    "cypress.config.ts",
+    "public/workbox-*.js",
+    "public/sw.js"
   ]
 }
