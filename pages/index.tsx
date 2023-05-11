@@ -1,15 +1,14 @@
 import dynamic from "next/dynamic"
 import { Inter } from "next/font/google"
 import Head from "next/head"
-import Link from "next/link"
 
-import BrandLogo from "@/components/ui/BrandLogo/BrandLogo"
+import BrandLogo from "@/components/common/BrandLogo/BrandLogo"
 
 import styles from "@/styles/Home.module.css"
 
 // Avoids "document not found" issue
 const RequestAccessModal = dynamic(
-  () => import("@/components/ui/RequestAccessModal/RequestAccessModal"),
+  () => import("@/components/common/RequestAccessModal/RequestAccessModal"),
   {
     ssr: false,
     // suspense: true,
@@ -187,7 +186,7 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <h2 className={font.className}>
-              //  Store <span>-&gt;</span> 
+              //  Store <span>-&gt;</span>
               Visit our Store
             </h2>
             <p className={font.className}>

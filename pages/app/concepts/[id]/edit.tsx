@@ -1,14 +1,13 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
+import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { castArray } from "lodash"
 
-import { PageLayout } from "@/components/ui/Layout/Layout"
+import { Layout, Page } from "@/components/app"
 
 import { type I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
-
-// import { useS3Upload } from 'next-s3-upload'
 
 const ns: (keyof I18nNamespaces)[] = ["common", "concepts", "zod", "filepond"]
 
@@ -16,18 +15,36 @@ type Props = {
   id: string
 }
 
-const Page = ({
+export default function Edit({
   id,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  // const {concept} = useConcept({id})
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { t } = useTranslation(ns)
 
-  // const { t } = useTranslation(ns)
+  // const {concept} = useConcept({id})
 
   return (
     <>
-      <PageLayout title="Edit Concept">
-        {/* <ConceptForm concept={concept} /> */}
-      </PageLayout>
+      <Layout>
+        <Page
+          title={t("concepts:page.edit.title")}
+          description={t("concepts:page.edit.description")}
+          // loading={isLoading}
+          // skeleton={() => <DataTableSkeleton count={5} />}
+          // action={
+          //   <Link
+          //     className={buttonVariants({
+          //       size: "lg",
+          //       variant: "secondary",
+          //     })}
+          //     href="/app/concepts/new"
+          //   >
+          //     {t("actions.create.label")}
+          //   </Link>
+          // }
+        >
+          Coming Soon...
+        </Page>
+      </Layout>
     </>
   )
 }
@@ -41,5 +58,3 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     ...(await serverSideTranslations(locale, ns)),
   },
 })
-
-export default Page

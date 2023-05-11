@@ -8,8 +8,8 @@ import Reaptcha from "reaptcha"
 
 import { env } from "@/config/env.mjs"
 
-import EmailSuccess from "@/components/ui/RequestAccessModal/EmailSuccess"
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+import EmailSuccess from "@/components/common/RequestAccessModal/EmailSuccess"
 import emailStyles from "@/components/forms/EmailInput.module.css"
 import styles from "@/components/forms/forms.module.css"
 

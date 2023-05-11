@@ -1,9 +1,7 @@
-import { ReactNode } from "react"
 import { useTranslation } from "next-i18next"
 
-import BrandLogo from "@/components/ui/BrandLogo/BrandLogo"
 import { AnimatedBook } from "@/components/books/AnimatedBook/AnimatedBook"
-import { DotTextureIcon } from "@/components/landing/icons"
+import BrandLogo from "@/components/common/BrandLogo/BrandLogo"
 
 export function MottoTags() {
   return (

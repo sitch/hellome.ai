@@ -60,7 +60,12 @@ export default function Index(
             </Link>
           }
         >
-          <DataTable columns={columns} data={rows} />
+          <DataTable
+            columns={columns}
+            data={rows}
+
+            // data={[{id: 1}]}
+          />
 
           <Paginator
             currentPage={page}

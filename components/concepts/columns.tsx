@@ -2,7 +2,7 @@
 
 import TimeAgo from "react-timeago"
 import { type ColumnDef } from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -26,8 +26,19 @@ export const columns: ColumnDef<DataType>[] = [
     accessorKey: "id",
   },
   {
-    header: "Name",
+    // header: "Name",
     accessorKey: "name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     header: "Status",

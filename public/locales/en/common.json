@@ -48,6 +48,15 @@
   "actions": {
     "create": {
       "label": "New"
+    },
+    "show": {
+      "label": "View"
+    },
+    "edit": {
+      "label": "Edit"
+    },
+    "delete": {
+      "label": "Remove"
     }
   }
 }

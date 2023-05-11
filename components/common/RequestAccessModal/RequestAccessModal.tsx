@@ -7,25 +7,25 @@
 import React, { useState, type MouseEvent, type ReactNode } from "react"
 import Link from "next/link"
 
-import AccessTokenForm from "@/components/ui/RequestAccessModal/AccessTokenForm"
-import EmailForm from "@/components/ui/RequestAccessModal/EmailForm"
-import styles from "@/components/ui/RequestAccessModal/RequestAccessModal.module.css"
+// import AccessTokenForm from "@/components/common/RequestAccessModal/AccessTokenForm"
+// import EmailForm from "@/components/common/RequestAccessModal/EmailForm"
+// import styles from "@/components/common/RequestAccessModal/RequestAccessModal.module.css"
 
-const privacyPolicy = (
-  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-    We’ll never share your details. Read our{" "}
-    <Link
-      href={{
-        pathname: "/pages/policies/[slug]",
-        query: { slug: "privacy-policy" },
-      }}
-      className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-    >
-      Privacy Policy
-    </Link>
-    .
-  </p>
-)
+// const privacyPolicy = (
+//   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+//     We’ll never share your details. Read our{" "}
+//     <Link
+//       href={{
+//         pathname: "/pages/policies/[slug]",
+//         query: { slug: "privacy-policy" },
+//       }}
+//       className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+//     >
+//       Privacy Policy
+//     </Link>
+//     .
+//   </p>
+// )
 
 export type RequestAccessModalProps = {
   className?: string
