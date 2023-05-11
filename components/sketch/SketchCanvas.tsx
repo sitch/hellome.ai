@@ -155,7 +155,7 @@ export function SketchCanvas({
 
       <SketchPalette
         // orientation="horizontal"
-        orientation="vertical"
+        // orientation="vertical"
         onChange={handleStyle}
       />
 

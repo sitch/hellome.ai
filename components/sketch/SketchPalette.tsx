@@ -3,6 +3,24 @@ import { useEffect, useState } from "react"
 import { type ReactSketchCanvasProps } from "react-sketch-canvas"
 import { GithubPicker, SketchPicker } from "@hello-pangea/color-picker"
 
+type ReactSketchCanvasPropItems =
+  | "strokeWidth"
+  | "strokeColor"
+  | "canvasColor"
+  | "eraserWidth"
+
+export type SketchPaletteStyleProps = Pick<
+  ReactSketchCanvasProps,
+  ReactSketchCanvasPropItems
+>
+
+// export type SketchPaletteItemProps = {
+//   color: string
+//   onChange?: (props: SketchPaletteStyleProps) => void
+// }
+
+// export type SketchPaletteOrientation = "vertical" | "horizontal"
+
 const colors = [
   "#B80000",
   "#DB3E00",
@@ -22,16 +40,9 @@ const colors = [
   "#D4C4FB",
 ]
 
-// export type SketchPaletteOrientation = "vertical" | "horizontal"
-
 export type SketchPaletteProps = {
   // orientation?: SketchPaletteOrientation
-  onChange?: (
-    props: Pick<
-      ReactSketchCanvasProps,
-      "strokeWidth" | "strokeColor" | "canvasColor" | "eraserWidth"
-    >,
-  ) => void
+  onChange?: (props: SketchPaletteStyleProps) => void
 }
 
 export const SketchPalette = ({
