@@ -60,13 +60,13 @@ function templateForComponent({ html }: FaviconResponse) {
   /* <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5" /> */
 
   return `
-  const GeneratedAppHeadMetadata = () => (
+  const GeneratedNextAppHeadMetadata = () => (
     <>
       ${appTags.join("\n")}
     </>
   )
 
-  const GeneratedDocumentHeadMetadata = () => (
+  const GeneratedNextDocumentHeadMetadata = () => (
     <>
       ${documentTags.join("\n")}
     </>
@@ -76,7 +76,7 @@ function templateForComponent({ html }: FaviconResponse) {
 		return (
 			<>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <GeneratedAppHeadMetadata />
+        <GeneratedNextAppHeadMetadata />
 			</>
 		)
   }
@@ -90,7 +90,7 @@ function templateForComponent({ html }: FaviconResponse) {
         {/* See: https://nextjs.org/docs/messages/react-hydration-error */}
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
 
-        <GeneratedDocumentHeadMetadata />
+        <GeneratedNextDocumentHeadMetadata />
 			</>
 		)
   }
@@ -112,11 +112,11 @@ async function writeComponent(response: FaviconResponse, dest: string) {
   info(`Wrote component to: ${dest}`)
 }
 
-type WritableThings = FaviconFile | FaviconImage
+type FaviconDescription = FaviconFile | FaviconImage
 
 async function writeToDir(dir: string) {
   await mkdir(dir, { recursive: true })
-  return async ({ name, contents }: WritableThings) =>
+  return async ({ name, contents }: FaviconDescription) =>
     await writeFile(path.join(dir, name), contents)
 }
 

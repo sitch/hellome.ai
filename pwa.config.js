@@ -3,7 +3,9 @@ const nextI18nextConfig = require("./next-i18next.config")
 
 // TODO: implement these accessors this
 const tailwindConfig = {
+  // background
   "hex(var(--background))": "#fff",
+  // theme_color
   "hex(var(--primary))": "#fff",
 }
 
@@ -72,14 +74,14 @@ module.exports = {
   faviconOptions,
   logoPath: "resources/logo.png",
   output: {
+    component: {
+      path: "components/@gen/pwa/head-metadata.tsx",
+    },
     favicons: {
       dir: {
         data: "public/pwa/",
         // assets: "public/",
       },
-    },
-    component: {
-      path: "components/@gen/pwa/head-metadata.tsx",
     },
   },
 }

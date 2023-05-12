@@ -1,10 +1,10 @@
-const GeneratedAppHeadMetadata = () => (
+const GeneratedNextAppHeadMetadata = () => (
   <>
     <meta name="theme-color" content="#fff" />
   </>
 )
 
-const GeneratedDocumentHeadMetadata = () => (
+const GeneratedNextDocumentHeadMetadata = () => (
   <>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -215,7 +215,7 @@ export const AppHeadMetadata = () => {
   return (
     <>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <GeneratedAppHeadMetadata />
+      <GeneratedNextAppHeadMetadata />
     </>
   )
 }
@@ -232,7 +232,7 @@ export const DocumentHeadMetadata = () => {
         content="telephone=no, date=no, email=no, address=no"
       />
 
-      <GeneratedDocumentHeadMetadata />
+      <GeneratedNextDocumentHeadMetadata />
     </>
   )
 }
