@@ -53,10 +53,6 @@ function templateForComponent({ html }: FaviconResponse) {
   const documentTags = jsx.filter((tag) => !isNextAppHeadTag(tag))
 
   // add to App
-  // <meta name="theme-color" content={site.theme} />
-  {
-    /* <meta name="theme-color" content={theme.palette.primary.main} /> */
-  }
   // <meta name="theme-color" media="(prefers-color-scheme: light)" content="cyan" />
   // <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
 
