@@ -1,38 +1,75 @@
 import { Template, generate as pdfGenerator } from '@pdfme/generator'
-import { exec } from 'child_process'
 import { BLANK_PDF } from '@pdfme/generator'
-import { writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 import path from 'path'
-// import { Template, BLANK_PDF } from '@pdfme/ui'; <- Template types and BLANK_PDF can also be imported from @pdfme/ui.
-// import { Template, Designer, Form, Viewer } from '@pdfme/ui';
+
+import { Page } from './pdf-types'
 
 const template: Template = {
   basePdf: BLANK_PDF,
   schemas: [
     {
-      a: {
+      title: {
         type: 'text',
-        position: { x: 1, y: 30 },
+        position: { x: 100, y: 300 },
         width: 100,
-        height: 10,
+        height: 50,
       },
-      b: {
+      subTitle: {
         type: 'text',
-        position: { x: 33, y: 10 },
-        width: 10,
-        height: 10,
+        position: { x: 100, y: 450 },
+        width: 100,
+        height: 50,
       },
-      c: {
+      author: {
         type: 'text',
-        position: { x: 20, y: 20 },
-        width: 10,
-        height: 10,
+        position: { x: 100, y: 550 },
+        width: 100,
+        height: 50,
       },
+      publicationDate: {
+        type: 'text',
+        position: { x: 100, y: 850 },
+        width: 100,
+        height: 50,
+      },
+      text: {
+        type: 'text',
+        position: { x: 50, y: 50 },
+        width: 500,
+        height: 1000,     
+      },
+      pageNumber: {
+        type: 'text',
+        position: { x: 100, y: 1250 },
+        width: 40,
+        height: 40,     
+      },
+      closeMessage: {
+        type: 'text',
+        position: { x: 100, y: 300 },
+        width: 500,
+        height: 700,
+      }
     },
   ],
 }
 
-const inputs = [{ a: 'a1', b: 'b1', c: 'c1' }]
+
+// 1. Read/Parse the content of the JSON object
+const filePath = './sherlock.json';
+const jsonData = readFileSync(filePath, 'utf-8');
+const jsonObject = JSON.parse(jsonData);
+
+// 2. Iterate over every object in the "data" to create the
+// schemas array (use narrowing for page type layout)
+let inputs: [Page];
+jsonObject.data.forEach((page: Page) => {
+  inputs.push(page);
+});
+
+
+// const inputs = [{ a: 'a1', b: 'b1', c: 'c1' }]
 
 type GenerateProps = {
   name: string
@@ -47,10 +84,8 @@ export const generate = async ({ name }: GenerateProps) => {
     // window.open(URL.createObjectURL(blob))
 
     // Node.js
-    const filename = path.join(__dirname, `../out/test.pdf`)
+    const filename = path.join(__dirname, `../pdf/out/test.pdf`)
     writeFileSync(filename, pdf)
-
-    // exec('open ../out/test.pdf')
 
     return {
       ok: true,
