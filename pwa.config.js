@@ -72,7 +72,14 @@ module.exports = {
   faviconOptions,
   logoPath: "resources/logo.png",
   output: {
-    faviconDir: "public/pwa/",
-    componentPath: "components/@gen/pwa/head-metadata.tsx",
+    favicons: {
+      dir: {
+        data: "public/pwa/",
+        // assets: "public/",
+      },
+    },
+    component: {
+      path: "components/@gen/pwa/head-metadata.tsx",
+    },
   },
 }

@@ -112,9 +112,11 @@ async function writeComponent(response: FaviconResponse, dest: string) {
   info(`Wrote component to: ${dest}`)
 }
 
+type WritableThings = FaviconFile | FaviconImage
+
 async function writeToDir(dir: string) {
   await mkdir(dir, { recursive: true })
-  return async ({ name, contents }: FaviconFile | FaviconImage) =>
+  return async ({ name, contents }: WritableThings) =>
     await writeFile(path.join(dir, name), contents)
 }
 
@@ -131,8 +133,8 @@ async function writeManifest({ files }: FaviconResponse, dest: string) {
 async function run() {
   const faviconOptions = pwaConfig.faviconOptions
   const logoPath = path.resolve(pwaConfig.logoPath)
-  const faviconDir = path.resolve(pwaConfig.output.faviconDir)
-  const componentPath = path.resolve(pwaConfig.output.componentPath)
+  const faviconDir = path.resolve(pwaConfig.output.favicons.dir.data)
+  const componentPath = path.resolve(pwaConfig.output.component.path)
 
   info(`Generating PWA...`)
   const response = await favicons(logoPath, faviconOptions)
