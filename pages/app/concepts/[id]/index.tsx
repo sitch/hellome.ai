@@ -32,6 +32,7 @@ export default function Show({
     <>
       <Layout onRefresh={handleRefresh}>
         <Page
+          type="show"
           title={t("concepts:page.show.title")}
           description={t("concepts:page.show.description")}
           // loading={isLoading}

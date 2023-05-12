@@ -3,21 +3,30 @@
   "private": true,
   "name": "hellome.ai",
   "appName": "HelloMe.ai",
+  "appShortName": "HelloMe.ai",
   "appSubtitle": "Personalized children's books using AI",
   "appMetaDescription": "Personalized children's books using AI",
+  "appDescription": "Personalized children's books using AI",
   "version": "1.0.0",
+  "author": {
+    "name": "Sitch",
+    "email": "sitch@hellome.ai",
+    "url": "https://github.com/sitch"
+  },
   "browser": {
     "@prisma/client": false,
     "prisma": false
   },
   "prisma": {
     "schema": "prisma/schema.prisma",
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts"
   },
   "scripts": {
+    "predev": "run-s --print-label favicons.generate",
     "dev": "nodemon --config next.nodemon.json --exec next dev",
     "dev.inspect": "nodemon --config next.nodemon.json --exec env NODE_OPTIONS='--inspect' next dev",
     "__________prebuild": "run-s routes.generate",
+    "prebuild": "run-s --print-label favicons.generate",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -41,15 +50,16 @@
     "db.reset.hard.dev": "dotenv -e .env -- sh -c 'yarn db.reset --force && yarn db.migrate --name create_schema && yarn db.seed'",
     "db.reset.hard.prod": "dotenv -e prisma/.env.production -- sh -c 'yarn db.reset --force && yarn db.migrate --name create_schema && yarn db.seed'",
     "db.generate": "mkdir -p @gen/erd && npx prisma generate",
+    "favicons.generate": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' bin/favicons.ts",
+    "mailing.dev": "npx mailing",
+    "mailing.build": "npx mailing server build",
+    "mailing.start": "npx mailing server start",
     "__________openapi.build": "run-s --print-label openapi.validate openapi.format openapi.clean openapi.generate",
     "openapi.build": "run-s --print-label openapi.format openapi.clean openapi.generate",
     "openapi.generate": "env TS_POST_PROCESS_FILE='bin/openapi-post-process.sh' openapi-generator-cli generate",
     "openapi.clean": "rimraf ./@gen/lulu",
     "openapi.format": "eslint openapi.lulu.yml --fix",
     "openapi.validate": "openapi-generator-cli validate --input-spec openapi.lulu.yml",
-    "mailing.dev": "npx mailing",
-    "mailing.build": "npx mailing server build",
-    "mailing.start": "npx mailing server start",
     "typecheck:tsc": "tsc --noemit --project tsconfig.json",
     "typecheck:tsc.cypress": "tsc --noemit --project cypress/tsconfig.json",
     "__________pretypecheck": "yarn routes.generate",
@@ -75,9 +85,9 @@
     "clean:tsc": "tsc --build --clean",
     "clean:tsbuildinfo": "rimraf tsconfig.tsbuildinfo out",
     "clean:yarn": "rimraf .yarn yarn-error.log package-lock.json",
-    "clean": "run-p --silent --print-name clean:** && yarn cache clean && yarn --check-files",
+    "clean": "run-p --silent --print-name clean:** && yarn cache clean && yarn --check-files && yarn gen",
     "routes.generate": "npx nextjs-routes",
-    "gen": "run-p --print-label openapi.build db.build routes.generate",
+    "gen": "run-p --print-label openapi.build db.build routes.generate favicons.generate",
     "test": "jest",
     "test.ci": "jest --ci",
     "test.fix": "jest --updateSnapshot",
@@ -259,6 +269,7 @@
   },
   "resolutions": {
     "@types/react": "18.2.3",
+    "chalk": "4.1.2",
     "zod": "3.21.1"
   },
   "dependencies.to.remove": {
@@ -331,6 +342,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
     "autoprefixer": "^10.4.14",
+    "chalk": "4.1.2",
     "critters": "^0.0.16",
     "cspell": "^6.31.1",
     "cypress": "^12.12.0",

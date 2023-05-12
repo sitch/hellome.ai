@@ -1,10 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { NextResponse } from "next/server"
 
-import packageData from "package.json"
 import Replicate from "replicate"
 
 import { env } from "@/config/env.mjs"
+
+import packageData from "package.json"
 
 const replicate = new Replicate({
   auth: env.REPLICATE_API_TOKEN,

@@ -1,11 +1,11 @@
 import Link, { type LinkProps } from "next/link"
 import { useTranslation } from "next-i18next"
 
-import pkg from "package.json"
-
 import { LogoIcon } from "@/components/landing/icons"
 
 import { business, social } from "@/data/siteConfig"
+
+import pkg from "package.json"
 
 function SocialFooter() {
   const year = new Date().getFullYear()

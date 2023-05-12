@@ -1,5 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  // "ts-node": {
+  //   // these options are overrides used only by ts-node
+  //   // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+  //   "compilerOptions": {
+  //     "module": "commonjs"
+  //   }
+  // },
   "compilerOptions": {
     "noErrorTruncation": true,
     "baseUrl": ".",
@@ -24,16 +31,17 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+
     "paths": {
       "@/*": ["./*"],
       "#/*": ["./cypress/*"],
       "package.json": ["package.json"]
     },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "typeRoots": ["./node_modules/@types"]
   },
@@ -50,13 +58,20 @@
     "**/node_modules",
     "**/.*/",
     "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
     "@gen/trpc",
     "@gen/lulu",
     "@gen/crud",
     "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
+    // "public/fallback-*.js",
+    // "public/workbox-*.js",
+    // "public/sw.js"
     "cypress",
-    "cypress.config.ts",
-    "public/workbox-*.js",
-    "public/sw.js"
+    "cypress.config.ts"
   ]
 }

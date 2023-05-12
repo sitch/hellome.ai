@@ -1,6 +1,3 @@
-import "@/styles/chrome-bug.css"
-import "@/styles/filepond.css"
-import "@/styles/globals.css"
 import { useEffect } from "react"
 import type { AppProps, NextWebVitalsMetric } from "next/app"
 import Head from "next/head"
@@ -9,13 +6,18 @@ import { appWithTranslation } from "next-i18next"
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics, event } from "nextjs-google-analytics"
 
-import { fontSans } from "@/lib/fonts"
+import { FontFix } from "@/lib/fonts"
 import { api } from "@/utils/api"
 
 import { Toaster } from "@/components/ui/toaster"
+import { AppHeadMetadata } from "@/components/@gen/pwa/head-metadata"
 import { TailwindIndicator } from "@/components/app/tailwind-indicator"
 import { ThemeProvider } from "@/components/app/theme-provider"
 import { DefaultWebsiteSEO } from "@/components/seo/DefaultWebsiteSEO"
+
+import "@/styles/chrome-bug.css"
+import "@/styles/filepond.css"
+import "@/styles/globals.css"
 
 export function reportWebVitals({
   id,
@@ -41,21 +43,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <DefaultWebsiteSEO />
       <Head>
-        {/* FONT_FIX */}
-        {/* See: https://levelup.gitconnected.com/how-to-make-next-js-13s-optimized-fonts-work-with-tailwind-css-c3c5e57d38aa */}
-        <style
-          // eslint-disable-next-line react/no-unknown-property
-          jsx
-          // eslint-disable-next-line react/no-unknown-property
-          global
-        >
-          {`
-            :root {
-              --font-sans: ${fontSans.style.fontFamily};
-            }
-          `}
-        </style>
-        {/* FONT_FIX */}
+        <AppHeadMetadata />
+        <FontFix />
       </Head>
       {process.env.NODE_ENV !== "production" && (
         <GoogleAnalytics trackPageViews />

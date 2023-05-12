@@ -30,13 +30,17 @@ const sortImports = {
     "",
     "^[./]",
     "",
+    "package.json",
+    "(.*).config$",
+    "",
+    "^@/styles/(.*)$",
   ],
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
   importOrderBuiltinModulesToTop: true,
-  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   importOrderMergeDuplicateImports: true,
   importOrderCombineTypeAndValueImports: true,
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
 }
 
 /**
