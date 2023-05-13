@@ -1,50 +1,69 @@
+/* eslint-disable @limegrass/import-alias/import-alias */
+
+import { exec, execSync } from "child_process"
 import { mkdir, writeFile } from "fs/promises"
 import path from "path"
 
-import favicons, {
-  type FaviconFile,
-  type FaviconImage,
-  type FaviconResponse,
-} from "favicons"
+import favicons from "favicons"
 import prettier from "prettier"
 
-// eslint-disable-next-line @limegrass/import-alias/import-alias
 import pwaConfig from "../pwa.config.js"
 
+/**
+ * @typedef {import('favicons').FaviconFile} FaviconFile
+ * @typedef {import('favicons').FaviconImage} FaviconImage
+ * @typedef {import('favicons').FaviconResponse} FaviconResponse
+ */
+
 const colors = {
-  reset: "\\033[0m",
+  green: "",
+  reset: "",
 
-  //text color
-  black: "\\033[30m",
-  red: "\\033[31m",
-  green: "\\033[32m",
-  yellow: "\\033[33m",
-  blue: "\\033[34m",
-  magenta: "\\033[35m",
-  cyan: "\\033[36m",
-  white: "\\033[37m",
+  // reset: "\\033[0m",
 
-  //background color
-  blackBg: "\\033[40m",
-  redBg: "\\033[41m",
-  greenBg: "\\033[42m",
-  yellowBg: "\\033[43m",
-  blueBg: "\\033[44m",
-  magentaBg: "\\033[45m",
-  cyanBg: "\\033[46m",
-  whiteBg: "\\033[47m",
+  // //text color
+  // black: "\\033[30m",
+  // red: "\\033[31m",
+  // green: "\\033[32m",
+  // yellow: "\\033[33m",
+  // blue: "\\033[34m",
+  // magenta: "\\033[35m",
+  // cyan: "\\033[36m",
+  // white: "\\033[37m",
+
+  // //background color
+  // blackBg: "\\033[40m",
+  // redBg: "\\033[41m",
+  // greenBg: "\\033[42m",
+  // yellowBg: "\\033[43m",
+  // blueBg: "\\033[44m",
+  // magentaBg: "\\033[45m",
+  // cyanBg: "\\033[46m",
+  // whiteBg: "\\033[47m",
 }
 
-const info = (...args: any[]) => {
-  console.log(`${colors.green}[bin/favicons]${colors.reset}`, ...args)
+/**
+ * @param {any[]} args
+ */
+const info = (...args) => {
+  console.log(`${colors.green}[bin/favicons]${colors.reset}`, ...args, "\n")
 }
 
-function templateForComponent({ html }: FaviconResponse) {
-  const toJSX = (tag: string) => {
+/**
+ * @param {FaviconResponse} response
+ */
+function templateForComponent({ html }) {
+  /**
+   * @param {string} tag
+   */
+  const toJSX = (tag) => {
     return tag.replace(">", " />")
   }
 
-  const isNextAppHeadTag = (tag: string) => {
+  /**
+   * @param {string} tag
+   */
+  const isNextAppHeadTag = (tag) => {
     return tag.includes(`name="theme-color"`) || tag.includes(`name="viewport"`)
   }
 
@@ -97,14 +116,21 @@ function templateForComponent({ html }: FaviconResponse) {
   `
 }
 
-async function formatter(contents: string) {
+/**
+ * @param {string} contents
+ */
+async function formatter(contents) {
   const options = await prettier.resolveConfig(process.cwd(), {
     editorconfig: true,
   })
   return prettier.format(contents, { parser: "babel", ...options })
 }
 
-async function writeComponent(response: FaviconResponse, dest: string) {
+/**
+ * @param {FaviconResponse} response
+ * @param {string} dest
+ */
+async function writeComponent(response, dest) {
   const raw = templateForComponent(response)
   const content = await formatter(raw)
   await mkdir(path.dirname(dest), { recursive: true })
@@ -112,25 +138,41 @@ async function writeComponent(response: FaviconResponse, dest: string) {
   info(`Wrote component to: ${dest}`)
 }
 
-type FaviconDescription = FaviconFile | FaviconImage
+/**
+ * @typedef {FaviconFile | FaviconImage} FaviconDescription
+ */
 
-async function writeToDir(dir: string) {
+/**
+ * @param {string} dir
+ */
+async function writeToDir(dir) {
   await mkdir(dir, { recursive: true })
-  return async ({ name, contents }: FaviconDescription) =>
+  /**
+   * @param {FaviconDescription} description
+   */
+  return async ({ name, contents }) =>
     await writeFile(path.join(dir, name), contents)
 }
 
-async function writeFavicons({ images }: FaviconResponse, dest: string) {
+/**
+ * @param {FaviconResponse} response
+ * @param {string} dest
+ */
+async function writeFavicons({ images }, dest) {
   await Promise.all(images.map(await writeToDir(dest)))
   info(`Wrote ${images.length} image(s) to: ${dest}`)
 }
 
-async function writeManifest({ files }: FaviconResponse, dest: string) {
+/**
+ * @param {FaviconResponse} response
+ * @param {string} dest
+ */
+async function writeManifest({ files }, dest) {
   await Promise.all(files.map(await writeToDir(dest)))
   info(`Wrote ${files.length} manifest file(s) to: ${dest}`)
 }
 
-async function run() {
+async function generate() {
   const faviconOptions = pwaConfig.faviconOptions
   const logoPath = path.resolve(pwaConfig.logoPath)
   const faviconDir = path.resolve(pwaConfig.output.favicons.dir.data)
@@ -143,6 +185,33 @@ async function run() {
   await writeFavicons(response, faviconDir)
   await writeComponent(response, componentPath)
   info(`Done! 👍`)
+}
+
+function mostRecentGitCommitTime() {
+  const stdout = execSync("git log -1 --format=%ct")
+  return parseInt(stdout.toString())
+}
+
+/**
+ * @param {string} logoFilename
+ */
+function faviconModifiedTime(logoFilename) {
+  const timestampFile = "@gen/next-pwa/favicon-timestamps.json"
+  const stdout = execSync(`jq '.["${logoFilename}"].modified' ${timestampFile}`)
+  return parseInt(stdout.toString())
+}
+
+/**
+ * Read most recent git commit and check if it's after the most recent edit time for our favicon
+ */
+async function run() {
+  const logoFilename = path.basename(pwaConfig.logoPath)
+
+  if (mostRecentGitCommitTime() > faviconModifiedTime(logoFilename)) {
+    info(`Skipping. ${logoFilename} not recently modified.`)
+  } else {
+    await generate()
+  }
 }
 
 void run()

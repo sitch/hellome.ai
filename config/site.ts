@@ -36,14 +36,14 @@ export const siteConfig = {
 
 //
 
-const nextI18nextConfig = require("@/next-i18next.config")
+// const nextI18nextConfig = require("@/next-i18next.config")
 
-const twitter = "hellomebooks"
-const instagram = "hellomebooks"
-const facebook = "hellomeai"
-const facebookId = "100091223025818"
-const facebookGroupId = "902112190894512"
-const domain = "hellome.ai"
+// const twitter = "hellomebooks"
+// const instagram = "hellomebooks"
+// const facebook = "hellomeai"
+// const facebookId = "100091223025818"
+// const facebookGroupId = "902112190894512"
+// const domain = "hellome.ai"
 
 // export type FormerSiteConfig = typeof formerSiteConfig
 // export const formerSiteConfig = {

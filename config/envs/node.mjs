@@ -8,7 +8,7 @@ export const EnvNode = {
   },
   client: {},
   runtimeEnv: {
-    NODE_ENV: process.env.NODE_ENV,
+    NODE_ENV: process.env.NODE_ENV ?? "development",
     NODE_OPTIONS: process.env.NODE_OPTIONS,
   },
 }
