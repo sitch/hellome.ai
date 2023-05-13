@@ -51,7 +51,9 @@ declare module "nextjs-routes" {
     | DynamicRoute<"/pages/company/[slug]", { "slug": string }>
     | DynamicRoute<"/pages/customer/[slug]", { "slug": string }>
     | DynamicRoute<"/pages/policies/[slug]", { "slug": string }>
-    | DynamicRoute<"/pages/redirects/[slug]", { "slug": string }>;
+    | DynamicRoute<"/pages/redirects/[slug]", { "slug": string }>
+    | StaticRoute<"/rss">
+    | StaticRoute<"/sitemap-blog">;
 
   interface StaticRoute<Pathname> {
     pathname: Pathname;
