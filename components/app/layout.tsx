@@ -4,6 +4,7 @@ import {
   PageRefresh,
   type PageRefreshProps,
 } from "@/components/ui/page-refresh"
+import { CookieBanner } from "@/components/app/cookie-banner"
 import { SiteHeader } from "@/components/app/site-header"
 
 // import { type Metadata } from "next"
@@ -43,6 +44,7 @@ export function Layout({ children, ...pageRefreshProps }: LayoutProps) {
         <main className="flex-1">{children}</main>
       </div>
 
+      <CookieBanner />
       <PageRefresh {...pageRefreshProps} />
     </>
   )

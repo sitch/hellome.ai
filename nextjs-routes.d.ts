@@ -12,10 +12,6 @@ declare module "nextjs-routes" {
 
   export type Route =
     | StaticRoute<"/404">
-    | StaticRoute<"/_dev_/500">
-    | StaticRoute<"/_dev_/_offline">
-    | StaticRoute<"/_dev_/landing">
-    | StaticRoute<"/_dev_/upload">
     | DynamicRoute<"/api/ai/concepts/[id]", { "id": string }>
     | StaticRoute<"/api/ai/concepts">
     | StaticRoute<"/api/ai/concepts/replicate-webhook">
@@ -41,9 +37,6 @@ declare module "nextjs-routes" {
     | StaticRoute<"/blog/articles">
     | DynamicRoute<"/blog/authors/[handle]", { "handle": string }>
     | StaticRoute<"/blog/authors">
-    | StaticRoute<"/dev/vision/explore">
-    | StaticRoute<"/dev/vision/human">
-    | StaticRoute<"/dev/vision/mediapipe">
     | StaticRoute<"/">
     | StaticRoute<"/pages/accounts/forgot-password">
     | StaticRoute<"/pages/accounts/reset-password">

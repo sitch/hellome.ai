@@ -3,6 +3,7 @@ import type { AppProps, NextWebVitalsMetric } from "next/app"
 import Head from "next/head"
 import { appWithTranslation } from "next-i18next"
 
+import { CookieConsentProvider } from "@use-cookie-consent/react"
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics, event } from "nextjs-google-analytics"
 
@@ -50,12 +51,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <GoogleAnalytics trackPageViews />
       )}
 
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <Component {...pageProps} />
+      <CookieConsentProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Component {...pageProps} />
 
-        <TailwindIndicator />
-        <Toaster />
-      </ThemeProvider>
+          <TailwindIndicator />
+          <Toaster />
+        </ThemeProvider>
+      </CookieConsentProvider>
 
       <Analytics mode="production" />
     </>
