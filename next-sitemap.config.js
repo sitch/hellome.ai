@@ -12,12 +12,6 @@
  * @link https://makerkit.dev/blog/tutorials/sitemap-nextjs
  */
 
-const siteUrl = process.env.VERCEL_URL
-
-if (!siteUrl) {
-  throw new Error("Missing entry for `process.env.VERCEL_URL`")
-}
-
 // Save crawling budget by not fetching SSG meta files
 const NEXT_SSG_FILES = [
   "/*.json$",
@@ -40,7 +34,7 @@ const exclude = [
 
 const additionalSitemaps = [
   // Blog
-  `${new URL("sitemap-blog.xml", siteUrl)}`,
+  `${new URL("sitemap-blog.xml", process.env.VERCEL_URL)}`,
 ]
 
 /**
@@ -48,7 +42,7 @@ const additionalSitemaps = [
  **/
 module.exports = {
   // export default {
-  siteUrl,
+  siteUrl: process.env.VERCEL_URL,
   changefreq: "daily",
   generateRobotsTxt: true,
   exclude,
