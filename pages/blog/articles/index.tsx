@@ -1,77 +1,81 @@
 import { useState } from "react"
 import { type GetStaticProps, type NextPage } from "next"
+import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { NextSeo } from "next-seo"
 
 import { processMDXArticles } from "@/lib/mdx"
 import { type Article } from "@/lib/mdx/types"
 
-import Header from "@/components/landing/Header"
+import { Input } from "@/components/ui/input"
 import Hero from "@/components/mdx/Hero"
-import Layout from "@/components/mdx/Layout"
-import ArticlePage from "@/components/mdx/blog/articles/ArticlePage"
+import { BlogLayout } from "@/components/mdx/Layout"
 import { ArticlesPage } from "@/components/mdx/blog/articles/ArticlesPage"
 
 import { site } from "@/data/siteConfig"
+import { type I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
+
+const ns: (keyof I18nNamespaces)[] = ["common", "articles", "footer"]
 
 type Props = {
   articles: Article[]
 }
 
-const Page: NextPage<Props> = ({ articles }: Props) => {
+const ArticlesIndex: NextPage<Props> = ({ articles }: Props) => {
+  const { t } = useTranslation()
+
   const [searchValue, setSearchValue] = useState(["", ""])
 
   const filteredArticles = articles
     .filter(({ title }) => title.toLowerCase().includes(searchValue[1]))
     .sort()
 
-  const heroData = {
-    title: "All Blogs",
-    subtitle: () => (
-      <input
-        aria-label="Search blogs"
-        type="text"
-        onChange={({ target: { value } }) =>
-          setSearchValue([value, value.toLowerCase()])
-        }
-        value={searchValue[0]}
-        // autoFocus={true}
-        placeholder="Search blogs"
-      />
-    ),
-  }
-
   return (
-    <Layout
-    // HeroComp={() => <Hero heroData={heroData} />}
-    >
-      <NextSeo
-        title="Blog Page - HelloMe.ai"
-        description="Blog for this website are available here. You can find blog using input box provided in the top. "
-        canonical={`${site.url}/blog`}
-        openGraph={{
-          url: `${site.url}/blog`,
-          title: "Blog Page - HelloMe.ai",
-          description:
-            "Blog for this website are available here. You can find blog using input box provided in the top. ",
-        }}
-      />
-
-      <section id="articles">
+    <>
+      <BlogLayout
+        seo={
+          <NextSeo
+            title={t("articles:blog.seo.title")}
+            description={t("articles:blog.seo.description")}
+            canonical={`${site.url}/blog/articles`}
+            openGraph={{
+              url: `${site.url}/blog/articles`,
+              title: t("articles:blog.seo.title"),
+              description: t("articles:blog.seo.description"),
+            }}
+          />
+        }
+        search={
+          <Input
+            value={searchValue[0]}
+            onChange={({ target: { value } }) =>
+              setSearchValue([value, value.toLowerCase()])
+            }
+            aria-label={t("articles:blog.search.aria-label")}
+            placeholder={t("articles:blog.search.placeholder")}
+          />
+        }
+        hero={
+          <Hero
+            title={t("articles:blog.pages.index.title")}
+            // description={t('articles:blog.pages.index.subtitle')}
+          />
+        }
+      >
         {/* {filteredArticles.length === 0 && (
           <p className="mb-4 text-gray-600 dark:text-gray-400">
             No posts found.
           </p>
         )}
 
-{filteredArticles.map((article) => (
+        {filteredArticles.map((article) => (
           <ArticlePage key={article.title} article={article} />
         ))} */}
 
         <ArticlesPage articles={filteredArticles} />
-      </section>
-    </Layout>
+      </BlogLayout>
+    </>
   )
 }
 
@@ -81,10 +85,10 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   const articles = await processMDXArticles("blog/articles")
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["articles", "footer"])),
+      ...(await serverSideTranslations(locale, ns)),
       articles,
     },
   }
 }
 
-export default Page
+export default ArticlesIndex

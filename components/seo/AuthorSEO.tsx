@@ -3,6 +3,8 @@ import { type OpenGraph } from "next-seo/lib/types"
 
 import { type Author, type LocaleCode } from "@/lib/mdx/types"
 
+import { DefaultAuthorSEO } from "@/components/seo/DefaultAuthorSEO"
+
 import { site } from "@/data/siteConfig"
 
 export const defaults: DefaultSeoProps = {
@@ -82,15 +84,19 @@ export const AuthorSEO = ({ author }: AuthorSEOProps) => {
   const themeColor = color ?? site.theme.color
 
   return (
-    <NextSeo
-      title={title}
-      description={description}
-      canonical={canonical}
-      languageAlternates={languageAlternates}
-      openGraph={openGraph}
-      themeColor={themeColor}
-      // additionalMetaTags={[]}
-      // additionalLinkTags={[]}
-    />
+    <>
+      <DefaultAuthorSEO />
+
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={canonical}
+        languageAlternates={languageAlternates}
+        openGraph={openGraph}
+        themeColor={themeColor}
+        // additionalMetaTags={[]}
+        // additionalLinkTags={[]}
+      />
+    </>
   )
 }

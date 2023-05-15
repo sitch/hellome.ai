@@ -1,3 +1,5 @@
+import { Suspense, type ReactNode } from "react"
+
 import { cn } from "@/lib/utils"
 
 import {
@@ -27,25 +29,28 @@ import { SiteHeader } from "@/components/app/site-header"
 // }
 
 type LayoutProps = PageRefreshProps & {
-  children: React.ReactNode
+  search?: ReactNode
+  children: ReactNode
 }
 
-export function Layout({ children, ...pageRefreshProps }: LayoutProps) {
+export function Layout({ search, children, ...pageRefreshProps }: LayoutProps) {
   return (
     <>
-      <div
-        className={cn(
-          "relative flex min-h-screen flex-col",
-          // "bg-gray-100 dark:bg-gray-900",
-          "bg-background dark:bg-background/80",
-        )}
-      >
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-      </div>
+      <Suspense fallback={<>Loading...</>}>
+        <div
+          className={cn(
+            "relative flex min-h-screen flex-col",
+            // "bg-gray-100 dark:bg-gray-900",
+            "bg-background dark:bg-background/80",
+          )}
+        >
+          <SiteHeader search={search} />
+          <main className="flex-1">{children}</main>
+        </div>
 
-      <CookieBanner />
-      <PageRefresh {...pageRefreshProps} />
+        <CookieBanner />
+        <PageRefresh {...pageRefreshProps} />
+      </Suspense>
     </>
   )
 }

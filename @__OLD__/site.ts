@@ -18,6 +18,10 @@ const mainNav: NavItem[] = [
     title: "Concepts",
     href: "/app/concepts",
   },
+  {
+    title: "Blog",
+    href: "/blog/articles",
+  },
 ]
 
 const links: Record<string, Route> = {

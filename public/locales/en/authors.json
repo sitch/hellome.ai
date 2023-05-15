@@ -1,4 +1,19 @@
 {
+  "blog": {
+    "pages": {
+      "index": {
+        "title": "Blog Authors"
+      }
+    },
+    "search": {
+      "aria-label": "Search blog authors",
+      "placeholder": "Search blog authors..."
+    },
+    "seo": {
+      "title": "Blog Authors Page - HelloMe.ai",
+      "description": "Blog Authors for this website are available here. You can find blog using input box provided in the top. "
+    }
+  },
   "AuthorsListTitle": "Discover Our Authors",
   "AuthorsListDescription": "Discover Our Authors"
 }

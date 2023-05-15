@@ -1,18 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { Suspense, type JSXElementConstructor, type ReactNode } from "react"
-import Link, { LinkProps } from "next/link"
+import { Suspense, type ReactNode } from "react"
+import Link from "next/link"
 // import Footer from './Footer'
 import { useTranslation } from "next-i18next"
-import { DefaultSeo } from "next-seo"
 
 import { MDXProvider } from "@mdx-js/react"
 import type { MDXComponents } from "mdx/types"
-import { route } from "nextjs-routes"
 
-import { Footer } from "@/components/landing/Footer"
+import { Layout } from "@/components/app"
 // import Header from './Header'
-import Header from "@/components/landing/Header"
 import {
   DateTimes,
   Heading,
@@ -20,8 +17,6 @@ import {
   Media,
   Typography,
 } from "@/components/mdx/ui"
-
-import styles from "@/styles/Layout.module.css"
 
 const Hero = () => (
   <section className="relative">
@@ -196,12 +191,20 @@ export const components: MDXComponents = {
   Link,
 }
 
-export type LayoutProps = {
+export type BlogLayoutProps = {
   // type?: MDXType
-  HeroComp?: JSXElementConstructor<{}>
+  hero?: ReactNode
+  seo?: ReactNode
+  search?: ReactNode
   children: ReactNode
 }
-const Layout = ({ children, HeroComp }: LayoutProps) => {
+
+export const BlogLayout = ({
+  seo,
+  hero,
+  search,
+  children,
+}: BlogLayoutProps) => {
   // if(typeof window === 'undefined' ) {
   //   return null
   // }
@@ -209,6 +212,8 @@ const Layout = ({ children, HeroComp }: LayoutProps) => {
 
   return (
     <>
+      {seo}
+
       <Suspense fallback={<>Loading...</>}>
         <MDXProvider components={components}>
           {/* <DefaultSeo {...SEO} /> */}
@@ -216,28 +221,14 @@ const Layout = ({ children, HeroComp }: LayoutProps) => {
 
           {/* <main className={styles.main}> */}
 
-          <main
-            className="selection:bg-primary/10 selection:text-primary min-h-screen bg-white dark:bg-gray-900"
-            data-new-gr-c-s-check-loaded="14.1102.0"
-            data-gr-ext-installed=""
-          >
-            <Header />
-
-            {/* <Hero /> */}
-
-            {/* <section className={styles.section}> */}
-            {children}
-            {/* </section> */}
-
-            <Footer
-            // description={t('footer:description')}
-            // sections={t('footer:sections', { returnObjects: true })}
-            />
-          </main>
+          <Layout search={search}>
+            {hero}
+            <main className="selection:bg-primary/10 selection:text-primary min-h-screen ">
+              <section className="">{children}</section>
+            </main>
+          </Layout>
         </MDXProvider>
       </Suspense>
     </>
   )
 }
-
-export default Layout

@@ -5,14 +5,14 @@ import { type Article } from "@/lib/mdx/types"
 import * as DateTimes from "@/components/mdx/ui/DateTimes"
 import * as Media from "@/components/mdx/ui/Media"
 
-export type ArticleHeaderProps = {
+export type ArticleHeroProps = {
   article: Article
 }
 
-const ArticleHeader = ({ article }: ArticleHeaderProps) => {
+export const ArticleHero = ({ article }: ArticleHeroProps) => {
   return (
     <>
-      <header className="not-prose mb-4 lg:mb-6">
+      <header className="not-prose mb-4  lg:mb-6">
         <address className="mb-6 flex items-center not-italic">
           <div className="mr-3 inline-flex items-center text-sm text-gray-900 dark:text-white">
             <Link
@@ -52,9 +52,7 @@ const ArticleHeader = ({ article }: ArticleHeaderProps) => {
           {article.title}
         </h1>
       </header>
-      <p className="lead">{article.summary}</p>
+      <p className="prose lead">{article.summary}</p>
     </>
   )
 }
-
-export default ArticleHeader

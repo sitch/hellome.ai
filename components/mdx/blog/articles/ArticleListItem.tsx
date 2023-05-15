@@ -25,38 +25,38 @@ export const ArticleListItem = ({
   const viewCount = 0
   const commentCount = 0
 
-  return (
-    //   <!--
-    //   Heads up! 👋
+  // return (
+  //   //   <!--
+  //   //   Heads up! 👋
 
-    //   Custom CSS:
-    //     - animate-background https://github.com/markmead/hyperui/blob/main/tailwind.preset.js
-    // -->
+  //   //   Custom CSS:
+  //   //     - animate-background https://github.com/markmead/hyperui/blob/main/tailwind.preset.js
+  //   // -->
 
-    <article className="animate-background m-12 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-[length:400%_400%] p-0.5 shadow-xl transition [animation-duration:_6s] hover:shadow-sm">
-      <div className="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
-        <time dateTime="2022-10-10" className="block text-xs text-gray-500">
-          10th Oct 2022
-        </time>
+  //   <article className="animate-background m-12 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-[length:400%_400%] p-0.5 shadow-xl transition [animation-duration:_6s] hover:shadow-sm">
+  //     <div className="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
+  //       <time dateTime="2022-10-10" className="block text-xs text-gray-500">
+  //         10th Oct 2022
+  //       </time>
 
-        <a href="#">
-          <h3 className="mt-0.5 text-lg font-medium text-gray-900">
-            How to center an element using JavaScript and jQuery
-          </h3>
-        </a>
+  //       <a href="#">
+  //         <h3 className="mt-0.5 text-lg font-medium text-gray-900">
+  //           How to center an element using JavaScript and jQuery
+  //         </h3>
+  //       </a>
 
-        <div className="mt-4 flex flex-wrap gap-1">
-          <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-            Snippet
-          </span>
+  //       <div className="mt-4 flex flex-wrap gap-1">
+  //         <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+  //           Snippet
+  //         </span>
 
-          <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-            JavaScript
-          </span>
-        </div>
-      </div>
-    </article>
-  )
+  //         <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+  //           JavaScript
+  //         </span>
+  //       </div>
+  //     </div>
+  //   </article>
+  // )
 
   return (
     <>
@@ -78,7 +78,7 @@ export const ArticleListItem = ({
             aria-label="Article"
             // className="inline-block text-black transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            <h2 className="title-font mb-2 text-2xl font-medium text-gray-900">
+            <h2 className="title-font mb-2 text-2xl font-semibold text-gray-900">
               {article.title}
             </h2>
             <p className="leading-relaxed">{article.summary}</p>
@@ -107,7 +107,7 @@ export const ArticleListItem = ({
               </svg>
             </Link> */}
 
-            <span className="ml-auto mr-3 inline-flex items-center border-r-2 border-gray-200 py-1 pr-3 text-sm leading-none text-gray-400">
+            {/* <span className="ml-auto mr-3 inline-flex items-center border-r-2 border-gray-200 py-1 pr-3 text-sm leading-none text-gray-400">
               <svg
                 className="mr-1 h-4 w-4"
                 stroke="currentColor"
@@ -135,7 +135,7 @@ export const ArticleListItem = ({
                 <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
               </svg>
               {commentCount}
-            </span>
+            </span> */}
 
             {/*
         <a className="inline-flex items-center">

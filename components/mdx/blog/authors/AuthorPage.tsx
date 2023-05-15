@@ -7,10 +7,11 @@ import * as Media from "@/components/mdx/ui/Media"
 
 type AuthorPageProps = {
   author: Author
-  children?: ReactNode
+  children: ReactNode
 }
 
 const AuthorPage = ({ author, children }: AuthorPageProps) => {
+  const articles = author.articles ?? []
   return (
     <>
       <section className="body-font text-gray-600">
@@ -78,24 +79,26 @@ const AuthorPage = ({ author, children }: AuthorPageProps) => {
         </div>
       </section>
 
-      <section>
-        <div className="container mx-auto flex flex-col px-5 py-24">
-          <div className="mx-auto lg:w-4/6">
-            {/* <h2 className="title-font mt-4 text-lg font-medium text-gray-900">
-              Articles
-            </h2> */}
+      {articles.length > 0 && (
+        <section>
+          <div className="container mx-auto flex flex-col px-5 py-24">
+            <div className="mx-auto lg:w-4/6">
+              <h2 className="title-font mt-4 text-lg font-medium text-gray-900">
+                More articles by the author
+              </h2>
 
-            {author.articles?.map((article) => (
-              <ArticleListItem
-                key={article.slug}
-                author={author}
-                article={article}
-                displayAuthorSection={false}
-              />
-            ))}
+              {articles.map((article) => (
+                <ArticleListItem
+                  key={article.slug}
+                  author={author}
+                  article={article}
+                  displayAuthorSection={false}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   )
 }

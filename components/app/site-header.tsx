@@ -1,3 +1,4 @@
+import { type ReactNode } from "react"
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
 
@@ -7,7 +8,11 @@ import { buttonVariants } from "@/components/ui/button"
 import { MainNav } from "@/components/app/main-nav"
 import { ThemeToggle } from "@/components/app/theme-toggle"
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  search?: ReactNode
+}
+
+export function SiteHeader({ search }: SiteHeaderProps) {
   const { t } = useTranslation()
 
   return (
@@ -16,6 +21,8 @@ export function SiteHeader() {
         <MainNav items={t("nav.sections", { returnObjects: true })} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
+            {search}
+
             <Link
               href={t("header.links.blog.href")}
               target="_blank"

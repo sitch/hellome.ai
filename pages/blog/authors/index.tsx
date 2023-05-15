@@ -1,62 +1,67 @@
 import { useState } from "react"
 import { type GetStaticProps, type NextPage } from "next"
+import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { NextSeo } from "next-seo"
 
 import { processMDXAuthors } from "@/lib/mdx"
 import { type Author } from "@/lib/mdx/types"
 
+import { Input } from "@/components/ui/input"
 import Hero from "@/components/mdx/Hero"
-import Layout from "@/components/mdx/Layout"
-import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"
+import { BlogLayout } from "@/components/mdx/Layout"
 import { AuthorsPage } from "@/components/mdx/blog/authors/AuthorsPage"
 
 import { site } from "@/data/siteConfig"
+import { type I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
+
+const ns: (keyof I18nNamespaces)[] = ["common", "authors", "footer"]
 
 type Props = {
   authors: Author[]
 }
 
-const Page: NextPage<Props> = ({ authors }: Props) => {
+const AuthorsIndex: NextPage<Props> = ({ authors }: Props) => {
+  const { t } = useTranslation()
   const [searchValue, setSearchValue] = useState(["", ""])
 
   const filteredAuthors = authors
     .filter(({ name }) => name.toLowerCase().includes(searchValue[1]))
     .sort()
 
-  const heroData = {
-    title: "All Blogs",
-    subtitle: () => (
-      <input
-        aria-label="Search blogs"
-        type="text"
-        onChange={({ target: { value } }) =>
-          setSearchValue([value, value.toLowerCase()])
-        }
-        value={searchValue[0]}
-        // autoFocus={true}
-        placeholder="Search blogs"
-      />
-    ),
-  }
-
   return (
-    <Layout
-    // HeroComp={() => <Hero heroData={heroData} />}
+    <BlogLayout
+      seo={
+        <NextSeo
+          title={t("authors:blog.seo.title")}
+          description={t("authors:blog.seo.description")}
+          canonical={`${site.url}/blog/authors`}
+          openGraph={{
+            url: `${site.url}/blog/authors`,
+            title: t("authors:blog.seo.title"),
+            description: t("authors:blog.seo.description"),
+          }}
+        />
+      }
+      search={
+        <Input
+          type="text"
+          value={searchValue[0]}
+          onChange={({ target: { value } }) =>
+            setSearchValue([value, value.toLowerCase()])
+          }
+          aria-label={t("authors:blog.search.aria-label")}
+          placeholder={t("authors:blog.search.placeholder")}
+        />
+      }
+      hero={
+        <Hero
+          title={t("authors:blog.pages.index.title")}
+          // description={t('articles:blog.pages.index.subtitle')}
+        />
+      }
     >
-      <NextSeo
-        title="Blog Page - HelloMe.ai"
-        description="Blog for this website are available here. You can find blog using input box provided in the top. "
-        canonical={`${site.url}/blog`}
-        openGraph={{
-          url: `${site.url}/blog`,
-          title: "Blog Page - HelloMe.ai",
-          description:
-            "Blog for this website are available here. You can find blog using input box provided in the top. ",
-        }}
-      />
-
       <section id="authors">
         {filteredAuthors.length === 0 && (
           <p className="mb-4 text-gray-600 dark:text-gray-400">
@@ -70,7 +75,7 @@ const Page: NextPage<Props> = ({ authors }: Props) => {
           <AuthorPage key={author.handle} author={author} />
         ))} */}
       </section>
-    </Layout>
+    </BlogLayout>
   )
 }
 
@@ -81,9 +86,9 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   return {
     props: {
       authors,
-      ...(await serverSideTranslations(locale, ["authors", "footer"])),
+      ...(await serverSideTranslations(locale, ns)),
     },
   }
 }
 
-export default Page
+export default AuthorsIndex

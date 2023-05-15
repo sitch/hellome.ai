@@ -22,6 +22,10 @@
       {
         "label": "Concepts",
         "href": "/app/concepts"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog/articles"
       }
     ],
     "links": {

@@ -7,6 +7,8 @@
  */
 import "i18next"
 // import all namespaces (for the default language, only)
+import type articles from "@/public/locales/en/articles.json"
+import type authors from "@/public/locales/en/authors.json"
 import type common from "@/public/locales/en/common.json"
 import type company from "@/public/locales/en/company.json"
 import type concepts from "@/public/locales/en/concepts.json"
@@ -22,6 +24,8 @@ import type zod from "@/public/locales/en/zod.json"
 interface I18nNamespaces {
   common: typeof common
   company: typeof company
+  authors: typeof authors
+  articles: typeof articles
   faq: typeof faq
   footer: typeof footer
   landing: typeof landing

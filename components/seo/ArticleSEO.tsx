@@ -5,6 +5,8 @@ import { uniq } from "lodash"
 
 import { type Article, type LocaleCode } from "@/lib/mdx/types"
 
+import { DefaultArticleSEO } from "@/components/seo/DefaultArticleSEO"
+
 import { site } from "@/data/siteConfig"
 
 export const defaults: DefaultSeoProps = {
@@ -102,15 +104,19 @@ export const ArticleSEO = ({ article }: ArticleSEOProps) => {
   }))
 
   return (
-    <NextSeo
-      title={title}
-      description={description}
-      canonical={canonical}
-      languageAlternates={languageAlternates}
-      openGraph={openGraphForArticle(article)}
-      themeColor={themeColor}
-      // additionalMetaTags={[]}
-      // additionalLinkTags={[]}
-    />
+    <>
+      <DefaultArticleSEO />
+
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={canonical}
+        languageAlternates={languageAlternates}
+        openGraph={openGraphForArticle(article)}
+        themeColor={themeColor}
+        // additionalMetaTags={[]}
+        // additionalLinkTags={[]}
+      />
+    </>
   )
 }

@@ -45,7 +45,7 @@ export const getSitemapFieldsBySection = (
       )
     }
     return {
-      loc: `${new URL(slug, env.VERCEL_URL)}`,
+      loc: `${new URL(`/${section}/${slug}`, env.VERCEL_URL)}`,
       lastmod: fromUnixTime(entry.modified).toISOString(),
     }
   })

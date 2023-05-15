@@ -3,7 +3,6 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from "react"
-import Link from "next/link"
 
 type HeadingLinkProps = {
   id: string

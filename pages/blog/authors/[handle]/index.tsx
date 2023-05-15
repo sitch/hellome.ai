@@ -11,12 +11,14 @@ import {
 } from "@/lib/mdx"
 import { castAuthor, type Author, type AuthorSource } from "@/lib/mdx/types"
 
-import Layout from "@/components/mdx/Layout"
+import { BlogLayout } from "@/components/mdx/Layout"
 import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"
-import { DefaultAuthorSEO } from "@/components/seo/DefaultAuthorSEO"
+import { AuthorSEO } from "@/components/seo/AuthorSEO"
 
-// import { AuthorSEO } from '@/components/seo/AuthorSEO'
+import { type I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
+
+const ns: (keyof I18nNamespaces)[] = ["common", "authors", "footer"]
 
 type Props = MDXPageProps<AuthorSource> & {
   author: Author
@@ -26,15 +28,13 @@ type Params = ParsedUrlQuery & {
   handle: string
 }
 
-const Page: NextPage<Props> = ({ source, author }: Props) => {
+const AuthorShow: NextPage<Props> = ({ source, author }: Props) => {
   return (
-    <Layout>
-      <DefaultAuthorSEO />
-      {/* <AuthorSEO author={author} /> */}
+    <BlogLayout seo={<AuthorSEO author={author} />}>
       <AuthorPage author={author}>
         <MDXRemote {...source} />
       </AuthorPage>
-    </Layout>
+    </BlogLayout>
   )
 }
 
@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const articles = await listArticleSources()
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["authors", "footer"])),
+      ...(await serverSideTranslations(locale, ns)),
       ...mdx,
       author: castAuthor(
         { ...mdx.data, handle },
@@ -66,4 +66,4 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   }
 }
 
-export default Page
+export default AuthorShow

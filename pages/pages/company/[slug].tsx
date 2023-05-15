@@ -2,7 +2,6 @@ import { type ParsedUrlQuery } from "querystring"
 import { type GetStaticPaths, type GetStaticProps, type NextPage } from "next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { MDXRemote } from "next-mdx-remote"
-import { NextSeo } from "next-seo"
 
 import {
   listEntries,
@@ -11,19 +10,20 @@ import {
   type MDXPageProps,
 } from "@/lib/mdx"
 
-import Layout from "@/components/mdx/Layout"
+import { Layout } from "@/components/app"
 import { Heading, Typography } from "@/components/mdx/ui"
 
-import { site } from "@/data/siteConfig"
+import { type I18nNamespaces } from "@/i18next.d"
 import i18NextConfig from "@/next-i18next.config"
-import { castArticleSEOProps } from "@/next-seo.config"
 
-type Props = MDXPageProps<Data> & {}
+const ns: (keyof I18nNamespaces)[] = ["common", "company", "footer"]
 
 type Params = ParsedUrlQuery & {
   slug: string
   referrer?: string
 }
+
+type Props = MDXPageProps<Data> & {}
 
 const Page: NextPage<Props> = ({ source, data }: Props) => {
   return (
@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const mdx = await processMDXPage<Data>("company", params!.slug)
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["company", "footer"])),
+      ...(await serverSideTranslations(locale, ns)),
       ...mdx,
     },
   }

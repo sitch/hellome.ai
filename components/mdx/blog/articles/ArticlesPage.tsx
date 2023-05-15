@@ -1,7 +1,6 @@
-import Link from "next/link"
 import { useTranslation } from "next-i18next"
 
-import { Author, type Article } from "@/lib/mdx/types"
+import { type Article } from "@/lib/mdx/types"
 
 import { ArticleListItem } from "@/components/mdx/blog/articles/ArticleListItem"
 import { TopArticles } from "@/components/mdx/blog/articles/TopArticles"
@@ -18,9 +17,12 @@ export const ArticlesPage = ({ articles }: ArticlesPageProps) => {
 
   return (
     <>
-      <section className="body-font overflow-hidden text-gray-600">
-        <div className="sm:px-34 mx-auto max-w-screen-xl px-4 pb-8 pt-16 lg:px-8 lg:pt-24">
-          <div className="container mx-auto px-5 py-24">
+      <section
+        id="articles"
+        className="body-font overflow-hidden text-gray-600"
+      >
+        <div className="mx-auto max-w-screen-xl p-4 sm:px-4 lg:px-8 lg:pt-12">
+          <div className="container mx-auto px-5 py-12">
             <div className="-my-8 divide-y-2 divide-gray-100">
               {articles.length >= 4 ? (
                 <>
