@@ -111,7 +111,7 @@ export function Page({
           )}
 
           {description && (
-            <p className="text-muted-foreground max-w-[700px] p-2 text-lg sm:text-xl">
+            <p className="max-w-[700px] p-2 text-lg text-muted-foreground sm:text-xl">
               {description}
             </p>
           )}

@@ -52,7 +52,7 @@ export const ArticleHero = ({ article }: ArticleHeroProps) => {
           {article.title}
         </h1>
       </header>
-      <p className="prose lead">{article.summary}</p>
+      <p className="lead prose">{article.summary}</p>
     </>
   )
 }

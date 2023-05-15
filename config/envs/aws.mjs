@@ -4,19 +4,27 @@ import { z } from "zod"
 export const EnvAwsS3 = {
   server: {
     S3_UPLOAD_KEY:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().optional(),
     S3_UPLOAD_SECRET:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().optional(),
     S3_UPLOAD_BUCKET:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().optional(),
     S3_UPLOAD_REGION:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().optional(),
     S3_UPLOAD_ENDPOINT: z.string().optional(),

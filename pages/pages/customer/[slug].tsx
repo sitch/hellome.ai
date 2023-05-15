@@ -43,7 +43,7 @@ const Page: NextPage<Props> = ({ source, data }: Props) => {
           </Typography.Paragraph>
         </div>
 
-        <div className="prose prose-sm prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600 mx-auto max-w-[40rem]">
+        <div className="prose prose-sm prose-slate mx-auto max-w-[40rem] prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
           <MDXRemote {...source} />
         </div>
       </div>

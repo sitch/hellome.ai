@@ -5,7 +5,9 @@ export const EnvGoogleAnalytics = {
   server: {},
   client: {
     NEXT_PUBLIC_GA_MEASUREMENT_ID:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string()
         : z.string().optional(),
   },
@@ -18,13 +20,17 @@ export const EnvGoogleAnalytics = {
 export const EnvGoogleReCaptchaV2 = {
   server: {
     GOOGLE_RECAPTCHA_V2_SECRET_KEY:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().min(1).optional(),
   },
   client: {
     NEXT_PUBLIC_GOOGLE_RECAPTCHA_V2_SITE_KEY:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().min(1).optional(),
   },
@@ -39,13 +45,17 @@ export const EnvGoogleReCaptchaV2 = {
 export const GoogleReCaptchaV3 = {
   server: {
     GOOGLE_RECAPTCHA_V3_SECRET_KEY:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().min(1).optional(),
   },
   client: {
     NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().min(1).optional(),
   },

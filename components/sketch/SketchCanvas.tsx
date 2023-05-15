@@ -143,7 +143,7 @@ export function SketchCanvas({
         className={cn(
           "aspect-square w-full",
           "overflow-hidden rounded",
-          "border-primary border",
+          "border border-primary",
           "cursor-dark-pen dark:cursor-light-pen",
           className,
         )}
@@ -160,7 +160,7 @@ export function SketchCanvas({
       />
 
       {/* Controls */}
-      <div className="animate-in fade-in my-2 flex justify-between text-left duration-500">
+      <div className="my-2 flex justify-between text-left animate-in fade-in duration-500">
         <Button
           icon={Plus}
           size="sm"

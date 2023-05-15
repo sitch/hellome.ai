@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 
 const labelVariants = cva(
   cn(
-    "duration-220 transition-all ease-in-out",
+    "transition-all duration-220 ease-in-out",
     "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
     // "form-label text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
     // "text-gray-900 dark:text-white"

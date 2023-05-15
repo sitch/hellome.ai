@@ -20,12 +20,12 @@
         "href": "/"
       },
       {
-        "label": "Concepts",
-        "href": "/app/concepts"
-      },
-      {
         "label": "Blog",
         "href": "/blog/articles"
+      },
+      {
+        "label": "Concepts",
+        "href": "/app/concepts"
       }
     ],
     "links": {

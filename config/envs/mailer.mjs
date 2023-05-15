@@ -5,7 +5,9 @@ export const EnvMailer = {
   server: {
     MAILER_DISABLED: z.enum(["true", "false"]).optional(),
     MAILER_HOST:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().optional(),
     MAILER_PORT: z
@@ -14,15 +16,21 @@ export const EnvMailer = {
       .pipe(z.number().gte(1).lte(9999))
       .optional(),
     MAILER_USERNAME:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().optional(),
     MAILER_PASSWORD:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1)
         : z.string().optional(),
     MAILER_DEFAULT_FROM:
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production" &&
+      process.env.VERCEL_ENV !== "preview" &&
+      process.env.VERCEL_ENV !== "development"
         ? z.string().min(1).email()
         : z.string().min(1).email().optional(),
   },

@@ -55,7 +55,7 @@ const buttonVariants = cva(
     "rounded-md",
 
     // Ring
-    "focus-visible:ring-ring ring-offset-background focus-visible:outline-none focus-visible:ring-2  focus-visible:ring-offset-2",
+    "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring  focus-visible:ring-offset-2",
 
     // Disabled
     "disabled:pointer-events-none disabled:opacity-50",
