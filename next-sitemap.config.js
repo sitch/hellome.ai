@@ -12,6 +12,8 @@
  * @link https://makerkit.dev/blog/tutorials/sitemap-nextjs
  */
 
+const siteUrl = `https://${process.env.VERCEL_URL}`
+
 // Save crawling budget by not fetching SSG meta files
 const NEXT_SSG_FILES = [
   "/*.json$",
@@ -34,15 +36,14 @@ const exclude = [
 
 const additionalSitemaps = [
   // Blog
-  `${new URL("sitemap-blog.xml", process.env.VERCEL_URL)}`,
+  `${new URL("sitemap-blog.xml", siteUrl)}`,
 ]
 
 /**
  * @type {import('next-sitemap').IConfig}
  **/
 module.exports = {
-  // export default {
-  siteUrl: process.env.VERCEL_URL,
+  siteUrl: siteUrl,
   changefreq: "daily",
   generateRobotsTxt: true,
   exclude,

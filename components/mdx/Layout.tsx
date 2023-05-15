@@ -212,10 +212,10 @@ export const BlogLayout = ({
 
   return (
     <>
-      {seo}
-
       <Suspense fallback={<>Loading...</>}>
         <MDXProvider components={components}>
+          {seo}
+
           {/* <DefaultSeo {...SEO} /> */}
           {/* <Header HeroComp={HeroComp} /> */}
 
