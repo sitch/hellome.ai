@@ -61,7 +61,7 @@ const template: Template = {
 // 2. Iterate over every object in the "data" to create the
 // schemas array (use narrowing for page type layout)
 
-import jsonObject from "./sherlock.json"
+import jsonObject from './sherlock.json'
 
 let inputs: Page[] = jsonObject.data
 
