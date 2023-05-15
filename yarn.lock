@@ -15528,10 +15528,10 @@ nextjs-google-analytics@^2.3.3:
   optionalDependencies:
     fsevents "^2.3.2"
 
-nextjs-routes@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/nextjs-routes/-/nextjs-routes-2.0.0.tgz"
-  integrity sha512-1uv789xEIli5jDSIIv5PmlAB19+IWheZzmQXlVjmbS6bUtFbt2PP/8P91P++wRDkQMebV26e65zeMc5RvzfnfA==
+nextjs-routes@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/nextjs-routes/-/nextjs-routes-2.0.1.tgz#59eca2c582bde266e5d208d3659a119a1c6e6b22"
+  integrity sha512-pBGRm6uR44zwUjWWYn6+gwz08BhBbqUYlIzsbNHAh1TWohHYKWFaa2YVsj8BxEo726MZYg87OJPnHpaaY1ia0w==
   dependencies:
     chokidar "^3.5.3"
 
