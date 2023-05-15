@@ -207,11 +207,17 @@ function faviconModifiedTime(logoFilename) {
 async function run() {
   const logoFilename = path.basename(pwaConfig.logoPath)
 
-  if (mostRecentGitCommitTime() > faviconModifiedTime(logoFilename)) {
-    info(`Skipping. ${logoFilename} not recently modified.`)
-  } else {
-    await generate()
+  try {
+    if (mostRecentGitCommitTime() > faviconModifiedTime(logoFilename)) {
+      info(`Skipping. ${logoFilename} not recently modified.`)
+      return
+    }
+  } catch {
+    // if `jq` isn't available, bypass timestamp check
+    info(`Skipping. jq not available`)
   }
+
+  await generate()
 }
 
 void run()
