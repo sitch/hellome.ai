@@ -1,17 +1,17 @@
 type FrontCover = {
-    title: string,
-    author: string,
-    subTitle?: string,
-    publicationDate?: Date | string,
+  title: string
+  author: string
+  subTitle?: string
+  publicationDate?: string
 }
 
 type PageBody = {
-    text: string,
-    pageNumber: number
+  text: string
+  pageNumber: string
 }
 
 type BackCover = {
-    closeMessage:string
+  closeMessage: string
 }
 
-export type Page = FrontCover | PageBody | BackCover;
+export type Page = FrontCover | PageBody | BackCover
