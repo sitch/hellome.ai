@@ -21,10 +21,10 @@ const config = {
     // "./node_modules/flowbite/**/*.js",
   ],
   plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
     // @ts-ignore
     require("tailwindcss-animate"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
 
     require("@headlessui/tailwindcss"),
 

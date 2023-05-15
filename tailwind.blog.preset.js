@@ -6,7 +6,7 @@ import plugin from "tailwindcss/plugin"
  **/
 const config = {
   darkMode: "class",
-  content: ["./**/*.mdx", "./public/blogs/*.html"],
+  content: ["./**/*.mdx"],
   theme: {
     textShadow: {
       sm: "0 1px 2px var(--tw-shadow-color)",
@@ -15,7 +15,10 @@ const config = {
     },
   },
   plugins: [
+    // @ts-ignore
+    require("tailwindcss-animate"),
     require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
     plugin(({ matchUtilities, theme }) => {
       matchUtilities(
         { "text-shadow": (textShadow) => ({ textShadow }) },
