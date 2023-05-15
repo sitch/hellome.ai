@@ -2,7 +2,6 @@ import { type ISitemapField } from "next-sitemap"
 
 import { fromUnixTime } from "date-fns"
 
-import { env } from "@/config/env.mjs"
 import { listEntries } from "@/lib/mdx"
 import { type Section } from "@/lib/mdx/types"
 
@@ -45,7 +44,10 @@ export const getSitemapFieldsBySection = (
       )
     }
     return {
-      loc: `${new URL(`/${section}/${slug}`, env.VERCEL_URL)}`,
+      loc: `${new URL(
+        `/${section}/${slug}`,
+        `https://${process.env.VERCEL_URL}`,
+      )}`,
       lastmod: fromUnixTime(entry.modified).toISOString(),
     }
   })

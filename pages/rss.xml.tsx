@@ -22,8 +22,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     description: site.description,
     language: nextI18nextConfig.i18n.defaultLocale,
     copyright: `©${new Date().getFullYear()} ${site.name}`,
-    site_url: env.VERCEL_URL,
-    feed_url: `${new URL("rss.xml", env.VERCEL_URL)}`,
+    site_url: `https://${env.VERCEL_URL}`,
+    feed_url: `${new URL("rss.xml", `https://${env.VERCEL_URL}`)}`,
   })
 
   // const posts = getBlogPosts()
