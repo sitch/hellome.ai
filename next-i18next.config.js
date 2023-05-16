@@ -2,6 +2,7 @@
 
 /**
  * @type {import('next-i18next').UserConfig}
+ * @link https://www.i18next.com/overview/configuration-options
  */
 module.exports = {
   i18n: {
@@ -22,11 +23,11 @@ module.exports = {
       : "/locales",
 
   /**
-   * Debug
+   * Logging
    * @link https://www.i18next.com/overview/configuration-options#logging
    */
-  debug: process.env.NODE_ENV === "development",
   reloadOnPrerender: process.env.NODE_ENV === "development",
+  // debug: process.env.NODE_ENV === "development",
 
   /**
    * @link https://github.com/i18next/next-i18next#6-advanced-configuration

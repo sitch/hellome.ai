@@ -1,3 +1,4 @@
+import { useState } from "react"
 import type { GetServerSideProps } from "next"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
@@ -78,6 +79,8 @@ type Props = {
 export default function AppIndex() {
   const { t } = useTranslation(ns)
 
+  const [prediction, setPrediction] = useState()
+
   // const {concept} = useConcept({id})
 
   const handleRefresh = () => {
@@ -106,6 +109,8 @@ export default function AppIndex() {
 
     const prediction = await response.json()
 
+    setPrediction(prediction)
+
     console.log({ prediction })
   }
 
@@ -122,7 +127,7 @@ export default function AppIndex() {
             <Button
               size="lg"
               variant="secondary"
-              href="/app/concepts"
+              // href="/app/concepts"
               onClick={handleClick}
               // icon={XCircle}
             >
@@ -131,6 +136,7 @@ export default function AppIndex() {
             </Button>
           }
         >
+          <pre>{JSON.stringify(prediction, null, 2)}</pre>
           Coming Soon...
         </Page>
       </Layout>

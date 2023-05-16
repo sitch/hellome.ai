@@ -7,9 +7,11 @@ import { env } from "@/config/env.mjs"
 
 import packageData from "package.json"
 
-const WEBHOOK_HOST = env.VERCEL_URL
-  ? `https://${env.VERCEL_URL}`
-  : env.NGROK_HOST
+// const WEBHOOK_HOST = env.VERCEL_URL
+// ? `https://${env.VERCEL_URL}`
+// : env.NGROK_HOST
+
+const WEBHOOK_HOST = env.NGROK_HOST
 
 const replicate = new Replicate({
   auth: env.REPLICATE_API_TOKEN,
@@ -42,6 +44,12 @@ export default async function handler(
     webhook: `${WEBHOOK_HOST}/api/ai/replicate/prediction-webhook`,
     webhook_events_filter: ["start", "completed"],
     input,
+  })
+
+  console.log({
+    input,
+    prediction,
+    WEBHOOK_HOST,
   })
 
   if (prediction.error) {
