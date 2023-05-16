@@ -13,37 +13,37 @@
   position: relative;
   /* max-width: 220px; */
   input {
-    width: 100%;
-    -webkit-appearance: none;
-    outline: none;
     display: block;
-    font-size: 14px;
-    font-family: inherit;
-    margin: 0;
-    padding: 8px 16px 8px 41px;
-    line-height: 26px;
-    border-radius: 6px;
-    color: var(--text);
-    border: 1px solid var(--bc, var(--border));
-    background: var(--background);
+    -webkit-appearance: none;
     transition: border-color 0.3s, box-shadow 0.3s;
+    margin: 0;
+    outline: none;
+    border: 1px solid var(--bc, var(--border));
+    border-radius: 6px;
+    background: var(--background);
+    padding: 8px 16px 8px 41px;
+    width: 100%;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 26px;
+    font-family: inherit;
     &::placeholder {
       color: var(--text-placeholder);
     }
   }
   svg {
-    width: 16px;
-    height: 16px;
-    top: 14px;
-    left: 14px;
-    display: block;
-    position: absolute;
     fill: none;
     stroke: var(--i, var(--icon));
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.6;
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: 14px;
     transition: stroke 0.3s;
+    width: 16px;
+    height: 16px;
     path {
       stroke-dasharray: 80;
       stroke-dashoffset: var(--path, 170);

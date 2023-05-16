@@ -1,0 +1,500 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// Gestures
+// -----------------------------------------------------------------------------
+
+enum FaceGesture {
+  facingLeft
+  facingRight
+  facingCenter
+  blinkEyeLeft
+  blinkEyeRight
+  mouthOpen
+  headUp
+  headDown
+}
+
+enum IrisGesture {
+  facingCenter
+  lookingLeft
+  lookingRight
+  lookingUp
+  lookingDown
+  lookingCenter
+}
+
+enum BodyGesture {
+  leaningLeft
+  leaningRight
+  raiseHandLeft
+  raiseHandRight
+}
+
+enum HandGesture {
+  thumbForward
+  indexForward
+  middleForward
+  ringForward
+  pinkyForward
+  thumbUp
+  indexUp
+  middleUp
+  ringUp
+  pinkyUp
+  victory
+  thumbsUp
+}
+
+// -----------------------------------------------------------------------------
+// Landmarks
+// -----------------------------------------------------------------------------
+
+enum FaceLandmark {
+  leftCheek
+  leftEar
+  leftEye
+  leftEyebrowLower
+  leftEyebrowUpper
+  leftEyeIris
+  leftEyeLower0
+  leftEyeLower1
+  leftEyeLower2
+  leftEyeLower3
+  leftEyeUpper0
+  leftEyeUpper1
+  leftEyeUpper2
+  lipsLowerInner
+  lipsLowerOuter
+  lipsUpperInner
+  lipsUpperOuter
+  midwayBetweenEyes
+  mouth
+  nose
+  noseBottom
+  noseLeftCorner
+  noseRightCorner
+  noseTip
+  rightCheek
+  rightEar
+  rightEye
+  rightEyebrowLower
+  rightEyebrowUpper
+  rightEyeIris
+  rightEyeLower0
+  rightEyeLower1
+  rightEyeLower2
+  rightEyeLower3
+  rightEyeUpper0
+  rightEyeUpper1
+  rightEyeUpper2
+  silhouette
+  symmetryLine
+}
+
+enum BodyAnnotation {
+  leftLeg
+  rightLeg
+  torso
+  leftArm
+  rightArm
+  leftEye
+  rightEye
+  mouth
+  head
+}
+
+enum BodyLandmark {
+  bodyCenter
+  bodyTop
+  chest
+  head
+  leftAnkle
+  leftEar
+  leftElbow
+  leftEye
+  leftEyeInside
+  leftEyeOutside
+  leftFoot
+  leftHand
+  leftHeel
+  leftHip
+  leftIndex
+  leftKnee
+  leftMouth
+  leftPalm
+  leftPinky
+  leftShoulder
+  leftThumb
+  leftWrist
+  neck
+  nose
+  rightAnkle
+  rightEar
+  rightElbow
+  rightEye
+  rightEyeInside
+  rightEyeOutside
+  rightFoot
+  rightHand
+  rightHeel
+  rightHip
+  rightIndex
+  rightKnee
+  rightMouth
+  rightPalm
+  rightPinky
+  rightShoulder
+  rightThumb
+  rightWrist
+}
+
+enum Finger {
+  index
+  middle
+  pinky
+  ring
+  thumb
+  palm
+}
+
+enum FingerCurl {
+  none
+  half
+  full
+}
+
+enum FingerDirection {
+  verticalUp
+  verticalDown
+  horizontalLeft
+  horizontalRight
+  diagonalUpRight
+  diagonalUpLeft
+  diagonalDownRight
+  diagonalDownLeft
+}
+
+// -----------------------------------------------------------------------------
+// Keypoints
+// -----------------------------------------------------------------------------
+
+model BodyKeypoint {
+  id          String       @id @default(cuid())
+  /// body part name
+  part        BodyLandmark
+  /// body part position
+  position    Int[]
+  /// body part position normalized to 0..1
+  positionRaw Float[]      @map("position_raw")
+  /// body part position relative to body center in meters
+  distance    Float?
+  /// body part detection score
+  score       Float
+
+  bodySegmentationId String?           @ignore
+  BodySegmentation   BodySegmentation? @relation(fields: [bodySegmentationId], references: [id]) @ignore
+
+  @@map("body_keypoints")
+}
+
+// -----------------------------------------------------------------------------
+// Annotations
+// -----------------------------------------------------------------------------
+
+model FingerAnnotation {
+  id     String              @id @default(cuid())
+  finger Finger
+  path   Unsupported("path") // Point[]
+
+  @@map("finger_annotations")
+}
+
+// -----------------------------------------------------------------------------
+// Landmarks
+// -----------------------------------------------------------------------------
+
+model FingerLandmark {
+  id        String          @id @default(cuid())
+  finger    Finger
+  curl      FingerCurl
+  direction FingerDirection
+
+  @@map("finger_landmarks")
+}
+
+// -----------------------------------------------------------------------------
+// Estimations
+// -----------------------------------------------------------------------------
+
+enum Emotion {
+  angry
+  disgust
+  fear
+  happy
+  sad
+  surprise
+  neutral
+}
+
+enum Gender {
+  male
+  female
+  unknown
+}
+
+enum Race {
+  white
+  black
+  asian
+  indian
+  other
+}
+
+model AgeEstimation {
+  id    String @id @default(cuid())
+  age   Float
+  score Float
+
+  faceSegmentationId String           @unique @ignore
+  FaceSegmentation   FaceSegmentation @relation(fields: [faceSegmentationId], references: [id]) @ignore
+
+  @@map("age_estimations")
+}
+
+model EmotionEstimation {
+  id      String  @id @default(cuid())
+  emotion Emotion
+  score   Float
+
+  faceSegmentationId String           @ignore
+  FaceSegmentation   FaceSegmentation @relation(fields: [faceSegmentationId], references: [id]) @ignore
+
+  @@map("emotion_estimations")
+}
+
+model GenderEstimation {
+  id     String @id @default(cuid())
+  gender Gender
+  score  Float
+
+  faceSegmentationId String           @unique @ignore
+  FaceSegmentation   FaceSegmentation @relation(fields: [faceSegmentationId], references: [id]) @ignore
+
+  @@map("gender_estimations")
+}
+
+model RaceEstimation {
+  id     String @id @default(cuid())
+  gender Race
+  score  Float
+
+  faceSegmentationId String           @unique @ignore
+  FaceSegmentation   FaceSegmentation @relation(fields: [faceSegmentationId], references: [id]) @ignore
+
+  @@map("race_estimations")
+}
+
+// -----------------------------------------------------------------------------
+// Rotations
+// -----------------------------------------------------------------------------
+
+model FaceRotationAngle {
+  id    String @id @default(cuid())
+  roll  Float
+  yaw   Float
+  pitch Float
+
+  FaceRotation FaceRotation? @ignore
+
+  @@map("face_rotation_angles")
+}
+
+model FaceRotationGaze {
+  id       String @id @default(cuid())
+  bearing  Float
+  strength Float
+
+  FaceRotation FaceRotation? @ignore
+
+  @@map("face_rotation_gazes")
+}
+
+model FaceRotation {
+  id     String            @id @default(cuid())
+  matrix Float[] // always length 9
+  angle  FaceRotationAngle @relation(fields: [faceRotationAngleId], references: [id])
+  gaze   FaceRotationGaze  @relation(fields: [faceRotationGazeId], references: [id])
+
+  faceRotationAngleId String             @unique @ignore
+  faceRotationGazeId  String             @unique @ignore
+  FaceSegmentation    FaceSegmentation[] @ignore
+
+  @@map("face_rotations")
+}
+
+// -----------------------------------------------------------------------------
+// Meshes
+// -----------------------------------------------------------------------------
+
+model FaceMesh {
+  id     String                 @id @default(cuid())
+  points Unsupported("point")[]
+  score  Float?
+
+  FaceSegmentation FaceSegmentation? @ignore
+
+  @@map("face_meshes")
+}
+
+// -----------------------------------------------------------------------------
+// Segmentations
+// -----------------------------------------------------------------------------
+
+model Box {
+  id     String               @id @default(cuid())
+  x      Int
+  y      Int
+  height Int
+  width  Int
+  point  Unsupported("point")
+  box    Unsupported("box")
+  raw    Decimal[]
+  score  Float?
+
+  BodySegmentation BodySegmentation[] @ignore
+
+  @@map("boxes")
+}
+
+// model Segment {
+//   id String @id @default(cuid())
+
+//   @@map("segments")
+// }
+
+model BodySegmentation {
+  id        String         @id @default(cuid())
+  score     Float
+  keypoints BodyKeypoint[]
+  // annotations Record<BodyAnnotation, Point[][]>
+
+  boxId               String               @map("box_id") @ignore
+  imageSegmentationId String?              @map("image_segmentation_id") @ignore
+  box                 Box                  @relation(fields: [boxId], references: [id])
+  ImageSegmentation   ImageSegmentation?   @relation(fields: [imageSegmentationId], references: [id]) @ignore
+  PersonSegmentation  PersonSegmentation[] @ignore
+
+  @@map("body_segmentations")
+}
+
+model FaceSegmentation {
+  id      String       @id @default(cuid())
+  gesture FaceGesture?
+
+  score     Float /// overall face score
+  blurScore Float? /// Laplacian distribution
+  boxScore  Float
+  // faceScore Float // mesh score
+  real      Float? /// face anti-spoofing result confidence
+  live      Float? /// face liveness result confidence
+  embedding Unsupported("vector")? /// face descriptor
+  distance  Unsupported("distance")? /// face distance from camera
+
+  imageSegmentationId String?              @map("image_segmentation_id") @ignore
+  faceRotationId      String?              @unique @map("face_rotation_id") @ignore
+  faceMeshId          String?              @unique @map("face_mesh_id") @ignore
+  mesh                FaceMesh?            @relation(fields: [faceMeshId], references: [id])
+  age                 AgeEstimation?
+  gender              GenderEstimation?
+  race                RaceEstimation?
+  rotation            FaceRotation?        @relation(fields: [faceRotationId], references: [id])
+  emotions            EmotionEstimation[]
+  PersonSegmentation  PersonSegmentation[] @ignore
+  ImageSegmentation   ImageSegmentation?   @relation(fields: [imageSegmentationId], references: [id]) @ignore
+
+  @@map("face_segmentations")
+}
+
+model HandSegmentation {
+  id String @id @default(cuid())
+
+  leftHandPersonSegmentation  PersonSegmentation[] @relation("leftHandSegmentation") @ignore
+  rightHandPersonSegmentation PersonSegmentation[] @relation("rightHandSegmentation") @ignore
+
+  @@map("hand_segmentations")
+}
+
+model FingerSegmentation {
+  id String @id @default(cuid())
+
+  @@map("finger_segmentations")
+}
+
+model GestureSegmentation {
+  id String @id @default(cuid())
+
+  imageSegmentationId  String?             @ignore
+  personSegmentationId String?             @ignore
+  ImageSegmentation    ImageSegmentation?  @relation(fields: [imageSegmentationId], references: [id]) @ignore
+  PersonSegmentation   PersonSegmentation? @relation(fields: [personSegmentationId], references: [id]) @ignore
+
+  @@map("gesture_segmentations")
+}
+
+model ObjectSegmentation {
+  id String @id @default(cuid())
+
+  imageSegmentationId String?            @map("image_segmentation_id") @ignore
+  ImageSegmentation   ImageSegmentation? @relation(fields: [imageSegmentationId], references: [id]) @ignore
+
+  @@map("object_segmentations")
+}
+
+model PersonSegmentation {
+  id String @id @default(cuid())
+
+  bbox Float[]
+
+  faceSegmentationId      String? @ignore
+  bodySegmentationId      String? @ignore
+  leftHandSegmentationId  String? @ignore
+  rightHandSegmentationId String? @ignore
+  imageSegmentationId     String? @ignore
+
+  body      BodySegmentation?     @relation(fields: [bodySegmentationId], references: [id])
+  face      FaceSegmentation?     @relation(fields: [faceSegmentationId], references: [id])
+  leftHand  HandSegmentation?     @relation("leftHandSegmentation", map: "left_hand", fields: [leftHandSegmentationId], references: [id])
+  rightHand HandSegmentation?     @relation("rightHandSegmentation", map: "right_hand", fields: [rightHandSegmentationId], references: [id])
+  gestures  GestureSegmentation[]
+
+  ImageSegmentation ImageSegmentation? @relation(fields: [imageSegmentationId], references: [id]) @ignore
+
+  @@map("person_segmentations")
+}
+
+model ImageSegmentation {
+  id String @id @default(cuid())
+
+  height    Float
+  width     Float
+  createdAt DateTime @default(now()) @map(name: "created_at")
+
+  faces    FaceSegmentation[]
+  bodies   BodySegmentation[]
+  persons  PersonSegmentation[]
+  gestures GestureSegmentation[]
+  objects  ObjectSegmentation[]
+
+  @@map("image_segmentations")
+}

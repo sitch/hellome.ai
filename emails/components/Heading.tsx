@@ -1,6 +1,7 @@
-import React from 'react'
-import Text from './Text'
-import { fontFamily, lineHeight, fontWeight, fontSize } from '../theme'
+import React from "react"
+
+import { fontFamily, fontSize, fontWeight, lineHeight } from "../theme"
+import Text from "./Text"
 
 type HeadingProps = React.ComponentProps<typeof Text>
 

@@ -1,20 +1,19 @@
-import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-import Link from 'next/link'
-import BrandLogo from '@/components/ui/BrandLogo/BrandLogo'
+import dynamic from "next/dynamic"
+import Head from "next/head"
+
+import BrandLogo from "@/components/common/BrandLogo/BrandLogo"
+
+import styles from "@/styles/Home.module.css"
 
 // Avoids "document not found" issue
-const RequestAccessModal = dynamic(
-  () => import('@/components/ui/RequestAccessModal/RequestAccessModal'),
-  {
-    ssr: false,
-    // suspense: true,
-  }
-)
+// const RequestAccessModal = dynamic(
+//   () => import("@/components/common/RequestAccessModal/RequestAccessModal"),
+//   {
+//     ssr: false,
+//     // suspense: true,
+//   },
+// )
 
-const font = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -23,7 +22,6 @@ export default function Home() {
         <title>HelloMe.ai</title>
         <meta name="description" content="AI with Authenticity" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Suspense fallback={<AppLoading />}> */}
       {/* <HomePage font={inter} /> */}
@@ -105,7 +103,7 @@ export default function Home() {
 
           {/* ############################################################## */}
 
-          <RequestAccessModal className={styles.card}>
+          {/* <RequestAccessModal className={styles.card}>
             <h2 className={font.className}>
               Artist or Educator
               <svg
@@ -124,7 +122,7 @@ export default function Home() {
               </svg>
             </h2>
             <p className={font.className}>Join the Waitlist</p>
-          </RequestAccessModal>
+          </RequestAccessModal> */}
 
           {/* ############################################################## */}
 
@@ -186,7 +184,7 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <h2 className={font.className}>
-              //  Store <span>-&gt;</span> 
+              //  Store <span>-&gt;</span>
               Visit our Store
             </h2>
             <p className={font.className}>

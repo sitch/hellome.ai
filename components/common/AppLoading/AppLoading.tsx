@@ -1,4 +1,4 @@
-import styles from './index.module.css'
+import styles from "@/components/common/AppLoading/index.module.css"
 
 export default function AppLoading() {
   return (

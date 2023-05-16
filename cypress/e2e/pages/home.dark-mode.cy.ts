@@ -1,38 +1,38 @@
 /// <reference types="cypress" />
 
-import { emulate } from '@/cypress/commands/emulation'
+import { emulate } from "@/cypress/commands/emulation"
 import {
   MATCH_IMAGE_TEST_CASE,
   SCROLLBAR_TEST_CASE,
-} from '@/cypress/commands/screenshots'
+} from "@/cypress/commands/screenshots"
 import {
   filterByBreakPoint,
   viewportLandscapePresets,
   viewportPortraitPresets,
-} from '@/cypress/commands/viewports'
+} from "@/cypress/commands/viewports"
 
-describe('<Home /> (dark-mode)', () => {
+describe("<Home /> (dark-mode)", () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000', {
+    cy.visit("http://localhost:3000", {
       onBeforeLoad(win) {
-        emulate('dark-mode', 'reduced-animation')
+        emulate("dark-mode", "reduced-animation")
       },
     })
-    cy.waitForPageLoad('HomePage')
+    cy.waitForPageLoad("HomePage")
   })
 
-  context('display', () => {
-    it('displays the brand logo text correct color', () => {
+  context("display", () => {
+    it("displays the brand logo text correct color", () => {
       cy.wait(5000)
-      cy.getByData('brand-logo-hello').should(
-        'have.css',
-        'color',
-        'rgb(255, 255, 255)'
+      cy.getByData("brand-logo-hello").should(
+        "have.css",
+        "color",
+        "rgb(255, 255, 255)",
       )
     })
   })
 
-  context('portrait', () => {
+  context("portrait", () => {
     viewportPortraitPresets().forEach(MATCH_IMAGE_TEST_CASE)
 
     // TODO: fix these break points
@@ -41,7 +41,7 @@ describe('<Home /> (dark-mode)', () => {
       .forEach(SCROLLBAR_TEST_CASE)
   })
 
-  context('landscape', () => {
+  context("landscape", () => {
     viewportLandscapePresets().forEach(MATCH_IMAGE_TEST_CASE)
 
     // TODO: fix these break points

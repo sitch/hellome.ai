@@ -1,26 +1,73 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // "ts-node": {
+  //   // these options are overrides used only by ts-node
+  //   // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+  //   "compilerOptions": {
+  //     "module": "commonjs"
+  //   }
+  // },
   "compilerOptions": {
+    "noErrorTruncation": true,
     "baseUrl": ".",
     "target": "esnext",
     "module": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
     "skipLibCheck": true,
+    "importHelpers": true,
     "strict": true,
+    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+
     "paths": {
       "@/*": ["./*"],
-      "#/*": ["./cypress/*"]
+      "#/*": ["./cypress/*"],
+      "package.json": ["package.json"]
     },
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["next-env.d.ts", "**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
-  "exclude": ["node_modules", "./cypress/**/*", "./cypress.config.ts"]
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.cjs",
+    "**/*.mjs"
+  ],
+  "exclude": [
+    "@gen/trpc",
+    "@gen/lulu",
+    "@gen/crud",
+    "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
+    "**/node_modules",
+    "**/.*/",
+    "cypress",
+    "cypress.config.ts",
+    "public/fallback-*.js",
+    "public/workbox-*.js",
+    "public/sw.js"
+  ]
 }

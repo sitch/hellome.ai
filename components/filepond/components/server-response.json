@@ -1,0 +1,24 @@
+{
+  "token": {
+    "$metadata": {
+      "httpStatusCode": 200,
+      "requestId": "004cd8d0-befe-468b-919e-eaf6b326dc99",
+      "attempts": 1,
+      "totalRetryDelay": 0
+    },
+    "Credentials": {
+      "AccessKeyId": "",
+      "SecretAccessKey": "",
+      "SessionToken": "",
+      "Expiration": "2023-05-01T01:21:16.000Z"
+    },
+    "FederatedUser": {
+      "FederatedUserId": "870556398355:S3UploadWebToken",
+      "Arn": "arn:aws:sts::870556398355:federated-user/S3UploadWebToken"
+    },
+    "PackedPolicySize": 34
+  },
+  "key": "next-s3-uploads/9a043b34-51d7-4c90-bcf2-e2a694406610/IMG_5999.jpeg",
+  "bucket": "hellome-training-photos-production",
+  "region": "us-east-1"
+}

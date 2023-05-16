@@ -1,0 +1,95 @@
+{
+  "page": {
+    "index": {
+      "title": "Concepts",
+      "description": "Listing of all concepts..."
+    },
+    "new": {
+      "title": "Create Concept",
+      "description": "Create a new concept..."
+    },
+    "edit": {
+      "title": "Edit Concept",
+      "description": "Edit an existing concept..."
+    },
+    "show": {
+      "title": "View Concept",
+      "description": "View an existing concept..."
+    }
+  },
+  "buttons": {
+    "train": {
+      "label": "Train",
+      "aria-label": "Train Concept"
+    }
+  },
+  "form": {
+    "heading": "Concept Training",
+    "description": "Concept Training",
+    "schema": {
+      "type": {
+        "label": "Type",
+        "description": "Type of the concept.",
+        "enum": {
+          "person": {
+            "label": "Person",
+            "description": "Description of Person"
+          },
+          "place": {
+            "label": "Place",
+            "description": "Description of Place"
+          },
+          "thing": {
+            "label": "Thing",
+            "description": "Description of Thing"
+          }
+        }
+      },
+      "name": {
+        "label": "Name",
+        "description": "Name of the concept.",
+        "placeholder": "Name of the concept."
+      },
+      "photos": {
+        "label": "Media",
+        "description": "Photos, or Scribbles"
+      },
+      "description": {
+        "label": "Description",
+        "description": "Description of the concept",
+        "placeholder": "Description of the concept"
+      },
+      "prompt": {
+        "label": "Prompt",
+        "description": "Prompt of the concept",
+        "placeholder": "Prompt of the concept"
+      },
+      "positivePrompt": {
+        "label": "Prompt (Positive)",
+        "description": "Prompt (Positive) of the concept",
+        "placeholder": "Prompt (Positive) of the concept"
+      },
+      "negativePrompt": {
+        "label": "Prompt (Negative)",
+        "description": "Prompt (Negative) of the concept",
+        "placeholder": "Prompt (Negative) of the concept"
+      },
+      "positivePrompts": {
+        "label": "Prompts (Positive)",
+        "description": "Prompts (Positive) of the concept",
+        "placeholder": "Prompts (Positive) of the concept",
+        "append": {
+          "label": "Add"
+        }
+      },
+      "negativePrompts": {
+        "label": "Prompts (Negative)",
+        "description": "Prompts (Negative) of the concept",
+        "placeholder": "Prompts (Negative) of the concept",
+        "append": {
+          "label": "Add"
+        }
+      }
+    }
+  }
+}

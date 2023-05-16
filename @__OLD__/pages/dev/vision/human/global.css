@@ -1,0 +1,27 @@
+@font-face {
+  font-style: normal;
+  font-weight: 100;
+  src: local("Lato"), url("/lato-light.woff2");
+  font-family: "Lato";
+  font-display: swap;
+}
+html {
+  font-variant: small-caps;
+  font-size: 16px;
+  font-family: "Lato", "Segoe UI";
+}
+body {
+  margin: 0;
+  background: black;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  color: white;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}

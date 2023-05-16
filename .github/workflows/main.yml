@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: "yarn"
 
       #-------------------------------------------------------------------------
       # 💾 Cache
@@ -87,12 +87,12 @@ jobs:
           build: yarn build.ci
           start: yarn start.ci
           record: ${{ !!secrets.CYPRESS_RECORD_KEY }}
-          wait-on: '${{ env.NEXT_PUBLIC_HELLOME_UI_HTTP_URL }}'
+          wait-on: "${{ env.NEXT_PUBLIC_HELLOME_UI_HTTP_URL }}"
           browser: chrome
         env:
-          NODE_ENV: 'test'
+          NODE_ENV: "test"
           # NEXT_PUBLIC_HELLOME_ENV: 'ci'
-          NEXT_PUBLIC_HELLOME_UI_HTTP_URL: 'http://localhost:3000'
+          NEXT_PUBLIC_HELLOME_UI_HTTP_URL: "http://localhost:3000"
           # NEXT_PUBLIC_HELLOME_API_HTTP_URL: 'http://localhost:4000'
           # NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
           # SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -106,6 +106,6 @@ jobs:
       - name: 💌 Discord Notification
         uses: Ilshidur/action-discord@master
         with:
-          args: '🚀 The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+          args: "🚀 The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_RELEASES_WEBHOOK }}

@@ -1,0 +1,203 @@
+{
+  "description": "AI with Authenticity",
+  "sections": {
+    "customer": {
+      "title": "Customer",
+      "links": [
+        {
+          "href": {
+            "pathname": "/pages/customer/[slug]",
+            "query": {
+              "slug": "affiliate-program"
+            }
+          },
+          "aria-label": "Affiliate Program",
+          "children": "Affiliate Program"
+        },
+        {
+          "href": {
+            "pathname": "/pages/customer/[slug]",
+            "query": {
+              "slug": "become-an-ambassador"
+            }
+          },
+          "aria-label": "Become an Ambassador",
+          "children": "Become an Ambassador"
+        },
+        {
+          "href": {
+            "pathname": "/pages/customer/[slug]",
+            "query": {
+              "slug": "offers"
+            }
+          },
+          "aria-label": "Offers",
+          "children": "Offers"
+        },
+        {
+          "href": {
+            "pathname": "/pages/customer/[slug]",
+            "query": {
+              "slug": "refer-a-friend",
+              "referrer": "hellome:landing.footer"
+            }
+          },
+          "aria-label": "Refer a Friend",
+          "children": "Refer a Friend"
+        }
+      ]
+    },
+    "company": {
+      "title": "Company",
+      "links": [
+        {
+          "href": {
+            "pathname": "/blog"
+          },
+          "aria-label": "Blog",
+          "children": "Blog"
+        },
+        {
+          "href": {
+            "pathname": "/pages/company/[slug]",
+            "query": {
+              "slug": "careers"
+            }
+          },
+          "aria-label": "Careers",
+          "children": "Careers"
+        },
+        {
+          "href": {
+            "pathname": "/pages/policies/[slug]",
+            "query": {
+              "slug": "delivery-info"
+            }
+          },
+          "aria-label": "Delivery Info",
+          "children": "Delivery Info"
+        },
+        {
+          "href": {
+            "pathname": "/pages/company/[slug]",
+            "query": {
+              "slug": "our-story"
+            }
+          },
+          "aria-label": "Our Story",
+          "children": "Our Story"
+        },
+        {
+          "href": {
+            "pathname": "/pages/company/[slug]",
+            "query": {
+              "slug": "press"
+            }
+          },
+          "aria-label": "Press",
+          "children": "Press"
+        }
+      ]
+    },
+    "policies": {
+      "title": "Legal",
+      "links": [
+        {
+          "href": {
+            "pathname": "/pages/policies/[slug]",
+            "query": {
+              "slug": "accessibility-statement"
+            }
+          },
+          "aria-label": "Accessibility Statement",
+          "children": "Accessibility Statement"
+        },
+        {
+          "href": {
+            "pathname": "/pages/policies/[slug]",
+            "query": {
+              "slug": "privacy-policy"
+            }
+          },
+          "aria-label": "Privacy Policy",
+          "children": "Privacy Policy"
+        },
+        {
+          "href": {
+            "pathname": "/pages/policies/[slug]",
+            "query": {
+              "slug": "returns-policy"
+            }
+          },
+          "aria-label": "Returns Policy",
+          "children": "Returns Policy"
+        },
+        {
+          "href": {
+            "pathname": "/pages/policies/[slug]",
+            "query": {
+              "slug": "terms-of-service"
+            }
+          },
+          "aria-label": "Terms of Service",
+          "children": "Terms of Service"
+        },
+        {
+          "href": {
+            "pathname": "/pages/policies/[slug]",
+            "query": {
+              "slug": "ugc-terms-and-conditions"
+            }
+          },
+          "aria-label": "UGC Terms & Conditions",
+          "children": "UGC Terms & Conditions"
+        }
+      ]
+    },
+    "learn": {
+      "title": "Support",
+      "links": [
+        {
+          "href": {
+            "pathname": "/pages/company/[slug]",
+            "query": {
+              "slug": "contact"
+            }
+          },
+          "aria-label": "Contact Us",
+          "children": "Contact Us"
+        },
+        {
+          "href": {
+            "pathname": "/pages/redirects/[slug]",
+            "query": {
+              "slug": "join-discord"
+            }
+          },
+          "aria-label": "Discord",
+          "children": "Discord"
+        },
+        {
+          "href": {
+            "pathname": "/pages/redirects/[slug]",
+            "query": {
+              "slug": "reddit-forum"
+            }
+          },
+          "aria-label": "Forum",
+          "children": "Forum"
+        },
+        {
+          "href": {
+            "pathname": "/pages/company/[slug]",
+            "query": {
+              "slug": "wiki"
+            }
+          },
+          "aria-label": "Wiki",
+          "children": "Wiki"
+        }
+      ]
+    }
+  }
+}

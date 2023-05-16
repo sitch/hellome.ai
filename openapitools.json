@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "generator-cli": {
+    "generators": {
+      "v3.0": {
+        "inputSpec": "openapi.lulu.yml",
+        "output": "@gen/lulu",
+        "generatorName": "typescript-fetch",
+        "skipValidateSpec": true,
+        "enablePostProcessFile": true,
+        "additionalProperties": {
+          "enumNameSuffix": "Enum",
+          "enumPropertyNaming": "PascalCase",
+          "modelPropertyNaming": "snake_case",
+          "paramNaming": "snake_case",
+          "snapshot": true,
+          "supportsES6": true
+        },
+        "globalProperty": {
+          "org.openapitools.codegen.utils.oncelogger.enabled": false,
+          "verbose": false
+        }
+      }
+    },
+    "version": "6.5.0"
+  },
+  "spaces": 2
+}

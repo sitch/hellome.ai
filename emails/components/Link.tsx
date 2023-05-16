@@ -1,21 +1,23 @@
-import React from 'react'
-import { MjmlText, HrefProps } from 'mjml-react'
-import { colors } from '../theme'
+import React from "react"
+
+import { HrefProps, MjmlText } from "mjml-react"
+
+import { colors } from "../theme"
 
 type LinkProps = HrefProps & React.ComponentProps<typeof MjmlText>
 type StyleProps = Pick<
   LinkProps,
-  | 'color'
-  | 'fontFamily'
-  | 'fontSize'
-  | 'fontStyle'
-  | 'fontWeight'
-  | 'letterSpacing'
-  | 'height'
-  | 'textDecoration'
-  | 'align'
+  | "color"
+  | "fontFamily"
+  | "fontSize"
+  | "fontStyle"
+  | "fontWeight"
+  | "letterSpacing"
+  | "height"
+  | "textDecoration"
+  | "align"
 > & {
-  textTransform?: React.CSSProperties['textTransform'] | undefined
+  textTransform?: React.CSSProperties["textTransform"] | undefined
 }
 
 const getHrefPropsFromProps = (props: LinkProps): HrefProps => {
@@ -24,7 +26,7 @@ const getHrefPropsFromProps = (props: LinkProps): HrefProps => {
       href: props.href,
       rel: props.rel,
       target: props.target,
-    })
+    }),
   )
 }
 
@@ -40,9 +42,9 @@ const getStylePropsFromProps = (props: LinkProps): StyleProps => {
       height: props.height,
       textDecoration: props.textDecoration,
       textTransform:
-        props.textTransform as React.CSSProperties['textTransform'],
+        props.textTransform as React.CSSProperties["textTransform"],
       align: props.align,
-    })
+    }),
   )
 }
 

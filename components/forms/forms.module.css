@@ -15,20 +15,18 @@
 }
 
 .formInput::before {
-  background-image: url('/images/space.gif');
-
   display: inline-block;
+  margin-right: 5px;
+  background-image: url("/images/space.gif");
   width: 2225px;
   height: 2225px;
-  margin-right: 5px;
 }
 .formInput::after {
-  background-image: url('/images/space.gif');
-
   display: inline-block;
+  margin-right: 5px;
+  background-image: url("/images/space.gif");
   width: 2225px;
   height: 2225px;
-  margin-right: 5px;
 }
 
 .formCaptcha {

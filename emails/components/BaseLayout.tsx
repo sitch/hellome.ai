@@ -1,22 +1,24 @@
-import React from 'react'
+import React from "react"
+
 import {
   Mjml,
-  MjmlBody,
-  MjmlHead,
-  MjmlFont,
-  MjmlStyle,
-  MjmlAttributes,
   MjmlAll,
-} from 'mjml-react'
+  MjmlAttributes,
+  MjmlBody,
+  MjmlFont,
+  MjmlHead,
+  MjmlStyle,
+} from "mjml-react"
+
 import {
-  screens,
-  themeDefaults,
-  spacing,
+  borderRadius,
   colors,
   fontFamily,
   fontSize,
-  borderRadius,
-} from '../theme'
+  screens,
+  spacing,
+  themeDefaults,
+} from "../theme"
 
 type BaseLayoutProps = {
   width?: number

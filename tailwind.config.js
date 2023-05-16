@@ -1,106 +1,193 @@
-/**
- * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
- */
-module.exports = {
-  // darkMode: 'media',
-  // darkMode: 'class',
-  // darkMode: ['class', '[data-mode="dark"]'],
+import { fontFamily } from "tailwindcss/defaultTheme"
+import plugin from "tailwindcss/plugin"
+
+// eslint-disable-next-line @limegrass/import-alias/import-alias
+import tailwindBlogPreset from "./tailwind.blog.preset"
+
+// const colors = require("tailwindcss/colors")
+
+/** @type {import('tailwindcss').Config} */
+const config = {
+  presets: [tailwindBlogPreset],
+  darkMode: ["class"],
   content: [
-    './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-select/dist/index.esm.js",
+
+    // TODO: remove
+    // "./node_modules/flowbite/**/*.js",
   ],
   plugins: [
-    require('@downwindcss/easings'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    // require('tailwind-scrollbar-hide'),
-    require('flowbite/plugin'),
+    // @ts-ignore
+    require("tailwindcss-animate"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+
+    require("@headlessui/tailwindcss"),
+
+    plugin(({ addVariant }) => {
+      addVariant("radix-side-top", '&[data-side="top"]')
+      addVariant("radix-side-bottom", '&[data-side="bottom"]')
+    }),
+
+    // TODO: remove
+    // import "@downwindcss/easings",
+    // import "flowbite/plugin",
+    // import "flowbite-typography",
   ],
-  safelist: ['outline-none'],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
-      // ***********************************************************
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+
+        // display: ["var(--font-sf)", "system-ui", "sans-serif"],
+        // default: ["var(--font-inter)", "system-ui", "sans-serif"],
+      },
+
+      // borderRadius: {
+      //   lg: `var(--radius)`,
+      //   md: `calc(var(--radius) - 2px)`,
+      //   sm: "calc(var(--radius) - 4px)",
+      // },
+      animationDuration: {
+        "2.2s": "2.2s",
+      },
+      transitionDuration: {
+        220: "220ms",
+        280: "280ms",
+      },
       animation: {
-        bg: 'bg 1.0s ease infinite',
-        text: 'text 2.2s ease infinite',
-        button: 'button 2.2s ease infinite',
+        // Accordion
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+
+        // AnimatedButton
+        "bg-wave": "bg-wave 2.2s ease-in-out infinite",
+
+        // Fade up and down
+        "fade-up": "fade-up 0.5s",
+        "fade-down": "fade-down 0.5s",
+
+        // Tooltip
+        "slide-up-fade": "slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "slide-down-fade": "slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
       },
       keyframes: {
-        bg: {
-          '0%': { 'background-position': '0 0' },
-          '100%': { 'background-position': '366px 0' },
+        // Accordion
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        text: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+
+        // AnimatedButton
+        "bg-wave": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
-        button: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
+
+        // Fade up and down
+        "fade-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
           },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
+          "80%": {
+            opacity: "0.6",
           },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px)",
+          },
+        },
+        "fade-down": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          "80%": {
+            opacity: "0.6",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px)",
+          },
+        },
+
+        // Tooltip
+        "slide-up-fade": {
+          "0%": { opacity: "0", transform: "translateY(6px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-down-fade": {
+          "0%": { opacity: "0", transform: "translateY(-6px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
 
-      // ***********************************************************
-      // maxWidth: {
-      //   '8xl': '1920px',
-      // },
-      // colors: {
-      //   primary: 'var(--primary)',
-      //   'primary-2': 'var(--primary-2)',
-      //   secondary: 'var(--secondary)',
-      //   'secondary-2': 'var(--secondary-2)',
-      //   hover: 'var(--hover)',
-      //   'hover-1': 'var(--hover-1)',
-      //   'hover-2': 'var(--hover-2)',
-      //   'accent-0': 'var(--accent-0)',
-      //   'accent-1': 'var(--accent-1)',
-      //   'accent-2': 'var(--accent-2)',
-      //   'accent-3': 'var(--accent-3)',
-      //   'accent-4': 'var(--accent-4)',
-      //   'accent-5': 'var(--accent-5)',
-      //   'accent-6': 'var(--accent-6)',
-      //   'accent-7': 'var(--accent-7)',
-      //   'accent-8': 'var(--accent-8)',
-      //   'accent-9': 'var(--accent-9)',
-      //   violet: 'var(--violet)',
-      //   'violet-light': 'var(--violet-light)',
-      //   'violet-dark': 'var(--violet-dark)',
-      //   pink: 'var(--pink)',
-      //   'pink-light': 'var(--pink-light)',
-      //   cyan: 'var(--cyan)',
-      //   blue: 'var(--blue)',
-      //   green: 'var(--green)',
-      //   red: 'var(--red)',
-      // },
-      // textColor: {
-      //   base: 'var(--text-base)',
-      //   primary: 'var(--text-primary)',
-      //   secondary: 'var(--text-secondary)',
-      // },
-      // boxShadow: {
-      //   'outline-normal': '0 0 0 2px var(--accent-2)',
-      //   magical:
-      //     'rgba(0, 0, 0, 0.02) 0px 30px 30px, rgba(0, 0, 0, 0.03) 0px 0px 8px, rgba(0, 0, 0, 0.05) 0px 1px 0px',
-      // },
-      // lineHeight: {
-      //   'extra-loose': '2.2',
-      // },
-      // scale: {
-      //   120: '1.2',
-      // },
+      colors: {
+        // ...colors,
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      cursor: {
+        "dark-pen":
+          "url(/static/cursors/pen-cursor-dark-36x36.png) 0 28, crosshair",
+        "light-pen":
+          "url(/static/cursors/pen-cursor-light-36x36.png) 0 28, crosshair",
+      },
     },
   },
 }
+
+export default config

@@ -1,0 +1,18 @@
+{
+  "blog": {
+    "pages": {
+      "index": {
+        "title": "Blog"
+      }
+    },
+    "search": {
+      "aria-label": "Search blog articles",
+      "placeholder": "Search blogs articles..."
+    },
+    "seo": {
+      "title": "Blog Page - HelloMe.ai",
+      "description": "Blog for this website are available here. You can find blog using input box provided in the top. "
+    }
+  },
+  "ClickLink": "Learn More"
+}

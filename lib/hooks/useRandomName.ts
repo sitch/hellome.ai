@@ -1,18 +1,19 @@
-import maleNames from '@stdlib/datasets-male-first-names-en'
-import femaleNames from '@stdlib/datasets-female-first-names-en'
-import { shuffle, sample } from 'lodash'
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
+
+import femaleNames from "@stdlib/datasets-female-first-names-en"
+import maleNames from "@stdlib/datasets-male-first-names-en"
+import { sample, shuffle } from "lodash"
 
 export const DEFAULT_INTERVAL_MS = 1000
-export const DEFAULT_INITIAL_NAME = 'Me'
+export const DEFAULT_INITIAL_NAME = "Me"
 
 let names: string[] | undefined = undefined
 
 const getRandomName = (): string => {
-  return sample(names!)!
+  return sample(names)!
 }
 
-export interface UseRandomNameProps {
+export type UseRandomNameProps = {
   initialName?: string
   intervalMs?: number
 }

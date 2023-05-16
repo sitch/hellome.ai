@@ -1,0 +1,21 @@
+# node
+node_modules
+
+# next
+# .next
+# public
+
+# next-pwa
+public/sw.js
+public/fallback-*.js
+public/workbox-*.js
+
+# Generated
+@gen
+
+# Filepond
+styles/filepond.css
+styles/filepond/*.css
+
+# Temp
+@__OLD__

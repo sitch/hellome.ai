@@ -1,14 +1,14 @@
 /// <reference types="cypress" />
 
-import { disableAnimationStyles } from './emulation'
+import { disableAnimationStyles } from "./emulation"
 import {
+  ViewportCase,
   assertViewportBoundingRect,
   getDocumentHeight,
-  ViewportCase,
-} from './viewports'
+} from "./viewports"
 
 export const viewportOptions: Cypress.MatchImageOptions = {
-  screenshotConfig: { capture: 'viewport' },
+  screenshotConfig: { capture: "viewport" },
 }
 
 export const MATCH_IMAGE_TEST_CASE = ({ label, viewport }: ViewportCase) => {
@@ -17,7 +17,7 @@ export const MATCH_IMAGE_TEST_CASE = ({ label, viewport }: ViewportCase) => {
       disableAnimationStyles()
     })
 
-    it('matchImage', viewport, () => {
+    it("matchImage", viewport, () => {
       cy.document().matchImage(viewportOptions)
     })
   })
@@ -25,7 +25,7 @@ export const MATCH_IMAGE_TEST_CASE = ({ label, viewport }: ViewportCase) => {
 
 export const SCROLLBAR_TEST_CASE = ({ label, viewport }: ViewportCase) => {
   context(label, () => {
-    it('has no scrollbar', viewport, () => {
+    it("has no scrollbar", viewport, () => {
       assertViewportBoundingRect(viewport)
       // cy.scrollTo('bottom').window().its('scrollY').should('equal', 0)
 

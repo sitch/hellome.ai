@@ -1,0 +1,16 @@
+
+
+
+
+// // -----------------------------------------------------------------------------
+// // Reviews
+// // -----------------------------------------------------------------------------
+
+// model StoryReview {
+//   id      String @id @default(cuid())
+//   storyId String @map(name: "story_id")
+//   comment String
+//   rating  Int // 1-5
+//   Story   Story  @relation(fields: [storyId], references: [id])
+//   // reviewer User
+// }

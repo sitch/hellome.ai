@@ -1,0 +1,76 @@
+/* @import url('https://fonts.cdnfonts.com/css/humanist-522'); */
+/* @import url('/fonts/Humanist522.woff'); */
+
+@font-face {
+  src: url("/fonts/Humanist522.woff") format("woff");
+  font-family: "Humanist 522";
+}
+
+.brandNameHelloPart {
+  font-family: "Humanist 522", Arial, Helvetica, sans-serif;
+  @apply pr-3 tracking-tight;
+}
+
+.brandNameMePart {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  /* text-stroke: 0.07rem rgba(0, 0, 0, 0.711);
+  -webkit-text-stroke: 0.07rem rgba(0, 0, 0, 0.711); */
+}
+
+.brandNameAiPart {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.brandNameHelloPart,
+.brandNameAiPart,
+.brandNameMePart {
+  /* font-size: 15rem; */
+  /* @apply text-9xl; */
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.brandNameHelloPart.small,
+.brandNameAiPart.small,
+.brandNameMePart.small {
+  font-size: 2rem !important;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .brandNameHelloPart,
+  .brandNameAiPart,
+  .brandNameMePart {
+    @apply text-6xl;
+    /* font-size: 5.7rem; */
+  }
+
+  .brandNameHelloPart.small,
+  .brandNameAiPart.small,
+  .brandNameMePart.small {
+    font-size: 2rem !important;
+  }
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+  .brandNameHelloPart,
+  .brandNameAiPart,
+  .brandNameMePart {
+    @apply text-9xl;
+    /* font-size: 9rem; */
+  }
+
+  .brandNameHelloPart.small,
+  .brandNameAiPart.small,
+  .brandNameMePart.small {
+    font-size: 2rem !important;
+  }
+}
+
+/* @media (prefers-color-scheme: dark) {
+  .brandNameMePart {
+    text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
+    -webkit-text-stroke: 0.07rem rgba(255, 255, 255, 0.711);
+  }
+} */

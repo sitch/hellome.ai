@@ -1,0 +1,12 @@
+a friendly whiteish gradient pattern with silly monsters on a light blue green background
+
+A birthday party on the moon, art by kidbooks, hd, 8k, kidbooks
+
+
+
+
+
+
+A birthday party on the moon, art by kidbooks, hd, 8k, kidbooks
+Negative prompt: extra fingers, ugly, photorealistic, 3d, monochrome, distorted face, bad anatomy, writing, words, blurry, haze, unfocused, cropped, extra limbs, unfinished, jpg artifacts,
+Size: 512x768, Seed: 3661625419, Model: deliberate_v11, Steps: 30, Sampler: DPM++ SDE Karras, CFG scale: 5, Model hash: d8691b4d16

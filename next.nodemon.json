@@ -1,16 +1,26 @@
 {
+  "$schema": "https://json.schemastore.org/nodemon",
   "watch": [
+    "data/**/*.mdx",
+    "public/locales/**/*.json",
+    "public/locales/**/*.yml",
     ".env",
     ".env.local",
-    "next.config.js",
-    "postcss.config.js",
-    "tailwind.config.js",
+    ".env.test",
+    ".env.test.local",
+    ".env.development",
+    ".env.development.local",
+    "config/envs/*.mjs",
+    "next.config.mjs",
+    "postcss.config.cjs",
+    "tailwind.config.ts",
+    "tailwind.blog.preset.ts",
     "tsconfig.json",
     "yarn.lock"
   ],
-  "ext": "none",
+  "ext": "js,json,yml,mdx,lock,.env,.local",
   "ignore": [".git", "node_modules/**/node_modules"],
   "restartable": "rs",
-  "verbose": false,
+  "verbose": true,
   "env": {}
 }

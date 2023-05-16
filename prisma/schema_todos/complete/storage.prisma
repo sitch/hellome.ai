@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// Storage
+// -----------------------------------------------------------------------------
+
+enum FileResourceType {
+  ckpt
+  image
+  model
+  pdf
+  safetensor
+  video
+}
+
+enum FilePrivacy {
+  public  @map("public-read")
+  private
+}
+
+model CloudFile {
+  id String @id @default(cuid())
+
+  resourceType FileResourceType @map("resource_type")
+  filename     String
+  size         Int /// Filesize in bytes @zod.number.positive()
+  ext          String /// File extension
+  mime         String /// File MIME type
+  metadata     Json? /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+
+  // Cloud
+  path      String      @unique /// Path on blob store
+  signature String      @unique /// Signature on blob store
+  privacy   FilePrivacy @default(private) /// Privacy on blob store
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  Photo Photo? @ignore
+  PDF   PDF?   @ignore
+
+  // TODO: Add permissions
+
+  @@map("cloud_files")
+}
+
+// -----------------------------------------------------------------------------
+// User File Types
+// -----------------------------------------------------------------------------
+
+model Photo {
+  id String @id @default(cuid())
+
+  height    Int      @db.SmallInt /// @zod.number.positive()
+  width     Int      @db.SmallInt /// @zod.number.positive()
+  tags      String[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Web
+  // etag String @unique /// Generate via: md5($file.content)-$id
+  // url  String @unique /// @zod.string.url()
+
+  fileId String    @unique @map("file_id")  /// @zod.string.cuid()
+  file   CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
+
+  @@map("photos")
+}
+
+model PDF {
+  id String @id @default(cuid())
+
+  height    Int      @db.SmallInt /// @zod.number.positive()
+  width     Int      @db.SmallInt /// @zod.number.positive()
+  pages     Int      @db.SmallInt /// @zod.number.positive()
+  tags      String[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Web
+  // etag String @unique /// Generate via: md5($file.content)-$id
+  // url  String @unique /// @zod.string.url()
+
+  fileId String    @unique @map("file_id") /// @zod.string.cuid()
+  file   CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
+
+  @@map("pdfs")
+}
+
+// enum BaseModel {
+//   StableDiffusion_1_4
+//   StableDiffusion_1_5
+//   StableDiffusion_2_1
+// }
+
+// model Safetensor {
+//   id String @id @default(cuid())
+
+//   baseModel BaseModel @map("base_model")
+//   tags      String[]
+//   createdAt DateTime @default(now()) @map("created_at")
+
+//   fileId String    @unique @map("file_id")
+//   file   CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
+
+//   @@map("safetensors")
+// }

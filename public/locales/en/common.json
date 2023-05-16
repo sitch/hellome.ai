@@ -1,0 +1,90 @@
+{
+  "header": {
+    "themeToggle": {
+      "label": "Toggle Theme"
+    },
+    "links": {
+      "blog": {
+        "label": "Blog",
+        "description": "Blog Articles",
+        "href": "/blog"
+      }
+    }
+  },
+  "nav": {
+    "title": "HelloMe.ai",
+    "description": "Personalized children's books using AI",
+    "sections": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog/articles"
+      },
+      {
+        "label": "Concepts",
+        "href": "/app/concepts"
+      }
+    ],
+    "links": {
+      "blog": {
+        "label": "Blog",
+        "description": "Blog Articles",
+        "href": "/blog"
+      }
+    }
+  },
+  "alert": {
+    "destructive": {
+      "title": "Error"
+    }
+  },
+  "404": {
+    "title": "Uh-oh!",
+    "description": "We can't find that page.",
+    "link": {
+      "label": "Home",
+      "href": "/"
+    }
+  },
+  "actions": {
+    "create": {
+      "label": "New"
+    },
+    "show": {
+      "label": "View"
+    },
+    "edit": {
+      "label": "Edit"
+    },
+    "delete": {
+      "label": "Remove"
+    },
+    "cancel": {
+      "label": "Cancel"
+    },
+    "back": {
+      "label": "Back"
+    }
+  },
+  "cookie-banner": {
+    "title": "Cookie Consent",
+    "description": "Cookie Description",
+    "buttons": {
+      "accept-all": {
+        "label": "Accept all"
+      },
+      "accept-third-party": {
+        "label": "Accept third-party"
+      },
+      "accept-first-party": {
+        "label": "Accept first-party"
+      },
+      "reject-all": {
+        "label": "Reject all"
+      }
+    }
+  }
+}

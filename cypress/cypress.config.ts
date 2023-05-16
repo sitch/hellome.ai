@@ -1,29 +1,29 @@
-import { defineConfig } from 'cypress'
-import { initPlugin } from '@frsource/cypress-plugin-visual-regression-diff/plugins'
+import { initPlugin } from "@frsource/cypress-plugin-visual-regression-diff/plugins"
+import { defineConfig } from "cypress"
 
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       initPlugin(on, config)
     },
-    specPattern: 'cypress/e2e/**/*.cy.{js,ts,jsx,tsx}',
-    excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
+    specPattern: "cypress/e2e/**/*.cy.{js,ts,jsx,tsx}",
+    excludeSpecPattern: ["**/__snapshots__/*", "**/__image_snapshots__/*"],
     // defaultCommandTimeout: 20000,
   },
   component: {
     devServer: {
-      framework: 'next',
-      bundler: 'webpack',
+      framework: "next",
+      bundler: "webpack",
     },
     setupNodeEvents(on, config) {
       initPlugin(on, config)
     },
-    specPattern: 'cypress/component/**/*.cy.{js,ts,jsx,tsx}',
-    excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
+    specPattern: "cypress/component/**/*.cy.{js,ts,jsx,tsx}",
+    excludeSpecPattern: ["**/__snapshots__/*", "**/__image_snapshots__/*"],
   },
   env: {
-    'cypress-react-selector': {
-      root: '#__cy_root',
+    "cypress-react-selector": {
+      root: "#__cy_root",
     },
     // cypress-plugin-visual-regression-diff
     pluginVisualRegressionUpdateImages: true,

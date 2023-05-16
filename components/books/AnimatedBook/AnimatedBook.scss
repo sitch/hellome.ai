@@ -1,0 +1,306 @@
+// @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+}
+
+body {
+  background-color: #eee;
+  padding: 4em 0;
+  color: #555;
+  font-family: "Indie Flower", cursive;
+  text-align: center;
+}
+
+$bookAngle: 60deg;
+$speed: 5s;
+$borderColor: #555;
+
+$images: url("https://picsum.photos/420/300?random=1"),
+  url("https://picsum.photos/420/300?random=2"),
+  url("https://picsum.photos/420/300?random=3"),
+  url("https://picsum.photos/420/300?random=4"),
+  url("https://picsum.photos/420/300?random=5"),
+  url("https://picsum.photos/420/300?random=1");
+
+// Preload to images
+.imgLoader {
+  position: fixed;
+  animation: preLoad 1s steps(1);
+  width: 1px;
+  height: 1px;
+
+  @keyframes preLoad {
+    @for $i from 0 through 4 {
+      #{$i * 10}% {
+        background-image: nth($images, ($i + 1));
+      }
+    }
+    100% {
+      display: none;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  border: #fff solid 2px;
+  border-radius: 4px;
+  width: 420px;
+  height: 420px;
+}
+
+.title {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  font-weight: normal;
+  font-size: 2em;
+  line-height: 1;
+}
+
+.credit {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-size: 0.9em;
+  text-align: left;
+}
+
+.book {
+  position: relative;
+  transform: scale(1.2);
+  perspective: 630px;
+  perspective-origin: center 50px;
+  filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.25));
+}
+
+.page {
+  position: absolute;
+  top: 0px;
+  right: 50%;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
+  border: solid $borderColor 2px;
+  background-position: center;
+  background-size: 420px 300px;
+  background-color: #bbb;
+  width: 210px;
+  height: 300px;
+
+  &:nth-child(1) {
+    transform: rotateX($bookAngle) rotateY(3deg);
+  }
+  &:nth-child(2) {
+    transform: rotateX($bookAngle) rotateY(4.5deg);
+  }
+  &:nth-child(3) {
+    transform: rotateX($bookAngle) rotateY(6deg);
+    animation: nextPage $speed * 5 infinite $speed * -4.8 steps(1);
+    background-position: -2px -2px;
+    background-size: 420px 300px;
+  }
+
+  &:nth-child(4) {
+    transform: rotateX($bookAngle) rotateY(177deg);
+  }
+  &:nth-child(5) {
+    transform: rotateX($bookAngle) rotateY(175.5deg);
+  }
+  &:nth-child(6) {
+    transform: rotateX($bookAngle) rotateY(174deg);
+    overflow: hidden;
+
+    &::after {
+      position: absolute;
+      top: 0px;
+      right: 0%;
+      transform: rotateY(180deg);
+      transform-origin: center;
+      animation: nextPage $speed * 5 $speed * -4 infinite steps(1);
+      background-position: 100% -2px;
+      background-size: 420px 300px;
+      width: 210px;
+      height: 300px;
+      content: "";
+    }
+  }
+
+  @keyframes nextPage {
+    @for $i from 0 through 4 {
+      #{$i * 20}% {
+        background-image: nth($images, ($i + 1));
+      }
+    }
+  }
+}
+
+.gap {
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 5px);
+  transform: rotateX($bookAngle);
+  transform-origin: bottom;
+  background: none;
+  width: 10px;
+  height: 300px;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    border-radius: 50%;
+    background-color: $borderColor;
+    width: 10px;
+    height: 5px;
+    content: "";
+  }
+}
+
+.pages,
+.flips {
+  transform-style: preserve-3d;
+}
+
+.flip {
+  position: absolute;
+  top: 0px;
+  right: 100%;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
+  perspective: 4200px;
+  perspective-origin: center;
+  border: solid $borderColor;
+  border-width: 2px 0px;
+  background-size: 420px 300px;
+  width: 32px;
+  height: 300px;
+
+  &::after {
+    position: absolute;
+    top: 0px;
+    right: 0%;
+    transform-origin: center;
+    background-size: 420px 300px;
+    width: 100%;
+    height: 100%;
+    content: "";
+  }
+
+  &.flip1 {
+    right: 50%;
+    animation: flip1 $speed infinite ease-in-out;
+    border-width: 2px 2px 2px 0;
+
+    &::after {
+      animation: nextFlip1 $speed * 5 $speed * -4 infinite steps(1);
+    }
+  }
+
+  &:not(.flip1) {
+    top: -2px;
+    right: calc(100% - 2px);
+    transform-origin: right;
+    animation: flip2 $speed ease-in-out infinite;
+  }
+
+  @for $i from 2 through 7 {
+    &.flip#{$i}::after {
+      animation: nextFlip#{$i} $speed * 5 $speed * -4 infinite steps(1);
+    }
+  }
+
+  &.flip7 {
+    border-width: 2px 0px 2px 2px;
+    width: 30px;
+    &::after {
+      animation: nextFlip7 $speed * 5 $speed * -4 infinite steps(1);
+    }
+  }
+
+  @keyframes flip1 {
+    0%,
+    20% {
+      transform: rotateX($bookAngle) rotateY(6deg);
+    }
+    80%,
+    100% {
+      transform: rotateX($bookAngle) rotateY(174deg);
+    }
+  }
+
+  @keyframes flip2 {
+    0%,
+    20% {
+      transform: rotateY(0deg) translateY(0px);
+    }
+    50% {
+      transform: rotateY(-15deg) translateY(0px);
+    }
+  }
+}
+
+@keyframes nextFlip1 {
+  @for $i from 0 through 4 {
+    #{$i * 20}% {
+      transform: rotateY(0deg);
+      background-image: nth($images, ($i + 1));
+      background-position: -178px -2px;
+    }
+    #{10+($i * 20)}% {
+      transform: rotateY(180deg);
+      background-image: nth($images, ($i + 2));
+      background-position: -210px -2px;
+    }
+  }
+}
+
+@for $i from 2 through 6 {
+  @keyframes nextFlip#{$i} {
+    @for $j from 0 through 4 {
+      #{$j * 20}% {
+        transform: rotateY(0deg);
+        background-image: nth($images, ($j + 1));
+        background-position: #{-148 + (($i - 2) * 30)}px -2px;
+      }
+      #{((10 + ($j * 20)) + (($i - 1) * 0.5))}% {
+        transform: rotateY(180deg);
+        background-image: nth($images, ($j + 2));
+        background-position: #{-238 - (($i - 2) * 30)}px -2px;
+      }
+    }
+  }
+}
+
+@keyframes nextFlip7 {
+  @for $i from 0 through 4 {
+    #{$i * 20}% {
+      transform: rotateY(0deg);
+      background-image: nth($images, ($i + 1));
+      background-position: -2px -2px;
+    }
+    #{13+($i * 20)}% {
+      transform: rotateY(180deg);
+      background-image: nth($images, ($i + 2));
+      background-position: -388px -2px;
+    }
+  }
+}
+
+.twitterLink {
+  position: fixed;
+  right: 0.5em;
+  bottom: 0.5em;
+  & img {
+    filter: grayscale(100%);
+    transition: filter 0.25s;
+    width: 2em;
+    &:hover {
+      filter: grayscale(0%);
+    }
+  }
+}
