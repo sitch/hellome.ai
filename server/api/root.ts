@@ -1,4 +1,5 @@
 import { conceptRouter } from "@/server/api/routers/concept.router"
+import { replicateRouter } from "@/server/api/routers/replicate.router"
 import { createTRPCRouter } from "@/server/api/trpc"
 
 /**
@@ -8,6 +9,7 @@ import { createTRPCRouter } from "@/server/api/trpc"
  */
 export const appRouter = createTRPCRouter({
   concept: conceptRouter,
+  replicate: replicateRouter,
 })
 
 // export type definition of API

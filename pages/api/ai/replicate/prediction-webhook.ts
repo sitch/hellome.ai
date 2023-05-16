@@ -3,14 +3,18 @@
 
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import { upsertPrediction } from "@/lib/replicate/db"
+// import { upsertPrediction } from "@/lib/replicate/db"
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  console.log("received webhook for prediction: ", req.body.id)
-  await upsertPrediction(req.body)
+  console.log(
+    "[replicate] received webhook for prediction: ",
+    req.body.id,
+    req.body,
+  )
+  // await upsertPrediction(req.body)
 
   res.end()
 }

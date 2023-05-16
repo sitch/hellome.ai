@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic"
-import { Inter } from "next/font/google"
 import Head from "next/head"
 
 import BrandLogo from "@/components/common/BrandLogo/BrandLogo"
@@ -7,15 +6,14 @@ import BrandLogo from "@/components/common/BrandLogo/BrandLogo"
 import styles from "@/styles/Home.module.css"
 
 // Avoids "document not found" issue
-const RequestAccessModal = dynamic(
-  () => import("@/components/common/RequestAccessModal/RequestAccessModal"),
-  {
-    ssr: false,
-    // suspense: true,
-  },
-)
+// const RequestAccessModal = dynamic(
+//   () => import("@/components/common/RequestAccessModal/RequestAccessModal"),
+//   {
+//     ssr: false,
+//     // suspense: true,
+//   },
+// )
 
-const font = Inter({ subsets: ["latin"] })
 
 export default function Home() {
   return (
@@ -105,7 +103,7 @@ export default function Home() {
 
           {/* ############################################################## */}
 
-          <RequestAccessModal className={styles.card}>
+          {/* <RequestAccessModal className={styles.card}>
             <h2 className={font.className}>
               Artist or Educator
               <svg
@@ -124,7 +122,7 @@ export default function Home() {
               </svg>
             </h2>
             <p className={font.className}>Join the Waitlist</p>
-          </RequestAccessModal>
+          </RequestAccessModal> */}
 
           {/* ############################################################## */}
 

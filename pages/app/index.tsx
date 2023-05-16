@@ -84,6 +84,31 @@ export default function AppIndex() {
     // refetch()
   }
 
+  const handleClick = async () => {
+    // refetch()
+
+    const prompt = ""
+    const fileUrl = ""
+
+    const body = {
+      prompt,
+      image: fileUrl,
+      structure: "scribble",
+    }
+
+    const response = await fetch("/api/ai/replicate/predictions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+
+    const prediction = await response.json()
+
+    console.log({ prediction })
+  }
+
   return (
     <>
       <Layout onRefresh={handleRefresh}>
@@ -98,9 +123,11 @@ export default function AppIndex() {
               size="lg"
               variant="secondary"
               href="/app/concepts"
+              onClick={handleClick}
               // icon={XCircle}
             >
-              {t("actions.cancel.label")}
+              {/* {t("actions.cancel.label")} */}
+              Demo
             </Button>
           }
         >
