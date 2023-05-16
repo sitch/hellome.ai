@@ -3,7 +3,7 @@
 
 import { type NextApiRequest, type NextApiResponse } from "next"
 
-import { type UploaderSignedUrl } from "@/lib/uploader/types"
+import { type UploaderSignedUrl } from "@/lib/uploads/types"
 
 const methods = ["GET", "HEAD"]
 

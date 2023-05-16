@@ -7,7 +7,7 @@ import {
   type FilePondSource,
   type ResponseFailed,
   type UploaderSignedUrl,
-} from "@/lib/uploader/types"
+} from "@/lib/uploads/types"
 
 const methods = ["GET"]
 

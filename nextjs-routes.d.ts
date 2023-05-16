@@ -12,15 +12,10 @@ declare module "nextjs-routes" {
 
   export type Route =
     | StaticRoute<"/404">
-    | DynamicRoute<"/api/ai/concepts/[id]", { "id": string }>
-    | StaticRoute<"/api/ai/concepts">
-    | StaticRoute<"/api/ai/concepts/replicate-webhook">
-    | StaticRoute<"/api/ai/concepts/train">
-    | StaticRoute<"/api/generate-temporary-url">
+    | StaticRoute<"/api/ai/replicate/prediction-webhook">
+    | DynamicRoute<"/api/ai/replicate/predictions/[id]", { "id": string }>
+    | StaticRoute<"/api/ai/replicate/predictions">
     | StaticRoute<"/api/mailer/request-access/email">
-    | StaticRoute<"/api/print/create-print-job">
-    | StaticRoute<"/api/print/job">
-    | StaticRoute<"/api/s3-upload">
     | DynamicRoute<"/api/trpc/[trpc]", { "trpc": string }>
     | DynamicRoute<"/api/uploads/fetch/[...url]", { "url": string[] }>
     | DynamicRoute<"/api/uploads/load/[...source]", { "source": string[] }>
@@ -32,6 +27,7 @@ declare module "nextjs-routes" {
     | DynamicRoute<"/app/concepts/[id]", { "id": string }>
     | StaticRoute<"/app/concepts">
     | StaticRoute<"/app/concepts/new">
+    | StaticRoute<"/app">
     | StaticRoute<"/app/studio">
     | DynamicRoute<"/blog/articles/[slug]", { "slug": string }>
     | StaticRoute<"/blog/articles">

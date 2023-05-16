@@ -2,7 +2,7 @@ import { APIRoute } from "next-s3-upload"
 
 import { env } from "@/config/env.mjs"
 
-const methods = ["POST"]
+// const methods = ["POST"]
 
 //
 /**
