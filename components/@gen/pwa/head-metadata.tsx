@@ -224,7 +224,7 @@ export const DocumentHeadMetadata = () => {
   return (
     <>
       <meta charSet="UTF-8" />
-      <meta name="version" content="1.0.0" />
+      <meta name="version" content="1.0.2" />
 
       {/* See: https://nextjs.org/docs/messages/react-hydration-error */}
       <meta

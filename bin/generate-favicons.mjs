@@ -7,7 +7,7 @@ import path from "path"
 import favicons from "favicons"
 import prettier from "prettier"
 
-import pwaConfig from "../pwa.config.js"
+import faviconsConfig from "../favicons.config.js"
 
 /**
  * @typedef {import('favicons').FaviconFile} FaviconFile
@@ -104,7 +104,9 @@ function templateForComponent({ html }) {
 		return (
 			<>
         <meta charSet="UTF-8" />
-        <meta name="version" content="${pwaConfig.faviconOptions.version}" />
+        <meta name="version" content="${
+          faviconsConfig.faviconOptions.version
+        }" />
 
         {/* See: https://nextjs.org/docs/messages/react-hydration-error */}
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
@@ -173,10 +175,14 @@ async function writeManifest({ files }, dest) {
 }
 
 async function generate() {
-  const faviconOptions = pwaConfig.faviconOptions
-  const logoPath = path.resolve(pwaConfig.logoPath)
-  const faviconDir = path.resolve(pwaConfig.output.favicons.dir.data)
-  const componentPath = path.resolve(pwaConfig.output.component.path)
+  const faviconOptions = faviconsConfig.faviconOptions
+  const logoPath = path.resolve(faviconsConfig.generatorConfig.logoPath)
+  const faviconDir = path.resolve(
+    faviconsConfig.generatorConfig.output.favicons.dir,
+  )
+  const componentPath = path.resolve(
+    faviconsConfig.generatorConfig.output.component.path,
+  )
 
   info(`Generating PWA...`)
   const response = await favicons(logoPath, faviconOptions)
@@ -205,10 +211,15 @@ function faviconModifiedTime(logoFilename) {
  * Read most recent git commit and check if it's after the most recent edit time for our favicon
  */
 async function run() {
-  const logoFilename = path.basename(pwaConfig.logoPath)
+  const force = process.argv.length >= 2 && process.argv[2] === "--force"
+
+  const logoFilename = path.basename(faviconsConfig.generatorConfig.logoPath)
 
   try {
-    if (mostRecentGitCommitTime() > faviconModifiedTime(logoFilename)) {
+    if (
+      mostRecentGitCommitTime() > faviconModifiedTime(logoFilename) &&
+      !force
+    ) {
       info(`Skipping. ${logoFilename} not recently modified.`)
       return
     }

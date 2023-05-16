@@ -9,11 +9,24 @@ const tailwindConfig = {
   "hex(var(--primary))": "#fff",
 }
 
+const generatorConfig = {
+  logoPath: "resources/logo.png",
+  output: {
+    component: {
+      path: "components/@gen/pwa/head-metadata.tsx",
+    },
+    favicons: {
+      path: "/",
+      dir: "public/",
+    },
+  },
+}
+
 /**
  * @type {import('favicons').FaviconOptions}
  */
 const faviconOptions = {
-  path: "/", // Path for overriding default icons path. `string`
+  path: generatorConfig.output.favicons.path, // Path for overriding default icons path. `string`
   version: pkg.version, // Your application's version string. `string`
   appName: pkg.appName, // Your application's name. `string`
   appShortName: pkg.appShortName, // Your application's short_name. `string`. Optional. If not set, appName will be used
@@ -72,16 +85,5 @@ const faviconOptions = {
 
 module.exports = {
   faviconOptions,
-  logoPath: "resources/logo.png",
-  output: {
-    component: {
-      path: "components/@gen/pwa/head-metadata.tsx",
-    },
-    favicons: {
-      dir: {
-        data: "public/pwa/",
-        // assets: "public/",
-      },
-    },
-  },
+  generatorConfig,
 }

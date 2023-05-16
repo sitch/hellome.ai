@@ -153,6 +153,11 @@ const nextConfig = {
         destination: "/blog/articles",
         permanent: true,
       },
+      {
+        source: "/pwa/:asset",
+        destination: "/:asset",
+        permanent: true,
+      },
     ]
   },
   async headers() {
