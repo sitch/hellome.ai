@@ -88,7 +88,7 @@ export default function AppIndex() {
     // refetch()
 
     const prompt = ""
-    const fileUrl = ""
+    const fileUrl = "https://hellome.ai/apple-touch-icon-1024x1024.png"
 
     const body = {
       prompt,
