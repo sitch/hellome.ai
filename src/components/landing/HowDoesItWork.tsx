@@ -1,7 +1,7 @@
 import { type ReactNode } from "react"
 import Link from "next/link"
 
-import bookCover from "public/static/images/sitchenko-infant-drawing-bw.png"
+import bookCover from "public/images/sitchenko-infant-drawing-bw.png"
 
 import { Book } from "@/components/books/Book/Book"
 import { ArrowRightIcon, DotTextureIcon } from "@/components/landing/icons"

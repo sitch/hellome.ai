@@ -3,7 +3,7 @@ import dataUriToBuffer from "data-uri-to-buffer"
 
 import { uploadFile } from "@/lib/s3/client"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 
 // import { PutObjectCommand } from "@aws-sdk/client-s3";
 // import * as Upload from 'upload-js-full'

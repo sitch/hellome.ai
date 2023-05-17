@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from "react"
 
 import { Designer, type Template } from "@pdfme/ui"
 import { jsPDF } from "jspdf"
-import backgroundImage from "public/static/images/404.png"
+import backgroundImage from "public/images/404.png"
 
 const [height, width] = [800, 800]
 
 const doc = new jsPDF("landscape", "mm", [height, width])
 const basePdf = doc.output("datauristring")
 
-// import backgroundImage from "public/static/images/404.png"
+// import backgroundImage from "public/images/404.png"
 // import { fileToBase64 } from "@/components/filepond/utils"
 // import datauri from 'datauri';
 const decoded = Buffer.from(backgroundImage.src)
@@ -121,7 +121,7 @@ const getSampleTemplate = (): Template => ({
     {
       // background: `data:application/pdf;base64,${await fileToBase64(backgroundImage)}`,
       // backgroundImage
-      // background: await dataUriToBuffer("/public/static/images/404.png") ,
+      // background: await dataUriToBuffer("/public/images/404.png") ,
       // name: "Pet Name",
       // photo: dogPng64,
       // age: "4 years",

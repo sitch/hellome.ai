@@ -1,11 +1,11 @@
 import { NextSeo, type DefaultSeoProps } from "next-seo"
 import { type OpenGraph } from "next-seo/lib/types"
 
-import { site } from "@mdx/siteConfig"
-
 import { type Author, type LocaleCode } from "@/lib/mdx/types"
 
 import { DefaultAuthorSEO } from "@/components/seo/DefaultAuthorSEO"
+
+import { site } from "~/@mdx/siteConfig"
 
 export const defaults: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name} Blog`,

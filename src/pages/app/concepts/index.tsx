@@ -1,10 +1,8 @@
 import { useState } from "react"
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useTranslation } from "next-i18next"
-import i18NextConfig from "next-i18next.config"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
-import { type I18nNamespaces } from "i18next.d"
 import { Plus } from "lucide-react"
 
 import { api } from "@/utils/api"
@@ -15,6 +13,9 @@ import Paginator from "@/components/ui/pagination"
 import { Layout, Page } from "@/components/app"
 import { DataTableSkeleton } from "@/components/app/data-table-skeleton"
 import { columns } from "@/components/concepts/columns"
+
+import { type I18nNamespaces } from "~/i18next.d"
+import i18NextConfig from "~/next-i18next.config"
 
 const ns: (keyof I18nNamespaces)[] = ["common", "concepts", "zod", "filepond"]
 

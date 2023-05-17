@@ -1,10 +1,7 @@
 import { type ParsedUrlQuery } from "querystring"
 import { type GetStaticPaths, type GetStaticProps, type NextPage } from "next"
-import i18NextConfig from "next-i18next.config"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { MDXRemote } from "next-mdx-remote"
-
-import { type I18nNamespaces } from "i18next.d"
 
 import {
   listArticleSources,
@@ -17,6 +14,9 @@ import { castAuthor, type Author, type AuthorSource } from "@/lib/mdx/types"
 import { BlogLayout } from "@/components/mdx/Layout"
 import AuthorPage from "@/components/mdx/blog/authors/AuthorPage"
 import { AuthorSEO } from "@/components/seo/AuthorSEO"
+
+import { type I18nNamespaces } from "~/i18next.d"
+import i18NextConfig from "~/next-i18next.config"
 
 const ns: (keyof I18nNamespaces)[] = ["common", "authors", "footer"]
 

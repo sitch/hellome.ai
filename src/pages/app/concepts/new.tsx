@@ -1,14 +1,15 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useTranslation } from "next-i18next"
-import i18NextConfig from "next-i18next.config"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
-import { type I18nNamespaces } from "i18next.d"
 import { XIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Layout, Page } from "@/components/app"
 import { ConceptForm } from "@/components/concepts/ConceptForm"
+
+import { type I18nNamespaces } from "~/i18next.d"
+import i18NextConfig from "~/next-i18next.config"
 
 // import dynamic from "next/dynamic"
 // import MediaPipeDemo from '@/components/vision/mediapipe/MediapipeDemo'

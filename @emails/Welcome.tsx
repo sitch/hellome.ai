@@ -1,12 +1,12 @@
 import { MjmlColumn, MjmlSection, MjmlSpacer, MjmlWrapper } from "mjml-react"
 
-import BaseLayout from "@emails/components/BaseLayout"
-import Button from "@emails/components/Button"
-import Footer from "@emails/components/Footer"
-import Header from "@emails/components/Header"
-import Heading from "@emails/components/Heading"
-import Text from "@emails/components/Text"
-import { colors, fontFamily, fontSize, screens, spacing } from "@emails/theme"
+import BaseLayout from "~/@emails/components/BaseLayout"
+import Button from "~/@emails/components/Button"
+import Footer from "~/@emails/components/Footer"
+import Header from "~/@emails/components/Header"
+import Heading from "~/@emails/components/Heading"
+import Text from "~/@emails/components/Text"
+import { colors, fontFamily, fontSize, screens, spacing } from "~/@emails/theme"
 
 const welcomeStyle = `
   .h1 > * {

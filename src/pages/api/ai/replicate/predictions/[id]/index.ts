@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server"
 
 import Replicate from "replicate"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 import pkg from "package.json"
 
 const replicate = new Replicate({

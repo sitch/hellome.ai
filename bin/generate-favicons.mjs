@@ -202,7 +202,7 @@ function mostRecentGitCommitTime() {
  * @param {string} logoFilename
  */
 function faviconModifiedTime(logoFilename) {
-  const timestampFile = "src/@gen/next-pwa/favicon-timestamps.json"
+  const timestampFile = "resources/timestamps/favicon-timestamps.json"
   const stdout = execSync(`jq '.["${logoFilename}"].modified' ${timestampFile}`)
   return parseInt(stdout.toString())
 }

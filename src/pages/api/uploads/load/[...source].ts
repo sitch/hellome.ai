@@ -8,7 +8,7 @@ import {
   type UploaderSignedUrl,
 } from "@/lib/uploads/types"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 
 const methods = ["GET"]
 

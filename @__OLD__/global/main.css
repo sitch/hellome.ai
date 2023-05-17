@@ -1,0 +1,35 @@
+@tailwind base;
+@import "./base.css";
+
+@tailwind components;
+@import "./components.css";
+
+@tailwind utilities;
+
+body {
+  background-image: url("/images/ui/00058-761687943.png") !important;
+  /* opacity: */
+  /* background-image: url('/images/ui/00025-1079708828.png') !important; */
+  /* background-image: url('/images/ui/00027-1079708830.png') !important; */
+  /* background-image: url('/images/ui/00060-761687945.png') !important; */
+  /* background-image: url('/images/ui/00061-761687946.png') !important; */
+  /* background-image: url('/images/ui/00079-438352593.png') !important; */
+
+  /* background-image: url('/images/ui/00024-1079708827.png') !important; */
+  /* background-image: url('/images/ui/00042-2340882656.png') !important; */
+  /* background-image: url('/images/ui/00043-2340882657.png') !important; */
+
+  /* background-image: url('/images/ui/00002-1597407975.png') !important; */
+  /* background-image: url('/images/ui/00003-1444181492.png') !important; */
+  /* background-image: url('/images/ui/00023-1079708826.png') !important; */
+  /* background-image: url('/images/ui/00032-1079708835.png') !important; */
+
+  /* background-image: url('/images/ui/00066-3457340583.png') !important; */
+  /* background-image: url('/images/ui/00071-2742202727.png') !important; */
+
+  /* background-image: url('/images/ui/00073-2301725953.png') !important; */
+  /* background-image: url('/images/ui/00078-1538331040.png') !important; */
+  /* background-image: url('/images/ui/00082-749067740.png') !important; */
+
+  background-repeat: repeat-x;
+}

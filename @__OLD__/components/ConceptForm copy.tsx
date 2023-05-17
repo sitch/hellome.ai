@@ -186,10 +186,10 @@
 //                   className="bg-white-50 m-8 rounded-lg border border-black bg-white p-8 drop-shadow-xl"
 
 //                   //                 style={{
-//                   //                   // backgroundImage: 'url("/static/images/ui/00066-3457340583.png")',
-//                   // // backgroundImage: 'url("/static/images/ui/00071-2742202727.png")',
-//                   //                   // backgroundImage: 'url("/static/images/ui/00025-1079708828.png")',
-//                   //                   backgroundImage: 'url("/static/images/ui/00027-1079708830.png")'
+//                   //                   // backgroundImage: 'url("/images/ui/00066-3457340583.png")',
+//                   // // backgroundImage: 'url("/images/ui/00071-2742202727.png")',
+//                   //                   // backgroundImage: 'url("/images/ui/00025-1079708828.png")',
+//                   //                   backgroundImage: 'url("/images/ui/00027-1079708830.png")'
 //                   //                 }}
 //                 >
 //                   <label
@@ -219,7 +219,7 @@
 //                   className="m-8 rounded-lg border border-black bg-zinc-50 p-8 drop-shadow-xl"
 
 //                   //  style={{
-//                   //   backgroundImage: 'url("/static/images/ui/00025-1079708828.png")',
+//                   //   backgroundImage: 'url("/images/ui/00025-1079708828.png")',
 //                   //   // opacity: 0.5
 //                   // }}
 //                 >
@@ -287,12 +287,12 @@
 //                   className="flex bg-red-50"
 //                   style={{
 //                     backgroundImage:
-//                       'url("/static/images/ui/00066-3457340583.png")',
-//                     // backgroundImage: 'url("/static/images/ui/00071-2742202727.png")',
-//                     // backgroundImage: 'url("/static/images/ui/00025-1079708828.png")',
-//                     // backgroundImage: 'url("/static/images/ui/00027-1079708830.png")'
+//                       'url("/images/ui/00066-3457340583.png")',
+//                     // backgroundImage: 'url("/images/ui/00071-2742202727.png")',
+//                     // backgroundImage: 'url("/images/ui/00025-1079708828.png")',
+//                     // backgroundImage: 'url("/images/ui/00027-1079708830.png")'
 
-//                     cursor: 'url("/static/cursors/cursor.cur")',
+//                     cursor: 'url("/cursors/cursor.cur")',
 //                   }}
 //                 >
 //                   <div className="m-flex bg-green w-full flex-auto border border-black p-8 drop-shadow-xl">
@@ -313,12 +313,12 @@
 //                     <div
 //                       className="m-auto h-full      w-full flex-auto border  border-black bg-blue-50 p-0 text-2xl text-white "
 //                       // style={{
-//                       //   backgroundImage: 'url("/static/images/ui/momo.png")',
-//                       //   // backgroundImage: 'url("/static/images/ui/00071-2742202727.png")',
-//                       //   // backgroundImage: 'url("/static/images/ui/00025-1079708828.png")',
-//                       //   // backgroundImage: 'url("/static/images/ui/00027-1079708830.png")'
+//                       //   backgroundImage: 'url("/images/ui/momo.png")',
+//                       //   // backgroundImage: 'url("/images/ui/00071-2742202727.png")',
+//                       //   // backgroundImage: 'url("/images/ui/00025-1079708828.png")',
+//                       //   // backgroundImage: 'url("/images/ui/00027-1079708830.png")'
 
-//                       //   cursor: 'url("/static/cursors/cursor.cur")',
+//                       //   cursor: 'url("/cursors/cursor.cur")',
 //                       // }}
 //                     >
 //                       CameraThingHere
@@ -357,10 +357,10 @@
 //                       className=" bg-white-50 m-8 w-full rounded-lg border border-black bg-white p-8 drop-shadow-xl"
 
 //                       //                 style={{
-//                       //                   // backgroundImage: 'url("/static/images/ui/00066-3457340583.png")',
-//                       // // backgroundImage: 'url("/static/images/ui/00071-2742202727.png")',
-//                       //                   // backgroundImage: 'url("/static/images/ui/00025-1079708828.png")',
-//                       //                   backgroundImage: 'url("/static/images/ui/00027-1079708830.png")'
+//                       //                   // backgroundImage: 'url("/images/ui/00066-3457340583.png")',
+//                       // // backgroundImage: 'url("/images/ui/00071-2742202727.png")',
+//                       //                   // backgroundImage: 'url("/images/ui/00025-1079708828.png")',
+//                       //                   backgroundImage: 'url("/images/ui/00027-1079708830.png")'
 //                       //                 }}
 //                     >
 //                       <label

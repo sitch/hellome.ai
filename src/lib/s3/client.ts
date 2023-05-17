@@ -6,7 +6,7 @@ import {
 } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 
 const Bucket = env.DIGITAL_OCEAN_SPACES_BUCKET
 

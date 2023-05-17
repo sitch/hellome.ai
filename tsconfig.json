@@ -1,12 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  // "ts-node": {
-  //   // these options are overrides used only by ts-node
-  //   // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
-  //   "compilerOptions": {
-  //     "module": "commonjs"
-  //   }
-  // },
+  "ts-node": {
+    // these options are overrides used only by ts-node
+    // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "compilerOptions": {
     "noErrorTruncation": true,
     "baseUrl": ".",
@@ -31,17 +31,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-
     "paths": {
       "@/*": ["./src/*"],
-      "~/*": ["./config/*"],
       "#/*": ["./cypress/*"],
-      "next-seo.config": ["./next-seo.config.js"],
-      "next-sitemap.config": ["./next-sitemap.config.js"],
-      "next-i18next.config": ["./next-i18next.config.js"],
-      "i18next.d": ["./i18next.d.ts"],
-      "package.json": ["./package.json"],
-      "vercel.json": ["./vercel.json"]
+      "~/*": ["./*"]
     },
     "plugins": [
       {
@@ -64,13 +57,13 @@
     "src/@gen/trpc",
     "src/@gen/lulu",
     "src/@gen/crud",
-    "src/@__OLD__",
-    "src/@__OLD__",
-    "src/@__OLD__",
-    "src/@__OLD__",
-    "docs/prisma",
+    "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
+    "@__OLD__",
     "**/node_modules",
     "**/.*/",
+    "docs/prisma",
     "cypress",
     "cypress.config.ts",
     "public/fallback-*.js",

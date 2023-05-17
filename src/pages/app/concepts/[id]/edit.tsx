@@ -1,14 +1,15 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useTranslation } from "next-i18next"
-import i18NextConfig from "next-i18next.config"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
-import { type I18nNamespaces } from "i18next.d"
 import { castArray } from "lodash"
 import { XCircle } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Layout, Page } from "@/components/app"
+
+import { type I18nNamespaces } from "~/i18next.d"
+import i18NextConfig from "~/next-i18next.config"
 
 const ns: (keyof I18nNamespaces)[] = ["common", "concepts", "zod", "filepond"]
 

@@ -1,10 +1,9 @@
 import Link, { type LinkProps } from "next/link"
 import { useTranslation } from "next-i18next"
 
-import { business, social } from "@mdx/siteConfig"
-
 import { LogoIcon } from "@/components/landing2/icons"
 
+import { business, social } from "~/@mdx/siteConfig"
 import pkg from "package.json"
 
 function SocialFooter() {

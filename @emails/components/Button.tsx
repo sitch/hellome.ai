@@ -9,7 +9,7 @@ import {
   fontSize,
   fontWeight,
   lineHeight,
-} from "@emails/theme"
+} from "~/@emails/theme"
 
 type ButtonProps = React.ComponentProps<typeof MjmlButton>
 

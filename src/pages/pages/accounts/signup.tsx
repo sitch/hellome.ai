@@ -108,7 +108,7 @@ export default function SignUp() {
             <Image
               className="m-auto h-auto w-auto bg-black bg-repeat object-center invert"
               // className="object-center w-full h-auto bg-gray-200 invert"
-              src="/static/images/404.png"
+              src="/images/404.png"
               // width={1310}
               // height={873}
               height={600}

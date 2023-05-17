@@ -1,10 +1,7 @@
 import { type ParsedUrlQuery } from "querystring"
 import { type GetStaticPaths, type GetStaticProps, type NextPage } from "next"
-import i18NextConfig from "next-i18next.config"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { MDXRemote } from "next-mdx-remote"
-
-import { type I18nNamespaces } from "i18next.d"
 
 import {
   listEntries,
@@ -16,6 +13,9 @@ import {
 import { Layout } from "@/components/app"
 // import Layout from "@/components/mdx/Layout"
 import { Heading, Typography } from "@/components/mdx/ui"
+
+import { type I18nNamespaces } from "~/i18next.d"
+import i18NextConfig from "~/next-i18next.config"
 
 const ns: (keyof I18nNamespaces)[] = ["common", "footer"]
 

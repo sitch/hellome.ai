@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 import { buildSendMail } from "mailing-core"
 import nodemailer from "nodemailer"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 
 // Import env
 dotenv.config({ path: ".env.local", override: true })

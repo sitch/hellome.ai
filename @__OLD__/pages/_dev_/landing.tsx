@@ -16,8 +16,8 @@ import Header from "@/components/landing/Header"
 import { Hero } from "@/components/landing/Hero"
 import { HowDoesItWork } from "@/components/landing/HowDoesItWork"
 
-import { type I18nNamespaces } from "i18next.d"
-import i18NextConfig from "next-i18next.config"
+import { type I18nNamespaces } from "~/i18next.d"
+import i18NextConfig from "~/next-i18next.config"
 
 // Import Swiper styles
 import Team from "@/components/landing/Team"

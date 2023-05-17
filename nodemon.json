@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/nodemon",
+  "watch": [
+    "@mdx/**/*.mdx",
+    "config/env.mjs",
+    "config/envs/*.mjs",
+    "public/locales/**/*.json",
+    "public/locales/**/*.yml",
+    ".env.development.local",
+    ".env.development",
+    ".env.local",
+    ".env.test.local",
+    ".env.test",
+    ".env",
+    "next-i18next.config.js",
+    "next-seo.config.ts",
+    "next-sitemap.config.js",
+    "next.config.js",
+    "postcss.config.js",
+    "tailwind.blog.preset.js",
+    "tailwind.config.js",
+    "nodemon.json",
+    "tsconfig.json",
+    "yarn.lock"
+  ],
+  "ext": "js mjs cjs mdx json",
+  "ignore": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.png",
+    "**/*.css",
+    "**/*.scss",
+    "**/*.svg",
+    "**/*.md",
+    "**/*.snap",
+    "**/*.stylus",
+    "**/.next/**",
+    "**/cypress/**"
+  ],
+  "verbose": true
+}

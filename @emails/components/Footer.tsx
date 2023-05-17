@@ -8,8 +8,8 @@ import {
   MjmlWrapper,
 } from "mjml-react"
 
-import Link from "@emails/components/Link"
-import { colors, fontSize, fontWeight } from "@emails/theme"
+import Link from "~/@emails/components/Link"
+import { colors, fontSize, fontWeight } from "~/@emails/theme"
 
 type FooterProps = {
   includeUnsubscribe?: boolean

@@ -5,8 +5,8 @@ import { fromUnixTime } from "date-fns"
 import { listEntries } from "@/lib/mdx"
 import { type Section } from "@/lib/mdx/types"
 
-import blogArticleTimestamps from "@/@gen/next-sitemaps/blog-articles-timestamps.json"
-import blogAuthorTimestamps from "@/@gen/next-sitemaps/blog-authors-timestamps.json"
+import blogArticleTimestamps from "~/resources/timestamps/blog-articles-timestamps.json"
+import blogAuthorTimestamps from "~/resources/timestamps/blog-authors-timestamps.json"
 
 type Filename = string
 type UnixEpochTimestamp = number

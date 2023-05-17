@@ -1,12 +1,8 @@
 import { useState } from "react"
 import { type GetStaticProps, type NextPage } from "next"
 import { useTranslation } from "next-i18next"
-import i18NextConfig from "next-i18next.config"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { NextSeo } from "next-seo"
-
-import { site } from "@mdx/siteConfig"
-import { type I18nNamespaces } from "i18next.d"
 
 import { processMDXAuthors } from "@/lib/mdx"
 import { type Author } from "@/lib/mdx/types"
@@ -15,6 +11,10 @@ import { Input } from "@/components/ui/input"
 import Hero from "@/components/mdx/Hero"
 import { BlogLayout } from "@/components/mdx/Layout"
 import { AuthorsPage } from "@/components/mdx/blog/authors/AuthorsPage"
+
+import { site } from "~/@mdx/siteConfig"
+import { type I18nNamespaces } from "~/i18next.d"
+import i18NextConfig from "~/next-i18next.config"
 
 const ns: (keyof I18nNamespaces)[] = ["common", "authors", "footer"]
 

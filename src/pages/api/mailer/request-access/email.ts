@@ -1,15 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
 import Status from "http-status-codes"
-import vercel from "vercel.json"
 
 import { type BaseApiResponse, type EmailResponse } from "@/lib/api"
 import { within } from "@/lib/api/within"
 import { castMailData, type EmailPayload } from "@/lib/mailer"
 
-import { transport, verifyTransport } from "@emails/index"
-
-import { env } from "~/env.mjs"
+import { transport, verifyTransport } from "~/@emails/index"
+import { env } from "~/config/env.mjs"
+import vercel from "~/vercel.json"
 
 const MAX_DURATION_MS =
   vercel.functions["pages/api/mailer/request-access/email.ts"].maxDuration *

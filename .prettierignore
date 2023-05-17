@@ -16,4 +16,4 @@ src/styles/filepond.css
 src/styles/filepond/*.css
 
 # Temp
-src/@__OLD__
+@__OLD__

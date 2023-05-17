@@ -1,7 +1,8 @@
 import { type LinkProps } from "next/link"
 
-import { type site } from "@mdx/siteConfig"
 import { type Query, type StaticRoute } from "nextjs-routes"
+
+import { type site } from "~/@mdx/siteConfig"
 
 export type Slug = string
 export type Handle = string

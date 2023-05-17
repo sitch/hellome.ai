@@ -26,22 +26,22 @@ async function run() {
     generate({
       allowFiles: ["*.mdx"],
       projectRootPath: "@mdx/blog/articles",
-      outputFileName: "src/@gen/next-sitemaps/blog-articles-timestamps.json",
+      outputFileName: "resources/timestamps/blog-articles-timestamps.json",
     }),
     generate({
       allowFiles: ["*.mdx"],
       projectRootPath: "@mdx/blog/authors",
-      outputFileName: "src/@gen/next-sitemaps/blog-authors-timestamps.json",
+      outputFileName: "resources/timestamps/blog-authors-timestamps.json",
     }),
     generate({
       files: ["logo.png"],
       projectRootPath: "resources",
-      outputFileName: "src/@gen/next-pwa/favicon-timestamps.json",
+      outputFileName: "resources/timestamps/favicon-timestamps.json",
     }),
     generate({
       files: ["openapitools.json", "openapi.lulu.yml"],
       projectRootPath: "./",
-      outputFileName: "src/@gen/openapi/lulu-timestamps.json",
+      outputFileName: "resources/timestamps/lulu-timestamps.json",
     }),
   ])
 }

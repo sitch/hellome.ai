@@ -2,13 +2,14 @@ import type { NextPageContext } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
-import i18NextConfig from "next-i18next.config"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { type I18nNamespaces } from "i18next"
 import { Home } from "lucide-react"
 
 import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
+
+import i18NextConfig from "~/next-i18next.config"
 
 const ns: (keyof I18nNamespaces)[] = ["common"]
 
@@ -20,7 +21,7 @@ function Custom404() {
       <div className="grid h-screen place-content-center bg-white px-4">
         <div className="text-center">
           <Image
-            src="/static/images/404.png"
+            src="/images/404.png"
             height={600}
             width={600}
             alt="Cow Drawing"

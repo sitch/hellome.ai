@@ -1,6 +1,6 @@
 import { APIRoute } from "next-s3-upload"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 
 // AWS s3
 export default APIRoute.configure({

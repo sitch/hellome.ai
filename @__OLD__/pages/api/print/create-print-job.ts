@@ -1,5 +1,5 @@
 // import request from 'request'
-// import { env } from "~/env.mjs";
+// import { env } from "~/config/env.mjs";
 
 // const payload = {
 //   contact_email: 'test@test.com',

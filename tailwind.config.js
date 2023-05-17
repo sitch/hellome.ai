@@ -181,10 +181,8 @@ const config = {
         },
       },
       cursor: {
-        "dark-pen":
-          "url(/static/cursors/pen-cursor-dark-36x36.png) 0 28, crosshair",
-        "light-pen":
-          "url(/static/cursors/pen-cursor-light-36x36.png) 0 28, crosshair",
+        "dark-pen": "url(/cursors/pen-cursor-dark-36x36.png) 0 28, crosshair",
+        "light-pen": "url(/cursors/pen-cursor-light-36x36.png) 0 28, crosshair",
       },
     },
   },

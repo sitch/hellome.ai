@@ -18,7 +18,7 @@
 //     description: site.description,
 //     images: [
 //       {
-//         url: `${site.url}/static/images/banner.png`,
+//         url: `${site.url}/images/banner.png`,
 //         alt: site.title,
 //         width: 1350,
 //         height: 650,
@@ -71,10 +71,11 @@
 
 import { type DefaultSeoProps, type NextSeoProps } from "next-seo"
 
-import { site, social } from "@mdx/siteConfig"
 import { uniq } from "lodash"
 
 import { type Article } from "@/lib/mdx/types"
+
+import { site, social } from "~/@mdx/siteConfig"
 
 const defaultSEOWebsiteProps: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name}`,

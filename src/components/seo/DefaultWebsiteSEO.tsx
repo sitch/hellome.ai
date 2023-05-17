@@ -1,6 +1,6 @@
 import { DefaultSeo, type DefaultSeoProps } from "next-seo"
 
-import { site, social } from "@mdx/siteConfig"
+import { site, social } from "~/@mdx/siteConfig"
 
 const defaults: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name}`,

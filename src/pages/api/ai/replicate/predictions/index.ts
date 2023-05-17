@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 
 import Replicate from "replicate"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 import packageData from "package.json"
 
 // const WEBHOOK_HOST = env.VERCEL_URL

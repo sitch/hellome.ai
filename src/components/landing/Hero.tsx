@@ -58,7 +58,7 @@ export const Hero2 = () =>
       </p> */}
         {/* <Image
         // src="https://kitwind.io/assets/kometa/half-phone.png"
-        src="/static/images/sitchenko-infant-drawing-bw.png"
+        src="/images/sitchenko-infant-drawing-bw.png"
         className="mx-auto w-full border-4 border-black md:w-auto md:max-w-xs"
         alt=""
         height={240}

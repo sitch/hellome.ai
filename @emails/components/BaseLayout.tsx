@@ -18,7 +18,7 @@ import {
   screens,
   spacing,
   themeDefaults,
-} from "@emails/theme"
+} from "~/@emails/theme"
 
 type BaseLayoutProps = {
   width?: number

@@ -11,7 +11,7 @@ import superjson from "superjson"
 
 import { type AppRouter } from "@/server/api/root"
 
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return "" // browser should use relative url

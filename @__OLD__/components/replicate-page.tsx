@@ -1,12 +1,12 @@
 import { useState, type FormEventHandler } from "react"
 
 import naughtyWords from "naughty-words"
-import pkg from "package.json"
+import pkg from "~/package.json"
 
 import seeds from "@/lib/replicate/seeds"
 import sleep from "@/lib/replicate/sleep"
 import uploadFile from "@/lib/replicate/upload"
-import { env } from "~/env.mjs"
+import { env } from "~/config/env.mjs"
 
 import Canvas from "@/components/replicate/canvas"
 import Predictions from "@/components/replicate/concepts"

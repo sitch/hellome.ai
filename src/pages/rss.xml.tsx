@@ -5,12 +5,12 @@
  */
 
 import { type GetServerSideProps } from "next"
-import nextI18nextConfig from "next-i18next.config"
 
-import { site } from "@mdx/siteConfig"
 import RSS from "rss"
 
-import { env } from "~/env.mjs"
+import { site } from "~/@mdx/siteConfig"
+import { env } from "~/config/env.mjs"
+import nextI18nextConfig from "~/next-i18next.config"
 
 const cacheMaxAgeUntilStaleSeconds = 60 * 60 // 1 minute
 const cacheMaxAgeStaleDataReturnSeconds = 60 * 60 * 60 // 60 minutes

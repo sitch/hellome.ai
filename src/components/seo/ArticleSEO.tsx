@@ -1,12 +1,13 @@
 import { NextSeo, type DefaultSeoProps } from "next-seo"
 import { type OpenGraph } from "next-seo/lib/types"
 
-import { site } from "@mdx/siteConfig"
 import { uniq } from "lodash"
 
 import { type Article, type LocaleCode } from "@/lib/mdx/types"
 
 import { DefaultArticleSEO } from "@/components/seo/DefaultArticleSEO"
+
+import { site } from "~/@mdx/siteConfig"
 
 export const defaults: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name} Blog`,
