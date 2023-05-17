@@ -25,11 +25,11 @@
     "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts"
   },
   "scripts": {
-    "postinstall": "yarn db.generate.postinstall",
+    "postinstall": "yarn db.generate --generator client",
     "predev": "run-s --print-label favicons.generate.build",
     "dev": "nodemon --config nodemon.json --exec next dev",
     "dev.inspect": "nodemon --config nodemon.json --exec env NODE_OPTIONS='--inspect' next dev",
-    "prebuild": "run-s --print-label timestamps.generate favicons.generate.build routes.generate db.generate.prebuild",
+    "prebuild": "run-s --print-label timestamps.generate favicons.generate.build routes.generate db.generate",
     "build": "next build",
     "postbuild": "run-s --print-label sitemap.generate",
     "start": "next start",
@@ -53,8 +53,6 @@
     "db.reset.hard.dev": "dotenv -e .env -- sh -c 'yarn db.reset --force && yarn db.migrate --name create_schema && yarn db.seed'",
     "db.reset.hard.prod": "dotenv -e prisma/.env.production -- sh -c 'yarn db.reset --force && yarn db.migrate --name create_schema && yarn db.seed'",
     "db.generate": "mkdir -p resources/diagrams/erd && yarn prisma generate",
-    "db.generate.postinstall": "prisma generate --generator client",
-    "db.generate.prebuild": "prisma generate --generator client --generator zod",
     "favicons.generate_": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' bin/generate-favicons.ts",
     "favicons.generate.build": "node bin/generate-favicons.mjs",
     "favicons.generate": "node bin/generate-favicons.mjs --force",

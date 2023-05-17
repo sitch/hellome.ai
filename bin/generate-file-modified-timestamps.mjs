@@ -25,12 +25,12 @@ async function run() {
   await Promise.all([
     generate({
       allowFiles: ["*.mdx"],
-      projectRootPath: "@mdx/blog/articles",
+      projectRootPath: "data/blog/articles",
       outputFileName: "resources/timestamps/blog-articles-timestamps.json",
     }),
     generate({
       allowFiles: ["*.mdx"],
-      projectRootPath: "@mdx/blog/authors",
+      projectRootPath: "data/blog/authors",
       outputFileName: "resources/timestamps/blog-authors-timestamps.json",
     }),
     generate({

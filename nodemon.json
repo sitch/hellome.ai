@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/nodemon",
   "watch": [
-    "@mdx/**/*.mdx",
+    "data/**/*.mdx",
     "config/env.mjs",
     "config/envs/*.mjs",
     "public/locales/**/*.json",

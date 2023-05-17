@@ -3,7 +3,7 @@ import type { NextApiRequest } from "next"
 import { type ComponentMail } from "mailing-core"
 import requestIp from "request-ip"
 
-// import sendMail, { transport, verifyTransport } from '@emails'
+// import sendMail, { transport, verifyTransport } from 'emails'
 
 export type EmailPayload = {
   firstName?: string

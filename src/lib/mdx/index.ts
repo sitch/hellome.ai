@@ -29,7 +29,7 @@ export type MDXPageProps<T = {}> = {
 const root = process.cwd()
 
 export function sectionDir(section: Section) {
-  return `${root}/@mdx/${section}`
+  return `${root}/data/${section}`
 }
 
 export function listEntries(section: Section) {

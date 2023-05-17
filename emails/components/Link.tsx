@@ -2,7 +2,7 @@ import React from "react"
 
 import { type HrefProps, type MjmlText } from "mjml-react"
 
-import { colors } from "~/@emails/theme"
+import { colors } from "~/emails/theme"
 
 type LinkProps = HrefProps & React.ComponentProps<typeof MjmlText>
 type StyleProps = Pick<

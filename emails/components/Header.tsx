@@ -1,8 +1,8 @@
 import { MjmlColumn, MjmlGroup, MjmlSection, MjmlWrapper } from "mjml-react"
 
-import Link from "~/@emails/components/Link"
-import Text from "~/@emails/components/Text"
-import { colors, fontSize, fontWeight, lineHeight } from "~/@emails/theme"
+import Link from "~/emails/components/Link"
+import Text from "~/emails/components/Text"
+import { colors, fontSize, fontWeight, lineHeight } from "~/emails/theme"
 
 export default function Header() {
   return (

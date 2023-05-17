@@ -5,7 +5,7 @@ import { type Author, type LocaleCode } from "@/lib/mdx/types"
 
 import { DefaultAuthorSEO } from "@/components/seo/DefaultAuthorSEO"
 
-import { site } from "~/@mdx/siteConfig"
+import { site } from "~/data/siteConfig"
 
 export const defaults: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name} Blog`,

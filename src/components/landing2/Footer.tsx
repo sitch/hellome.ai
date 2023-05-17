@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next"
 
 import { LogoIcon } from "@/components/landing2/icons"
 
-import { business, social } from "~/@mdx/siteConfig"
+import { business, social } from "~/data/siteConfig"
 import pkg from "package.json"
 
 function SocialFooter() {

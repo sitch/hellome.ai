@@ -12,7 +12,7 @@ import Hero from "@/components/mdx/Hero"
 import { BlogLayout } from "@/components/mdx/Layout"
 import { ArticlesPage } from "@/components/mdx/blog/articles/ArticlesPage"
 
-import { site } from "~/@mdx/siteConfig"
+import { site } from "~/data/siteConfig"
 import { type I18nNamespaces } from "~/i18next.d"
 import i18NextConfig from "~/next-i18next.config"
 

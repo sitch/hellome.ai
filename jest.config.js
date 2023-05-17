@@ -31,7 +31,8 @@ const customJestConfig = {
   // The paths have to be matching with the paths option within the compilerOptions in the tsconfig.json
   // For example:
   moduleNameMapper: {
-    "@/(.*)$": "<rootDir>/$1",
+    "~/(.*)$": "<rootDir>/$1",
+    "@/(.*)$": "<rootDir>/src/$1",
     "#/(.*)$": "<rootDir>/cypress/$1",
   },
   testEnvironment: "jest-environment-jsdom",

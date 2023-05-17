@@ -1,4 +1,4 @@
-import Welcome from "~/@emails/Welcome"
+import Welcome from "~/emails/Welcome"
 
 export function preview() {
   return <Welcome includeUnsubscribe />

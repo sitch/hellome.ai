@@ -20,7 +20,7 @@ const sortImports = {
     "",
     "^@/components/ui/(.*)$",
     "^@/components/(.*)$",
-    "^@emails/(.*)$",
+    "^emails/(.*)$",
     "",
     "^@/gen/(.*)$",
     "^types$",

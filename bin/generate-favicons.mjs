@@ -71,11 +71,11 @@ function templateForComponent({ html }) {
   const appTags = jsx.filter((tag) => isNextAppHeadTag(tag))
   const documentTags = jsx.filter((tag) => !isNextAppHeadTag(tag))
 
-  // add to App
+  // TODO: add to App
   // <meta name="theme-color" media="(prefers-color-scheme: light)" content="cyan" />
   // <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
 
-  // Add to Document
+  // TODO: Add to Document
   /* <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5" /> */
 
   return `
