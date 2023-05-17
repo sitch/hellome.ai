@@ -8,9 +8,8 @@ module.exports = {
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
-
     localeDetection: true,
-    localeExtension: "json",
+    // localeExtension: "json",
     // localeExtension: 'yml',
   },
 

@@ -2,8 +2,8 @@ import Link from "next/link"
 
 import { type Article } from "@/lib/mdx/types"
 
-import * as DateTimes from "@/components/mdx/ui/DateTimes"
-import * as Media from "@/components/mdx/ui/Media"
+import * as DateTimes from "@/mdx/ui/DateTimes"
+import * as Media from "@/mdx/ui/Media"
 
 export type ArticleHeroProps = {
   article: Article

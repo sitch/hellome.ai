@@ -8,9 +8,10 @@ import { processMDXArticles } from "@/lib/mdx"
 import { type Article } from "@/lib/mdx/types"
 
 import { Input } from "@/components/ui/input"
-import Hero from "@/components/mdx/Hero"
-import { BlogLayout } from "@/components/mdx/Layout"
-import { ArticlesPage } from "@/components/mdx/blog/articles/ArticlesPage"
+
+import Hero from "@/mdx/Hero"
+import { BlogLayout } from "@/mdx/Layout"
+import { ArticlesPage } from "@/mdx/blog/articles/ArticlesPage"
 
 import { site } from "~/data/siteConfig"
 import { type I18nNamespaces } from "~/i18next.d"

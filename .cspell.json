@@ -29,7 +29,7 @@
     "data/policies/terms-of-service.mdx",
     "data/policies/ugc-terms-and-conditions.mdx",
     "src/lib/replicate",
-    "src/components/mdx/Layout.tsx",
+    "src/mdx/Layout.tsx",
     "src/components/landing/Footer.tsx",
     "src/components/landing/Header.tsx",
     "src/components/landing/Hero.tsx",

@@ -1,7 +1,7 @@
 import { type ReactNode } from "react"
 
-import * as Heading from "@/components/mdx/ui/Heading"
-import * as Typography from "@/components/mdx/ui/Typography"
+import * as Heading from "@/mdx/ui/Heading"
+import * as Typography from "@/mdx/ui/Typography"
 
 export type HeroProps = {
   title: string

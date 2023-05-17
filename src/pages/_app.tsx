@@ -11,10 +11,11 @@ import { FontFix } from "@/lib/fonts"
 import { api } from "@/utils/api"
 
 import { Toaster } from "@/components/ui/toaster"
-import { AppHeadMetadata } from "@/components/@gen/pwa/head-metadata"
 import { TailwindIndicator } from "@/components/app/tailwind-indicator"
 import { ThemeProvider } from "@/components/app/theme-provider"
 import { DefaultWebsiteSEO } from "@/components/seo/DefaultWebsiteSEO"
+
+import { AppHeadMetadata } from "@/@gen/favicons/head-metadata"
 
 import "@/styles/chrome-bug.css"
 import "@/styles/filepond.css"

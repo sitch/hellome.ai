@@ -13,7 +13,7 @@ const generatorConfig = {
   logoPath: "resources/logo.png",
   output: {
     component: {
-      path: "src/components/@gen/pwa/head-metadata.tsx",
+      path: "src/@gen/favicons/head-metadata.tsx",
     },
     favicons: {
       path: "/",

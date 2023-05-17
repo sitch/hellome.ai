@@ -11,7 +11,8 @@ import {
 } from "@/lib/mdx"
 
 import { Layout } from "@/components/app"
-import { Heading, Typography } from "@/components/mdx/ui"
+
+import { Heading, Typography } from "@/mdx/ui"
 
 import { type I18nNamespaces } from "~/i18next.d"
 import i18NextConfig from "~/next-i18next.config"

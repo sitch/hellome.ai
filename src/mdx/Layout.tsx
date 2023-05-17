@@ -9,14 +9,9 @@ import { MDXProvider } from "@mdx-js/react"
 import type { MDXComponents } from "mdx/types"
 
 import { Layout } from "@/components/app"
+
 // import Header from './Header'
-import {
-  DateTimes,
-  Heading,
-  Lists,
-  Media,
-  Typography,
-} from "@/components/mdx/ui"
+import { DateTimes, Heading, Lists, Media, Typography } from "@/mdx/ui"
 
 const Hero = () => (
   <section className="relative">

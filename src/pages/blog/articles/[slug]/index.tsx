@@ -11,9 +11,10 @@ import {
   type AuthorSource,
 } from "@/lib/mdx/types"
 
-import { BlogLayout } from "@/components/mdx/Layout"
-import { ArticleBody } from "@/components/mdx/blog/articles/ArticleBody"
 import { ArticleSEO } from "@/components/seo/ArticleSEO"
+
+import { BlogLayout } from "@/mdx/Layout"
+import { ArticleBody } from "@/mdx/blog/articles/ArticleBody"
 
 import { type I18nNamespaces } from "~/i18next.d"
 import i18NextConfig from "~/next-i18next.config"

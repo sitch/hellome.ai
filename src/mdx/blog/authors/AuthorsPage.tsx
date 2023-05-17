@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next"
 
 import { type Author } from "@/lib/mdx/types"
 
-import { AuthorCard } from "@/components/mdx/blog/authors/AuthorCard"
+import { AuthorCard } from "@/mdx/blog/authors/AuthorCard"
 
 export type AuthorsPageProps = {
   authors: Author[]
