@@ -1,15 +1,15 @@
 /// <reference types="cypress" />
 
-import { emulate } from "@/cypress/commands/emulation"
+import { emulate } from "#/commands/emulation"
 import {
   MATCH_IMAGE_TEST_CASE,
   SCROLLBAR_TEST_CASE,
-} from "@/cypress/commands/screenshots"
+} from "#/commands/screenshots"
 import {
   filterByBreakPoint,
   viewportLandscapePresets,
   viewportPortraitPresets,
-} from "@/cypress/commands/viewports"
+} from "#/commands/viewports"
 
 describe("<Home /> (dark-mode)", () => {
   beforeEach(() => {

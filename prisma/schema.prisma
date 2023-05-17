@@ -24,26 +24,26 @@ datasource db {
 
 generator docs {
   provider = "node node_modules/prisma-docs-generator"
-  output   = "../@gen/doc/prisma"
+  output   = "../docs/prisma"
 }
 
 generator erd {
   provider                  = "prisma-erd-generator"
-  output                    = "../@gen/erd/ERD.svg"
+  output                    = "../resources/diagrams/erd/prisma-schema.svg"
   theme                     = "default"
   includeRelationFromFields = true
 }
 
 generator erd_simple {
   provider  = "prisma-erd-generator"
-  output    = "../@gen/erd/ERD.simple.svg"
+  output    = "../resources/diagrams/erd/prisma-schema.simple.svg"
   theme     = "default"
   tableOnly = true
 }
 
 generator zod {
   provider                 = "zod-prisma-types"
-  output                   = "../@gen/zod" // default is ./generated/zod
+  output                   = "../src/@gen/zod" // default is ./generated/zod
   // useMultipleFiles                 = true  // default is false
   // createInputTypes                 = false // default is true
   // createModelTypes                 = false // default is true
@@ -61,7 +61,7 @@ generator zod {
 
 generator trpc {
   provider                 = "prisma-trpc-generator"
-  output                   = "../@gen/trpc"
+  output                   = "../src/@gen/trpc"
   // output                   = "../server"
   contextPath              = "../server/context"
   trpcOptionsPath          = "../server/trpcOptions"
@@ -79,7 +79,7 @@ generator trpc {
 
 generator crud {
   provider = "prisma-next-crud-generator"
-  output   = "../@gen/crud"
+  output   = "../src/@gen/crud"
 }
 
 // -----------------------------------------------------------------------------

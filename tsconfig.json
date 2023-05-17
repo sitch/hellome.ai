@@ -33,9 +33,15 @@
     "incremental": true,
 
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./src/*"],
+      "~/*": ["./config/*"],
       "#/*": ["./cypress/*"],
-      "package.json": ["package.json"]
+      "next-seo.config": ["./next-seo.config.js"],
+      "next-sitemap.config": ["./next-sitemap.config.js"],
+      "next-i18next.config": ["./next-i18next.config.js"],
+      "i18next.d": ["./i18next.d.ts"],
+      "package.json": ["./package.json"],
+      "vercel.json": ["./vercel.json"]
     },
     "plugins": [
       {
@@ -55,13 +61,14 @@
     "**/*.mjs"
   ],
   "exclude": [
-    "@gen/trpc",
-    "@gen/lulu",
-    "@gen/crud",
-    "@__OLD__",
-    "@__OLD__",
-    "@__OLD__",
-    "@__OLD__",
+    "src/@gen/trpc",
+    "src/@gen/lulu",
+    "src/@gen/crud",
+    "src/@__OLD__",
+    "src/@__OLD__",
+    "src/@__OLD__",
+    "src/@__OLD__",
+    "docs/prisma",
     "**/node_modules",
     "**/.*/",
     "cypress",

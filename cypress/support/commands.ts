@@ -48,7 +48,7 @@ import "cypress-wait-until"
 // User Commands
 // ***********************************************
 
-// import '@/cypress/commands/screenshots'
+// import '#/commands/screenshots'
 
 declare global {
   namespace Cypress {

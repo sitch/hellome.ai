@@ -4,7 +4,7 @@
     "generators": {
       "v3.0": {
         "inputSpec": "openapi.lulu.yml",
-        "output": "@gen/lulu",
+        "output": "src/@gen/lulu",
         "generatorName": "typescript-fetch",
         "skipValidateSpec": true,
         "enablePostProcessFile": true,

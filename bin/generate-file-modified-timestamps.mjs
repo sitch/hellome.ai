@@ -25,23 +25,23 @@ async function run() {
   await Promise.all([
     generate({
       allowFiles: ["*.mdx"],
-      projectRootPath: "data/blog/articles",
-      outputFileName: "@gen/next-sitemaps/blog-articles-timestamps.json",
+      projectRootPath: "@mdx/blog/articles",
+      outputFileName: "src/@gen/next-sitemaps/blog-articles-timestamps.json",
     }),
     generate({
       allowFiles: ["*.mdx"],
-      projectRootPath: "data/blog/authors",
-      outputFileName: "@gen/next-sitemaps/blog-authors-timestamps.json",
+      projectRootPath: "@mdx/blog/authors",
+      outputFileName: "src/@gen/next-sitemaps/blog-authors-timestamps.json",
     }),
     generate({
       files: ["logo.png"],
       projectRootPath: "resources",
-      outputFileName: "@gen/next-pwa/favicon-timestamps.json",
+      outputFileName: "src/@gen/next-pwa/favicon-timestamps.json",
     }),
     generate({
       files: ["openapitools.json", "openapi.lulu.yml"],
       projectRootPath: "./",
-      outputFileName: "@gen/openapi/lulu-timestamps.json",
+      outputFileName: "src/@gen/openapi/lulu-timestamps.json",
     }),
   ])
 }

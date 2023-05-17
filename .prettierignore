@@ -6,14 +6,14 @@ node_modules
 public
 
 # Generated
-@gen
+src/@gen
 
 # Generated (lulu)
 openapi.lulu.yml
 
 # Filepond
-styles/filepond.css
-styles/filepond/*.css
+src/styles/filepond.css
+src/styles/filepond/*.css
 
 # Temp
-@__OLD__
+src/@__OLD__

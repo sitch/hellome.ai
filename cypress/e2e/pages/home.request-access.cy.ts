@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { emulate } from "@/cypress/commands/emulation"
+import { emulate } from "#/commands/emulation"
 
 const BASE = "RequestAccess:EmailForm"
 

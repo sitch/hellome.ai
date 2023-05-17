@@ -1,6 +1,6 @@
 // // @ts-check
 
-// const { site, social } = require('./data/siteConfig')
+// const { site, social } = require('./@mdx/siteConfig')
 
 // /**
 //  * @type {import('next-seo').DefaultSeoProps}
@@ -69,13 +69,12 @@
 //   ],
 // })
 
-import { DefaultSeoProps, NextSeoProps } from "next-seo"
+import { type DefaultSeoProps, type NextSeoProps } from "next-seo"
 
+import { site, social } from "@mdx/siteConfig"
 import { uniq } from "lodash"
 
-import { site, social } from "@/data/siteConfig"
-
-import { Article } from "./lib/mdx/types"
+import { type Article } from "@/lib/mdx/types"
 
 const defaultSEOWebsiteProps: DefaultSeoProps = {
   titleTemplate: `%s | ${site.name}`,

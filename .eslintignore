@@ -11,11 +11,11 @@ public/fallback-*.js
 public/workbox-*.js
 
 # Generated
-@gen
+src/@gen
 
 # Filepond
-styles/filepond.css
-styles/filepond/*.css
+src/styles/filepond.css
+src/styles/filepond/*.css
 
 # Temp
-@__OLD__
+src/@__OLD__
