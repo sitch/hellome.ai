@@ -64,13 +64,11 @@
   ],
   "words": [
     "agender",
-    "Bednarczuk",
-    "Zanesville",
-    "mrsmaryjane",
     "antispoof",
     "autoincrement",
     "Barlinks",
     "basenames",
+    "Bednarczuk",
     "behaviour",
     "Bigcommerce",
     "bigender",
@@ -177,6 +175,7 @@
     "mjml",
     "momo",
     "Morty",
+    "mrsmaryjane",
     "msapplication",
     "mstile",
     "navigations",
@@ -248,6 +247,7 @@
     "Sendgrid",
     "Serverside",
     "Sfcc",
+    "shadcn",
     "shoutout",
     "Signup",
     "SIGNUP",
@@ -291,6 +291,7 @@
     "webm",
     "webp",
     "webrtc",
-    "Withinable"
+    "Withinable",
+    "Zanesville"
   ]
 }
