@@ -29,7 +29,7 @@
     "predev": "run-s --print-label favicons.generate.build",
     "dev": "nodemon --config nodemon.json --exec next dev",
     "dev.inspect": "nodemon --config nodemon.json --exec env NODE_OPTIONS='--inspect' next dev",
-    "prebuild": "run-s --print-label timestamps.generate favicons.generate.build routes.generate db.generate --generator client",
+    "prebuild": "run-s --print-label timestamps.generate favicons.generate.build routes.generate && yarn db.generate --generator client",
     "build": "next build",
     "postbuild": "run-s --print-label sitemap.generate",
     "start": "next start",
