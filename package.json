@@ -95,7 +95,7 @@
     "clean": "run-p --silent --print-name clean:** && yarn cache clean && yarn --check-files && yarn gen",
     "_________routes.generate": "npx nextjs-routes",
     "routes.generate": "echo '[routes.generate] skipping...'",
-    "mesh.generate": "mkdir -p src/@gen/meshes && npx gltfjsx public/@shirt/book.glb --types --output src/@gen/meshes/BookMesh.tsx",
+    "mesh.generate": "mkdir -p src/@gen/meshes && npx gltfjsx public/@shirt/book.glb --types --transform --shadows --output src/@gen/meshes/BookMesh.tsx",
     "gen.all": "run-p --print-label openapi.build gen",
     "gen": "run-s --print-label mesh.generate timestamps.generate favicons.generate db.build routes.generate",
     "test": "jest",
