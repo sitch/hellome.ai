@@ -21,6 +21,7 @@ import "@/styles/chrome-bug.css"
 import "@/styles/filepond.css"
 import "@/styles/globals.css"
 import "@/components/books/BookCustomizer/styles.css"
+import "@/components/characters/styles.css"
 
 export function reportWebVitals({
   id,

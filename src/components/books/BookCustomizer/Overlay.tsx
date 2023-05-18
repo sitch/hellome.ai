@@ -134,7 +134,7 @@ function Customizer() {
               className={`decal`}
               onClick={() => (state.decal = decal)}
             >
-              <img src={"/@shirt/" + decal + "_thumb.png"} alt="brand" />
+              <img src={"/@meshes/" + decal + "_thumb.png"} alt="brand" />
             </div>
           ))}
         </div>

@@ -23,3 +23,17 @@
 
 - <https://www.react-spring.dev/docs/components/use-spring#demos>
 - <https://codesandbox.io/s/o2tp9?file=/src/App.tsx>
+
+## AnimatedBook
+
+- <https://blendswap.com/search?keyword=book+animation&blendLicense=&renderEngine=&blenderVersion=>
+
+- <https://blendswap.com/blend/18056>
+- <https://blendswap.com/blend/16962>
+- <https://blendswap.com/blend/8083>
+
+### Refs
+
+- <https://jsfiddle.net/mornejac/p20aot9h/7/>
+- <https://zachernuk.neocities.org/2021/gutenberg/>
+- <https://codepen.io/zachernuk/embed/BadQXXX?>

@@ -11,7 +11,10 @@ public/fallback-*.js
 public/workbox-*.js
 
 # Generated
-src/@gen
+# src/@gen
+src/@gen/crud
+src/@gen/lulu
+src/@gen/trpc
 
 # Filepond
 src/styles/filepond.css

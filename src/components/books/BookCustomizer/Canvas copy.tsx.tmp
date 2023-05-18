@@ -94,13 +94,9 @@ function CameraRig({ children }) {
 
 function Shirt(props) {
   const snap = useSnapshot(state)
-  const texture = useTexture(`/@shirt/${snap.decal}.png`)
-  // const { nodes, materials } = useGLTF("/@shirt/shirt_baked_collapsed.glb")
-  const result = useGLTF("/@shirt/book.glb")
-
-  // debugger
-
-  const { nodes, materials } = useGLTF("/@shirt/book.glb")
+  const texture = useTexture(`/@meshes/${snap.decal}.png`)
+  // const { nodes, materials } = useGLTF("/@meshes/shirt_baked_collapsed.glb")
+  const { nodes, materials } = useGLTF("/@meshes/book.glb")
   useFrame((state, delta) =>
     easing.dampC(materials.magazine_01_cover89.color, snap.color, 0.25, delta),
   )
@@ -125,9 +121,9 @@ function Shirt(props) {
   )
 }
 
-;["/@shirt/react.png", "/@shirt/three2.png", "/@shirt/pmndrs.png"].forEach(
+;["/@meshes/react.png", "/@meshes/three2.png", "/@meshes/pmndrs.png"].forEach(
   useTexture.preload,
 )
 
-useGLTF.preload("/@shirt/book.glb")
-// useGLTF.preload("/@shirt/shirt_baked_collapsed.glb")
+useGLTF.preload("/@meshes/book.glb")
+// useGLTF.preload("/@meshes/shirt_baked_collapsed.glb")

@@ -6,7 +6,10 @@ node_modules
 public
 
 # Generated
-src/@gen
+# src/@gen
+src/@gen/crud
+src/@gen/lulu
+src/@gen/trpc
 
 # Generated (lulu)
 openapi.lulu.yml

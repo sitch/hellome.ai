@@ -158,10 +158,10 @@ type GLTFBook = GLTF & {
 function Shirt(props: ShirtProps) {
   const snap = useSnapshot(state)
 
-  const bookCoverTexture = useTexture(`/@shirt/${snap.decal}.png`)
+  const bookCoverTexture = useTexture(`/@meshes/${snap.decal}.png`)
 
-  const texture = useTexture(`/@shirt/${snap.decal}.png`)
-  // const { nodes, materials } = useGLTF("/@shirt/shirt_baked_collapsed.glb")
+  const texture = useTexture(`/@meshes/${snap.decal}.png`)
+  // const { nodes, materials } = useGLTF("/@meshes/shirt_baked_collapsed.glb")
   // useFrame((state, delta) =>
   //   easing.dampC(materials.lambert1.color, snap.color, 0.25, delta),
   // )
@@ -171,7 +171,7 @@ function Shirt(props: ShirtProps) {
    * @link https://github.com/pmndrs/gltfjsx#readme
    */
   const { nodes, materials } = useGLTF(
-    "/@shirt/book.glb",
+    "/@meshes/book.glb",
   ) as unknown as GLTFBook
   useFrame((state, delta) =>
     easing.dampC(materials.magazine_01_cover89.color, snap.color, 0.25, delta),
@@ -221,8 +221,8 @@ function Shirt(props: ShirtProps) {
   )
 }
 
-useGLTF.preload("/@shirt/book.glb")
-useGLTF.preload("/@shirt/shirt_baked_collapsed.glb")
-;["/@shirt/react.png", "/@shirt/three2.png", "/@shirt/pmndrs.png"].forEach(
+useGLTF.preload("/@meshes/book.glb")
+useGLTF.preload("/@meshes/shirt_baked_collapsed.glb")
+;["/@meshes/react.png", "/@meshes/three2.png", "/@meshes/pmndrs.png"].forEach(
   useTexture.preload,
 )
