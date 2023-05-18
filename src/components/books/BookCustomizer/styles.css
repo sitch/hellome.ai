@@ -1,0 +1,317 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,600;1,900&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+html {
+  font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#main {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+body {
+  background: #f0f0f0;
+  font-family: 'Inter', sans-serif;
+} */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+canvas {
+  opacity: 0;
+  animation: fade-in 1s ease 0.3s forwards;
+  touch-action: none;
+}
+
+header {
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  width: 100%;
+}
+
+header p {
+  transition: all 1.2s ease-out;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+header p.hidden {
+  opacity: 0;
+}
+
+section {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.section--container {
+  margin-top: 5vh;
+  margin-left: 5vw;
+
+  /* margin-top: 0; */
+  /* margin-left: 0; */
+}
+
+.section--container.hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section--container h1 {
+  width: 30%;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 8rem;
+  line-height: 10rem;
+  font-family: "Nunito Sans", sans-serif;
+  letter-spacing: -6px;
+}
+
+.support--content {
+  position: relative;
+  top: -25%;
+  left: 300px;
+}
+
+.support--content p {
+  margin-bottom: 48px;
+  width: 350px;
+  line-height: 1.5rem;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100;
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.09px black;
+  border: none;
+  border-radius: 4px;
+  background-color: #dd5c18;
+  padding: 15px 30px;
+  pointer-events: all;
+  color: white;
+  font-weight: bolder;
+
+  text-transform: uppercase;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: inset 250px 0 0 0 black;
+}
+
+/* CUSTOMIZER */
+
+.customizer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 100%;
+  height: 100%;
+}
+
+.customizer span {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.customizer span svg {
+  padding-right: 5px;
+  width: 24px;
+}
+
+.share {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+
+.zoom {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transition: border, color 1s ease;
+  cursor: pointer;
+  border: 1px solid #00000000;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #00000056;
+  font-weight: 600;
+  font-size: 0.6rem;
+}
+
+.zoom:hover {
+  color: black;
+}
+
+/* PICKER */
+
+.picker {
+  position: absolute !important;
+  bottom: 4em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px !important;
+  height: 120px !important;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.circle {
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.circle:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.decals {
+  position: absolute;
+  bottom: 40px;
+  left: 50px;
+}
+
+.decals p {
+  padding-bottom: 15px;
+  font-size: 0.7rem;
+  font-family: "Inter var";
+}
+
+.decals img {
+  filter: saturate(0) invert(1) brightness(5.5);
+  transition: all 0.2s ease-in-out;
+  width: 24px;
+}
+
+.decals img:hover {
+  transform: scale(1.2);
+  filter: none;
+  cursor: pointer;
+}
+
+.decals--position {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transition: border 1s ease;
+  cursor: pointer;
+  border: 1px solid #00000000;
+  border-radius: 50px;
+  padding: 10px 10px;
+  color: #00000056;
+  font-weight: 600;
+  font-size: 0.6rem;
+}
+
+.decals--position:hover {
+  border: 1px solid #00000056;
+  color: black;
+}
+
+.upload {
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.upload:hover {
+  color: white;
+}
+
+.decals--container {
+  display: flex;
+  gap: 20px;
+}
+
+.exit {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  box-shadow: inset 0 0 0 0.09px black;
+  background-color: black;
+}
+
+.exit:hover {
+  box-shadow: inset -250px 0 0 0 black;
+}
+
+@media screen and (max-width: 600px) {
+  .section--container {
+    margin-left: 15vw;
+  }
+
+  .section--container h1 {
+    font-size: 8rem;
+    line-height: 6rem;
+    letter-spacing: -6px;
+  }
+
+  .color-options {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    flex-direction: column;
+    transform: translateY(-50%);
+    margin-bottom: 20px;
+  }
+
+  .support--content {
+    top: -10%;
+    left: 0;
+  }
+}

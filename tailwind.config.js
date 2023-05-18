@@ -17,6 +17,8 @@ const config = {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/react-tailwindcss-select/dist/index.esm.js",
 
+    // "node_modules/daisyui/dist/**/*.js",
+    // "node_modules/react-daisyui/dist/**/*.js",
     // TODO: remove
     // "./node_modules/flowbite/**/*.js",
   ],
@@ -26,7 +28,12 @@ const config = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
 
-    require("@headlessui/tailwindcss"),
+    // Libraries
+    // require("@headlessui/tailwindcss"),
+    // require("daisyui"),
+
+    // @ts-ignore
+    require("tailwindcss-radix")(),
 
     // shadcn/ui
     plugin(({ addVariant }) => {

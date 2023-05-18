@@ -27,6 +27,7 @@ declare module "nextjs-routes" {
     | DynamicRoute<"/app/concepts/[id]", { "id": string }>
     | StaticRoute<"/app/concepts">
     | StaticRoute<"/app/concepts/new">
+    | StaticRoute<"/app/concepts/new2">
     | StaticRoute<"/app">
     | StaticRoute<"/app/studio">
     | DynamicRoute<"/blog/articles/[slug]", { "slug": string }>
@@ -34,6 +35,7 @@ declare module "nextjs-routes" {
     | DynamicRoute<"/blog/authors/[handle]", { "handle": string }>
     | StaticRoute<"/blog/authors">
     | StaticRoute<"/">
+    | StaticRoute<"/landing">
     | StaticRoute<"/pages/accounts/forgot-password">
     | StaticRoute<"/pages/accounts/reset-password">
     | StaticRoute<"/pages/accounts/signup">

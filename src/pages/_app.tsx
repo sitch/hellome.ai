@@ -20,6 +20,7 @@ import { AppHeadMetadata } from "@/@gen/favicons/head-metadata"
 import "@/styles/chrome-bug.css"
 import "@/styles/filepond.css"
 import "@/styles/globals.css"
+import "@/components/books/BookCustomizer/styles.css"
 
 export function reportWebVitals({
   id,
