@@ -252,7 +252,7 @@
     "react-filepond": "^7.1.2",
     "react-headless-pagination": "^1.1.4",
     "react-hook-form": "7.43.9",
-    "react-i18next": "^12.3.0",
+    "react-i18next": "^12.3.1",
     "react-merge-refs": "^2.0.2",
     "react-select": "^5.7.3",
     "react-sketch-canvas": "^6.2.0",
