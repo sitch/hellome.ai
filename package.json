@@ -221,7 +221,7 @@
     "jspdf": "^2.5.1",
     "jszip": "^3.10.1",
     "lodash": "^4.17.21",
-    "lucide-react": "^0.219.0",
+    "lucide-react": "^0.220.0",
     "maath": "^0.5.3",
     "mailing-core": "^1.0.0",
     "mdx-prism": "^0.3.4",
