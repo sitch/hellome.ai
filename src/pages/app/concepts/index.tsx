@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import Paginator from "@/components/ui/pagination"
 import { Layout, Page } from "@/components/app"
-import { DataTableSkeleton } from "@/components/app/data-table-skeleton"
+import { DataTableSkeleton } from "@/components/app/loading/data-table-skeleton"
 import { columns } from "@/components/concepts/columns"
 
 import { type I18nNamespaces } from "~/i18next.d"

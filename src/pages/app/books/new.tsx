@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Layout, Page } from "@/components/app"
 import { BookCustomizer } from "@/components/books/BookCustomizer/BookCustomizer"
 import { StarsOverlay } from "@/components/common/StarsOverlay/StarsOverlay"
+
+import { LogoMesh } from "@/scenes/meshes/LogoMesh"
 
 import { type I18nNamespaces } from "~/i18next.d"
 import i18NextConfig from "~/next-i18next.config"
@@ -60,9 +62,16 @@ export default function New(
 
   return (
     <div id="root" className=" h-screen w-screen overflow-hidden">
+      {/* <StarsOverlay /> */}
+
       <BookCustomizer />
     </div>
   )
+
+  // return (
+
+  //   <LogoMesh />
+  // )
 
   return (
     <>
@@ -84,7 +93,7 @@ export default function New(
         >
           {/* <StarsOverlay /> */}
 
-          <BookCustomizer />
+          {/* <BookCustomizer /> */}
 
           <section className="body-font text-gray-600">
             <div className="container mx-auto flex flex-col flex-wrap px-5 py-24">

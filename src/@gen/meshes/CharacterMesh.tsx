@@ -6,8 +6,13 @@ Command: npx gltfjsx@6.1.11 public/@meshes/character.glb --types --shadows --tra
 import { useRef } from "react"
 
 import { useGLTF } from "@react-three/drei"
+import { motion } from "framer-motion"
+import { castArray } from "lodash"
 import type * as THREE from "three"
 import { type GLTF } from "three-stdlib"
+import { useSnapshot } from "valtio"
+
+import { state } from "@/components/books/BookCustomizer/store"
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -29,16 +34,46 @@ type ActionName =
   | "idle"
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
-export function Model(props: JSX.IntrinsicElements["group"]) {
+export function CharacterMesh(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF(
-    "/../../character-transformed.glb",
+    "/@meshes/character-transformed.glb",
   ) as GLTFResult
   // const { actions } = useAnimations<GLTFActions>(animations, group)
+
+  const snap = useSnapshot(state)
+
+  // const opacity = ["intro", "book"].includes(snap.page) ? 1 : 0
+
+  // castArray(nodes.stacy.material).forEach(material => material.opacity = opacity)
+
+  if (!["character"].includes(snap.page)) {
+    return null
+  }
+
   return (
+    //   <motion.div
+    //   className=""
+    //   initial={{ opacity: 0 }}
+    //   animate={{ opacity: snap.page === "character" ? 1 : 0 }}
+    //   transition={{
+    //     type: "spring",
+    //     damping: 7,
+    //     stiffness: 30,
+    //     restDelta: 0.001,
+    //     duration: 0.6,
+    //     delay: 0.2,
+    //     delayChildren: 0.2,
+    //   }}
+    // >
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <group name="Stacy" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <group
+          name="Stacy"
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={0.005}
+          position={[0.2, -0.4, -0.1]}
+        >
           <primitive object={nodes.mixamorigHips} />
           <skinnedMesh
             name="stacy"
@@ -46,12 +81,14 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
             material={nodes.stacy.material}
             skeleton={nodes.stacy.skeleton}
             rotation={[-Math.PI / 2, 0, 0]}
-            scale={100}
+            // position={[0, 0, 0]}
+            scale={5}
           />
         </group>
       </group>
     </group>
+    // </motion.div>
   )
 }
 
-useGLTF.preload("/../../character-transformed.glb")
+useGLTF.preload("/@meshes/character-transformed.glb")

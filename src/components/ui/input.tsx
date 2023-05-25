@@ -7,7 +7,10 @@ import { cn } from "@/lib/utils"
 export type InputProps = {} & React.InputHTMLAttributes<HTMLInputElement>
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }: InputProps, ref) => {
+  (
+    { className, type, autoComplete = "new-password", ...props }: InputProps,
+    ref,
+  ) => {
     return (
       <input
         type={type}
@@ -19,6 +22,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className,
         )}
         ref={ref}
+        autoComplete={autoComplete}
         {...props}
       />
     )

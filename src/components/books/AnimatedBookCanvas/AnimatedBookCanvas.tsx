@@ -4,6 +4,9 @@
 // var angle, speed
 
 // import * as THREE from "three"
+// import { OrbitControls } from '@/node_modules/three/examples/jsm/controls/OrbitControls'
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// import oc from 'three-orbit-controls'
 
 // init()
 
@@ -237,4 +240,4 @@
 //   requestAnimationFrame(render)
 // }
 
-export default {}
+export const ignore = {}

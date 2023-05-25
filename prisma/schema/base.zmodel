@@ -1,0 +1,40 @@
+
+abstract model Base {
+  id String @id
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+}
+
+
+model User extends Base {
+  firstName String
+  lastName String
+}
+
+model Author extends Base {
+  status String
+}
+
+model Artist extends Base {
+  status String
+}
+
+model Profile extends Base {
+  status String
+}
+
+model Story extends Base {
+  status String
+}
+
+model Avatar extends Base {
+  status String
+}
+
+model Book extends Base {
+  status String
+}
+
+model Concept extends Base {
+  status String
+}

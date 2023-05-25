@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "zenstack.zenstack",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "astro-build.astro-vscode",

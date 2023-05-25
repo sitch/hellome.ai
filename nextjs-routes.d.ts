@@ -23,11 +23,11 @@ declare module "nextjs-routes" {
     | StaticRoute<"/api/uploads/process">
     | DynamicRoute<"/api/uploads/restore/[...id]", { "id": string[] }>
     | StaticRoute<"/api/uploads/revert">
+    | StaticRoute<"/app/books/new">
     | DynamicRoute<"/app/concepts/[id]/edit", { "id": string }>
     | DynamicRoute<"/app/concepts/[id]", { "id": string }>
     | StaticRoute<"/app/concepts">
     | StaticRoute<"/app/concepts/new">
-    | StaticRoute<"/app/concepts/new2">
     | StaticRoute<"/app">
     | StaticRoute<"/app/studio">
     | DynamicRoute<"/blog/articles/[slug]", { "slug": string }>

@@ -5,7 +5,7 @@ import { Fragment, useEffect, useRef, useState } from "react"
 import { type Prediction } from "@prisma/client"
 import copy from "copy-to-clipboard"
 
-import Loader from "@/components/app/loader"
+import Loader from "@/components/app/loading/loader"
 
 type Props = {
   predictions: object

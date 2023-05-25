@@ -1,7 +1,11 @@
 import PulseLoader from "react-spinners/PulseLoader"
 import { type LoaderSizeMarginProps } from "react-spinners/helpers/props"
 
-export default function Loader(props: LoaderSizeMarginProps) {
+type LoaderProps = LoaderSizeMarginProps & {
+  // add here
+}
+
+export default function Loader(props: LoaderProps) {
   return (
     <PulseLoader
       size={12}

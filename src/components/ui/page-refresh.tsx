@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 
 import { usePullToRefresh } from "use-pull-to-refresh"
 
-import Loader from "@/components/app/loader"
+import Loader from "@/components/app/loading/loader"
 
 const MAXIMUM_PULL_LENGTH = 240
 const REFRESH_THRESHOLD = 180

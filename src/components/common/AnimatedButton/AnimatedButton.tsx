@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 
 import { Button, iconVariants, type ButtonProps } from "@/components/ui/button"
-import Loader from "@/components/app/loader"
+import Loader from "@/components/app/loading/loader"
 
 export type AnimatedButtonProps = ButtonProps & {
   wide?: boolean

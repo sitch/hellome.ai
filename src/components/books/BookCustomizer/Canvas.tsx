@@ -23,6 +23,9 @@ import { useSnapshot } from "valtio"
 
 import { state } from "@/components/books/BookCustomizer/store"
 
+import { Book2Mesh } from "@/@gen/meshes/Book2Mesh"
+import { CharacterMesh } from "@/@gen/meshes/CharacterMesh"
+
 type AppProps = {
   position?: Vector3
   fov?: number
@@ -35,17 +38,19 @@ export const App = ({
   <Canvas
     shadows
     camera={{ position, fov }}
-    // camera={{ fov: 75, position: [-10, 45, 20]}}
     gl={{ preserveDrawingBuffer: true }}
     eventSource={document.getElementById("root") ?? undefined}
     eventPrefix="client"
   >
     <ambientLight intensity={0.5} />
-    <Environment preset="city" />
+    <Environment preset="sunset" />
     <CameraRig>
       <Backdrop />
       <Center>
-        <Shirt />
+        {/* <Book /> */}
+
+        <Book2Mesh />
+        <CharacterMesh />
       </Center>
     </CameraRig>
   </Canvas>
@@ -129,14 +134,14 @@ function CameraRig({ children }: CameraRigProps) {
   useFrame((state, delta) => {
     easing.damp3(
       state.camera.position,
-      [snap.intro ? -state.viewport.width / 4 : 0, 0, 2],
+      snap.page === "intro" ? [-state.viewport.width / 4, 0, 2.5] : [0, 0, 2.5],
       0.25,
       delta,
     )
     group.current?.rotation &&
       easing.dampE(
         group.current.rotation,
-        [state.pointer.y / 10, -state.pointer.x / 5, 0],
+        [state.pointer.y / 4, -state.pointer.x / 2, 0],
         0.25,
         delta,
       )
@@ -144,85 +149,85 @@ function CameraRig({ children }: CameraRigProps) {
   return <group ref={group}>{children}</group>
 }
 
-type ShirtProps = Partial<MeshProps>
+// type BookProps = Partial<MeshProps>
 
-type GLTFBook = GLTF & {
-  nodes: {
-    magazine_01_cover89: THREE.Mesh
-  }
-  materials: {
-    magazine_01_cover89: THREE.MeshStandardMaterial
-  }
-}
+// type GLTFBook = GLTF & {
+//   nodes: {
+//     magazine_01_cover89: THREE.Mesh
+//   }
+//   materials: {
+//     magazine_01_cover89: THREE.MeshStandardMaterial
+//   }
+// }
 
-function Shirt(props: ShirtProps) {
-  const snap = useSnapshot(state)
+// export function Book(props: BookProps) {
+//   const snap = useSnapshot(state)
 
-  const bookCoverTexture = useTexture(`/@meshes/${snap.decal}.png`)
+//   const bookCoverTexture = useTexture(`/@meshes/${snap.decal}.png`)
 
-  const texture = useTexture(`/@meshes/${snap.decal}.png`)
-  // const { nodes, materials } = useGLTF("/@meshes/shirt_baked_collapsed.glb")
-  // useFrame((state, delta) =>
-  //   easing.dampC(materials.lambert1.color, snap.color, 0.25, delta),
-  // )
+//   const texture = useTexture(`/@meshes/${snap.decal}.png`)
+//   // const { nodes, materials } = useGLTF("/@meshes/shirt_baked_collapsed.glb")
+//   // useFrame((state, delta) =>
+//   //   easing.dampC(materials.lambert1.color, snap.color, 0.25, delta),
+//   // )
 
-  /**
-   * Fix glb model
-   * @link https://github.com/pmndrs/gltfjsx#readme
-   */
-  const { nodes, materials } = useGLTF(
-    "/@meshes/book.glb",
-  ) as unknown as GLTFBook
-  useFrame((state, delta) =>
-    easing.dampC(materials.magazine_01_cover89.color, snap.color, 0.25, delta),
-  )
+//   /**
+//    * Fix glb model
+//    * @link https://github.com/pmndrs/gltfjsx#readme
+//    */
+//   const { nodes, materials } = useGLTF(
+//     "/@meshes/book.glb",
+//   ) as unknown as GLTFBook
+//   useFrame((state, delta) =>
+//     easing.dampC(materials.magazine_01_cover89.color, snap.color, 0.25, delta),
+//   )
 
-  const textureDrawing = useTexture(
-    "/images/sitchenko-infant-drawing-bw.png",
-    (props) => {
-      const texture = castArray(props)[0]
+//   const textureDrawing = useTexture(
+//     "/images/sitchenko-infant-drawing-bw.png",
+//     (props) => {
+//       const texture = castArray(props)[0]
 
-      // texture.rotation = 0.2
-      texture.repeat.set(2, 1)
-    },
-  )
+//       // texture.rotation = 0.2
+//       texture.repeat.set(2, 1)
+//     },
+//   )
 
-  // textureDrawing.center = new Vector2(0, 0)
+//   // textureDrawing.center = new Vector2(0, 0)
 
-  // const textureDrawing = new THREE.TextureLoader().load( "/images/sitchenko-infant-drawing-bw.png" );
-  // textureDrawing.wrapS = THREE.RepeatWrapping;
-  // textureDrawing.wrapT = THREE.RepeatWrapping;
-  // textureDrawing.repeat.set( 4, 4 );
+//   // const textureDrawing = new THREE.TextureLoader().load( "/images/sitchenko-infant-drawing-bw.png" );
+//   // textureDrawing.wrapS = THREE.RepeatWrapping;
+//   // textureDrawing.wrapT = THREE.RepeatWrapping;
+//   // textureDrawing.repeat.set( 4, 4 );
 
-  materials.magazine_01_cover89.map = textureDrawing
+//   materials.magazine_01_cover89.map = textureDrawing
 
-  return (
-    <mesh
-      castShadow
-      // geometry={nodes.T_Shirt_male.geometry}
-      // material={materials.lambert1}
-      geometry={nodes.magazine_01_cover89.geometry}
-      material={materials.magazine_01_cover89}
-      // map={textureDrawing}
-      material-roughness={1}
-      {...props}
-      dispose={null}
-      rotation={[0, Math.PI / 2, 0]}
-      scale={1.5}
-    >
-      {/* <Decal
-        position={[0, 0.04, 0.15]}
-        rotation={[0, 0, 0]}
-        scale={0.15}
-        map={texture}
-        map-anisotropy={16}
-      /> */}
-    </mesh>
-  )
-}
+//   return (
+//     <mesh
+//       castShadow
+//       // geometry={nodes.T_Shirt_male.geometry}
+//       // material={materials.lambert1}
+//       geometry={nodes.magazine_01_cover89.geometry}
+//       material={materials.magazine_01_cover89}
+//       // map={textureDrawing}
+//       material-roughness={1}
+//       {...props}
+//       dispose={null}
+//       rotation={[0, Math.PI / 2, 0]}
+//       scale={1.5}
+//     >
+//       {/* <Decal
+//         position={[0, 0.04, 0.15]}
+//         rotation={[0, 0, 0]}
+//         scale={0.15}
+//         map={texture}
+//         map-anisotropy={16}
+//       /> */}
+//     </mesh>
+//   )
+// }
 
-useGLTF.preload("/@meshes/book.glb")
-useGLTF.preload("/@meshes/shirt_baked_collapsed.glb")
-;["/@meshes/react.png", "/@meshes/three2.png", "/@meshes/pmndrs.png"].forEach(
-  useTexture.preload,
-)
+// useGLTF.preload("/@meshes/book.glb")
+// useGLTF.preload("/@meshes/shirt_baked_collapsed.glb")
+// ;["/@meshes/react.png", "/@meshes/three2.png", "/@meshes/pmndrs.png"].forEach(
+//   useTexture.preload,
+// )
