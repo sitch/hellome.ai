@@ -1,0 +1,5 @@
+abstract model BaseModel {
+  id           String        @id() @default(cuid())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+}

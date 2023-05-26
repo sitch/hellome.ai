@@ -1,3 +1,4 @@
+/* eslint-disable @limegrass/import-alias/import-alias */
 /**
  * If you want to enable locale keys typechecking and enhance IDE experience.
  *

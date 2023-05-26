@@ -1,14 +1,51 @@
 
 abstract model Base {
-  id String @id
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
+  deletedAt DateTime @map(name: "deleted_at")
+
+  zenstack_guard Boolean @default(true)
+
+  // Allow admin full access
+  @@allow('all', auth().role == 'ADMIN')
+
+  // Deny reading deleted records
+  @@deny('read', deletedAt != null)
 }
+
+abstract model WithUser extends Base {
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+  @@index([userId])
+
+  // Allow user access to ownwed record
+  @@allow('all', auth() == user)
+}
+
+// abstract model WithCommunity extends Base {
+//   communityId String @map("community_id")
+//   community Community @relation(fields: [communityId], references: [id])
+//   @@index([communityId])
+
+//   // Allow user access to ownwed record
+//   @@allow('all', auth().community == community)
+// }
+
+// abstract model WithCommunityAccess extends Base {
+//   communityId String @map("community_id")
+//   community Community @relation(fields: [communityId], references: [id])
+//   @@index([communityId])
+
+//   // Allow user access to ownwed record
+//   @@allow('all', auth().community == community)
+// }
 
 
 model User extends Base {
   firstName String
   lastName String
+  role String
 }
 
 model Author extends Base {

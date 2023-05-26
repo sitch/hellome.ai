@@ -1,0 +1,85 @@
+
+import "base"
+
+
+enum FileResourceType {
+  ckpt
+  image
+  model
+  pdf
+  safetensor
+  video
+}
+
+enum FilePrivacy {
+  public  @map("public-read")
+  private
+}
+
+enum CloudFileRegion {
+  USEast1 @map("us-east-1")
+}
+
+model CloudFile extends Base {
+  /// File name
+  filename     String
+  /// Filename without extension
+  stem         String
+  /// File extension
+  extension    String @length(1, 5)
+  /// Filesize in bytes
+  size         Int @gt(0)
+  /// File MIME type
+  mime         String
+  /// Generic version of MIME
+  resourceType FileResourceType @map("resource_type")
+  /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+  /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
+  metadata     Json?
+  key          String
+  /// S3 Key
+  bucket       String
+  /// S3 Bucket
+  region       CloudFileRegion
+  publicUrl    String?          @unique() @url
+  // privacy      FilePrivacy      @default(private)
+  privacy      FilePrivacy     
+  /// Privacy on blob store
+  photo        Photo?
+  pdf          PDF?
+
+  
+
+  @@unique([region, bucket, key])
+  @@map("cloud_files")
+}
+
+
+
+model Photo extends Base {
+  height       Int           @db.SmallInt() @gt(0)
+  width        Int           @db.SmallInt() @gt(0)
+  tags         String[]      @default([])
+  fileId       String        @unique() @map("file_id")
+  /// @zod.string.cuid()
+  file         CloudFile     @relation(fields: [fileId], references: [id])
+  // pageArtworks PageArtwork[]
+  // concepts     Concept[]
+
+
+  @@map("photos")
+}
+
+model PDF extends Base {
+  height    Int       @db.SmallInt() @gt(0)
+  width     Int       @db.SmallInt() @gt(0)
+  pages     Int       @db.SmallInt() @gt(0)
+  tags      String[]
+  fileId    String    @unique() @map("file_id")
+  /// @zod.string.cuid()
+  file      CloudFile @relation(fields: [fileId], references: [id])
+  // edition   Edition?
+
+
+  @@map("pdfs")
+}
