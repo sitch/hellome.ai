@@ -7970,12 +7970,19 @@
   dependencies:
     langium "1.2.0"
 
-"@zenstackhq/next@^1.0.0-alpha.116":
-  version "1.0.0-alpha.116"
-  resolved "https://registry.yarnpkg.com/@zenstackhq/next/-/next-1.0.0-alpha.116.tgz#7ac3f39b055afb6179706f3d0532b2bfd405713c"
-  integrity sha512-RvgOVQZ/sfGWw2pEvTL63R4jF1qC+WE394vHDIQIhbAW5o2VjwH2Rrn+GM7wEdqZGfsLX6ilRU0fN5Gbs5rwJw==
+"@zenstackhq/language@1.0.0-alpha.119":
+  version "1.0.0-alpha.119"
+  resolved "https://registry.yarnpkg.com/@zenstackhq/language/-/language-1.0.0-alpha.119.tgz#1ebfa36daeee96bd14eb0c45f0b2ad3887da876a"
+  integrity sha512-o/OVrnwQ5PPJrbaVBdt1qJWS5K0XAyiGATmrppXUWoNxkHRvfDMlYUpmNI1wkE3cmXn3TGjBE0gsaJszPGB+iQ==
   dependencies:
-    "@zenstackhq/runtime" "1.0.0-alpha.116"
+    langium "1.2.0"
+
+"@zenstackhq/next@^1.0.0-alpha.119":
+  version "1.0.0-alpha.119"
+  resolved "https://registry.yarnpkg.com/@zenstackhq/next/-/next-1.0.0-alpha.119.tgz#962d3a96f8fe2eaff5ba07330c9902f6b301b896"
+  integrity sha512-/B/inTDgnu25WII06nMcbCJtRft/NEWXik4v1vgK7TGxWt8LSaUhrphJYbRGhyh8iQloA3L3zYg1ZabpPiPSSA==
+  dependencies:
+    "@zenstackhq/runtime" "1.0.0-alpha.119"
     tmp "^0.2.1"
 
 "@zenstackhq/react@^1.0.0-alpha.116":
@@ -8012,6 +8019,26 @@
     zod "3.21.1"
     zod-validation-error "^0.2.1"
 
+"@zenstackhq/runtime@1.0.0-alpha.119":
+  version "1.0.0-alpha.119"
+  resolved "https://registry.yarnpkg.com/@zenstackhq/runtime/-/runtime-1.0.0-alpha.119.tgz#20298e218c471abb0f48ac755d8a44872900ced9"
+  integrity sha512-y+zOY4ihcm5i4PmX23qD5sBonHDDLig0fBKlgCAKQ8GFLLRbcgnq+X0p3xUB3bqs39kZeuERUMbwkMBlgrDkaw==
+  dependencies:
+    "@paralleldrive/cuid2" "^2.2.0"
+    "@types/bcryptjs" "^2.4.2"
+    "@zenstackhq/sdk" "1.0.0-alpha.119"
+    bcryptjs "^2.4.3"
+    change-case "^4.1.2"
+    colors "1.4.0"
+    decimal.js "^10.4.2"
+    deepcopy "^2.1.0"
+    lower-case-first "^2.0.2"
+    pluralize "^8.0.0"
+    superjson "^1.11.0"
+    tslib "^2.4.1"
+    zod "3.21.1"
+    zod-validation-error "^0.2.1"
+
 "@zenstackhq/sdk@1.0.0-alpha.116":
   version "1.0.0-alpha.116"
   resolved "https://registry.yarnpkg.com/@zenstackhq/sdk/-/sdk-1.0.0-alpha.116.tgz#9c46efc80445dfb5174ffea9fb298b60b64107d0"
@@ -8019,6 +8046,16 @@
   dependencies:
     "@prisma/generator-helper" "^4.7.1"
     "@zenstackhq/language" "1.0.0-alpha.116"
+    prettier "^2.8.3"
+    ts-morph "^16.0.0"
+
+"@zenstackhq/sdk@1.0.0-alpha.119":
+  version "1.0.0-alpha.119"
+  resolved "https://registry.yarnpkg.com/@zenstackhq/sdk/-/sdk-1.0.0-alpha.119.tgz#db1b7c7bc0822194bc761c21b48d3da841fbfec7"
+  integrity sha512-mNvcwD0O/yK3DWEEu0KumSOZsfQuXDujzmUL+YHMkQIsBFui1cKCFhirND39NUh0WA/PuB4i0AUpMh/80QGuuw==
+  dependencies:
+    "@prisma/generator-helper" "^4.7.1"
+    "@zenstackhq/language" "1.0.0-alpha.119"
     prettier "^2.8.3"
     ts-morph "^16.0.0"
 
