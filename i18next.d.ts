@@ -7,6 +7,7 @@
  * @link https://www.i18next.com/overview/typescript
  */
 import "i18next"
+
 // import all namespaces (for the default language, only)
 import type articles from "./public/locales/en/articles.json"
 import type authors from "./public/locales/en/authors.json"

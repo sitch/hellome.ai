@@ -38,11 +38,7 @@ const sortImports = {
     "",
     "^#/(.*)$",
   ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
-  importOrderBuiltinModulesToTop: true,
-  importOrderMergeDuplicateImports: true,
-  importOrderCombineTypeAndValueImports: true,
+  // importOrderTypeScriptVersion: "5.0.0",
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
 }
 

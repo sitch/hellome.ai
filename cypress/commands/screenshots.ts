@@ -2,9 +2,9 @@
 
 import { disableAnimationStyles } from "./emulation"
 import {
-  ViewportCase,
   assertViewportBoundingRect,
   getDocumentHeight,
+  ViewportCase,
 } from "./viewports"
 
 export const viewportOptions: Cypress.MatchImageOptions = {

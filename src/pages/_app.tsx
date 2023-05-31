@@ -6,7 +6,7 @@ import { appWithTranslation } from "next-i18next"
 
 import { CookieConsentProvider } from "@use-cookie-consent/react"
 import { Analytics } from "@vercel/analytics/react"
-import { GoogleAnalytics, event } from "nextjs-google-analytics"
+import { event, GoogleAnalytics } from "nextjs-google-analytics"
 
 import { FontFix } from "@/lib/fonts"
 import { api } from "@/utils/api"
@@ -23,6 +23,7 @@ import "@/components/books/BookCustomizer/styles.css"
 import "@/styles/chrome-bug.css"
 import "@/styles/filepond.css"
 import "@/styles/globals.css"
+
 import { AnimatePresence, motion } from "framer-motion"
 
 // import "@/scenes/meshes/styles.css"

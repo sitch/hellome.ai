@@ -9,13 +9,13 @@ import { detectLoop, drawLoop } from "@/lib/human/callbacks"
 import useRequestAnimationFrame from "@/lib/human/useRequestAnimationFrame"
 import { disposeResult } from "@/lib/human/utils"
 
-import FaceImporterInstructions from "@/components/vision/human/FaceImporterInstructions/FaceImporterInstructions"
-import { FaceManifold } from "@/components/vision/human/FaceManifold/FaceManifold"
 import {
   runFaceAnalysis,
   type FaceAnalysis,
 } from "@/components/vision/human/analysis"
 import { defaultFaceAnalysis } from "@/components/vision/human/defaults"
+import FaceImporterInstructions from "@/components/vision/human/FaceImporterInstructions/FaceImporterInstructions"
+import { FaceManifold } from "@/components/vision/human/FaceManifold/FaceManifold"
 
 export type PerformanceMetricsProps = {
   memory: MemoryInfo

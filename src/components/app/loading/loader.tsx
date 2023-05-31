@@ -1,5 +1,5 @@
-import PulseLoader from "react-spinners/PulseLoader"
 import { type LoaderSizeMarginProps } from "react-spinners/helpers/props"
+import PulseLoader from "react-spinners/PulseLoader"
 
 type LoaderProps = LoaderSizeMarginProps & {
   // add here

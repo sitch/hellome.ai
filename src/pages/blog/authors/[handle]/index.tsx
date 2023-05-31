@@ -13,8 +13,8 @@ import { castAuthor, type Author, type AuthorSource } from "@/lib/mdx/types"
 
 import { AuthorSEO } from "@/components/seo/AuthorSEO"
 
-import { BlogLayout } from "@/mdx/Layout"
 import AuthorPage from "@/mdx/blog/authors/AuthorPage"
+import { BlogLayout } from "@/mdx/Layout"
 
 import { type I18nNamespaces } from "~/i18next.d"
 import i18NextConfig from "~/next-i18next.config"

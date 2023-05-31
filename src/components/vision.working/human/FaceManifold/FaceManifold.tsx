@@ -1,8 +1,8 @@
 import { type FaceResult, type Human } from "@vladmandic/human"
 import clsx from "clsx"
 
-import FaceClip from "@/components/vision.working/human/FaceManifold/FaceClip"
 import type { FaceAnalysis } from "@/components/vision.working/human/analysis"
+import FaceClip from "@/components/vision.working/human/FaceManifold/FaceClip"
 import { type ManifoldVector } from "@/components/vision.working/human/manifolds"
 
 const MIN_GRID_COLUMNS = 1

@@ -22,15 +22,15 @@ import { Label } from "@/components/ui/label"
 import { MultiSelect } from "@/components/ui/multi-select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
-import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import { AlertDestructive } from "@/components/common/alerts/AlertDestructive"
 import { AlertFormField } from "@/components/common/alerts/AlertFormField"
+import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton"
 import { ConceptCard } from "@/components/concepts/ConceptCard"
 import { FileInput } from "@/components/filepond/FileInput"
 import { type AddFileCallback } from "@/components/filepond/form.types"
 import {
-  CreatePhotoSchema,
   castPhotoCreateInput,
+  CreatePhotoSchema,
 } from "@/components/filepond/schema"
 import { useFilePondUploader } from "@/components/filepond/useFilePondUploader"
 import { SubmissionSuccess } from "@/components/forms/SubmissionSuccess"

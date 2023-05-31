@@ -25,8 +25,8 @@ import FilePondPluginPdfPreview from "filepond-plugin-pdf-preview"
 
 import { cn } from "@/lib/utils"
 
-import { LabelIdle } from "@/components/filepond/LabelIdle"
 import { labels } from "@/components/filepond/filepond.i18n"
+import { LabelIdle } from "@/components/filepond/LabelIdle"
 import {
   useFilePondServer,
   type ServerMode,

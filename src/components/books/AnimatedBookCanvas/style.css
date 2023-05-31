@@ -7,9 +7,9 @@
 }
 
 .btn {
-  z-index: 2;
   position: absolute;
   top: 10px;
+  z-index: 2;
 }
 
 #c {

@@ -14,6 +14,23 @@
 
 const siteUrl = `https://${process.env.VERCEL_URL}`
 
+const additionalSitemaps = [
+  // Blog
+  `${new URL("sitemap-blog.xml", siteUrl)}`,
+]
+
+const exclude = [
+  // Remove "thin" pages that don't require robots indexing
+  "/app",
+  "/app/*",
+
+  // Blog posts are indexed in the dynamic blog sitemap
+  // `next-sitemap` can actually put them here, but we want to keep it dynamic to allow regeneration without deployment
+  "/blog/*",
+  "/rss.xml",
+  "/sitemap-*.xml",
+]
+
 // Save crawling budget by not fetching SSG meta files
 const NEXT_SSG_FILES = [
   "/*.json$",
@@ -23,36 +40,24 @@ const NEXT_SSG_FILES = [
   "/*.js$",
 ]
 
-const exclude = [
-  // Remove "thin" pages that don't require robots indexing
-  "/app*",
-
-  // Blog posts are indexed in the dynamic blog sitemap
-  // `next-sitemap` can actually put them here, but we want to keep it dynamic to allow regeneration without deployment
-  "/blog/*",
-  "/rss.xml",
-  "/sitemap-*.xml",
-]
-
-const additionalSitemaps = [
-  // Blog
-  `${new URL("sitemap-blog.xml", siteUrl)}`,
-]
-
 /**
  * @type {import('next-sitemap').IConfig}
  **/
 module.exports = {
   siteUrl: siteUrl,
-  changefreq: "daily",
+  changefreq: "weekly",
   generateRobotsTxt: true,
   exclude,
   robotsTxtOptions: {
     additionalSitemaps,
     policies: [
+      // {
+      //   userAgent: "*",
+      //   allow: "/",
+      // },
       {
         userAgent: "*",
-        allow: "/",
+        disallow: ["/app/*"],
       },
       {
         userAgent: "*",
