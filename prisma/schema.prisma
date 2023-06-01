@@ -31,77 +31,6 @@ generator erd_simple {
   tableOnly = true
 }
 
-generator zod {
-  provider                 = "zod-prisma-types"
-  output                   = "../src/@gen/zod"
-  writeNullishInModelTypes = true
-}
-
-generator trpc {
-  provider                 = "prisma-trpc-generator"
-  output                   = "../src/@gen/trpc"
-  contextPath              = "../server/context"
-  trpcOptionsPath          = "../server/trpcOptions"
-  withMiddleware           = false
-  withZod                  = true
-  withShield               = true
-  isGenerateSelect         = true
-  isGenerateInclude        = true
-  showModelNameInProcedure = true
-}
-
-generator crud {
-  provider = "prisma-next-crud-generator"
-  output   = "../src/@gen/crud"
-}
-
-enum FileResourceType {
-  ckpt
-  image
-  model
-  pdf
-  safetensor
-  video
-}
-
-enum FilePrivacy {
-  public  @map("public-read")
-  private
-}
-
-enum CloudFileRegion {
-  USEast1 @map("us-east-1")
-}
-
-enum Locale {
-  en_US
-  en
-}
-
-enum PageStatus {
-  DRAFT
-  PUBLISHED
-}
-
-enum PageType {
-  FrontCover
-  Body
-  BackCover
-}
-
-enum PageArtworkType {
-  machine_generated
-  user_creative_work
-  user_scribble
-}
-
-enum PageTextType {
-  machine_generated
-  machine_translated
-  user_creative_work
-  user_translated
-}
-
 enum ConceptType {
   person
   place
@@ -123,237 +52,106 @@ enum LRScheduler {
   constant_with_warmup
 }
 
-model CloudFile {
-  id           String           @id() @default(cuid())
-  /// File name
-  filename     String
-  /// Filename without extension
-  stem         String
-  /// File extension
-  /// @zod.string.min(1).max(5)
-  extension    String
-  /// Filesize in bytes
-  /// @zod.number.positive()
-  size         Int
-  /// File MIME type
-  mime         String
-  /// Generic version of MIME
-  resourceType FileResourceType @map("resource_type")
-  /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
-  /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
-  metadata     Json?
-  key          String
-  /// S3 Key
-  bucket       String
-  /// S3 Bucket
-  region       CloudFileRegion
-  publicUrl    String?          @unique()
-  /// @zod.string.url()
-  privacy      FilePrivacy      @default(private)
-  /// Privacy on blob store
-  createdAt    DateTime         @default(now()) @map("created_at")
-  updatedAt    DateTime         @updatedAt() @map("updated_at")
-  photo        Photo?
-  pdf          PDF?
-
-  zenstack_guard Boolean @default(true)
-
-  @@unique([region, bucket, key])
-  @@map("cloud_files")
+enum FileResourceType {
+  ckpt
+  image
+  model
+  pdf
+  safetensor
+  video
 }
 
-model Photo {
-  id           String        @id() @default(cuid())
-  height       Int           @db.SmallInt()
-  /// @zod.number.positive()
-  width        Int           @db.SmallInt()
-  /// @zod.number.positive()
-  tags         String[]      @default([])
-  createdAt    DateTime      @default(now()) @map("created_at")
-  updatedAt    DateTime      @updatedAt() @map("updated_at")
-  fileId       String        @unique() @map("file_id")
-  /// @zod.string.cuid()
-  file         CloudFile     @relation(fields: [fileId], references: [id])
-  pageArtworks PageArtwork[]
-  concepts     Concept[]
-
-  zenstack_guard Boolean @default(true)
-
-  @@map("photos")
+enum FilePrivacy {
+  public  @map("public-read")
+  private
 }
 
-model PDF {
-  id        String    @id() @default(cuid())
-  height    Int       @db.SmallInt()
-  /// @zod.number.positive()
-  width     Int       @db.SmallInt()
-  /// @zod.number.positive()
-  pages     Int       @db.SmallInt()
-  /// @zod.number.positive()
-  tags      String[]
-  createdAt DateTime  @default(now()) @map("created_at")
-  fileId    String    @unique() @map("file_id")
-  /// @zod.string.cuid()
-  file      CloudFile @relation(fields: [fileId], references: [id])
-  edition   Edition?
-
-  zenstack_guard Boolean @default(true)
-
-  @@map("pdfs")
+enum CloudFileRegion {
+  USEast1 @map("us-east-1")
 }
 
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum PageType {
+  FrontCover
+  Body
+  BackCover
+}
+
+enum PageTextType {
+  machine_generated
+  machine_translated
+  user_creative_work
+  user_translated
+}
+
+enum Locale {
+  en_US
+  en
+}
+
+/// @@deny('read', deletedAt != null)
 model User {
-  id        String    @id() @default(cuid())
-  /// @zod.string.min(1).max(160)
+  /// @length(1, 160)
   name      String
-  /// @zod.string.email().min(3).max(160)
+  /// @email
+  /// @length(3, 160)
   email     String    @unique()
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt() @map("updated_at")
-  Edition   Edition[]
+  artist    Artist?
+  author    Author?
+  editions  Edition[]
+  id        String    @id() @default(cuid())
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  updatedAt DateTime  @updatedAt() @map(name: "updated_at")
+  deletedAt DateTime? @map(name: "deleted_at")
 
-  zenstack_guard Boolean @default(true)
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
 
+  @@index([zenstack_transaction])
   @@map("users")
 }
 
+/// @@deny('read', deletedAt != null)
 model Author {
-  id        String     @id() @default(cuid())
   stories   Story[]
   pageTexts PageText[]
-
-  zenstack_guard Boolean @default(true)
+  user      User       @relation(fields: [userId], references: [id])
+  userId    String     @unique()
+  id        String     @id() @default(cuid())
+  createdAt DateTime   @default(now()) @map(name: "created_at")
+  updatedAt DateTime   @updatedAt() @map(name: "updated_at")
+  deletedAt DateTime?  @map(name: "deleted_at")
 }
 
+/// @@deny('read', deletedAt != null)
 model Artist {
-  id           String        @id() @default(cuid())
   stories      Story[]
   pageArtworks PageArtwork[]
-
-  zenstack_guard Boolean @default(true)
-}
-
-model Translator {
-  id        String     @id() @default(cuid())
-  pageTexts PageText[]
-
-  zenstack_guard Boolean @default(true)
-}
-
-model Story {
+  user         User          @relation(fields: [userId], references: [id])
+  userId       String        @unique()
   id           String        @id() @default(cuid())
-  createdAt    DateTime      @default(now()) @map("created_at")
-  updatedAt    DateTime      @updatedAt() @map("updated_at")
-  artistId     String?       @map("artist_id")
-  /// @zod.string.cuid()
-  authorId     String?       @map("author_id")
-  /// @zod.string.cuid()
-  artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
-  author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  pages        Page[]
-  pageArtworks PageArtwork[]
-  pageTexts    PageText[]
-
-  zenstack_guard Boolean @default(true)
-
-  @@index([artistId], name: "Story_artistId")
-  @@index([authorId], name: "Story_authorId")
-  @@map("stories")
+  createdAt    DateTime      @default(now()) @map(name: "created_at")
+  updatedAt    DateTime      @updatedAt() @map(name: "updated_at")
+  deletedAt    DateTime?     @map(name: "deleted_at")
 }
 
-model PageArtwork {
+/// @@deny('read', deletedAt != null)
+model Translator {
+  pageTexts PageText[]
   id        String     @id() @default(cuid())
-  status    PageStatus @default(DRAFT)
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt() @map("updated_at")
-  pageId    String     @map("page_id")
-  /// @zod.string.cuid()
-  storyId   String     @map("story_id")
-  /// @zod.string.cuid()
-  artistId  String     @map("artist_id")
-  /// @zod.string.cuid()
-  photoId   String     @map("photo_id")
-  /// @zod.string.cuid()
-  page      Page       @relation(fields: [pageId], references: [id], onDelete: Cascade)
-  story     Story      @relation(fields: [storyId], references: [id], onDelete: Cascade)
-  artist    Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
-  photo     Photo      @relation(fields: [photoId], references: [id], onDelete: Cascade)
-
-  zenstack_guard Boolean @default(true)
-
-  @@index([pageId], name: "PageArtwork_pageId")
-  @@map("page_artworks")
+  createdAt DateTime   @default(now()) @map(name: "created_at")
+  updatedAt DateTime   @updatedAt() @map(name: "updated_at")
+  deletedAt DateTime?  @map(name: "deleted_at")
 }
 
-model PageText {
-  id           String       @id() @default(cuid())
-  status       PageStatus   @default(DRAFT)
-  locale       Locale
-  text         String
-  /// @zod.string.min(1).max(5000)
-  type         PageTextType
-  createdAt    DateTime     @default(now()) @map("created_at")
-  updatedAt    DateTime     @updatedAt() @map("updated_at")
-  pageId       String       @map("page_id")
-  /// @zod.string.cuid()
-  storyId      String       @map("story_id")
-  /// @zod.string.cuid()
-  authorId     String?      @map("author_id")
-  /// @zod.string.cuid()
-  translatorId String?      @map("translator_id")
-  /// @zod.string.cuid()
-  page         Page         @relation(fields: [pageId], references: [id], onDelete: Cascade)
-  story        Story        @relation(fields: [storyId], references: [id], onDelete: Cascade)
-  author       Author?      @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  translator   Translator?  @relation(fields: [translatorId], references: [id])
-
-  zenstack_guard Boolean @default(true)
-
-  @@index([pageId], name: "PageText_pageId")
-  @@map("page_texts")
-}
-
-model Page {
-  id         String        @id() @default(cuid())
-  status     PageStatus    @default(DRAFT)
-  type       PageType
-  pageNumber Int           @map("page_number") @db.SmallInt()
-  /// @zod.number.gte(1).lte(100)
-  createdAt  DateTime      @default(now()) @map("created_at")
-  updatedAt  DateTime      @updatedAt() @map("updated_at")
-  storyId    String        @map("story_id")
-  /// @zod.string.cuid()
-  story      Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
-  artworks   PageArtwork[]
-  texts      PageText[]
-
-  zenstack_guard Boolean @default(true)
-
-  @@index([storyId], name: "Page_storyId")
-  @@map("pages")
-}
-
-model Edition {
-  id        String   @id() @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt() @map("updated_at")
-  userId    String   @unique() @map("user_id")
-  /// @zod.string.cuid()
-  pdfId     String   @unique() @map("pdf_id")
-  /// @zod.string.cuid()
-  user      User     @relation(fields: [userId], references: [id])
-  pdf       PDF      @relation(fields: [pdfId], references: [id])
-
-  zenstack_guard Boolean @default(true)
-
-  @@index([userId], name: "Edition_userId")
-  @@map("editions")
-}
-
+/// @@deny('read', deletedAt != null)
 model Concept {
-  id                   String              @id() @default(cuid())
+  /// @length(1, 100)
   name                 String
-  /// @zod.string.min(1).max(100)
   type                 ConceptType
   status               ConceptStatus       @default(CREATED)
   description          String?
@@ -367,16 +165,20 @@ model Concept {
   classPrompt          String              @map("class_prompt")
   positivePrompts      String[]            @map("positive_prompts")
   negativePrompts      String[]            @map("negative_prompts")
-  createdAt            DateTime            @default(now()) @map("created_at")
-  updatedAt            DateTime            @updatedAt() @map("updated_at")
   dreamboothTrainingId String?             @map("dreambooth_training_id")
   dreamboothTraining   DreamBoothTraining? @relation(fields: [dreamboothTrainingId], references: [id])
+  /// @url
   dreamboothModelURI   String?             @map("dreambooth_model_uri")
-  /// @zod.string.url()
   photos               Photo[]
+  id                   String              @id() @default(cuid())
+  createdAt            DateTime            @default(now()) @map(name: "created_at")
+  updatedAt            DateTime            @updatedAt() @map(name: "updated_at")
+  deletedAt            DateTime?           @map(name: "deleted_at")
 
-  zenstack_guard Boolean @default(true)
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
 
+  @@index([zenstack_transaction])
   @@map("concepts")
 }
 
@@ -393,8 +195,6 @@ model Prediction {
   metrics      Json?
   error        String?
   logs         String?   @db.Text()
-
-  zenstack_guard Boolean @default(true)
 
   @@map(name: "predictions")
 }
@@ -476,10 +276,209 @@ model DreamBoothTraining {
   /// Weight decay to use
   adam_weight_decay           Float       @default(0.01)
   /// Epsilon value for the Adam optimizer
-  adam_epsilon                Float       @default(0.00000001)
   /// Max gradient norm.
   max_grad_norm               Float       @default(1)
   Concept                     Concept[]
+}
 
-  zenstack_guard Boolean @default(true)
+/// @@deny('read', deletedAt != null)
+model Edition {
+  userId    String    @unique() @map("user_id")
+  /// @zod.string.cuid()
+  pdfId     String    @unique() @map("pdf_id")
+  /// @zod.string.cuid()
+  user      User      @relation(fields: [userId], references: [id])
+  pdf       PDF       @relation(fields: [pdfId], references: [id])
+  id        String    @id() @default(cuid())
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  updatedAt DateTime  @updatedAt() @map(name: "updated_at")
+  deletedAt DateTime? @map(name: "deleted_at")
+
+  @@index([userId], name: "Edition_userId")
+  @@map("editions")
+}
+
+/// @@deny('read', deletedAt != null)
+model CloudFile {
+  /// File name
+  filename     String
+  /// Filename without extension
+  stem         String
+  /// @length(1, 7)
+  /// File extension
+  extension    String
+  /// @gt(0)
+  /// Filesize in bytes
+  size         Int
+  /// File MIME type
+  mime         String
+  /// Generic version of MIME
+  resourceType FileResourceType @map("resource_type")
+  /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+  /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
+  metadata     Json?
+  key          String
+  /// S3 Key
+  bucket       String
+  /// S3 Bucket
+  region       CloudFileRegion
+  publicUrl    String?          @unique()
+  /// @zod.string.url()
+  privacy      FilePrivacy      @default(private)
+  /// Privacy on blob store
+  photo        Photo?
+  pdf          PDF?
+  id           String           @id() @default(cuid())
+  createdAt    DateTime         @default(now()) @map(name: "created_at")
+  updatedAt    DateTime         @updatedAt() @map(name: "updated_at")
+  deletedAt    DateTime?        @map(name: "deleted_at")
+
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@unique([region, bucket, key])
+  @@index([zenstack_transaction])
+  @@map("cloud_files")
+}
+
+/// @@deny('read', deletedAt != null)
+model Photo {
+  /// @gt(0)
+  height       Int           @db.SmallInt()
+  /// @gt(0)
+  width        Int           @db.SmallInt()
+  tags         String[]      @default([])
+  fileId       String        @unique() @map("file_id")
+  /// @zod.string.cuid()
+  file         CloudFile     @relation(fields: [fileId], references: [id])
+  pageArtworks PageArtwork[]
+  concepts     Concept[]
+  id           String        @id() @default(cuid())
+  createdAt    DateTime      @default(now()) @map(name: "created_at")
+  updatedAt    DateTime      @updatedAt() @map(name: "updated_at")
+  deletedAt    DateTime?     @map(name: "deleted_at")
+
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
+  @@map("photos")
+}
+
+/// @@deny('read', deletedAt != null)
+model PDF {
+  /// @gt(0)
+  height    Int       @db.SmallInt()
+  /// @gt(0)
+  width     Int       @db.SmallInt()
+  /// @gt(0)
+  pages     Int       @db.SmallInt()
+  tags      String[]
+  fileId    String    @unique() @map("file_id")
+  /// @zod.string.cuid()
+  file      CloudFile @relation(fields: [fileId], references: [id])
+  edition   Edition?
+  id        String    @id() @default(cuid())
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  updatedAt DateTime  @updatedAt() @map(name: "updated_at")
+  deletedAt DateTime? @map(name: "deleted_at")
+
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
+  @@map("pdfs")
+}
+
+/// @@deny('read', deletedAt != null)
+model Story {
+  artistId     String?       @map("artist_id")
+  /// @zod.string.cuid()
+  authorId     String?       @map("author_id")
+  /// @zod.string.cuid()
+  artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  pages        Page[]
+  pageArtworks PageArtwork[]
+  pageTexts    PageText[]
+  id           String        @id() @default(cuid())
+  createdAt    DateTime      @default(now()) @map(name: "created_at")
+  updatedAt    DateTime      @updatedAt() @map(name: "updated_at")
+  deletedAt    DateTime?     @map(name: "deleted_at")
+
+  @@index([artistId], name: "Story_artistId")
+  @@index([authorId], name: "Story_authorId")
+  @@map("stories")
+}
+
+/// @@deny('read', deletedAt != null)
+model PageArtwork {
+  status    PageStatus @default(DRAFT)
+  pageId    String     @map("page_id")
+  /// @zod.string.cuid()
+  storyId   String     @map("story_id")
+  /// @zod.string.cuid()
+  artistId  String     @map("artist_id")
+  /// @zod.string.cuid()
+  photoId   String     @map("photo_id")
+  /// @zod.string.cuid()
+  page      Page       @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  story     Story      @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  artist    Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  photo     Photo      @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  id        String     @id() @default(cuid())
+  createdAt DateTime   @default(now()) @map(name: "created_at")
+  updatedAt DateTime   @updatedAt() @map(name: "updated_at")
+  deletedAt DateTime?  @map(name: "deleted_at")
+
+  @@index([pageId], name: "PageArtwork_pageId")
+  @@map("page_artworks")
+}
+
+/// @@deny('read', deletedAt != null)
+model PageText {
+  status       PageStatus   @default(DRAFT)
+  locale       Locale
+  text         String
+  /// @zod.string.min(1).max(5000)
+  type         PageTextType
+  pageId       String       @map("page_id")
+  /// @zod.string.cuid()
+  storyId      String       @map("story_id")
+  /// @zod.string.cuid()
+  authorId     String?      @map("author_id")
+  /// @zod.string.cuid()
+  translatorId String?      @map("translator_id")
+  /// @zod.string.cuid()
+  page         Page         @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  story        Story        @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  author       Author?      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  translator   Translator?  @relation(fields: [translatorId], references: [id])
+  id           String       @id() @default(cuid())
+  createdAt    DateTime     @default(now()) @map(name: "created_at")
+  updatedAt    DateTime     @updatedAt() @map(name: "updated_at")
+  deletedAt    DateTime?    @map(name: "deleted_at")
+
+  @@index([pageId], name: "PageText_pageId")
+  @@map("page_texts")
+}
+
+/// @@deny('read', deletedAt != null)
+model Page {
+  status     PageStatus    @default(DRAFT)
+  type       PageType
+  pageNumber Int           @map("page_number") @db.SmallInt()
+  /// @zod.number.gte(1).lte(100)
+  storyId    String        @map("story_id")
+  /// @zod.string.cuid()
+  story      Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  artworks   PageArtwork[]
+  texts      PageText[]
+  id         String        @id() @default(cuid())
+  createdAt  DateTime      @default(now()) @map(name: "created_at")
+  updatedAt  DateTime      @updatedAt() @map(name: "updated_at")
+  deletedAt  DateTime?     @map(name: "deleted_at")
+
+  @@index([storyId], name: "Page_storyId")
+  @@map("pages")
 }

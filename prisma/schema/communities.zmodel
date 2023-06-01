@@ -1,0 +1,64 @@
+import "../../schema"
+
+model Community extends Base {
+  name String
+	spaces CommunitySpace[]
+	members CommunityMember[]
+}
+
+model CommunityMember extends Base {
+  name String
+	spaces CommunitySpace[]
+	communities Community[]
+	_sourceRelations FamilialRelation[] @relation("sourceCommunityMember") @ignore
+	_targetRelations FamilialRelation[] @relation("targetCommunityMember") @ignore
+	familialRelationGraph FamilialRelationGraph[]
+}
+
+
+model CommunitySpace extends Base {
+  name String
+
+  communityId String @map("community_id")
+
+  community Community @relation(fields: [communityId], references: [id])
+  members CommunityMember[]
+
+  @@index([communityId])
+}
+
+
+
+
+enum FamilialRelationType {
+  ABC
+}
+
+model FamilialRelation extends Base {
+  type FamilialRelationType
+
+  sourceCommunityMemberId String @map("source_community_member_id")
+  sourceCommunityMember CommunityMember @relation("sourceCommunityMember", fields: [sourceCommunityMemberId], references: [id])
+
+  targetCommunityMemberId String @map("target_community_member_id")
+  targetCommunityMember CommunityMember @relation("targetCommunityMember", fields: [targetCommunityMemberId], references: [id])
+
+  @@index([sourceCommunityMemberId, targetCommunityMemberId])
+  @@index([type, sourceCommunityMemberId, targetCommunityMemberId])
+  // @@index([targetCommunityMemberId, sourceCommunityMemberId])
+
+  @@unique([type, sourceCommunityMemberId, targetCommunityMemberId])
+
+  _graphs FamilialRelationGraph[] @ignore
+
+}
+
+
+model FamilialRelationGraph {
+
+    communityMemberId String @map("community_member_id") @unique
+
+  communityMember CommunityMember @relation(fields: [communityMemberId], references: [id])
+
+  familialRelations FamilialRelation[]
+}

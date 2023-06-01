@@ -1,0 +1,103 @@
+import "../../schema"
+
+// -----------------------------------------------------------------------------
+// Stories
+// -----------------------------------------------------------------------------
+
+model Story extends Base {
+
+  artistId     String?       @map("artist_id") /// @zod.string.cuid()
+  authorId     String?       @map("author_id") /// @zod.string.cuid()
+  artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  pages        Page[]
+  pageArtworks PageArtwork[]
+  pageTexts    PageText[]
+
+  @@index([artistId], name: "Story_artistId")
+  @@index([authorId], name: "Story_authorId")
+  @@map("stories")
+}
+
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum PageType {
+  FrontCover
+  Body
+  BackCover
+}
+
+// enum PageArtworkType {
+//   machine_generated
+//   user_creative_work
+//   user_scribble
+// }
+
+enum PageTextType {
+  machine_generated
+  machine_translated
+  user_creative_work
+  user_translated
+}
+
+model PageArtwork extends Base {
+  status    PageStatus @default(DRAFT)
+
+  pageId   String @map("page_id") /// @zod.string.cuid()
+  storyId  String @map("story_id") /// @zod.string.cuid()
+  artistId String @map("artist_id") /// @zod.string.cuid()
+  photoId  String @map("photo_id") /// @zod.string.cuid()
+  page     Page   @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  story    Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  artist   Artist @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  photo    Photo  @relation(fields: [photoId], references: [id], onDelete: Cascade)
+
+  @@index([pageId], name: "PageArtwork_pageId")
+  @@map("page_artworks")
+}
+
+
+// -----------------------------------------------------------------------------
+// Locales
+// -----------------------------------------------------------------------------
+
+enum Locale {
+  en_US
+  en
+}
+
+model PageText extends Base {
+  status    PageStatus   @default(DRAFT)
+  locale    Locale
+  text      String /// @zod.string.min(1).max(5000)
+  type      PageTextType
+
+  pageId       String      @map("page_id") /// @zod.string.cuid()
+  storyId      String      @map("story_id") /// @zod.string.cuid()
+  authorId     String?     @map("author_id") /// @zod.string.cuid()
+  translatorId String?     @map("translator_id") /// @zod.string.cuid()
+  page         Page        @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  story        Story       @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  author       Author?     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  translator   Translator? @relation(fields: [translatorId], references: [id])
+
+  @@index([pageId], name: "PageText_pageId")
+  @@map("page_texts")
+}
+
+model Page extends Base {
+  status     PageStatus @default(DRAFT)
+  type       PageType
+  pageNumber Int        @map("page_number") @db.SmallInt() /// @zod.number.gte(1).lte(100)
+
+  storyId  String        @map("story_id") /// @zod.string.cuid()
+  story    Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  artworks PageArtwork[]
+  texts    PageText[]
+
+  @@index([storyId], name: "Page_storyId")
+  @@map("pages")
+}

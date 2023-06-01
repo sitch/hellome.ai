@@ -1,0 +1,25 @@
+/* eslint-disable */
+
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+const Schema: z.ZodType<
+  Omit<Prisma.PredictionSelect, "zenstack_transaction" | "zenstack_guard">
+> = z
+  .object({
+    id: z.boolean().optional(),
+    uuid: z.boolean().optional(),
+    input: z.boolean().optional(),
+    output: z.boolean().optional(),
+    status: z.boolean().optional(),
+    created_at: z.boolean().optional(),
+    started_at: z.boolean().optional(),
+    completed_at: z.boolean().optional(),
+    version: z.boolean().optional(),
+    metrics: z.boolean().optional(),
+    error: z.boolean().optional(),
+    logs: z.boolean().optional(),
+  })
+  .strict()
+
+export const PredictionSelectObjectSchema = Schema

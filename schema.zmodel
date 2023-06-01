@@ -1,0 +1,143 @@
+import "./prisma/schema/@base"
+import "./prisma/schema/accounts"
+import "./prisma/schema/ai.concepts"
+import "./prisma/schema/ai.training"
+import "./prisma/schema/commerce"
+import "./prisma/schema/storage"
+import "./prisma/schema/studio"
+
+// import "./prisma/schema/next-auth"
+
+// =============================================================================
+// Issues
+// =============================================================================
+// `pg_vector` support
+// See: https://github.com/prisma/prisma/issues/18442
+// See: https://github.com/pgvector/pgvector-node#prisma
+// =============================================================================
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // extensions = [vector]
+}
+
+// -----------------------------------------------------------------------------
+// Generators
+// See: https://www.prisma.io/docs/concepts/components/prisma-schema/generators
+// -----------------------------------------------------------------------------
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = ["postgresqlExtensions"]
+}
+
+generator docs {
+  provider = "node node_modules/prisma-docs-generator"
+  output   = "../docs/prisma"
+}
+
+generator erd {
+  provider                  = "prisma-erd-generator"
+  output                    = "../resources/diagrams/erd/prisma-schema.svg"
+  theme                     = "default"
+  includeRelationFromFields = true
+}
+
+generator erd_simple {
+  provider  = "prisma-erd-generator"
+  output    = "../resources/diagrams/erd/prisma-schema.simple.svg"
+  theme     = "default"
+  tableOnly = true
+}
+
+// generator zodPrismaTypes {
+//   provider                 = "zod-prisma-types"
+//   output                   = "../src/@gen/zod" // default is ./generated/zod
+//   // useMultipleFiles                 = true  // default is false
+//   // createInputTypes                 = false // default is true
+//   // createModelTypes                 = false // default is true
+//   // addInputTypeValidation           = false // default is true
+//   // addIncludeType                   = false // default is true
+//   // addSelectType                    = false // default is true
+//   // validateWhereUniqueInput         = true  // default is false
+//   // createOptionalDefaultValuesTypes = true  // default is false
+//   // createRelationValuesTypes        = true  // default is false
+//   // createPartialTypes               = true  // default is false
+//   // useDefaultValidators             = false // default is true
+//   // coerceDate                       = false // default is true
+//   writeNullishInModelTypes = true // default is false
+// }
+
+// generator prismaTRPCGenerator {
+//   provider                 = "prisma-trpc-generator"
+//   output                   = "../src/@gen/trpc"
+//   // output                   = "../server"
+//   contextPath              = "../server/context"
+//   trpcOptionsPath          = "../server/trpcOptions"
+//   // withMiddleware           = "../server/middlewares/defaultMiddleware"
+//   withMiddleware           = false
+//   withZod                  = true
+//   withShield               = true
+//   isGenerateSelect         = true
+//   isGenerateInclude        = true
+//   showModelNameInProcedure = true
+
+//   // generateModelActions = "aggregate,aggregateRaw,count,create,createMany,delete,deleteMany,findFirst,findFirstOrThrow,findMany,findRaw,findUnique,findUniqueOrThrow,groupBy,update,updateMany,upsert"
+//   // generateModelActions = "create,createMany,findMany,findFirst,delete,deleteMany"
+// }
+
+// generator crud {
+//   provider = "prisma-next-crud-generator"
+//   output   = "../src/@gen/crud"
+// }
+
+// -----------------------------------------------------------------------------
+// Plugins
+// See: https://zenstack.dev/docs/category/plugins
+// -----------------------------------------------------------------------------
+
+plugin prisma {
+    provider = '@core/prisma'
+    output = './prisma/schema.prisma'
+    generateClient = true
+    format = true
+}
+
+plugin modelMeta {
+  provider = '@core/model-meta'
+  // output = './src/@gen/zenstack/model-meta'
+  // output = './src/@gen/lib/zenstack'
+  // output = './node_modules/.zenstack'
+  // compile = false
+  // preserveTsFiles = true
+}
+
+plugin accessPolicy {
+  provider = '@core/access-policy'
+  output = './src/@gen/zenstack/access-policy'
+  // output = './node_modules/.zenstack'
+  compile = false
+  // preserveTsFiles = true
+}
+
+// plugin zod {
+//   provider = '@core/zod'
+//   // output = 'node_modules/.zenstack/zod'
+//   output = './src/@gen/zenstack/zod'
+//   compile = false
+//   // preserveTsFiles = true
+// }
+
+plugin swr {
+  provider = '@zenstackhq/swr'
+  output = './src/@gen/zenstack/swr'
+  // output = "./src/lib/hooks"
+  useSuperJson = true
+}
+
+plugin trpc {
+  provider = '@zenstackhq/trpc'
+  output = './src/@gen/zenstack/trpc'
+  // output = './src/server/routers/generated'
+}

@@ -1,0 +1,25 @@
+/* eslint-disable */
+
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { PageCreateWithoutTextsInputObjectSchema } from "./PageCreateWithoutTextsInput.schema"
+import { PageUncheckedCreateWithoutTextsInputObjectSchema } from "./PageUncheckedCreateWithoutTextsInput.schema"
+import { PageWhereUniqueInputObjectSchema } from "./PageWhereUniqueInput.schema"
+
+const Schema: z.ZodType<
+  Omit<
+    Prisma.PageCreateOrConnectWithoutTextsInput,
+    "zenstack_transaction" | "zenstack_guard"
+  >
+> = z
+  .object({
+    where: z.lazy(() => PageWhereUniqueInputObjectSchema),
+    create: z.union([
+      z.lazy(() => PageCreateWithoutTextsInputObjectSchema),
+      z.lazy(() => PageUncheckedCreateWithoutTextsInputObjectSchema),
+    ]),
+  })
+  .strict()
+
+export const PageCreateOrConnectWithoutTextsInputObjectSchema = Schema

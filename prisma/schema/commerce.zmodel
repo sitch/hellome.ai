@@ -1,0 +1,16 @@
+import "../../schema"
+
+// -----------------------------------------------------------------------------
+// Editions
+// -----------------------------------------------------------------------------
+
+model Edition extends Base {
+  userId String @unique @map("user_id") /// @zod.string.cuid()
+  pdfId  String @unique @map("pdf_id") /// @zod.string.cuid()
+  user   User   @relation(fields: [userId], references: [id])
+  pdf    PDF    @relation(fields: [pdfId], references: [id])
+
+  @@index([userId], name: "Edition_userId")
+  @@map("editions")
+}
+

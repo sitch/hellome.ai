@@ -1,0 +1,58 @@
+import "../../schema"
+
+
+
+
+
+
+abstract model RelateUser extends Base {
+  // Relation
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  // Index
+  @@index([userId])
+
+  // Allow user access to owned record
+  @@allow('all', auth() == user)
+  // @@deny('all', auth().role == 'ADMIN')
+}
+
+
+
+
+
+// -----------------------------------------------------------------------------
+// Accounts
+// -----------------------------------------------------------------------------
+
+model User extends Base {
+  name  String @length(1, 160)
+  email String @unique @email @length(3, 160)
+
+	artist Artist?
+	author Author?
+  editions Edition[]
+  // concepts     Concept[]
+
+  @@map("users")
+}
+
+model Author extends Base {
+  stories   Story[]
+  pageTexts PageText[]
+
+  	user User @relation(fields: [userId], references: [id])
+	userId String @unique
+}
+
+model Artist extends Base {
+  stories      Story[]
+  pageArtworks PageArtwork[]
+	user User @relation(fields: [userId], references: [id])
+	userId String @unique
+}
+
+model Translator extends Base {
+  pageTexts PageText[]
+}
