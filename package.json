@@ -189,7 +189,7 @@
     "@zenstackhq/runtime": "1.0.0-alpha.121",
     "@zenstackhq/server": "^1.0.0-alpha.121",
     "@zenstackhq/swr": "^1.0.0-alpha.121",
-    "@zenstackhq/trpc": "^1.0.0-alpha.121",
+    "@zenstackhq/trpc": "^1.0.0-alpha.125",
     "alex": "^11.0.0",
     "axios": "^1.4.0",
     "base64image-dimensions": "^1.0.6",
