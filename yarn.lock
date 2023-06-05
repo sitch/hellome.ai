@@ -2124,12 +2124,7 @@
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.16.4.tgz"
   integrity sha512-6V0qdPUaiVHH3RtZeLIsc+6pDhbYzHR8ogA8w+f+Wc77DuXto19g2QUwveINoS34Uw+W8/hQDGJCx+i4n7xcng==
 
-"@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.16.4", "@babel/parser@^7.18.11", "@babel/parser@^7.20.7", "@babel/parser@^7.21.5", "@babel/parser@^7.21.8":
-  version "7.21.8"
-  resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.21.8.tgz"
-  integrity sha512-6zavDGdzG3gUqAdWvlLFfk+36RilI+Pwyuuh7HItyeScCWP3k6i8vKclAQ0bM/0y/Kz/xiwvxhMv9MgTJP5gmA==
-
-"@babel/parser@^7.17.7", "@babel/parser@^7.21.9", "@babel/parser@^7.22.0", "@babel/parser@^7.22.4":
+"@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.16.4", "@babel/parser@^7.17.7", "@babel/parser@^7.18.11", "@babel/parser@^7.20.7", "@babel/parser@^7.21.5", "@babel/parser@^7.21.8", "@babel/parser@^7.21.9", "@babel/parser@^7.22.0", "@babel/parser@^7.22.4":
   version "7.22.4"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.4.tgz#a770e98fd785c231af9d93f6459d36770993fb32"
   integrity sha512-VLLsx06XkEYqBtE5YGPwfSGwfrjnyPP5oiGty3S8pQLFDFLaS8VwWSIxkTXpcvr5zeYLE6+MBNl2npl/YnfofA==
@@ -4694,19 +4689,12 @@
   dependencies:
     "@prisma/engines-version" "4.9.0-42.ceb5c99003b99c9ee2c1d2e618e359c14aef2ea5"
 
-"@prisma/client@^4.15.0":
+"@prisma/client@^4.15.0", "@prisma/client@^4.4.0", "@prisma/client@^4.8.0":
   version "4.15.0"
   resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.15.0.tgz#f52ec6ca6fbde37395a54b0a9e5da603a9de15f3"
   integrity sha512-xnROvyABcGiwqRNdrObHVZkD9EjkJYHOmVdlKy1yGgI+XOzvMzJ4tRg3dz1pUlsyhKxXGCnjIQjWW+2ur+YXuw==
   dependencies:
     "@prisma/engines-version" "4.15.0-28.8fbc245156db7124f997f4cecdd8d1219e360944"
-
-"@prisma/client@^4.4.0", "@prisma/client@^4.8.0":
-  version "4.14.0"
-  resolved "https://registry.npmjs.org/@prisma/client/-/client-4.14.0.tgz"
-  integrity sha512-MK/XaA2sFdfaOa7I9MjNKz6dxeIEdeZlnpNRoF2w3JuRLlFJLkpp6cD3yaqw2nUUhbrn3Iqe3ZpVV+VuGGil7Q==
-  dependencies:
-    "@prisma/engines-version" "4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c"
 
 "@prisma/debug@3.14.0":
   version "3.14.0"
@@ -4779,11 +4767,6 @@
     p-retry "4.6.2"
     strip-ansi "6.0.1"
     undici "5.1.1"
-
-"@prisma/engines-version@4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c":
-  version "4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c"
-  resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c.tgz"
-  integrity sha512-3jum8/YSudeSN0zGW5qkpz+wAN2V/NYCQ+BPjvHYDfWatLWlQkqy99toX0GysDeaUoBIJg1vaz2yKqiA3CFcQw==
 
 "@prisma/engines-version@4.15.0-28.8fbc245156db7124f997f4cecdd8d1219e360944":
   version "4.15.0-28.8fbc245156db7124f997f4cecdd8d1219e360944"
@@ -7429,12 +7412,7 @@
     "@types/koa-compose" "*"
     "@types/node" "*"
 
-"@types/lodash@^4.14.184":
-  version "4.14.194"
-  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.194.tgz"
-  integrity sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==
-
-"@types/lodash@^4.14.195":
+"@types/lodash@^4.14.184", "@types/lodash@^4.14.195":
   version "4.14.195"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.195.tgz#bafc975b252eb6cea78882ce8a7b6bf22a6de632"
   integrity sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==
@@ -7524,12 +7502,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@>12", "@types/node@>=10.0.0":
-  version "20.1.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-20.1.4.tgz"
-  integrity sha512-At4pvmIOki8yuwLtd7BNHl3CiWNbtclUbNtScGx4OHfBd4/oWoJC8KRCIxXwkdndzhxOsPXihrsOoydxBjlE9Q==
-
-"@types/node@20.2.5":
+"@types/node@*", "@types/node@20.2.5", "@types/node@>12", "@types/node@>=10.0.0":
   version "20.2.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.2.5.tgz#26d295f3570323b2837d322180dfbf1ba156fefb"
   integrity sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==
@@ -7549,14 +7522,7 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-18.16.7.tgz"
   integrity sha512-MFg7ua/bRtnA1hYE3pVyWxGd/r7aMqjNOdHvlSsXV3n8iaeGKkOaPzpJh6/ovf4bEXWcojkeMJpTsq3mzXW4IQ==
 
-"@types/nodemailer@^6.4.4":
-  version "6.4.7"
-  resolved "https://registry.npmjs.org/@types/nodemailer/-/nodemailer-6.4.7.tgz"
-  integrity sha512-f5qCBGAn/f0qtRcd4SEn88c8Fp3Swct1731X4ryPKqS61/A3LmmzN8zaEz7hneJvpjFbUUgY7lru/B/7ODTazg==
-  dependencies:
-    "@types/node" "*"
-
-"@types/nodemailer@^6.4.8":
+"@types/nodemailer@^6.4.4", "@types/nodemailer@^6.4.8":
   version "6.4.8"
   resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.8.tgz#f06c661e9b201fc2acc3a00a0fded42ba7eaca9d"
   integrity sha512-oVsJSCkqViCn8/pEu2hfjwVO+Gb3e+eTWjg3PcjeFKRItfKpKwHphQqbYmPQrlMk+op7pNNWPbsJIEthpFN/OQ==
@@ -11284,12 +11250,12 @@ dotenv@16.0.1:
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.0.1.tgz"
   integrity sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==
 
-dotenv@16.0.3, dotenv@^16.0.0, dotenv@^16.0.1, dotenv@^16.0.3:
+dotenv@16.0.3:
   version "16.0.3"
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.0.3.tgz"
   integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
-dotenv@^16.1.3:
+dotenv@^16.0.0, dotenv@^16.0.1, dotenv@^16.0.3, dotenv@^16.1.3:
   version "16.1.3"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.1.3.tgz#0c67e90d0ddb48d08c570888f709b41844928210"
   integrity sha512-FYssxsmCTtKL72fGBSvb1K9dRz0/VZeWqFme/vSb7r7323x4CRaHu4LvQ5JG3+s6yt2YPbBrkpiEODktfyjI9A==
@@ -16129,10 +16095,10 @@ magic-string@^0.27.0:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.13"
 
-mailing-core@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-1.0.0.tgz#4c39dcd98ac4c980e2c3ab5007e262341c4f874e"
-  integrity sha512-heZFl/MAWk10Tp+XQCJLm17eVUBnBKW0hY5IdK7NetFdH/StZiM79EAmU+gBi35qArWw8gT6YN7na3E6165W0g==
+mailing-core@^1.0.0, mailing-core@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/mailing-core/-/mailing-core-1.0.1.tgz#1e51805b58c32b28767a0da82f77c76d0155a1ad"
+  integrity sha512-EGXyrCGqHJ2m/897mAB/2baW9wEjAR+G96EOzU3qqx6nRwRUT/ir4N83WFkvsgKHqmWjFNIKTlhv+6yZUoG/yA==
   dependencies:
     "@faire/mjml-react" "^3.1.2"
     chalk "^4.1.2"
@@ -16143,10 +16109,10 @@ mailing-core@^1.0.0:
     open "^8.4.0"
     posthog-node "^2.0.2"
 
-mailing@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/mailing/-/mailing-1.0.0.tgz#daad59f4187e8c9e771af18bf4010c80e2ecb849"
-  integrity sha512-qsG1u5/F4UrSLfdWXeNa+jJoau6x+yeVHcv3hq05kE846MC9sTyh7pEStxgS1RxWXEvgP6UCmIqAPqfQNl1eTw==
+mailing@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/mailing/-/mailing-1.0.1.tgz#b6abf2097823a384785581576efbcd341c3e4098"
+  integrity sha512-PzyJ8G/QdYdvTAE3rC+ItBCrz/1tNpCf4OJHMGbDGXUIBW0qH/V1trnmWnyRAoX1AZM2bnBWgWhfarBcqGSqWw==
   dependencies:
     "@babel/parser" "^7.18.11"
     "@faire/mjml-react" "^3.1.2"
@@ -16178,7 +16144,7 @@ mailing@^1.0.0:
     html-minifier-terser "^7.0.0"
     iron-session "^6.2.1"
     lodash "^4.17.21"
-    mailing-core "^1.0.0"
+    mailing-core "^1.0.1"
     mjml "^4.12.0"
     node-fetch "^2.6.7"
     node-html-parser "^6.1.1"
@@ -19535,16 +19501,7 @@ postcss@8.4.14:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-postcss@^8.1.10, postcss@^8.1.7, postcss@^8.4.16, postcss@^8.4.23, postcss@^8.4.4:
-  version "8.4.23"
-  resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.23.tgz"
-  integrity sha512-bQ3qMcpF6A/YjR55xtoTr0jGOlnPOKAIMdOWiv0EIT6HVPEaJiJB4NLljSbiHoC2RX7DN5Uvjtpbg1NPdwv1oA==
-  dependencies:
-    nanoid "^3.3.6"
-    picocolors "^1.0.0"
-    source-map-js "^1.0.2"
-
-postcss@^8.4.24:
+postcss@^8.1.10, postcss@^8.1.7, postcss@^8.4.16, postcss@^8.4.23, postcss@^8.4.24, postcss@^8.4.4:
   version "8.4.24"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.24.tgz#f714dba9b2284be3cc07dbd2fc57ee4dc972d2df"
   integrity sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==
@@ -19802,19 +19759,12 @@ prisma-zod-generator@^0.8.13:
     tslib "^2.4.1"
     zod "^3.20.2"
 
-prisma@^4.15.0:
+prisma@^4.15.0, prisma@^4.4.0:
   version "4.15.0"
   resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.15.0.tgz#4faa94f0d584828b68468953ff0bc88f37912c8c"
   integrity sha512-iKZZpobPl48gTcSZVawLMQ3lEy6BnXwtoMj7hluoGFYu2kQ6F9LBuBrUyF95zRVnNo8/3KzLXJXJ5TEnLSJFiA==
   dependencies:
     "@prisma/engines" "4.15.0"
-
-prisma@^4.4.0:
-  version "4.14.0"
-  resolved "https://registry.npmjs.org/prisma/-/prisma-4.14.0.tgz"
-  integrity sha512-+5dMl1uxMQb4RepndY6AwR9xi1cDcaGFICu+ws6/Nmgt93mFPNj8tYxSfTdmfg+rkNrUId9rk/Ac2vTgLe/oXA==
-  dependencies:
-    "@prisma/engines" "4.14.0"
 
 prismjs@^1.24.1, prismjs@^1.29.0:
   version "1.29.0"
