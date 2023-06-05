@@ -185,7 +185,7 @@
     "@vercel/og": "^0.5.6",
     "@vladmandic/human": "^3.0.6",
     "@zenstackhq/next": "^1.0.0-alpha.121",
-    "@zenstackhq/react": "^1.0.0-alpha.121",
+    "@zenstackhq/react": "^1.0.0-alpha.125",
     "@zenstackhq/runtime": "1.0.0-alpha.121",
     "@zenstackhq/server": "^1.0.0-alpha.121",
     "@zenstackhq/swr": "^1.0.0-alpha.121",
