@@ -287,7 +287,7 @@
     "sass": "^1.62.1",
     "seedrandom": "^3.0.5",
     "sharp": "^0.32.1",
-    "stackblur-canvas": "^2.5.0",
+    "stackblur-canvas": "^2.6.0",
     "superjson": "^1.12.3",
     "swiper": "^9.3.2",
     "swr": "^2.1.5",
