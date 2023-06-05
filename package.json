@@ -188,7 +188,7 @@
     "@zenstackhq/react": "^1.0.0-alpha.121",
     "@zenstackhq/runtime": "1.0.0-alpha.121",
     "@zenstackhq/server": "^1.0.0-alpha.121",
-    "@zenstackhq/swr": "^1.0.0-alpha.121",
+    "@zenstackhq/swr": "^1.0.0-alpha.125",
     "@zenstackhq/trpc": "^1.0.0-alpha.121",
     "alex": "^11.0.0",
     "axios": "^1.4.0",
