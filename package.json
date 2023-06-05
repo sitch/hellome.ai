@@ -156,7 +156,7 @@
     "@react-spring/web": "^9.7.2",
     "@react-three/drei": "^9.70.3",
     "@react-three/fiber": "^8.13.0",
-    "@sentry/nextjs": "^7.53.1",
+    "@sentry/nextjs": "^7.54.0",
     "@stdlib/datasets-female-first-names-en": "^0.0.9",
     "@stdlib/datasets-male-first-names-en": "^0.0.9",
     "@t3-oss/env-nextjs": "^0.4.0",
