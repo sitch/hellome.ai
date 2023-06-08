@@ -1,7 +1,12 @@
 import "../../schema"
 
+
+abstract model ACL extends Base {
+  acl String[]
+}
+
 // -----------------------------------------------------------------------------
-// Storage
+// FileDescriptor
 // -----------------------------------------------------------------------------
 
 enum FileResourceType {
@@ -13,6 +18,30 @@ enum FileResourceType {
   video
 }
 
+// abstract model FileDescriptor extends Base {
+//   /// File name
+//   filename     String
+//   /// Filename without extension
+//   stem         String
+//   /// File extension
+//   extension    String @length(1,7)
+//   /// Filesize in bytes
+//   size         Int @gt(0)
+//   /// File MIME type
+//   mime         String
+//   /// Generic version of MIME
+//   resourceType FileResourceType @map("resource_type")
+
+//   /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+//   /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
+//   metadata     Json @default("{}")
+// }
+
+
+// -----------------------------------------------------------------------------
+// CloudDescriptor
+// -----------------------------------------------------------------------------
+
 enum FilePrivacy {
   public  @map("public-read")
   private
@@ -22,7 +51,42 @@ enum CloudFileRegion {
   USEast1 @map("us-east-1")
 }
 
+// abstract model CloudDescriptor extends Base {
+//   key       String /// S3 Key
+//   bucket    String /// S3 Bucket
+//   region    CloudFileRegion // S3 Region
+//   publicUrl String?         @unique() @url()
+  
+//   /// Privacy on blob store
+//   privacy   FilePrivacy     @default(private) 
+
+//   @@unique([region, bucket, key])
+// }
+
+
+
+
+
+// abstract model Thing {
+//   acl String[]
+// }
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+// Storage
+// -----------------------------------------------------------------------------
+
+
+
 model CloudFile extends Base {
+
+// -----------------------------------------------------------------------------
+// FileDescriptor
+// -----------------------------------------------------------------------------
 
   /// File name
   filename     String
@@ -36,23 +100,34 @@ model CloudFile extends Base {
   mime         String
   /// Generic version of MIME
   resourceType FileResourceType @map("resource_type")
+
   /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
   /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
-  metadata     Json?
+  metadata     Json @default("{}")
 
-  // Cloud
+// -----------------------------------------------------------------------------
+// CloudDescriptor
+// -----------------------------------------------------------------------------
+
   key       String /// S3 Key
   bucket    String /// S3 Bucket
   region    CloudFileRegion // S3 Region
-  publicUrl String?         @unique() /// @zod.string.url()
-  privacy   FilePrivacy     @default(private) /// Privacy on blob store
+  publicUrl String?         @unique() @url()
+  
+  /// Privacy on blob store
+  privacy   FilePrivacy     @default(private) 
+
+  @@unique([region, bucket, key])
+
+// -----------------------------------------------------------------------------
+// Assocs
+// -----------------------------------------------------------------------------
 
   photo Photo? // @ ignore
   pdf   PDF? // @ ignore
 
   // TODO: Add permissions
 
-  @@unique([region, bucket, key])
   @@map("cloud_files")
 }
 
@@ -67,9 +142,9 @@ model Photo extends Base {
 
   // Web
   // etag String @unique /// Generate via: md5($file.content)-$id
-  // url  String @unique /// @zod.string.url()
+  // url  String @unique @url
 
-  fileId       String        @unique @map("file_id") /// @zod.string.cuid()
+  fileId       String        @unique @map("file_id")
   file         CloudFile     @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
   pageArtworks PageArtwork[] // @ ignore
   concepts     Concept[] // @ ignore
@@ -85,9 +160,9 @@ model PDF extends Base {
 
   // Web
   // etag String @unique /// Generate via: md5($file.content)-$id
-  // url  String @unique /// @zod.string.url()
+  // url  String @unique @url
 
-  fileId  String    @unique @map("file_id") /// @zod.string.cuid()
+  fileId  String    @unique @map("file_id")
   file    CloudFile @relation(fields: [fileId], references: [id]) // TODO: onDelete: Cascade
   edition Edition? // @ ignore
 

@@ -31,6 +31,12 @@ generator erd_simple {
   tableOnly = true
 }
 
+generator zodPrismaTypes {
+  provider                 = "zod-prisma-types"
+  output                   = "../src/@gen/zod"
+  writeNullishInModelTypes = true
+}
+
 enum ConceptType {
   person
   place
@@ -125,6 +131,11 @@ model Author {
   createdAt DateTime   @default(now()) @map(name: "created_at")
   updatedAt DateTime   @updatedAt() @map(name: "updated_at")
   deletedAt DateTime?  @map(name: "deleted_at")
+
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
 }
 
 /// @@deny('read', deletedAt != null)
@@ -137,6 +148,11 @@ model Artist {
   createdAt    DateTime      @default(now()) @map(name: "created_at")
   updatedAt    DateTime      @updatedAt() @map(name: "updated_at")
   deletedAt    DateTime?     @map(name: "deleted_at")
+
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
 }
 
 /// @@deny('read', deletedAt != null)
@@ -146,6 +162,11 @@ model Translator {
   createdAt DateTime   @default(now()) @map(name: "created_at")
   updatedAt DateTime   @updatedAt() @map(name: "updated_at")
   deletedAt DateTime?  @map(name: "deleted_at")
+
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
 }
 
 /// @@deny('read', deletedAt != null)
@@ -276,17 +297,21 @@ model DreamBoothTraining {
   /// Weight decay to use
   adam_weight_decay           Float       @default(0.01)
   /// Epsilon value for the Adam optimizer
+  adam_epsilon                Float
   /// Max gradient norm.
   max_grad_norm               Float       @default(1)
   Concept                     Concept[]
+
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
 }
 
 /// @@deny('read', deletedAt != null)
 model Edition {
   userId    String    @unique() @map("user_id")
-  /// @zod.string.cuid()
   pdfId     String    @unique() @map("pdf_id")
-  /// @zod.string.cuid()
   user      User      @relation(fields: [userId], references: [id])
   pdf       PDF       @relation(fields: [pdfId], references: [id])
   id        String    @id() @default(cuid())
@@ -294,6 +319,10 @@ model Edition {
   updatedAt DateTime  @updatedAt() @map(name: "updated_at")
   deletedAt DateTime? @map(name: "deleted_at")
 
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
   @@index([userId], name: "Edition_userId")
   @@map("editions")
 }
@@ -316,16 +345,16 @@ model CloudFile {
   resourceType FileResourceType @map("resource_type")
   /// Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
   /// @zod.custom.use(z.record(z.union([z.string(), z.number()])))
-  metadata     Json?
+  metadata     Json             @default("{}")
   key          String
   /// S3 Key
   bucket       String
   /// S3 Bucket
   region       CloudFileRegion
+  /// @url
   publicUrl    String?          @unique()
-  /// @zod.string.url()
-  privacy      FilePrivacy      @default(private)
   /// Privacy on blob store
+  privacy      FilePrivacy      @default(private)
   photo        Photo?
   pdf          PDF?
   id           String           @id() @default(cuid())
@@ -349,7 +378,6 @@ model Photo {
   width        Int           @db.SmallInt()
   tags         String[]      @default([])
   fileId       String        @unique() @map("file_id")
-  /// @zod.string.cuid()
   file         CloudFile     @relation(fields: [fileId], references: [id])
   pageArtworks PageArtwork[]
   concepts     Concept[]
@@ -375,7 +403,6 @@ model PDF {
   pages     Int       @db.SmallInt()
   tags      String[]
   fileId    String    @unique() @map("file_id")
-  /// @zod.string.cuid()
   file      CloudFile @relation(fields: [fileId], references: [id])
   edition   Edition?
   id        String    @id() @default(cuid())
@@ -393,9 +420,7 @@ model PDF {
 /// @@deny('read', deletedAt != null)
 model Story {
   artistId     String?       @map("artist_id")
-  /// @zod.string.cuid()
   authorId     String?       @map("author_id")
-  /// @zod.string.cuid()
   artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
   author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
   pages        Page[]
@@ -406,6 +431,10 @@ model Story {
   updatedAt    DateTime      @updatedAt() @map(name: "updated_at")
   deletedAt    DateTime?     @map(name: "deleted_at")
 
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
   @@index([artistId], name: "Story_artistId")
   @@index([authorId], name: "Story_authorId")
   @@map("stories")
@@ -415,13 +444,9 @@ model Story {
 model PageArtwork {
   status    PageStatus @default(DRAFT)
   pageId    String     @map("page_id")
-  /// @zod.string.cuid()
   storyId   String     @map("story_id")
-  /// @zod.string.cuid()
   artistId  String     @map("artist_id")
-  /// @zod.string.cuid()
   photoId   String     @map("photo_id")
-  /// @zod.string.cuid()
   page      Page       @relation(fields: [pageId], references: [id], onDelete: Cascade)
   story     Story      @relation(fields: [storyId], references: [id], onDelete: Cascade)
   artist    Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
@@ -431,6 +456,10 @@ model PageArtwork {
   updatedAt DateTime   @updatedAt() @map(name: "updated_at")
   deletedAt DateTime?  @map(name: "deleted_at")
 
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
   @@index([pageId], name: "PageArtwork_pageId")
   @@map("page_artworks")
 }
@@ -439,17 +468,13 @@ model PageArtwork {
 model PageText {
   status       PageStatus   @default(DRAFT)
   locale       Locale
+  /// @length(1, 5000)
   text         String
-  /// @zod.string.min(1).max(5000)
   type         PageTextType
   pageId       String       @map("page_id")
-  /// @zod.string.cuid()
   storyId      String       @map("story_id")
-  /// @zod.string.cuid()
   authorId     String?      @map("author_id")
-  /// @zod.string.cuid()
   translatorId String?      @map("translator_id")
-  /// @zod.string.cuid()
   page         Page         @relation(fields: [pageId], references: [id], onDelete: Cascade)
   story        Story        @relation(fields: [storyId], references: [id], onDelete: Cascade)
   author       Author?      @relation(fields: [authorId], references: [id], onDelete: Cascade)
@@ -459,6 +484,10 @@ model PageText {
   updatedAt    DateTime     @updatedAt() @map(name: "updated_at")
   deletedAt    DateTime?    @map(name: "deleted_at")
 
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
   @@index([pageId], name: "PageText_pageId")
   @@map("page_texts")
 }
@@ -467,10 +496,10 @@ model PageText {
 model Page {
   status     PageStatus    @default(DRAFT)
   type       PageType
+  /// @gte(1)
+  /// @lte(100)
   pageNumber Int           @map("page_number") @db.SmallInt()
-  /// @zod.number.gte(1).lte(100)
   storyId    String        @map("story_id")
-  /// @zod.string.cuid()
   story      Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
   artworks   PageArtwork[]
   texts      PageText[]
@@ -479,6 +508,10 @@ model Page {
   updatedAt  DateTime      @updatedAt() @map(name: "updated_at")
   deletedAt  DateTime?     @map(name: "deleted_at")
 
+  zenstack_guard       Boolean @default(true)
+  zenstack_transaction String?
+
+  @@index([zenstack_transaction])
   @@index([storyId], name: "Page_storyId")
   @@map("pages")
 }

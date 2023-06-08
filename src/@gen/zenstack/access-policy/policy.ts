@@ -1,16 +1,17 @@
 /* eslint-disable */
-
-import { ConceptType } from "@prisma/client"
-import { ConceptStatus } from "@prisma/client"
-import { LRScheduler } from "@prisma/client"
-import { FileResourceType } from "@prisma/client"
-import { FilePrivacy } from "@prisma/client"
-import { CloudFileRegion } from "@prisma/client"
-import { PageStatus } from "@prisma/client"
-import { PageType } from "@prisma/client"
-import { PageTextType } from "@prisma/client"
-import { Locale } from "@prisma/client"
-import { type QueryContext, hasAllFields } from "@zenstackhq/runtime"
+import {
+  CloudFileRegion,
+  ConceptStatus,
+  ConceptType,
+  FilePrivacy,
+  FileResourceType,
+  Locale,
+  LRScheduler,
+  PageStatus,
+  PageTextType,
+  PageType,
+} from "@prisma/client"
+import { hasAllFields, type QueryContext } from "@zenstackhq/runtime"
 import { z } from "zod"
 
 const policy = {
@@ -138,6 +139,7 @@ const policy = {
       .object({
         extension: z.string().min(1).max(7),
         size: z.number().gt(0),
+        publicUrl: z.string().url().nullable(),
       })
       .partial(),
     photo: z
@@ -151,6 +153,16 @@ const policy = {
         height: z.number().gt(0),
         width: z.number().gt(0),
         pages: z.number().gt(0),
+      })
+      .partial(),
+    pageText: z
+      .object({
+        text: z.string().min(1).max(5000),
+      })
+      .partial(),
+    page: z
+      .object({
+        pageNumber: z.number().gte(1).lte(100),
       })
       .partial(),
   },

@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import { useContext } from "react"
 
 import type { Prisma, User } from "@prisma/client"

@@ -8,14 +8,14 @@
     "sourceMap": false,
     "noUnusedLocals": false,
     "isolatedModules": false,
-    "noUnusedParameters": false,
-    "types": [
-      "node",
-      "cypress",
-      "cypress-wait-until",
-      "cypress-react-selector",
-      "@testing-library/cypress"
-    ]
+    "noUnusedParameters": false
+    // "types": [
+    //   "node",
+    //   "cypress",
+    //   "cypress-wait-until",
+    //   "cypress-react-selector",
+    //   "@testing-library/cypress"
+    // ]
   },
   "include": ["**/*.ts", ".eslintrc.js"],
   "exclude": []

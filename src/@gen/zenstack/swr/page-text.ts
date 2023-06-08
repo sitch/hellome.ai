@@ -1,8 +1,7 @@
 /* eslint-disable */
-
 import { useContext } from "react"
 
-import type { Prisma, PageText } from "@prisma/client"
+import type { PageText, Prisma } from "@prisma/client"
 
 import { RequestHandlerContext, type RequestOptions } from "./_helper"
 import * as request from "./_helper"

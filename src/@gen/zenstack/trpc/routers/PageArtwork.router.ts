@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { type RouterFactory, type ProcBuilder, type BaseConfig, db } from "."
-import { checkRead, checkMutate } from "../helper"
+import { db, type BaseConfig, type ProcBuilder, type RouterFactory } from "."
+import { checkMutate, checkRead } from "../helper"
 import { PageArtworkSchema } from "../schemas/PageArtwork.schema"
 
 export default function createRouter<Config extends BaseConfig>(

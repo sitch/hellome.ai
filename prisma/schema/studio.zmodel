@@ -6,8 +6,8 @@ import "../../schema"
 
 model Story extends Base {
 
-  artistId     String?       @map("artist_id") /// @zod.string.cuid()
-  authorId     String?       @map("author_id") /// @zod.string.cuid()
+  artistId     String?       @map("artist_id")
+  authorId     String?       @map("author_id")
   artist       Artist?       @relation(fields: [artistId], references: [id], onDelete: Cascade)
   author       Author?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
   pages        Page[]
@@ -46,10 +46,10 @@ enum PageTextType {
 model PageArtwork extends Base {
   status    PageStatus @default(DRAFT)
 
-  pageId   String @map("page_id") /// @zod.string.cuid()
-  storyId  String @map("story_id") /// @zod.string.cuid()
-  artistId String @map("artist_id") /// @zod.string.cuid()
-  photoId  String @map("photo_id") /// @zod.string.cuid()
+  pageId   String @map("page_id")
+  storyId  String @map("story_id")
+  artistId String @map("artist_id")
+  photoId  String @map("photo_id")
   page     Page   @relation(fields: [pageId], references: [id], onDelete: Cascade)
   story    Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
   artist   Artist @relation(fields: [artistId], references: [id], onDelete: Cascade)
@@ -72,13 +72,13 @@ enum Locale {
 model PageText extends Base {
   status    PageStatus   @default(DRAFT)
   locale    Locale
-  text      String /// @zod.string.min(1).max(5000)
+  text      String @length(1, 5000)
   type      PageTextType
 
-  pageId       String      @map("page_id") /// @zod.string.cuid()
-  storyId      String      @map("story_id") /// @zod.string.cuid()
-  authorId     String?     @map("author_id") /// @zod.string.cuid()
-  translatorId String?     @map("translator_id") /// @zod.string.cuid()
+  pageId       String      @map("page_id")
+  storyId      String      @map("story_id")
+  authorId     String?     @map("author_id")
+  translatorId String?     @map("translator_id")
   page         Page        @relation(fields: [pageId], references: [id], onDelete: Cascade)
   story        Story       @relation(fields: [storyId], references: [id], onDelete: Cascade)
   author       Author?     @relation(fields: [authorId], references: [id], onDelete: Cascade)
@@ -91,9 +91,9 @@ model PageText extends Base {
 model Page extends Base {
   status     PageStatus @default(DRAFT)
   type       PageType
-  pageNumber Int        @map("page_number") @db.SmallInt() /// @zod.number.gte(1).lte(100)
+  pageNumber Int        @map("page_number") @db.SmallInt() @gte(1) @lte(100)
 
-  storyId  String        @map("story_id") /// @zod.string.cuid()
+  storyId  String        @map("story_id")
   story    Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
   artworks PageArtwork[]
   texts    PageText[]

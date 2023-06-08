@@ -1,8 +1,7 @@
 /* eslint-disable */
-
 import { useContext } from "react"
 
-import type { Prisma, Photo } from "@prisma/client"
+import type { Photo, Prisma } from "@prisma/client"
 
 import { RequestHandlerContext, type RequestOptions } from "./_helper"
 import * as request from "./_helper"

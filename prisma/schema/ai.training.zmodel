@@ -145,6 +145,7 @@ model DreamBoothTraining {
   /// Epsilon value for the Adam optimizer
   // adam_epsilon Float @default(0.00000001)
   // adam_epsilon Float @default(1e-8)
+  adam_epsilon Float 
 
   /// Max gradient norm.
   max_grad_norm Float @default(1.0)

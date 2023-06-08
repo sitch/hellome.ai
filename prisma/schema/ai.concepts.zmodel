@@ -32,7 +32,7 @@ model Concept extends Base {
   positivePrompts String[]      @map("positive_prompts")
   negativePrompts String[]      @map("negative_prompts")
 
-  // userId String? @unique @map("user_id") /// @zod.string.cuid()
+  // userId String? @unique @map("user_id")
   // user   User?   @relation(fields: [userId], references: [id])
 
   dreamboothTrainingId String?             @map("dreambooth_training_id")

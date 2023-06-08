@@ -19,6 +19,12 @@ abstract model Base {
   @@deny('read', deletedAt != null)
 }
 
+// abstract model SoftDelete extends Base {
+//   deletedAt DateTime? @map(name: "deleted_at")
+//   @@deny('read', deletedAt != null)
+// }
+
+
 
 // abstract model IncludeCommunity extends Base {
 //   communityId String @map("community_id")

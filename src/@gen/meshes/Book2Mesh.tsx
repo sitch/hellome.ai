@@ -43,8 +43,8 @@ export function Book2Mesh({ ...props }: Book2MeshProps) {
   const material = materials["Material.002"]
 
   const texture = useTexture(
-    // "/images/sitchenko-infant-drawing.jpeg",
-    "/images/sitchenko-infant-drawing-bw.png",
+    "/images/sitchenko-infant-drawing.jpeg",
+    // "/images/sitchenko-infant-drawing-bw.png",
     (props) => {
       const texture = castArray(props)[0]
 
