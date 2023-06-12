@@ -135,7 +135,7 @@
     "@mediapipe/selfie_segmentation": "^0.1.1675465747",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@next/bundle-analyzer": "^13.4.4",
-    "@next/env": "^13.4.4",
+    "@next/env": "^13.4.5",
     "@ntegral/lulu": "^1.4.2",
     "@openapitools/openapi-generator-cli": "^2.6.0",
     "@pdfme/generator": "^1.2.2",
