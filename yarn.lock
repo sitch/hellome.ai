@@ -19762,10 +19762,10 @@ replace-string@3.1.0:
   resolved "https://registry.yarnpkg.com/replace-string/-/replace-string-3.1.0.tgz#77a087d88580fbac59851237891aa4b0e283db72"
   integrity sha512-yPpxc4ZR2makceA9hy/jHNqc7QVkd4Je/N0WRHm6bs3PtivPuPynxE5ejU/mp5EhnCv8+uZL7vhz8rkluSlx+Q==
 
-replicate@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/replicate/-/replicate-0.12.1.tgz#a8e7b61dc2f4e760463c3417802e3215ca5e3efa"
-  integrity sha512-Y95yeJte+kkPVkLrdEkHJUj3qwqhGHUf32YOn6Vc+7pVYAVAvY6Pd1MQgHatHjqNo+lStQzypta7zPiF2D0b4g==
+replicate@^0.12.3:
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/replicate/-/replicate-0.12.3.tgz#f5f1559b0bf0381c224a86b89e1d32f4a28b5fb7"
+  integrity sha512-HVWKPoVhWVTONlWk+lUXmq9Vy2J8MxBJMtDBQq3dA5uq71ZzKTh0xvJfvzW4+VLBjhBeL7tkdua6hZJmKfzAPQ==
 
 request-ip@^3.3.0:
   version "3.3.0"
