@@ -22584,10 +22584,10 @@ upload-js-full@^2.14.0:
   resolved "https://registry.yarnpkg.com/upload-js-full/-/upload-js-full-2.14.0.tgz#40b5b6092075c3177b12cd2f8185ed5583e7bc39"
   integrity sha512-oMIU4LHdp0j3ULp4smQ4PMNOlJQrmE1Hek6uwmiEkv9663InH5vhxLsl7PYICc20IS4RR/zliLWbYQujGcE02Q==
 
-uploadthing@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/uploadthing/-/uploadthing-4.1.1.tgz#7d476cf75c53fa1d9b9154926e5164ad108fe8c1"
-  integrity sha512-D+HzK5K3STxyKS+vSM3Ru9P8tMC7umkUp7OyPYYEuxfYhxMnaFDDxdjyKX2mqt5mA2d+g1nqPK1l3rmojdpsmA==
+uploadthing@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/uploadthing/-/uploadthing-4.1.2.tgz#02aca963f66e4a668d0bc0e6632c2fe865c367fc"
+  integrity sha512-Ozux50O7VdscIIp5yBjQEQSFyUUGNFdR4eG9rxYbgGH8K1lZQU2QiAi+o+/XfRS4+oL9SIb0CXev/ke0/3Grbg==
 
 upper-case-first@^2.0.2:
   version "2.0.2"
