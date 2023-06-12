@@ -23655,10 +23655,10 @@ zip-stream@^4.1.0:
     compress-commons "^4.1.0"
     readable-stream "^3.6.0"
 
-zod-i18n-map@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/zod-i18n-map/-/zod-i18n-map-2.13.0.tgz#b3a21585114dbf31a9ae2a1e6ae4dd78b8beeb29"
-  integrity sha512-G3jEyg0S8BwXnsLoZJvmKcw9qHlQSNLhrzpY36ShOCPSWK+ACpsPcs62VEwXYfthcTB8ehJqPIBdWBfJ7q7nSQ==
+zod-i18n-map@^2.13.1:
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/zod-i18n-map/-/zod-i18n-map-2.13.1.tgz#f423776a69f4d0b0405505c0bfa9d26d02ebca2d"
+  integrity sha512-8C6MnDasv4J6U8KN4l4IZ8CWU9PupMUh0wUfJ+UbtY+DBdAnpFxKnzhOEqcNllK9QiWk2a4e/SsuB6evEcJdYw==
 
 zod-prisma-types@^2.7.1:
   version "2.7.1"
