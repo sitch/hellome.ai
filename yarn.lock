@@ -6868,10 +6868,10 @@
   resolved "https://registry.yarnpkg.com/@uidotdev/usehooks/-/usehooks-2.0.1.tgz#ed76a6d2ea4fe008a1d732a45489025fa2a4c586"
   integrity sha512-rJXxE3Y8g9utRbOS9Pj9tIvrnOdaakHIhLbMxBlErV8HydnGD0DveD82aLBfVTh1hBp5IXqpeHpMrPE9WIT7vQ==
 
-"@uploadthing/react@^4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@uploadthing/react/-/react-4.1.1.tgz#e0638b85e21bd71166cbc61689acb0d9c216d285"
-  integrity sha512-QGjOtUm3FQRbZCZpL7MujeSgBGCI83yBFQ8IB+OEhLNGl3xGgHn/h1kVwE4eIUgYE+pBwzxVSvM4/G7uxK3N8A==
+"@uploadthing/react@^4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@uploadthing/react/-/react-4.1.2.tgz#12ec9124c2acf73544812b24b1fae0fade2b66b1"
+  integrity sha512-yEAAg+DZ6jt5G6KB2BKrTZ9+eN1RhWZFkyqlndULiJaYrbKmBwEP7M1pc64pqyLKdK928d4NLeuAkO3bgVTY2w==
 
 "@use-cookie-consent/core@^0.3.6":
   version "0.3.6"
