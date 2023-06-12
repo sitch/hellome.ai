@@ -3673,10 +3673,10 @@
     fontkit "^2.0.2"
     zod "^3.20.2"
 
-"@pdfme/generator@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@pdfme/generator/-/generator-1.2.2.tgz#09c85f8f3d541cdec79f790c176f74638872fc68"
-  integrity sha512-IR8Tm4AAt+pTFUwukZ9A8KJ9w4S3vm9D6GRIjJTx/dIeKCzTlpcwoYvu7Wqyhw0SElN7U2SV7+fHp8jtXnd6Ww==
+"@pdfme/generator@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@pdfme/generator/-/generator-1.2.3.tgz#43c80a0f8bad65f402699b22b26cdc94a1b0b2ec"
+  integrity sha512-y9VRxNVZpCYlzvy7gAFppH5cNGEqix9IAKavc0DSwqE3VJkRsjTkawSGG+XitoazgaWjdtxgA9IrQvoJzTrLCw==
   dependencies:
     "@pdfme/common" "^1.2.1"
     "@pdfme/pdf-lib" "^1.17.3"

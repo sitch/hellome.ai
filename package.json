@@ -138,7 +138,7 @@
     "@next/env": "^13.4.4",
     "@ntegral/lulu": "^1.4.2",
     "@openapitools/openapi-generator-cli": "^2.6.0",
-    "@pdfme/generator": "^1.2.2",
+    "@pdfme/generator": "^1.2.3",
     "@pdfme/ui": "^1.2.2",
     "@prisma/client": "^4.15.0",
     "@radix-ui/colors": "^0.1.8",
