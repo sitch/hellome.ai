@@ -353,7 +353,7 @@
   "devDependencies": {
     "@aws-sdk/types": "^3.347.0",
     "@downwindcss/easings": "^1.0.4",
-    "@frsource/cypress-plugin-visual-regression-diff": "^3.3.9",
+    "@frsource/cypress-plugin-visual-regression-diff": "^3.3.10",
     "@ianvs/prettier-plugin-sort-imports": "4.0.2",
     "@limegrass/eslint-plugin-import-alias": "^1.0.6",
     "@mdx-js/react": "^2.3.0",
