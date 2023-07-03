@@ -7276,6 +7276,26 @@
     zod "3.21.1"
     zod-validation-error "^0.2.1"
 
+"@zenstackhq/runtime@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@zenstackhq/runtime/-/runtime-1.0.0-beta.3.tgz#dab89f4ffac1183b51a9ad15f9d1c0b3d3dcf3fa"
+  integrity sha512-DjVpiKHgW/oEm9Q8ZUdHGmzxjJqqDqUrTjC+fhsrQBQL+B1Vyj0YWc2IfH8q0yd6CG/50eWFyYSkhX0ociTTZw==
+  dependencies:
+    "@paralleldrive/cuid2" "^2.2.0"
+    "@types/bcryptjs" "^2.4.2"
+    bcryptjs "^2.4.3"
+    change-case "^4.1.2"
+    colors "1.4.0"
+    decimal.js "^10.4.2"
+    deepcopy "^2.1.0"
+    lower-case-first "^2.0.2"
+    pluralize "^8.0.0"
+    superjson "^1.11.0"
+    tslib "^2.4.1"
+    upper-case-first "^2.0.2"
+    zod "3.21.1"
+    zod-validation-error "^0.2.1"
+
 "@zenstackhq/sdk@1.0.0-alpha.126":
   version "1.0.0-alpha.126"
   resolved "https://registry.yarnpkg.com/@zenstackhq/sdk/-/sdk-1.0.0-alpha.126.tgz#ebfa947ddcf72e7def9afbfa000d907fd5297617"
