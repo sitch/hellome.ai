@@ -186,7 +186,7 @@
     "@vladmandic/human": "^3.0.7",
     "@zenstackhq/next": "^1.0.0-alpha.126",
     "@zenstackhq/react": "^1.0.0-alpha.126",
-    "@zenstackhq/runtime": "1.0.0-alpha.126",
+    "@zenstackhq/runtime": "1.0.0-beta.8",
     "@zenstackhq/server": "^1.0.0-alpha.126",
     "@zenstackhq/swr": "^1.0.0-alpha.126",
     "@zenstackhq/trpc": "^1.0.0-alpha.126",
