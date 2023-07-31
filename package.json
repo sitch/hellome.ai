@@ -154,7 +154,7 @@
     "@radix-ui/react-tooltip": "^1.0.6",
     "@react-spring/three": "^9.7.2",
     "@react-spring/web": "^9.7.2",
-    "@react-three/drei": "^9.74.15",
+    "@react-three/drei": "^9.80.0",
     "@react-three/fiber": "^8.13.3",
     "@sentry/nextjs": "^7.55.1",
     "@stdlib/datasets-female-first-names-en": "^0.0.9",
